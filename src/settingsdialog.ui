@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>SettingsDialog</class>
+ <widget class="QDialog" name="SettingsDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>415</width>
+    <height>370</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout_2">
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="dialogHorizontalLayout">
+     <item>
+      <widget class="QPushButton" name="resetButton">
+       <property name="text">
+        <string>Reset settings</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="dialogBox">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="0" column="0">
+    <widget class="QTabWidget" name="tabWidget">
+     <property name="accessibleName">
+      <string/>
+     </property>
+     <property name="currentIndex">
+      <number>0</number>
+     </property>
+     <widget class="QWidget" name="generalTab">
+      <attribute name="title">
+       <string>General</string>
+      </attribute>
+      <widget class="QWidget" name="verticalLayoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>0</y>
+         <width>371</width>
+         <height>249</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="generalVerticalLayout">
+        <property name="spacing">
+         <number>6</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="languageHorizontalLayout">
+          <item>
+           <widget class="QLabel" name="languageLabel">
+            <property name="text">
+             <string>Language</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="languageComboBox"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="windowModeHorizontalLayout">
+          <item>
+           <widget class="QLabel" name="windowModeLabel">
+            <property name="text">
+             <string>Translation mode of the selected text</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="windowModeComboBox"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="appIconHorizontalLayout">
+          <item>
+           <widget class="QLabel" name="appIconLabel">
+            <property name="text">
+             <string>App icon</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="appIconComboBox"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
+          <item>
+           <widget class="QLabel" name="trayIconLabel">
+            <property name="text">
+             <string>Tray icon</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="trayIconComboBox"/>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="trayCheckBox">
+          <property name="text">
+           <string>Show tray icon</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="startMinimizedCheckBox">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Start minimized</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="autostartCheckBox">
+          <property name="text">
+           <string>Launch at startup</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="tabShortcuts">
+      <attribute name="title">
+       <string>Shortcuts</string>
+      </attribute>
+      <widget class="QGroupBox" name="globalShortcutsBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>371</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Global</string>
+       </property>
+       <widget class="QWidget" name="gridLayoutWidget">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>371</width>
+          <height>107</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="shortcutsFormLayout">
+         <item row="0" column="0">
+          <widget class="QLabel" name="translateSelectedLabel">
+           <property name="text">
+            <string>Translate selected text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QKeySequenceEdit" name="translateSelectedSequenceEdit">
+           <property name="keySequence">
+            <string>Ctrl+Alt+X</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="showMainWindowLabel">
+           <property name="text">
+            <string>Show main window</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QKeySequenceEdit" name="showMainWindowSequenceEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="speakSelectedLabel">
+           <property name="text">
+            <string>Speak selected text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QKeySequenceEdit" name="speakSelectedSequenceEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+      <widget class="QGroupBox" name="mainWindowShortcutsBox">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>140</y>
+         <width>371</width>
+         <height>131</height>
+        </rect>
+       </property>
+       <property name="title">
+        <string>Main window</string>
+       </property>
+       <widget class="QWidget" name="gridLayoutWidget_2">
+        <property name="geometry">
+         <rect>
+          <x>0</x>
+          <y>20</y>
+          <width>371</width>
+          <height>107</height>
+         </rect>
+        </property>
+        <layout class="QFormLayout" name="shortcutsFormLayout_2">
+         <item row="0" column="0">
+          <widget class="QLabel" name="translateInputLabel">
+           <property name="text">
+            <string>Translate input text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1">
+          <widget class="QKeySequenceEdit" name="translateInputSequenceEdit">
+           <property name="keySequence">
+            <string>Ctrl+Alt+X</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QLabel" name="speakInputLabel">
+           <property name="text">
+            <string>Speak input text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="1" column="1">
+          <widget class="QKeySequenceEdit" name="speakInputSequenceEdit"/>
+         </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="speakOutputLabel">
+           <property name="text">
+            <string>Speak translated text</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QKeySequenceEdit" name="speakOutputSequenceEdit"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </widget>
+     <widget class="QWidget" name="aboutTab">
+      <attribute name="title">
+       <string>About</string>
+      </attribute>
+      <widget class="QLabel" name="Imagelabel">
+       <property name="geometry">
+        <rect>
+         <x>10</x>
+         <y>10</y>
+         <width>101</width>
+         <height>101</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="pixmap">
+        <pixmap resource="../data/resources.qrc">:/icons/app/classic.png</pixmap>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QGroupBox" name="aboutBox">
+       <property name="geometry">
+        <rect>
+         <x>130</x>
+         <y>10</y>
+         <width>291</width>
+         <height>171</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="title">
+        <string notr="true">Crow</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+       </property>
+       <property name="flat">
+        <bool>false</bool>
+       </property>
+       <property name="checkable">
+        <bool>false</bool>
+       </property>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <property name="leftMargin">
+         <number>9</number>
+        </property>
+        <item row="6" column="1">
+         <widget class="QLabel" name="mailLabel">
+          <property name="text">
+           <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;genaloner@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="0">
+         <widget class="QLabel" name="mailTitleLabel">
+          <property name="text">
+           <string notr="true">E-mail:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0">
+         <widget class="QLabel" name="autorTitleLabel">
+          <property name="text">
+           <string>Autor:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLabel" name="autorLabel">
+          <property name="text">
+           <string notr="true">Shatur95</string>
+          </property>
+         </widget>
+        </item>
+        <item row="6" column="2">
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>0</width>
+            <height>0</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="8" column="1">
+         <widget class="QLabel" name="telegramLabel">
+          <property name="text">
+           <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;@Shatur&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+          </property>
+          <property name="openExternalLinks">
+           <bool>true</bool>
+          </property>
+          <property name="textInteractionFlags">
+           <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="0">
+         <widget class="QLabel" name="versionTitleLabel">
+          <property name="text">
+           <string>Version:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="telegramTitleLabel">
+          <property name="text">
+           <string notr="true">Telegram:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1">
+         <widget class="QLabel" name="versionLabel">
+          <property name="text">
+           <string notr="true">0.9.0</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLabel" name="nationLabel">
+          <property name="text">
+           <string>Ukraine</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="0">
+         <widget class="QLabel" name="nationTitleLabel">
+          <property name="text">
+           <string>Country:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0">
+         <widget class="QLabel" name="licenseTitleLabel">
+          <property name="text">
+           <string>License:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1">
+         <widget class="QLabel" name="licenseLabel">
+          <property name="text">
+           <string notr="true">GPL v3 </string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources>
+  <include location="../data/resources.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>dialogBox</sender>
+   <signal>accepted()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>365</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dialogBox</sender>
+   <signal>rejected()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>404</x>
+     <y>355</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
