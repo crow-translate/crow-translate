@@ -1,9 +1,9 @@
 [submodule "src/third-party/singleapplication"]
 	path = src/third-party/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
-[submodule "src/qonlinetranslator"]
-	path = src/qonlinetranslator
-	url = https://github.com/Shatur95/QOnlineTranslator.git
 [submodule "src/third-party/qhotkey"]
 	path = src/third-party/qhotkey
 	url = https://github.com/Skycoder42/QHotkey.git
+[submodule "src/qonlinetranslator"]
+	path = src/qonlinetranslator
+	url = git@github.com:Shatur95/QOnlineTranslator.git
