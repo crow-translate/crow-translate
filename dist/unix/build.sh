@@ -8,7 +8,7 @@ case $ID in
 	
 	"ubuntu" | "linuxmint" | "elementary" | "debian" | "devuan" )
 		if [ -z $(which debuild) ]; then
-			echo "devsripts package REQUIRED for building:"
+			echo "Package devsripts REQUIRED for building:"
 			sudo apt install devscripts
 			
 			[ "$?" -eq 1 ] && echo "You can still install it by yourself." && exit 0
