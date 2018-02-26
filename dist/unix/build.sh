@@ -16,7 +16,7 @@ case $ID in
 		
 		cd ../..
 		
-		ln -s dist/debian .
+		ln -s dist/unix/debian .
 		debuild -i -us -uc
 		rm debian
 		make clean
