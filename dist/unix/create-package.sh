@@ -4,7 +4,20 @@
 
 case $ID in
 	"arch" | "parabola" | "manjarolinux" )
-	;;
+        cd archlinux
+	
+        makepkg
+        rm -r pkg
+        rm -r src
+        cd ../../..
+        make clean
+        rm crow
+        rm .qmake.stash
+	
+        echo -e "\x1b[1;32mNow you can install Crow by running the following commands:\x1b[0m"
+        echo -e "\x1b[1;37mcd archlinux\x1b[0m"
+        echo -e "\x1b[1;37msudo pacman -U crow-git-*.pkg.tar.xz\x1b[0m"
+    ;;
 	
 	"ubuntu" | "linuxmint" | "elementary" | "debian" | "devuan" )
 		if [ -z $(which debuild) ]; then
@@ -21,10 +34,11 @@ case $ID in
 		rm debian
 		make clean
 		rm crow
+        rm .qmake.stash
 		
-		echo "You can now install it by type:"
-		echo "cd .."
-		echo "dpkg -i crow_*-amd64.deb"
+        echo -e "\x1b[1;32mNow you can install Crow by running the following commands:\x1b[0m"
+        echo -e "\x1b[1;37mcd archlinux\x1b[0m"
+        echo -e "\x1b[1;37msudo pacman -U crow-git-*.pkg.tar.xz\x1b[0m"
 	;;
 	
 	"fedora" )
