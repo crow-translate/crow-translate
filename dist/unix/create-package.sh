@@ -29,16 +29,19 @@ case $ID in
 		
 		cd ../..
 		
-		ln -s dist/unix/debian .
+		tar czfv crow_$(awk 'NR==1 {print $2}' dist/unix/debian/changelog | sed 's/-[1-9]//g;s/[()]//g').orig.tar.gz *
+		mv crow_*.orig.tar.gz ..
+		cp -r dist/unix/debian .
 		debuild -i -us -uc
-		rm debian
+		rm -rf debian
 		make clean
 		rm crow
         rm .qmake.stash
 		
         echo -e "\x1b[1;32mNow you can install Crow by running the following commands:\x1b[0m"
-        echo -e "\x1b[1;37mcd archlinux\x1b[0m"
-        echo -e "\x1b[1;37msudo pacman -U crow-git-*.pkg.tar.xz\x1b[0m"
+        echo -e "\x1b[1;37mcd ../../..\x1b[0m"
+        echo -e "\x1b[1;37msudo dpkg -i crow-*-amd64.deb\x1b[0m"
+        echo -e "\x1b[1;37msudo apt install -f\x1b[0m"
 	;;
 	
 	"fedora" )
