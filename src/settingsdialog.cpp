@@ -1,9 +1,9 @@
 /*
  *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
  *
- *  This file is part of Crow.
+ *  This file is part of Crow Translate.
  *
- *  Crow is free software; you can redistribute it and/or modify
+ *  Crow Translate is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 3 of the License, or
  *  (at your option) any later version.
@@ -77,7 +77,7 @@ void SettingsDialog::on_dialogBox_accepted()
         QString autostartPath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + QString("/autostart");
         QDir autorunDir(autostartPath);
         if(!autorunDir.exists()) autorunDir.mkpath(autostartPath); // Create autostart folder if it does not exist
-        QFile autorunFile(autostartPath + QString("/crow.desktop"));
+        QFile autorunFile(autostartPath + QString("/crow-translate.desktop"));
         if(ui->autostartCheckBox->isChecked()) {
             // Create autorun file if checked
             if(!autorunFile.exists()){
@@ -87,8 +87,8 @@ void SettingsDialog::on_dialogBox_accepted()
                                            "Exec=" + QCoreApplication::applicationFilePath() + "\n"
                                            "Hidden=false\n"
                                            "NoDisplay=false\n"
-                                           "Icon=crow\n"
-                                           "Name=Crow\n"
+                                           "Icon=crow-translate\n"
+                                           "Name=Crow Translate\n"
                                            "Comment=A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API\n"
                                            "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API.\n");
                     QTextStream outStream(&autorunFile);
@@ -106,11 +106,11 @@ void SettingsDialog::on_dialogBox_accepted()
 #elif defined(Q_OS_WIN)
         if (ui->autostartCheckBox->isChecked()) {
             QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-            settings.setValue("Crow", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+            settings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
         }
         else {
             QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-            settings.remove("Crow");
+            settings.remove("Crow Translate");
         }
 #endif
     }

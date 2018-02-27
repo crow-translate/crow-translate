@@ -1,9 +1,9 @@
 /*
  *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
  *
- *  This file is part of Crow.
+ *  This file is part of Crow Translate.
  *
- *  Crow is free software; you can redistribute it and/or modify
+ *  Crow Translate is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 3 of the License, or
  *  (at your option) any later version.
