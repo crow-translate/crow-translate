@@ -14,7 +14,7 @@ VERSION = 0.9.0
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
 QMAKE_TARGET_DESCRIPTION = Simple and lightweight translator
 QMAKE_TARGET_COPYRIGHT = Copyright © 2018 Gennady Chernyshchuk
-QMAKE_TARGET_PRODUCT = Crow
+QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
 
 include(src/qonlinetranslator/qonlinetranslator.pri)
@@ -50,7 +50,7 @@ TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
 # Automatically generate .qm files
 qtPrepareTool(LRELEASE, lrelease)
-system($$LRELEASE -removeidentical Crow.pro)|error("Failed to run lrelease")
+system($$LRELEASE -removeidentical crow-translate.pro)|error("Failed to run lrelease")
 
 # For make install
 unix {
@@ -61,7 +61,7 @@ icons.path = /usr/share/icons/hicolor/
 icons.files = dist/unix/generic/menuicons/*
 
 desktop.path = /usr/share/applications
-desktop.files = dist/unix/generic/crow.desktop
+desktop.files = dist/unix/generic/crow-translate.desktop
 
 INSTALLS += bin icons desktop
 }

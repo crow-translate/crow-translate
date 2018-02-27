@@ -17,7 +17,11 @@
    </sizepolicy>
   </property>
   <property name="windowTitle">
-   <string notr="true">Crow</string>
+   <string notr="true">Crow Translate</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../data/resources.qrc">
+    <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
@@ -243,7 +247,7 @@
         <string>Speak</string>
        </property>
        <property name="icon">
-        <iconset theme="volume-level-high" resource="../data/resources.qrc">
+        <iconset theme="volume-level-high">
          <normaloff>:/icons/papirus/voice.png</normaloff>:/icons/papirus/voice.png</iconset>
        </property>
        <property name="toolButtonStyle">

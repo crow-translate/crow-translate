@@ -308,7 +308,7 @@
         <string notr="true"/>
        </property>
        <property name="title">
-        <string notr="true">Crow</string>
+        <string notr="true">Crow Translate</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
