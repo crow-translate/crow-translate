@@ -1,9 +1,9 @@
 /*
  *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
  *
- *  This file is part of Crow.
+ *  This file is part of Crow Translate.
  *
- *  Crow is free software; you can redistribute it and/or modify
+ *  Crow Translate is free software; you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation; either version 3 of the License, or
  *  (at your option) any later version.
@@ -28,10 +28,10 @@
 
 int main(int argc, char *argv[])
 {
-    // If there are no arguments, just launch Crow
+    // If there are no arguments, just launch Crow Translate
     if (argc == 1) {
         SingleApplication app(argc, argv);
-        QApplication::setApplicationName("Crow");
+        QApplication::setApplicationName("Crow Translate");
         QCoreApplication::setOrganizationName("crow");
 
         QSettings settings;
@@ -41,14 +41,14 @@ int main(int argc, char *argv[])
     }
     else {
         QCoreApplication app(argc, argv);
-        app.setApplicationName("Crow");
+        app.setApplicationName("Crow Translate");
         app.setApplicationVersion("0.9");
 
         QCommandLineParser parser;
         parser.setApplicationDescription("This program translates text using Google Translate API\n\t"
-                                         "Usage: qtranslate <text>\n\t"
-                                         "or: qtranslate [output language] <text>\n\t"
-                                         "or: qtranslate [input language] [output language] <text>");
+                                         "Usage: crow <text>\n\t"
+                                         "or: crow [output language] <text>\n\t"
+                                         "or: crow [input language] [output language] <text>");
 
         // Add all languages to parser
         for (auto i = 0; i < QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {

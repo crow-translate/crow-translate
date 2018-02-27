@@ -6,4 +6,4 @@
 	url = https://github.com/Skycoder42/QHotkey.git
 [submodule "src/qonlinetranslator"]
 	path = src/qonlinetranslator
-	url = git@github.com:Shatur95/QOnlineTranslator.git
+	url = https://github.com/Shatur95/CrowTranslate.git
