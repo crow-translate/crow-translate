@@ -2,6 +2,11 @@
 
 . /etc/os-release
 
+cd ../..
+git pull
+git submodule init
+git submodule update
+
 case $ID in
 	"arch" | "parabola" | "manjarolinux" )
         cd archlinux
@@ -9,7 +14,7 @@ case $ID in
         makepkg
         rm -r pkg
         rm -r src
-        cd ../../..
+        cd ..
         make clean
         rm crow
         rm .qmake.stash
@@ -26,8 +31,6 @@ case $ID in
 			
 			[ "$?" -eq 1 ] && echo "You can still install it by yourself." && exit 0
 		fi
-		
-		cd ../..
 		
 		tar czfv crow_$(awk 'NR==1 {print $2}' dist/unix/debian/changelog | sed 's/-[1-9]//g;s/[()]//g').orig.tar.gz *
 		mv crow_*.orig.tar.gz ..
