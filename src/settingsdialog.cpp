@@ -123,7 +123,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
     // Global shortcuts
-    settings.setValue("Hotkeys/Translate", ui->translateSelectedSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SpeakSelected", ui->speakSelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/ShowMainWindow", ui->showMainWindowSequenceEdit->keySequence());
 
