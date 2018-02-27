@@ -2,10 +2,31 @@
 
 . /etc/os-release
 
+[ -z $(which git) ] && [ -z $(which awk) ] && [ -z $(which sed) ] && echo "Install git, awk and sed first." && exit 0
+
 cd ../..
 git pull
 git submodule init
 git submodule update
+
+checkDepends()
+{
+		[ ! -z $(which qmake) ] && [ ! -z $(which make) ] && [ ! -z $(which gcc) ] && [ ! -z $(which g++) ] && exit 0
+	
+		echo "You need to install following depends:"
+		echo "qt5"
+		echo "make"
+		echo "gcc4.9 and g++4.9 or above"
+		echo "Then just run script again."
+		exit 0
+}
+
+cleanDir()
+{
+		make clean
+        rm crow
+        rm .qmake.stash
+}
 
 case $ID in
 	"arch" | "parabola" | "manjarolinux" )
@@ -15,9 +36,7 @@ case $ID in
         rm -r pkg
         rm -r src
         cd ..
-        make clean
-        rm crow
-        rm .qmake.stash
+        cleanDir
 	
         echo -e "\x1b[1;32mNow you can install Crow by running the following commands:\x1b[0m"
         echo -e "\x1b[1;37mcd archlinux\x1b[0m"
@@ -37,9 +56,7 @@ case $ID in
 		cp -r dist/unix/debian .
 		debuild -i -us -uc
 		rm -rf debian
-		make clean
-		rm crow
-        rm .qmake.stash
+		cleanDir
 		
         echo -e "\x1b[1;32mNow you can install Crow by running the following commands:\x1b[0m"
         echo -e "\x1b[1;37mcd ../../..\x1b[0m"
@@ -51,5 +68,14 @@ case $ID in
 	;;
 	
 	*)
+		checkDepends
+		
+		CORES="$(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)"
+		
+		qmake
+		make -j$CORES		
+		mkdir ../crow_install
+		PREFIX=../crow_install make install
+		cleanDir
 	;;
 esac
