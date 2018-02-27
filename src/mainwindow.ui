@@ -152,8 +152,8 @@
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="volume-level-high">
-          <normaloff>:/icons/papirus/voice.png</normaloff>:/icons/papirus/voice.png</iconset>
+         <iconset theme="volume-level-high" resource="../data/resources.qrc">
+          <normaloff>:/icons/papirus/speak.png</normaloff>:/icons/papirus/speak.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -227,8 +227,8 @@
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="volume-level-high">
-          <normaloff>:/icons/papirus/voice.png</normaloff>:/icons/papirus/voice.png</iconset>
+         <iconset theme="volume-level-high" resource="../data/resources.qrc">
+          <normaloff>:/icons/papirus/speak.png</normaloff>:/icons/papirus/speak.png</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
