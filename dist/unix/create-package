@@ -33,6 +33,7 @@ case $ID in
 			[ "$?" -eq 1 ] && echo "You can still install it by yourself." && exit 0
 		fi
 		
+		cd ../..
 		tar czfv crow_$(awk 'NR==1 {print $2}' dist/unix/debian/changelog | sed 's/-[1-9]//g;s/[()]//g').orig.tar.gz *
 		mv crow-translate_*.orig.tar.gz ..
 		cp -r dist/unix/debian .
