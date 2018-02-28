@@ -34,7 +34,7 @@ case $ID in
 		fi
 		
 		cd ../..
-		tar czfv crow_$(awk 'NR==1 {print $2}' dist/unix/debian/changelog | sed 's/-[1-9]//g;s/[()]//g').orig.tar.gz *
+		tar czfv crow-translate_$(awk 'NR==1 {print $2}' dist/unix/debian/changelog | sed 's/-[1-9]//g;s/[()]//g').orig.tar.gz *
 		mv crow-translate_*.orig.tar.gz ..
 		cp -r dist/unix/debian .
 		debuild -i -us -uc
