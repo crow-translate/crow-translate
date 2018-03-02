@@ -52,6 +52,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->trayIconComboBox->addItem(QIcon(ICONS.at(2)), tr("White"));
     ui->trayIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
 
+    // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
+    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+
+    connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
+    connect(ui->popupOpacitySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+
     this->loadSettings();
 }
 
@@ -117,6 +124,7 @@ void SettingsDialog::on_dialogBox_accepted()
 
     // Other general settings
     settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
+    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setValue("AppIcon", ui->appIconComboBox->currentIndex());
     settings.setValue("TrayIcon", ui->trayIconComboBox->currentIndex());
     settings.setValue("TrayVisible", ui->trayCheckBox->isChecked());
@@ -133,7 +141,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/SpeakOutput", ui->speakOutputSequenceEdit->keySequence());
 }
 
-// Disable and make unchecked "Start minimized" option when tray mode is disabled
+// Disable (enable) and make unchecked "Start minimized" option when tray mode is disabled (enabled)
 void SettingsDialog::on_trayCheckBox_toggled(bool checked)
 {
     ui->startMinimizedCheckBox->setEnabled(checked);
@@ -154,6 +162,7 @@ void SettingsDialog::loadSettings()
     // General settings
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", 0)));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
+    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
     ui->appIconComboBox->setCurrentIndex(settings.value("AppIcon", 0).toInt());
     ui->trayIconComboBox->setCurrentIndex(settings.value("TrayIcon", 0).toInt());
     ui->trayCheckBox->setChecked(settings.value("TrayVisible", true).toBool());

@@ -23,6 +23,7 @@
 #include <QBitmap>
 #include <QDesktopWidget>
 #include <QClipboard>
+#include <QSettings>
 
 #include "qonlinetranslator.h"
 #include "ui_popupwindow.h"
@@ -50,7 +51,10 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
 
     // Move popup to cursor
     PopupWindow::move(position);
-    PopupWindow::setWindowOpacity(0.8);
+
+    // Load opacity settings
+    QSettings settings;
+    PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
 //    setMask(QPixmap(":/images/data/images/popupmask.png").scaled(size()).mask());
 
