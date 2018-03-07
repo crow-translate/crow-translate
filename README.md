@@ -41,7 +41,7 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 **Arch Linux:** qt5-base qt5-multimedia gst-plugins-good openssl qt5-tools (make)
 
-**Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
+**Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qtbase5-dev qtbase5-dev-tools qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
 
 ## Installation
 
