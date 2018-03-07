@@ -1,6 +1,4 @@
-# Crow Translate
-
-<img src="./data/icons/app/classic.png" height="128" width="128"/>
+# ![Crow Translate logo](./dist/unix/generic/menuicons/72x72/apps/crow-translate.png) Crow Translate
 
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and speak the selected text using the Google Translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 

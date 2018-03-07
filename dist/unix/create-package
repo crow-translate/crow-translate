@@ -55,10 +55,9 @@ case $ID in
 	*)
 		echo -e "\x1b[1;37mCan't determine your distribution. The project will be compiled and installed in the \"install\" folder.\x1b[0m"
 		
-		CORES="$(cat /proc/cpuinfo | awk '/^processor/{print $3}' | wc -l)"
-		
+		export MAKEFLAGS="-j$(nproc)"
 		qmake
-		make -j$CORES		
+		make
 		mkdir ../install
 		PREFIX=../install make install
 		cleanDir
