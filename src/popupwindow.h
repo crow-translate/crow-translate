@@ -23,7 +23,7 @@
 
 #include <QMenu>
 
-#include "buttongrouplanguages.h"
+#include "languagebuttonsgroup.h"
 
 namespace Ui {
 class PopupWindow;
@@ -38,24 +38,20 @@ public:
     ~PopupWindow();
 
 private slots:
-    void on_inputLanguagesButton_triggered(QAction *language);
-
-    void on_outputLanguagesButton_triggered(QAction *language);
-
+    void on_autoLanguageSourceButton_triggered(QAction *language);
+    void on_autoLanguageTranslationButton_triggered(QAction *language);
     void on_speakButton_clicked();
-
     void on_copyButton_clicked();
-
     void on_swapButton_clicked();
 
 private:
     void translateText();
 
     Ui::PopupWindow *ui;
-    QString *selectedText;
+    QString m_selectedText;
 
-    ButtonGroupLanguages *inputLanguages;
-    ButtonGroupLanguages *outputLanguages;
+    LanguageButtonsGroup *sourceButtonGroup;
+    LanguageButtonsGroup *translateButtonGroup;
 };
 
 #endif // POPUPWINDOW_H

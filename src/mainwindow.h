@@ -27,7 +27,7 @@
 #include <QShortcut>
 
 #include "qhotkey.h"
-#include "buttongrouplanguages.h"
+#include "languagebuttonsgroup.h"
 
 namespace Ui {
 class MainWindow;
@@ -45,40 +45,26 @@ public:
     ~MainWindow();
 
 private slots:
-
     void on_translateButton_clicked();
-
-    void on_inputLanguagesButton_triggered(QAction *language);
-
-    void on_outputLanguagesButton_triggered(QAction *language);
-
+    void on_autoLanguageSourceButton_triggered(QAction *language);
+    void on_autoLanguageTranslationButton_triggered(QAction *language);
     void on_swapButton_clicked();
-
     void on_settingsButton_clicked();
-
-    void on_inputSpeakButton_clicked();
-
-    void on_outputSpeakButton_clicked();
-
-    void on_inputCopyButton_clicked();
-
-    void on_outputCopyButton_clicked();
-
+    void on_speakSourceButton_clicked();
+    void on_speakTranslationButton_clicked();
+    void on_copySourceButton_clicked();
+    void on_copyTranslationButton_clicked();
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
-
     void on_translateSelectedHotkey_activated();
-
     void on_speakHotkey_activated();
-
     void on_showMainWindowHotkey_activated();
 
     void reloadTranslation();
 
 private:
-    static QString test;
     void loadSettings();
 
-    QString getSelectedText();
+    QString selectedText();
 
     Ui::MainWindow *ui;
 
@@ -95,8 +81,8 @@ private:
     QHotkey *speakHotkey;
     QHotkey *showMainWindowHotkey;
 
-    ButtonGroupLanguages *inputLanguages;
-    ButtonGroupLanguages *outputLanguages;
+    LanguageButtonsGroup *sourceButtonGroup;
+    LanguageButtonsGroup *translationButtonGroup;
 };
 
 #endif // MAINWINDOW_H

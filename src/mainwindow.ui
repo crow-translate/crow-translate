@@ -38,7 +38,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="outputLanguageButton1">
+       <widget class="QPushButton" name="languageTranslationButton1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -60,7 +60,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="outputLanguageButton2">
+       <widget class="QPushButton" name="languageTranslationButton2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -79,7 +79,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="outputLanguageButton3">
+       <widget class="QPushButton" name="languageTranslationButton3">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -98,7 +98,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="outputLanguagesButton">
+       <widget class="QToolButton" name="autoLanguageTranslationButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -141,7 +141,7 @@
     <item row="6" column="1">
      <layout class="QHBoxLayout" name="inputButtomLayout">
       <item>
-       <widget class="QToolButton" name="inputSpeakButton">
+       <widget class="QToolButton" name="speakSourceButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
           <horstretch>0</horstretch>
@@ -161,7 +161,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="inputCopyButton">
+       <widget class="QToolButton" name="copySourceButton">
         <property name="text">
          <string>Copy</string>
         </property>
@@ -208,7 +208,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="outputCopyButton">
+       <widget class="QToolButton" name="copyTranslationButton">
         <property name="text">
          <string>Copy</string>
         </property>
@@ -222,7 +222,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="outputSpeakButton">
+       <widget class="QToolButton" name="speakTranslationButton">
         <property name="text">
          <string>Speak</string>
         </property>
@@ -274,7 +274,7 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QToolButton" name="inputLanguagesButton">
+       <widget class="QToolButton" name="autoLanguageSourceButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -305,7 +305,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="inputLanguageButton1">
+       <widget class="QPushButton" name="languageSourceButton1">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -324,7 +324,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="inputLanguageButton2">
+       <widget class="QPushButton" name="languageSourceButton2">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -343,7 +343,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="inputLanguageButton3">
+       <widget class="QPushButton" name="languageSourceButton3">
         <property name="enabled">
          <bool>true</bool>
         </property>

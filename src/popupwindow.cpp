@@ -32,102 +32,95 @@
 PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
-    selectedText(new QString(text)),
-    inputLanguages (new ButtonGroupLanguages(this)),
-    outputLanguages (new ButtonGroupLanguages(this))
+    sourceButtonGroup (new LanguageButtonsGroup(this, "Input")),
+    translateButtonGroup (new LanguageButtonsGroup(this, "Output"))
 {
-    inputLanguages->setObjectName("inputLanguages");
-    outputLanguages->setObjectName("outputLanguages");
-
     ui->setupUi(this);
 
-    this->setAttribute(Qt::WA_DeleteOnClose); // Delete this widget when the widget has accepted the close event
+    // Delete this widget when the widget has accepted the close event
+    this->setAttribute(Qt::WA_DeleteOnClose);
 
-    // Prevent moving popup offscreen
+    // Move popup to cursor and prevent moving offscreen
     QDesktopWidget *screen = QApplication::desktop(); // Screen properties
     QPoint position = QCursor::pos(); // Cursor position
     if (screen->availableGeometry(QCursor::pos()).width() - position.x() - 700 < 0) position.rx()-=700;
     if (screen->availableGeometry(QCursor::pos()).height() - position.y() - 200 < 0) position.ry()-=200;
-
-    // Move popup to cursor
     PopupWindow::move(position);
 
-    // Load opacity settings
     QSettings settings;
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
-//    setMask(QPixmap(":/images/data/images/popupmask.png").scaled(size()).mask());
-
     // Add languagesMenu to auto-language buttons
-    ui->inputLanguagesButton->setMenu(languagesMenu);
-    ui->outputLanguagesButton->setMenu(languagesMenu);
+    ui->autoLanguageSourceButton->setMenu(languagesMenu);
+    ui->autoLanguageTranslationButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    inputLanguages->addButton(ui->inputLanguagesButton, 0);
-    inputLanguages->addButton(ui->inputLanguageButton1);
-    inputLanguages->addButton(ui->inputLanguageButton2);
-    inputLanguages->addButton(ui->inputLanguageButton3);
+    sourceButtonGroup->addButton(ui->autoLanguageSourceButton, 0);
+    sourceButtonGroup->addButton(ui->languageSourceButton1, 1);
+    sourceButtonGroup->addButton(ui->languageSourceButton2, 2);
+    sourceButtonGroup->addButton(ui->languageSourceButton3, 3);
+    translateButtonGroup->addButton(ui->autoLanguageTranslationButton, 0);
+    translateButtonGroup->addButton(ui->languageTranslationButton1, 1);
+    translateButtonGroup->addButton(ui->languageTranslationButton2, 2);
+    translateButtonGroup->addButton(ui->languageTranslationButton3, 3);
 
-    outputLanguages->addButton(ui->outputLanguagesButton, 0);
-    outputLanguages->addButton(ui->outputLanguageButton1);
-    outputLanguages->addButton(ui->outputLanguageButton2);
-    outputLanguages->addButton(ui->outputLanguageButton3);
-
-    inputLanguages->loadSettings();
-    outputLanguages->loadSettings();
+    sourceButtonGroup->loadSettings();
+    translateButtonGroup->loadSettings();
 
     // Translate text automatically when language buttons released
-    connect(inputLanguages, static_cast<void (ButtonGroupLanguages::*)(int)>(&ButtonGroupLanguages::buttonReleased), this, &PopupWindow::translateText);
-    connect(outputLanguages, static_cast<void (ButtonGroupLanguages::*)(int)>(&ButtonGroupLanguages::buttonReleased), this, &PopupWindow::translateText);
+    connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translateText);
+    connect(translateButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translateText);
 
+    m_selectedText = text;
     translateText();
 }
 
 PopupWindow::~PopupWindow()
 {
-    delete selectedText;
     delete ui;
 }
 
-// Insert new language to input buttons
-void PopupWindow::on_inputLanguagesButton_triggered(QAction *language)
+void PopupWindow::on_autoLanguageSourceButton_triggered(QAction *language)
 {
-    short languageIndex = language->data().toInt();
-    inputLanguages->insertLanguage(languageIndex);
+    sourceButtonGroup->insertLanguage(language->text());
     translateText();
 }
 
-// Insert new language to output buttons
-void PopupWindow::on_outputLanguagesButton_triggered(QAction *language)
+void PopupWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 {
-    short languageIndex = language->data().toInt();
-    outputLanguages->insertLanguage(languageIndex);
+    translateButtonGroup->insertLanguage(language->text());
     translateText();
 }
 
 void PopupWindow::on_speakButton_clicked()
 {
-    if (ui->outputEdit->toPlainText() != "") {
-        QOnlineTranslator::say(ui->outputEdit->toPlainText(), outputLanguages->checkedId());
-    }
-    else qDebug() << tr("Text field is empty");
+    if (ui->outputEdit->toPlainText() != "")
+        QOnlineTranslator::say(ui->outputEdit->toPlainText(), translateButtonGroup->checkedButton()->toolTip());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
 void PopupWindow::on_copyButton_clicked()
 {
-    if (ui->outputEdit->toPlainText() != "") {
+    if (ui->outputEdit->toPlainText() != "")
         QApplication::clipboard()->setText(ui->outputEdit->toPlainText());
-    }
-    else qDebug() << tr("Text field is empty");
+    else
+        qDebug() << tr("Text field is empty");
 }
 
 void PopupWindow::on_swapButton_clicked()
 {
-    ButtonGroupLanguages::swapChecked(inputLanguages, outputLanguages);
+    LanguageButtonsGroup::swapChecked(sourceButtonGroup, translateButtonGroup);
     translateText();
 }
 
 void PopupWindow::translateText()
 {
-    ui->outputEdit->setPlainText(QOnlineTranslator::translate(*selectedText, inputLanguages->checkedId(), outputLanguages->checkedId()));
+    QSettings settings;
+    QString sourceLanguage = sourceButtonGroup->checkedButton()->toolTip();
+    QString translatelanguage = translateButtonGroup->checkedButton()->toolTip();
+    QString translatorlanguage = settings.value("Language", "auto").toString();
+
+    QOnlineTranslator onlineTranslator(m_selectedText, sourceLanguage, translatelanguage, translatorlanguage);
+    ui->outputEdit->setPlainText(onlineTranslator.text());
 }

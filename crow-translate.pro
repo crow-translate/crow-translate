@@ -30,13 +30,13 @@ SOURCES += \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
     src/popupwindow.cpp \
-    src/buttongrouplanguages.cpp
+    src/languagebuttonsgroup.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
     src/popupwindow.h \
-    src/buttongrouplanguages.h
+    src/languagebuttonsgroup.h
 
 FORMS += \
     src/settingsdialog.ui \

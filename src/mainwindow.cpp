@@ -40,67 +40,64 @@ MainWindow::MainWindow(QWidget *parent) :
     translateSelectedHotkey (new QHotkey(this)),
     speakHotkey (new QHotkey(this)),
     showMainWindowHotkey (new QHotkey(this)),
-    inputLanguages (new ButtonGroupLanguages(this)),
-    outputLanguages (new ButtonGroupLanguages(this))
+    sourceButtonGroup (new LanguageButtonsGroup(this, "Input")),
+    translationButtonGroup (new LanguageButtonsGroup(this, "Output"))
 {
+    // Set object names for signals autoconnection
     trayIcon->setObjectName("tray");
     translateSelectedHotkey->setObjectName("translateSelectedHotkey");
     speakHotkey->setObjectName("speakHotkey");
     showMainWindowHotkey->setObjectName("showMainWindowHotkey");
-    inputLanguages->setObjectName("inputLanguages");
-    outputLanguages->setObjectName("outputLanguages");
 
     // Load translation
     QSettings settings;
-    if (translator.load(QLocale(qvariant_cast<QLocale::Language>(settings.value("Language", 0))), QString("crow"), QString("_"), QString(":/translations")))
+    QString localeCode = settings.value("Language", "auto").toString();
+    if (localeCode == "auto")
+        QLocale::setDefault(QLocale::system());
+    else
+        QLocale::setDefault(QLocale(localeCode));
+    if (translator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
         qApp->installTranslator(&translator);
 
     ui->setupUi(this);
 
     // Add all languages to languageMenu
     for (auto i=0; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
-        QString language = QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i)));
-        QAction *action = new QAction(language);
-        action->setData(i); // Set data as index
+        QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
+        action->setData(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
         languagesMenu->addAction(action);
     }
 
     // Add languageMenu to auto-language buttons
-    ui->inputLanguagesButton->setMenu(languagesMenu);
-    ui->outputLanguagesButton->setMenu(languagesMenu);
+    ui->autoLanguageSourceButton->setMenu(languagesMenu);
+    ui->autoLanguageTranslationButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    inputLanguages->addButton(ui->inputLanguagesButton, 0);
-    inputLanguages->addButton(ui->inputLanguageButton1);
-    inputLanguages->addButton(ui->inputLanguageButton2);
-    inputLanguages->addButton(ui->inputLanguageButton3);
-
-    outputLanguages->addButton(ui->outputLanguagesButton, 0);
-    outputLanguages->addButton(ui->outputLanguageButton1);
-    outputLanguages->addButton(ui->outputLanguageButton2);
-    outputLanguages->addButton(ui->outputLanguageButton3);
+    sourceButtonGroup->addButton(ui->autoLanguageSourceButton, 0);
+    sourceButtonGroup->addButton(ui->languageSourceButton1, 1);
+    sourceButtonGroup->addButton(ui->languageSourceButton2, 2);
+    sourceButtonGroup->addButton(ui->languageSourceButton3, 3);
+    translationButtonGroup->addButton(ui->autoLanguageTranslationButton, 0);
+    translationButtonGroup->addButton(ui->languageTranslationButton1, 1);
+    translationButtonGroup->addButton(ui->languageTranslationButton2, 2);
+    translationButtonGroup->addButton(ui->languageTranslationButton3, 3);
 
     // Create context menu for tray
     trayShowWindow = new QAction(tr("Show window"));
     traySettings = new QAction(tr("Settings"));
     trayExit = new QAction(tr("Exit"));
-
     trayMenu->addAction(trayShowWindow);
     trayMenu->addAction(traySettings);
     trayMenu->addAction(trayExit);
-
+    trayIcon->setContextMenu(trayMenu);
     connect(trayShowWindow, &QAction::triggered, this, &MainWindow::show);
     connect(traySettings, &QAction::triggered, this, &MainWindow::on_settingsButton_clicked);
     connect(trayExit, &QAction::triggered, qApp, &QApplication::quit);
 
-    // Load language quick-buttons
-    inputLanguages->loadSettings();
-    outputLanguages->loadSettings();
-
-    // Load app settings
+    sourceButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
     loadSettings();
 
-    trayIcon->setContextMenu(trayMenu);
     trayIcon->show();
 }
 
@@ -111,28 +108,32 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_translateButton_clicked()
 {
-    if(ui->inputEdit->toPlainText() != "") {
-        QString translatedText = QOnlineTranslator::translate(ui->inputEdit->toPlainText(), inputLanguages->checkedId(), outputLanguages->checkedId());
-        ui->outputEdit->setPlainText(translatedText);
+    if (ui->inputEdit->toPlainText() != "") {
+        QSettings settings;
+        QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
+        QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
+        QString translatorlanguage = settings.value("Language", "auto").toString();
+        QOnlineTranslator onlineTranslator(ui->inputEdit->toPlainText(), sourcelanguage, translationlanguage, translatorlanguage);
+
+        ui->outputEdit->setPlainText(onlineTranslator.text());
     }
-    else qDebug() << tr("Text field is empty");
+    else
+        qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_inputLanguagesButton_triggered(QAction *language)
+void MainWindow::on_autoLanguageSourceButton_triggered(QAction *language)
 {
-    short languageIndex = language->data().toInt();
-    inputLanguages->insertLanguage(languageIndex);
+    sourceButtonGroup->insertLanguage(language->data().toString());
 }
 
-void MainWindow::on_outputLanguagesButton_triggered(QAction *language)
+void MainWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 {
-    short languageIndex = language->data().toInt();
-    outputLanguages->insertLanguage(languageIndex);
+    translationButtonGroup->insertLanguage(language->data().toString());
 }
 
 void MainWindow::on_swapButton_clicked()
 {
-    ButtonGroupLanguages::swapChecked(inputLanguages, outputLanguages);
+    LanguageButtonsGroup::swapChecked(sourceButtonGroup, translationButtonGroup);
     on_translateButton_clicked();
 }
 
@@ -141,54 +142,58 @@ void MainWindow::on_settingsButton_clicked()
     SettingsDialog config(this);
     connect(&config, &SettingsDialog::languageChanged, this, &MainWindow::reloadTranslation);
     if (config.exec()) {
-        //Load generic settings
         this->loadSettings();
-        // Load language quick-buttons
-        inputLanguages->loadSettings();
-        outputLanguages->loadSettings();
+        sourceButtonGroup->loadSettings();
+        translationButtonGroup->loadSettings();
     }
 }
 
-void MainWindow::on_inputSpeakButton_clicked()
+void MainWindow::on_speakSourceButton_clicked()
 {
-    if (ui->inputEdit->toPlainText() != "") QOnlineTranslator::say(ui->inputEdit->toPlainText(), inputLanguages->checkedId());
-    else qDebug() << tr("Text field is empty");
+    if (ui->inputEdit->toPlainText() != "")
+        QOnlineTranslator::say(ui->inputEdit->toPlainText(), sourceButtonGroup->checkedButton()->toolTip());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_outputSpeakButton_clicked()
+void MainWindow::on_speakTranslationButton_clicked()
 {
-    if (ui->outputEdit->toPlainText() != "") QOnlineTranslator::say(ui->outputEdit->toPlainText(), outputLanguages->checkedId());
-    else qDebug() << tr("Text field is empty");
+    if (ui->outputEdit->toPlainText() != "")
+        QOnlineTranslator::say(ui->outputEdit->toPlainText(), translationButtonGroup->checkedButton()->toolTip());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_inputCopyButton_clicked()
+void MainWindow::on_copySourceButton_clicked()
 {
-    if (ui->inputEdit->toPlainText() != "") QApplication::clipboard()->setText(ui->inputEdit->toPlainText());
-    else qDebug() << tr("Text field is empty");
+    if (ui->inputEdit->toPlainText() != "")
+        QApplication::clipboard()->setText(ui->inputEdit->toPlainText());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_outputCopyButton_clicked()
+void MainWindow::on_copyTranslationButton_clicked()
 {
-    if (ui->outputEdit->toPlainText() != "") QApplication::clipboard()->setText(ui->outputEdit->toPlainText());
-    else qDebug() << tr("Text field is empty");
+    if (ui->outputEdit->toPlainText() != "")
+        QApplication::clipboard()->setText(ui->outputEdit->toPlainText());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
 void MainWindow::on_tray_activated(QSystemTrayIcon::ActivationReason reason) {
     if (reason == QSystemTrayIcon::Trigger) {
-        if (!this->isVisible()) {
+        if (!this->isVisible())
             on_showMainWindowHotkey_activated();
-        } else {
+        else
             this->hide();
-        }
     }
 }
 
 void MainWindow::on_translateSelectedHotkey_activated()
 {
     // Send selected text to input field
-    ui->inputEdit->setPlainText(getSelectedText());
+    ui->inputEdit->setPlainText(selectedText());
 
-    // Translate selected text
     QSettings settings;
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Translate in popup
@@ -204,15 +209,13 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
 void MainWindow::on_speakHotkey_activated()
 {
-    QOnlineTranslator::say(getSelectedText(), outputLanguages->checkedId());
+    QOnlineTranslator::say(selectedText(), translationButtonGroup->checkedButton()->toolTip());
 }
 
-// Show main window
 void MainWindow::on_showMainWindowHotkey_activated()
 {
-    // Load language quick-buttons
-    inputLanguages->loadSettings();
-    outputLanguages->loadSettings();
+    sourceButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 
     this->showNormal();
     this->activateWindow();
@@ -220,18 +223,25 @@ void MainWindow::on_showMainWindowHotkey_activated()
 
 void MainWindow::reloadTranslation()
 {
+    // Install translation
     QSettings settings;
-    if (translator.load(QLocale(qvariant_cast<QLocale::Language>(settings.value("Language", 0))), QString("crow"), QString("_"), QString(":/translations")))
+    QString localeCode = settings.value("Language", "auto").toString();
+    if (localeCode == "auto")
+        QLocale::setDefault(QLocale::system());
+    else
+        QLocale::setDefault(QLocale(localeCode));
+    if (translator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
         qApp->installTranslator(&translator);
 
+    // Retranslate UI
     ui->retranslateUi(this);
     trayShowWindow->setText("Show window");
     traySettings->setText(tr("Settings"));
     trayExit->setText(tr("Exit"));
     for (auto i=0; i<languagesMenu->actions().size(); i++)
         languagesMenu->actions().at(i)->setText(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
-    inputLanguages->loadSettings();
-    outputLanguages->loadSettings();
+    sourceButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 }
 
 void MainWindow::loadSettings()
@@ -250,14 +260,12 @@ void MainWindow::loadSettings()
     translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString()), true);
     speakHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/SpeakSelected", "Alt+S").toString()), true);
     showMainWindowHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString()), true);
-
     ui->translateButton->setShortcut(settings.value("Hotkeys/TranslateInput", "Ctrl+Return").toString());
-    ui->inputSpeakButton->setShortcut(settings.value("Hotkeys/SpeakInput", "Ctrl+S").toString());
-    ui->outputSpeakButton->setShortcut(settings.value("Hotkeys/SpeakOutput", "Ctrl+Shift+S").toString());
+    ui->speakSourceButton->setShortcut(settings.value("Hotkeys/SpeakInput", "Ctrl+S").toString());
+    ui->speakTranslationButton->setShortcut(settings.value("Hotkeys/SpeakOutput", "Ctrl+Shift+S").toString());
 }
 
-// Get selection
-QString MainWindow::getSelectedText()
+QString MainWindow::selectedText()
 {
     QString selectedText;
 #if defined(Q_OS_LINUX)
