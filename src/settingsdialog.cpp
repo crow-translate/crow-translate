@@ -60,7 +60,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
     connect(ui->popupOpacitySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
 
-    this->loadSettings();
+    loadSettings();
 }
 
 SettingsDialog::~SettingsDialog()
@@ -73,7 +73,7 @@ void SettingsDialog::on_dialogBox_accepted()
     QSettings settings;
 
     // Check if language changed
-    if (settings.value("Language", "auto") != ui->languageComboBox->currentData()) {
+    if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
         emit languageChanged(); // Emit signal if language changed
     }
@@ -128,7 +128,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setValue("AppIcon", ui->appIconComboBox->currentIndex());
     settings.setValue("TrayIcon", ui->trayIconComboBox->currentIndex());
-    settings.setValue("TrayVisible", ui->trayCheckBox->isChecked());
+    settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
     // Global shortcuts
@@ -151,9 +151,25 @@ void SettingsDialog::on_trayCheckBox_toggled(bool checked)
 
 void SettingsDialog::on_resetButton_clicked()
 {
-    QSettings settings;
-    settings.clear();
-    accept();
+    // General settings
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData("auto"));
+    ui->windowModeComboBox->setCurrentIndex(0);
+    ui->popupOpacitySlider->setValue(80);
+    ui->appIconComboBox->setCurrentIndex(0);
+    ui->trayIconComboBox->setCurrentIndex(0);
+    ui->trayCheckBox->setChecked(true);
+    ui->startMinimizedCheckBox->setChecked(false);
+    ui->autostartCheckBox->setChecked(false);
+
+    // Global shortcuts
+    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Alt+X"));
+    ui->speakSelectedSequenceEdit->setKeySequence(QKeySequence("Alt+S"));
+    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Alt+C"));
+
+    // Window shortcuts
+    ui->translateInputSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
+    ui->speakInputSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
+    ui->speakOutputSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
 }
 
 void SettingsDialog::loadSettings()
@@ -161,12 +177,12 @@ void SettingsDialog::loadSettings()
     QSettings settings;
 
     // General settings
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto")));
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
     ui->appIconComboBox->setCurrentIndex(settings.value("AppIcon", 0).toInt());
     ui->trayIconComboBox->setCurrentIndex(settings.value("TrayIcon", 0).toInt());
-    ui->trayCheckBox->setChecked(settings.value("TrayVisible", true).toBool());
+    ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 

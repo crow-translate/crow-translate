@@ -380,7 +380,7 @@
      </layout>
     </item>
     <item row="5" column="4">
-     <widget class="QPlainTextEdit" name="outputEdit">
+     <widget class="QTextEdit" name="outputEdit">
       <property name="readOnly">
        <bool>true</bool>
       </property>

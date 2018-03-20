@@ -97,8 +97,6 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtonGroup->loadSettings();
     translationButtonGroup->loadSettings();
     loadSettings();
-
-    trayIcon->show();
 }
 
 MainWindow::~MainWindow()
@@ -115,7 +113,24 @@ void MainWindow::on_translateButton_clicked()
         QString translatorlanguage = settings.value("Language", "auto").toString();
         QOnlineTranslator onlineTranslator(ui->inputEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
-        ui->outputEdit->setPlainText(onlineTranslator.text());
+        // Show translation and transcription
+        ui->outputEdit->setText(onlineTranslator.text());
+        if (onlineTranslator.translationTranscription() != "")
+            ui->outputEdit->append("<font color=\"grey\"><i>/" + onlineTranslator.translationTranscription() + "/</i></font>");
+        if (onlineTranslator.sourceTranscription() != "")
+            ui->outputEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranscription() + ")</b></i></font>");
+        ui->outputEdit->append("");
+
+        // Show translation options
+        foreach (auto translationOptions, onlineTranslator.options()) {
+            ui->outputEdit->append("<i>" + translationOptions.first + "</i>");
+            foreach (QString wordsList, translationOptions.second) {
+                wordsList.prepend("&nbsp;&nbsp;<b>");
+                wordsList.insert(wordsList.indexOf(":") + 1, "</b>");
+                ui->outputEdit->append(wordsList);
+            }
+            ui->outputEdit->append("");
+        }
     }
     else
         qDebug() << tr("Text field is empty");
@@ -253,8 +268,8 @@ void MainWindow::loadSettings()
     trayIcon->setIcon(QIcon(SettingsDialog::ICONS.at(settings.value("TrayIcon", 0).toInt())));
 
     // Load tray visibility
-    trayIcon->setVisible(settings.value("Tray", true).toBool());
-    QApplication::setQuitOnLastWindowClosed(!settings.value("TrayVisible", true).toBool());
+    trayIcon->setVisible(settings.value("TrayIconVisible", true).toBool());
+    QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 
     // Load shortcuts
     translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString()), true);

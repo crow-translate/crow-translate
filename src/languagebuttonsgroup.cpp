@@ -36,10 +36,10 @@ LanguageButtonsGroup::LanguageButtonsGroup(QObject *parent, const QString &name)
 void LanguageButtonsGroup::swapChecked(LanguageButtonsGroup *first, LanguageButtonsGroup *second)
 {
     // Save input language name
-    QString inputLanguageName = first->checkedButton()->text();
+    QString inputLanguageName = first->checkedButton()->toolTip();
 
     // Insert new buttons
-    first->insertLanguage(second->checkedButton()->text());
+    first->insertLanguage(second->checkedButton()->toolTip());
     second->insertLanguage(inputLanguageName);
 }
 
