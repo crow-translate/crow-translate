@@ -113,7 +113,7 @@ void MainWindow::on_translateButton_clicked()
         QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
         QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
         QString translatorlanguage = settings.value("Language", "auto").toString();
-        QOnlineTranslator onlineTranslator(ui->inputEdit->toPlainText(), sourcelanguage, translationlanguage, translatorlanguage);
+        QOnlineTranslator onlineTranslator(ui->inputEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
         ui->outputEdit->setPlainText(onlineTranslator.text());
     }

@@ -121,6 +121,6 @@ void PopupWindow::translateText()
     QString translatelanguage = translateButtonGroup->checkedButton()->toolTip();
     QString translatorlanguage = settings.value("Language", "auto").toString();
 
-    QOnlineTranslator onlineTranslator(m_selectedText, sourceLanguage, translatelanguage, translatorlanguage);
+    QOnlineTranslator onlineTranslator(m_selectedText, translatelanguage, sourceLanguage, translatorlanguage);
     ui->outputEdit->setPlainText(onlineTranslator.text());
 }
