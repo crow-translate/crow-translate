@@ -8,6 +8,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * [Features](#features)
 * [Default keyboard shortcuts](#default-keyboard-shortcuts)
 * [Dependencies](#dependencies)
+* [Third-party libraries](#third-party-libraries)
 * [Installation](#installation)
 
 ## Features
@@ -42,6 +43,27 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 **Arch Linux:** qt5-base qt5-multimedia gst-plugins-good openssl qt5-tools (make)
 
 **Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qtbase5-dev qtbase5-dev-tools qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
+
+## Third-party libraries
+
+This project uses following third-party libraries:
+* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google Translate API for Qt5.
+* [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
+* [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
+
+Therefore, if you want to clone this project, you need to use the `--recursive` option:
+
+```bash
+git clone --recursive git@github.com:Shatur95/CrowTranslate.git
+```
+
+or you can initialize these modules later:
+
+```bash
+git clone git@github.com:Shatur95/CrowTranslate.git
+git submodule init
+git submodule update
+```
 
 ## Installation
 
