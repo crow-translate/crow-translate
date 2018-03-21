@@ -210,6 +210,7 @@ void MainWindow::on_translateSelectedHotkey_activated()
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Translate in popup
         PopupWindow *popup = new PopupWindow(languagesMenu, ui->inputEdit->toPlainText());
+        connect(popup, &PopupWindow::popupClosed, ui->outputEdit, &QTextEdit::setText);
         popup->show();
     }
     else {

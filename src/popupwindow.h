@@ -44,6 +44,9 @@ private slots:
     void on_copyButton_clicked();
     void on_swapButton_clicked();
 
+signals:
+    void popupClosed(QString translation);
+
 private:
     void translateText();
 
