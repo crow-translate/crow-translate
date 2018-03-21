@@ -61,12 +61,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    // Add all languages to languageMenu
-    for (auto i=0; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
-        QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
-        action->setData(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
-        languagesMenu->addAction(action);
-    }
+    languagesMenu->addActions(languagesList());
 
     // Add languageMenu to auto-language buttons
     ui->autoLanguageSourceButton->setMenu(languagesMenu);
@@ -250,15 +245,33 @@ void MainWindow::reloadTranslation()
     if (translator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
         qApp->installTranslator(&translator);
 
-    // Retranslate UI
+    // Reload UI
     ui->retranslateUi(this);
     trayShowWindow->setText("Show window");
     traySettings->setText(tr("Settings"));
     trayExit->setText(tr("Exit"));
-    for (auto i=0; i<languagesMenu->actions().size(); i++)
-        languagesMenu->actions().at(i)->setText(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
+    languagesMenu->clear();
+    languagesMenu->addActions(languagesList());
     sourceButtonGroup->loadSettings();
     translationButtonGroup->loadSettings();
+}
+
+QList<QAction *> MainWindow::languagesList()
+{
+    // Load all languages and codes from QOnlineTranslator
+    QList<QAction *> languagesList;
+    for (auto i=0; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
+        QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
+        action->setData(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
+        languagesList.append(action);
+    }
+
+    // Sort alphabetically for easy access
+    std::sort(languagesList.begin() + 1, languagesList.end(), [](QAction *first, QAction *second) {
+        return first->text() < second->text();
+    } );
+
+    return languagesList;
 }
 
 void MainWindow::loadSettings()

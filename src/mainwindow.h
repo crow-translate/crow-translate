@@ -60,6 +60,7 @@ private slots:
     void on_showMainWindowHotkey_activated();
 
     void reloadTranslation();
+    QList<QAction *> languagesList();
 
 private:
     void loadSettings();
