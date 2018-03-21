@@ -131,6 +131,8 @@ void MainWindow::on_translateButton_clicked()
             }
             ui->outputEdit->append("");
         }
+
+        ui->outputEdit->moveCursor(QTextCursor::Start);
     }
     else
         qDebug() << tr("Text field is empty");
