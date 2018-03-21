@@ -54,7 +54,7 @@ private:
     QString m_selectedText;
 
     LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *translateButtonGroup;
+    LanguageButtonsGroup *translationButtonGroup;
 };
 
 #endif // POPUPWINDOW_H

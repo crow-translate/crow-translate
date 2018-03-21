@@ -135,12 +135,12 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_autoLanguageSourceButton_triggered(QAction *language)
 {
-    sourceButtonGroup->insertLanguage(language->data().toString());
+    sourceButtonGroup->insertLanguage(language->toolTip());
 }
 
 void MainWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 {
-    translationButtonGroup->insertLanguage(language->data().toString());
+    translationButtonGroup->insertLanguage(language->toolTip());
 }
 
 void MainWindow::on_swapButton_clicked()
@@ -263,7 +263,7 @@ QList<QAction *> MainWindow::languagesList()
     QList<QAction *> languagesList;
     for (auto i=0; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
         QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
-        action->setData(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
+        action->setToolTip(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
         languagesList.append(action);
     }
 

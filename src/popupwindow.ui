@@ -233,7 +233,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QPlainTextEdit" name="outputEdit">
+    <widget class="QTextEdit" name="outputEdit">
      <property name="readOnly">
       <bool>true</bool>
      </property>

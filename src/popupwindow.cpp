@@ -33,7 +33,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new LanguageButtonsGroup(this, "Input")),
-    translateButtonGroup (new LanguageButtonsGroup(this, "Output"))
+    translationButtonGroup (new LanguageButtonsGroup(this, "Output"))
 {
     ui->setupUi(this);
 
@@ -59,17 +59,17 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
     sourceButtonGroup->addButton(ui->languageSourceButton1, 1);
     sourceButtonGroup->addButton(ui->languageSourceButton2, 2);
     sourceButtonGroup->addButton(ui->languageSourceButton3, 3);
-    translateButtonGroup->addButton(ui->autoLanguageTranslationButton, 0);
-    translateButtonGroup->addButton(ui->languageTranslationButton1, 1);
-    translateButtonGroup->addButton(ui->languageTranslationButton2, 2);
-    translateButtonGroup->addButton(ui->languageTranslationButton3, 3);
+    translationButtonGroup->addButton(ui->autoLanguageTranslationButton, 0);
+    translationButtonGroup->addButton(ui->languageTranslationButton1, 1);
+    translationButtonGroup->addButton(ui->languageTranslationButton2, 2);
+    translationButtonGroup->addButton(ui->languageTranslationButton3, 3);
 
     sourceButtonGroup->loadSettings();
-    translateButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 
     // Translate text automatically when language buttons released
     connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translateText);
-    connect(translateButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translateText);
+    connect(translationButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translateText);
 
     m_selectedText = text;
     translateText();
@@ -89,14 +89,14 @@ void PopupWindow::on_autoLanguageSourceButton_triggered(QAction *language)
 
 void PopupWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 {
-    translateButtonGroup->insertLanguage(language->text());
+    translationButtonGroup->insertLanguage(language->text());
     translateText();
 }
 
 void PopupWindow::on_speakButton_clicked()
 {
     if (ui->outputEdit->toPlainText() != "")
-        QOnlineTranslator::say(ui->outputEdit->toPlainText(), translateButtonGroup->checkedButton()->toolTip());
+        QOnlineTranslator::say(ui->outputEdit->toPlainText(), translationButtonGroup->checkedButton()->toolTip());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -111,17 +111,36 @@ void PopupWindow::on_copyButton_clicked()
 
 void PopupWindow::on_swapButton_clicked()
 {
-    LanguageButtonsGroup::swapChecked(sourceButtonGroup, translateButtonGroup);
+    LanguageButtonsGroup::swapChecked(sourceButtonGroup, translationButtonGroup);
     translateText();
 }
 
 void PopupWindow::translateText()
 {
     QSettings settings;
-    QString sourceLanguage = sourceButtonGroup->checkedButton()->toolTip();
-    QString translatelanguage = translateButtonGroup->checkedButton()->toolTip();
+    QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
+    QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
     QString translatorlanguage = settings.value("Language", "auto").toString();
+    QOnlineTranslator onlineTranslator(m_selectedText, translationlanguage, sourcelanguage, translatorlanguage);
 
-    QOnlineTranslator onlineTranslator(m_selectedText, translatelanguage, sourceLanguage, translatorlanguage);
-    ui->outputEdit->setPlainText(onlineTranslator.text());
+    // Show translation and transcription
+    ui->outputEdit->setText(onlineTranslator.text());
+    if (onlineTranslator.translationTranscription() != "")
+        ui->outputEdit->append("<font color=\"grey\"><i>/" + onlineTranslator.translationTranscription() + "/</i></font>");
+    if (onlineTranslator.sourceTranscription() != "")
+        ui->outputEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranscription() + ")</b></i></font>");
+    ui->outputEdit->append("");
+
+    // Show translation options
+    foreach (auto translationOptions, onlineTranslator.options()) {
+        ui->outputEdit->append("<i>" + translationOptions.first + "</i>");
+        foreach (QString wordsList, translationOptions.second) {
+            wordsList.prepend("&nbsp;&nbsp;<b>");
+            wordsList.insert(wordsList.indexOf(":") + 1, "</b>");
+            ui->outputEdit->append(wordsList);
+        }
+        ui->outputEdit->append("");
+    }
+
+    ui->outputEdit->moveCursor(QTextCursor::Start);
 }
