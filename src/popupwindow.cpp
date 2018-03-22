@@ -77,7 +77,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
 
 PopupWindow::~PopupWindow()
 {
-    emit popupClosed(ui->outputEdit->toPlainText());
+    emit popupClosed(ui->outputEdit->toHtml());
     delete ui;
 }
 
