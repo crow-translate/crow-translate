@@ -82,13 +82,13 @@ PopupWindow::~PopupWindow()
 
 void PopupWindow::on_autoLanguageSourceButton_triggered(QAction *language)
 {
-    sourceButtonGroup->insertLanguage(language->text());
+    sourceButtonGroup->insertLanguage(language->toolTip());
     translateText();
 }
 
 void PopupWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 {
-    translationButtonGroup->insertLanguage(language->text());
+    translationButtonGroup->insertLanguage(language->toolTip());
     translateText();
 }
 
