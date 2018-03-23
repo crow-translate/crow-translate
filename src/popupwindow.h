@@ -23,6 +23,7 @@
 
 #include <QMenu>
 
+#include "qonlinetranslator.h"
 #include "languagebuttonsgroup.h"
 
 namespace Ui {
@@ -51,7 +52,9 @@ private:
     void translateText();
 
     Ui::PopupWindow *ui;
+
     QString m_selectedText;
+    QOnlineTranslator translationData;
 
     LanguageButtonsGroup *sourceButtonGroup;
     LanguageButtonsGroup *translationButtonGroup;

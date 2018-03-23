@@ -27,6 +27,7 @@
 #include <QShortcut>
 
 #include "qhotkey.h"
+#include "qonlinetranslator.h"
 #include "languagebuttonsgroup.h"
 
 namespace Ui {
@@ -70,6 +71,8 @@ private:
     Ui::MainWindow *ui;
 
     QTranslator translator;
+
+    QOnlineTranslator translationData;
 
     QMenu *languagesMenu;
     QMenu *trayMenu;

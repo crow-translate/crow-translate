@@ -25,7 +25,6 @@
 #include <QClipboard>
 #include <QSettings>
 
-#include "qonlinetranslator.h"
 #include "ui_popupwindow.h"
 #include "mainwindow.h"
 
@@ -96,7 +95,7 @@ void PopupWindow::on_autoLanguageTranslationButton_triggered(QAction *language)
 void PopupWindow::on_speakButton_clicked()
 {
     if (ui->outputEdit->toPlainText() != "")
-        QOnlineTranslator::say(ui->outputEdit->toPlainText(), translationButtonGroup->checkedButton()->toolTip());
+        QOnlineTranslator::say(translationData.text(), translationButtonGroup->checkedButton()->toolTip());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -121,18 +120,18 @@ void PopupWindow::translateText()
     QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
     QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
     QString translatorlanguage = settings.value("Language", "auto").toString();
-    QOnlineTranslator onlineTranslator(m_selectedText, translationlanguage, sourcelanguage, translatorlanguage);
+    translationData.translate(m_selectedText, translationlanguage, sourcelanguage, translatorlanguage);
 
     // Show translation and transcription
-    ui->outputEdit->setText(onlineTranslator.text());
-    if (onlineTranslator.translationTranscription() != "")
-        ui->outputEdit->append("<font color=\"grey\"><i>/" + onlineTranslator.translationTranscription() + "/</i></font>");
-    if (onlineTranslator.sourceTranscription() != "")
-        ui->outputEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranscription() + ")</b></i></font>");
+    ui->outputEdit->setText(translationData.text());
+    if (translationData.translationTranscription() != "")
+        ui->outputEdit->append("<font color=\"grey\"><i>/" + translationData.translationTranscription() + "/</i></font>");
+    if (translationData.sourceTranscription() != "")
+        ui->outputEdit->append("<font color=\"grey\"><i><b>(" + translationData.sourceTranscription() + ")</b></i></font>");
     ui->outputEdit->append("");
 
     // Show translation options
-    foreach (auto translationOptions, onlineTranslator.options()) {
+    foreach (auto translationOptions, translationData.options()) {
         ui->outputEdit->append("<i>" + translationOptions.first + "</i>");
         foreach (QString wordsList, translationOptions.second) {
             wordsList.prepend("&nbsp;&nbsp;<b>");
