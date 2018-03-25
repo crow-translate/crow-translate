@@ -124,8 +124,8 @@ void PopupWindow::translateText()
 
     // Show translation and transcription
     ui->outputEdit->setText(translationData.text());
-    if (translationData.translationTranscription() != "")
-        ui->outputEdit->append("<font color=\"grey\"><i>/" + translationData.translationTranscription() + "/</i></font>");
+    if (translationData.targetTranscription() != "")
+        ui->outputEdit->append("<font color=\"grey\"><i>/" + translationData.targetTranscription() + "/</i></font>");
     if (translationData.sourceTranscription() != "")
         ui->outputEdit->append("<font color=\"grey\"><i><b>(" + translationData.sourceTranscription() + ")</b></i></font>");
     ui->outputEdit->append("");

@@ -72,7 +72,7 @@ private:
 
     QTranslator translator;
 
-    QOnlineTranslator translationData;
+    QOnlineTranslator m_translationData;
 
     QMenu *languagesMenu;
     QMenu *trayMenu;

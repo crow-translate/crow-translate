@@ -105,18 +105,18 @@ void MainWindow::on_translateButton_clicked()
         QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
         QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
         QString translatorlanguage = settings.value("Language", "auto").toString();
-        translationData.translate(ui->inputEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
+        m_translationData.translate(ui->inputEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
         // Show translation and transcription
-        ui->outputEdit->setText(translationData.text());
-        if (translationData.translationTranscription() != "")
-            ui->outputEdit->append("<font color=\"grey\"><i>/" + translationData.translationTranscription() + "/</i></font>");
-        if (translationData.sourceTranscription() != "")
-            ui->outputEdit->append("<font color=\"grey\"><i><b>(" + translationData.sourceTranscription() + ")</b></i></font>");
+        ui->outputEdit->setText(m_translationData.text());
+        if (m_translationData.targetTranscription() != "")
+            ui->outputEdit->append("<font color=\"grey\"><i>/" + m_translationData.targetTranscription() + "/</i></font>");
+        if (m_translationData.sourceTranscription() != "")
+            ui->outputEdit->append("<font color=\"grey\"><i><b>(" + m_translationData.sourceTranscription() + ")</b></i></font>");
         ui->outputEdit->append("");
 
         // Show translation options
-        foreach (auto translationOptions, translationData.options()) {
+        foreach (auto translationOptions, m_translationData.options()) {
             ui->outputEdit->append("<i>" + translationOptions.first + "</i>");
             foreach (QString wordsList, translationOptions.second) {
                 wordsList.prepend("&nbsp;&nbsp;<b>");
@@ -170,7 +170,7 @@ void MainWindow::on_speakSourceButton_clicked()
 void MainWindow::on_speakTranslationButton_clicked()
 {
     if (ui->outputEdit->toPlainText() != "")
-        QOnlineTranslator::say(translationData.text(), translationButtonGroup->checkedButton()->toolTip());
+        QOnlineTranslator::say(m_translationData.text(), translationButtonGroup->checkedButton()->toolTip());
     else
         qDebug() << tr("Text field is empty");
 }
