@@ -35,29 +35,31 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent = 0);
+    explicit PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *parent = 0);
     ~PopupWindow();
 
+public slots:
+    void setTranslation(const QString &text);
+
 private slots:
-    void on_autoLanguageSourceButton_triggered(QAction *language);
-    void on_autoLanguageTranslationButton_triggered(QAction *language);
-    void on_speakButton_clicked();
+    void on_sourceAutoButton_triggered(QAction *language);
+    void on_targetAutoButton_triggered(QAction *language);
     void on_copyButton_clicked();
     void on_swapButton_clicked();
 
 signals:
-    void popupClosed(QString translation);
+    void sourceLanguageButtonPressed(const int &id);
+    void targetLanguageButtonPressed(const int &id);
+    void sourceLanguageInserted(QAction *languageCode);
+    void targetLanguageInserted(QAction *languageCode);
+    void swapButtonClicked();
+    void sayButtonClicked();
 
 private:
-    void translateText();
-
     Ui::PopupWindow *ui;
 
-    QString m_selectedText;
-    QOnlineTranslator translationData;
-
     LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *translationButtonGroup;
+    LanguageButtonsGroup *targetButtonGroup;
 };
 
 #endif // POPUPWINDOW_H

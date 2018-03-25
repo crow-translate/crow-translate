@@ -40,31 +40,31 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-
-    void setTranslation();
-
     ~MainWindow();
+
+signals:
+    void translationChanged(const QString &text);
 
 private slots:
     void on_translateButton_clicked();
-    void on_autoLanguageSourceButton_triggered(QAction *language);
-    void on_autoLanguageTranslationButton_triggered(QAction *language);
+    void on_sourceAutoButton_triggered(QAction *language);
+    void on_targetAutoButton_triggered(QAction *language);
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
-    void on_speakSourceButton_clicked();
-    void on_speakTranslationButton_clicked();
-    void on_copySourceButton_clicked();
-    void on_copyTranslationButton_clicked();
+    void on_sourceSayButton_clicked();
+    void on_targetSayButton_clicked();
+    void on_sourceCopyButton_clicked();
+    void on_targetCopyButton_clicked();
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
     void on_translateSelectedHotkey_activated();
     void on_speakHotkey_activated();
     void on_showMainWindowHotkey_activated();
 
     void reloadTranslation();
-    QList<QAction *> languagesList();
 
 private:
     void loadSettings();
+    QList<QAction *> languagesList();
 
     QString selectedText();
 
@@ -86,7 +86,7 @@ private:
     QHotkey *showMainWindowHotkey;
 
     LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *translationButtonGroup;
+    LanguageButtonsGroup *targetButtonGroup;
 };
 
 #endif // MAINWINDOW_H

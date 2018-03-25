@@ -112,6 +112,11 @@ void LanguageButtonsGroup::setName(const QString &name)
     m_name = name;
 }
 
+void LanguageButtonsGroup::setChecked(const int &id)
+{
+    buttons().at(id)->setChecked(true);
+}
+
 void LanguageButtonsGroup::savePressedButton(const short &buttonIndex)
 {
     QSettings settings;

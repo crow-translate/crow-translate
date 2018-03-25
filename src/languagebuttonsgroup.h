@@ -36,6 +36,7 @@ public:
     void insertLanguage(const QString &languageCode);
 
     void setName(const QString &name);
+    void setChecked(const int &id);
 
     static void swapChecked(LanguageButtonsGroup *first, LanguageButtonsGroup *second);
 
