@@ -80,6 +80,10 @@ MainWindow::MainWindow(QWidget *parent) :
     trayShowWindow = new QAction(tr("Show window"));
     traySettings = new QAction(tr("Settings"));
     trayExit = new QAction(tr("Exit"));
+#if defined(Q_OS_LINUX)
+    traySettings->setIcon(QIcon::fromTheme("settings"));
+    trayExit->setIcon(QIcon::fromTheme("exit"));
+#endif
     trayMenu->addAction(trayShowWindow);
     trayMenu->addAction(traySettings);
     trayMenu->addAction(trayExit);
