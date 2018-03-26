@@ -1,5 +1,17 @@
 crow-translate (0.9~git-1) stretch; urgency=low
 
+  * Improved translation parsing
+  * Added display options for translation and transcriptions with formatting
+  * Changed behavior of the button "Reset settings"
+  * List of languages is sorted alphabetically
+  * Improved network error output
+  * Fixed bug on Windows, when Cyrillic characters are reproduced as "?"
+  * Minor optimizations
+
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Mon, 26 Mar 2018 11:11:09 +0008
+
+crow-translate (0.9~git-1) stretch; urgency=low
+
   * Initial release.
 
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 26 Feb 2018 16:29:24 +0008
