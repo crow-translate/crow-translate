@@ -27,7 +27,8 @@
 #include <QShortcut>
 
 #include "qhotkey.h"
-#include "buttongrouplanguages.h"
+#include "qonlinetranslator.h"
+#include "languagebuttonsgroup.h"
 
 namespace Ui {
 class MainWindow;
@@ -39,50 +40,39 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = 0);
-
-    void setTranslation();
-
     ~MainWindow();
 
+signals:
+    void translationChanged(const QString &text);
+
 private slots:
-
     void on_translateButton_clicked();
-
-    void on_inputLanguagesButton_triggered(QAction *language);
-
-    void on_outputLanguagesButton_triggered(QAction *language);
-
+    void on_sourceAutoButton_triggered(QAction *language);
+    void on_targetAutoButton_triggered(QAction *language);
     void on_swapButton_clicked();
-
     void on_settingsButton_clicked();
-
-    void on_inputSpeakButton_clicked();
-
-    void on_outputSpeakButton_clicked();
-
-    void on_inputCopyButton_clicked();
-
-    void on_outputCopyButton_clicked();
-
+    void on_sourceSayButton_clicked();
+    void on_targetSayButton_clicked();
+    void on_sourceCopyButton_clicked();
+    void on_targetCopyButton_clicked();
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
-
     void on_translateSelectedHotkey_activated();
-
     void on_speakHotkey_activated();
-
     void on_showMainWindowHotkey_activated();
 
     void reloadTranslation();
 
 private:
-    static QString test;
     void loadSettings();
+    QList<QAction *> languagesList();
 
-    QString getSelectedText();
+    QString selectedText();
 
     Ui::MainWindow *ui;
 
     QTranslator translator;
+
+    QOnlineTranslator m_translationData;
 
     QMenu *languagesMenu;
     QMenu *trayMenu;
@@ -95,8 +85,8 @@ private:
     QHotkey *speakHotkey;
     QHotkey *showMainWindowHotkey;
 
-    ButtonGroupLanguages *inputLanguages;
-    ButtonGroupLanguages *outputLanguages;
+    LanguageButtonsGroup *sourceButtonGroup;
+    LanguageButtonsGroup *targetButtonGroup;
 };
 
 #endif // MAINWINDOW_H

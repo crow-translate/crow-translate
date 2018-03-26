@@ -18,34 +18,32 @@
  *
  */
 
-#ifndef BUTTONGROUPLANGUAGES_H
-#define BUTTONGROUPLANGUAGES_H
+#ifndef LANGUAGEBUTTONSGROUP_H
+#define LANGUAGEBUTTONSGROUP_H
 
 #include <QButtonGroup>
 #include <QPushButton>
 #include <QToolButton>
 
-class ButtonGroupLanguages : public QButtonGroup
+class LanguageButtonsGroup : public QButtonGroup
 {
     Q_OBJECT
 
 public:
-    explicit ButtonGroupLanguages(QObject *parent = Q_NULLPTR);
-
-    static void swapChecked(ButtonGroupLanguages *first, ButtonGroupLanguages *second);
+    explicit LanguageButtonsGroup(QObject *parent = Q_NULLPTR, const QString &name = "");
 
     void loadSettings();
+    void insertLanguage(const QString &languageCode);
 
-    void insertLanguage(const short &languageIndex);
+    void setName(const QString &name);
+    void setChecked(const int &id);
+
+    static void swapChecked(LanguageButtonsGroup *first, LanguageButtonsGroup *second);
 
 private:
-    void saveId(const short &buttonIndex, const short &buttonId);
+    void savePressedButton(const short &index);
 
-    short loadId(const short &buttonIndex);
-
-    void savePressedId(const short &index);
-
-    short loadPressedId();
+    QString m_name;
 };
 
-#endif // BUTTONGROUPLANGUAGES_H
+#endif // LANGUAGEBUTTONSGROUP_H

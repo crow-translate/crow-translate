@@ -25,109 +25,89 @@
 #include <QClipboard>
 #include <QSettings>
 
-#include "qonlinetranslator.h"
 #include "ui_popupwindow.h"
 #include "mainwindow.h"
 
-PopupWindow::PopupWindow(QMenu *languagesMenu, QString text, QWidget *parent) :
+PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
-    selectedText(new QString(text)),
-    inputLanguages (new ButtonGroupLanguages(this)),
-    outputLanguages (new ButtonGroupLanguages(this))
+    sourceButtonGroup (new LanguageButtonsGroup(this, "Source")),
+    targetButtonGroup (new LanguageButtonsGroup(this, "Target"))
 {
-    inputLanguages->setObjectName("inputLanguages");
-    outputLanguages->setObjectName("outputLanguages");
-
     ui->setupUi(this);
 
-    this->setAttribute(Qt::WA_DeleteOnClose); // Delete this widget when the widget has accepted the close event
+    // Delete this widget when the widget has accepted the close event
+    this->setAttribute(Qt::WA_DeleteOnClose);
 
-    // Prevent moving popup offscreen
+    // Move popup to cursor and prevent moving offscreen
     QDesktopWidget *screen = QApplication::desktop(); // Screen properties
     QPoint position = QCursor::pos(); // Cursor position
     if (screen->availableGeometry(QCursor::pos()).width() - position.x() - 700 < 0) position.rx()-=700;
     if (screen->availableGeometry(QCursor::pos()).height() - position.y() - 200 < 0) position.ry()-=200;
-
-    // Move popup to cursor
     PopupWindow::move(position);
 
-    // Load opacity settings
     QSettings settings;
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
-//    setMask(QPixmap(":/images/data/images/popupmask.png").scaled(size()).mask());
-
     // Add languagesMenu to auto-language buttons
-    ui->inputLanguagesButton->setMenu(languagesMenu);
-    ui->outputLanguagesButton->setMenu(languagesMenu);
+    ui->sourceAutoButton->setMenu(languagesMenu);
+    ui->targetAutoButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    inputLanguages->addButton(ui->inputLanguagesButton, 0);
-    inputLanguages->addButton(ui->inputLanguageButton1);
-    inputLanguages->addButton(ui->inputLanguageButton2);
-    inputLanguages->addButton(ui->inputLanguageButton3);
+    sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
+    sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
+    sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
+    sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
+    targetButtonGroup->addButton(ui->targetAutoButton, 0);
+    targetButtonGroup->addButton(ui->targetFirstButton, 1);
+    targetButtonGroup->addButton(ui->targetSecondButton, 2);
+    targetButtonGroup->addButton(ui->targetThirdButton, 3);
 
-    outputLanguages->addButton(ui->outputLanguagesButton, 0);
-    outputLanguages->addButton(ui->outputLanguageButton1);
-    outputLanguages->addButton(ui->outputLanguageButton2);
-    outputLanguages->addButton(ui->outputLanguageButton3);
-
-    inputLanguages->loadSettings();
-    outputLanguages->loadSettings();
+    sourceButtonGroup->loadSettings();
+    targetButtonGroup->loadSettings();
 
     // Translate text automatically when language buttons released
-    connect(inputLanguages, static_cast<void (ButtonGroupLanguages::*)(int)>(&ButtonGroupLanguages::buttonReleased), this, &PopupWindow::translateText);
-    connect(outputLanguages, static_cast<void (ButtonGroupLanguages::*)(int)>(&ButtonGroupLanguages::buttonReleased), this, &PopupWindow::translateText);
+    connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::sourceLanguageButtonPressed);
+    connect(targetButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::targetLanguageButtonPressed);
 
-    translateText();
+    connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
+
+    ui->translationEdit->setText(text);
 }
 
 PopupWindow::~PopupWindow()
 {
-    delete selectedText;
     delete ui;
 }
 
-// Insert new language to input buttons
-void PopupWindow::on_inputLanguagesButton_triggered(QAction *language)
+void PopupWindow::setTranslation(const QString &text)
 {
-    short languageIndex = language->data().toInt();
-    inputLanguages->insertLanguage(languageIndex);
-    translateText();
+    ui->translationEdit->setText(text);
 }
 
-// Insert new language to output buttons
-void PopupWindow::on_outputLanguagesButton_triggered(QAction *language)
+void PopupWindow::on_sourceAutoButton_triggered(QAction *language)
 {
-    short languageIndex = language->data().toInt();
-    outputLanguages->insertLanguage(languageIndex);
-    translateText();
+    emit sourceLanguageInserted(language);
+    sourceButtonGroup->loadSettings();
 }
 
-void PopupWindow::on_speakButton_clicked()
+void PopupWindow::on_targetAutoButton_triggered(QAction *language)
 {
-    if (ui->outputEdit->toPlainText() != "") {
-        QOnlineTranslator::say(ui->outputEdit->toPlainText(), outputLanguages->checkedId());
-    }
-    else qDebug() << tr("Text field is empty");
+    emit targetLanguageInserted(language);
+    targetButtonGroup->loadSettings();
 }
 
 void PopupWindow::on_copyButton_clicked()
 {
-    if (ui->outputEdit->toPlainText() != "") {
-        QApplication::clipboard()->setText(ui->outputEdit->toPlainText());
-    }
-    else qDebug() << tr("Text field is empty");
+    if (ui->translationEdit->toPlainText() != "")
+        QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
+    else
+        qDebug() << tr("Text field is empty");
 }
 
 void PopupWindow::on_swapButton_clicked()
 {
-    ButtonGroupLanguages::swapChecked(inputLanguages, outputLanguages);
-    translateText();
-}
-
-void PopupWindow::translateText()
-{
-    ui->outputEdit->setPlainText(QOnlineTranslator::translate(*selectedText, inputLanguages->checkedId(), outputLanguages->checkedId()));
+    emit swapButtonClicked();
+    sourceButtonGroup->loadSettings();
+    targetButtonGroup->loadSettings();
 }

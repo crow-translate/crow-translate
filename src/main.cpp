@@ -63,17 +63,17 @@ int main(int argc, char *argv[])
         switch (parser.optionNames().size()) {
         case 0: // Just translate the text if no language options
         {
-            qInfo() << QOnlineTranslator::translate(parser.positionalArguments().join(" "));
+            qInfo() << QOnlineTranslator::translateText(parser.positionalArguments().join(" "));
             break;
         }
         case 1:
         {
-            qInfo() << QOnlineTranslator::translate(parser.positionalArguments().join(" "), parser.optionNames().at(0));
+            qInfo() << QOnlineTranslator::translateText(parser.positionalArguments().join(" "), parser.optionNames().at(0));
             break;
         }
         case 2:
         {
-            qInfo() << QOnlineTranslator::translate(parser.positionalArguments().join(" "), parser.optionNames().at(0), parser.optionNames().at(1));
+            qInfo() << QOnlineTranslator::translateText(parser.positionalArguments().join(" "), parser.optionNames().at(1), parser.optionNames().at(0));
             break;
         }
         default:
