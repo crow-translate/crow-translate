@@ -8,11 +8,23 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 ## Contents
 
+* [Screenshots](#screenshots)
 * [Features](#features)
 * [Default keyboard shortcuts](#default-keyboard-shortcuts)
 * [Dependencies](#dependencies)
 * [Third-party libraries](#third-party-libraries)
 * [Installation](#installation)
+
+## Screenshots
+
+**Main window:**
+
+![Main window](./dist/unix/main-window-screenshot.png)
+___
+
+**Pop-up window:**
+
+![Pop-up window](./dist/unix/popup-window-screenshot.png)
 
 ## Features
 
