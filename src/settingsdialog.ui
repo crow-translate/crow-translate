@@ -128,7 +128,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="popupOpacityLayout">
           <item>
            <widget class="QLabel" name="popupOpacityLabel">
             <property name="text">
@@ -276,7 +276,7 @@
           <height>107</height>
          </rect>
         </property>
-        <layout class="QFormLayout" name="shortcutsFormLayout">
+        <layout class="QFormLayout" name="globalShortcutsLayout">
          <item row="0" column="0">
           <widget class="QLabel" name="translateSelectedLabel">
            <property name="text">
@@ -302,14 +302,14 @@
           <widget class="QKeySequenceEdit" name="showMainWindowSequenceEdit"/>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="speakSelectedLabel">
+          <widget class="QLabel" name="saySelectedLabel">
            <property name="text">
             <string>Speak selected text</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QKeySequenceEdit" name="speakSelectedSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="saySelectedSequenceEdit"/>
          </item>
         </layout>
        </widget>
@@ -335,40 +335,40 @@
           <height>107</height>
          </rect>
         </property>
-        <layout class="QFormLayout" name="shortcutsFormLayout_2">
+        <layout class="QFormLayout" name="windowShortcutsLayout">
          <item row="0" column="0">
-          <widget class="QLabel" name="translateInputLabel">
+          <widget class="QLabel" name="translateSourceLabel">
            <property name="text">
-            <string>Translate input text</string>
+            <string>Translate source text</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QKeySequenceEdit" name="translateInputSequenceEdit">
+          <widget class="QKeySequenceEdit" name="translateSourceSequenceEdit">
            <property name="keySequence">
             <string>Ctrl+Alt+X</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="speakInputLabel">
+          <widget class="QLabel" name="saySourceLabel">
            <property name="text">
-            <string>Speak input text</string>
+            <string>Speak source text</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QKeySequenceEdit" name="speakInputSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="saySourceSequenceEdit"/>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="speakOutputLabel">
+          <widget class="QLabel" name="sayTranslationLabel">
            <property name="text">
-            <string>Speak translated text</string>
+            <string>Speak translation</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QKeySequenceEdit" name="speakOutputSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="sayTranslationSequenceEdit"/>
          </item>
         </layout>
        </widget>

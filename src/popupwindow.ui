@@ -139,7 +139,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="targetSpacer">
+      <spacer name="translationSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -152,7 +152,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="targetFirstButton">
+      <widget class="QPushButton" name="translationFirstButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -171,7 +171,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="targetSecondButton">
+      <widget class="QPushButton" name="translationSecondButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -190,7 +190,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="targetThirdButton">
+      <widget class="QPushButton" name="translationThirdButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -209,7 +209,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="targetAutoButton">
+      <widget class="QToolButton" name="translationAutoButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>

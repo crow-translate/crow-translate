@@ -43,15 +43,15 @@ public slots:
 
 private slots:
     void on_sourceAutoButton_triggered(QAction *language);
-    void on_targetAutoButton_triggered(QAction *language);
+    void on_translationAutoButton_triggered(QAction *language);
     void on_copyButton_clicked();
     void on_swapButton_clicked();
 
 signals:
     void sourceLanguageButtonPressed(const int &id);
-    void targetLanguageButtonPressed(const int &id);
+    void translationLanguageButtonPressed(const int &id);
     void sourceLanguageInserted(QAction *languageCode);
-    void targetLanguageInserted(QAction *languageCode);
+    void translationLanguageInserted(QAction *languageCode);
     void swapButtonClicked();
     void sayButtonClicked();
 
@@ -59,7 +59,7 @@ private:
     Ui::PopupWindow *ui;
 
     LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *targetButtonGroup;
+    LanguageButtonsGroup *translationButtonGroup;
 };
 
 #endif // POPUPWINDOW_H
