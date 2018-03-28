@@ -140,6 +140,9 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/TranslateSource", ui->translateSourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
+
+    // Delete settings from memory
+    emit done(0);
 }
 
 // Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
