@@ -113,8 +113,8 @@ void MainWindow::on_translateButton_clicked()
 
         // Show translation and transcription
         ui->translationEdit->setText(m_translationData.text());
-        if (m_translationData.targetTranscription() != "")
-            ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.targetTranscription() + "/</i></font>");
+        if (m_translationData.translationTranscription() != "")
+            ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription() + "/</i></font>");
         if (m_translationData.sourceTranscription() != "")
             ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translationData.sourceTranscription() + ")</b></i></font>");
         ui->translationEdit->append("");
