@@ -234,7 +234,7 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
 void MainWindow::on_saySelectedHotkey_activated()
 {
-    QOnlineTranslator::say(selectedText(), translationButtonGroup->checkedButton()->toolTip());
+    QOnlineTranslator::say(selectedText());
 }
 
 void MainWindow::on_showMainWindowHotkey_activated()
