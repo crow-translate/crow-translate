@@ -140,9 +140,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/TranslateSource", ui->translateSourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
-
-    // Delete settings from memory
-    emit done(0);
+    settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
 }
 
 // Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
@@ -173,6 +171,7 @@ void SettingsDialog::on_resetButton_clicked()
     ui->translateSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
     ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
     ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
 }
 
 void SettingsDialog::loadSettings()
@@ -198,4 +197,5 @@ void SettingsDialog::loadSettings()
     ui->translateSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSource", "Ctrl+Return").toString());
     ui->saySourceSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
     ui->sayTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
 }

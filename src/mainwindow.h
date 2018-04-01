@@ -81,6 +81,10 @@ private:
     QAction *trayExit;
     QSystemTrayIcon *trayIcon;
 
+    // Window shortcuts
+    QShortcut *closeWindowsShortcut;
+
+    // Global shortcuts
     QHotkey *translateSelectedHotkey;
     QHotkey *saySelectedHotkey;
     QHotkey *showMainWindowHotkey;

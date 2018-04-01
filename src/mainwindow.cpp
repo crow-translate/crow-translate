@@ -36,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     languagesMenu (new QMenu),
     trayMenu (new QMenu),
     trayIcon (new QSystemTrayIcon(this)),
+    closeWindowsShortcut (new QShortcut(this)),
     translateSelectedHotkey (new QHotkey(this)),
     saySelectedHotkey (new QHotkey(this)),
     showMainWindowHotkey (new QHotkey(this)),
@@ -95,6 +96,8 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtonGroup->loadSettings();
     translationButtonGroup->loadSettings();
     loadSettings();
+
+    connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
 }
 
 MainWindow::~MainWindow()
@@ -158,7 +161,8 @@ void MainWindow::on_settingsButton_clicked()
     SettingsDialog config(this);
     connect(&config, &SettingsDialog::languageChanged, this, &MainWindow::reloadTranslation);
     if (config.exec()) {
-        this->loadSettings();
+        config.done(0);
+        loadSettings();
         sourceButtonGroup->loadSettings();
         translationButtonGroup->loadSettings();
     }
@@ -300,6 +304,7 @@ void MainWindow::loadSettings()
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 
     // Load shortcuts
+    closeWindowsShortcut->setKey(QKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString()));
     translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString()), true);
     saySelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/SaySelected", "Alt+S").toString()), true);
     showMainWindowHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString()), true);

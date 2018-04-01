@@ -41,7 +41,7 @@
       <string/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
@@ -320,7 +320,7 @@
          <x>10</x>
          <y>140</y>
          <width>431</width>
-         <height>131</height>
+         <height>141</height>
         </rect>
        </property>
        <property name="title">
@@ -332,7 +332,7 @@
           <x>0</x>
           <y>20</y>
           <width>431</width>
-          <height>107</height>
+          <height>121</height>
          </rect>
         </property>
         <layout class="QFormLayout" name="windowShortcutsLayout">
@@ -369,6 +369,16 @@
          </item>
          <item row="2" column="1">
           <widget class="QKeySequenceEdit" name="sayTranslationSequenceEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="closeWindowLabel">
+           <property name="text">
+            <string>Close window</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QKeySequenceEdit" name="closeWindowSequenceEdit"/>
          </item>
         </layout>
        </widget>
