@@ -137,7 +137,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/ShowMainWindow", ui->showMainWindowSequenceEdit->keySequence());
 
     // Window shortcuts
-    settings.setValue("Hotkeys/TranslateSource", ui->translateSourceSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/Translate", ui->translateSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
     settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
@@ -168,7 +168,7 @@ void SettingsDialog::on_resetButton_clicked()
     ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Alt+C"));
 
     // Window shortcuts
-    ui->translateSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
+    ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
     ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
     ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
     ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
@@ -194,7 +194,7 @@ void SettingsDialog::loadSettings()
     ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString());
 
     // Window shortcuts
-    ui->translateSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSource", "Ctrl+Return").toString());
+    ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
     ui->saySourceSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
     ui->sayTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
     ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());

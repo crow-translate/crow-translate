@@ -308,7 +308,7 @@ void MainWindow::loadSettings()
     translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString()), true);
     saySelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/SaySelected", "Alt+S").toString()), true);
     showMainWindowHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString()), true);
-    ui->translateButton->setShortcut(settings.value("Hotkeys/TranslateSource", "Ctrl+Return").toString());
+    ui->translateButton->setShortcut(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
     ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
     ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
 }

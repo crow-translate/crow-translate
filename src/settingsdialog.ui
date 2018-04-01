@@ -41,7 +41,7 @@
       <string/>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="generalTab">
       <attribute name="title">
@@ -337,14 +337,14 @@
         </property>
         <layout class="QFormLayout" name="windowShortcutsLayout">
          <item row="0" column="0">
-          <widget class="QLabel" name="translateSourceLabel">
+          <widget class="QLabel" name="translateLabel">
            <property name="text">
-            <string>Translate source text</string>
+            <string>Translate</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QKeySequenceEdit" name="translateSourceSequenceEdit">
+          <widget class="QKeySequenceEdit" name="translateSequenceEdit">
            <property name="keySequence">
             <string>Ctrl+Alt+X</string>
            </property>
@@ -562,8 +562,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>365</x>
-     <y>355</y>
+     <x>464</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -578,8 +578,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>355</y>
+     <x>464</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
