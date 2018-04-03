@@ -241,9 +241,6 @@ void MainWindow::on_saySelectedHotkey_activated()
 
 void MainWindow::on_showMainWindowHotkey_activated()
 {
-    sourceButtonGroup->loadSettings();
-    translationButtonGroup->loadSettings();
-
     this->showNormal();
     this->activateWindow();
 }
