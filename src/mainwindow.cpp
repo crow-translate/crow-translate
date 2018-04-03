@@ -163,8 +163,6 @@ void MainWindow::on_settingsButton_clicked()
     if (config.exec()) {
         config.done(0);
         loadSettings();
-        sourceButtonGroup->loadSettings();
-        translationButtonGroup->loadSettings();
     }
 }
 
