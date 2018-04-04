@@ -22,13 +22,15 @@
 
 #include <QClipboard>
 
+#if defined(Q_OS_WIN)
+#include <QMimeData>
+#include <QTimer>
+#include <windows.h>
+#endif
+
 #include "ui_mainwindow.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
-
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -313,45 +315,67 @@ QString MainWindow::selectedText()
     QString selectedText;
 #if defined(Q_OS_LINUX)
     selectedText = QApplication::clipboard()->text(QClipboard::Selection);
-#elif defined(Q_OS_WIN)
-    QString originalText = QApplication::clipboard()->text();
+#elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
+    // Save original clipboard data
+    QVariant originalClipboard;
+    if (QApplication::clipboard()->mimeData()->hasImage())
+        originalClipboard = QApplication::clipboard()->image();
+    else
+        originalClipboard = QApplication::clipboard()->text();
 
-    // Some WinAPI code to send Ctrl+C
-    INPUT copyText;
-    copyText.type = INPUT_KEYBOARD;
-    copyText.ki.wScan = 0;
-    copyText.ki.time = 0;
-    copyText.ki.dwExtraInfo = 0;
+    // Wait until the hot key is pressed
+    while (GetAsyncKeyState(translateSelectedHotkey->currentNativeShortcut().key) || GetAsyncKeyState(VK_CONTROL)
+           || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_SHIFT))
+        Sleep(50);
 
-    Sleep(200);
-    // Press the "Ctrl" key
-    copyText.ki.wVk = VK_CONTROL;
-    copyText.ki.dwFlags = 0; // 0 for key press
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Generate key sequence
+    INPUT copyText[4];
 
-    // Press the "C" key
-    copyText.ki.wVk = 'C';
-    copyText.ki.dwFlags = 0; // 0 for key press
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Set the press of the "Ctrl" key
+    copyText[0].ki.wVk = VK_CONTROL;
+    copyText[0].ki.dwFlags = 0; // 0 for key press
+    copyText[0].type = INPUT_KEYBOARD;
 
-    Sleep(50);
+    // Set the press of the "C" key
+    copyText[1].ki.wVk = 'C';
+    copyText[1].ki.dwFlags = 0;
+    copyText[1].type = INPUT_KEYBOARD;
 
-    // Release the "C" key
-    copyText.ki.wVk = 'C';
-    copyText.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Set the release of the "C" key
+    copyText[2].ki.wVk = 'C';
+    copyText[2].ki.dwFlags = KEYEVENTF_KEYUP;
+    copyText[2].type = INPUT_KEYBOARD;
 
-    // Release the "Ctrl" key
-    copyText.ki.wVk = VK_CONTROL;
-    copyText.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &copyText, sizeof(INPUT));
-    Sleep(50);
+    // Set the release of the "Ctrl" key
+    copyText[3].ki.wVk = VK_CONTROL;
+    copyText[3].ki.dwFlags = KEYEVENTF_KEYUP;
+    copyText[3].type = INPUT_KEYBOARD;
 
-    // If no text copied use previous text from clipboard
-    if (QApplication::clipboard()->text() == "") selectedText = originalText;
-    else selectedText = QApplication::clipboard()->text();
+    // Send key sequence to system
+    SendInput(4, copyText, sizeof(INPUT));
 
-    QApplication::clipboard()->setText(originalText);
+    // Wait for the clipboard to change
+    QEventLoop loop;
+    QTimer timer; // Add a timer for the case where the text is not selected
+    loop.connect(QApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
+    loop.connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    timer.start(1000);
+    loop.exec();
+
+    // Translate the text from the clipboard if the selected text was not copied
+    if (timer.isActive())
+        return QApplication::clipboard()->text();
+    else
+        timer.stop();
+
+    // Get clipboard data
+    selectedText = QApplication::clipboard()->text();
+
+    // Return original clipboard
+    if (originalClipboard.type() == QVariant::Image)
+        QApplication::clipboard()->setImage(originalClipboard.value<QImage>());
+    else
+        QApplication::clipboard()->setText(originalClipboard.toString());
 #endif
     return selectedText;
 }
