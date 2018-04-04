@@ -39,11 +39,11 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### Global
 
-|  Keys                         | Description             |
-|-------------------------------|-------------------------|
-| <kbd>Alt</kbd> + <kbd>X</kbd> | Translate selected text |
-| <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
-| <kbd>Alt</kbd> + <kbd>S</kbd> | Say selected text       |
+|  Keys                                           | Description             |
+|-------------------------------------------------|-------------------------|
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Say selected text       |
 
 ### In main window
 
@@ -52,6 +52,7 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Say input text            |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Say translated text       |
+| <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
 
 ## Dependencies
 

@@ -163,9 +163,9 @@ void SettingsDialog::on_resetButton_clicked()
     ui->autostartCheckBox->setChecked(false);
 
     // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Alt+X"));
-    ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Alt+S"));
-    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Alt+C"));
+    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
+    ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
+    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+C"));
 
     // Window shortcuts
     ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
@@ -189,9 +189,9 @@ void SettingsDialog::loadSettings()
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
     // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString());
-    ui->saySelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySelected", "Alt+S").toString());
-    ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString());
+    ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
+    ui->saySelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySelected", "Ctrl+Alt+S").toString());
+    ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
 
     // Window shortcuts
     ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
