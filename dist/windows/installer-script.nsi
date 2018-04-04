@@ -12,13 +12,14 @@
 ;--------------------------------
 ;General
 
+  ;App information and out file
+  Name "Crow Translate"
+  BrandingText "Crow Translate"
+  !define VERSION "0.9.6"
+  OutFile "crow-translate-${VERSION}-win32.exe"
+  
   ;Properly display all languages (Installer will not work on Windows 95, 98 or ME!)
   Unicode true
-  
-  ;Name and file
-  Name "Crow Translate"
-  OutFile "crow-translate-setup.exe"
-  BrandingText "Crow Translate"
 
   ;Default installation folder
   InstallDir "$PROGRAMFILES\Crow Translate"
@@ -28,6 +29,9 @@
 
   ;Request application privileges for Windows Vista
   RequestExecutionLevel user
+  
+  ;Set compressor
+  SetCompressor /SOLID lzma
 
 ;--------------------------------
 ;Variables
@@ -170,6 +174,7 @@ Section "Install"
   
   ;Install Files (need to copy release folder to script directory)
   File /r "release\*"
+  File "icon.ico"
   
   ;Store installation folder
   WriteRegStr HKCU "Software\Crow\Crow Translate" "" $INSTDIR
@@ -183,6 +188,16 @@ Section "Install"
     CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Uninstall Crow Translate.lnk" "$INSTDIR\Uninstall.exe"
     CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Crow Translate.lnk" "$INSTDIR\crow.exe"
   !insertmacro MUI_STARTMENU_WRITE_END
+  
+  ;Registry information for add/remove programs
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayName" "Crow Translate"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayIcon" "$\"$INSTDIR\icon.ico$\""
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Publisher" "Gennady Chernyshchuk"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayVersion" "${VERSION}"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "URLInfoAbout" "https://github.com/Shatur95/Crow-Translate"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "EstimatedSize" "56199"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Comments" "Simple and lightweight translator"
 
 SectionEnd
 
@@ -205,12 +220,16 @@ Section "Uninstall"
   
   ;Remove shortcuts from Start Menu
   !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
-  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall Crow Translate.lnk"
   Delete "$SMPROGRAMS\$StartMenuFolder\Crow Translate.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
 
   ;Clear register
-  DeleteRegKey /ifempty HKCU "Software\Crow\Crow Translate"
+  DeleteRegKey HKCU "Software\Crow"
+  DeleteRegValue HKCU "Software\Microsoft\Windows\CurrentVersion\Run" "Crow Translate"
+  
+  ;Remove uninstaller information from the registry
+  DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate"
 
 SectionEnd
 
