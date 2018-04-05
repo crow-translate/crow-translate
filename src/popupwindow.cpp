@@ -32,7 +32,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *par
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new LanguageButtonsGroup(this, "Source")),
-    targetButtonGroup (new LanguageButtonsGroup(this, "Target"))
+    translationButtonGroup (new LanguageButtonsGroup(this, "Translation"))
 {
     ui->setupUi(this);
 
@@ -51,24 +51,24 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *par
 
     // Add languagesMenu to auto-language buttons
     ui->sourceAutoButton->setMenu(languagesMenu);
-    ui->targetAutoButton->setMenu(languagesMenu);
+    ui->translationAutoButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
     sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
     sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
     sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
     sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
-    targetButtonGroup->addButton(ui->targetAutoButton, 0);
-    targetButtonGroup->addButton(ui->targetFirstButton, 1);
-    targetButtonGroup->addButton(ui->targetSecondButton, 2);
-    targetButtonGroup->addButton(ui->targetThirdButton, 3);
+    translationButtonGroup->addButton(ui->translationAutoButton, 0);
+    translationButtonGroup->addButton(ui->translationFirstButton, 1);
+    translationButtonGroup->addButton(ui->translationSecondButton, 2);
+    translationButtonGroup->addButton(ui->translationThirdButton, 3);
 
     sourceButtonGroup->loadSettings();
-    targetButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 
     // Translate text automatically when language buttons released
     connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::sourceLanguageButtonPressed);
-    connect(targetButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::targetLanguageButtonPressed);
+    connect(translationButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translationLanguageButtonPressed);
 
     connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
 
@@ -91,10 +91,10 @@ void PopupWindow::on_sourceAutoButton_triggered(QAction *language)
     sourceButtonGroup->loadSettings();
 }
 
-void PopupWindow::on_targetAutoButton_triggered(QAction *language)
+void PopupWindow::on_translationAutoButton_triggered(QAction *language)
 {
-    emit targetLanguageInserted(language);
-    targetButtonGroup->loadSettings();
+    emit translationLanguageInserted(language);
+    translationButtonGroup->loadSettings();
 }
 
 void PopupWindow::on_copyButton_clicked()
@@ -109,5 +109,5 @@ void PopupWindow::on_swapButton_clicked()
 {
     emit swapButtonClicked();
     sourceButtonGroup->loadSettings();
-    targetButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 }

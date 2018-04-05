@@ -48,16 +48,16 @@ signals:
 private slots:
     void on_translateButton_clicked();
     void on_sourceAutoButton_triggered(QAction *language);
-    void on_targetAutoButton_triggered(QAction *language);
+    void on_translationAutoButton_triggered(QAction *language);
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
     void on_sourceSayButton_clicked();
-    void on_targetSayButton_clicked();
+    void on_translationSayButton_clicked();
     void on_sourceCopyButton_clicked();
-    void on_targetCopyButton_clicked();
+    void on_translationCopyButton_clicked();
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
     void on_translateSelectedHotkey_activated();
-    void on_speakHotkey_activated();
+    void on_saySelectedHotkey_activated();
     void on_showMainWindowHotkey_activated();
 
     void reloadTranslation();
@@ -81,12 +81,16 @@ private:
     QAction *trayExit;
     QSystemTrayIcon *trayIcon;
 
+    // Window shortcuts
+    QShortcut *closeWindowsShortcut;
+
+    // Global shortcuts
     QHotkey *translateSelectedHotkey;
-    QHotkey *speakHotkey;
+    QHotkey *saySelectedHotkey;
     QHotkey *showMainWindowHotkey;
 
     LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *targetButtonGroup;
+    LanguageButtonsGroup *translationButtonGroup;
 };
 
 #endif // MAINWINDOW_H

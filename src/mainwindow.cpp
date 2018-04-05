@@ -22,13 +22,15 @@
 
 #include <QClipboard>
 
+#if defined(Q_OS_WIN)
+#include <QMimeData>
+#include <QTimer>
+#include <windows.h>
+#endif
+
 #include "ui_mainwindow.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
-
-#ifdef Q_OS_WIN
-#include <windows.h>
-#endif
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -36,16 +38,17 @@ MainWindow::MainWindow(QWidget *parent) :
     languagesMenu (new QMenu),
     trayMenu (new QMenu),
     trayIcon (new QSystemTrayIcon(this)),
+    closeWindowsShortcut (new QShortcut(this)),
     translateSelectedHotkey (new QHotkey(this)),
-    speakHotkey (new QHotkey(this)),
+    saySelectedHotkey (new QHotkey(this)),
     showMainWindowHotkey (new QHotkey(this)),
     sourceButtonGroup (new LanguageButtonsGroup(this, "Source")),
-    targetButtonGroup (new LanguageButtonsGroup(this, "Target"))
+    translationButtonGroup (new LanguageButtonsGroup(this, "Translation"))
 {
     // Set object names for signals autoconnection
     trayIcon->setObjectName("tray");
     translateSelectedHotkey->setObjectName("translateSelectedHotkey");
-    speakHotkey->setObjectName("speakHotkey");
+    saySelectedHotkey->setObjectName("saySelectedHotkey");
     showMainWindowHotkey->setObjectName("showMainWindowHotkey");
 
     // Load translation
@@ -64,17 +67,17 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Add languageMenu to auto-language buttons
     ui->sourceAutoButton->setMenu(languagesMenu);
-    ui->targetAutoButton->setMenu(languagesMenu);
+    ui->translationAutoButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
     sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
     sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
     sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
     sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
-    targetButtonGroup->addButton(ui->targetAutoButton, 0);
-    targetButtonGroup->addButton(ui->targetFirstButton, 1);
-    targetButtonGroup->addButton(ui->targetSecondButton, 2);
-    targetButtonGroup->addButton(ui->targetThirdButton, 3);
+    translationButtonGroup->addButton(ui->translationAutoButton, 0);
+    translationButtonGroup->addButton(ui->translationFirstButton, 1);
+    translationButtonGroup->addButton(ui->translationSecondButton, 2);
+    translationButtonGroup->addButton(ui->translationThirdButton, 3);
 
     // Create context menu for tray
     trayShowWindow = new QAction(tr("Show window"));
@@ -93,8 +96,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trayExit, &QAction::triggered, qApp, &QApplication::quit);
 
     sourceButtonGroup->loadSettings();
-    targetButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
     loadSettings();
+
+    connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
 }
 
 MainWindow::~MainWindow()
@@ -107,14 +112,14 @@ void MainWindow::on_translateButton_clicked()
     if (ui->sourceEdit->toPlainText() != "") {
         QSettings settings;
         QString sourcelanguage = sourceButtonGroup->checkedButton()->toolTip();
-        QString translationlanguage = targetButtonGroup->checkedButton()->toolTip();
+        QString translationlanguage = translationButtonGroup->checkedButton()->toolTip();
         QString translatorlanguage = settings.value("Language", "auto").toString();
         m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
         // Show translation and transcription
         ui->translationEdit->setText(m_translationData.text());
-        if (m_translationData.targetTranscription() != "")
-            ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.targetTranscription() + "/</i></font>");
+        if (m_translationData.translationTranscription() != "")
+            ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription() + "/</i></font>");
         if (m_translationData.sourceTranscription() != "")
             ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translationData.sourceTranscription() + ")</b></i></font>");
         ui->translationEdit->append("");
@@ -142,14 +147,14 @@ void MainWindow::on_sourceAutoButton_triggered(QAction *language)
     sourceButtonGroup->insertLanguage(language->toolTip());
 }
 
-void MainWindow::on_targetAutoButton_triggered(QAction *language)
+void MainWindow::on_translationAutoButton_triggered(QAction *language)
 {
-    targetButtonGroup->insertLanguage(language->toolTip());
+    translationButtonGroup->insertLanguage(language->toolTip());
 }
 
 void MainWindow::on_swapButton_clicked()
 {
-    LanguageButtonsGroup::swapChecked(sourceButtonGroup, targetButtonGroup);
+    LanguageButtonsGroup::swapChecked(sourceButtonGroup, translationButtonGroup);
     on_translateButton_clicked();
 }
 
@@ -158,9 +163,8 @@ void MainWindow::on_settingsButton_clicked()
     SettingsDialog config(this);
     connect(&config, &SettingsDialog::languageChanged, this, &MainWindow::reloadTranslation);
     if (config.exec()) {
-        this->loadSettings();
-        sourceButtonGroup->loadSettings();
-        targetButtonGroup->loadSettings();
+        config.done(0);
+        loadSettings();
     }
 }
 
@@ -172,10 +176,10 @@ void MainWindow::on_sourceSayButton_clicked()
         qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_targetSayButton_clicked()
+void MainWindow::on_translationSayButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "")
-        QOnlineTranslator::say(m_translationData.text(), targetButtonGroup->checkedButton()->toolTip());
+        QOnlineTranslator::say(m_translationData.text(), translationButtonGroup->checkedButton()->toolTip());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -188,7 +192,7 @@ void MainWindow::on_sourceCopyButton_clicked()
         qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_targetCopyButton_clicked()
+void MainWindow::on_translationCopyButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "")
         QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
@@ -207,7 +211,7 @@ void MainWindow::on_tray_activated(QSystemTrayIcon::ActivationReason reason) {
 
 void MainWindow::on_translateSelectedHotkey_activated()
 {
-    // Send selected text to input field
+    // Send selected text to source field
     ui->sourceEdit->setPlainText(selectedText());
 
     on_translateButton_clicked();
@@ -218,13 +222,13 @@ void MainWindow::on_translateSelectedHotkey_activated()
         PopupWindow *popup = new PopupWindow(languagesMenu, ui->translationEdit->toHtml(), this);
         connect(this, &MainWindow::translationChanged, popup, &PopupWindow::setTranslation);
         connect(popup, &PopupWindow::sourceLanguageButtonPressed, sourceButtonGroup, &LanguageButtonsGroup::setChecked);
-        connect(popup, &PopupWindow::targetLanguageButtonPressed, targetButtonGroup, &LanguageButtonsGroup::setChecked);
+        connect(popup, &PopupWindow::translationLanguageButtonPressed, translationButtonGroup, &LanguageButtonsGroup::setChecked);
         connect(popup, &PopupWindow::sourceLanguageButtonPressed, this, &MainWindow::on_translateButton_clicked);
-        connect(popup, &PopupWindow::targetLanguageButtonPressed, this, &MainWindow::on_translateButton_clicked);
+        connect(popup, &PopupWindow::translationLanguageButtonPressed, this, &MainWindow::on_translateButton_clicked);
         connect(popup, &PopupWindow::sourceLanguageInserted, this, &MainWindow::on_sourceAutoButton_triggered);
-        connect(popup, &PopupWindow::targetLanguageInserted, this, &MainWindow::on_targetAutoButton_triggered);
+        connect(popup, &PopupWindow::translationLanguageInserted, this, &MainWindow::on_translationAutoButton_triggered);
         connect(popup, &PopupWindow::swapButtonClicked, this, &MainWindow::on_swapButton_clicked);
-        connect(popup, &PopupWindow::sayButtonClicked, this, &MainWindow::on_targetSayButton_clicked);
+        connect(popup, &PopupWindow::sayButtonClicked, this, &MainWindow::on_translationSayButton_clicked);
         popup->show();
     }
     else
@@ -232,16 +236,13 @@ void MainWindow::on_translateSelectedHotkey_activated()
         on_showMainWindowHotkey_activated();
 }
 
-void MainWindow::on_speakHotkey_activated()
+void MainWindow::on_saySelectedHotkey_activated()
 {
-    QOnlineTranslator::say(selectedText(), targetButtonGroup->checkedButton()->toolTip());
+    QOnlineTranslator::say(selectedText());
 }
 
 void MainWindow::on_showMainWindowHotkey_activated()
 {
-    sourceButtonGroup->loadSettings();
-    targetButtonGroup->loadSettings();
-
     this->showNormal();
     this->activateWindow();
 }
@@ -266,7 +267,7 @@ void MainWindow::reloadTranslation()
     languagesMenu->clear();
     languagesMenu->addActions(languagesList());
     sourceButtonGroup->loadSettings();
-    targetButtonGroup->loadSettings();
+    translationButtonGroup->loadSettings();
 }
 
 QList<QAction *> MainWindow::languagesList()
@@ -300,12 +301,13 @@ void MainWindow::loadSettings()
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 
     // Load shortcuts
-    translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString()), true);
-    speakHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/SpeakSelected", "Alt+S").toString()), true);
-    showMainWindowHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString()), true);
-    ui->translateButton->setShortcut(settings.value("Hotkeys/TranslateInput", "Ctrl+Return").toString());
-    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SpeakInput", "Ctrl+S").toString());
-    ui->targetSayButton->setShortcut(settings.value("Hotkeys/SpeakOutput", "Ctrl+Shift+S").toString());
+    closeWindowsShortcut->setKey(QKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString()));
+    translateSelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString()), true);
+    saySelectedHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/SaySelected", "Ctrl+Alt+S").toString()), true);
+    showMainWindowHotkey->setShortcut(QKeySequence(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString()), true);
+    ui->translateButton->setShortcut(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
+    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
+    ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
 }
 
 QString MainWindow::selectedText()
@@ -313,45 +315,67 @@ QString MainWindow::selectedText()
     QString selectedText;
 #if defined(Q_OS_LINUX)
     selectedText = QApplication::clipboard()->text(QClipboard::Selection);
-#elif defined(Q_OS_WIN)
-    QString originalText = QApplication::clipboard()->text();
+#elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
+    // Save original clipboard data
+    QVariant originalClipboard;
+    if (QApplication::clipboard()->mimeData()->hasImage())
+        originalClipboard = QApplication::clipboard()->image();
+    else
+        originalClipboard = QApplication::clipboard()->text();
 
-    // Some WinAPI code to send Ctrl+C
-    INPUT copyText;
-    copyText.type = INPUT_KEYBOARD;
-    copyText.ki.wScan = 0;
-    copyText.ki.time = 0;
-    copyText.ki.dwExtraInfo = 0;
+    // Wait until the hot key is pressed
+    while (GetAsyncKeyState(translateSelectedHotkey->currentNativeShortcut().key) || GetAsyncKeyState(VK_CONTROL)
+           || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_SHIFT))
+        Sleep(50);
 
-    Sleep(200);
-    // Press the "Ctrl" key
-    copyText.ki.wVk = VK_CONTROL;
-    copyText.ki.dwFlags = 0; // 0 for key press
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Generate key sequence
+    INPUT copyText[4];
 
-    // Press the "C" key
-    copyText.ki.wVk = 'C';
-    copyText.ki.dwFlags = 0; // 0 for key press
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Set the press of the "Ctrl" key
+    copyText[0].ki.wVk = VK_CONTROL;
+    copyText[0].ki.dwFlags = 0; // 0 for key press
+    copyText[0].type = INPUT_KEYBOARD;
 
-    Sleep(50);
+    // Set the press of the "C" key
+    copyText[1].ki.wVk = 'C';
+    copyText[1].ki.dwFlags = 0;
+    copyText[1].type = INPUT_KEYBOARD;
 
-    // Release the "C" key
-    copyText.ki.wVk = 'C';
-    copyText.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &copyText, sizeof(INPUT));
+    // Set the release of the "C" key
+    copyText[2].ki.wVk = 'C';
+    copyText[2].ki.dwFlags = KEYEVENTF_KEYUP;
+    copyText[2].type = INPUT_KEYBOARD;
 
-    // Release the "Ctrl" key
-    copyText.ki.wVk = VK_CONTROL;
-    copyText.ki.dwFlags = KEYEVENTF_KEYUP;
-    SendInput(1, &copyText, sizeof(INPUT));
-    Sleep(50);
+    // Set the release of the "Ctrl" key
+    copyText[3].ki.wVk = VK_CONTROL;
+    copyText[3].ki.dwFlags = KEYEVENTF_KEYUP;
+    copyText[3].type = INPUT_KEYBOARD;
 
-    // If no text copied use previous text from clipboard
-    if (QApplication::clipboard()->text() == "") selectedText = originalText;
-    else selectedText = QApplication::clipboard()->text();
+    // Send key sequence to system
+    SendInput(4, copyText, sizeof(INPUT));
 
-    QApplication::clipboard()->setText(originalText);
+    // Wait for the clipboard to change
+    QEventLoop loop;
+    QTimer timer; // Add a timer for the case where the text is not selected
+    loop.connect(QApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
+    loop.connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
+    timer.start(1000);
+    loop.exec();
+
+    // Translate the text from the clipboard if the selected text was not copied
+    if (timer.isActive())
+        return QApplication::clipboard()->text();
+    else
+        timer.stop();
+
+    // Get clipboard data
+    selectedText = QApplication::clipboard()->text();
+
+    // Return original clipboard
+    if (originalClipboard.type() == QVariant::Image)
+        QApplication::clipboard()->setImage(originalClipboard.value<QImage>());
+    else
+        QApplication::clipboard()->setText(originalClipboard.toString());
 #endif
     return selectedText;
 }

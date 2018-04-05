@@ -8,7 +8,7 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = crow
 TEMPLATE = app
-VERSION = 0.9.0
+VERSION = 0.9.6
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk

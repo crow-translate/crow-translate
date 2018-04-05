@@ -128,7 +128,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="popupOpacityLayout">
           <item>
            <widget class="QLabel" name="popupOpacityLabel">
             <property name="text">
@@ -276,7 +276,7 @@
           <height>107</height>
          </rect>
         </property>
-        <layout class="QFormLayout" name="shortcutsFormLayout">
+        <layout class="QFormLayout" name="globalShortcutsLayout">
          <item row="0" column="0">
           <widget class="QLabel" name="translateSelectedLabel">
            <property name="text">
@@ -302,14 +302,14 @@
           <widget class="QKeySequenceEdit" name="showMainWindowSequenceEdit"/>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="speakSelectedLabel">
+          <widget class="QLabel" name="saySelectedLabel">
            <property name="text">
             <string>Speak selected text</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QKeySequenceEdit" name="speakSelectedSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="saySelectedSequenceEdit"/>
          </item>
         </layout>
        </widget>
@@ -320,7 +320,7 @@
          <x>10</x>
          <y>140</y>
          <width>431</width>
-         <height>131</height>
+         <height>141</height>
         </rect>
        </property>
        <property name="title">
@@ -332,43 +332,53 @@
           <x>0</x>
           <y>20</y>
           <width>431</width>
-          <height>107</height>
+          <height>121</height>
          </rect>
         </property>
-        <layout class="QFormLayout" name="shortcutsFormLayout_2">
+        <layout class="QFormLayout" name="windowShortcutsLayout">
          <item row="0" column="0">
-          <widget class="QLabel" name="translateInputLabel">
+          <widget class="QLabel" name="translateLabel">
            <property name="text">
-            <string>Translate input text</string>
+            <string>Translate</string>
            </property>
           </widget>
          </item>
          <item row="0" column="1">
-          <widget class="QKeySequenceEdit" name="translateInputSequenceEdit">
+          <widget class="QKeySequenceEdit" name="translateSequenceEdit">
            <property name="keySequence">
             <string>Ctrl+Alt+X</string>
            </property>
           </widget>
          </item>
          <item row="1" column="0">
-          <widget class="QLabel" name="speakInputLabel">
+          <widget class="QLabel" name="saySourceLabel">
            <property name="text">
-            <string>Speak input text</string>
+            <string>Speak source text</string>
            </property>
           </widget>
          </item>
          <item row="1" column="1">
-          <widget class="QKeySequenceEdit" name="speakInputSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="saySourceSequenceEdit"/>
          </item>
          <item row="2" column="0">
-          <widget class="QLabel" name="speakOutputLabel">
+          <widget class="QLabel" name="sayTranslationLabel">
            <property name="text">
-            <string>Speak translated text</string>
+            <string>Speak translation</string>
            </property>
           </widget>
          </item>
          <item row="2" column="1">
-          <widget class="QKeySequenceEdit" name="speakOutputSequenceEdit"/>
+          <widget class="QKeySequenceEdit" name="sayTranslationSequenceEdit"/>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="closeWindowLabel">
+           <property name="text">
+            <string>Close window</string>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="1">
+          <widget class="QKeySequenceEdit" name="closeWindowSequenceEdit"/>
          </item>
         </layout>
        </widget>
@@ -502,7 +512,7 @@
         <item row="0" column="1">
          <widget class="QLabel" name="versionLabel">
           <property name="text">
-           <string notr="true">0.9.5</string>
+           <string notr="true">0.9.6</string>
           </property>
          </widget>
         </item>
@@ -552,8 +562,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>365</x>
-     <y>355</y>
+     <x>464</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -568,8 +578,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>404</x>
-     <y>355</y>
+     <x>464</x>
+     <y>409</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>

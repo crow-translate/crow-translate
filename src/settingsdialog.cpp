@@ -97,7 +97,7 @@ void SettingsDialog::on_dialogBox_accepted()
                                            "NoDisplay=false\n"
                                            "Icon=crow-translate\n"
                                            "Name=Crow Translate\n"
-                                           "Comment=A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API\n"
+                                           "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API\n"
                                            "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API.\n");
                     QTextStream outStream(&autorunFile);
                     outStream << autorunContent;
@@ -133,13 +133,14 @@ void SettingsDialog::on_dialogBox_accepted()
 
     // Global shortcuts
     settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SpeakSelected", ui->speakSelectedSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/SaySelected", ui->saySelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/ShowMainWindow", ui->showMainWindowSequenceEdit->keySequence());
 
     // Window shortcuts
-    settings.setValue("Hotkeys/TranslateInput", ui->translateInputSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SpeakInput", ui->speakInputSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SpeakOutput", ui->speakOutputSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/Translate", ui->translateSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
 }
 
 // Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
@@ -162,14 +163,15 @@ void SettingsDialog::on_resetButton_clicked()
     ui->autostartCheckBox->setChecked(false);
 
     // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Alt+X"));
-    ui->speakSelectedSequenceEdit->setKeySequence(QKeySequence("Alt+S"));
-    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Alt+C"));
+    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
+    ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
+    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+C"));
 
     // Window shortcuts
-    ui->translateInputSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
-    ui->speakInputSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
-    ui->speakOutputSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
+    ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
+    ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
 }
 
 void SettingsDialog::loadSettings()
@@ -187,12 +189,13 @@ void SettingsDialog::loadSettings()
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
     // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Alt+X").toString());
-    ui->speakSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SpeakSelected", "Alt+S").toString());
-    ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Alt+C").toString());
+    ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
+    ui->saySelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySelected", "Ctrl+Alt+S").toString());
+    ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
 
     // Window shortcuts
-    ui->translateInputSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateInput", "Ctrl+Return").toString());
-    ui->speakInputSequenceEdit->setKeySequence(settings.value("Hotkeys/SpeakInput", "Ctrl+S").toString());
-    ui->speakOutputSequenceEdit->setKeySequence(settings.value("Hotkeys/SpeakOutput", "Ctrl+Shift+S").toString());
+    ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
+    ui->saySourceSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
+    ui->sayTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
 }
