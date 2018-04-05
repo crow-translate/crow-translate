@@ -1,4 +1,14 @@
-crow-translate (0.9~git-1) stretch; urgency=low
+crow-translate (0.9.6~git-1) stretch; urgency=low
+
+  * Added icons to tray context menu for Linux
+  * Added close window shortcut
+  * Changed the default keyboard shortcuts to Windows compatible
+  * Fixed memory leak after closing settings
+  * Fixed language detection when saying selected text
+  * Fixed the obtaining of selected text on Windows
+  * Minor optimizations
+
+crow-translate (0.9.5~git-1) stretch; urgency=low
 
   * Improved translation parsing
   * Added display options for translation and transcriptions with formatting
