@@ -8,7 +8,7 @@ crow-translate (0.9.6~git-1) stretch; urgency=low
   * Fixed the obtaining of selected text on Windows
   * Minor optimizations
 
-crow-translate (0.9~git-1) stretch; urgency=low
+crow-translate (0.9.5~git-1) stretch; urgency=low
 
   * Improved translation parsing
   * Added display options for translation and transcriptions with formatting
