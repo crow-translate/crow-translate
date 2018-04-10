@@ -80,20 +80,16 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtonGroup->addButton(ui->translationThirdButton, 3);
 
     // Create context menu for tray
-    trayShowWindow = new QAction(tr("Show window"));
-    traySettings = new QAction(tr("Settings"));
-    trayExit = new QAction(tr("Exit"));
 #if defined(Q_OS_LINUX)
-    traySettings->setIcon(QIcon::fromTheme("settings"));
-    trayExit->setIcon(QIcon::fromTheme("exit"));
+    trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
+    trayMenu->addAction(QIcon::fromTheme("settings"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
+    trayMenu->addAction(QIcon::fromTheme("exit"), tr("Exit"), qApp, &QApplication::quit);
+#elif defined(Q_OS_WIN)
+    trayMenu->addAction(tr("Show window"), this, &MainWindow::show);
+    trayMenu->addAction(tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
+    trayMenu->addAction(tr("Exit"), qApp, &QApplication::quit);
 #endif
-    trayMenu->addAction(trayShowWindow);
-    trayMenu->addAction(traySettings);
-    trayMenu->addAction(trayExit);
     trayIcon->setContextMenu(trayMenu);
-    connect(trayShowWindow, &QAction::triggered, this, &MainWindow::show);
-    connect(traySettings, &QAction::triggered, this, &MainWindow::on_settingsButton_clicked);
-    connect(trayExit, &QAction::triggered, qApp, &QApplication::quit);
 
     sourceButtonGroup->loadSettings();
     translationButtonGroup->loadSettings();
