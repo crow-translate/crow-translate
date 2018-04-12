@@ -84,6 +84,8 @@ git submodule update
 
 ## Installation
 
+To install a stable version, go to the [releases](https://github.com/Shatur95/CrowTranslate/releases) page. The instructions below will help you install Crow Translate with the latest commits. 
+
 ### Automatic script
 
 You can use the automatic script that builds **Crow Translate** and creates a package for your distribution:
