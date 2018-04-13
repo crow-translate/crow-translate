@@ -132,8 +132,11 @@
     </item>
     <item row="4" column="3">
      <widget class="QToolButton" name="swapButton">
+      <property name="toolTip">
+       <string>Swap languages</string>
+      </property>
       <property name="text">
-       <string>Reverse languages</string>
+       <string>Swap languages</string>
       </property>
       <property name="icon">
        <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
@@ -151,6 +154,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip">
+         <string>Speak</string>
+        </property>
         <property name="text">
          <string>Speak</string>
         </property>
@@ -165,6 +171,9 @@
       </item>
       <item>
        <widget class="QToolButton" name="sourceCopyButton">
+        <property name="toolTip">
+         <string>Copy</string>
+        </property>
         <property name="text">
          <string>Copy</string>
         </property>
@@ -212,6 +221,9 @@
       </item>
       <item>
        <widget class="QToolButton" name="translationCopyButton">
+        <property name="toolTip">
+         <string>Copy</string>
+        </property>
         <property name="text">
          <string>Copy</string>
         </property>
@@ -226,6 +238,9 @@
       </item>
       <item>
        <widget class="QToolButton" name="translationSayButton">
+        <property name="toolTip">
+         <string>Speak</string>
+        </property>
         <property name="text">
          <string>Speak</string>
         </property>
@@ -240,6 +255,9 @@
       </item>
       <item>
        <widget class="QToolButton" name="settingsButton">
+        <property name="toolTip">
+         <string>Settings</string>
+        </property>
         <property name="text">
          <string>Settings</string>
         </property>
@@ -261,6 +279,9 @@
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Translate</string>
       </property>
       <property name="text">
        <string>Translate</string>

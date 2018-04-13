@@ -129,8 +129,11 @@
      </item>
      <item>
       <widget class="QToolButton" name="swapButton">
+       <property name="toolTip">
+        <string>Swap languages</string>
+       </property>
        <property name="text">
-        <string>Reverse languages</string>
+        <string>Swap languages</string>
        </property>
        <property name="icon">
         <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
@@ -249,6 +252,9 @@
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
       <widget class="QToolButton" name="sayButton">
+       <property name="toolTip">
+        <string>Speak</string>
+       </property>
        <property name="text">
         <string>Speak</string>
        </property>
@@ -263,6 +269,9 @@
      </item>
      <item>
       <widget class="QToolButton" name="copyButton">
+       <property name="toolTip">
+        <string>Copy</string>
+       </property>
        <property name="text">
         <string>Copy</string>
        </property>

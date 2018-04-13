@@ -5,56 +5,66 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/mainwindow.ui" line="112"/>
-        <location filename="../../src/mainwindow.ui" line="291"/>
+        <location filename="../../src/mainwindow.ui" line="312"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="136"/>
-        <source>Reverse languages</source>
+        <location filename="../../src/mainwindow.ui" line="139"/>
+        <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="155"/>
-        <location filename="../../src/mainwindow.ui" line="230"/>
+        <location filename="../../src/mainwindow.ui" line="158"/>
+        <location filename="../../src/mainwindow.ui" line="161"/>
+        <location filename="../../src/mainwindow.ui" line="242"/>
+        <location filename="../../src/mainwindow.ui" line="245"/>
         <source>Speak</source>
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="169"/>
-        <location filename="../../src/mainwindow.ui" line="216"/>
+        <location filename="../../src/mainwindow.ui" line="175"/>
+        <location filename="../../src/mainwindow.ui" line="178"/>
+        <location filename="../../src/mainwindow.ui" line="225"/>
+        <location filename="../../src/mainwindow.ui" line="228"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="244"/>
-        <location filename="../../src/mainwindow.cpp" line="82"/>
-        <location filename="../../src/mainwindow.cpp" line="268"/>
+        <location filename="../../src/mainwindow.ui" line="259"/>
+        <location filename="../../src/mainwindow.ui" line="262"/>
+        <location filename="../../src/mainwindow.cpp" line="85"/>
+        <location filename="../../src/mainwindow.cpp" line="89"/>
+        <location filename="../../src/mainwindow.cpp" line="261"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="266"/>
+        <location filename="../../src/mainwindow.ui" line="284"/>
+        <location filename="../../src/mainwindow.ui" line="287"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="81"/>
+        <location filename="../../src/mainwindow.cpp" line="84"/>
+        <location filename="../../src/mainwindow.cpp" line="88"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="83"/>
-        <location filename="../../src/mainwindow.cpp" line="269"/>
+        <location filename="../../src/mainwindow.cpp" line="86"/>
+        <location filename="../../src/mainwindow.cpp" line="90"/>
+        <location filename="../../src/mainwindow.cpp" line="262"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="140"/>
-        <location filename="../../src/mainwindow.cpp" line="176"/>
-        <location filename="../../src/mainwindow.cpp" line="184"/>
-        <location filename="../../src/mainwindow.cpp" line="192"/>
-        <location filename="../../src/mainwindow.cpp" line="200"/>
+        <location filename="../../src/mainwindow.cpp" line="138"/>
+        <location filename="../../src/mainwindow.cpp" line="172"/>
+        <location filename="../../src/mainwindow.cpp" line="180"/>
+        <location filename="../../src/mainwindow.cpp" line="188"/>
+        <location filename="../../src/mainwindow.cpp" line="196"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
     </message>
@@ -63,22 +73,25 @@
     <name>PopupWindow</name>
     <message>
         <location filename="../../src/popupwindow.ui" line="44"/>
-        <location filename="../../src/popupwindow.ui" line="223"/>
+        <location filename="../../src/popupwindow.ui" line="226"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="133"/>
-        <source>Reverse languages</source>
+        <location filename="../../src/popupwindow.ui" line="136"/>
+        <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="253"/>
+        <location filename="../../src/popupwindow.ui" line="256"/>
+        <location filename="../../src/popupwindow.ui" line="259"/>
         <source>Speak</source>
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="267"/>
+        <location filename="../../src/popupwindow.ui" line="273"/>
+        <location filename="../../src/popupwindow.ui" line="276"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
