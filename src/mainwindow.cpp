@@ -218,11 +218,13 @@ void MainWindow::on_translateSelectedHotkey_activated()
         PopupWindow *popup = new PopupWindow(languagesMenu, ui->translationEdit->toHtml(), this);
         connect(this, &MainWindow::translationChanged, popup, &PopupWindow::setTranslation);
         connect(popup, &PopupWindow::sourceLanguageButtonPressed, sourceButtonGroup, &LanguageButtonsGroup::setChecked);
-        connect(popup, &PopupWindow::translationLanguageButtonPressed, translationButtonGroup, &LanguageButtonsGroup::setChecked);
         connect(popup, &PopupWindow::sourceLanguageButtonPressed, this, &MainWindow::on_translateButton_clicked);
+        connect(popup, &PopupWindow::translationLanguageButtonPressed, translationButtonGroup, &LanguageButtonsGroup::setChecked);
         connect(popup, &PopupWindow::translationLanguageButtonPressed, this, &MainWindow::on_translateButton_clicked);
         connect(popup, &PopupWindow::sourceLanguageInserted, this, &MainWindow::on_sourceAutoButton_triggered);
+        connect(popup, &PopupWindow::sourceLanguageInserted, this, &MainWindow::on_translateButton_clicked);
         connect(popup, &PopupWindow::translationLanguageInserted, this, &MainWindow::on_translationAutoButton_triggered);
+        connect(popup, &PopupWindow::translationLanguageInserted, this, &MainWindow::on_translateButton_clicked);
         connect(popup, &PopupWindow::swapButtonClicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup, &PopupWindow::sayButtonClicked, this, &MainWindow::on_translationSayButton_clicked);
         popup->show();
