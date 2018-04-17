@@ -110,7 +110,9 @@ void SettingsDialog::on_dialogBox_accepted()
             }
         }
         // Remove autorun file if box unchecked
-        else if(autorunFile.exists()) autorunFile.remove();
+        else
+            if(autorunFile.exists())
+                autorunFile.remove();
 #elif defined(Q_OS_WIN)
         if (ui->autostartCheckBox->isChecked()) {
             QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
