@@ -53,12 +53,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->trayIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
-    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
-    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
     // Connect opacity slider and spinbox
     connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
-    connect(ui->popupOpacitySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+    connect(ui->popupOpacitySpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
 
     loadSettings();
 }

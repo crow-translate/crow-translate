@@ -67,8 +67,8 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *par
     translationButtonGroup->loadSettings();
 
     // Translate text automatically when language buttons released
-    connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::sourceLanguageButtonPressed);
-    connect(translationButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translationLanguageButtonPressed);
+    connect(sourceButtonGroup, qOverload<int>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::sourceLanguageButtonPressed);
+    connect(translationButtonGroup, qOverload<int>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translationLanguageButtonPressed);
 
     connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
 

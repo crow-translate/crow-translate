@@ -29,7 +29,7 @@
 LanguageButtonsGroup::LanguageButtonsGroup(QObject *parent, const QString &name) :
     QButtonGroup(parent)
 {
-    connect(this, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), &LanguageButtonsGroup::savePressedButton);
+    connect(this, qOverload<int>(&LanguageButtonsGroup::buttonReleased), this, &LanguageButtonsGroup::savePressedButton);
     m_name = name;
 }
 
