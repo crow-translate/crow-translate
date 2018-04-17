@@ -63,9 +63,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ui->setupUi(this);
 
-    languagesMenu->addActions(languagesList());
+    autoTranslateTimer.setSingleShot(true);
 
     // Add languageMenu to auto-language buttons
+    languagesMenu->addActions(languagesList());
     ui->sourceAutoButton->setMenu(languagesMenu);
     ui->translationAutoButton->setMenu(languagesMenu);
 
@@ -135,7 +136,9 @@ void MainWindow::on_translateButton_clicked()
         emit translationChanged(ui->translationEdit->toHtml());
     }
     else
-        qDebug() << tr("Text field is empty");
+        // Check if function called by pressing the button
+        if (QObject::sender() == ui->translateButton)
+            qDebug() << tr("Text field is empty");
 }
 
 void MainWindow::on_sourceAutoButton_triggered(QAction *language)
@@ -245,6 +248,23 @@ void MainWindow::on_showMainWindowHotkey_activated()
     this->activateWindow();
 }
 
+void MainWindow::on_autoTranslateCheckBox_toggled(const bool &state)
+{
+    // Add a delay of one second before translating when changing the text
+    if (state) {
+        on_translateButton_clicked();
+        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTimer);
+        connect(sourceButtonGroup, qOverload<int>(&LanguageButtonsGroup::buttonPressed), this, &MainWindow::startTimer);
+        connect(translationButtonGroup, qOverload<int>(&LanguageButtonsGroup::buttonPressed), this, &MainWindow::startTimer);
+        connect(&autoTranslateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
+    }
+    else
+        autoTranslateTimer.disconnect();
+
+    QSettings settings;
+    settings.setValue("AutoTranslate", state);
+}
+
 void MainWindow::reloadTranslation()
 {
     // Install translation
@@ -286,9 +306,18 @@ QList<QAction *> MainWindow::languagesList()
     return languagesList;
 }
 
+void MainWindow::startTimer()
+{
+    autoTranslateTimer.start(500);
+}
+
 void MainWindow::loadSettings()
 {
     QSettings settings;
+
+    // Load main window settings
+    ui->autoTranslateCheckBox->setChecked(settings.value("AutoTranslate", true).toBool());
+    on_autoTranslateCheckBox_toggled(ui->autoTranslateCheckBox->isChecked());
 
     // Load icons
     this->setWindowIcon(QIcon(SettingsDialog::ICONS.at(settings.value("AppIcon", 0).toInt())));

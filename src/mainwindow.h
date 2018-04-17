@@ -25,6 +25,7 @@
 #include <QSystemTrayIcon>
 #include <QTranslator>
 #include <QShortcut>
+#include <QTimer>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -59,16 +60,19 @@ private slots:
     void on_translateSelectedHotkey_activated();
     void on_saySelectedHotkey_activated();
     void on_showMainWindowHotkey_activated();
+    void on_autoTranslateCheckBox_toggled(const bool &state);
 
     void reloadTranslation();
 
 private:
     void loadSettings();
     QList<QAction *> languagesList();
+    void startTimer();
 
     QString selectedText();
 
     Ui::MainWindow *ui;
+    QTimer autoTranslateTimer;
 
     QTranslator translator;
 

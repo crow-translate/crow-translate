@@ -130,20 +130,6 @@
       </item>
      </layout>
     </item>
-    <item row="4" column="3">
-     <widget class="QToolButton" name="swapButton">
-      <property name="toolTip">
-       <string>Swap languages</string>
-      </property>
-      <property name="text">
-       <string>Swap languages</string>
-      </property>
-      <property name="icon">
-       <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
-        <normaloff>:/icons/papirus/swap.png</normaloff>:/icons/papirus/swap.png</iconset>
-      </property>
-     </widget>
-    </item>
     <item row="6" column="1">
      <layout class="QHBoxLayout" name="sourceButtomLayout">
       <item>
@@ -198,6 +184,16 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="autoTranslateCheckBox">
+        <property name="text">
+         <string>Automatically translate</string>
+        </property>
+        <property name="checked">
+         <bool>true</bool>
+        </property>
+       </widget>
       </item>
      </layout>
     </item>
@@ -271,26 +267,6 @@
        </widget>
       </item>
      </layout>
-    </item>
-    <item row="5" column="3" alignment="Qt::AlignHCenter">
-     <widget class="QToolButton" name="translateButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Translate</string>
-      </property>
-      <property name="text">
-       <string>Translate</string>
-      </property>
-      <property name="icon">
-       <iconset theme="next" resource="../data/resources.qrc">
-        <normaloff>:/icons/papirus/translate.png</normaloff>:/icons/papirus/translate.png</iconset>
-      </property>
-     </widget>
     </item>
     <item row="4" column="1">
      <layout class="QHBoxLayout" name="sourceTopLayout">
@@ -410,6 +386,40 @@
      <widget class="QTextEdit" name="translationEdit">
       <property name="readOnly">
        <bool>true</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="3">
+     <widget class="QToolButton" name="swapButton">
+      <property name="toolTip">
+       <string>Swap languages</string>
+      </property>
+      <property name="text">
+       <string>Swap languages</string>
+      </property>
+      <property name="icon">
+       <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
+        <normaloff>:/icons/papirus/swap.png</normaloff>:/icons/papirus/swap.png</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QToolButton" name="translateButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Translate</string>
+      </property>
+      <property name="text">
+       <string>Translate</string>
+      </property>
+      <property name="icon">
+       <iconset theme="next" resource="../data/resources.qrc">
+        <normaloff>:/icons/papirus/translate.png</normaloff>:/icons/papirus/translate.png</iconset>
       </property>
      </widget>
     </item>
