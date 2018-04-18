@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui (new Ui::MainWindow),
     languagesMenu (new QMenu),
-    trayMenu (new QMenu),
+    trayMenu (new QMenu(this)),
     trayIcon (new QSystemTrayIcon(this)),
     closeWindowsShortcut (new QShortcut(this)),
     translateSelectedHotkey (new QHotkey(this)),
