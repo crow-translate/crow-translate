@@ -114,7 +114,7 @@ void MainWindow::on_translateButton_clicked()
         m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
         // Show translation and transcription
-        ui->translationEdit->setText(m_translationData.text());
+        ui->translationEdit->setHtml(m_translationData.text());
         if (m_translationData.translationTranscription() != "")
             ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription() + "/</i></font>");
         if (m_translationData.sourceTranscription() != "")
@@ -250,7 +250,7 @@ void MainWindow::on_showMainWindowHotkey_activated()
 
 void MainWindow::on_autoTranslateCheckBox_toggled(const bool &state)
 {
-    // Add a delay of one second before translating when changing the text
+    // Add a delay before translating when changing the text
     if (state) {
         on_translateButton_clicked();
         connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTimer);
