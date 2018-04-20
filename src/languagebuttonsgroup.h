@@ -38,7 +38,7 @@ public:
     void setName(const QString &name);
     void setChecked(const int &id);
 
-    static void swapChecked(LanguageButtonsGroup *first, LanguageButtonsGroup *second);
+    static void swapChecked(LanguageButtonsGroup *sourceGroup, LanguageButtonsGroup *translationGroup);
 
 private:
     void savePressedButton(const short &index);

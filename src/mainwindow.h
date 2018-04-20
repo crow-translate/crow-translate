@@ -45,6 +45,7 @@ public:
 
 signals:
     void translationChanged(const QString &text);
+    void sourceAutoButtonChanged(const QString &text, const QString &toolTip);
 
 private slots:
     void on_translateButton_clicked();
@@ -63,6 +64,7 @@ private slots:
     void on_autoTranslateCheckBox_toggled(const bool &state);
 
     void reloadTranslation();
+    void resetAutoSourceButtonText();
 
 private:
     void loadSettings();

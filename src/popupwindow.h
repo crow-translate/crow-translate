@@ -35,11 +35,12 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *parent = 0);
+    explicit PopupWindow(QMenu *languagesMenu, const QString &translation, const QString &sourceAutoButtonText, const QString &sourceAutoButtonToolTip, QWidget *parent = 0);
     ~PopupWindow();
 
 public slots:
     void setTranslation(const QString &text);
+    void setSourceAutoButton(const QString &text, const QString &toolTip);
 
 private slots:
     void on_sourceAutoButton_triggered(QAction *language);

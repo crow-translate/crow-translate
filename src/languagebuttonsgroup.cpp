@@ -33,14 +33,17 @@ LanguageButtonsGroup::LanguageButtonsGroup(QObject *parent, const QString &name)
     m_name = name;
 }
 
-void LanguageButtonsGroup::swapChecked(LanguageButtonsGroup *first, LanguageButtonsGroup *second)
+void LanguageButtonsGroup::swapChecked(LanguageButtonsGroup *sourceGroup, LanguageButtonsGroup *translationGroup)
 {
-    // Save input language name
-    QString inputLanguageName = first->checkedButton()->toolTip();
+    QString sourceSelectedLanguage = sourceGroup->checkedButton()->toolTip();
+    QString translationSelectedLanguage = translationGroup->checkedButton()->toolTip();
 
-    // Insert new buttons
-    first->insertLanguage(second->checkedButton()->toolTip());
-    second->insertLanguage(inputLanguageName);
+    sourceGroup->insertLanguage(translationSelectedLanguage);
+
+    if (sourceSelectedLanguage == "auto")
+        translationGroup->buttons().at(0)->setChecked(true);
+    else
+        translationGroup->insertLanguage(sourceSelectedLanguage);
 }
 
 // Load buttons from settings

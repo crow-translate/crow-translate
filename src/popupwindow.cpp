@@ -28,7 +28,7 @@
 #include "ui_popupwindow.h"
 #include "mainwindow.h"
 
-PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *parent) :
+PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &translation, const QString &sourceAutoButtonText, const QString &sourceAutoButtonToolTip, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new LanguageButtonsGroup(this, "Source")),
@@ -72,7 +72,9 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *par
 
     connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
 
-    ui->translationEdit->setText(text);
+    ui->translationEdit->setText(translation);
+    ui->sourceAutoButton->setText(sourceAutoButtonText);
+    ui->sourceAutoButton->setToolTip(sourceAutoButtonToolTip);
 }
 
 PopupWindow::~PopupWindow()
@@ -83,6 +85,12 @@ PopupWindow::~PopupWindow()
 void PopupWindow::setTranslation(const QString &text)
 {
     ui->translationEdit->setText(text);
+}
+
+void PopupWindow::setSourceAutoButton(const QString &text, const QString &toolTip)
+{
+    ui->sourceAutoButton->setText(text);
+    ui->sourceAutoButton->setToolTip(toolTip);
 }
 
 void PopupWindow::on_sourceAutoButton_triggered(QAction *language)
