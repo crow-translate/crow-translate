@@ -298,9 +298,9 @@ void MainWindow::reloadTranslation()
 
     // Reload UI
     ui->retranslateUi(this);
-    trayShowWindow->setText("Show window");
-    traySettings->setText(tr("Settings"));
-    trayExit->setText(tr("Exit"));
+    trayMenu->actions().at(0)->setText(tr("Show window"));
+    trayMenu->actions().at(1)->setText(tr("Settings"));
+    trayMenu->actions().at(2)->setText(tr("Exit"));
     languagesMenu->clear();
     languagesMenu->addActions(languagesList());
     sourceButtonGroup->loadSettings();

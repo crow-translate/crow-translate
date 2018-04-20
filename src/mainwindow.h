@@ -82,9 +82,6 @@ private:
 
     QMenu *languagesMenu;
     QMenu *trayMenu;
-    QAction *trayShowWindow;
-    QAction *traySettings;
-    QAction *trayExit;
     QSystemTrayIcon *trayIcon;
 
     // Window shortcuts
