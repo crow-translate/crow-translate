@@ -26,10 +26,10 @@
 #include <QTranslator>
 #include <QShortcut>
 #include <QTimer>
+#include <QButtonGroup>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
-#include "languagebuttonsgroup.h"
 
 namespace Ui {
 class MainWindow;
@@ -44,13 +44,16 @@ public:
     ~MainWindow();
 
 signals:
-    void translationChanged(const QString &text);
-    void sourceAutoButtonChanged(const QString &text, const QString &toolTip);
+    void translationTextChanged(const QString &text);
+    void sourceButtonChanged(QAbstractButton *button, const int &id);
+    void translationButtonChanged(QAbstractButton *button, const int &id);
 
 private slots:
     void on_translateButton_clicked();
     void on_sourceAutoButton_triggered(QAction *language);
     void on_translationAutoButton_triggered(QAction *language);
+    void on_sourceGroup_buttonToggled(QAbstractButton *button, const bool &checked);
+    void on_translationGroup_buttonToggled(QAbstractButton *button, const bool &checked);
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
     void on_sourceSayButton_clicked();
@@ -67,20 +70,25 @@ private slots:
     void resetAutoSourceButtonText();
 
 private:
-    void loadSettings();
-    QList<QAction *> languagesList();
     void startTimer();
+    void loadSettings();
 
-    QString selectedText();
+    // Language button groups
+    void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
+    void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
+    void swapCheckedLanguages();
+    QList<QAction *> languagesList();
+    void setSourceButtonChecked(const int &id);
+    void setTranslationButtonChecked(const int &id);
 
     Ui::MainWindow *ui;
-    QTimer autoTranslateTimer;
-
     QTranslator translator;
-
+    QTimer autoTranslateTimer;
     QOnlineTranslator m_translationData;
-
     QMenu *languagesMenu;
+    QString selectedText();
+
+    // System tray
     QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
 
@@ -92,8 +100,9 @@ private:
     QHotkey *saySelectedHotkey;
     QHotkey *showMainWindowHotkey;
 
-    LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *translationButtonGroup;
+    // Language button groups
+    QButtonGroup *sourceGroup;
+    QButtonGroup *translationGroup;
 };
 
 #endif // MAINWINDOW_H

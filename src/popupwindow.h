@@ -22,9 +22,9 @@
 #define POPUPWINDOW_H
 
 #include <QMenu>
+#include <QButtonGroup>
 
 #include "qonlinetranslator.h"
-#include "languagebuttonsgroup.h"
 
 namespace Ui {
 class PopupWindow;
@@ -35,12 +35,15 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, const QString &translation, const QString &sourceAutoButtonText, const QString &sourceAutoButtonToolTip, QWidget *parent = 0);
+    explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = 0);
     ~PopupWindow();
 
 public slots:
     void setTranslation(const QString &text);
-    void setSourceAutoButton(const QString &text, const QString &toolTip);
+    void copySourceButton(QAbstractButton *button, const int &id);
+    void copyTranslationButton(QAbstractButton *button, const int &id);
+    void setSourceButtonChecked(const int &id, bool checked);
+    void setTranslationButtonChecked(const int &id, bool checked);
 
 private slots:
     void on_sourceAutoButton_triggered(QAction *language);
@@ -49,18 +52,20 @@ private slots:
     void on_swapButton_clicked();
 
 signals:
-    void sourceLanguageButtonPressed(const int &id);
-    void translationLanguageButtonPressed(const int &id);
+    void sourceButtonClicked(const int &id);
+    void translationButtonClicked(const int &id);
     void sourceLanguageInserted(QAction *languageCode);
     void translationLanguageInserted(QAction *languageCode);
     void swapButtonClicked();
     void sayButtonClicked();
 
 private:
+    void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
+
     Ui::PopupWindow *ui;
 
-    LanguageButtonsGroup *sourceButtonGroup;
-    LanguageButtonsGroup *translationButtonGroup;
+    QButtonGroup *sourceGroup;
+    QButtonGroup *translationGroup;
 };
 
 #endif // POPUPWINDOW_H
