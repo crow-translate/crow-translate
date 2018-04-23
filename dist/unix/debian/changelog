@@ -1,3 +1,16 @@
+crow-translate (0.9.7~git-1) stretch; urgency=low
+
+  * Implemented the selection of the previous language if the source language and the target language are the same
+  * Added displaying detected languages on the language auto-detection buttons
+  * Added "Automatically translate" checkbox
+  * Added tooltips for buttons
+  * Added icon for the "Show Window" action in the system tray for Linux
+  * Improved settings appearance
+  * Fixed the crash when changing the application language
+  * Fixed memory leak with system tray menu
+  * Fixed incorrect formatting of the translation text
+  * Improved perfomance
+
 crow-translate (0.9.6~git-1) stretch; urgency=low
 
   * Added icons to tray context menu for Linux
