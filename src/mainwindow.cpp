@@ -21,6 +21,7 @@
 #include "mainwindow.h"
 
 #include <QClipboard>
+#include <QNetworkProxy>
 
 #if defined(Q_OS_WIN)
 #include <QMimeData>
@@ -105,6 +106,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadLanguageButtons(sourceGroup, "Source");
     loadLanguageButtons(translationGroup, "Translation");
     loadSettings();
+    loadProxy();
 
     connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
 }
@@ -217,6 +219,7 @@ void MainWindow::on_settingsButton_clicked()
 {
     SettingsDialog config(this);
     connect(&config, &SettingsDialog::languageChanged, this, &MainWindow::reloadTranslation);
+    connect(&config, &SettingsDialog::proxyChanged, this, &MainWindow::loadProxy);
     if (config.exec()) {
         config.done(0);
         loadSettings();
@@ -355,6 +358,22 @@ void MainWindow::reloadTranslation()
     loadLanguageButtons(translationGroup, "Translation");
     ui->translationAutoButton->setToolTip(localeCode);
     ui->translationAutoButton->setText(tr("Auto") + " (" + QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(localeCode))) + ")");
+}
+
+void MainWindow::loadProxy()
+{
+    QSettings settings;
+    QNetworkProxy proxy;
+    proxy.setType(static_cast<QNetworkProxy::ProxyType>(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+    if (proxy.type() == QNetworkProxy::HttpProxy) {
+        proxy.setHostName(settings.value("Connection/ProxyHost", "").toString());
+        proxy.setPort(settings.value("Connection/ProxyPort", 8080).toInt());
+        if (settings.value("Connection/ProxyAuthEnabled", false).toBool()) {
+            proxy.setUser(settings.value("Connection/ProxyUsername", "").toString());
+            proxy.setPassword(settings.value("Connection/ProxyPassword", "").toString());
+        }
+    }
+    QNetworkProxy::setApplicationProxy(proxy);
 }
 
 void MainWindow::resetAutoSourceButtonText()

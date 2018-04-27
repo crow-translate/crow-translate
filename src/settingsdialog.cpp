@@ -23,6 +23,7 @@
 #include <QDebug>
 #include <QStandardPaths>
 #include <QDir>
+#include <QNetworkProxy>
 
 #include "ui_settingsdialog.h"
 
@@ -35,6 +36,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->setupUi(this);
 
     // Add items in comboboxes
+    ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
+    ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
+    ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
+
     ui->languageComboBox->addItem(tr("System language"), "auto");
     ui->languageComboBox->addItem("English", "en");
     ui->languageComboBox->addItem("Русский", "ru");
@@ -76,6 +81,22 @@ void SettingsDialog::on_dialogBox_accepted()
     if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
         emit languageChanged(); // Emit signal if language changed
+    }
+
+    // Check if proxy changed
+    if (settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt() != ui->proxyTypeComboBox->currentData() ||
+            settings.value("Connection/ProxyHost", "").toString() != ui->proxyHostEdit->text() ||
+            settings.value("Connection/ProxyPort", 8080).toInt() != ui->proxyPortSpinbox->value() ||
+            settings.value("Connection/ProxyAuthEnabled", false).toInt() != ui->proxyAuthCheckBox->isChecked() ||
+            settings.value("Connection/ProxyUsername", "").toString() != ui->proxyUsernameEdit->text() ||
+            settings.value("Connection/ProxyPassword", "").toString() != ui->proxyPasswordEdit->text()) {
+        settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+        settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
+        settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
+        settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
+        settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
+        settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+        emit proxyChanged(); // Emit signal if language changed
     }
 
     // Check if autostart options changed
@@ -133,6 +154,14 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
+    // Connection settings
+    settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+    settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
+    settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
+    settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
+    settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
+    settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+
     // Global shortcuts
     settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySelected", ui->saySelectedSequenceEdit->keySequence());
@@ -164,6 +193,14 @@ void SettingsDialog::on_resetButton_clicked()
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 
+    // Connection settings
+     ui->proxyTypeComboBox->setCurrentIndex(0);
+     ui->proxyHostEdit->setText("");
+     ui->proxyPortSpinbox->setValue(8080);
+     ui->proxyAuthCheckBox->setChecked(false);
+     ui->proxyUsernameEdit->setText("");
+     ui->proxyPasswordEdit->setText("");
+
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
     ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
@@ -174,6 +211,35 @@ void SettingsDialog::on_resetButton_clicked()
     ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
     ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
     ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
+}
+
+void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
+{
+    if (index == 2) {
+        ui->proxyHostEdit->setEnabled(true);
+        ui->proxyHostLabel->setEnabled(true);
+        ui->proxyPortLabel->setEnabled(true);
+        ui->proxyPortSpinbox->setEnabled(true);
+        ui->proxyInfoLabel->setEnabled(true);
+        ui->proxyAuthCheckBox->setEnabled(true);
+    }
+    else {
+        ui->proxyHostEdit->setEnabled(false);
+        ui->proxyHostLabel->setEnabled(false);
+        ui->proxyPortLabel->setEnabled(false);
+        ui->proxyPortSpinbox->setEnabled(false);
+        ui->proxyInfoLabel->setEnabled(false);
+        ui->proxyAuthCheckBox->setEnabled(false);
+    }
+}
+
+void SettingsDialog::on_proxyAuthCheckBox_toggled(bool checked)
+{
+    ui->proxyUsernameEdit->setEnabled(checked);
+    ui->proxyUsernameLabel->setEnabled(checked);
+    ui->proxyPasswordEdit->setEnabled(checked);
+    ui->proxyPasswordLabel->setEnabled(checked);
+    ui->proxyPasswordInfoLabel->setEnabled(checked);
 }
 
 void SettingsDialog::loadSettings()
@@ -189,6 +255,14 @@ void SettingsDialog::loadSettings()
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+
+    // Connection settings
+     ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+     ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
+     ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
+     ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
+     ui->proxyUsernameEdit->setText(settings.value("Connection/ProxyUsername", "").toString());
+     ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
 
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());

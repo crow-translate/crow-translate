@@ -67,6 +67,7 @@ private slots:
     void on_autoTranslateCheckBox_toggled(const bool &state);
 
     void reloadTranslation();
+    void loadProxy();
     void resetAutoSourceButtonText();
 
 private:

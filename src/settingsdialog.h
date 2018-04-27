@@ -39,13 +39,14 @@ public:
 
 private slots:
     void on_dialogBox_accepted();
-
     void on_trayCheckBox_toggled(bool checked);
-
     void on_resetButton_clicked();
+    void on_proxyTypeComboBox_currentIndexChanged(int index);
+    void on_proxyAuthCheckBox_toggled(bool checked);
 
 signals:
     void languageChanged();
+    void proxyChanged();
 
 private:
     void loadSettings();
