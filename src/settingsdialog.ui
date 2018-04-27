@@ -44,12 +44,21 @@
          </item>
          <item>
           <widget class="QComboBox" name="languageComboBox">
-           <property name="sizePolicy">
-            <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
+           <item>
+            <property name="text">
+             <string>System language</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">English</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Русский</string>
+            </property>
+           </item>
           </widget>
          </item>
          <item>
@@ -77,7 +86,18 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="windowModeComboBox"/>
+          <widget class="QComboBox" name="windowModeComboBox">
+           <item>
+            <property name="text">
+             <string>Popup</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Full window</string>
+            </property>
+           </item>
+          </widget>
          </item>
          <item>
           <spacer name="windowModeHorizontalSpacer">
@@ -141,7 +161,44 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="appIconComboBox"/>
+          <widget class="QComboBox" name="appIconComboBox">
+           <item>
+            <property name="text">
+             <string>Classic</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/classic.png</normaloff>:/icons/app/classic.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Black</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>White</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/white.png</normaloff>:/icons/app/white.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Papirus</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/papirus.png</normaloff>:/icons/app/papirus.png</iconset>
+            </property>
+           </item>
+          </widget>
          </item>
          <item>
           <spacer name="appIconHorizontalSpacer">
@@ -168,7 +225,44 @@
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="trayIconComboBox"/>
+          <widget class="QComboBox" name="trayIconComboBox">
+           <item>
+            <property name="text">
+             <string>Classic</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/classic.png</normaloff>:/icons/app/classic.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Black</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>White</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/white.png</normaloff>:/icons/app/white.png</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string notr="true">Papirus</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../data/resources.qrc">
+              <normaloff>:/icons/app/papirus.png</normaloff>:/icons/app/papirus.png</iconset>
+            </property>
+           </item>
+          </widget>
          </item>
          <item>
           <spacer name="trayIconHorizontalSpacer">

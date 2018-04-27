@@ -40,22 +40,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
     ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
 
-    ui->languageComboBox->addItem(tr("System language"), "auto");
-    ui->languageComboBox->addItem("English", "en");
-    ui->languageComboBox->addItem("Русский", "ru");
 
-    ui->windowModeComboBox->addItem(tr("Popup"));
-    ui->windowModeComboBox->addItem(tr("Full window"));
-
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(0)), tr("Classic"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(1)), tr("Black"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(2)), tr("White"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
-
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(0)), tr("Classic"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(1)), tr("Black"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(2)), tr("White"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
+    ui->languageComboBox->setItemData(0, "auto");
+    ui->languageComboBox->setItemData(1, "en");
+    ui->languageComboBox->setItemData(2, "ru");
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
