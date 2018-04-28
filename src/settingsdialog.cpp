@@ -40,7 +40,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
     ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
 
-
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
     ui->languageComboBox->setItemData(2, "ru");
@@ -52,6 +51,9 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     // Connect opacity slider and spinbox
     connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
     connect(ui->popupOpacitySpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+
+    // Pages selection mechanism
+    connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
 
     loadSettings();
 }
