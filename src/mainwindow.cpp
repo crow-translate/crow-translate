@@ -94,8 +94,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Create context menu for tray
 #if defined(Q_OS_LINUX)
     trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
-    trayMenu->addAction(QIcon::fromTheme("settings"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
-    trayMenu->addAction(QIcon::fromTheme("exit"), tr("Exit"), qApp, &QApplication::quit);
+    trayMenu->addAction(QIcon::fromTheme("settings-configure"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
+    trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), qApp, &QApplication::quit);
 #elif defined(Q_OS_WIN)
     trayMenu->addAction(tr("Show window"), this, &MainWindow::show);
     trayMenu->addAction(tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
