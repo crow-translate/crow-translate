@@ -92,15 +92,9 @@ MainWindow::MainWindow(QWidget *parent) :
     translationGroup->addButton(ui->translationThirdButton, 3);
 
     // Create context menu for tray
-#if defined(Q_OS_LINUX)
     trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
-    trayMenu->addAction(QIcon::fromTheme("settings-configure"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
+    trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
     trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), qApp, &QApplication::quit);
-#elif defined(Q_OS_WIN)
-    trayMenu->addAction(tr("Show window"), this, &MainWindow::show);
-    trayMenu->addAction(tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
-    trayMenu->addAction(tr("Exit"), qApp, &QApplication::quit);
-#endif
     trayIcon->setContextMenu(trayMenu);
 
     loadLanguageButtons(sourceGroup, "Source");

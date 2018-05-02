@@ -2,13 +2,8 @@
     <qresource prefix="/">
         <file>icons/app/black.png</file>
         <file>icons/app/white.png</file>
-        <file>icons/papirus/copy.png</file>
-        <file>icons/papirus/settings.png</file>
-        <file>icons/papirus/swap.png</file>
-        <file>icons/papirus/translate.png</file>
         <file>icons/app/papirus.png</file>
         <file>translations/crow_ru.qm</file>
         <file>icons/app/classic.png</file>
-        <file>icons/papirus/speak.png</file>
     </qresource>
 </RCC>

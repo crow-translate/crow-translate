@@ -45,6 +45,10 @@ FORMS += \
 RESOURCES += \
     data/resources.qrc
 
+win32 {
+RESOURCES += data/windows-icons.qrc
+}
+
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
 # Automatically generate .qm files

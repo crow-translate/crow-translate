@@ -12,7 +12,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * [Features](#features)
 * [Default keyboard shortcuts](#default-keyboard-shortcuts)
 * [Dependencies](#dependencies)
-* [Third-party libraries](#third-party-libraries)
+* [Third-party](#third-party)
 * [Installation](#installation)
 
 ## Screenshots
@@ -61,7 +61,9 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 **Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qtbase5-dev qtbase5-dev-tools qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
 
-## Third-party libraries
+## Third-party
+
+### Libraries
 
 This project uses following third-party libraries:
 * [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google Translate API for Qt5.
@@ -81,6 +83,10 @@ git clone git@github.com:Shatur95/CrowTranslate.git
 git submodule init
 git submodule update
 ```
+
+### Icons
+
+Only Linux supports icon theming. Windows use [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme "Free and open source SVG icon theme") icons.
 
 ## Installation
 

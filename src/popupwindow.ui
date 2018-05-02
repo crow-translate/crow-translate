@@ -136,8 +136,7 @@
         <string>Swap languages</string>
        </property>
        <property name="icon">
-        <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/swap.png</normaloff>:/icons/papirus/swap.png</iconset>
+        <iconset theme="object-flip-horizontal"/>
        </property>
       </widget>
      </item>
@@ -259,8 +258,7 @@
         <string>Speak</string>
        </property>
        <property name="icon">
-        <iconset theme="volume-level-high" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/speak.png</normaloff>:/icons/papirus/speak.png</iconset>
+        <iconset theme="volume-level-high"/>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonFollowStyle</enum>
@@ -276,8 +274,7 @@
         <string>Copy</string>
        </property>
        <property name="icon">
-        <iconset theme="edit-copy" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/copy.png</normaloff>:/icons/papirus/copy.png</iconset>
+        <iconset theme="edit-copy"/>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonFollowStyle</enum>
