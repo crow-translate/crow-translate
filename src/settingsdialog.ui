@@ -64,7 +64,8 @@
         <string>Connection</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-system-network"/>
+        <iconset theme="preferences-system-network">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
@@ -72,7 +73,8 @@
         <string>Shortcuts</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-desktop-keyboard"/>
+        <iconset theme="preferences-desktop-keyboard">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
@@ -80,7 +82,8 @@
         <string>About</string>
        </property>
        <property name="icon">
-        <iconset theme="dialog-information"/>
+        <iconset theme="dialog-information">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
      </widget>
@@ -502,6 +505,9 @@
            </item>
            <item>
             <widget class="QLabel" name="proxyInfoLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="text">
               <string>Info: the proxy works only for text translation</string>
              </property>
