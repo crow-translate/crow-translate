@@ -493,6 +493,10 @@ void MainWindow::insertLanguage(QButtonGroup *group, const QString &settingsName
     group->buttons().at(1)->setVisible(true);
     group->buttons().at(1)->setChecked(true);
 
+    // Translate text with default delay if "Automatically translate" checkbox is checked
+    if (ui->autoTranslateCheckBox->isChecked())
+        startTimer();
+
     // Send signal
     if (group == sourceGroup)
         emit sourceButtonChanged(group->buttons().at(1), 1);
