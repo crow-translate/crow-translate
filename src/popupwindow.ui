@@ -136,7 +136,8 @@
         <string>Swap languages</string>
        </property>
        <property name="icon">
-        <iconset theme="object-flip-horizontal"/>
+        <iconset theme="object-flip-horizontal">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
@@ -258,7 +259,7 @@
         <string>Speak</string>
        </property>
        <property name="icon">
-        <iconset theme="volume-level-high"/>
+        <iconset theme="text-speak"/>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonFollowStyle</enum>
@@ -287,7 +288,8 @@
         <string>Copy all</string>
        </property>
        <property name="icon">
-        <iconset theme="document-export"/>
+        <iconset theme="document-export">
+         <normaloff>.</normaloff>.</iconset>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonFollowStyle</enum>
