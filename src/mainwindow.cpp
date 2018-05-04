@@ -263,10 +263,6 @@ void MainWindow::on_tray_activated(QSystemTrayIcon::ActivationReason reason) {
 
 void MainWindow::on_translateSelectedHotkey_activated()
 {
-    // Send selected text to source field and translate it
-    ui->sourceEdit->setPlainText(selectedText());
-    on_translateButton_clicked();
-
     QSettings settings;
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Show popup
@@ -292,11 +288,22 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(popup, &PopupWindow::swapButtonClicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup, &PopupWindow::sayButtonClicked, this, &MainWindow::on_translationSayButton_clicked);
 
+        // Send selected text to source field and translate it
+        ui->sourceEdit->setPlainText(selectedText());
+        if (!ui->autoTranslateCheckBox->isChecked())
+            on_translateButton_clicked();
+
         popup->show();
     }
-    else
+    else {
+        // Send selected text to source field and translate it
+        ui->sourceEdit->setPlainText(selectedText());
+        if (!ui->autoTranslateCheckBox->isChecked())
+            on_translateButton_clicked();
+
         // Show main window
         on_showMainWindowHotkey_activated();
+    }
 }
 
 void MainWindow::on_saySelectedHotkey_activated()
