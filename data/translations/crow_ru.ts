@@ -5,7 +5,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/mainwindow.ui" line="112"/>
-        <location filename="../../src/mainwindow.ui" line="301"/>
+        <location filename="../../src/mainwindow.ui" line="296"/>
         <location filename="../../src/mainwindow.cpp" line="75"/>
         <location filename="../../src/mainwindow.cpp" line="146"/>
         <location filename="../../src/mainwindow.cpp" line="371"/>
@@ -14,61 +14,61 @@
         <translation>Авто</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="408"/>
-        <location filename="../../src/mainwindow.ui" line="411"/>
+        <location filename="../../src/mainwindow.ui" line="403"/>
+        <location filename="../../src/mainwindow.ui" line="406"/>
         <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="144"/>
         <location filename="../../src/mainwindow.ui" line="147"/>
+        <location filename="../../src/mainwindow.ui" line="248"/>
         <location filename="../../src/mainwindow.ui" line="251"/>
-        <location filename="../../src/mainwindow.ui" line="254"/>
         <source>Speak</source>
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="161"/>
-        <location filename="../../src/mainwindow.ui" line="164"/>
+        <location filename="../../src/mainwindow.ui" line="160"/>
+        <location filename="../../src/mainwindow.ui" line="163"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="191"/>
+        <location filename="../../src/mainwindow.ui" line="189"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="221"/>
+        <location filename="../../src/mainwindow.ui" line="219"/>
         <source>Copy all text from the field with formatting</source>
         <translation>Скопировать весь текст из поля с форматированием</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="224"/>
+        <location filename="../../src/mainwindow.ui" line="222"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="238"/>
+        <location filename="../../src/mainwindow.ui" line="235"/>
         <source>Copy only translation without formatting</source>
         <translation>Скопировать только перевод без форматирования</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="241"/>
+        <location filename="../../src/mainwindow.ui" line="238"/>
         <source>Copy translation</source>
         <translation>Скопировать перевод</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="268"/>
-        <location filename="../../src/mainwindow.ui" line="271"/>
+        <location filename="../../src/mainwindow.ui" line="264"/>
+        <location filename="../../src/mainwindow.ui" line="267"/>
         <location filename="../../src/mainwindow.cpp" line="96"/>
         <location filename="../../src/mainwindow.cpp" line="364"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="428"/>
-        <location filename="../../src/mainwindow.ui" line="431"/>
+        <location filename="../../src/mainwindow.ui" line="422"/>
+        <location filename="../../src/mainwindow.ui" line="425"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
@@ -116,22 +116,22 @@
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="273"/>
+        <location filename="../../src/popupwindow.ui" line="272"/>
         <source>Copy only translation without formatting</source>
         <translation>Скопировать только перевод без форматирования</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="276"/>
+        <location filename="../../src/popupwindow.ui" line="275"/>
         <source>Copy translation</source>
         <translation>Скопировать перевод</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="286"/>
+        <location filename="../../src/popupwindow.ui" line="285"/>
         <source>Copy all text from the field with formatting</source>
         <translation>Скопировать весь текст из поля с форматированием</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="289"/>
+        <location filename="../../src/popupwindow.ui" line="288"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
@@ -732,7 +732,7 @@
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="877"/>
+        <location filename="../../src/settingsdialog.ui" line="887"/>
         <source>Reset settings</source>
         <translation>Сбросить настройки</translation>
     </message>
@@ -879,7 +879,7 @@
         <translation>Закрыть окно</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="818"/>
+        <location filename="../../src/settingsdialog.ui" line="828"/>
         <source>License:</source>
         <translation>Лицензия:</translation>
     </message>
@@ -909,22 +909,27 @@
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="804"/>
+        <location filename="../../src/settingsdialog.ui" line="693"/>
+        <source>Copy translation</source>
+        <translation>Скопировать перевод</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="814"/>
         <source>Ukraine</source>
         <translation>Украина</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="811"/>
+        <location filename="../../src/settingsdialog.ui" line="821"/>
         <source>Country:</source>
         <translation>Страна:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="832"/>
+        <location filename="../../src/settingsdialog.ui" line="842"/>
         <source>Autor:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="783"/>
+        <location filename="../../src/settingsdialog.ui" line="793"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
