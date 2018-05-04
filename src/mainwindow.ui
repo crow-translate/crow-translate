@@ -147,8 +147,7 @@
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="text-speak">
-          <normaloff>.</normaloff>.</iconset>
+         <iconset theme="text-speak"/>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -164,8 +163,7 @@
          <string>Copy</string>
         </property>
         <property name="icon">
-         <iconset theme="edit-copy">
-          <normaloff>.</normaloff>.</iconset>
+         <iconset theme="edit-copy"/>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -224,8 +222,7 @@
          <string>Copy all</string>
         </property>
         <property name="icon">
-         <iconset theme="document-export">
-          <normaloff>.</normaloff>.</iconset>
+         <iconset theme="document-export"/>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -254,8 +251,7 @@
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="text-speak">
-          <normaloff>.</normaloff>.</iconset>
+         <iconset theme="text-speak"/>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -271,8 +267,7 @@
          <string>Settings</string>
         </property>
         <property name="icon">
-         <iconset theme="dialog-object-properties">
-          <normaloff>.</normaloff>.</iconset>
+         <iconset theme="dialog-object-properties"/>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -411,8 +406,7 @@
        <string>Swap languages</string>
       </property>
       <property name="icon">
-       <iconset theme="object-flip-horizontal">
-        <normaloff>.</normaloff>.</iconset>
+       <iconset theme="object-flip-horizontal"/>
       </property>
      </widget>
     </item>
@@ -431,8 +425,7 @@
        <string>Translate</string>
       </property>
       <property name="icon">
-       <iconset theme="go-next">
-        <normaloff>.</normaloff>.</iconset>
+       <iconset theme="go-next"/>
       </property>
      </widget>
     </item>
