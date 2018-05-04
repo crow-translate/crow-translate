@@ -31,8 +31,8 @@
 PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
-    sourceGroup (new QButtonGroup(this)),
-    translationGroup (new QButtonGroup(this))
+    sourceButtonGroup (new QButtonGroup(this)),
+    translationButtonGroup (new QButtonGroup(this))
 {
     ui->setupUi(this);
 
@@ -54,20 +54,20 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->translationAutoButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    this->sourceGroup->addButton(ui->sourceAutoButton, 0);
-    this->sourceGroup->addButton(ui->sourceFirstButton, 1);
-    this->sourceGroup->addButton(ui->sourceSecondButton, 2);
-    this->sourceGroup->addButton(ui->sourceThirdButton, 3);
-    this->translationGroup->addButton(ui->translationAutoButton, 0);
-    this->translationGroup->addButton(ui->translationFirstButton, 1);
-    this->translationGroup->addButton(ui->translationSecondButton, 2);
-    this->translationGroup->addButton(ui->translationThirdButton, 3);
+    sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
+    sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
+    sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
+    sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
+    translationButtonGroup->addButton(ui->translationAutoButton, 0);
+    translationButtonGroup->addButton(ui->translationFirstButton, 1);
+    translationButtonGroup->addButton(ui->translationSecondButton, 2);
+    translationButtonGroup->addButton(ui->translationThirdButton, 3);
 
-    copyLanguageButtons(this->sourceGroup, sourceGroup);
-    copyLanguageButtons(this->translationGroup, translationGroup);
+    copyLanguageButtons(sourceButtonGroup, sourceGroup);
+    copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    connect(this->sourceGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::sourceButtonClicked);
-    connect(this->translationGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::translationButtonClicked);
+    connect(this->sourceButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::sourceButtonClicked);
+    connect(this->translationButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::translationButtonClicked);
     connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
 }
 
@@ -83,28 +83,28 @@ void PopupWindow::setTranslation(const QString &text)
 
 void PopupWindow::copySourceButton(QAbstractButton *button, const int &id)
 {
-    sourceGroup->button(id)->setText(button->text());
-    sourceGroup->button(id)->setToolTip(button->toolTip());
-    sourceGroup->button(id)->setVisible(true);
+    sourceButtonGroup->button(id)->setText(button->text());
+    sourceButtonGroup->button(id)->setToolTip(button->toolTip());
+    sourceButtonGroup->button(id)->setVisible(true);
 }
 
 void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
 {
-    translationGroup->button(id)->setText(button->text());
-    translationGroup->button(id)->setToolTip(button->toolTip());
-    translationGroup->button(id)->setVisible(true);
+    translationButtonGroup->button(id)->setText(button->text());
+    translationButtonGroup->button(id)->setToolTip(button->toolTip());
+    translationButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::setSourceButtonChecked(const int &id, bool checked)
+void PopupWindow::checkSourceButton(const int &id, bool checked)
 {
     if (checked)
-        sourceGroup->button(id)->setChecked(true);
+        sourceButtonGroup->button(id)->setChecked(true);
 }
 
-void PopupWindow::setTranslationButtonChecked(const int &id, bool checked)
+void PopupWindow::checkTranslationButton(const int &id, bool checked)
 {
     if (checked)
-        translationGroup->button(id)->setChecked(true);
+        translationButtonGroup->button(id)->setChecked(true);
 }
 
 void PopupWindow::on_sourceAutoButton_triggered(QAction *language)

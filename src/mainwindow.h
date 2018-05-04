@@ -50,20 +50,24 @@ signals:
 
 private slots:
     void on_translateButton_clicked();
-    void on_sourceAutoButton_triggered(QAction *language);
-    void on_translationAutoButton_triggered(QAction *language);
-    void on_sourceGroup_buttonToggled(QAbstractButton *button, const bool &checked);
-    void on_translationGroup_buttonToggled(QAbstractButton *button, const bool &checked);
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
     void on_sourceSayButton_clicked();
     void on_translationSayButton_clicked();
     void on_sourceCopyButton_clicked();
     void on_translationCopyButton_clicked();
-    void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
+
+    void on_sourceAutoButton_triggered(QAction *language);
+    void on_translationAutoButton_triggered(QAction *language);
+
+    void on_sourceButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
+    void on_translationButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
+
     void on_translateSelectedHotkey_activated();
     void on_saySelectedHotkey_activated();
     void on_showMainWindowHotkey_activated();
+
+    void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
     void on_autoTranslateCheckBox_toggled(const bool &state);
 
     void reloadTranslation();
@@ -78,9 +82,9 @@ private:
     void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
     void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
     void swapCheckedLanguages();
+    void checkSourceButton(const int &id);
+    void checkTranslationButton(const int &id);
     QList<QAction *> languagesList();
-    void setSourceButtonChecked(const int &id);
-    void setTranslationButtonChecked(const int &id);
 
     Ui::MainWindow *ui;
     QTranslator translator;
@@ -102,8 +106,8 @@ private:
     QHotkey *showMainWindowHotkey;
 
     // Language button groups
-    QButtonGroup *sourceGroup;
-    QButtonGroup *translationGroup;
+    QButtonGroup *sourceButtonGroup;
+    QButtonGroup *translationButtonGroup;
 };
 
 #endif // MAINWINDOW_H

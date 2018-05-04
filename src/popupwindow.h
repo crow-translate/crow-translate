@@ -42,8 +42,8 @@ public slots:
     void setTranslation(const QString &text);
     void copySourceButton(QAbstractButton *button, const int &id);
     void copyTranslationButton(QAbstractButton *button, const int &id);
-    void setSourceButtonChecked(const int &id, bool checked);
-    void setTranslationButtonChecked(const int &id, bool checked);
+    void checkSourceButton(const int &id, bool checked);
+    void checkTranslationButton(const int &id, bool checked);
 
 private slots:
     void on_sourceAutoButton_triggered(QAction *language);
@@ -64,8 +64,8 @@ private:
 
     Ui::PopupWindow *ui;
 
-    QButtonGroup *sourceGroup;
-    QButtonGroup *translationGroup;
+    QButtonGroup *sourceButtonGroup;
+    QButtonGroup *translationButtonGroup;
 };
 
 #endif // POPUPWINDOW_H
