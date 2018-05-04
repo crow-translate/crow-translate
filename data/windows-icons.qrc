@@ -13,5 +13,6 @@
         <file>icons/Papirus/16x16/object-flip-horizontal.svg</file>
         <file>icons/Papirus/16x16/text-speak.svg</file>
         <file>icons/Papirus/16x16/window.svg</file>
+        <file>icons/Papirus/16x16/document-export.svg</file>
     </qresource>
 </RCC>

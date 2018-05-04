@@ -199,6 +199,14 @@ void MainWindow::on_sourceCopyButton_clicked()
 void MainWindow::on_translationCopyButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "")
+        QApplication::clipboard()->setText(m_translationData.text());
+    else
+        qDebug() << tr("Text field is empty");
+}
+
+void MainWindow::on_translationCopyAllButton_clicked()
+{
+    if (ui->translationEdit->toPlainText() != "")
         QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
     else
         qDebug() << tr("Text field is empty");
@@ -278,6 +286,8 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
         connect(popup, &PopupWindow::swapButtonClicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup, &PopupWindow::sayButtonClicked, this, &MainWindow::on_translationSayButton_clicked);
+        connect(popup, &PopupWindow::copyButtonClicked, this, &MainWindow::on_translationCopyButton_clicked);
+        connect(popup, &PopupWindow::copyAllButtonClicked, this, &MainWindow::on_translationCopyAllButton_clicked);
 
         // Send selected text to source field and translate it
         ui->sourceEdit->setPlainText(selectedText());

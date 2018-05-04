@@ -45,12 +45,6 @@ public slots:
     void checkSourceButton(const int &id, bool checked);
     void checkTranslationButton(const int &id, bool checked);
 
-private slots:
-    void on_sourceAutoButton_triggered(QAction *language);
-    void on_translationAutoButton_triggered(QAction *language);
-    void on_copyButton_clicked();
-    void on_swapButton_clicked();
-
 signals:
     void sourceButtonClicked(const int &id);
     void translationButtonClicked(const int &id);
@@ -58,6 +52,8 @@ signals:
     void translationLanguageInserted(QAction *languageCode);
     void swapButtonClicked();
     void sayButtonClicked();
+    void copyButtonClicked();
+    void copyAllButtonClicked();
 
 private:
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);

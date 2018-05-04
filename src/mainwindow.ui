@@ -216,19 +216,32 @@
        </spacer>
       </item>
       <item>
-       <widget class="QToolButton" name="translationCopyButton">
+       <widget class="QToolButton" name="translationCopyAllButton">
         <property name="toolTip">
-         <string>Copy</string>
+         <string>Copy all text from the field with formatting</string>
         </property>
         <property name="text">
-         <string>Copy</string>
+         <string>Copy all</string>
         </property>
         <property name="icon">
-         <iconset theme="edit-copy">
+         <iconset theme="document-export">
           <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="translationCopyButton">
+        <property name="toolTip">
+         <string>Copy only translation without formatting</string>
+        </property>
+        <property name="text">
+         <string>Copy translation</string>
+        </property>
+        <property name="icon">
+         <iconset theme="edit-copy"/>
         </property>
        </widget>
       </item>
@@ -258,7 +271,8 @@
          <string>Settings</string>
         </property>
         <property name="icon">
-         <iconset theme="dialog-object-properties"/>
+         <iconset theme="dialog-object-properties">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>

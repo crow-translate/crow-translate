@@ -68,7 +68,14 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
 
     connect(this->sourceButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::sourceButtonClicked);
     connect(this->translationButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::translationButtonClicked);
-    connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
+
+    connect(ui->sourceAutoButton, &QToolButton::triggered, this, &PopupWindow::sourceLanguageInserted);
+    connect(ui->translationAutoButton, &QToolButton::triggered, this, &PopupWindow::translationLanguageInserted);
+
+    connect(ui->swapButton, &QToolButton::clicked, this, &PopupWindow::swapButtonClicked);
+    connect(ui->sayButton, &QToolButton::clicked, this, &PopupWindow::sayButtonClicked);
+    connect(ui->copyButton, &QToolButton::clicked, this, &PopupWindow::copyButtonClicked);
+    connect(ui->copyAllButton, &QToolButton::clicked, this, &PopupWindow::copyAllButtonClicked);
 }
 
 PopupWindow::~PopupWindow()
@@ -105,29 +112,6 @@ void PopupWindow::checkTranslationButton(const int &id, bool checked)
 {
     if (checked)
         translationButtonGroup->button(id)->setChecked(true);
-}
-
-void PopupWindow::on_sourceAutoButton_triggered(QAction *language)
-{
-    emit sourceLanguageInserted(language);
-}
-
-void PopupWindow::on_translationAutoButton_triggered(QAction *language)
-{
-    emit translationLanguageInserted(language);
-}
-
-void PopupWindow::on_copyButton_clicked()
-{
-    if (ui->translationEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
-    else
-        qDebug() << tr("Text field is empty");
-}
-
-void PopupWindow::on_swapButton_clicked()
-{
-    emit swapButtonClicked();
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)

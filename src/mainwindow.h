@@ -56,6 +56,7 @@ private slots:
     void on_translationSayButton_clicked();
     void on_sourceCopyButton_clicked();
     void on_translationCopyButton_clicked();
+    void on_translationCopyAllButton_clicked();
 
     void on_sourceAutoButton_triggered(QAction *language);
     void on_translationAutoButton_triggered(QAction *language);
