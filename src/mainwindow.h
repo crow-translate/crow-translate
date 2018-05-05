@@ -82,7 +82,6 @@ private:
     // Language button groups
     void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
     void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
-    void swapCheckedLanguages();
     void checkSourceButton(const int &id);
     void checkTranslationButton(const int &id);
     QList<QAction *> languagesList();

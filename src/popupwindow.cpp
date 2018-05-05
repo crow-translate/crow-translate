@@ -102,16 +102,14 @@ void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
     translationButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::checkSourceButton(const int &id, bool checked)
+void PopupWindow::checkSourceButton(const int &id)
 {
-    if (checked)
-        sourceButtonGroup->button(id)->setChecked(true);
+    sourceButtonGroup->button(id)->setChecked(true);
 }
 
-void PopupWindow::checkTranslationButton(const int &id, bool checked)
+void PopupWindow::checkTranslationButton(const int &id)
 {
-    if (checked)
-        translationButtonGroup->button(id)->setChecked(true);
+    translationButtonGroup->button(id)->setChecked(true);
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)

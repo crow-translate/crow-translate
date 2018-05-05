@@ -42,8 +42,8 @@ public slots:
     void setTranslation(const QString &text);
     void copySourceButton(QAbstractButton *button, const int &id);
     void copyTranslationButton(QAbstractButton *button, const int &id);
-    void checkSourceButton(const int &id, bool checked);
-    void checkTranslationButton(const int &id, bool checked);
+    void checkSourceButton(const int &id);
+    void checkTranslationButton(const int &id);
 
 signals:
     void sourceButtonClicked(const int &id);
