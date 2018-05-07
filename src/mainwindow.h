@@ -76,22 +76,21 @@ private slots:
     void resetAutoSourceButtonText();
 
 private:
-    void startTimer();
     void loadSettings();
 
     // Language button groups
     void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
     void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
-    void checkSourceButton(const int &id);
-    void checkTranslationButton(const int &id);
+    void checkSourceButton(const int &id, const bool &checked);
+    void checkTranslationButton(const int &id, const bool &checked);
     QList<QAction *> languagesList();
+    QString selectedText();
 
     Ui::MainWindow *ui;
     QTranslator translator;
     QTimer autoTranslateTimer;
     QOnlineTranslator m_translationData;
     QMenu *languagesMenu;
-    QString selectedText();
 
     // System tray
     QMenu *trayMenu;

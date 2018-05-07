@@ -65,17 +65,6 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
 
     copyLanguageButtons(sourceButtonGroup, sourceGroup);
     copyLanguageButtons(translationButtonGroup, translationGroup);
-
-    connect(this->sourceButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::sourceButtonClicked);
-    connect(this->translationButtonGroup, qOverload<int>(&QButtonGroup::buttonClicked), this, &PopupWindow::translationButtonClicked);
-
-    connect(ui->sourceAutoButton, &QToolButton::triggered, this, &PopupWindow::sourceLanguageInserted);
-    connect(ui->translationAutoButton, &QToolButton::triggered, this, &PopupWindow::translationLanguageInserted);
-
-    connect(ui->swapButton, &QToolButton::clicked, this, &PopupWindow::swapButtonClicked);
-    connect(ui->sayButton, &QToolButton::clicked, this, &PopupWindow::sayButtonClicked);
-    connect(ui->copyButton, &QToolButton::clicked, this, &PopupWindow::copyButtonClicked);
-    connect(ui->copyAllButton, &QToolButton::clicked, this, &PopupWindow::copyAllButtonClicked);
 }
 
 PopupWindow::~PopupWindow()
@@ -102,25 +91,67 @@ void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
     translationButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::checkSourceButton(const int &id)
+void PopupWindow::checkSourceButton(const int &id, const bool &checked)
 {
-    sourceButtonGroup->button(id)->setChecked(true);
+    if (checked)
+        sourceButtonGroup->button(id)->setChecked(true);
 }
 
-void PopupWindow::checkTranslationButton(const int &id)
+void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
 {
-    translationButtonGroup->button(id)->setChecked(true);
+    if (checked)
+        translationButtonGroup->button(id)->setChecked(true);
+}
+
+QButtonGroup *PopupWindow::sourceButtons()
+{
+    return sourceButtonGroup;
+}
+
+QButtonGroup *PopupWindow::translationButtons()
+{
+    return translationButtonGroup;
+}
+
+QToolButton *PopupWindow::sourceAutoButton()
+{
+    return ui->sourceAutoButton;
+}
+
+QToolButton *PopupWindow::translationAutoButton()
+{
+    return ui->translationAutoButton;
+}
+
+QToolButton *PopupWindow::swapButton()
+{
+    return ui->swapButton;
+}
+
+QToolButton *PopupWindow::sayButton()
+{
+    return ui->sayButton;
+}
+
+QToolButton *PopupWindow::copyButton()
+{
+    return ui->copyButton;
+}
+
+QToolButton *PopupWindow::copyAllButton()
+{
+    return ui->copyAllButton;
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
 {
     for (auto i = 0; i < 4; i++) {
-        if (copyingGroup->buttons().at(i)->text() != "") {
-            existingGroup->buttons().at(i)->setText(copyingGroup->buttons().at(i)->text());
-            existingGroup->buttons().at(i)->setToolTip(copyingGroup->buttons().at(i)->toolTip());
+        if (copyingGroup->button(i)->text() != "") {
+            existingGroup->button(i)->setText(copyingGroup->button(i)->text());
+            existingGroup->button(i)->setToolTip(copyingGroup->button(i)->toolTip());
         }
         else
-            existingGroup->buttons().at(i)->setVisible(false);
+            existingGroup->button(i)->setVisible(false);
     }
     existingGroup->button(copyingGroup->checkedId())->setChecked(true);
 }

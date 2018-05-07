@@ -23,6 +23,7 @@
 
 #include <QMenu>
 #include <QButtonGroup>
+#include <QToolButton>
 
 #include "qonlinetranslator.h"
 
@@ -38,22 +39,21 @@ public:
     explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = 0);
     ~PopupWindow();
 
+    QButtonGroup *sourceButtons();
+    QButtonGroup *translationButtons();
+    QToolButton *sourceAutoButton();
+    QToolButton *translationAutoButton();
+    QToolButton *swapButton();
+    QToolButton *sayButton();
+    QToolButton *copyButton();
+    QToolButton *copyAllButton();
+
 public slots:
     void setTranslation(const QString &text);
     void copySourceButton(QAbstractButton *button, const int &id);
     void copyTranslationButton(QAbstractButton *button, const int &id);
-    void checkSourceButton(const int &id);
-    void checkTranslationButton(const int &id);
-
-signals:
-    void sourceButtonClicked(const int &id);
-    void translationButtonClicked(const int &id);
-    void sourceLanguageInserted(QAction *languageCode);
-    void translationLanguageInserted(QAction *languageCode);
-    void swapButtonClicked();
-    void sayButtonClicked();
-    void copyButtonClicked();
-    void copyAllButtonClicked();
+    void checkSourceButton(const int &id, const bool &checked);
+    void checkTranslationButton(const int &id, const bool &checked);
 
 private:
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
