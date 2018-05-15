@@ -528,7 +528,7 @@ QList<QAction *> MainWindow::languagesList()
 {
     // Load all languages and codes from QOnlineTranslator
     QList<QAction *> languagesList;
-    for (auto i=0; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
+    for (auto i=1; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
         QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
         action->setToolTip(QOnlineTranslator::LANGUAGE_SHORT_CODES.at(i));
         languagesList.append(action);
