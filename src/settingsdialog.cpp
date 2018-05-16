@@ -25,11 +25,12 @@
 #include <QDir>
 #include <QNetworkProxy>
 
+#include "qonlinetranslator.h"
 #include "ui_settingsdialog.h"
 
 const QStringList SettingsDialog::ICONS = { ":/icons/app/classic.png", ":/icons/app/black.png", ":/icons/app/white.png", ":/icons/app/papirus.png" };
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
+SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
 {
@@ -43,6 +44,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
     ui->languageComboBox->setItemData(2, "ru");
+
+    ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
+    ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
+    foreach (auto language, languagesMenu->actions()) {
+        ui->primaryLanguageComboBox->addItem(language->text(), language->toolTip());
+        ui->secondaryLanguageComboBox->addItem(language->text(), language->toolTip());
+    }
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
@@ -144,6 +152,10 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
+    // Automatic language detection
+    settings.setValue("PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
+    settings.setValue("SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
+
     // Connection settings
     settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
     settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
@@ -183,6 +195,10 @@ void SettingsDialog::on_resetButton_clicked()
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
+
+    // Automatic language detection
+    ui->primaryLanguageComboBox->setCurrentIndex(0);
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
 
     // Connection settings
      ui->proxyTypeComboBox->setCurrentIndex(0);
@@ -247,6 +263,10 @@ void SettingsDialog::loadSettings()
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+
+    // Automatic language detection
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("PrimaryLanguage", "auto").toString()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("SecondaryLanguage", "en").toString()));
 
     // Connection settings
      ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));

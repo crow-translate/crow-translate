@@ -23,6 +23,7 @@
 
 #include <QDialog>
 #include <QSettings>
+#include <QMenu>
 
 namespace Ui {
 class SettingsDialog;
@@ -33,7 +34,7 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(QWidget *parent = 0);
+    explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
     static const QStringList ICONS;
     ~SettingsDialog();
 
