@@ -44,9 +44,11 @@ public:
     QToolButton *sourceAutoButton();
     QToolButton *translationAutoButton();
     QToolButton *swapButton();
-    QToolButton *sayButton();
-    QToolButton *copyButton();
-    QToolButton *copyAllButton();
+    QToolButton *sourceCopyButton();
+    QToolButton *sourceSayButton();
+    QToolButton *translationCopyAllButton();
+    QToolButton *translationCopyButton();
+    QToolButton *translationSayButton();
 
 public slots:
     void setTranslation(const QString &text);

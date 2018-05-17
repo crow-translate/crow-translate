@@ -341,9 +341,11 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(popup->translationAutoButton(), &QToolButton::triggered, this, &MainWindow::on_translationAutoButton_triggered);
 
         connect(popup->swapButton(), &QToolButton::clicked, this, &MainWindow::on_swapButton_clicked);
-        connect(popup->sayButton(), &QToolButton::clicked, this, &MainWindow::on_translationSayButton_clicked);
-        connect(popup->copyButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyButton_clicked);
-        connect(popup->copyAllButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyAllButton_clicked);
+        connect(popup->sourceSayButton(), &QToolButton::clicked, this, &MainWindow::on_sourceSayButton_clicked);
+        connect(popup->sourceCopyButton(), &QToolButton::clicked, this, &MainWindow::on_sourceCopyButton_clicked);
+        connect(popup->translationCopyAllButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyAllButton_clicked);
+        connect(popup->translationSayButton(), &QToolButton::clicked, this, &MainWindow::on_translationSayButton_clicked);
+        connect(popup->translationCopyButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyButton_clicked);
 
         // Send selected text to source field and translate it
         if (!ui->autoTranslateCheckBox->isChecked()) {

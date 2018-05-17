@@ -5,83 +5,95 @@
     <name>MainWindow</name>
     <message>
         <location filename="../../src/mainwindow.ui" line="112"/>
-        <location filename="../../src/mainwindow.ui" line="296"/>
+        <location filename="../../src/mainwindow.ui" line="302"/>
         <location filename="../../src/mainwindow.cpp" line="155"/>
         <location filename="../../src/mainwindow.cpp" line="162"/>
         <location filename="../../src/mainwindow.cpp" line="169"/>
-        <location filename="../../src/mainwindow.cpp" line="433"/>
-        <location filename="../../src/mainwindow.cpp" line="454"/>
+        <location filename="../../src/mainwindow.cpp" line="435"/>
+        <location filename="../../src/mainwindow.cpp" line="456"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="403"/>
-        <location filename="../../src/mainwindow.ui" line="406"/>
+        <location filename="../../src/mainwindow.ui" line="144"/>
+        <source>Speak the source text</source>
+        <translation>Озвучить исходный текст</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="221"/>
+        <source>Copy all translation data to the clipboard</source>
+        <translation>Скопировать все данные перевода в буфер обмена</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="238"/>
+        <source>Copy the translation text to the clipboard</source>
+        <translation>Скопировать перевод в буфер обмена</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="269"/>
+        <source>Application settings</source>
+        <translation>Настройки приложения</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="409"/>
+        <location filename="../../src/mainwindow.ui" line="412"/>
         <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="144"/>
         <location filename="../../src/mainwindow.ui" line="147"/>
-        <location filename="../../src/mainwindow.ui" line="248"/>
-        <location filename="../../src/mainwindow.ui" line="251"/>
+        <location filename="../../src/mainwindow.ui" line="255"/>
         <source>Speak</source>
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="160"/>
-        <location filename="../../src/mainwindow.ui" line="163"/>
+        <location filename="../../src/mainwindow.ui" line="161"/>
+        <source>Copy the source text to the clipboard</source>
+        <translation>Скопировать исходный текст в буфер обмена</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="164"/>
+        <location filename="../../src/mainwindow.ui" line="241"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="189"/>
+        <location filename="../../src/mainwindow.ui" line="191"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="219"/>
-        <source>Copy all text from the field with formatting</source>
-        <translation>Скопировать весь текст из поля с форматированием</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="222"/>
+        <location filename="../../src/mainwindow.ui" line="224"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="235"/>
-        <source>Copy only translation without formatting</source>
-        <translation>Скопировать только перевод без форматирования</translation>
+        <location filename="../../src/mainwindow.ui" line="252"/>
+        <source>Speak the translation text</source>
+        <translation>Озвучить текст перевода</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="238"/>
-        <source>Copy translation</source>
-        <translation>Скопировать перевод</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="264"/>
-        <location filename="../../src/mainwindow.ui" line="267"/>
+        <location filename="../../src/mainwindow.ui" line="272"/>
         <location filename="../../src/mainwindow.cpp" line="91"/>
-        <location filename="../../src/mainwindow.cpp" line="426"/>
+        <location filename="../../src/mainwindow.cpp" line="428"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="422"/>
-        <location filename="../../src/mainwindow.ui" line="425"/>
+        <location filename="../../src/mainwindow.ui" line="429"/>
+        <location filename="../../src/mainwindow.ui" line="432"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="90"/>
-        <location filename="../../src/mainwindow.cpp" line="425"/>
+        <location filename="../../src/mainwindow.cpp" line="427"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="92"/>
-        <location filename="../../src/mainwindow.cpp" line="427"/>
+        <location filename="../../src/mainwindow.cpp" line="429"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -112,27 +124,43 @@
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="256"/>
+        <source>Copy the source text to the clipboard</source>
+        <translation>Скопировать исходный текст в буфер обмена</translation>
+    </message>
+    <message>
         <location filename="../../src/popupwindow.ui" line="259"/>
+        <location filename="../../src/popupwindow.ui" line="320"/>
+        <source>Copy</source>
+        <translation>Скопировать</translation>
+    </message>
+    <message>
+        <location filename="../../src/popupwindow.ui" line="270"/>
+        <source>Speak the source text</source>
+        <translation>Озвучить исходный текст</translation>
+    </message>
+    <message>
+        <location filename="../../src/popupwindow.ui" line="273"/>
+        <location filename="../../src/popupwindow.ui" line="334"/>
         <source>Speak</source>
         <translation>Озвучить</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="272"/>
-        <source>Copy only translation without formatting</source>
-        <translation>Скопировать только перевод без форматирования</translation>
+        <location filename="../../src/popupwindow.ui" line="300"/>
+        <source>Copy all translation data to the clipboard</source>
+        <translation>Скопировать все данные перевода в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="275"/>
-        <source>Copy translation</source>
-        <translation>Скопировать перевод</translation>
+        <location filename="../../src/popupwindow.ui" line="317"/>
+        <source>Copy the translation to the clipboard</source>
+        <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="285"/>
-        <source>Copy all text from the field with formatting</source>
-        <translation>Скопировать весь текст из поля с форматированием</translation>
+        <location filename="../../src/popupwindow.ui" line="331"/>
+        <source>Speak the translation text</source>
+        <translation>Озвучить текст перевода</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="288"/>
+        <location filename="../../src/popupwindow.ui" line="303"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>

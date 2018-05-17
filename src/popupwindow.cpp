@@ -66,8 +66,9 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     copyLanguageButtons(sourceButtonGroup, sourceGroup);
     copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    ui->sayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
-    ui->copyButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
+    ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->translationCopyButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
 }
 
 PopupWindow::~PopupWindow()
@@ -131,19 +132,29 @@ QToolButton *PopupWindow::swapButton()
     return ui->swapButton;
 }
 
-QToolButton *PopupWindow::sayButton()
+QToolButton *PopupWindow::sourceCopyButton()
 {
-    return ui->sayButton;
+    return ui->sourceCopyButton;
 }
 
-QToolButton *PopupWindow::copyButton()
+QToolButton *PopupWindow::sourceSayButton()
 {
-    return ui->copyButton;
+    return ui->sourceSayButton;
 }
 
-QToolButton *PopupWindow::copyAllButton()
+QToolButton *PopupWindow::translationCopyAllButton()
 {
-    return ui->copyAllButton;
+    return ui->translationCopyAllButton;
+}
+
+QToolButton *PopupWindow::translationCopyButton()
+{
+    return ui->translationCopyButton;
+}
+
+QToolButton *PopupWindow::translationSayButton()
+{
+    return ui->translationSayButton;
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)

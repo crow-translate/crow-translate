@@ -251,44 +251,29 @@
    <item>
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
-      <widget class="QToolButton" name="sayButton">
+      <widget class="QToolButton" name="sourceCopyButton">
        <property name="toolTip">
-        <string>Speak</string>
+        <string>Copy the source text to the clipboard</string>
        </property>
        <property name="text">
-        <string>Speak</string>
+        <string>Copy</string>
        </property>
        <property name="icon">
-        <iconset theme="text-speak"/>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
+        <iconset theme="edit-copy">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="copyButton">
+      <widget class="QToolButton" name="sourceSayButton">
        <property name="toolTip">
-        <string>Copy only translation without formatting</string>
+        <string>Speak the source text</string>
        </property>
        <property name="text">
-        <string>Copy translation</string>
+        <string>Speak</string>
        </property>
        <property name="icon">
-        <iconset theme="edit-copy"/>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="copyAllButton">
-       <property name="toolTip">
-        <string>Copy all text from the field with formatting</string>
-       </property>
-       <property name="text">
-        <string>Copy all</string>
-       </property>
-       <property name="icon">
-        <iconset theme="document-export">
+        <iconset theme="text-speak">
          <normaloff>.</normaloff>.</iconset>
        </property>
        <property name="toolButtonStyle">
@@ -308,6 +293,51 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationCopyAllButton">
+       <property name="toolTip">
+        <string>Copy all translation data to the clipboard</string>
+       </property>
+       <property name="text">
+        <string>Copy all</string>
+       </property>
+       <property name="icon">
+        <iconset theme="document-export">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationCopyButton">
+       <property name="toolTip">
+        <string>Copy the translation to the clipboard</string>
+       </property>
+       <property name="text">
+        <string>Copy</string>
+       </property>
+       <property name="icon">
+        <iconset theme="edit-copy">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationSayButton">
+       <property name="toolTip">
+        <string>Speak the translation text</string>
+       </property>
+       <property name="text">
+        <string>Speak</string>
+       </property>
+       <property name="icon">
+        <iconset theme="text-speak">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

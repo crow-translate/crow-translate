@@ -141,13 +141,14 @@
          </sizepolicy>
         </property>
         <property name="toolTip">
-         <string>Speak</string>
+         <string>Speak the source text</string>
         </property>
         <property name="text">
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="text-speak"/>
+         <iconset theme="text-speak">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -157,13 +158,14 @@
       <item>
        <widget class="QToolButton" name="sourceCopyButton">
         <property name="toolTip">
-         <string>Copy</string>
+         <string>Copy the source text to the clipboard</string>
         </property>
         <property name="text">
          <string>Copy</string>
         </property>
         <property name="icon">
-         <iconset theme="edit-copy"/>
+         <iconset theme="edit-copy">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -216,13 +218,14 @@
       <item>
        <widget class="QToolButton" name="translationCopyAllButton">
         <property name="toolTip">
-         <string>Copy all text from the field with formatting</string>
+         <string>Copy all translation data to the clipboard</string>
         </property>
         <property name="text">
          <string>Copy all</string>
         </property>
         <property name="icon">
-         <iconset theme="document-export"/>
+         <iconset theme="document-export">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -232,26 +235,28 @@
       <item>
        <widget class="QToolButton" name="translationCopyButton">
         <property name="toolTip">
-         <string>Copy only translation without formatting</string>
+         <string>Copy the translation text to the clipboard</string>
         </property>
         <property name="text">
-         <string>Copy translation</string>
+         <string>Copy</string>
         </property>
         <property name="icon">
-         <iconset theme="edit-copy"/>
+         <iconset theme="edit-copy">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="translationSayButton">
         <property name="toolTip">
-         <string>Speak</string>
+         <string>Speak the translation text</string>
         </property>
         <property name="text">
          <string>Speak</string>
         </property>
         <property name="icon">
-         <iconset theme="text-speak"/>
+         <iconset theme="text-speak">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -261,13 +266,14 @@
       <item>
        <widget class="QToolButton" name="settingsButton">
         <property name="toolTip">
-         <string>Settings</string>
+         <string>Application settings</string>
         </property>
         <property name="text">
          <string>Settings</string>
         </property>
         <property name="icon">
-         <iconset theme="dialog-object-properties"/>
+         <iconset theme="dialog-object-properties">
+          <normaloff>.</normaloff>.</iconset>
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonFollowStyle</enum>
@@ -406,7 +412,8 @@
        <string>Swap languages</string>
       </property>
       <property name="icon">
-       <iconset theme="object-flip-horizontal"/>
+       <iconset theme="object-flip-horizontal">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
@@ -425,7 +432,8 @@
        <string>Translate</string>
       </property>
       <property name="icon">
-       <iconset theme="go-next"/>
+       <iconset theme="go-next">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
