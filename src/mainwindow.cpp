@@ -322,6 +322,9 @@ void MainWindow::on_translationButtonGroup_buttonToggled(QAbstractButton *button
 
 void MainWindow::on_translateSelectedHotkey_activated()
 {
+    // Prevent pressing the translation hotkey again
+    translateSelectedHotkey->blockSignals(true);
+
     QSettings settings;
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Show popup
@@ -346,6 +349,10 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(popup->translationCopyAllButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyAllButton_clicked);
         connect(popup->translationSayButton(), &QToolButton::clicked, this, &MainWindow::on_translationSayButton_clicked);
         connect(popup->translationCopyButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyButton_clicked);
+
+        connect(popup, &PopupWindow::destroyed, [this] {
+            translateSelectedHotkey->blockSignals(false);
+        });
 
         // Send selected text to source field and translate it
         if (!ui->autoTranslateCheckBox->isChecked()) {
