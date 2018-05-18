@@ -39,13 +39,6 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     // Delete this widget when the widget has accepted the close event
     this->setAttribute(Qt::WA_DeleteOnClose);
 
-    // Move popup to cursor and prevent moving offscreen
-    QDesktopWidget *screen = QApplication::desktop(); // Screen properties
-    QPoint position = QCursor::pos(); // Cursor position
-    if (screen->availableGeometry(QCursor::pos()).width() - position.x() - 700 < 0) position.rx()-=700;
-    if (screen->availableGeometry(QCursor::pos()).height() - position.y() - 200 < 0) position.ry()-=200;
-    PopupWindow::move(position);
-
     QSettings settings;
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
@@ -155,6 +148,18 @@ QToolButton *PopupWindow::translationCopyButton()
 QToolButton *PopupWindow::translationSayButton()
 {
     return ui->translationSayButton;
+}
+
+// Move popup to cursor and prevent window from appearing outside the screen
+void PopupWindow::resizeEvent(QResizeEvent *event)
+{
+    QPoint position = QCursor::pos(); // Cursor position
+    if (QApplication::desktop()->availableGeometry(position).width() - position.x() - this->geometry().width() < 0)
+        position.rx()-= this->frameGeometry().width();
+    if (QApplication::desktop()->availableGeometry(position).height() - position.y() - this->geometry().height() < 0)
+        position.ry()-= this->frameGeometry().height();
+    PopupWindow::move(position);
+    QWidget::resizeEvent(event);
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)

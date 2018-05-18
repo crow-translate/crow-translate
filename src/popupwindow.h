@@ -50,6 +50,7 @@ public:
     QToolButton *translationCopyButton();
     QToolButton *translationSayButton();
 
+
 public slots:
     void setTranslation(const QString &text);
     void copySourceButton(QAbstractButton *button, const int &id);
@@ -58,6 +59,7 @@ public slots:
     void checkTranslationButton(const int &id, const bool &checked);
 
 private:
+    void resizeEvent(QResizeEvent *event);
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;
