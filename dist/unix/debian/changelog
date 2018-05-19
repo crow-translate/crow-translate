@@ -1,3 +1,21 @@
+crow-translate (0.9.8~git-1) stretch; urgency=low
+
+  * The interface of the settings menu has been redesigned
+  * Added proxy settings
+  * Added button and shortcut for copying only translation
+  * Added the preferred languages feature
+  * Added more buttons to the pop-up window
+  * Added saving of the main window size state 
+  * Fixed pop-up window appearing outside the screen
+  * Fixed reactivation for the translation hotkey 
+  * Fixed the bug when an empty field was displayed instead of translation when the hotkey was pressed
+  * Fixed wrong interpretation of some symbols
+  * Fixed automatic translation in the main window after inserting a new language
+  * "Automatic detection" was removed from the context menu of languages ​​as useless
+  * Windows: improved icon look and added icons in the tray menu.
+  * Linux: changed icon names for better compatibility
+  * Major performance optimizations
+
 crow-translate (0.9.7~git-1) stretch; urgency=low
 
   * Implemented the selection of the previous language if the source language and the target language are the same

@@ -867,7 +867,7 @@
              <item row="0" column="1">
               <widget class="QLabel" name="versionLabel">
                <property name="text">
-                <string notr="true">0.9.7</string>
+                <string notr="true">0.9.8</string>
                </property>
               </widget>
              </item>
