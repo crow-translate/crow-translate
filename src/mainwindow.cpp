@@ -97,10 +97,13 @@ MainWindow::MainWindow(QWidget *parent) :
     loadLanguageButtons(translationButtonGroup, "Translation");
     loadSettings();
     loadProxy();
+    restoreGeometry(settings.value("MainWindowGeometry").toByteArray());
 }
 
 MainWindow::~MainWindow()
 {
+    QSettings settings;
+    settings.setValue("MainWindowGeometry", saveGeometry());
     delete ui;
 }
 
