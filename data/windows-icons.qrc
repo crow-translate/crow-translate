@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>icons/Papirus/index.theme</file>
+        <file>icons/Papirus/32x32/dialog-information.svg</file>
+        <file>icons/Papirus/32x32/preferences-desktop-keyboard.svg</file>
+        <file>icons/Papirus/32x32/preferences-system-network.svg</file>
+        <file>icons/Papirus/32x32/preferences-system.svg</file>
+        <file>icons/Papirus/16x16/application-exit.svg</file>
+        <file>icons/Papirus/16x16/dialog-information.svg</file>
+        <file>icons/Papirus/16x16/dialog-object-properties.svg</file>
+        <file>icons/Papirus/16x16/edit-copy.svg</file>
+        <file>icons/Papirus/16x16/go-next.svg</file>
+        <file>icons/Papirus/16x16/object-flip-horizontal.svg</file>
+        <file>icons/Papirus/16x16/text-speak.svg</file>
+        <file>icons/Papirus/16x16/window.svg</file>
+        <file>icons/Papirus/16x16/document-export.svg</file>
+    </qresource>
+</RCC>

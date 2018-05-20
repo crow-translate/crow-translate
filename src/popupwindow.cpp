@@ -28,23 +28,16 @@
 #include "ui_popupwindow.h"
 #include "mainwindow.h"
 
-PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *parent) :
+PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
     QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
     ui(new Ui::PopupWindow),
-    sourceButtonGroup (new LanguageButtonsGroup(this, "Source")),
-    translationButtonGroup (new LanguageButtonsGroup(this, "Translation"))
+    sourceButtonGroup (new QButtonGroup(this)),
+    translationButtonGroup (new QButtonGroup(this))
 {
     ui->setupUi(this);
 
     // Delete this widget when the widget has accepted the close event
     this->setAttribute(Qt::WA_DeleteOnClose);
-
-    // Move popup to cursor and prevent moving offscreen
-    QDesktopWidget *screen = QApplication::desktop(); // Screen properties
-    QPoint position = QCursor::pos(); // Cursor position
-    if (screen->availableGeometry(QCursor::pos()).width() - position.x() - 700 < 0) position.rx()-=700;
-    if (screen->availableGeometry(QCursor::pos()).height() - position.y() - 200 < 0) position.ry()-=200;
-    PopupWindow::move(position);
 
     QSettings settings;
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
@@ -63,16 +56,12 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, const QString &text, QWidget *par
     translationButtonGroup->addButton(ui->translationSecondButton, 2);
     translationButtonGroup->addButton(ui->translationThirdButton, 3);
 
-    sourceButtonGroup->loadSettings();
-    translationButtonGroup->loadSettings();
+    copyLanguageButtons(sourceButtonGroup, sourceGroup);
+    copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    // Translate text automatically when language buttons released
-    connect(sourceButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::sourceLanguageButtonPressed);
-    connect(translationButtonGroup, static_cast<void (LanguageButtonsGroup::*)(int)>(&LanguageButtonsGroup::buttonReleased), this, &PopupWindow::translationLanguageButtonPressed);
-
-    connect(ui->sayButton, &QToolButton::released, this, &PopupWindow::sayButtonClicked);
-
-    ui->translationEdit->setText(text);
+    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
+    ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->translationCopyButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
 }
 
 PopupWindow::~PopupWindow()
@@ -85,29 +74,103 @@ void PopupWindow::setTranslation(const QString &text)
     ui->translationEdit->setText(text);
 }
 
-void PopupWindow::on_sourceAutoButton_triggered(QAction *language)
+void PopupWindow::copySourceButton(QAbstractButton *button, const int &id)
 {
-    emit sourceLanguageInserted(language);
-    sourceButtonGroup->loadSettings();
+    sourceButtonGroup->button(id)->setText(button->text());
+    sourceButtonGroup->button(id)->setToolTip(button->toolTip());
+    sourceButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::on_translationAutoButton_triggered(QAction *language)
+void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
 {
-    emit translationLanguageInserted(language);
-    translationButtonGroup->loadSettings();
+    translationButtonGroup->button(id)->setText(button->text());
+    translationButtonGroup->button(id)->setToolTip(button->toolTip());
+    translationButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::on_copyButton_clicked()
+void PopupWindow::checkSourceButton(const int &id, const bool &checked)
 {
-    if (ui->translationEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
-    else
-        qDebug() << tr("Text field is empty");
+    if (checked)
+        sourceButtonGroup->button(id)->setChecked(true);
 }
 
-void PopupWindow::on_swapButton_clicked()
+void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
 {
-    emit swapButtonClicked();
-    sourceButtonGroup->loadSettings();
-    translationButtonGroup->loadSettings();
+    if (checked)
+        translationButtonGroup->button(id)->setChecked(true);
+}
+
+QButtonGroup *PopupWindow::sourceButtons()
+{
+    return sourceButtonGroup;
+}
+
+QButtonGroup *PopupWindow::translationButtons()
+{
+    return translationButtonGroup;
+}
+
+QToolButton *PopupWindow::sourceAutoButton()
+{
+    return ui->sourceAutoButton;
+}
+
+QToolButton *PopupWindow::translationAutoButton()
+{
+    return ui->translationAutoButton;
+}
+
+QToolButton *PopupWindow::swapButton()
+{
+    return ui->swapButton;
+}
+
+QToolButton *PopupWindow::sourceCopyButton()
+{
+    return ui->sourceCopyButton;
+}
+
+QToolButton *PopupWindow::sourceSayButton()
+{
+    return ui->sourceSayButton;
+}
+
+QToolButton *PopupWindow::translationCopyAllButton()
+{
+    return ui->translationCopyAllButton;
+}
+
+QToolButton *PopupWindow::translationCopyButton()
+{
+    return ui->translationCopyButton;
+}
+
+QToolButton *PopupWindow::translationSayButton()
+{
+    return ui->translationSayButton;
+}
+
+// Move popup to cursor and prevent window from appearing outside the screen
+void PopupWindow::resizeEvent(QResizeEvent *event)
+{
+    QPoint position = QCursor::pos(); // Cursor position
+    if (QApplication::desktop()->availableGeometry(position).width() - position.x() - this->geometry().width() < 0)
+        position.rx()-= this->frameGeometry().width();
+    if (QApplication::desktop()->availableGeometry(position).height() - position.y() - this->geometry().height() < 0)
+        position.ry()-= this->frameGeometry().height();
+    PopupWindow::move(position);
+    QWidget::resizeEvent(event);
+}
+
+void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
+{
+    for (auto i = 0; i < 4; i++) {
+        if (copyingGroup->button(i)->text() != "") {
+            existingGroup->button(i)->setText(copyingGroup->button(i)->text());
+            existingGroup->button(i)->setToolTip(copyingGroup->button(i)->toolTip());
+        }
+        else
+            existingGroup->button(i)->setVisible(false);
+    }
+    existingGroup->button(copyingGroup->checkedId())->setChecked(true);
 }

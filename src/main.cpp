@@ -34,6 +34,10 @@ int main(int argc, char *argv[])
         QApplication::setApplicationName("Crow Translate");
         QCoreApplication::setOrganizationName("crow");
 
+#if defined(Q_OS_WIN)
+        QIcon::setThemeName("Papirus");
+#endif
+
         QSettings settings;
         MainWindow w;
         if (!settings.value("StartMinimized", false).toBool()) w.show();
@@ -42,7 +46,7 @@ int main(int argc, char *argv[])
     else {
         QCoreApplication app(argc, argv);
         app.setApplicationName("Crow Translate");
-        app.setApplicationVersion("0.9");
+        app.setApplicationVersion("0.9.8");
 
         QCommandLineParser parser;
         parser.setApplicationDescription("This program translates text using Google Translate API\n\t"

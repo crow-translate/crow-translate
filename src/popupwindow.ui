@@ -129,12 +129,15 @@
      </item>
      <item>
       <widget class="QToolButton" name="swapButton">
+       <property name="toolTip">
+        <string>Swap languages</string>
+       </property>
        <property name="text">
-        <string>Reverse languages</string>
+        <string>Swap languages</string>
        </property>
        <property name="icon">
-        <iconset theme="object-flip-horizontal" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/swap.png</normaloff>:/icons/papirus/swap.png</iconset>
+        <iconset theme="object-flip-horizontal">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
@@ -248,27 +251,30 @@
    <item>
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
-      <widget class="QToolButton" name="sayButton">
-       <property name="text">
-        <string>Speak</string>
+      <widget class="QToolButton" name="sourceCopyButton">
+       <property name="toolTip">
+        <string>Copy the source text to the clipboard</string>
        </property>
-       <property name="icon">
-        <iconset theme="volume-level-high" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/speak.png</normaloff>:/icons/papirus/speak.png</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="copyButton">
        <property name="text">
         <string>Copy</string>
        </property>
        <property name="icon">
-        <iconset theme="edit-copy" resource="../data/resources.qrc">
-         <normaloff>:/icons/papirus/copy.png</normaloff>:/icons/papirus/copy.png</iconset>
+        <iconset theme="edit-copy">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="sourceSayButton">
+       <property name="toolTip">
+        <string>Speak the source text</string>
+       </property>
+       <property name="text">
+        <string>Speak</string>
+       </property>
+       <property name="icon">
+        <iconset theme="text-speak">
+         <normaloff>.</normaloff>.</iconset>
        </property>
        <property name="toolButtonStyle">
         <enum>Qt::ToolButtonFollowStyle</enum>
@@ -287,6 +293,51 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationCopyAllButton">
+       <property name="toolTip">
+        <string>Copy all translation data to the clipboard</string>
+       </property>
+       <property name="text">
+        <string>Copy all</string>
+       </property>
+       <property name="icon">
+        <iconset theme="document-export">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationCopyButton">
+       <property name="toolTip">
+        <string>Copy the translation to the clipboard</string>
+       </property>
+       <property name="text">
+        <string>Copy</string>
+       </property>
+       <property name="icon">
+        <iconset theme="edit-copy">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="translationSayButton">
+       <property name="toolTip">
+        <string>Speak the translation text</string>
+       </property>
+       <property name="text">
+        <string>Speak</string>
+       </property>
+       <property name="icon">
+        <iconset theme="text-speak">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

@@ -23,42 +23,45 @@
 #include <QDebug>
 #include <QStandardPaths>
 #include <QDir>
+#include <QNetworkProxy>
 
+#include "qonlinetranslator.h"
 #include "ui_settingsdialog.h"
 
 const QStringList SettingsDialog::ICONS = { ":/icons/app/classic.png", ":/icons/app/black.png", ":/icons/app/white.png", ":/icons/app/papirus.png" };
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
+SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
 
     // Add items in comboboxes
-    ui->languageComboBox->addItem(tr("System language"), "auto");
-    ui->languageComboBox->addItem("English", "en");
-    ui->languageComboBox->addItem("Русский", "ru");
+    ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
+    ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
+    ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
 
-    ui->windowModeComboBox->addItem(tr("Popup"));
-    ui->windowModeComboBox->addItem(tr("Full window"));
+    ui->languageComboBox->setItemData(0, "auto");
+    ui->languageComboBox->setItemData(1, "en");
+    ui->languageComboBox->setItemData(2, "ru");
 
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(0)), tr("Classic"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(1)), tr("Black"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(2)), tr("White"));
-    ui->appIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
-
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(0)), tr("Classic"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(1)), tr("Black"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(2)), tr("White"));
-    ui->trayIconComboBox->addItem(QIcon(ICONS.at(3)), "Papirus");
+    ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
+    ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
+    foreach (auto language, languagesMenu->actions()) {
+        ui->primaryLanguageComboBox->addItem(language->text(), language->toolTip());
+        ui->secondaryLanguageComboBox->addItem(language->text(), language->toolTip());
+    }
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
-    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
-    connect(ui->windowModeComboBox, static_cast<void (QComboBox::*)(int)>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
     // Connect opacity slider and spinbox
     connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
-    connect(ui->popupOpacitySpinBox, static_cast<void (QSpinBox::*)(int)>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+    connect(ui->popupOpacitySpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+
+    // Pages selection mechanism
+    connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
 
     loadSettings();
 }
@@ -76,6 +79,22 @@ void SettingsDialog::on_dialogBox_accepted()
     if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
         emit languageChanged(); // Emit signal if language changed
+    }
+
+    // Check if proxy changed
+    if (settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt() != ui->proxyTypeComboBox->currentData() ||
+            settings.value("Connection/ProxyHost", "").toString() != ui->proxyHostEdit->text() ||
+            settings.value("Connection/ProxyPort", 8080).toInt() != ui->proxyPortSpinbox->value() ||
+            settings.value("Connection/ProxyAuthEnabled", false).toInt() != ui->proxyAuthCheckBox->isChecked() ||
+            settings.value("Connection/ProxyUsername", "").toString() != ui->proxyUsernameEdit->text() ||
+            settings.value("Connection/ProxyPassword", "").toString() != ui->proxyPasswordEdit->text()) {
+        settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+        settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
+        settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
+        settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
+        settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
+        settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+        emit proxyChanged(); // Emit signal if language changed
     }
 
     // Check if autostart options changed
@@ -110,7 +129,9 @@ void SettingsDialog::on_dialogBox_accepted()
             }
         }
         // Remove autorun file if box unchecked
-        else if(autorunFile.exists()) autorunFile.remove();
+        else
+            if(autorunFile.exists())
+                autorunFile.remove();
 #elif defined(Q_OS_WIN)
         if (ui->autostartCheckBox->isChecked()) {
             QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
@@ -131,6 +152,18 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
+    // Automatic language detection
+    settings.setValue("PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
+    settings.setValue("SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
+
+    // Connection settings
+    settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+    settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
+    settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
+    settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
+    settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
+    settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+
     // Global shortcuts
     settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySelected", ui->saySelectedSequenceEdit->keySequence());
@@ -140,6 +173,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/Translate", ui->translateSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
     settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/CopyTranslation", ui->copyTranslationSequenceEdit->keySequence());
     settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
 }
 
@@ -162,6 +196,18 @@ void SettingsDialog::on_resetButton_clicked()
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 
+    // Automatic language detection
+    ui->primaryLanguageComboBox->setCurrentIndex(0);
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
+
+    // Connection settings
+     ui->proxyTypeComboBox->setCurrentIndex(0);
+     ui->proxyHostEdit->setText("");
+     ui->proxyPortSpinbox->setValue(8080);
+     ui->proxyAuthCheckBox->setChecked(false);
+     ui->proxyUsernameEdit->setText("");
+     ui->proxyPasswordEdit->setText("");
+
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
     ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
@@ -171,7 +217,37 @@ void SettingsDialog::on_resetButton_clicked()
     ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
     ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
     ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->copyTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+C"));
     ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
+}
+
+void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
+{
+    if (index == 2) {
+        ui->proxyHostEdit->setEnabled(true);
+        ui->proxyHostLabel->setEnabled(true);
+        ui->proxyPortLabel->setEnabled(true);
+        ui->proxyPortSpinbox->setEnabled(true);
+        ui->proxyInfoLabel->setEnabled(true);
+        ui->proxyAuthCheckBox->setEnabled(true);
+    }
+    else {
+        ui->proxyHostEdit->setEnabled(false);
+        ui->proxyHostLabel->setEnabled(false);
+        ui->proxyPortLabel->setEnabled(false);
+        ui->proxyPortSpinbox->setEnabled(false);
+        ui->proxyInfoLabel->setEnabled(false);
+        ui->proxyAuthCheckBox->setEnabled(false);
+    }
+}
+
+void SettingsDialog::on_proxyAuthCheckBox_toggled(bool checked)
+{
+    ui->proxyUsernameEdit->setEnabled(checked);
+    ui->proxyUsernameLabel->setEnabled(checked);
+    ui->proxyPasswordEdit->setEnabled(checked);
+    ui->proxyPasswordLabel->setEnabled(checked);
+    ui->proxyPasswordInfoLabel->setEnabled(checked);
 }
 
 void SettingsDialog::loadSettings()
@@ -188,6 +264,18 @@ void SettingsDialog::loadSettings()
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
+    // Automatic language detection
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("PrimaryLanguage", "auto").toString()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("SecondaryLanguage", "en").toString()));
+
+    // Connection settings
+     ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+     ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
+     ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
+     ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
+     ui->proxyUsernameEdit->setText(settings.value("Connection/ProxyUsername", "").toString());
+     ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
+
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
     ui->saySelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySelected", "Ctrl+Alt+S").toString());
@@ -197,5 +285,6 @@ void SettingsDialog::loadSettings()
     ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
     ui->saySourceSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
     ui->sayTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->copyTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
     ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
 }

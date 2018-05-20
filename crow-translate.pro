@@ -6,9 +6,10 @@
 
 QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+CONFIG += c++14
 TARGET = crow
 TEMPLATE = app
-VERSION = 0.9.6
+VERSION = 0.9.8
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
@@ -29,14 +30,12 @@ SOURCES += \
     src/main.cpp \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
-    src/popupwindow.cpp \
-    src/languagebuttonsgroup.cpp
+    src/popupwindow.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
-    src/popupwindow.h \
-    src/languagebuttonsgroup.h
+    src/popupwindow.h
 
 FORMS += \
     src/settingsdialog.ui \
@@ -45,6 +44,10 @@ FORMS += \
 
 RESOURCES += \
     data/resources.qrc
+
+win32 {
+RESOURCES += data/windows-icons.qrc
+}
 
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
