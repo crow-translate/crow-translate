@@ -136,6 +136,12 @@ void MainWindow::on_translateButton_clicked()
 
         m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
+        // Check for network error
+        if (m_translationData.error()) {
+            ui->translationEdit->setHtml(m_translationData.text());
+            return;
+        }
+
         // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
         if (ui->translationAutoButton->isChecked() && m_translationData.sourceLanguage() == m_translationData.translationLanguage()) {
             QString primaryLanguage = settings.value("PrimaryLanguage", "auto").toString();
@@ -151,6 +157,12 @@ void MainWindow::on_translateButton_clicked()
                 translationlanguage = primaryLanguage;
 
             m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
+
+            // Check for network error
+            if (m_translationData.error()) {
+                ui->translationEdit->setHtml(m_translationData.text());
+                return;
+            }
         }
 
         // Display languages on "Auto" buttons.
