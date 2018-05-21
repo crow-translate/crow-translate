@@ -2,20 +2,6 @@
 <ui version="4.0">
  <class>PopupWindow</class>
  <widget class="QWidget" name="PopupWindow">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>453</width>
-    <height>294</height>
-   </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
-  </property>
   <property name="windowTitle">
    <string notr="true">Crow Translate</string>
   </property>
@@ -262,6 +248,9 @@
         <iconset theme="edit-copy">
          <normaloff>.</normaloff>.</iconset>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
       </widget>
      </item>
      <item>
@@ -323,6 +312,9 @@
         <iconset theme="edit-copy">
          <normaloff>.</normaloff>.</iconset>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
+       </property>
       </widget>
      </item>
      <item>
@@ -336,6 +328,9 @@
        <property name="icon">
         <iconset theme="text-speak">
          <normaloff>.</normaloff>.</iconset>
+       </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonFollowStyle</enum>
        </property>
       </widget>
      </item>

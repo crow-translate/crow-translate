@@ -6,15 +6,9 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>565</width>
+    <width>600</width>
     <height>300</height>
    </rect>
-  </property>
-  <property name="minimumSize">
-   <size>
-    <width>565</width>
-    <height>300</height>
-   </size>
   </property>
   <property name="windowTitle">
    <string notr="true">Crow Translate</string>
@@ -254,12 +248,6 @@
      <layout class="QHBoxLayout" name="sourceButtomLayout">
       <item>
        <widget class="QToolButton" name="sourceSayButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
         <property name="toolTip">
          <string>Speak the source text</string>
         </property>
@@ -363,6 +351,9 @@
         <property name="icon">
          <iconset theme="edit-copy">
           <normaloff>.</normaloff>.</iconset>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonFollowStyle</enum>
         </property>
        </widget>
       </item>
