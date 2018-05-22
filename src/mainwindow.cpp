@@ -365,6 +365,7 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(popup->translationSayButton(), &QToolButton::clicked, this, &MainWindow::on_translationSayButton_clicked);
         connect(popup->translationCopyButton(), &QToolButton::clicked, this, &MainWindow::on_translationCopyButton_clicked);
 
+        // Restore the keyboard shortcut
         connect(popup, &PopupWindow::destroyed, [this] {
             translateSelectedHotkey->blockSignals(false);
         });
@@ -394,6 +395,9 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
         // Show main window
         on_showMainWindowHotkey_activated();
+
+        // Restore the keyboard shortcut
+        translateSelectedHotkey->blockSignals(false);
     }
 }
 
