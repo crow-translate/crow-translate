@@ -370,7 +370,7 @@ void MainWindow::on_translateSelectedHotkey_activated()
         });
 
         // Send selected text to source field and translate it
-        if (!ui->autoTranslateCheckBox->isChecked()) {
+        if (ui->autoTranslateCheckBox->isChecked()) {
             ui->sourceEdit->blockSignals(true);
             ui->sourceEdit->setPlainText(selectedText());
             ui->sourceEdit->blockSignals(false);
@@ -383,9 +383,14 @@ void MainWindow::on_translateSelectedHotkey_activated()
     }
     else {
         // Send selected text to source field and translate it
-        ui->sourceEdit->setPlainText(selectedText());
-        if (!ui->autoTranslateCheckBox->isChecked())
-            on_translateButton_clicked();
+        if (ui->autoTranslateCheckBox->isChecked()) {
+            ui->sourceEdit->blockSignals(true);
+            ui->sourceEdit->setPlainText(selectedText());
+            ui->sourceEdit->blockSignals(false);
+        }
+        else
+            ui->sourceEdit->setPlainText(selectedText());
+        on_translateButton_clicked();
 
         // Show main window
         on_showMainWindowHotkey_activated();
