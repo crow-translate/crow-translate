@@ -122,11 +122,11 @@ void MainWindow::on_translateButton_clicked()
         QString translationlanguage;
         if (ui->translationAutoButton->isChecked()) {
             // Determine the target language
-            translationlanguage = settings.value("PrimaryLanguage", "auto").toString();
+            translationlanguage = settings.value("Translation/PrimaryLanguage", "auto").toString();
             if (translationlanguage == "auto")
                 translationlanguage = QOnlineTranslator::defaultLocaleToCode();
             if (translationlanguage == sourcelanguage) {
-                translationlanguage = settings.value("SecondaryLanguage", "en").toString();
+                translationlanguage = settings.value("Translation/SecondaryLanguage", "en").toString();
                 if (translationlanguage == "auto")
                     translationlanguage = QOnlineTranslator::defaultLocaleToCode();
             }
@@ -144,8 +144,8 @@ void MainWindow::on_translateButton_clicked()
 
         // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
         if (ui->translationAutoButton->isChecked() && m_translationData.sourceLanguage() == m_translationData.translationLanguage()) {
-            QString primaryLanguage = settings.value("PrimaryLanguage", "auto").toString();
-            QString secondaryLanguage = settings.value("SecondaryLanguage", "en").toString();
+            QString primaryLanguage = settings.value("Translation/PrimaryLanguage", "auto").toString();
+            QString secondaryLanguage = settings.value("Translation/SecondaryLanguage", "en").toString();
             if (primaryLanguage == "auto")
                 primaryLanguage = QOnlineTranslator::defaultLocaleToCode();
             if (secondaryLanguage == "auto")
@@ -189,21 +189,23 @@ void MainWindow::on_translateButton_clicked()
 
         // Show translation and transcription
         ui->translationEdit->setHtml(m_translationData.text().toHtmlEscaped().replace("\n", "<br>"));
-        if (m_translationData.translationTranscription() != "")
+        if (m_translationData.translationTranscription() != "" && settings.value("Translation/ShowTranslationTransliteration", true).toBool())
             ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription().replace("\n", "/<br>/") + "/</i></font>");
-        if (m_translationData.sourceTranscription() != "")
+        if (m_translationData.sourceTranscription() != "" && settings.value("Translation/ShowSourceTransliteration", true).toBool())
             ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translationData.sourceTranscription().replace("\n", "/<br>/") + ")</b></i></font>");
         ui->translationEdit->append("");
 
         // Show translation options
-        foreach (auto translationOptions, m_translationData.options()) {
-            ui->translationEdit->append("<i>" + translationOptions.first + "</i>");
-            foreach (QString wordsList, translationOptions.second) {
-                wordsList.prepend("&nbsp;&nbsp;<b>");
-                wordsList.insert(wordsList.indexOf(":") + 1, "</b>");
-                ui->translationEdit->append(wordsList);
+        if (settings.value("Translation/TranslationOptions", true).toBool()) {
+            foreach (auto translationOptions, m_translationData.options()) {
+                ui->translationEdit->append("<i>" + translationOptions.first + "</i>");
+                foreach (QString wordsList, translationOptions.second) {
+                    wordsList.prepend("&nbsp;&nbsp;<b>");
+                    wordsList.insert(wordsList.indexOf(":") + 1, "</b>");
+                    ui->translationEdit->append(wordsList);
+                }
+                ui->translationEdit->append("");
             }
-            ui->translationEdit->append("");
         }
 
         ui->translationEdit->moveCursor(QTextCursor::Start);

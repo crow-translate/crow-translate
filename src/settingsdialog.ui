@@ -61,6 +61,14 @@
       </item>
       <item>
        <property name="text">
+        <string>Translation</string>
+       </property>
+       <property name="icon">
+        <iconset theme="preferences-desktop-locale"/>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Connection</string>
        </property>
        <property name="icon">
@@ -388,6 +396,62 @@
          </widget>
         </item>
         <item>
+         <spacer name="generalSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>138</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="translationPage">
+       <layout class="QVBoxLayout" name="verticalLayout_9">
+        <item>
+         <widget class="QGroupBox" name="translationGroupBox">
+          <property name="title">
+           <string>Translation</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10">
+           <item>
+            <widget class="QCheckBox" name="sourceTransliterationCheckBox">
+             <property name="text">
+              <string>Show source transliteration</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="translationTransliterationCheckBox">
+             <property name="text">
+              <string>Show translation transliteration</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="translationOptionsCheckBox">
+             <property name="text">
+              <string>Show translation options</string>
+             </property>
+             <property name="checked">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="languageDetectionGroupBox">
           <property name="title">
            <string>Automatic language detection</string>
@@ -451,14 +515,14 @@
          </widget>
         </item>
         <item>
-         <spacer name="generalSpacer">
+         <spacer name="translationSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeHint" stdset="0">
            <size>
             <width>20</width>
-            <height>138</height>
+            <height>182</height>
            </size>
           </property>
          </spacer>

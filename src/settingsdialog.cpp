@@ -152,9 +152,12 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
-    // Automatic language detection
-    settings.setValue("PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
-    settings.setValue("SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
+    // Translation settings
+    settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
+    settings.setValue("Translation/ShowTranslationTransliteration", ui->translationTransliterationCheckBox->isChecked());
+    settings.setValue("Translation/TranslationOptions", ui->translationOptionsCheckBox->isChecked());
+    settings.setValue("Translation/PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
+    settings.setValue("Translation/SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
 
     // Connection settings
     settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
@@ -196,7 +199,10 @@ void SettingsDialog::on_resetButton_clicked()
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 
-    // Automatic language detection
+    // Translation settings
+    ui->sourceTransliterationCheckBox->setChecked(true);
+    ui->translationTransliterationCheckBox->setChecked(true);
+    ui->translationOptionsCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(0);
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
 
@@ -264,9 +270,12 @@ void SettingsDialog::loadSettings()
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
-    // Automatic language detection
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("PrimaryLanguage", "auto").toString()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("SecondaryLanguage", "en").toString()));
+    // Translation settings
+    ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
+    ui->translationTransliterationCheckBox->setChecked(settings.value("Translation/ShowTranslationTransliteration", true).toBool());
+    ui->translationOptionsCheckBox->setChecked(settings.value("Translation/TranslationOptions", true).toBool());
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("Translation/PrimaryLanguage", "auto").toString()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
 
     // Connection settings
      ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));

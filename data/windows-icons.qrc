@@ -14,5 +14,6 @@
         <file>icons/Papirus/16x16/text-speak.svg</file>
         <file>icons/Papirus/16x16/window.svg</file>
         <file>icons/Papirus/16x16/document-export.svg</file>
+        <file>icons/Papirus/32x32/preferences-desktop-locale.svg</file>
     </qresource>
 </RCC>
