@@ -3,7 +3,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API.
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API and much more.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 
 
 ## Contents
@@ -11,6 +11,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Default keyboard shortcuts](#default-keyboard-shortcuts)
+* [CLI commands](#cli-commands)
 * [Dependencies](#dependencies)
 * [Third-party](#third-party)
 * [Installation](#installation)
@@ -31,6 +32,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 * Translate and say text in any application that supports text selection
 * Translator window with native interface similar to Google Translate
+* Command-line interface with rich options
 * Highly customizable shortcuts
 * Low memory consumption (~19MB)
 
@@ -40,7 +42,7 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### Global
 
-|  Keys                                           | Description             |
+|  Key                                            | Description             |
 |-------------------------------------------------|-------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
@@ -48,12 +50,31 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### In main window
 
-|  Keys                                             | Description               |
+|  Key                                              | Description               |
 |---------------------------------------------------|---------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Say input text            |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Say translated text       |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
+
+## CLI commands
+
+The program also supports the console interface.
+
+**Usage:** `crow [options] text`
+
+|  Option                    | Description                                                                                      |
+|----------------------------|--------------------------------------------------------------------------------------------------|
+| `-h, --help`               | Displays help                                                                                    |
+| `-v, --version`            | Displays version information                                                                     |
+| `-s, --source <code>`      | Specifies the source language (by default, Google will try to determine the language on its own) |
+| `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
+| `-l, --translator <code>`  | Specifies the translator language (by default, the system language is used)                      |
+| `-e, --speak-translation`  | Speaks the translation                                                                           |
+| `-q, --speak-source`       | Speaks the original text                                                                         |
+| `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |
+
+If you do not pass startup arguments to the program, the GUI starts.
 
 ## Dependencies
 

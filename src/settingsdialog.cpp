@@ -116,8 +116,8 @@ void SettingsDialog::on_dialogBox_accepted()
                                            "NoDisplay=false\n"
                                            "Icon=crow-translate\n"
                                            "Name=Crow Translate\n"
-                                           "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API\n"
-                                           "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API.\n");
+                                           "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more\n"
+                                           "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
                     QTextStream outStream(&autorunFile);
                     outStream << autorunContent;
 
