@@ -21,7 +21,7 @@
 #include "popupwindow.h"
 
 #include <QBitmap>
-#include <QDesktopWidget>
+#include <QScreen>
 #include <QClipboard>
 #include <QSettings>
 
@@ -154,9 +154,9 @@ QToolButton *PopupWindow::translationSayButton()
 void PopupWindow::resizeEvent(QResizeEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
-    if (QApplication::desktop()->availableGeometry(position).width() - position.x() - this->geometry().width() < 0)
+    if (QGuiApplication::screenAt(position)->availableSize().width() - position.x() - this->geometry().width() < 0)
         position.rx()-= this->frameGeometry().width();
-    if (QApplication::desktop()->availableGeometry(position).height() - position.y() - this->geometry().height() < 0)
+    if (QGuiApplication::screenAt(position)->availableSize().height() - position.y() - this->geometry().height() < 0)
         position.ry()-= this->frameGeometry().height();
     PopupWindow::move(position);
     QWidget::resizeEvent(event);
