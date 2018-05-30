@@ -6,11 +6,11 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="39"/>
         <location filename="../../src/mainwindow.ui" line="226"/>
-        <location filename="../../src/mainwindow.cpp" line="170"/>
-        <location filename="../../src/mainwindow.cpp" line="177"/>
-        <location filename="../../src/mainwindow.cpp" line="184"/>
-        <location filename="../../src/mainwindow.cpp" line="468"/>
-        <location filename="../../src/mainwindow.cpp" line="489"/>
+        <location filename="../../src/mainwindow.cpp" line="174"/>
+        <location filename="../../src/mainwindow.cpp" line="181"/>
+        <location filename="../../src/mainwindow.cpp" line="188"/>
+        <location filename="../../src/mainwindow.cpp" line="473"/>
+        <location filename="../../src/mainwindow.cpp" line="494"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
@@ -74,8 +74,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="383"/>
-        <location filename="../../src/mainwindow.cpp" line="91"/>
-        <location filename="../../src/mainwindow.cpp" line="461"/>
+        <location filename="../../src/mainwindow.cpp" line="95"/>
+        <location filename="../../src/mainwindow.cpp" line="466"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -86,24 +86,24 @@
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="90"/>
-        <location filename="../../src/mainwindow.cpp" line="460"/>
+        <location filename="../../src/mainwindow.cpp" line="94"/>
+        <location filename="../../src/mainwindow.cpp" line="465"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="92"/>
-        <location filename="../../src/mainwindow.cpp" line="462"/>
+        <location filename="../../src/mainwindow.cpp" line="96"/>
+        <location filename="../../src/mainwindow.cpp" line="467"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="217"/>
-        <location filename="../../src/mainwindow.cpp" line="254"/>
-        <location filename="../../src/mainwindow.cpp" line="262"/>
-        <location filename="../../src/mainwindow.cpp" line="270"/>
-        <location filename="../../src/mainwindow.cpp" line="278"/>
-        <location filename="../../src/mainwindow.cpp" line="286"/>
+        <location filename="../../src/mainwindow.cpp" line="221"/>
+        <location filename="../../src/mainwindow.cpp" line="261"/>
+        <location filename="../../src/mainwindow.cpp" line="272"/>
+        <location filename="../../src/mainwindow.cpp" line="280"/>
+        <location filename="../../src/mainwindow.cpp" line="288"/>
+        <location filename="../../src/mainwindow.cpp" line="296"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
     </message>
@@ -604,13 +604,9 @@
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="55"/>
-        <source>Serbian (Cyrillic)</source>
-        <translation>сербский (кирилица)</translation>
-    </message>
-    <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="56"/>
-        <source>Serbian (Latin)</source>
-        <translation>сербский (латиница)</translation>
+        <source>Serbian</source>
+        <translatorcomment>сербский</translatorcomment>
+        <translation></translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="56"/>
