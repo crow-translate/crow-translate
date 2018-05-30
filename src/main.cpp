@@ -79,9 +79,9 @@ int main(int argc, char *argv[])
                 // Translate into each target language
                 if (parser.isSet("a")) {
                     // For only audio option
-                    if (parser.isSet("q")) {
+                    if (parser.isSet("q") && i == 0) {
                         out << text << endl;
-                        playlist.addMedia(QOnlineTranslator::media(text, targetLanguages.at(i)));
+                        playlist.addMedia(QOnlineTranslator::media(text, parser.value("s")));
                         player.setPlaylist(&playlist);
                         player.play();
                         waitUntilPlayedLoop.exec();
@@ -137,7 +137,7 @@ int main(int argc, char *argv[])
                     out << endl;
                 }
 
-                if (parser.isSet("q")) {
+                if (parser.isSet("q") && i == 0) {
                     playlist.addMedia(translationData.sourceMedia());
                     player.setPlaylist(&playlist);
                     player.play();
