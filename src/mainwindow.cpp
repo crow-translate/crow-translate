@@ -71,6 +71,11 @@ MainWindow::MainWindow(QWidget *parent) :
     autoTranslateTimer.setSingleShot(true);
     connect(&autoTranslateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
 
+
+    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [=]() {
+        autoTranslateTimer.start(500);
+    });
+
     // Add languageMenu to auto-language buttons
     languagesMenu->addActions(languagesList());
     ui->sourceAutoButton->setMenu(languagesMenu);
@@ -425,17 +430,10 @@ void MainWindow::on_tray_activated(QSystemTrayIcon::ActivationReason reason) {
 
 void MainWindow::on_autoTranslateCheckBox_toggled(const bool &state)
 {
-    if (state) {
+    if (state)
         on_translateButton_clicked();
 
-        // Add a delay before translating when changing the text
-        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [=]() {
-            autoTranslateTimer.start(500);
-        });
-    }
-    else {
-        disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, 0, 0);
-    }
+    autoTranslateTimer.blockSignals(!state);
 
     QSettings settings;
     settings.setValue("AutoTranslate", state);
