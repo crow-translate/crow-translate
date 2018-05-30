@@ -27,6 +27,7 @@
 #include <QShortcut>
 #include <QTimer>
 #include <QButtonGroup>
+#include <QMediaPlayer>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -91,6 +92,8 @@ private:
     QTimer autoTranslateTimer;
     QOnlineTranslator m_translationData;
     QMenu *languagesMenu;
+    QMediaPlayer player;
+    QMediaPlaylist playlist;
 
     // System tray
     QMenu *trayMenu;

@@ -21,6 +21,7 @@
 #include <QCommandLineParser>
 #include <QSettings>
 #include <QTranslator>
+#include <QMediaPlayer>
 
 #include "singleapplication.h"
 #include "qonlinetranslator.h"
@@ -63,29 +64,46 @@ int main(int argc, char *argv[])
 
 
         QTextStream out(stdout);
-        foreach (auto text, parser.positionalArguments()) {
-            // For only audio option
-            if (parser.isSet("a")) {
-                if (parser.isSet("e")) {
-                    QOnlineTranslator translationData(text, parser.value("t"), parser.value("s"), parser.value("l"));
-                    out << translationData.text() << endl;
-                    translationData.say();
-                }
-                if (parser.isSet("q")) {
-                    out << text << endl;
-                    QOnlineTranslator::say(text, parser.value("s"));
-                }
-                continue;
-            }
+        QMediaPlayer player;
+        QMediaPlaylist playlist;
+        QEventLoop waitUntilPlayedLoop;
+        QObject::connect(&player, &QMediaPlayer::stateChanged, [&](QMediaPlayer::State state) {
+            if (state == QMediaPlayer::StoppedState)
+                waitUntilPlayedLoop.quit();
+        });
 
-            // Translate into each target language
+        // Translate and / or speach all arguments
+        foreach (auto text, parser.positionalArguments()) {
             QStringList targetLanguages = parser.value("t").split("+");
             for (auto i = 0; i < targetLanguages.size(); i++) {
+                // Translate into each target language
+                if (parser.isSet("a")) {
+                    // For only audio option
+                    if (parser.isSet("q")) {
+                        out << text << endl;
+                        playlist.addMedia(QOnlineTranslator::media(text, targetLanguages.at(i)));
+                        player.setPlaylist(&playlist);
+                        player.play();
+                        waitUntilPlayedLoop.exec();
+                        playlist.clear();
+                    }
+                    if (parser.isSet("e")) {
+                        QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+                        out << translationData.translation() << endl;
+                        playlist.addMedia(translationData.translationMedia());
+                        player.setPlaylist(&playlist);
+                        player.play();
+                        waitUntilPlayedLoop.exec();
+                        playlist.clear();
+                    }
+                    continue;
+                }
+
                 QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
 
                 // Check for network error
                 if (translationData.error()) {
-                    out << translationData.text();
+                    out << translationData.translation();
                     return 0;
                 }
 
@@ -103,8 +121,8 @@ int main(int argc, char *argv[])
                 out << QOnlineTranslator::codeToLanguage(translationData.translationLanguage()) << " ]" << endl << endl ;
 
                 // Show translation text and transliteration
-                if (!translationData.text().isEmpty()) {
-                    out << translationData.text() << endl;
+                if (!translationData.translation().isEmpty()) {
+                    out << translationData.translation() << endl;
                     if (!translationData.translationTranscription().isEmpty())
                         out << "/" << translationData.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
                     else
@@ -120,10 +138,19 @@ int main(int argc, char *argv[])
                 }
 
                 if (parser.isSet("q")) {
-                    QOnlineTranslator::say(text, parser.value("s"));
+                    playlist.addMedia(translationData.sourceMedia());
+                    player.setPlaylist(&playlist);
+                    player.play();
+                    waitUntilPlayedLoop.exec();
+                    playlist.clear();
                 }
-                if (parser.isSet("e"))
-                    translationData.say();
+                if (parser.isSet("e")) {
+                    playlist.addMedia(translationData.translationMedia());
+                    player.setPlaylist(&playlist);
+                    player.play();
+                    waitUntilPlayedLoop.exec();
+                    playlist.clear();
+                }
             }
         }
         return 0;

@@ -66,15 +66,14 @@ MainWindow::MainWindow(QWidget *parent) :
     // General
     ui->setupUi(this);
     connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
+    player.setPlaylist(&playlist); // Use playlist to split long queries due Google limit
 
     // Setup timer for automatic translation
     autoTranslateTimer.setSingleShot(true);
-    connect(&autoTranslateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
-
-
     connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [=]() {
         autoTranslateTimer.start(500);
     });
+    connect(&autoTranslateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
 
     // Add languageMenu to auto-language buttons
     languagesMenu->addActions(languagesList());
@@ -143,7 +142,7 @@ void MainWindow::on_translateButton_clicked()
 
         // Check for network error
         if (m_translationData.error()) {
-            ui->translationEdit->setHtml(m_translationData.text());
+            ui->translationEdit->setHtml(m_translationData.translation());
             return;
         }
 
@@ -165,7 +164,7 @@ void MainWindow::on_translateButton_clicked()
 
             // Check for network error
             if (m_translationData.error()) {
-                ui->translationEdit->setHtml(m_translationData.text());
+                ui->translationEdit->setHtml(m_translationData.translation());
                 return;
             }
         }
@@ -193,7 +192,7 @@ void MainWindow::on_translateButton_clicked()
         }
 
         // Show translation and transcription
-        ui->translationEdit->setHtml(m_translationData.text().toHtmlEscaped().replace("\n", "<br>"));
+        ui->translationEdit->setHtml(m_translationData.translation().toHtmlEscaped().replace("\n", "<br>"));
         if (m_translationData.translationTranscription() != "" && settings.value("Translation/ShowTranslationTransliteration", true).toBool())
             ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription().replace("\n", "/<br>/") + "/</i></font>");
         if (m_translationData.sourceTranscription() != "" && settings.value("Translation/ShowSourceTransliteration", true).toBool())
@@ -253,16 +252,22 @@ void MainWindow::on_settingsButton_clicked()
 
 void MainWindow::on_sourceSayButton_clicked()
 {
-    if (ui->sourceEdit->toPlainText() != "")
-        QOnlineTranslator::say(ui->sourceEdit->toPlainText(), sourceButtonGroup->checkedButton()->toolTip());
+    if (ui->sourceEdit->toPlainText() != "") {
+        playlist.clear();
+        playlist.addMedia(QOnlineTranslator::media(ui->sourceEdit->toPlainText(), sourceButtonGroup->checkedButton()->toolTip()));
+        player.play();
+    }
     else
         qDebug() << tr("Text field is empty");
 }
 
 void MainWindow::on_translationSayButton_clicked()
 {
-    if (ui->translationEdit->toPlainText() != "")
-        QOnlineTranslator::say(m_translationData.text(), translationButtonGroup->checkedButton()->toolTip());
+    if (ui->translationEdit->toPlainText() != "") {
+        playlist.clear();
+        playlist.addMedia(m_translationData.translationMedia());
+        player.play();
+    }
     else
         qDebug() << tr("Text field is empty");
 }
@@ -270,7 +275,7 @@ void MainWindow::on_translationSayButton_clicked()
 void MainWindow::on_sourceCopyButton_clicked()
 {
     if (ui->sourceEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
+        QApplication::clipboard()->setText(m_translationData.source());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -278,7 +283,7 @@ void MainWindow::on_sourceCopyButton_clicked()
 void MainWindow::on_translationCopyButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(m_translationData.text());
+        QApplication::clipboard()->setText(m_translationData.translation());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -410,7 +415,9 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
 void MainWindow::on_saySelectedHotkey_activated()
 {
-    QOnlineTranslator::say(selectedText());
+    playlist.clear();
+    playlist.addMedia(QOnlineTranslator::media(selectedText()));
+    player.play();
 }
 
 void MainWindow::on_showMainWindowHotkey_activated()
