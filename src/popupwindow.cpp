@@ -151,7 +151,7 @@ QToolButton *PopupWindow::translationSayButton()
 }
 
 // Move popup to cursor and prevent window from appearing outside the screen
-void PopupWindow::resizeEvent(QResizeEvent *event)
+void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
     if (QGuiApplication::screenAt(position)->availableSize().width() - position.x() - this->geometry().width() < 0)
@@ -159,7 +159,7 @@ void PopupWindow::resizeEvent(QResizeEvent *event)
     if (QGuiApplication::screenAt(position)->availableSize().height() - position.y() - this->geometry().height() < 0)
         position.ry()-= this->frameGeometry().height();
     PopupWindow::move(position);
-    QWidget::resizeEvent(event);
+    QWidget::showEvent(event);
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)

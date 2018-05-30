@@ -59,7 +59,7 @@ public slots:
     void checkTranslationButton(const int &id, const bool &checked);
 
 private:
-    void resizeEvent(QResizeEvent *event);
+    void showEvent(QShowEvent *event);
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;
