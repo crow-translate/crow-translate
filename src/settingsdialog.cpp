@@ -45,8 +45,8 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->languageComboBox->setItemData(1, "en");
     ui->languageComboBox->setItemData(2, "ru");
 
-    ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
-    ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_SHORT_CODES.at(0));
+    ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_CODES.at(0));
+    ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(0))), QOnlineTranslator::LANGUAGE_CODES.at(0));
     foreach (auto language, languagesMenu->actions()) {
         ui->primaryLanguageComboBox->addItem(language->text(), language->toolTip());
         ui->secondaryLanguageComboBox->addItem(language->text(), language->toolTip());
