@@ -39,22 +39,24 @@ public:
     explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = 0);
     ~PopupWindow();
 
+    QToolButton *swapButton();
     QButtonGroup *sourceButtons();
     QButtonGroup *translationButtons();
-    QToolButton *sourceAutoButton();
-    QToolButton *translationAutoButton();
-    QToolButton *swapButton();
-    QToolButton *sourceCopyButton();
-    QToolButton *sourceSayButton();
-    QToolButton *translationCopyAllButton();
-    QToolButton *translationCopyButton();
-    QToolButton *translationSayButton();
+
+    QToolButton *autoSourceButton();
+    QToolButton *copySourceButton();
+    QToolButton *playSourceButton();
+
+    QToolButton *autoTranslationButton();
+    QToolButton *copyTranslationButton();
+    QToolButton *copyAllTranslationButton();
+    QToolButton *playTranslationButton();
 
 
 public slots:
     void setTranslation(const QString &text);
-    void copySourceButton(QAbstractButton *button, const int &id);
-    void copyTranslationButton(QAbstractButton *button, const int &id);
+    void loadSourceButton(QAbstractButton *button, const int &id);
+    void loadTranslationButton(QAbstractButton *button, const int &id);
     void checkSourceButton(const int &id, const bool &checked);
     void checkTranslationButton(const int &id, const bool &checked);
 

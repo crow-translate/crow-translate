@@ -11,9 +11,10 @@
         <file>icons/Papirus/16x16/edit-copy.svg</file>
         <file>icons/Papirus/16x16/go-next.svg</file>
         <file>icons/Papirus/16x16/object-flip-horizontal.svg</file>
-        <file>icons/Papirus/16x16/text-speak.svg</file>
         <file>icons/Papirus/16x16/window.svg</file>
         <file>icons/Papirus/16x16/document-export.svg</file>
         <file>icons/Papirus/32x32/preferences-desktop-locale.svg</file>
+        <file>icons/Papirus/16x16/media-playback-start.svg</file>
+        <file>icons/Papirus/16x16/media-playback-pause.svg</file>
     </qresource>
 </RCC>

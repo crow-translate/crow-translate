@@ -43,25 +43,25 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
     // Add languagesMenu to auto-language buttons
-    ui->sourceAutoButton->setMenu(languagesMenu);
-    ui->translationAutoButton->setMenu(languagesMenu);
+    ui->autoSourceButton->setMenu(languagesMenu);
+    ui->autoTranslationButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
-    sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
-    sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
-    sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
-    translationButtonGroup->addButton(ui->translationAutoButton, 0);
-    translationButtonGroup->addButton(ui->translationFirstButton, 1);
-    translationButtonGroup->addButton(ui->translationSecondButton, 2);
-    translationButtonGroup->addButton(ui->translationThirdButton, 3);
+    sourceButtonGroup->addButton(ui->autoSourceButton, 0);
+    sourceButtonGroup->addButton(ui->firstSourceButton, 1);
+    sourceButtonGroup->addButton(ui->secondSourceButton, 2);
+    sourceButtonGroup->addButton(ui->thirdSourceButton, 3);
+    translationButtonGroup->addButton(ui->autoTranslationButton, 0);
+    translationButtonGroup->addButton(ui->firstTranslationButton, 1);
+    translationButtonGroup->addButton(ui->secondTranslationButton, 2);
+    translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
 
     copyLanguageButtons(sourceButtonGroup, sourceGroup);
     copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
-    ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
-    ui->translationCopyButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+    ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
+    ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
+    ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
 }
 
 PopupWindow::~PopupWindow()
@@ -74,14 +74,14 @@ void PopupWindow::setTranslation(const QString &text)
     ui->translationEdit->setText(text);
 }
 
-void PopupWindow::copySourceButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
 {
     sourceButtonGroup->button(id)->setText(button->text());
     sourceButtonGroup->button(id)->setToolTip(button->toolTip());
     sourceButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadTranslationButton(QAbstractButton *button, const int &id)
 {
     translationButtonGroup->button(id)->setText(button->text());
     translationButtonGroup->button(id)->setToolTip(button->toolTip());
@@ -100,6 +100,11 @@ void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
         translationButtonGroup->button(id)->setChecked(true);
 }
 
+QToolButton *PopupWindow::swapButton()
+{
+    return ui->swapButton;
+}
+
 QButtonGroup *PopupWindow::sourceButtons()
 {
     return sourceButtonGroup;
@@ -110,44 +115,39 @@ QButtonGroup *PopupWindow::translationButtons()
     return translationButtonGroup;
 }
 
-QToolButton *PopupWindow::sourceAutoButton()
+QToolButton *PopupWindow::autoSourceButton()
 {
-    return ui->sourceAutoButton;
+    return ui->autoSourceButton;
 }
 
-QToolButton *PopupWindow::translationAutoButton()
+QToolButton *PopupWindow::copySourceButton()
 {
-    return ui->translationAutoButton;
+    return ui->copySourceButton;
 }
 
-QToolButton *PopupWindow::swapButton()
+QToolButton *PopupWindow::playSourceButton()
 {
-    return ui->swapButton;
+    return ui->playSourceButton;
 }
 
-QToolButton *PopupWindow::sourceCopyButton()
+QToolButton *PopupWindow::autoTranslationButton()
 {
-    return ui->sourceCopyButton;
+    return ui->autoTranslationButton;
 }
 
-QToolButton *PopupWindow::sourceSayButton()
+QToolButton *PopupWindow::copyTranslationButton()
 {
-    return ui->sourceSayButton;
+    return ui->copyTranslationButton;
 }
 
-QToolButton *PopupWindow::translationCopyAllButton()
+QToolButton *PopupWindow::copyAllTranslationButton()
 {
-    return ui->translationCopyAllButton;
+    return ui->copyAllTranslationButton;
 }
 
-QToolButton *PopupWindow::translationCopyButton()
+QToolButton *PopupWindow::playTranslationButton()
 {
-    return ui->translationCopyButton;
-}
-
-QToolButton *PopupWindow::translationSayButton()
-{
-    return ui->translationSayButton;
+    return ui->playTranslationButton;
 }
 
 // Move popup to cursor and prevent window from appearing outside the screen

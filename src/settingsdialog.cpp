@@ -169,13 +169,15 @@ void SettingsDialog::on_dialogBox_accepted()
 
     // Global shortcuts
     settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SaySelected", ui->saySelectedSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/PlaySelected", ui->playSelectedSequenceEdit->keySequence());
     settings.setValue("Hotkeys/ShowMainWindow", ui->showMainWindowSequenceEdit->keySequence());
 
     // Window shortcuts
     settings.setValue("Hotkeys/Translate", ui->translateSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SaySource", ui->saySourceSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/SayTranslation", ui->sayTranslationSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/PlaySource", ui->playSourceSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/PlayTranslation", ui->playTranslationSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/StopSource", ui->stopSourceSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/StopTranslation", ui->stopTranslationSequenceEdit->keySequence());
     settings.setValue("Hotkeys/CopyTranslation", ui->copyTranslationSequenceEdit->keySequence());
     settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
 }
@@ -216,13 +218,15 @@ void SettingsDialog::on_resetButton_clicked()
 
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
-    ui->saySelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
+    ui->playSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
     ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+C"));
 
     // Window shortcuts
     ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
-    ui->saySourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
-    ui->sayTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->playSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
+    ui->playTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
+    ui->stopSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+D"));
+    ui->stopTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+D"));
     ui->copyTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+C"));
     ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
 }
@@ -287,13 +291,15 @@ void SettingsDialog::loadSettings()
 
     // Global shortcuts
     ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
-    ui->saySelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySelected", "Ctrl+Alt+S").toString());
+    ui->playSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString());
     ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
 
     // Window shortcuts
     ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
-    ui->saySourceSequenceEdit->setKeySequence(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
-    ui->sayTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
+    ui->playSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
+    ui->playTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
+    ui->stopSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/StopSource", "Ctrl+D").toString());
+    ui->stopTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+D").toString());
     ui->copyTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
     ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
 }

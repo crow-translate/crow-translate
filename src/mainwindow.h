@@ -53,14 +53,20 @@ private slots:
     void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
-    void on_sourceSayButton_clicked();
-    void on_translationSayButton_clicked();
-    void on_sourceCopyButton_clicked();
-    void on_translationCopyButton_clicked();
-    void on_translationCopyAllButton_clicked();
 
-    void on_sourceAutoButton_triggered(QAction *language);
-    void on_translationAutoButton_triggered(QAction *language);
+    void on_playSourceButton_clicked();
+    void on_playTranslationButton_clicked();
+
+    void on_stopSourceButton_clicked();
+    void on_stopTranslationButton_clicked();
+
+    void on_copySourceButton_clicked();
+    void on_copyTranslationButton_clicked();
+
+    void on_copyAllTranslationButton_clicked();
+
+    void on_autoSourceButton_triggered(QAction *language);
+    void on_autoTranslationButton_triggered(QAction *language);
 
     void on_sourceButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
     void on_translationButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
@@ -75,6 +81,8 @@ private slots:
     void reloadTranslation();
     void loadProxy();
     void resetAutoSourceButtonText();
+
+
 
 private:
     void loadSettings();
@@ -92,8 +100,11 @@ private:
     QTimer autoTranslateTimer;
     QOnlineTranslator m_translationData;
     QMenu *languagesMenu;
-    QMediaPlayer player;
-    QMediaPlaylist playlist;
+
+    QMediaPlayer sourcePlayer;
+    QMediaPlaylist sourcePlaylist;
+    QMediaPlayer translationPlayer;
+    QMediaPlaylist translationPlaylist;
 
     // System tray
     QMenu *trayMenu;
