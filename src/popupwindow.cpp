@@ -22,6 +22,7 @@
 
 #include <QBitmap>
 #include <QScreen>
+#include <QDesktopWidget>
 #include <QClipboard>
 #include <QSettings>
 
@@ -154,10 +155,17 @@ QToolButton *PopupWindow::playTranslationButton()
 void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     if (QGuiApplication::screenAt(position)->availableSize().width() - position.x() - this->geometry().width() < 0)
         position.rx()-= this->frameGeometry().width();
     if (QGuiApplication::screenAt(position)->availableSize().height() - position.y() - this->geometry().height() < 0)
         position.ry()-= this->frameGeometry().height();
+#else
+    if (QApplication::desktop()->screenGeometry(position).width() - position.x() - this->geometry().width() < 0)
+        position.rx()-= this->frameGeometry().width();
+    if (QApplication::desktop()->screenGeometry(position).height() - position.y() - this->geometry().height() < 0)
+        position.ry()-= this->frameGeometry().height();
+#endif
     PopupWindow::move(position);
     QWidget::showEvent(event);
 }
