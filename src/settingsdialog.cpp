@@ -35,6 +35,8 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    ui->shortcutsTreeWidget->expandAll();
+    ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
     // Add items in comboboxes
     ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
@@ -63,7 +65,57 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     // Pages selection mechanism
     connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
 
-    loadSettings();
+    // General settings
+    QSettings settings;
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
+    ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
+    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
+    ui->appIconComboBox->setCurrentIndex(settings.value("AppIcon", 0).toInt());
+    ui->trayIconComboBox->setCurrentIndex(settings.value("TrayIcon", 0).toInt());
+    ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
+    ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
+    ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+
+    // Translation settings
+    ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
+    ui->translationTransliterationCheckBox->setChecked(settings.value("Translation/ShowTranslationTransliteration", true).toBool());
+    ui->translationOptionsCheckBox->setChecked(settings.value("Translation/TranslationOptions", true).toBool());
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("Translation/PrimaryLanguage", "auto").toString()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
+
+    // Connection settings
+    ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+    ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
+    ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
+    ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
+    ui->proxyUsernameEdit->setText(settings.value("Connection/ProxyUsername", "").toString());
+    ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
+
+    // Global shortcuts
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
+
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, "Ctrl+Alt+E;");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, "Ctrl+Alt+S");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
+
+    // Window shortcuts
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, settings.value("Hotkeys/StopSource", "Ctrl+D").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+D").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, "Ctrl+Return");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, "Ctrl+Q");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setData(1, Qt::UserRole, "Ctrl+S");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setData(1, Qt::UserRole, "Ctrl+D");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, "Ctrl+Shift+S");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, "Ctrl+Shift+D");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, "Ctrl+Shift+C");
 }
 
 SettingsDialog::~SettingsDialog()
@@ -168,18 +220,18 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
 
     // Global shortcuts
-    settings.setValue("Hotkeys/TranslateSelected", ui->translateSelectedSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/PlaySelected", ui->playSelectedSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/ShowMainWindow", ui->showMainWindowSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/TranslateSelected", ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
+    settings.setValue("Hotkeys/PlaySelected", ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
+    settings.setValue("Hotkeys/ShowMainWindow", ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
 
     // Window shortcuts
-    settings.setValue("Hotkeys/Translate", ui->translateSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/PlaySource", ui->playSourceSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/PlayTranslation", ui->playTranslationSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/StopSource", ui->stopSourceSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/StopTranslation", ui->stopTranslationSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/CopyTranslation", ui->copyTranslationSequenceEdit->keySequence());
-    settings.setValue("Hotkeys/CloseWindow", ui->closeWindowSequenceEdit->keySequence());
+    settings.setValue("Hotkeys/Translate", ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
+    settings.setValue("Hotkeys/CloseWindow", ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->text(1));
+    settings.setValue("Hotkeys/PlaySource", ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->text(1));
+    settings.setValue("Hotkeys/StopSource", ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->text(1));
+    settings.setValue("Hotkeys/PlayTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
+    settings.setValue("Hotkeys/StopTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
+    settings.setValue("Hotkeys/CopyTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
 }
 
 // Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
@@ -189,7 +241,7 @@ void SettingsDialog::on_trayCheckBox_toggled(bool checked)
     ui->startMinimizedCheckBox->setChecked(false);
 }
 
-void SettingsDialog::on_resetButton_clicked()
+void SettingsDialog::on_resetSettingsButton_clicked()
 {
     // General settings
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData("auto"));
@@ -216,19 +268,8 @@ void SettingsDialog::on_resetButton_clicked()
      ui->proxyUsernameEdit->setText("");
      ui->proxyPasswordEdit->setText("");
 
-    // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+E"));
-    ui->playSelectedSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+S"));
-    ui->showMainWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Alt+C"));
-
-    // Window shortcuts
-    ui->translateSequenceEdit->setKeySequence(QKeySequence("Ctrl+Return"));
-    ui->playSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+S"));
-    ui->playTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+S"));
-    ui->stopSourceSequenceEdit->setKeySequence(QKeySequence("Ctrl+D"));
-    ui->stopTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+D"));
-    ui->copyTranslationSequenceEdit->setKeySequence(QKeySequence("Ctrl+Shift+C"));
-    ui->closeWindowSequenceEdit->setKeySequence(QKeySequence("Ctrl+Q"));
+     // Shortcuts
+     on_resetAllShortcutsButton_clicked();
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
@@ -260,46 +301,53 @@ void SettingsDialog::on_proxyAuthCheckBox_toggled(bool checked)
     ui->proxyPasswordInfoLabel->setEnabled(checked);
 }
 
-void SettingsDialog::loadSettings()
+void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()
 {
-    QSettings settings;
+    if (ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString() != "") {
+        ui->shortcutGroupBox->setEnabled(true);
+        ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
+    }
+    else {
+        ui->shortcutGroupBox->setEnabled(false);
+        ui->shortcutSequenceEdit->clear();
+    }
+    ui->acceptShortcutButton->setEnabled(false);
+}
 
-    // General settings
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
-    ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
-    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
-    ui->appIconComboBox->setCurrentIndex(settings.value("AppIcon", 0).toInt());
-    ui->trayIconComboBox->setCurrentIndex(settings.value("TrayIcon", 0).toInt());
-    ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
-    ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
-    ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+void SettingsDialog::on_shortcutSequenceEdit_editingFinished()
+{
+    if (ui->shortcutsTreeWidget->currentItem()->text(1) != ui->shortcutSequenceEdit->keySequence().toString())
+        ui->acceptShortcutButton->setEnabled(true);
+    else
+        ui->acceptShortcutButton->setEnabled(false);
+}
 
-    // Translation settings
-    ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
-    ui->translationTransliterationCheckBox->setChecked(settings.value("Translation/ShowTranslationTransliteration", true).toBool());
-    ui->translationOptionsCheckBox->setChecked(settings.value("Translation/TranslationOptions", true).toBool());
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("Translation/PrimaryLanguage", "auto").toString()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
+void SettingsDialog::on_acceptShortcutButton_clicked()
+{
+    ui->shortcutsTreeWidget->currentItem()->setText(1, ui->shortcutSequenceEdit->keySequence().toString());
+    ui->acceptShortcutButton->setEnabled(false);
+}
 
-    // Connection settings
-     ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
-     ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
-     ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
-     ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
-     ui->proxyUsernameEdit->setText(settings.value("Connection/ProxyUsername", "").toString());
-     ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
+void SettingsDialog::on_resetShortcutButton_clicked()
+{
+    ui->shortcutsTreeWidget->currentItem()->setText(1, ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString());
+    ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
+    ui->acceptShortcutButton->setEnabled(false);
+}
 
+void SettingsDialog::on_resetAllShortcutsButton_clicked()
+{
     // Global shortcuts
-    ui->translateSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
-    ui->playSelectedSequenceEdit->setKeySequence(settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString());
-    ui->showMainWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, "Ctrl+Alt+E");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, "Ctrl+Alt+S");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, "Ctrl+Alt+C");
 
     // Window shortcuts
-    ui->translateSequenceEdit->setKeySequence(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
-    ui->playSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
-    ui->playTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
-    ui->stopSourceSequenceEdit->setKeySequence(settings.value("Hotkeys/StopSource", "Ctrl+D").toString());
-    ui->stopTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+D").toString());
-    ui->copyTranslationSequenceEdit->setKeySequence(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
-    ui->closeWindowSequenceEdit->setKeySequence(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, "Ctrl+Return");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, "Ctrl+Q");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, "Ctrl+S");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, "Ctrl+D");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, "Ctrl+Shift+S");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, "Ctrl+Shift+D");
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, "Ctrl+Shift+C");
 }

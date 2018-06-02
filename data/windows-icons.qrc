@@ -16,5 +16,6 @@
         <file>icons/Papirus/32x32/preferences-desktop-locale.svg</file>
         <file>icons/Papirus/16x16/media-playback-start.svg</file>
         <file>icons/Papirus/16x16/media-playback-pause.svg</file>
+        <file>icons/Papirus/16x16/preferences-desktop-locale.svg</file>
     </qresource>
 </RCC>
