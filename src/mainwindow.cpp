@@ -59,9 +59,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QString localeCode = settings.value("Language", "auto").toString();
     if (localeCode != "auto")
         QLocale::setDefault(QLocale(localeCode));
-    if (translator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations"))) {
-        qApp->installTranslator(&translator);
-    }
+    if (interfaceTranslator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
+        qApp->installTranslator(&interfaceTranslator);
+
+    onlineTranslator = new QOnlineTranslator(this);
 
     // General
     ui->setupUi(this);
@@ -185,16 +186,16 @@ void MainWindow::on_translateButton_clicked()
         else
             translationlanguage = translationButtonGroup->checkedButton()->toolTip();
 
-        m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
+        onlineTranslator->translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
         // Check for network error
-        if (m_translationData.error()) {
-            ui->translationEdit->setHtml(m_translationData.translation());
+        if (onlineTranslator->error()) {
+            ui->translationEdit->setHtml(onlineTranslator->translation());
             return;
         }
 
         // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
-        if (ui->autoTranslationButton->isChecked() && m_translationData.sourceLanguage() == m_translationData.translationLanguage()) {
+        if (ui->autoTranslationButton->isChecked() && onlineTranslator->sourceLanguage() == onlineTranslator->translationLanguage()) {
             QString primaryLanguage = settings.value("Translation/PrimaryLanguage", "auto").toString();
             QString secondaryLanguage = settings.value("Translation/SecondaryLanguage", "en").toString();
             if (primaryLanguage == "auto")
@@ -207,26 +208,26 @@ void MainWindow::on_translateButton_clicked()
             else
                 translationlanguage = primaryLanguage;
 
-            m_translationData.translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
+            onlineTranslator->translate(ui->sourceEdit->toPlainText(), translationlanguage, sourcelanguage, translatorlanguage);
 
             // Check for network error
-            if (m_translationData.error()) {
-                ui->translationEdit->setHtml(m_translationData.translation());
+            if (onlineTranslator->error()) {
+                ui->translationEdit->setHtml(onlineTranslator->translation());
                 return;
             }
         }
 
         // Display languages on "Auto" buttons.
-        if (ui->autoSourceButton->isChecked() && m_translationData.sourceLanguage() != ui->autoSourceButton->toolTip()) {
-            ui->autoSourceButton->setText(tr("Auto") + " (" + QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(m_translationData.sourceLanguage()))) + ")");
-            ui->autoSourceButton->setToolTip(m_translationData.sourceLanguage());
+        if (ui->autoSourceButton->isChecked() && onlineTranslator->sourceLanguage() != ui->autoSourceButton->toolTip()) {
+            ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->codeToLanguage(onlineTranslator->sourceLanguage()) + ")");
+            ui->autoSourceButton->setToolTip(onlineTranslator->sourceLanguage());
             emit sourceButtonChanged(ui->autoSourceButton, 0);
             connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
         }
         if (ui->autoTranslationButton->isChecked()) {
-            if (m_translationData.translationLanguage() != ui->autoTranslationButton->toolTip()) {
-                ui->autoTranslationButton->setText(tr("Auto") + " (" + QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(m_translationData.translationLanguage()))) + ")");
-                ui->autoTranslationButton->setToolTip(m_translationData.translationLanguage());
+            if (onlineTranslator->translationLanguage() != ui->autoTranslationButton->toolTip()) {
+                ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->codeToLanguage(onlineTranslator->translationLanguage()) + ")");
+                ui->autoTranslationButton->setToolTip(onlineTranslator->translationLanguage());
                 emit translationButtonChanged(ui->autoTranslationButton, 0);
             }
         }
@@ -239,16 +240,16 @@ void MainWindow::on_translateButton_clicked()
         }
 
         // Show translation and transcription
-        ui->translationEdit->setHtml(m_translationData.translation().toHtmlEscaped().replace("\n", "<br>"));
-        if (m_translationData.translationTranscription() != "" && settings.value("Translation/ShowTranslationTransliteration", true).toBool())
-            ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translationData.translationTranscription().replace("\n", "/<br>/") + "/</i></font>");
-        if (m_translationData.sourceTranscription() != "" && settings.value("Translation/ShowSourceTransliteration", true).toBool())
-            ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translationData.sourceTranscription().replace("\n", "/<br>/") + ")</b></i></font>");
+        ui->translationEdit->setHtml(onlineTranslator->translation().toHtmlEscaped().replace("\n", "<br>"));
+        if (onlineTranslator->translationTranscription() != "" && settings.value("Translation/ShowTranslationTransliteration", true).toBool())
+            ui->translationEdit->append("<font color=\"grey\"><i>/" + onlineTranslator->translationTranscription().replace("\n", "/<br>/") + "/</i></font>");
+        if (onlineTranslator->sourceTranscription() != "" && settings.value("Translation/ShowSourceTransliteration", true).toBool())
+            ui->translationEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator->sourceTranscription().replace("\n", "/<br>/") + ")</b></i></font>");
         ui->translationEdit->append("");
 
         // Show translation options
         if (settings.value("Translation/TranslationOptions", true).toBool()) {
-            foreach (auto translationOptions, m_translationData.options()) {
+            foreach (auto translationOptions, onlineTranslator->options()) {
                 ui->translationEdit->append("<i>" + translationOptions.first + "</i>");
                 foreach (QString wordsList, translationOptions.second) {
                     wordsList.prepend("&nbsp;&nbsp;<b>");
@@ -347,7 +348,7 @@ void MainWindow::on_playTranslationButton_clicked()
         case QMediaPlayer::StoppedState:
         {
             translationPlaylist.clear();
-            translationPlaylist.addMedia(m_translationData.translationMedia());
+            translationPlaylist.addMedia(onlineTranslator->translationMedia());
             translationPlayer.play();
             break;
         }
@@ -370,7 +371,7 @@ void MainWindow::on_stopTranslationButton_clicked()
 void MainWindow::on_copySourceButton_clicked()
 {
     if (ui->sourceEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(m_translationData.source());
+        QApplication::clipboard()->setText(onlineTranslator->source());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -378,7 +379,7 @@ void MainWindow::on_copySourceButton_clicked()
 void MainWindow::on_copyTranslationButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "")
-        QApplication::clipboard()->setText(m_translationData.translation());
+        QApplication::clipboard()->setText(onlineTranslator->translation());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -548,14 +549,16 @@ void MainWindow::reloadTranslation()
     QString localeCode = settings.value("Language", "auto").toString();
     if (localeCode == "auto") {
         QLocale::setDefault(QLocale::system());
-        localeCode = QLocale().name().left(QLocale().name().indexOf("_"));
+        localeCode = QOnlineTranslator::defaultLocaleToCode();
     }
     else
         QLocale::setDefault(QLocale(localeCode));
-    if (translator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
-        qApp->installTranslator(&translator);
+    if (interfaceTranslator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
+        qApp->installTranslator(&interfaceTranslator);
 
     // Reload UI
+    delete onlineTranslator;
+    onlineTranslator = new QOnlineTranslator(this);
     ui->retranslateUi(this);
     trayMenu->actions().at(0)->setText(tr("Show window"));
     trayMenu->actions().at(1)->setText(tr("Settings"));
@@ -564,8 +567,10 @@ void MainWindow::reloadTranslation()
     languagesMenu->addActions(languagesList());
     loadLanguageButtons(sourceButtonGroup, "Source");
     loadLanguageButtons(translationButtonGroup, "Translation");
-    ui->autoTranslationButton->setToolTip(localeCode);
-    ui->autoTranslationButton->setText(tr("Auto") + " (" + QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(localeCode))) + ")");
+    ui->autoTranslationButton->setToolTip("auto");
+    ui->autoTranslationButton->setText(tr("Auto"));
+    ui->autoSourceButton->setToolTip("auto");
+    ui->autoSourceButton->setText(tr("Auto"));
 }
 
 void MainWindow::loadProxy()
@@ -631,7 +636,7 @@ void MainWindow::loadLanguageButtons(QButtonGroup *group, const QString &setting
         // Check if the code is set
         if (languageCode != "") {
             group->button(i)->setToolTip(languageCode);
-            group->button(i)->setText(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(languageCode))));
+            group->button(i)->setText(onlineTranslator->codeToLanguage(languageCode));
             group->button(i)->setVisible(true);
         }
         else
@@ -678,7 +683,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, const QString &settingsName
     settings.setValue("Buttons/Checked" + settingsName + "Button", settings.value("Buttons/Checked" + settingsName + "Button", 0).toInt() + 1);
 
     // Insert new language to first button
-    group->button(1)->setText(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::codeToLanguage(languageCode))));
+    group->button(1)->setText(onlineTranslator->codeToLanguage(languageCode));
     group->button(1)->setToolTip(languageCode);
     group->button(1)->setVisible(true);
 
@@ -713,9 +718,9 @@ QList<QAction *> MainWindow::languagesList()
 {
     // Load all languages and codes from QOnlineTranslator
     QList<QAction *> languagesList;
-    for (auto i=1; i<QOnlineTranslator::LANGUAGE_NAMES.size(); i++) {
-        QAction *action = new QAction(QCoreApplication::translate("QOnlineTranslator", qPrintable(QOnlineTranslator::LANGUAGE_NAMES.at(i))));
-        action->setToolTip(QOnlineTranslator::LANGUAGE_CODES.at(i));
+    for (auto i=1; i<onlineTranslator->languages().size(); i++) {
+        QAction *action = new QAction(onlineTranslator->languages().at(i));
+        action->setToolTip(onlineTranslator->codes().at(i));
         languagesList.append(action);
     }
 

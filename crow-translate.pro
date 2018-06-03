@@ -51,10 +51,6 @@ RESOURCES += data/windows-icons.qrc
 
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
-# Automatically generate .qm files
-qtPrepareTool(LRELEASE, lrelease)
-system($$LRELEASE -removeidentical crow-translate.pro)|error("Failed to run lrelease")
-
 # For make install
 unix {
 bin.path   = /usr/bin

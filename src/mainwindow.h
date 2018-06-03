@@ -82,8 +82,6 @@ private slots:
     void loadProxy();
     void resetAutoSourceButtonText();
 
-
-
 private:
     void loadSettings();
 
@@ -96,9 +94,9 @@ private:
     QString selectedText();
 
     Ui::MainWindow *ui;
-    QTranslator translator;
+    QTranslator interfaceTranslator;
     QTimer autoTranslateTimer;
-    QOnlineTranslator m_translationData;
+    QOnlineTranslator *onlineTranslator;
     QMenu *languagesMenu;
 
     QMediaPlayer sourcePlayer;

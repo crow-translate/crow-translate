@@ -99,38 +99,38 @@ int main(int argc, char *argv[])
                     continue;
                 }
 
-                QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+                QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
 
                 // Check for network error
-                if (translationData.error()) {
-                    out << translationData.translation();
+                if (onlineTranslator.error()) {
+                    out << onlineTranslator.translation();
                     return 0;
                 }
 
                 // Show source text and transliteration only once
                 if (i == 0) {
                     out << text << endl;
-                    if (!translationData.sourceTranscription().isEmpty())
-                        out << "(" << translationData.sourceTranscription().replace("\n", ")\n(") << ")" << endl << endl;
+                    if (!onlineTranslator.sourceTranscription().isEmpty())
+                        out << "(" << onlineTranslator.sourceTranscription().replace("\n", ")\n(") << ")" << endl << endl;
                     else
                         out << endl;
                 }
 
                 // Show languages
-                out << "[ " << QOnlineTranslator::codeToLanguage(translationData.sourceLanguage()) << " -> ";
-                out << QOnlineTranslator::codeToLanguage(translationData.translationLanguage()) << " ]" << endl << endl ;
+                out << "[ " << onlineTranslator.codeToLanguage(onlineTranslator.sourceLanguage()) << " -> ";
+                out << onlineTranslator.codeToLanguage(onlineTranslator.translationLanguage()) << " ]" << endl << endl ;
 
                 // Show translation text and transliteration
-                if (!translationData.translation().isEmpty()) {
-                    out << translationData.translation() << endl;
-                    if (!translationData.translationTranscription().isEmpty())
-                        out << "/" << translationData.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
+                if (!onlineTranslator.translation().isEmpty()) {
+                    out << onlineTranslator.translation() << endl;
+                    if (!onlineTranslator.translationTranscription().isEmpty())
+                        out << "/" << onlineTranslator.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
                     else
                         out << endl;
                 }
 
                 // Show translation options
-                foreach (auto translationOptions, translationData.options()) {
+                foreach (auto translationOptions, onlineTranslator.options()) {
                     out << translationOptions.first << endl;
                     foreach (QString wordsList, translationOptions.second)
                         out << "\t" << wordsList << endl;
@@ -138,14 +138,14 @@ int main(int argc, char *argv[])
                 }
 
                 if (parser.isSet("q") && i == 0) {
-                    playlist.addMedia(translationData.sourceMedia());
+                    playlist.addMedia(onlineTranslator.sourceMedia());
                     player.setPlaylist(&playlist);
                     player.play();
                     waitUntilPlayedLoop.exec();
                     playlist.clear();
                 }
                 if (parser.isSet("e")) {
-                    playlist.addMedia(translationData.translationMedia());
+                    playlist.addMedia(onlineTranslator.translationMedia());
                     player.setPlaylist(&playlist);
                     player.play();
                     waitUntilPlayedLoop.exec();
