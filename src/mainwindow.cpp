@@ -126,6 +126,8 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     });
 
+    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::on_stopSourceButton_clicked);
+
     // Setup timer for automatic translation
     autoTranslateTimer.setSingleShot(true);
     connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [=]() {
@@ -248,6 +250,9 @@ void MainWindow::on_translateButton_clicked()
                 emit translationButtonChanged(ui->autoTranslationButton, 0);
             }
         }
+
+        // Reset the playback of the text
+        on_stopTranslationButton_clicked();
 
         // Show translation and transcription
         ui->translationEdit->setHtml(onlineTranslator->translation().toHtmlEscaped().replace("\n", "<br>"));
