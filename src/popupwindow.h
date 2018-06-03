@@ -24,6 +24,7 @@
 #include <QMenu>
 #include <QButtonGroup>
 #include <QToolButton>
+#include <QTextEdit>
 
 #include "qonlinetranslator.h"
 
@@ -39,22 +40,25 @@ public:
     explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = 0);
     ~PopupWindow();
 
+    QTextEdit *translationEdit();
+
     QToolButton *swapButton();
     QButtonGroup *sourceButtons();
     QButtonGroup *translationButtons();
 
     QToolButton *autoSourceButton();
-    QToolButton *copySourceButton();
     QToolButton *playSourceButton();
+    QToolButton *stopSourceButton();
+    QToolButton *copySourceButton();
 
     QToolButton *autoTranslationButton();
+    QToolButton *playTranslationButton();
+    QToolButton *stopTranslationButton();
     QToolButton *copyTranslationButton();
     QToolButton *copyAllTranslationButton();
-    QToolButton *playTranslationButton();
 
 
 public slots:
-    void setTranslation(const QString &text);
     void loadSourceButton(QAbstractButton *button, const int &id);
     void loadTranslationButton(QAbstractButton *button, const int &id);
     void checkSourceButton(const int &id, const bool &checked);

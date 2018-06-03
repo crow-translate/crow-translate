@@ -43,16 +43,14 @@ private slots:
     void on_dialogBox_accepted();
     void on_trayCheckBox_toggled(bool checked);
     void on_resetSettingsButton_clicked();
+
     void on_proxyTypeComboBox_currentIndexChanged(int index);
     void on_proxyAuthCheckBox_toggled(bool checked);
 
     void on_shortcutsTreeWidget_itemSelectionChanged();
     void on_shortcutSequenceEdit_editingFinished();
-
     void on_acceptShortcutButton_clicked();
-
     void on_resetShortcutButton_clicked();
-
     void on_resetAllShortcutsButton_clicked();
 
 signals:

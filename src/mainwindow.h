@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <QButtonGroup>
 #include <QMediaPlayer>
+#include <QToolButton>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -48,6 +49,10 @@ signals:
     void translationTextChanged(const QString &text);
     void sourceButtonChanged(QAbstractButton *button, const int &id);
     void translationButtonChanged(QAbstractButton *button, const int &id);
+    void playSourceButtonIconChanged(QIcon icon);
+    void stopSourceButtonEnabled(bool enabled);
+    void playTranslationButtonIconChanged(QIcon icon);
+    void stopTranslationButtonEnabled(bool enabled);
 
 private slots:
     void on_translateButton_clicked();

@@ -77,18 +77,23 @@ MainWindow::MainWindow(QWidget *parent) :
         case QMediaPlayer::PlayingState:
         {
             ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
             ui->stopSourceButton->setEnabled(true);
+            emit stopSourceButtonEnabled(true);
             break;
         }
         case QMediaPlayer::PausedState:
         {
             ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
+            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
             break;
         }
         case QMediaPlayer::StoppedState:
         {
             ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
+            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
             ui->stopSourceButton->setEnabled(false);
+            emit stopSourceButtonEnabled(false);
             break;
         }
         }
@@ -99,18 +104,23 @@ MainWindow::MainWindow(QWidget *parent) :
         case QMediaPlayer::PlayingState:
         {
             ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
             ui->stopTranslationButton->setEnabled(true);
+            emit stopTranslationButtonEnabled(true);
             break;
         }
         case QMediaPlayer::PausedState:
         {
             ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
+            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
             break;
         }
         case QMediaPlayer::StoppedState:
         {
             ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
+            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
             ui->stopTranslationButton->setEnabled(false);
+            emit stopTranslationButtonEnabled(false);
             break;
         }
         }
@@ -452,10 +462,15 @@ void MainWindow::on_translateSelectedHotkey_activated()
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Show popup
         PopupWindow *popup = new PopupWindow(languagesMenu, sourceButtonGroup, translationButtonGroup, this);
-        connect(this, &MainWindow::translationTextChanged, popup, &PopupWindow::setTranslation);
+        connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
 
         connect(this, &MainWindow::sourceButtonChanged, popup, &PopupWindow::loadSourceButton);
         connect(this, &MainWindow::translationButtonChanged, popup, &PopupWindow::loadTranslationButton);
+
+        connect(this, &MainWindow::playSourceButtonIconChanged, popup->playSourceButton(), &QToolButton::setIcon);
+        connect(this, &MainWindow::stopSourceButtonEnabled, popup->stopSourceButton(), &QToolButton::setEnabled);
+        connect(this, &MainWindow::playTranslationButtonIconChanged, popup->playTranslationButton(), &QToolButton::setIcon);
+        connect(this, &MainWindow::stopTranslationButtonEnabled, popup->stopTranslationButton(), &QToolButton::setEnabled);
 
         connect(sourceButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkSourceButton);
         connect(translationButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkTranslationButton);
@@ -468,10 +483,12 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
         connect(popup->swapButton(), &QToolButton::clicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup->playSourceButton(), &QToolButton::clicked, this, &MainWindow::on_playSourceButton_clicked);
+        connect(popup->stopSourceButton(), &QToolButton::clicked, this, &MainWindow::on_stopSourceButton_clicked);
         connect(popup->copySourceButton(), &QToolButton::clicked, this, &MainWindow::on_copySourceButton_clicked);
-        connect(popup->copyAllTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyAllTranslationButton_clicked);
         connect(popup->playTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_playTranslationButton_clicked);
+        connect(popup->stopTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_stopTranslationButton_clicked);
         connect(popup->copyTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyTranslationButton_clicked);
+        connect(popup->copyAllTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyAllTranslationButton_clicked);
 
         // Restore the keyboard shortcut
         connect(popup, &PopupWindow::destroyed, [this] {

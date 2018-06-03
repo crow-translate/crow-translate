@@ -70,9 +70,9 @@ PopupWindow::~PopupWindow()
     delete ui;
 }
 
-void PopupWindow::setTranslation(const QString &text)
+QTextEdit *PopupWindow::translationEdit()
 {
-    ui->translationEdit->setText(text);
+    return ui->translationEdit;
 }
 
 void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
@@ -121,19 +121,34 @@ QToolButton *PopupWindow::autoSourceButton()
     return ui->autoSourceButton;
 }
 
-QToolButton *PopupWindow::copySourceButton()
-{
-    return ui->copySourceButton;
-}
-
 QToolButton *PopupWindow::playSourceButton()
 {
     return ui->playSourceButton;
 }
 
+QToolButton *PopupWindow::stopSourceButton()
+{
+    return ui->stopSourceButton;
+}
+
+QToolButton *PopupWindow::copySourceButton()
+{
+    return ui->copySourceButton;
+}
+
 QToolButton *PopupWindow::autoTranslationButton()
 {
     return ui->autoTranslationButton;
+}
+
+QToolButton *PopupWindow::playTranslationButton()
+{
+    return ui->playTranslationButton;
+}
+
+QToolButton *PopupWindow::stopTranslationButton()
+{
+    return ui->stopTranslationButton;
 }
 
 QToolButton *PopupWindow::copyTranslationButton()
@@ -144,11 +159,6 @@ QToolButton *PopupWindow::copyTranslationButton()
 QToolButton *PopupWindow::copyAllTranslationButton()
 {
     return ui->copyAllTranslationButton;
-}
-
-QToolButton *PopupWindow::playTranslationButton()
-{
-    return ui->playTranslationButton;
 }
 
 // Move popup to cursor and prevent window from appearing outside the screen
