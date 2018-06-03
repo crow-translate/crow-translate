@@ -1,3 +1,19 @@
+crow-translate (0.9.9~git-1) stretch; urgency=low
+
+  * Redesigned the console interface
+  * Reworked the shortcuts menu
+  * Add the ability to stop and pause the text
+  * Added the menu item "Translation" in the settings
+  * Added splitting queries to parts if they exceed the limit
+  * Added ability to disable transliteration and translation options 
+  * The list of languages has been changed in accordance with the official Google documentation
+  * Fixed wrong interpretation of some special characters
+  * Fixed crash when there is no internet connection
+  * Fixed wrong button sizes 
+  * Fixed the re-translation when translating by the keyboard shortcut 
+  * Fixed disabling of the keyboard shortcut for translating selected text after translation in the main window
+  * Fix wrong behaviour for "Automatically translate" checkbox 
+  
 crow-translate (0.9.8~git-1) stretch; urgency=low
 
   * The interface of the settings menu has been redesigned
