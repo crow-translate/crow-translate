@@ -480,6 +480,9 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(sourceButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkSourceButton);
         connect(translationButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkTranslationButton);
 
+        connect(popup, &PopupWindow::destroyed, this, &MainWindow::on_stopSourceButton_clicked);
+        connect(popup, &PopupWindow::destroyed, this, &MainWindow::on_stopTranslationButton_clicked);
+
         connect(popup->sourceButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkSourceButton);
         connect(popup->translationButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkTranslationButton);
 
