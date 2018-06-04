@@ -463,6 +463,10 @@ void MainWindow::on_translateSelectedHotkey_activated()
     // Prevent pressing the translation hotkey again
     translateSelectedHotkey->blockSignals(true);
 
+    // Stop previous playback
+    sourcePlayer.stop();
+    translationPlayer.stop();
+
     QSettings settings;
     if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
         // Show popup
