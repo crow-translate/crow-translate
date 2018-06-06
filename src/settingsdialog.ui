@@ -564,6 +564,11 @@
                  <string notr="true">HTTP</string>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>SOCKS5</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item>

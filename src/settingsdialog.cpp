@@ -42,6 +42,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
     ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
     ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
+    ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
 
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
@@ -274,7 +275,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
 {
-    if (index == 2) {
+    if (index >= 2) {
         ui->proxyHostEdit->setEnabled(true);
         ui->proxyHostLabel->setEnabled(true);
         ui->proxyPortLabel->setEnabled(true);
