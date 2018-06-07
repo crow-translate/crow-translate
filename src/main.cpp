@@ -130,10 +130,20 @@ int main(int argc, char *argv[])
                 }
 
                 // Show translation options
-                foreach (auto translationOptions, onlineTranslator.options()) {
-                    out << translationOptions.first << endl;
-                    foreach (QString wordsList, translationOptions.second)
-                        out << "\t" << wordsList << endl;
+                foreach (auto optionType, onlineTranslator.translationOptionsList()) {
+                    out << optionType.typeOfSpeech() << ":" << endl;
+                    for (auto i = 0; i <  optionType.count(); i++) {
+                        out << "\t";
+                        if (!optionType.gender(i).isEmpty())
+                            out << optionType.gender(i) << " ";
+                        out << optionType.word(i) << ": ";
+
+                        out << optionType.translations(i).at(0);
+                        for (auto j = 1; j < optionType.translations(i).size(); j++) {
+                            out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
+                        }
+                        out << endl;
+                    }
                     out << endl;
                 }
 

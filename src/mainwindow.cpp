@@ -264,12 +264,21 @@ void MainWindow::on_translateButton_clicked()
 
         // Show translation options
         if (settings.value("Translation/TranslationOptions", true).toBool()) {
-            foreach (auto translationOptions, onlineTranslator->options()) {
-                ui->translationEdit->append("<i>" + translationOptions.first + "</i>");
-                foreach (QString wordsList, translationOptions.second) {
-                    wordsList.prepend("&nbsp;&nbsp;<b>");
-                    wordsList.insert(wordsList.indexOf(":") + 1, "</b>");
-                    ui->translationEdit->append(wordsList);
+            foreach (auto optionType, onlineTranslator->translationOptionsList()) {
+                ui->translationEdit->append("<i>" + optionType.typeOfSpeech() + "</i>");
+                for (auto i = 0; i <  optionType.count(); i++) {
+                    QString line;
+                    line.append("&nbsp;&nbsp;&nbsp;&nbsp;");
+                    if (!optionType.gender(i).isEmpty())
+                        line.append("<i>" + optionType.gender(i) + "</i> ");
+                    line.append("<b>" + optionType.word(i) + ":</b> ");
+                    qDebug() << line;
+
+                    line.append(optionType.translations(i).at(0));
+                    for (auto j = 1; j < optionType.translations(i).size(); j++) {
+                        line.append(", " + optionType.translations(i).at(j));
+                    }
+                    ui->translationEdit->append(line);
                 }
                 ui->translationEdit->append("");
             }
