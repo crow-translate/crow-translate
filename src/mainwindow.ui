@@ -14,8 +14,7 @@
    <string notr="true">Crow Translate</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../data/resources.qrc">
-    <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
+   <iconset theme="crow-translate"/>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -478,8 +477,6 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="../data/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

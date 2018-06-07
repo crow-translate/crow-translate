@@ -57,7 +57,7 @@ bin.path   = /usr/bin
 bin.files   = crow
 
 icons.path = /usr/share/icons/hicolor/
-icons.files = dist/unix/generic/menuicons/*
+icons.files = dist/unix/generic/hicolor/*
 
 desktop.path = /usr/share/applications
 desktop.files = dist/unix/generic/crow-translate.desktop

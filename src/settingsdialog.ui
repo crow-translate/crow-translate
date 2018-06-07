@@ -116,7 +116,7 @@
              <item>
               <widget class="QLabel" name="windowModeLabel">
                <property name="text">
-                <string>Translation mode of the selected text</string>
+                <string>Translation mode of the selected text:</string>
                </property>
               </widget>
              </item>
@@ -197,7 +197,7 @@
                 </sizepolicy>
                </property>
                <property name="text">
-                <string>Language</string>
+                <string>Language:</string>
                </property>
               </widget>
              </item>
@@ -236,75 +236,11 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="appIconHorizontalLayout">
-             <item>
-              <widget class="QLabel" name="appIconLabel">
-               <property name="text">
-                <string>App icon</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="appIconComboBox">
-               <item>
-                <property name="text">
-                 <string>Classic</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/classic.png</normaloff>:/icons/app/classic.png</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Black</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>White</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/white.png</normaloff>:/icons/app/white.png</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">Papirus</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/papirus.png</normaloff>:/icons/app/papirus.png</iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="appIconHorizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
             <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
              <item>
               <widget class="QLabel" name="trayIconLabel">
                <property name="text">
-                <string>Tray icon</string>
+                <string>Tray icon:</string>
                </property>
               </widget>
              </item>
@@ -312,38 +248,28 @@
               <widget class="QComboBox" name="trayIconComboBox">
                <item>
                 <property name="text">
-                 <string>Classic</string>
+                 <string>Application icon</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/classic.png</normaloff>:/icons/app/classic.png</iconset>
+                 <iconset theme="crow-translate"/>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>Black</string>
+                 <string>Monochrome (dark theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
+                 <iconset>
+                  <normaloff>:/icons/app/dark-theme.png</normaloff>:/icons/app/dark-theme.png</iconset>
                 </property>
                </item>
                <item>
                 <property name="text">
-                 <string>White</string>
+                 <string>Monochrome (light theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/white.png</normaloff>:/icons/app/white.png</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">Papirus</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/papirus.png</normaloff>:/icons/app/papirus.png</iconset>
+                 <iconset>
+                  <normaloff>:/icons/app/white-theme.png</normaloff>:/icons/app/white-theme.png</iconset>
                 </property>
                </item>
               </widget>
@@ -566,7 +492,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>SOCKS5</string>
+                 <string notr="true">SOCKS5</string>
                 </property>
                </item>
               </widget>
@@ -986,7 +912,7 @@
              <string/>
             </property>
             <property name="pixmap">
-             <pixmap resource="../data/resources.qrc">:/icons/app/classic.png</pixmap>
+             <pixmap>:/icons/app/classic.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
@@ -1157,9 +1083,7 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../data/resources.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>dialogBox</sender>

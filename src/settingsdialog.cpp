@@ -28,8 +28,6 @@
 #include "qonlinetranslator.h"
 #include "ui_settingsdialog.h"
 
-const QStringList SettingsDialog::ICONS = { ":/icons/app/classic.png", ":/icons/app/black.png", ":/icons/app/white.png", ":/icons/app/papirus.png" };
-
 SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
@@ -38,15 +36,22 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->expandAll();
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
-    // Add items in comboboxes
-    ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
-    ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
-    ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
-    ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
+    // Set item data in comboboxes
+    ui->trayIconComboBox->setItemData(0, "crow-translate");
+    ui->trayIconComboBox->setItemData(1, ":/icons/app/dark-theme.png");
+    ui->trayIconComboBox->setItemData(2, ":/icons/app/white-theme.png");
+#if defined(Q_OS_LINUX)
+    ui->trayIconComboBox->insertItem(0, QIcon::fromTheme("crow-translate-tray"), tr("From system theme"), "crow-translate-tray");
+#endif
 
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
     ui->languageComboBox->setItemData(2, "ru");
+
+    ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
+    ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
+    ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
+    ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
 
     ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
     ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
@@ -71,8 +76,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
-    ui->appIconComboBox->setCurrentIndex(settings.value("AppIcon", 0).toInt());
-    ui->trayIconComboBox->setCurrentIndex(settings.value("TrayIcon", 0).toInt());
+    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate").toString()));
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
@@ -200,8 +204,7 @@ void SettingsDialog::on_dialogBox_accepted()
     // Other general settings
     settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
     settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
-    settings.setValue("AppIcon", ui->appIconComboBox->currentIndex());
-    settings.setValue("TrayIcon", ui->trayIconComboBox->currentIndex());
+    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
@@ -248,7 +251,6 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData("auto"));
     ui->windowModeComboBox->setCurrentIndex(0);
     ui->popupOpacitySlider->setValue(80);
-    ui->appIconComboBox->setCurrentIndex(0);
     ui->trayIconComboBox->setCurrentIndex(0);
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);

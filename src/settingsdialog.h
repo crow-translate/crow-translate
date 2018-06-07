@@ -36,7 +36,6 @@ class SettingsDialog : public QDialog
 
 public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
-    static const QStringList ICONS;
     ~SettingsDialog();
 
 private slots:

@@ -1,9 +1,7 @@
 <RCC>
     <qresource prefix="/">
-        <file>icons/app/black.png</file>
-        <file>icons/app/white.png</file>
-        <file>icons/app/papirus.png</file>
         <file>translations/crow_ru.qm</file>
-        <file>icons/app/classic.png</file>
+        <file>icons/app/dark-theme.png</file>
+        <file>icons/app/white-theme.png</file>
     </qresource>
 </RCC>

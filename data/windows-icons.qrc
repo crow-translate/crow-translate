@@ -18,5 +18,7 @@
         <file>icons/Papirus/16x16/media-playback-pause.svg</file>
         <file>icons/Papirus/16x16/preferences-desktop-locale.svg</file>
         <file>icons/Papirus/16x16/media-playback-stop.svg</file>
+        <file>icons/Papirus/16x16/crow-translate.png</file>
+        <file>icons/Papirus/32x32/crow-translate.png</file>
     </qresource>
 </RCC>

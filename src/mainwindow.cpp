@@ -634,11 +634,12 @@ void MainWindow::loadSettings()
     ui->autoTranslateCheckBox->setChecked(settings.value("AutoTranslate", true).toBool());
     on_autoTranslateCheckBox_toggled(ui->autoTranslateCheckBox->isChecked());
 
-    // Load icons
-    this->setWindowIcon(QIcon(SettingsDialog::ICONS.at(settings.value("AppIcon", 0).toInt())));
-    trayIcon->setIcon(QIcon(SettingsDialog::ICONS.at(settings.value("TrayIcon", 0).toInt())));
-
-    // Load tray visibility
+    // Load tray settings
+    QString icon = settings.value("TrayIcon", "crow-translate").toString();
+    if (icon.startsWith(":"))
+        trayIcon->setIcon(QIcon(icon));
+    else
+        trayIcon->setIcon(QIcon::fromTheme(icon));
     trayIcon->setVisible(settings.value("TrayIconVisible", true).toBool());
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 

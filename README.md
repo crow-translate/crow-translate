@@ -1,4 +1,4 @@
-# ![Crow Translate logo](./dist/unix/generic/menuicons/72x72/apps/crow-translate.png) Crow Translate
+# ![Crow Translate logo](./dist/unix/generic/hicolor/72x72/apps/crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
