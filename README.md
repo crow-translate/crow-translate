@@ -6,7 +6,7 @@
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API and much more.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 
 
-## Contents
+## Content
 
 * [Screenshots](#screenshots)
 * [Features](#features)
@@ -25,7 +25,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="dist/unix/screenshots/linux-plasma-screenshot-settings.png?raw=true" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://mahm0udwally.deviantart.com/art/Mountain-III-506611364">Mountain III</a></sub></sup>
+  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="http://vunature.com/tilt-lakes-landscapes-shift-free-download-wallpaper-for-desktop-of-nature/">Devany Walsh</a></sub></sup>
 </p>
 
 ## Features
