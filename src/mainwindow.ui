@@ -75,9 +75,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -96,9 +93,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -121,9 +115,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -180,9 +171,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -202,9 +190,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -223,9 +208,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -276,9 +258,6 @@
          <iconset theme="media-playback-start">
           <normaloff>.</normaloff>.</iconset>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -296,9 +275,6 @@
          <iconset theme="media-playback-stop">
           <normaloff>.</normaloff>.</iconset>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -312,9 +288,6 @@
         <property name="icon">
          <iconset theme="edit-copy">
           <normaloff>.</normaloff>.</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
         </property>
        </widget>
       </item>
@@ -373,9 +346,6 @@
          <iconset theme="media-playback-start">
           <normaloff>.</normaloff>.</iconset>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -393,9 +363,6 @@
          <iconset theme="media-playback-stop">
           <normaloff>.</normaloff>.</iconset>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -409,9 +376,6 @@
         <property name="icon">
          <iconset theme="edit-copy">
           <normaloff>.</normaloff>.</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
         </property>
        </widget>
       </item>
@@ -427,9 +391,6 @@
          <iconset theme="document-export">
           <normaloff>.</normaloff>.</iconset>
         </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
-        </property>
        </widget>
       </item>
       <item>
@@ -443,9 +404,6 @@
         <property name="icon">
          <iconset theme="dialog-object-properties">
           <normaloff>.</normaloff>.</iconset>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonFollowStyle</enum>
         </property>
        </widget>
       </item>

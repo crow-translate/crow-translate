@@ -53,6 +53,18 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
     ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
 
+    ui->languagesStyleComboBox->setItemData(0, Qt::ToolButtonFollowStyle);
+    ui->languagesStyleComboBox->setItemData(1, Qt::ToolButtonIconOnly);
+    ui->languagesStyleComboBox->setItemData(2, Qt::ToolButtonTextOnly);
+    ui->languagesStyleComboBox->setItemData(3, Qt::ToolButtonTextBesideIcon);
+    ui->languagesStyleComboBox->setItemData(4, Qt::ToolButtonTextUnderIcon);
+
+    ui->controlsStyleComboBox->setItemData(0, Qt::ToolButtonFollowStyle);
+    ui->controlsStyleComboBox->setItemData(1, Qt::ToolButtonIconOnly);
+    ui->controlsStyleComboBox->setItemData(2, Qt::ToolButtonTextOnly);
+    ui->controlsStyleComboBox->setItemData(3, Qt::ToolButtonTextBesideIcon);
+    ui->controlsStyleComboBox->setItemData(4, Qt::ToolButtonTextUnderIcon);
+
     ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
     ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
     foreach (auto language, languagesMenu->actions()) {
@@ -75,11 +87,15 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     QSettings settings;
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
-    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
-    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate").toString()));
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+
+    // Interface settings
+    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
+    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate").toString()));
+    ui->languagesStyleComboBox->setCurrentIndex(ui->languagesStyleComboBox->findData(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle).toInt()));
+    ui->controlsStyleComboBox->setCurrentIndex(ui->controlsStyleComboBox->findData(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle).toInt()));
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
@@ -203,10 +219,14 @@ void SettingsDialog::on_dialogBox_accepted()
 
     // Other general settings
     settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
-    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
-    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
+
+    // Interface settings
+    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
+    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
+    settings.setValue("LanguagesStyle", ui->languagesStyleComboBox->currentData());
+    settings.setValue("ControlsStyle", ui->controlsStyleComboBox->currentData());
 
     // Translation settings
     settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
@@ -250,11 +270,15 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     // General settings
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData("auto"));
     ui->windowModeComboBox->setCurrentIndex(0);
-    ui->popupOpacitySlider->setValue(80);
-    ui->trayIconComboBox->setCurrentIndex(0);
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
+
+    // Interface settings
+    ui->popupOpacitySlider->setValue(80);
+    ui->trayIconComboBox->setCurrentIndex(0);
+    ui->languagesStyleComboBox->setCurrentIndex(0);
+    ui->controlsStyleComboBox->setCurrentIndex(0);
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(true);

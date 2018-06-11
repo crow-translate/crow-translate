@@ -61,6 +61,15 @@
       </item>
       <item>
        <property name="text">
+        <string>Interface</string>
+       </property>
+       <property name="icon">
+        <iconset theme="preferences-desktop-theme">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Translation</string>
        </property>
        <property name="icon">
@@ -150,43 +159,6 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="popupOpacityLayout">
-             <item>
-              <widget class="QLabel" name="popupOpacityLabel">
-               <property name="text">
-                <string>Popup opacity:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="popupOpacitySlider">
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>80</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="popupOpacitySpinBox">
-               <property name="suffix">
-                <string notr="true">%</string>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="value">
-                <number>80</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
             <layout class="QHBoxLayout" name="languageHorizontalLayout">
              <item>
               <widget class="QLabel" name="languageLabel">
@@ -236,60 +208,6 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
-             <item>
-              <widget class="QLabel" name="trayIconLabel">
-               <property name="text">
-                <string>Tray icon:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="trayIconComboBox">
-               <item>
-                <property name="text">
-                 <string>Application icon</string>
-                </property>
-                <property name="icon">
-                 <iconset theme="crow-translate"/>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Monochrome (dark theme)</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/icons/app/dark-theme.png</normaloff>:/icons/app/dark-theme.png</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Monochrome (light theme)</string>
-                </property>
-                <property name="icon">
-                 <iconset>
-                  <normaloff>:/icons/app/white-theme.png</normaloff>:/icons/app/white-theme.png</iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="trayIconHorizontalSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
             <widget class="QCheckBox" name="trayCheckBox">
              <property name="text">
               <string>Show tray icon</string>
@@ -331,6 +249,239 @@
            <size>
             <width>20</width>
             <height>138</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="interfacePage">
+       <layout class="QVBoxLayout" name="verticalLayout_12">
+        <item>
+         <widget class="QGroupBox" name="generalInterfaceGroupBox">
+          <property name="title">
+           <string>General</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_13">
+           <item>
+            <layout class="QHBoxLayout" name="popupOpacityLayout">
+             <item>
+              <widget class="QLabel" name="popupOpacityLabel">
+               <property name="text">
+                <string>Popup opacity:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSlider" name="popupOpacitySlider">
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>80</number>
+               </property>
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QSpinBox" name="popupOpacitySpinBox">
+               <property name="suffix">
+                <string notr="true">%</string>
+               </property>
+               <property name="maximum">
+                <number>100</number>
+               </property>
+               <property name="value">
+                <number>80</number>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
+             <item>
+              <widget class="QLabel" name="trayIconLabel">
+               <property name="text">
+                <string>Tray icon:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="trayIconComboBox">
+               <item>
+                <property name="text">
+                 <string>Application icon</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="crow-translate">
+                  <normaloff>.</normaloff>.</iconset>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Monochrome (dark theme)</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/app/dark-theme.png</normaloff>:/icons/app/dark-theme.png</iconset>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Monochrome (light theme)</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/app/white-theme.png</normaloff>:/icons/app/white-theme.png</iconset>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="trayIconHorizontalSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="buttonsStyleGroupBox">
+          <property name="title">
+           <string>Buttons style</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <layout class="QHBoxLayout" name="languagesStyleLayout">
+             <item>
+              <widget class="QLabel" name="languagesStyleLabel">
+               <property name="text">
+                <string>Language buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="languagesStyleComboBox">
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="languagesStyleSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="controlsStyleLayout">
+             <item>
+              <widget class="QLabel" name="controlsStyleLabel">
+               <property name="text">
+                <string>Control buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="controlsStyleComboBox">
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="controlsStyleSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="interfaceSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>299</height>
            </size>
           </property>
          </spacer>
@@ -1083,7 +1234,9 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../data/resources.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>dialogBox</sender>

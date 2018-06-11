@@ -49,6 +49,9 @@
        <property name="popupMode">
         <enum>QToolButton::MenuButtonPopup</enum>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextOnly</enum>
+       </property>
       </widget>
      </item>
      <item>
@@ -231,6 +234,9 @@
        <property name="popupMode">
         <enum>QToolButton::MenuButtonPopup</enum>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextOnly</enum>
+       </property>
       </widget>
      </item>
     </layout>
@@ -256,9 +262,6 @@
         <iconset theme="media-playback-start">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
@@ -276,9 +279,6 @@
         <iconset theme="media-playback-stop">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
@@ -292,9 +292,6 @@
        <property name="icon">
         <iconset theme="edit-copy">
          <normaloff>.</normaloff>.</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
        </property>
       </widget>
      </item>
@@ -323,9 +320,6 @@
         <iconset theme="media-playback-start">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
@@ -343,9 +337,6 @@
         <iconset theme="media-playback-stop">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
@@ -360,9 +351,6 @@
         <iconset theme="document-export">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
@@ -376,9 +364,6 @@
        <property name="icon">
         <iconset theme="edit-copy">
          <normaloff>.</normaloff>.</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
        </property>
       </widget>
      </item>
