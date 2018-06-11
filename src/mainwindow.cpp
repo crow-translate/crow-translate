@@ -130,10 +130,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Setup timer for automatic translation
     autoTranslateTimer.setSingleShot(true);
-    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [=]() {
+    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [&]() {
         autoTranslateTimer.start(500);
     });
-    connect(&autoTranslateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
+    connect(&autoTranslateTimer, &QTimer::timeout, [&]() {
+        if (ui->translateButton->isEnabled())
+            on_translateButton_clicked();
+        else
+            autoTranslateTimer.start(500);
+    });
 
     // Add languageMenu to auto-language buttons
     languagesMenu->addActions(languagesList());
@@ -174,6 +179,8 @@ MainWindow::~MainWindow()
 void MainWindow::on_translateButton_clicked()
 {
     if (ui->sourceEdit->toPlainText() != "") {
+        ui->translateButton->setEnabled(false);
+
         QSettings settings;
         QString translatorlanguage = settings.value("Language", "auto").toString();
 
@@ -285,6 +292,7 @@ void MainWindow::on_translateButton_clicked()
 
         ui->translationEdit->moveCursor(QTextCursor::Start);
         emit translationTextChanged(ui->translationEdit->toHtml());
+        ui->translateButton->setEnabled(true);
     }
     else
         // Check if function called by pressing the button
@@ -570,8 +578,12 @@ void MainWindow::on_tray_activated(QSystemTrayIcon::ActivationReason reason) {
 
 void MainWindow::on_autoTranslateCheckBox_toggled(const bool &state)
 {
-    if (state)
-        on_translateButton_clicked();
+    if (state) {
+        if (ui->translateButton->isEnabled())
+            on_translateButton_clicked();
+        else
+            autoTranslateTimer.start(500);
+    }
 
     autoTranslateTimer.blockSignals(!state);
 
