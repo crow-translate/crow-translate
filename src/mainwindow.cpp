@@ -272,7 +272,6 @@ void MainWindow::on_translateButton_clicked()
                     if (!optionType.gender(i).isEmpty())
                         line.append("<i>" + optionType.gender(i) + "</i> ");
                     line.append("<b>" + optionType.word(i) + ":</b> ");
-                    qDebug() << line;
 
                     line.append(optionType.translations(i).at(0));
                     for (auto j = 1; j < optionType.translations(i).size(); j++) {
