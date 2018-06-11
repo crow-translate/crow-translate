@@ -30,7 +30,7 @@
 #include "mainwindow.h"
 
 PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
-    QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
+    QWidget(parent, Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new QButtonGroup(this)),
     translationButtonGroup (new QButtonGroup(this))
