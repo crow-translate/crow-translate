@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
+    <width>333</width>
     <height>294</height>
    </rect>
   </property>
@@ -14,7 +14,7 @@
    <string notr="true">Crow Translate</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../data/resources.qrc">
+   <iconset>
     <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -52,7 +52,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="firstSourceButton">
+      <widget class="QToolButton" name="firstSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -71,7 +71,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="secondSourceButton">
+      <widget class="QToolButton" name="secondSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -90,7 +90,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="thirdSourceButton">
+      <widget class="QToolButton" name="thirdSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -149,7 +149,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="firstTranslationButton">
+      <widget class="QToolButton" name="firstTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -168,7 +168,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="secondTranslationButton">
+      <widget class="QToolButton" name="secondTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -187,7 +187,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="thirdTranslationButton">
+      <widget class="QToolButton" name="thirdTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -386,8 +386,6 @@
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../data/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

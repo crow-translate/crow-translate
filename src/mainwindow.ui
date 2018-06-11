@@ -14,7 +14,8 @@
    <string notr="true">Crow Translate</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="crow-translate"/>
+   <iconset theme="crow-translate">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
@@ -58,7 +59,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="firstSourceButton">
+       <widget class="QToolButton" name="firstSourceButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -74,10 +75,13 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="secondSourceButton">
+       <widget class="QToolButton" name="secondSourceButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -93,10 +97,13 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="thirdSourceButton">
+       <widget class="QToolButton" name="thirdSourceButton">
         <property name="enabled">
          <bool>true</bool>
         </property>
@@ -114,6 +121,9 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -151,7 +161,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="firstTranslationButton">
+       <widget class="QToolButton" name="firstTranslationButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -170,10 +180,13 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="secondTranslationButton">
+       <widget class="QToolButton" name="secondTranslationButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -189,10 +202,13 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
-       <widget class="QPushButton" name="thirdTranslationButton">
+       <widget class="QToolButton" name="thirdTranslationButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
@@ -207,6 +223,9 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>

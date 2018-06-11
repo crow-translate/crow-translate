@@ -675,6 +675,7 @@ void MainWindow::loadLanguageButtons(QButtonGroup *group, const QString &setting
         // Check if the code is set
         if (languageCode != "") {
             group->button(i)->setToolTip(languageCode);
+            group->button(i)->setIcon(QIcon(":/icons/flags/" + languageCode + ".svg"));
             group->button(i)->setText(onlineTranslator->codeToLanguage(languageCode));
             group->button(i)->setVisible(true);
         }
@@ -706,6 +707,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, const QString &settingsName
         // Set values
         group->button(i)->setText(group->button(i-1)->text());
         group->button(i)->setToolTip(group->button(i-1)->toolTip());
+        group->button(i)->setIcon(group->button(i-1)->icon());
         group->button(i)->setVisible(true);
 
         // Send signal
@@ -724,6 +726,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, const QString &settingsName
     // Insert new language to first button
     group->button(1)->setText(onlineTranslator->codeToLanguage(languageCode));
     group->button(1)->setToolTip(languageCode);
+    group->button(1)->setIcon(QIcon(":/icons/flags/" + languageCode + ".svg"));
     group->button(1)->setVisible(true);
 
     if (group->button(1)->isChecked())
@@ -760,6 +763,7 @@ QList<QAction *> MainWindow::languagesList()
     for (auto i=1; i<onlineTranslator->languages().size(); i++) {
         QAction *action = new QAction(onlineTranslator->languages().at(i));
         action->setToolTip(onlineTranslator->codes().at(i));
+        action->setIcon(QIcon(":/icons/flags/" + action->toolTip() + ".svg"));
         languagesList.append(action);
     }
 

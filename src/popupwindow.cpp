@@ -79,6 +79,7 @@ void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
 {
     sourceButtonGroup->button(id)->setText(button->text());
     sourceButtonGroup->button(id)->setToolTip(button->toolTip());
+    sourceButtonGroup->button(id)->setIcon(button->icon());
     sourceButtonGroup->button(id)->setVisible(true);
 }
 
@@ -86,6 +87,7 @@ void PopupWindow::loadTranslationButton(QAbstractButton *button, const int &id)
 {
     translationButtonGroup->button(id)->setText(button->text());
     translationButtonGroup->button(id)->setToolTip(button->toolTip());
+    translationButtonGroup->button(id)->setIcon(button->icon());
     translationButtonGroup->button(id)->setVisible(true);
 }
 
@@ -186,6 +188,7 @@ void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup 
         if (copyingGroup->button(i)->text() != "") {
             existingGroup->button(i)->setText(copyingGroup->button(i)->text());
             existingGroup->button(i)->setToolTip(copyingGroup->button(i)->toolTip());
+            existingGroup->button(i)->setIcon(copyingGroup->button(i)->icon());
         }
         else
             existingGroup->button(i)->setVisible(false);
