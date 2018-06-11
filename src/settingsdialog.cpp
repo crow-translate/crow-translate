@@ -65,11 +65,11 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->controlsStyleComboBox->setItemData(3, Qt::ToolButtonTextBesideIcon);
     ui->controlsStyleComboBox->setItemData(4, Qt::ToolButtonTextUnderIcon);
 
-    ui->primaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
-    ui->secondaryLanguageComboBox->addItem(QCoreApplication::translate("QOnlineTranslator", "Automatically detect"), "auto");
+    ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
+    ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     foreach (auto language, languagesMenu->actions()) {
-        ui->primaryLanguageComboBox->addItem(language->text(), language->toolTip());
-        ui->secondaryLanguageComboBox->addItem(language->text(), language->toolTip());
+        ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->toolTip());
+        ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->toolTip());
     }
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected

@@ -177,17 +177,25 @@
               <widget class="QComboBox" name="languageComboBox">
                <item>
                 <property name="text">
-                 <string>System language</string>
+                 <string>&lt;System language&gt;</string>
                 </property>
                </item>
                <item>
                 <property name="text">
                  <string notr="true">English</string>
                 </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/flags/en.svg</normaloff>:/icons/flags/en.svg</iconset>
+                </property>
                </item>
                <item>
                 <property name="text">
                  <string notr="true">Русский</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/flags/ru.svg</normaloff>:/icons/flags/ru.svg</iconset>
                 </property>
                </item>
               </widget>
