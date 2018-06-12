@@ -41,6 +41,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     this->setAttribute(Qt::WA_DeleteOnClose);
 
     QSettings settings;
+    resize(settings.value("PopupSize", QSize(350, 300)).toSize());
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
     // Add languagesMenu to auto-language buttons

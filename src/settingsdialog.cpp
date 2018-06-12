@@ -76,9 +76,13 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
-    // Connect opacity slider and spinbox
+    // Connect sliders to their spin boxes
     connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
     connect(ui->popupOpacitySpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
+    connect(ui->popupWidthSlider, &QSlider::valueChanged, ui->popupWidthSpinBox, &QSpinBox::setValue);
+    connect(ui->popupWidthSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupWidthSlider, &QSlider::setValue);
+    connect(ui->popupHeightSlider, &QSlider::valueChanged, ui->popupHeightSpinBox, &QSpinBox::setValue);
+    connect(ui->popupHeightSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupHeightSlider, &QSlider::setValue);
 
     // Pages selection mechanism
     connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
@@ -92,10 +96,12 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
     // Interface settings
-    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
     ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate").toString()));
     ui->languagesStyleComboBox->setCurrentIndex(ui->languagesStyleComboBox->findData(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle).toInt()));
     ui->controlsStyleComboBox->setCurrentIndex(ui->controlsStyleComboBox->findData(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle).toInt()));
+    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
+    ui->popupHeightSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().height());
+    ui->popupWidthSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().width());
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
@@ -223,10 +229,11 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
     // Interface settings
-    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
     settings.setValue("LanguagesStyle", ui->languagesStyleComboBox->currentData());
     settings.setValue("ControlsStyle", ui->controlsStyleComboBox->currentData());
+    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
+    settings.setValue("PopupSize", QSize(ui->popupWidthSpinBox->value(), ui->popupHeightSpinBox->value()));
 
     // Translation settings
     settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
@@ -275,10 +282,12 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->autostartCheckBox->setChecked(false);
 
     // Interface settings
-    ui->popupOpacitySlider->setValue(80);
     ui->trayIconComboBox->setCurrentIndex(0);
     ui->languagesStyleComboBox->setCurrentIndex(0);
     ui->controlsStyleComboBox->setCurrentIndex(0);
+    ui->popupOpacitySlider->setValue(80);
+    ui->popupWidthSpinBox->setValue(350);
+    ui->popupHeightSpinBox->setValue(300);
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(true);
