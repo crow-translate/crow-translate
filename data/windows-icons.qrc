@@ -21,5 +21,6 @@
         <file>icons/Papirus/scalable/crow-translate.svg</file>
         <file>icons/Papirus/scalable/crow-translate-tray-dark.svg</file>
         <file>icons/Papirus/scalable/crow-translate-tray-light.svg</file>
+        <file>icons/Papirus/32x32/preferences-desktop-theme.svg</file>
     </qresource>
 </RCC>
