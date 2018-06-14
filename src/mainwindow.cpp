@@ -270,22 +270,46 @@ void MainWindow::on_translateButton_clicked()
         ui->translationEdit->append("");
 
         // Show translation options
-        if (settings.value("Translation/TranslationOptions", true).toBool()) {
-            foreach (auto optionType, onlineTranslator->translationOptionsList()) {
-                ui->translationEdit->append("<i>" + optionType.typeOfSpeech() + "</i>");
-                for (auto i = 0; i <  optionType.count(); i++) {
-                    QString line;
-                    line.append("&nbsp;&nbsp;&nbsp;&nbsp;");
-                    if (!optionType.gender(i).isEmpty())
-                        line.append("<i>" + optionType.gender(i) + "</i> ");
-                    line.append("<b>" + optionType.word(i) + ":</b> ");
+        if (!onlineTranslator->translationOptionsList().isEmpty() && settings.value("Translation/TranslationOptions", true).toBool()) {
+            ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator->source() + "</i> – " + tr("translation options:") + "</font>");
+            foreach (auto translationOptions, onlineTranslator->translationOptionsList()) {
+                ui->translationEdit->append("<b>" + translationOptions.typeOfSpeech() + "</b>");
+                QTextBlockFormat indent;
+                indent.setTextIndent(20);
+                ui->translationEdit->textCursor().setBlockFormat(indent);
+                for (auto i = 0; i <  translationOptions.count(); i++) {
+                    QString wordLine;
+                    if (!translationOptions.gender(i).isEmpty())
+                        wordLine.append("<i>" + translationOptions.gender(i) + "</i> ");
+                    wordLine.append(translationOptions.word(i) + ": ");
 
-                    line.append(optionType.translations(i).at(0));
-                    for (auto j = 1; j < optionType.translations(i).size(); j++) {
-                        line.append(", " + optionType.translations(i).at(j));
+                    wordLine.append("<font color=\"grey\"><i>");
+                    wordLine.append(translationOptions.translations(i).at(0));
+                    for (auto j = 1; j < translationOptions.translations(i).size(); j++) {
+                        wordLine.append(", " + translationOptions.translations(i).at(j));
                     }
-                    ui->translationEdit->append(line);
+                    wordLine.append("</i></font>");
+                    ui->translationEdit->append(wordLine);
                 }
+                indent.setTextIndent(0);
+                ui->translationEdit->textCursor().setBlockFormat(indent);
+                ui->translationEdit->append("");
+            }
+        }
+
+
+        // Show definitions
+        if (!onlineTranslator->definitionsList().isEmpty() && settings.value("Translation/Definitions", true).toBool()) {
+            ui->translationEdit->append("<big>" + onlineTranslator->source() + " – " + tr("definitions:") + "</big>");
+            foreach (auto definition, onlineTranslator->definitionsList()) {
+                ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
+                QTextBlockFormat indent;
+                indent.setTextIndent(20);
+                ui->translationEdit->textCursor().setBlockFormat(indent);
+                ui->translationEdit->append(definition.description());
+                ui->translationEdit->append("<font color=\"grey\"><i>" + definition.example()+ "</i></font>");
+                indent.setTextIndent(0);
+                ui->translationEdit->textCursor().setBlockFormat(indent);
                 ui->translationEdit->append("");
             }
         }

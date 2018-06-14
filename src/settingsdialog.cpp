@@ -107,6 +107,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
     ui->translationTransliterationCheckBox->setChecked(settings.value("Translation/ShowTranslationTransliteration", true).toBool());
     ui->translationOptionsCheckBox->setChecked(settings.value("Translation/TranslationOptions", true).toBool());
+    ui->definitionsCheckBox->setChecked(settings.value("Translation/Definitions", true).toBool());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("Translation/PrimaryLanguage", "auto").toString()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
 
@@ -239,6 +240,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
     settings.setValue("Translation/ShowTranslationTransliteration", ui->translationTransliterationCheckBox->isChecked());
     settings.setValue("Translation/TranslationOptions", ui->translationOptionsCheckBox->isChecked());
+    settings.setValue("Translation/Definitions", ui->definitionsCheckBox->isChecked());
     settings.setValue("Translation/PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
     settings.setValue("Translation/SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
 
@@ -293,6 +295,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->sourceTransliterationCheckBox->setChecked(true);
     ui->translationTransliterationCheckBox->setChecked(true);
     ui->translationOptionsCheckBox->setChecked(true);
+    ui->definitionsCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(0);
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
 

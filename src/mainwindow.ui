@@ -445,6 +445,9 @@
     </item>
     <item row="5" column="4">
      <widget class="QTextEdit" name="translationEdit">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
       <property name="readOnly">
        <bool>true</bool>
       </property>

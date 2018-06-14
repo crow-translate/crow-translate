@@ -62,7 +62,6 @@ int main(int argc, char *argv[])
         parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
         parser.process(app);
 
-
         QTextStream out(stdout);
         QMediaPlayer player;
         QMediaPlaylist playlist;
@@ -130,21 +129,34 @@ int main(int argc, char *argv[])
                 }
 
                 // Show translation options
-                foreach (auto optionType, onlineTranslator.translationOptionsList()) {
-                    out << optionType.typeOfSpeech() << ":" << endl;
-                    for (auto i = 0; i <  optionType.count(); i++) {
-                        out << "\t";
-                        if (!optionType.gender(i).isEmpty())
-                            out << optionType.gender(i) << " ";
-                        out << optionType.word(i) << ": ";
+                if (!onlineTranslator.translationOptionsList().isEmpty()) {
+                    out << onlineTranslator.source() << " - translation options:" << endl;
+                    foreach (auto optionType, onlineTranslator.translationOptionsList()) {
+                        out << optionType.typeOfSpeech() << endl;
+                        for (auto i = 0; i <  optionType.count(); i++) {
+                            out << "\t";
+                            if (!optionType.gender(i).isEmpty())
+                                out << optionType.gender(i) << " ";
+                            out << optionType.word(i) << ": ";
 
-                        out << optionType.translations(i).at(0);
-                        for (auto j = 1; j < optionType.translations(i).size(); j++) {
-                            out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
+                            out << optionType.translations(i).at(0);
+                            for (auto j = 1; j < optionType.translations(i).size(); j++) {
+                                out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
+                            }
+                            out << endl;
                         }
                         out << endl;
                     }
-                    out << endl;
+                }
+
+                // Show definitions
+                if (!onlineTranslator.definitionsList().isEmpty()) {
+                    out << onlineTranslator.source() << " - definitions:" << endl;
+                    foreach (auto definition, onlineTranslator.definitionsList()) {
+                        out << definition.typeOfSpeech() << endl;
+                        out << "\t" << definition.description() << endl;
+                        out << "\t" << definition.example() << endl;
+                    }
                 }
 
                 if (parser.isSet("q") && i == 0) {

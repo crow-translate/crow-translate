@@ -579,18 +579,12 @@
              <property name="text">
               <string>Show source transliteration</string>
              </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="translationTransliterationCheckBox">
              <property name="text">
               <string>Show translation transliteration</string>
-             </property>
-             <property name="checked">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -599,8 +593,12 @@
              <property name="text">
               <string>Show translation options</string>
              </property>
-             <property name="checked">
-              <bool>true</bool>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="definitionsCheckBox">
+             <property name="text">
+              <string>Show definitions</string>
              </property>
             </widget>
            </item>
