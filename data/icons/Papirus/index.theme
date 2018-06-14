@@ -1,9 +1,15 @@
 [Icon Theme]
 Name=Papirus
-Directories=16x16,32x32
+Directories=16x16,32x32,scalable
 
 [16x16]
 Size=16
 
 [32x32]
 Size=32
+
+[scalable]
+MinSize=1
+Size=128
+MaxSize=256
+Type=Scalable

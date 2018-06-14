@@ -35,14 +35,12 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->setupUi(this);
     ui->shortcutsTreeWidget->expandAll();
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
 
     // Set item data in comboboxes
-    ui->trayIconComboBox->setItemData(0, "crow-translate");
-    ui->trayIconComboBox->setItemData(1, ":/icons/app/dark-theme.png");
-    ui->trayIconComboBox->setItemData(2, ":/icons/app/white-theme.png");
-#if defined(Q_OS_LINUX)
-    ui->trayIconComboBox->insertItem(0, QIcon::fromTheme("crow-translate-tray"), tr("From system theme"), "crow-translate-tray");
-#endif
+    ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
+    ui->trayIconComboBox->setItemData(1, "crow-translate-tray-light");
+    ui->trayIconComboBox->setItemData(2, "crow-translate-tray-dark");
 
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
@@ -96,7 +94,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
 
     // Interface settings
-    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate").toString()));
+    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
     ui->languagesStyleComboBox->setCurrentIndex(ui->languagesStyleComboBox->findData(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle).toInt()));
     ui->controlsStyleComboBox->setCurrentIndex(ui->controlsStyleComboBox->findData(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle).toInt()));
     ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);

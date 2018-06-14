@@ -1,8 +1,6 @@
 <RCC>
     <qresource prefix="/">
         <file>translations/crow_ru.qm</file>
-        <file>icons/app/dark-theme.png</file>
-        <file>icons/app/white-theme.png</file>
         <file>icons/flags/st.svg</file>
         <file>icons/flags/su.svg</file>
         <file>icons/flags/sv.svg</file>

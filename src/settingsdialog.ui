@@ -506,7 +506,7 @@
               <widget class="QComboBox" name="trayIconComboBox">
                <item>
                 <property name="text">
-                 <string>Application icon</string>
+                 <string>Default</string>
                 </property>
                 <property name="icon">
                  <iconset theme="crow-translate">
@@ -518,8 +518,7 @@
                  <string>Monochrome (dark theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/dark-theme.png</normaloff>:/icons/app/dark-theme.png</iconset>
+                 <iconset theme="crow-translate-tray-light"/>
                 </property>
                </item>
                <item>
@@ -527,8 +526,7 @@
                  <string>Monochrome (light theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/app/white-theme.png</normaloff>:/icons/app/white-theme.png</iconset>
+                 <iconset theme="crow-translate-tray-dark"/>
                 </property>
                </item>
               </widget>
@@ -1137,9 +1135,6 @@
             </property>
             <property name="text">
              <string/>
-            </property>
-            <property name="pixmap">
-             <pixmap>:/icons/app/classic.png</pixmap>
             </property>
             <property name="scaledContents">
              <bool>true</bool>
