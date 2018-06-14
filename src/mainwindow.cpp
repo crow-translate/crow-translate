@@ -126,7 +126,7 @@ MainWindow::MainWindow(QWidget *parent) :
         }
     });
 
-    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::on_stopSourceButton_clicked);
+    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, &sourcePlayer, &QMediaPlayer::stop);
 
     // Setup timer for automatic translation
     autoTranslateTimer.setSingleShot(true);
@@ -259,7 +259,7 @@ void MainWindow::on_translateButton_clicked()
         }
 
         // Reset the playback of the text
-        on_stopTranslationButton_clicked();
+        translationPlayer.stop();
 
         // Show translation and transcription
         ui->translationEdit->setHtml(onlineTranslator->translation().toHtmlEscaped().replace("\n", "<br>"));
@@ -524,8 +524,8 @@ void MainWindow::on_translateSelectedHotkey_activated()
         connect(sourceButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkSourceButton);
         connect(translationButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkTranslationButton);
 
-        connect(popup, &PopupWindow::destroyed, this, &MainWindow::on_stopSourceButton_clicked);
-        connect(popup, &PopupWindow::destroyed, this, &MainWindow::on_stopTranslationButton_clicked);
+        connect(popup, &PopupWindow::destroyed, &sourcePlayer, &QMediaPlayer::stop);
+        connect(popup, &PopupWindow::destroyed, &translationPlayer, &QMediaPlayer::stop);
 
         connect(popup->sourceButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkSourceButton);
         connect(popup->translationButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkTranslationButton);
@@ -535,10 +535,10 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
         connect(popup->swapButton(), &QToolButton::clicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup->playSourceButton(), &QToolButton::clicked, this, &MainWindow::on_playSourceButton_clicked);
-        connect(popup->stopSourceButton(), &QToolButton::clicked, this, &MainWindow::on_stopSourceButton_clicked);
+        connect(popup->stopSourceButton(), &QToolButton::clicked, &sourcePlayer, &QMediaPlayer::stop);
         connect(popup->copySourceButton(), &QToolButton::clicked, this, &MainWindow::on_copySourceButton_clicked);
         connect(popup->playTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_playTranslationButton_clicked);
-        connect(popup->stopTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_stopTranslationButton_clicked);
+        connect(popup->stopTranslationButton(), &QToolButton::clicked, &translationPlayer, &QMediaPlayer::stop);
         connect(popup->copyTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyTranslationButton_clicked);
         connect(popup->copyAllTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyAllTranslationButton_clicked);
 
