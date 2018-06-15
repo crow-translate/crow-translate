@@ -582,9 +582,14 @@ void MainWindow::on_translateSelectedHotkey_activated()
 
 void MainWindow::on_playSelectedHotkey_activated()
 {
-    sourcePlaylist.clear();
-    sourcePlaylist.addMedia(QOnlineTranslator::media(selectedText()));
-    sourcePlayer.play();
+    QString selection = selectedText();
+    if (selection != "") {
+        sourcePlaylist.clear();
+        sourcePlaylist.addMedia(QOnlineTranslator::media(selectedText()));
+        sourcePlayer.play();
+    }
+    else
+        qDebug() << tr("The selection does not contain text");
 }
 
 void MainWindow::on_stopSelectedHotkey_activated()

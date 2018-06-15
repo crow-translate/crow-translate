@@ -9,9 +9,9 @@
         <location filename="../../src/mainwindow.cpp" line="243"/>
         <location filename="../../src/mainwindow.cpp" line="250"/>
         <location filename="../../src/mainwindow.cpp" line="257"/>
-        <location filename="../../src/mainwindow.cpp" line="651"/>
-        <location filename="../../src/mainwindow.cpp" line="653"/>
-        <location filename="../../src/mainwindow.cpp" line="674"/>
+        <location filename="../../src/mainwindow.cpp" line="656"/>
+        <location filename="../../src/mainwindow.cpp" line="658"/>
+        <location filename="../../src/mainwindow.cpp" line="679"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
@@ -92,7 +92,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="402"/>
         <location filename="../../src/mainwindow.cpp" line="162"/>
-        <location filename="../../src/mainwindow.cpp" line="644"/>
+        <location filename="../../src/mainwindow.cpp" line="649"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -104,13 +104,13 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="161"/>
-        <location filename="../../src/mainwindow.cpp" line="643"/>
+        <location filename="../../src/mainwindow.cpp" line="648"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="163"/>
-        <location filename="../../src/mainwindow.cpp" line="645"/>
+        <location filename="../../src/mainwindow.cpp" line="650"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -133,6 +133,11 @@
         <location filename="../../src/mainwindow.cpp" line="449"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="592"/>
+        <source>The selection does not contain text</source>
+        <translation>Выделение не содержит текста</translation>
     </message>
 </context>
 <context>
