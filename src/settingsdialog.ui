@@ -934,7 +934,8 @@
              <string>Stop playing selected text</string>
             </property>
             <property name="icon">
-             <iconset theme="media-playback-stop"/>
+             <iconset theme="media-playback-stop">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
            <item>
@@ -1134,7 +1135,7 @@
       <widget class="QWidget" name="aboutWidget">
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout">
+         <layout class="QHBoxLayout" name="aboutLayout">
           <item>
            <widget class="QLabel" name="logoLabel">
             <property name="maximumSize">
@@ -1160,7 +1161,14 @@
              <string notr="true">Crow Translate</string>
             </property>
             <layout class="QGridLayout" name="aboutBoxLayout">
-             <item row="6" column="1">
+             <item row="0" column="0">
+              <widget class="QLabel" name="versionTitleLabel">
+               <property name="text">
+                <string>Version:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
               <widget class="QLabel" name="mailLabel">
                <property name="text">
                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;genaloner@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1173,21 +1181,14 @@
                </property>
               </widget>
              </item>
-             <item row="6" column="0">
+             <item row="8" column="0">
               <widget class="QLabel" name="mailTitleLabel">
                <property name="text">
                 <string notr="true">E-mail:</string>
                </property>
               </widget>
              </item>
-             <item row="4" column="1">
-              <widget class="QLabel" name="autorLabel">
-               <property name="text">
-                <string notr="true">Shatur95</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
+             <item row="10" column="1">
               <widget class="QLabel" name="telegramLabel">
                <property name="text">
                 <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;@Shatur&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1200,14 +1201,7 @@
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="versionTitleLabel">
-               <property name="text">
-                <string>Version:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
+             <item row="10" column="0">
               <widget class="QLabel" name="telegramTitleLabel">
                <property name="text">
                 <string notr="true">Telegram:</string>
@@ -1249,28 +1243,61 @@
                </property>
               </widget>
              </item>
-             <item row="4" column="0">
+             <item row="11" column="0">
+              <widget class="QLabel" name="flagIconsTitleLabel">
+               <property name="text">
+                <string>Flag icons:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="11" column="1">
+              <widget class="QLabel" name="flagIconsLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;FlagKit&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="1">
+              <widget class="QLabel" name="autorLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Shatur95&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
+             <item row="6" column="0">
               <widget class="QLabel" name="autorTitleLabel">
                <property name="text">
                 <string>Autor:</string>
                </property>
               </widget>
              </item>
-             <item row="6" column="2">
-              <spacer name="mailSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>0</width>
-                 <height>0</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
             </layout>
            </widget>
+          </item>
+          <item>
+           <spacer name="aboutBoxSpacer">
+            <property name="orientation">
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+           </spacer>
           </item>
          </layout>
         </item>

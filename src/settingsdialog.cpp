@@ -37,6 +37,15 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
 
+#if defined(Q_OS_WIN)
+    QLabel *papirusTitleLabel = new QLabel(tr("Interface icons:"));
+    QLabel *papirusLabel = new QLabel("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
+    papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    papirusLabel->setOpenExternalLinks(true);
+    ui->aboutBox->layout()->addWidget(papirusTitleLabel);
+    ui->aboutBox->layout()->addWidget(papirusLabel);
+#endif
+
     // Set item data in comboboxes
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
     ui->trayIconComboBox->setItemData(1, "crow-translate-tray-light");
