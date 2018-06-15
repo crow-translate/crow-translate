@@ -518,7 +518,8 @@
                  <string>Monochrome (dark theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate-tray-light"/>
+                 <iconset theme="crow-translate-tray-light">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
                <item>
@@ -526,7 +527,8 @@
                  <string>Monochrome (light theme)</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate-tray-dark"/>
+                 <iconset theme="crow-translate-tray-dark">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
               </widget>
@@ -920,11 +922,19 @@
            </item>
            <item>
             <property name="text">
-             <string>Speak selected text</string>
+             <string>Play selected text</string>
             </property>
             <property name="icon">
              <iconset theme="media-playback-start">
               <normaloff>.</normaloff>.</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Stop playing selected text</string>
+            </property>
+            <property name="icon">
+             <iconset theme="media-playback-stop"/>
             </property>
            </item>
            <item>

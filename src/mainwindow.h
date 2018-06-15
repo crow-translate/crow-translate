@@ -77,7 +77,8 @@ private slots:
     void on_translationButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
 
     void on_translateSelectedHotkey_activated();
-    void on_saySelectedHotkey_activated();
+    void on_playSelectedHotkey_activated();
+    void on_stopSelectedHotkey_activated();
     void on_showMainWindowHotkey_activated();
 
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
@@ -118,7 +119,8 @@ private:
 
     // Global shortcuts
     QHotkey *translateSelectedHotkey;
-    QHotkey *saySelectedHotkey;
+    QHotkey *playSelectedHotkey;
+    QHotkey *stopSelectedHotkey;
     QHotkey *showMainWindowHotkey;
 
     // Language button groups

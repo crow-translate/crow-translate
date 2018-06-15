@@ -41,7 +41,8 @@ MainWindow::MainWindow(QWidget *parent) :
     trayIcon (new QSystemTrayIcon(this)),
     closeWindowsShortcut (new QShortcut(this)),
     translateSelectedHotkey (new QHotkey(this)),
-    saySelectedHotkey (new QHotkey(this)),
+    playSelectedHotkey (new QHotkey(this)),
+    stopSelectedHotkey (new QHotkey(this)),
     showMainWindowHotkey (new QHotkey(this)),
     sourceButtonGroup (new QButtonGroup(this)),
     translationButtonGroup (new QButtonGroup(this))
@@ -49,7 +50,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // Set object names for signals autoconnection
     trayIcon->setObjectName("tray");
     translateSelectedHotkey->setObjectName("translateSelectedHotkey");
-    saySelectedHotkey->setObjectName("saySelectedHotkey");
+    playSelectedHotkey->setObjectName("playSelectedHotkey");
+    stopSelectedHotkey->setObjectName("stopSelectedHotkey");
     showMainWindowHotkey->setObjectName("showMainWindowHotkey");
     sourceButtonGroup->setObjectName("sourceButtonGroup");
     translationButtonGroup->setObjectName("translationButtonGroup");
@@ -578,11 +580,16 @@ void MainWindow::on_translateSelectedHotkey_activated()
     }
 }
 
-void MainWindow::on_saySelectedHotkey_activated()
+void MainWindow::on_playSelectedHotkey_activated()
 {
     sourcePlaylist.clear();
     sourcePlaylist.addMedia(QOnlineTranslator::media(selectedText()));
     sourcePlayer.play();
+}
+
+void MainWindow::on_stopSelectedHotkey_activated()
+{
+    sourcePlayer.stop();
 }
 
 void MainWindow::on_showMainWindowHotkey_activated()
@@ -703,13 +710,14 @@ void MainWindow::loadSettings()
 
     // Load shortcuts
     translateSelectedHotkey->setShortcut(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString(), true);
-    saySelectedHotkey->setShortcut(settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString(), true);
+    playSelectedHotkey->setShortcut(settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString(), true);
+    stopSelectedHotkey->setShortcut(settings.value("Hotkeys/StopSelected", "Ctrl+Alt+G").toString(), true);
     showMainWindowHotkey->setShortcut(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString(), true);
     ui->translateButton->setShortcut(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
     ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
-    ui->stopSourceButton->setShortcut(settings.value("Hotkeys/StopSource", "Ctrl+D").toString());
+    ui->stopSourceButton->setShortcut(settings.value("Hotkeys/StopSource", "Ctrl+G").toString());
     ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
-    ui->stopTranslationButton->setShortcut(settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+D").toString());
+    ui->stopTranslationButton->setShortcut(settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+G").toString());
     ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
     closeWindowsShortcut->setKey(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
 }
