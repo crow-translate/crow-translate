@@ -100,7 +100,13 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
-    ui->autostartCheckBox->setChecked(settings.value("Autostart", false).toBool());
+
+#if defined(Q_OS_LINUX)
+    ui->autostartCheckBox->setChecked(QFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop").exists());
+#elif defined(Q_OS_WIN)
+    QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    ui->autostartCheckBox->setChecked(autostartSettings.contains("Crow Translate"));
+#endif
 
     // Interface settings
     ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
@@ -187,51 +193,42 @@ void SettingsDialog::on_dialogBox_accepted()
     }
 
     // Check if autostart options changed
-    if (settings.value("Autostart", false).toBool() != ui->autostartCheckBox->isChecked()) {
-        settings.setValue("Autostart", ui->autostartCheckBox->isChecked());
 #if defined(Q_OS_LINUX)
-        QString autostartPath = QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + QString("/autostart");
-        QDir autorunDir(autostartPath);
-        if(!autorunDir.exists()) autorunDir.mkpath(autostartPath); // Create autostart folder if it does not exist
-        QFile autorunFile(autostartPath + QString("/crow-translate.desktop"));
-        if(ui->autostartCheckBox->isChecked()) {
-            // Create autorun file if checked
-            if(!autorunFile.exists()){
-                if(autorunFile.open(QFile::WriteOnly)){
-                    QString autorunContent("[Desktop Entry]\n"
-                                           "Type=Application\n"
-                                           "Exec=" + QCoreApplication::applicationFilePath() + "\n"
-                                           "Hidden=false\n"
-                                           "NoDisplay=false\n"
-                                           "Icon=crow-translate\n"
-                                           "Name=Crow Translate\n"
-                                           "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more\n"
-                                           "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
-                    QTextStream outStream(&autorunFile);
-                    outStream << autorunContent;
+    QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
+    if(ui->autostartCheckBox->isChecked()) {
+        // Create autorun file if checked
+        if(!autorunFile.exists()) {
+            if(autorunFile.open(QFile::WriteOnly)){
+                QString autorunContent("[Desktop Entry]\n"
+                                       "Type=Application\n"
+                                       "Exec=crow\n"
+                                       "Hidden=false\n"
+                                       "NoDisplay=false\n"
+                                       "Icon=crow-translate\n"
+                                       "Name=Crow Translate\n"
+                                       "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more\n"
+                                       "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
+                QTextStream outStream(&autorunFile);
+                outStream << autorunContent;
 
-                    // Set permissions
-                    autorunFile.setPermissions(QFileDevice::ExeUser|QFileDevice::ExeOwner|QFileDevice::ExeOther|QFileDevice::ExeGroup|
-                                               QFileDevice::WriteUser|QFileDevice::ReadUser);
-                    autorunFile.close();
-                }
+                // Set permissions
+                autorunFile.setPermissions(QFileDevice::ExeUser|QFileDevice::ExeOwner|QFileDevice::ExeOther|QFileDevice::ExeGroup|
+                                           QFileDevice::WriteUser|QFileDevice::ReadUser);
+                autorunFile.close();
             }
         }
-        // Remove autorun file if box unchecked
-        else
-            if(autorunFile.exists())
-                autorunFile.remove();
-#elif defined(Q_OS_WIN)
-        if (ui->autostartCheckBox->isChecked()) {
-            QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-            settings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
-        }
-        else {
-            QSettings settings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-            settings.remove("Crow Translate");
-        }
-#endif
     }
+    // Remove autorun file if box unchecked
+    else
+        if(autorunFile.exists())
+            autorunFile.remove();
+#elif defined(Q_OS_WIN)
+    QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
+    if (ui->autostartCheckBox->isChecked())
+        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+    else
+        autostartSettings.remove("Crow Translate");
+#endif
 
     // Other general settings
     settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
@@ -310,15 +307,15 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
 
     // Connection settings
-     ui->proxyTypeComboBox->setCurrentIndex(0);
-     ui->proxyHostEdit->setText("");
-     ui->proxyPortSpinbox->setValue(8080);
-     ui->proxyAuthCheckBox->setChecked(false);
-     ui->proxyUsernameEdit->setText("");
-     ui->proxyPasswordEdit->setText("");
+    ui->proxyTypeComboBox->setCurrentIndex(0);
+    ui->proxyHostEdit->setText("");
+    ui->proxyPortSpinbox->setValue(8080);
+    ui->proxyAuthCheckBox->setChecked(false);
+    ui->proxyUsernameEdit->setText("");
+    ui->proxyPasswordEdit->setText("");
 
-     // Shortcuts
-     on_resetAllShortcutsButton_clicked();
+    // Shortcuts
+    on_resetAllShortcutsButton_clicked();
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
