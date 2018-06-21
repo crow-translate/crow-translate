@@ -16,19 +16,14 @@
         <translation>Авто</translation>
     </message>
     <message>
+        <location filename="../../src/mainwindow.ui" line="252"/>
+        <source>Play / pause source text</source>
+        <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
+    </message>
+    <message>
         <location filename="../../src/mainwindow.ui" line="399"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="385"/>
-        <source>Copy the translation text to the clipboard</source>
-        <translation>Скопировать перевод в буфер обмена</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="252"/>
-        <source>Play / pause the source text</source>
-        <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="255"/>
@@ -48,6 +43,11 @@
         <translation>Остановить</translation>
     </message>
     <message>
+        <location filename="../../src/mainwindow.ui" line="283"/>
+        <source>Copy source text to the clipboard</source>
+        <translation>Скопировать исходный текст в буфер обмена</translation>
+    </message>
+    <message>
         <location filename="../../src/mainwindow.ui" line="340"/>
         <source>Copy translation to the source field</source>
         <translation>Скопировать перевод в поле исходного текста</translation>
@@ -56,11 +56,6 @@
         <location filename="../../src/mainwindow.ui" line="343"/>
         <source>Copy to source</source>
         <translation>Скопировать в исходник</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="354"/>
-        <source>Play / pause the translation</source>
-        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="371"/>
@@ -79,11 +74,6 @@
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="283"/>
-        <source>Copy the source text to the clipboard</source>
-        <translation>Скопировать исходный текст в буфер обмена</translation>
-    </message>
-    <message>
         <location filename="../../src/mainwindow.ui" line="286"/>
         <location filename="../../src/mainwindow.ui" line="388"/>
         <source>Copy</source>
@@ -93,6 +83,16 @@
         <location filename="../../src/mainwindow.ui" line="310"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="354"/>
+        <source>Play / pause translation</source>
+        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="385"/>
+        <source>Copy translation to the clipboard</source>
+        <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="402"/>
@@ -166,7 +166,7 @@
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="256"/>
-        <source>Play / pause the source text</source>
+        <source>Play / pause source text</source>
         <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
     </message>
     <message>
@@ -188,19 +188,24 @@
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="287"/>
-        <source>Copy the source text to the clipboard</source>
+        <source>Copy source text to the clipboard</source>
         <translation>Скопировать исходный текст в буфер обмена</translation>
+    </message>
+    <message>
+        <location filename="../../src/popupwindow.ui" line="314"/>
+        <source>Play / pause translation</source>
+        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/popupwindow.ui" line="359"/>
+        <source>Copy translation to the clipboard</source>
+        <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="290"/>
         <location filename="../../src/popupwindow.ui" line="362"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
-    </message>
-    <message>
-        <location filename="../../src/popupwindow.ui" line="314"/>
-        <source>Play / pause the translation</source>
-        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="331"/>
@@ -211,11 +216,6 @@
         <location filename="../../src/popupwindow.ui" line="345"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
-    </message>
-    <message>
-        <location filename="../../src/popupwindow.ui" line="359"/>
-        <source>Copy the translation to the clipboard</source>
-        <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="348"/>

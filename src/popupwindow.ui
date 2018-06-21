@@ -253,7 +253,7 @@
      <item>
       <widget class="QToolButton" name="playSourceButton">
        <property name="toolTip">
-        <string>Play / pause the source text</string>
+        <string>Play / pause source text</string>
        </property>
        <property name="text">
         <string>Play</string>
@@ -284,7 +284,7 @@
      <item>
       <widget class="QToolButton" name="copySourceButton">
        <property name="toolTip">
-        <string>Copy the source text to the clipboard</string>
+        <string>Copy source text to the clipboard</string>
        </property>
        <property name="text">
         <string>Copy</string>
@@ -311,7 +311,7 @@
      <item>
       <widget class="QToolButton" name="playTranslationButton">
        <property name="toolTip">
-        <string>Play / pause the translation</string>
+        <string>Play / pause translation</string>
        </property>
        <property name="text">
         <string>Play</string>
@@ -356,7 +356,7 @@
      <item>
       <widget class="QToolButton" name="copyTranslationButton">
        <property name="toolTip">
-        <string>Copy the translation to the clipboard</string>
+        <string>Copy translation to the clipboard</string>
        </property>
        <property name="text">
         <string>Copy</string>
