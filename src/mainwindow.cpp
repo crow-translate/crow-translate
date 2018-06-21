@@ -355,6 +355,12 @@ void MainWindow::on_settingsButton_clicked()
     }
 }
 
+void MainWindow::on_copyToSourceButton_clicked()
+{
+    ui->sourceEdit->setPlainText(onlineTranslator->translation());
+    ui->sourceEdit->moveCursor(QTextCursor::End);
+}
+
 void MainWindow::on_playSourceButton_clicked()
 {
     if (ui->sourceEdit->toPlainText() != "") {

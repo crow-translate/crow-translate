@@ -58,6 +58,7 @@ private slots:
     void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
+    void on_copyToSourceButton_clicked();
 
     void on_playSourceButton_clicked();
     void on_playTranslationButton_clicked();

@@ -335,6 +335,20 @@
        </spacer>
       </item>
       <item>
+       <widget class="QToolButton" name="copyToSourceButton">
+        <property name="toolTip">
+         <string>Copy translation to the source field</string>
+        </property>
+        <property name="text">
+         <string>Copy to source</string>
+        </property>
+        <property name="icon">
+         <iconset theme="go-previous">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="playTranslationButton">
         <property name="toolTip">
          <string>Play / pause the translation</string>
