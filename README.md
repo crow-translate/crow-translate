@@ -45,17 +45,20 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 |  Key                                            | Description             |
 |-------------------------------------------------|-------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Speak selected text     |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Say selected text       |
 
 ### In main window
 
 |  Key                                              | Description               |
 |---------------------------------------------------|---------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Say input text            |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Say translated text       |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text  |
+| <kbd>Ctrl</kbd> + <kbd>G</kbd>                    | Stop source text playback |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Play / pause translation  |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Stop translation playback |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copy to clipboard         |
 
 ## CLI commands
 
