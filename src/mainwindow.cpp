@@ -234,6 +234,7 @@ void MainWindow::on_translateButton_clicked()
             // Check for network error
             if (onlineTranslator->error()) {
                 ui->translationEdit->setHtml(onlineTranslator->translation());
+                emit translationTextChanged(onlineTranslator->translation());
                 return;
             }
         }
