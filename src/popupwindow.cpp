@@ -21,6 +21,7 @@
 #include "popupwindow.h"
 
 #include <QBitmap>
+#include <QScreen>
 #include <QDesktopWidget>
 #include <QClipboard>
 #include <QSettings>
@@ -29,7 +30,7 @@
 #include "mainwindow.h"
 
 PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
-    QWidget(parent, Qt::FramelessWindowHint | Qt::Popup),
+    QWidget(parent, Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new QButtonGroup(this)),
     translationButtonGroup (new QButtonGroup(this))
@@ -40,28 +41,46 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     this->setAttribute(Qt::WA_DeleteOnClose);
 
     QSettings settings;
+    resize(settings.value("PopupSize", QSize(350, 300)).toSize());
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
     // Add languagesMenu to auto-language buttons
-    ui->sourceAutoButton->setMenu(languagesMenu);
-    ui->translationAutoButton->setMenu(languagesMenu);
+    ui->autoSourceButton->setMenu(languagesMenu);
+    ui->autoTranslationButton->setMenu(languagesMenu);
 
     // Add all language buttons to button groups
-    sourceButtonGroup->addButton(ui->sourceAutoButton, 0);
-    sourceButtonGroup->addButton(ui->sourceFirstButton, 1);
-    sourceButtonGroup->addButton(ui->sourceSecondButton, 2);
-    sourceButtonGroup->addButton(ui->sourceThirdButton, 3);
-    translationButtonGroup->addButton(ui->translationAutoButton, 0);
-    translationButtonGroup->addButton(ui->translationFirstButton, 1);
-    translationButtonGroup->addButton(ui->translationSecondButton, 2);
-    translationButtonGroup->addButton(ui->translationThirdButton, 3);
+    sourceButtonGroup->addButton(ui->autoSourceButton, 0);
+    sourceButtonGroup->addButton(ui->firstSourceButton, 1);
+    sourceButtonGroup->addButton(ui->secondSourceButton, 2);
+    sourceButtonGroup->addButton(ui->thirdSourceButton, 3);
+    translationButtonGroup->addButton(ui->autoTranslationButton, 0);
+    translationButtonGroup->addButton(ui->firstTranslationButton, 1);
+    translationButtonGroup->addButton(ui->secondTranslationButton, 2);
+    translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
+
+    // Load language buttons style
+    ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+    ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+    ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+    ui->firstTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+    ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+    ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
+
+    // Load control buttons style
+    ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->playTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->stopTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
+    ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
 
     copyLanguageButtons(sourceButtonGroup, sourceGroup);
     copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    ui->sourceSayButton->setShortcut(settings.value("Hotkeys/SaySource", "Ctrl+S").toString());
-    ui->translationSayButton->setShortcut(settings.value("Hotkeys/SayTranslation", "Ctrl+Shift+S").toString());
-    ui->translationCopyButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+    ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
+    ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
+    ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
 }
 
 PopupWindow::~PopupWindow()
@@ -69,22 +88,24 @@ PopupWindow::~PopupWindow()
     delete ui;
 }
 
-void PopupWindow::setTranslation(const QString &text)
+QTextEdit *PopupWindow::translationEdit()
 {
-    ui->translationEdit->setText(text);
+    return ui->translationEdit;
 }
 
-void PopupWindow::copySourceButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
 {
     sourceButtonGroup->button(id)->setText(button->text());
     sourceButtonGroup->button(id)->setToolTip(button->toolTip());
+    sourceButtonGroup->button(id)->setIcon(button->icon());
     sourceButtonGroup->button(id)->setVisible(true);
 }
 
-void PopupWindow::copyTranslationButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadTranslationButton(QAbstractButton *button, const int &id)
 {
     translationButtonGroup->button(id)->setText(button->text());
     translationButtonGroup->button(id)->setToolTip(button->toolTip());
+    translationButtonGroup->button(id)->setIcon(button->icon());
     translationButtonGroup->button(id)->setVisible(true);
 }
 
@@ -100,6 +121,11 @@ void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
         translationButtonGroup->button(id)->setChecked(true);
 }
 
+QToolButton *PopupWindow::swapButton()
+{
+    return ui->swapButton;
+}
+
 QButtonGroup *PopupWindow::sourceButtons()
 {
     return sourceButtonGroup;
@@ -110,56 +136,68 @@ QButtonGroup *PopupWindow::translationButtons()
     return translationButtonGroup;
 }
 
-QToolButton *PopupWindow::sourceAutoButton()
+QToolButton *PopupWindow::autoSourceButton()
 {
-    return ui->sourceAutoButton;
+    return ui->autoSourceButton;
 }
 
-QToolButton *PopupWindow::translationAutoButton()
+QToolButton *PopupWindow::playSourceButton()
 {
-    return ui->translationAutoButton;
+    return ui->playSourceButton;
 }
 
-QToolButton *PopupWindow::swapButton()
+QToolButton *PopupWindow::stopSourceButton()
 {
-    return ui->swapButton;
+    return ui->stopSourceButton;
 }
 
-QToolButton *PopupWindow::sourceCopyButton()
+QToolButton *PopupWindow::copySourceButton()
 {
-    return ui->sourceCopyButton;
+    return ui->copySourceButton;
 }
 
-QToolButton *PopupWindow::sourceSayButton()
+QToolButton *PopupWindow::autoTranslationButton()
 {
-    return ui->sourceSayButton;
+    return ui->autoTranslationButton;
 }
 
-QToolButton *PopupWindow::translationCopyAllButton()
+QToolButton *PopupWindow::playTranslationButton()
 {
-    return ui->translationCopyAllButton;
+    return ui->playTranslationButton;
 }
 
-QToolButton *PopupWindow::translationCopyButton()
+QToolButton *PopupWindow::stopTranslationButton()
 {
-    return ui->translationCopyButton;
+    return ui->stopTranslationButton;
 }
 
-QToolButton *PopupWindow::translationSayButton()
+QToolButton *PopupWindow::copyTranslationButton()
 {
-    return ui->translationSayButton;
+    return ui->copyTranslationButton;
+}
+
+QToolButton *PopupWindow::copyAllTranslationButton()
+{
+    return ui->copyAllTranslationButton;
 }
 
 // Move popup to cursor and prevent window from appearing outside the screen
-void PopupWindow::resizeEvent(QResizeEvent *event)
+void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
-    if (QApplication::desktop()->availableGeometry(position).width() - position.x() - this->geometry().width() < 0)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    if (QGuiApplication::screenAt(position)->availableSize().width() - position.x() - this->geometry().width() < 0)
         position.rx()-= this->frameGeometry().width();
-    if (QApplication::desktop()->availableGeometry(position).height() - position.y() - this->geometry().height() < 0)
+    if (QGuiApplication::screenAt(position)->availableSize().height() - position.y() - this->geometry().height() < 0)
         position.ry()-= this->frameGeometry().height();
+#else
+    if (QApplication::desktop()->screenGeometry(position).width() - position.x() - this->geometry().width() < 0)
+        position.rx()-= this->frameGeometry().width();
+    if (QApplication::desktop()->screenGeometry(position).height() - position.y() - this->geometry().height() < 0)
+        position.ry()-= this->frameGeometry().height();
+#endif
     PopupWindow::move(position);
-    QWidget::resizeEvent(event);
+    QWidget::showEvent(event);
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
@@ -168,6 +206,7 @@ void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup 
         if (copyingGroup->button(i)->text() != "") {
             existingGroup->button(i)->setText(copyingGroup->button(i)->text());
             existingGroup->button(i)->setToolTip(copyingGroup->button(i)->toolTip());
+            existingGroup->button(i)->setIcon(copyingGroup->button(i)->icon());
         }
         else
             existingGroup->button(i)->setVisible(false);

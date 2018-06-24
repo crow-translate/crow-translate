@@ -9,7 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++14
 TARGET = crow
 TEMPLATE = app
-VERSION = 0.9.8
+VERSION = 0.9.9
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
@@ -51,17 +51,13 @@ RESOURCES += data/windows-icons.qrc
 
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
-# Automatically generate .qm files
-qtPrepareTool(LRELEASE, lrelease)
-system($$LRELEASE -removeidentical crow-translate.pro)|error("Failed to run lrelease")
-
 # For make install
 unix {
 bin.path   = /usr/bin
 bin.files   = crow
 
 icons.path = /usr/share/icons/hicolor/
-icons.files = dist/unix/generic/menuicons/*
+icons.files = dist/unix/generic/hicolor/*
 
 desktop.path = /usr/share/applications
 desktop.files = dist/unix/generic/crow-translate.desktop

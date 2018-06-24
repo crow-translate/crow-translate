@@ -24,6 +24,7 @@
 #include <QDialog>
 #include <QSettings>
 #include <QMenu>
+#include <QTreeWidget>
 
 namespace Ui {
 class SettingsDialog;
@@ -35,22 +36,27 @@ class SettingsDialog : public QDialog
 
 public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
-    static const QStringList ICONS;
     ~SettingsDialog();
 
 private slots:
     void on_dialogBox_accepted();
     void on_trayCheckBox_toggled(bool checked);
-    void on_resetButton_clicked();
+    void on_resetSettingsButton_clicked();
+
     void on_proxyTypeComboBox_currentIndexChanged(int index);
     void on_proxyAuthCheckBox_toggled(bool checked);
+
+    void on_shortcutsTreeWidget_itemSelectionChanged();
+    void on_shortcutSequenceEdit_editingFinished();
+    void on_acceptShortcutButton_clicked();
+    void on_resetShortcutButton_clicked();
+    void on_resetAllShortcutsButton_clicked();
 
 signals:
     void languageChanged();
     void proxyChanged();
 
 private:
-    void loadSettings();
     Ui::SettingsDialog *ui;
 };
 

@@ -6,21 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>453</width>
-    <height>294</height>
+    <width>350</width>
+    <height>300</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string notr="true">Crow Translate</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../data/resources.qrc">
+   <iconset>
     <normaloff>:/icons/app/black.png</normaloff>:/icons/app/black.png</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -30,7 +24,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QToolButton" name="sourceAutoButton">
+      <widget class="QToolButton" name="autoSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -55,10 +49,13 @@
        <property name="popupMode">
         <enum>QToolButton::MenuButtonPopup</enum>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextOnly</enum>
+       </property>
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="sourceFirstButton">
+      <widget class="QToolButton" name="firstSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -77,7 +74,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="sourceSecondButton">
+      <widget class="QToolButton" name="secondSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -96,7 +93,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="sourceThirdButton">
+      <widget class="QToolButton" name="thirdSourceButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -155,7 +152,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="translationFirstButton">
+      <widget class="QToolButton" name="firstTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -174,7 +171,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="translationSecondButton">
+      <widget class="QToolButton" name="secondTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -193,7 +190,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="translationThirdButton">
+      <widget class="QToolButton" name="thirdTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
          <horstretch>0</horstretch>
@@ -212,7 +209,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="translationAutoButton">
+      <widget class="QToolButton" name="autoTranslationButton">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
          <horstretch>0</horstretch>
@@ -237,6 +234,9 @@
        <property name="popupMode">
         <enum>QToolButton::MenuButtonPopup</enum>
        </property>
+       <property name="toolButtonStyle">
+        <enum>Qt::ToolButtonTextOnly</enum>
+       </property>
       </widget>
      </item>
     </layout>
@@ -251,9 +251,40 @@
    <item>
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
-      <widget class="QToolButton" name="sourceCopyButton">
+      <widget class="QToolButton" name="playSourceButton">
        <property name="toolTip">
-        <string>Copy the source text to the clipboard</string>
+        <string>Play / pause source text</string>
+       </property>
+       <property name="text">
+        <string>Play</string>
+       </property>
+       <property name="icon">
+        <iconset theme="media-playback-start">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="stopSourceButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Stop source playback</string>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+       <property name="icon">
+        <iconset theme="media-playback-stop">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="copySourceButton">
+       <property name="toolTip">
+        <string>Copy source text to the clipboard</string>
        </property>
        <property name="text">
         <string>Copy</string>
@@ -261,23 +292,6 @@
        <property name="icon">
         <iconset theme="edit-copy">
          <normaloff>.</normaloff>.</iconset>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="sourceSayButton">
-       <property name="toolTip">
-        <string>Speak the source text</string>
-       </property>
-       <property name="text">
-        <string>Speak</string>
-       </property>
-       <property name="icon">
-        <iconset theme="text-speak">
-         <normaloff>.</normaloff>.</iconset>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
        </property>
       </widget>
      </item>
@@ -295,7 +309,38 @@
       </spacer>
      </item>
      <item>
-      <widget class="QToolButton" name="translationCopyAllButton">
+      <widget class="QToolButton" name="playTranslationButton">
+       <property name="toolTip">
+        <string>Play / pause translation</string>
+       </property>
+       <property name="text">
+        <string>Play</string>
+       </property>
+       <property name="icon">
+        <iconset theme="media-playback-start">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="stopTranslationButton">
+       <property name="enabled">
+        <bool>false</bool>
+       </property>
+       <property name="toolTip">
+        <string>Stop translation playback</string>
+       </property>
+       <property name="text">
+        <string>Stop</string>
+       </property>
+       <property name="icon">
+        <iconset theme="media-playback-stop">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="copyAllTranslationButton">
        <property name="toolTip">
         <string>Copy all translation data to the clipboard</string>
        </property>
@@ -306,15 +351,12 @@
         <iconset theme="document-export">
          <normaloff>.</normaloff>.</iconset>
        </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonFollowStyle</enum>
-       </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="translationCopyButton">
+      <widget class="QToolButton" name="copyTranslationButton">
        <property name="toolTip">
-        <string>Copy the translation to the clipboard</string>
+        <string>Copy translation to the clipboard</string>
        </property>
        <property name="text">
         <string>Copy</string>
@@ -325,26 +367,10 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QToolButton" name="translationSayButton">
-       <property name="toolTip">
-        <string>Speak the translation text</string>
-       </property>
-       <property name="text">
-        <string>Speak</string>
-       </property>
-       <property name="icon">
-        <iconset theme="text-speak">
-         <normaloff>.</normaloff>.</iconset>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="../data/resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

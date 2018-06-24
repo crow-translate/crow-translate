@@ -1,16 +1,17 @@
-# ![Crow Translate logo](./dist/unix/generic/menuicons/72x72/apps/crow-translate.png) Crow Translate
+# ![Crow Translate logo](./dist/unix/generic/hicolor/72x72/apps/crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API.
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API and much more.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 
 
-## Contents
+## Content
 
 * [Screenshots](#screenshots)
 * [Features](#features)
 * [Default keyboard shortcuts](#default-keyboard-shortcuts)
+* [CLI commands](#cli-commands)
 * [Dependencies](#dependencies)
 * [Third-party](#third-party)
 * [Installation](#installation)
@@ -24,13 +25,14 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="dist/unix/screenshots/linux-plasma-screenshot-settings.png?raw=true" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://mahm0udwally.deviantart.com/art/Mountain-III-506611364">Mountain III</a></sub></sup>
+  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="http://vunature.com/tilt-lakes-landscapes-shift-free-download-wallpaper-for-desktop-of-nature/">Devany Walsh</a></sub></sup>
 </p>
 
 ## Features
 
 * Translate and say text in any application that supports text selection
 * Translator window with native interface similar to Google Translate
+* Command-line interface with rich options
 * Highly customizable shortcuts
 * Low memory consumption (~19MB)
 
@@ -40,20 +42,42 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### Global
 
-|  Keys                                           | Description             |
+|  Key                                            | Description             |
 |-------------------------------------------------|-------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Speak selected text     |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Say selected text       |
 
 ### In main window
 
-|  Keys                                             | Description               |
+|  Key                                              | Description               |
 |---------------------------------------------------|---------------------------|
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Say input text            |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Say translated text       |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text  |
+| <kbd>Ctrl</kbd> + <kbd>G</kbd>                    | Stop source text playback |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Play / pause translation  |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Stop translation playback |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copy to clipboard         |
+
+## CLI commands
+
+The program also supports the console interface.
+
+**Usage:** `crow [options] text`
+
+|  Option                    | Description                                                                                      |
+|----------------------------|--------------------------------------------------------------------------------------------------|
+| `-h, --help`               | Displays help                                                                                    |
+| `-v, --version`            | Displays version information                                                                     |
+| `-s, --source <code>`      | Specifies the source language (by default, Google will try to determine the language on its own) |
+| `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
+| `-l, --translator <code>`  | Specifies the translator language (by default, the system language is used)                      |
+| `-e, --speak-translation`  | Speaks the translation                                                                           |
+| `-q, --speak-source`       | Speaks the original text                                                                         |
+| `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |
+
+If you do not pass startup arguments to the program, the GUI starts.
 
 ## Dependencies
 
@@ -87,6 +111,8 @@ git submodule update
 ### Icons
 
 Only Linux supports icon theming. Windows use [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme "Free and open source SVG icon theme") icons.
+
+[FlagKit](https://github.com/madebybowtie/FlagKit "Beautiful flag icons for usage in apps and on the web") icons are used for flags.
 
 ## Installation
 

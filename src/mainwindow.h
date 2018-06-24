@@ -27,6 +27,8 @@
 #include <QShortcut>
 #include <QTimer>
 #include <QButtonGroup>
+#include <QMediaPlayer>
+#include <QToolButton>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -47,25 +49,37 @@ signals:
     void translationTextChanged(const QString &text);
     void sourceButtonChanged(QAbstractButton *button, const int &id);
     void translationButtonChanged(QAbstractButton *button, const int &id);
+    void playSourceButtonIconChanged(QIcon icon);
+    void stopSourceButtonEnabled(bool enabled);
+    void playTranslationButtonIconChanged(QIcon icon);
+    void stopTranslationButtonEnabled(bool enabled);
 
 private slots:
     void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
-    void on_sourceSayButton_clicked();
-    void on_translationSayButton_clicked();
-    void on_sourceCopyButton_clicked();
-    void on_translationCopyButton_clicked();
-    void on_translationCopyAllButton_clicked();
+    void on_copyToSourceButton_clicked();
 
-    void on_sourceAutoButton_triggered(QAction *language);
-    void on_translationAutoButton_triggered(QAction *language);
+    void on_playSourceButton_clicked();
+    void on_playTranslationButton_clicked();
+
+    void on_stopSourceButton_clicked();
+    void on_stopTranslationButton_clicked();
+
+    void on_copySourceButton_clicked();
+    void on_copyTranslationButton_clicked();
+
+    void on_copyAllTranslationButton_clicked();
+
+    void on_autoSourceButton_triggered(QAction *language);
+    void on_autoTranslationButton_triggered(QAction *language);
 
     void on_sourceButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
     void on_translationButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
 
     void on_translateSelectedHotkey_activated();
-    void on_saySelectedHotkey_activated();
+    void on_playSelectedHotkey_activated();
+    void on_stopSelectedHotkey_activated();
     void on_showMainWindowHotkey_activated();
 
     void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
@@ -87,10 +101,15 @@ private:
     QString selectedText();
 
     Ui::MainWindow *ui;
-    QTranslator translator;
+    QTranslator interfaceTranslator;
     QTimer autoTranslateTimer;
-    QOnlineTranslator m_translationData;
+    QOnlineTranslator *onlineTranslator;
     QMenu *languagesMenu;
+
+    QMediaPlayer sourcePlayer;
+    QMediaPlaylist sourcePlaylist;
+    QMediaPlayer translationPlayer;
+    QMediaPlaylist translationPlaylist;
 
     // System tray
     QMenu *trayMenu;
@@ -101,7 +120,8 @@ private:
 
     // Global shortcuts
     QHotkey *translateSelectedHotkey;
-    QHotkey *saySelectedHotkey;
+    QHotkey *playSelectedHotkey;
+    QHotkey *stopSelectedHotkey;
     QHotkey *showMainWindowHotkey;
 
     // Language button groups

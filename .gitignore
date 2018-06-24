@@ -1,0 +1,5 @@
+# Directory settings for Plasma
+*.directory
+
+# Qt Creator project settings
+*.user

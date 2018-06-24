@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 22.0.1, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1"
+	 id="flag-icon-css-ru" inkscape:version="0.92.2 2405546, 2018-03-11" sodipodi:docname="ku.svg" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:svg="http://www.w3.org/2000/svg"
+	 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 640 480"
+	 style="enable-background:new 0 0 640 480;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:#ED2024;}
+	.st2{fill:#278E43;}
+	.st3{fill:#FEBD11;}
+</style>
+<sodipodi:namedview  bordercolor="#666666" borderopacity="1" gridtolerance="10" guidetolerance="10" id="namedview11" inkscape:current-layer="flag-icon-css-ru" inkscape:cx="270.54545" inkscape:cy="47.64766" inkscape:pageopacity="0" inkscape:pageshadow="2" inkscape:window-height="840" inkscape:window-maximized="1" inkscape:window-width="1600" inkscape:window-x="0" inkscape:window-y="30" inkscape:zoom="0.24583333" objecttolerance="10" pagecolor="#ffffff" showgrid="false">
+	</sodipodi:namedview>
+<rect id="rect4518" x="0" y="0" class="st0" width="640" height="480"/>
+<rect id="rect4520" x="0" y="0" class="st1" width="640" height="160"/>
+<rect id="rect4522" x="0" y="320" class="st2" width="640" height="160"/>
+<path id="path4524" inkscape:connector-curvature="0" class="st3" d="M321,120l8.8,62l26.6-56.6l-9.8,61.8l42.1-46.2l-27.5,56.2
+	l53.8-31.7L372.3,211l60.8-14.4l-54.3,30.9l62.3,4.2l-61,13.5l58.3,22.4l-62.2-5.2l49.1,38.7l-57.9-23.3l35.6,51.5l-48.5-39.4
+	l18.9,59.7l-34.8-52l0.5,62.6L321,300l-17.9,60l0.5-62.6l-34.8,52l18.9-59.7l-48.5,39.4l35.6-51.5L216.8,301l49.1-38.7l-62.2,5.2
+	l58.3-22.4l-61-13.5l62.3-4.2L209,196.6l60.8,14.4l-42.8-45.6l53.8,31.7L253.2,141l42.1,46.2l-9.8-61.8l26.6,56.6L321,120z"/>
+</svg>
