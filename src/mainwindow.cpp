@@ -697,7 +697,20 @@ void MainWindow::loadSettings()
     on_autoTranslateCheckBox_toggled(ui->autoTranslateCheckBox->isChecked());
 
     // Load tray settings
-    trayIcon->setIcon(QIcon::fromTheme(settings.value("TrayIcon", "crow-translate-tray").toString()));
+    QString iconName = settings.value("TrayIcon", "crow-translate-tray").toString();
+    if (iconName == "custom") {
+        QFile icon(settings.value("CustomIconPath", "").toString());
+        if (icon.exists())
+            trayIcon->setIcon(QIcon(icon.fileName()));
+        else
+            trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
+    }
+    else {
+        if (QIcon::hasThemeIcon(iconName))
+            trayIcon->setIcon(QIcon::fromTheme(iconName));
+        else
+            trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
+    }
     trayIcon->setVisible(settings.value("TrayIconVisible", true).toBool());
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 

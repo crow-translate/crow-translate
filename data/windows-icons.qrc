@@ -23,5 +23,7 @@
         <file>icons/Papirus/scalable/crow-translate-tray-light.svg</file>
         <file>icons/Papirus/32x32/preferences-desktop-theme.svg</file>
         <file>icons/Papirus/16x16/go-previous.svg</file>
+        <file>icons/Papirus/16x16/folder.svg</file>
+        <file>icons/Papirus/16x16/dialog-error.svg</file>
     </qresource>
 </RCC>

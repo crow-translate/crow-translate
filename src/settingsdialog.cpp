@@ -24,6 +24,7 @@
 #include <QStandardPaths>
 #include <QDir>
 #include <QNetworkProxy>
+#include <QFileDialog>
 
 #include "qonlinetranslator.h"
 #include "ui_settingsdialog.h"
@@ -50,6 +51,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
     ui->trayIconComboBox->setItemData(1, "crow-translate-tray-light");
     ui->trayIconComboBox->setItemData(2, "crow-translate-tray-dark");
+    ui->trayIconComboBox->setItemData(3, "custom");
 
     ui->languageComboBox->setItemData(0, "auto");
     ui->languageComboBox->setItemData(1, "en");
@@ -109,12 +111,13 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 #endif
 
     // Interface settings
-    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
     ui->languagesStyleComboBox->setCurrentIndex(ui->languagesStyleComboBox->findData(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle).toInt()));
     ui->controlsStyleComboBox->setCurrentIndex(ui->controlsStyleComboBox->findData(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle).toInt()));
     ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
     ui->popupHeightSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().height());
     ui->popupWidthSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().width());
+    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
+    ui->customTrayIconLineEdit->setText(settings.value("CustomIconPath", "").toString());
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
@@ -236,11 +239,12 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
 
     // Interface settings
-    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
     settings.setValue("LanguagesStyle", ui->languagesStyleComboBox->currentData());
     settings.setValue("ControlsStyle", ui->controlsStyleComboBox->currentData());
     settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setValue("PopupSize", QSize(ui->popupWidthSpinBox->value(), ui->popupHeightSpinBox->value()));
+    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
+    settings.setValue("CustomIconPath", ui->customTrayIconLineEdit->text());
 
     // Translation settings
     settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
@@ -291,12 +295,13 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->autostartCheckBox->setChecked(false);
 
     // Interface settings
-    ui->trayIconComboBox->setCurrentIndex(0);
     ui->languagesStyleComboBox->setCurrentIndex(0);
     ui->controlsStyleComboBox->setCurrentIndex(0);
     ui->popupOpacitySlider->setValue(80);
     ui->popupWidthSpinBox->setValue(350);
     ui->popupHeightSpinBox->setValue(300);
+    ui->trayIconComboBox->setCurrentIndex(0);
+    ui->customTrayIconLineEdit->setText("");
 
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(true);
@@ -316,6 +321,20 @@ void SettingsDialog::on_resetSettingsButton_clicked()
 
     // Shortcuts
     on_resetAllShortcutsButton_clicked();
+}
+
+void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
+{
+    if (index == 3) {
+        ui->customTrayIconLabel->setEnabled(true);
+        ui->customTrayIconLineEdit->setEnabled(true);
+        ui->customTrayIconButton->setEnabled(true);
+    }
+    else {
+        ui->customTrayIconLabel->setEnabled(false);
+        ui->customTrayIconLineEdit->setEnabled(false);
+        ui->customTrayIconButton->setEnabled(false);
+    }
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
@@ -396,4 +415,12 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, "Ctrl+Shift+S");
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, "Ctrl+Shift+D");
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, "Ctrl+Shift+C");
+}
+
+void SettingsDialog::on_customTrayIconButton_clicked()
+{
+    QString path = ui->customTrayIconLineEdit->text().left(ui->customTrayIconLineEdit->text().lastIndexOf("/"));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
+    if (file != "")
+        ui->customTrayIconLineEdit->setText(file);
 }

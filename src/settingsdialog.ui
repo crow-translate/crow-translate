@@ -488,9 +488,9 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="otherInterfaceGroupBox">
+         <widget class="QGroupBox" name="trayIconGroupBox">
           <property name="title">
-           <string>Other</string>
+           <string>Tray icon</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
@@ -498,7 +498,7 @@
              <item>
               <widget class="QLabel" name="trayIconLabel">
                <property name="text">
-                <string>Tray icon:</string>
+                <string>Icon:</string>
                </property>
               </widget>
              </item>
@@ -531,6 +531,14 @@
                   <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Custom</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="folder"/>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
@@ -545,6 +553,37 @@
                 </size>
                </property>
               </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="customTrayIconLayout">
+             <item>
+              <widget class="QLabel" name="customTrayIconLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Custom:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="customTrayIconLineEdit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="customTrayIconButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string notr="true">...</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
