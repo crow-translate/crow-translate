@@ -300,10 +300,9 @@ void MainWindow::on_translateButton_clicked()
             }
         }
 
-
         // Show definitions
         if (!onlineTranslator->definitionsList().isEmpty() && settings.value("Translation/Definitions", true).toBool()) {
-            ui->translationEdit->append("<big>" + onlineTranslator->source() + " – " + tr("definitions:") + "</big>");
+            ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator->source() + "</i> – " + tr("definitions:") + "</font>");
             foreach (auto definition, onlineTranslator->definitionsList()) {
                 ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
                 QTextBlockFormat indent;
