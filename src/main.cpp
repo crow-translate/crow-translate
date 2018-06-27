@@ -34,6 +34,7 @@ int main(int argc, char *argv[])
         SingleApplication app(argc, argv);
         QApplication::setApplicationName("Crow Translate");
         QCoreApplication::setOrganizationName("crow");
+        app.setApplicationVersion("0.9.9");
 
 #if defined(Q_OS_WIN)
         QIcon::setThemeName("Papirus");

@@ -22,9 +22,12 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 #include <QMenu>
-#include <QTreeWidget>
+
+#if defined(Q_OS_WIN)
+#include <QLabel>
+#include <QComboBox>
+#endif
 
 namespace Ui {
 class SettingsDialog;
@@ -42,7 +45,12 @@ private slots:
     void on_dialogBox_accepted();
     void on_trayCheckBox_toggled(bool checked);
     void on_resetSettingsButton_clicked();
+#if defined(Q_OS_WIN)
+    void checkForUpdates();
+#endif
+
     void on_trayIconComboBox_currentIndexChanged(int index);
+    void on_customTrayIconButton_clicked();
 
     void on_proxyTypeComboBox_currentIndexChanged(int index);
     void on_proxyAuthCheckBox_toggled(bool checked);
@@ -53,14 +61,19 @@ private slots:
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 
-    void on_customTrayIconButton_clicked();
-
 signals:
     void languageChanged();
     void proxyChanged();
 
 private:
     Ui::SettingsDialog *ui;
+
+#if defined(Q_OS_WIN)
+    QLabel *checkForUpdatesLabel;
+    QComboBox *checkForUpdatesComboBox;
+    QPushButton *checkForUpdatesButton;
+    QLabel *checkForUpdatesStatusLabel;
+#endif
 };
 
 #endif // SETTINGSDIALOG_H

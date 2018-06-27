@@ -216,6 +216,9 @@
             </layout>
            </item>
            <item>
+            <layout class="QHBoxLayout" name="checkForUpdatesLayout"/>
+           </item>
+           <item>
             <widget class="QCheckBox" name="trayCheckBox">
              <property name="text">
               <string>Show tray icon</string>
@@ -536,7 +539,8 @@
                  <string>Custom</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="folder"/>
+                 <iconset theme="folder">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
               </widget>

@@ -20,9 +20,7 @@
 
 #include "popupwindow.h"
 
-#include <QBitmap>
 #include <QScreen>
-#include <QDesktopWidget>
 #include <QClipboard>
 #include <QSettings>
 

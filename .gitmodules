@@ -7,3 +7,6 @@
 [submodule "src/qonlinetranslator"]
 	path = src/qonlinetranslator
 	url = https://github.com/Shatur95/QOnlineTranslator.git
+[submodule "src/qgitrelease"]
+	path = src/qgitrelease
+	url = https://github.com/Shatur95/QGitRelease.git

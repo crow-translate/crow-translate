@@ -22,11 +22,14 @@
 
 #include <QClipboard>
 #include <QNetworkProxy>
+#include <QSettings>
 
 #if defined(Q_OS_WIN)
 #include <QMimeData>
 #include <QTimer>
 #include <windows.h>
+
+#include "updaterwindow.h"
 #endif
 
 #include "ui_mainwindow.h"
@@ -169,6 +172,39 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
     loadProxy();
     restoreGeometry(settings.value("MainWindowGeometry").toByteArray());
+
+    // Check for updates
+#if defined(Q_OS_WIN)
+    int updateInterval = settings.value("CheckForUpdatesInterval", 1).toInt();
+    if (updateInterval < Interval::Never) {
+        QDate checkDate = settings.value("LastUpdateCheckDate", QDate::currentDate()).toDate();
+        switch (updateInterval) {
+        case Interval::Day:
+        {
+            checkDate = checkDate.addDays(1);
+            break;
+        }
+        case Interval::Week:
+        {
+            checkDate = checkDate.addDays(7);
+            break;
+        }
+        case Interval::Month:
+        {
+            checkDate = checkDate.addMonths(1);
+            break;
+        }
+        }
+        if (QDate::currentDate() >= checkDate) {
+            QGitRelease release("Shatur95", "Crow-Translate");
+            if (!release.error() && qApp->applicationVersion() == release.tagName()) {
+                UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
+                updaterWindow->show();
+            }
+        }
+    }
+#endif
+
 }
 
 MainWindow::~MainWindow()

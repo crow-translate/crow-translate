@@ -28,7 +28,6 @@
 #include <QTimer>
 #include <QButtonGroup>
 #include <QMediaPlayer>
-#include <QToolButton>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -42,6 +41,15 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+#if defined(Q_OS_WIN)
+    enum Interval {
+        Day,
+        Week,
+        Month,
+        Never
+    };
+#endif
+
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 

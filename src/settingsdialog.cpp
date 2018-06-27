@@ -20,11 +20,14 @@
 
 #include "settingsdialog.h"
 
-#include <QDebug>
+#include <QSettings>
 #include <QStandardPaths>
-#include <QDir>
 #include <QNetworkProxy>
 #include <QFileDialog>
+
+#if defined(Q_OS_WIN)
+#include "updaterwindow.h"
+#endif
 
 #include "qonlinetranslator.h"
 #include "ui_settingsdialog.h"
@@ -39,12 +42,30 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
 
 #if defined(Q_OS_WIN)
-    QLabel *papirusTitleLabel = new QLabel(tr("Interface icons:"));
-    QLabel *papirusLabel = new QLabel("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
+    // Add information about icons
+    QLabel *papirusTitleLabel = new QLabel(tr("Interface icons:"), this);
+    QLabel *papirusLabel = new QLabel("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>", this);
     papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
     papirusLabel->setOpenExternalLinks(true);
     ui->aboutBox->layout()->addWidget(papirusTitleLabel);
     ui->aboutBox->layout()->addWidget(papirusLabel);
+
+    // Add updater options
+    checkForUpdatesLabel = new QLabel(tr("Check for updates:"), this);
+    checkForUpdatesComboBox = new QComboBox(this);
+    checkForUpdatesButton = new QPushButton(tr("Check now"), this);
+    checkForUpdatesButton->setToolTip(tr("Check for updates now"));
+    checkForUpdatesStatusLabel = new QLabel(this);
+    checkForUpdatesComboBox->addItem(tr("Every day"));
+    checkForUpdatesComboBox->addItem(tr("Every week"));
+    checkForUpdatesComboBox->addItem(tr("Every month"));
+    checkForUpdatesComboBox->addItem(tr("Never"));
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesLabel);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesComboBox);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesButton);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesStatusLabel);
+    ui->checkForUpdatesLayout->addStretch();
+    connect(checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
 #endif
 
     // Set item data in comboboxes
@@ -102,6 +123,9 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
+#if defined(Q_OS_WIN)
+    checkForUpdatesComboBox->setCurrentIndex(settings.value("CheckForUpdatesInterval", 1).toInt());
+#endif
 
 #if defined(Q_OS_LINUX)
     ui->autostartCheckBox->setChecked(QFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop").exists());
@@ -237,6 +261,9 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
     settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
     settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
+#if defined(Q_OS_WIN)
+    settings.setValue("CheckForUpdatesInterval", checkForUpdatesComboBox->currentIndex());
+#endif
 
     // Interface settings
     settings.setValue("LanguagesStyle", ui->languagesStyleComboBox->currentData());
@@ -293,6 +320,9 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
+#if defined(Q_OS_WIN)
+    checkForUpdatesComboBox->setCurrentIndex(1);
+#endif
 
     // Interface settings
     ui->languagesStyleComboBox->setCurrentIndex(0);
@@ -335,6 +365,14 @@ void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
         ui->customTrayIconLineEdit->setEnabled(false);
         ui->customTrayIconButton->setEnabled(false);
     }
+}
+
+void SettingsDialog::on_customTrayIconButton_clicked()
+{
+    QString path = ui->customTrayIconLineEdit->text().left(ui->customTrayIconLineEdit->text().lastIndexOf("/"));
+    QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
+    if (file != "")
+        ui->customTrayIconLineEdit->setText(file);
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
@@ -417,10 +455,25 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, "Ctrl+Shift+C");
 }
 
-void SettingsDialog::on_customTrayIconButton_clicked()
+#if defined(Q_OS_WIN)
+void SettingsDialog::checkForUpdates()
 {
-    QString path = ui->customTrayIconLineEdit->text().left(ui->customTrayIconLineEdit->text().lastIndexOf("/"));
-    QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
-    if (file != "")
-        ui->customTrayIconLineEdit->setText(file);
+    checkForUpdatesButton->setEnabled(false);
+    checkForUpdatesStatusLabel->setText(tr("Checking for updates..."));
+    QGitRelease release("Shatur95", "Crow-Translate");
+
+    if (release.error())
+        checkForUpdatesStatusLabel->setText("<font color=\"red\">" + release.body() + "</font>");
+    else {
+        if (qApp->applicationVersion() > release.tagName()) {
+            checkForUpdatesStatusLabel->setText("<font color=\"green\">" + tr("Update available!") + "</font>");
+            UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
+            updaterWindow->show();
+        }
+        else
+            checkForUpdatesStatusLabel->setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
+    }
+
+    checkForUpdatesButton->setEnabled(true);
 }
+#endif

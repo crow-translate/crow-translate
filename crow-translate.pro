@@ -19,6 +19,7 @@ QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
 
 include(src/qonlinetranslator/qonlinetranslator.pri)
+include(src/qgitrelease/qgitrelease.pri)
 include(src/third-party/qhotkey/qhotkey.pri)
 include(src/third-party/singleapplication/singleapplication.pri)
 DEFINES += QAPPLICATION_CLASS=QApplication
@@ -30,17 +31,20 @@ SOURCES += \
     src/main.cpp \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
-    src/popupwindow.cpp
+    src/popupwindow.cpp \
+    src/updaterwindow.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
-    src/popupwindow.h
+    src/popupwindow.h \
+    src/updaterwindow.h
 
 FORMS += \
     src/settingsdialog.ui \
     src/mainwindow.ui \
-    src/popupwindow.ui
+    src/popupwindow.ui \
+    src/updaterwindow.ui
 
 RESOURCES += \
     data/resources.qrc

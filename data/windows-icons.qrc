@@ -25,5 +25,6 @@
         <file>icons/Papirus/32x32/apps/preferences-system.svg</file>
         <file>icons/Papirus/32x32/status/dialog-information.svg</file>
         <file>icons/Papirus/16x16/actions/document-export.svg</file>
+        <file>icons/Papirus/16x16/apps/software-update-available.svg</file>
     </qresource>
 </RCC>
