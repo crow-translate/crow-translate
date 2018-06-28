@@ -34,29 +34,28 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     translationButtonGroup (new QButtonGroup(this))
 {
     ui->setupUi(this);
-
-    // Delete this widget when the widget has accepted the close event
     this->setAttribute(Qt::WA_DeleteOnClose);
 
+    // Window settings
     QSettings settings;
     resize(settings.value("PopupSize", QSize(350, 300)).toSize());
     PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
 
-    // Add languagesMenu to auto-language buttons
-    ui->autoSourceButton->setMenu(languagesMenu);
-    ui->autoTranslationButton->setMenu(languagesMenu);
-
-    // Add all language buttons to button groups
+    // Translation button group
     sourceButtonGroup->addButton(ui->autoSourceButton, 0);
     sourceButtonGroup->addButton(ui->firstSourceButton, 1);
     sourceButtonGroup->addButton(ui->secondSourceButton, 2);
     sourceButtonGroup->addButton(ui->thirdSourceButton, 3);
+    copyLanguageButtons(sourceButtonGroup, sourceGroup);
+
+    // Source button group
     translationButtonGroup->addButton(ui->autoTranslationButton, 0);
     translationButtonGroup->addButton(ui->firstTranslationButton, 1);
     translationButtonGroup->addButton(ui->secondTranslationButton, 2);
     translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
+    copyLanguageButtons(translationButtonGroup, translationGroup);
 
-    // Load language buttons style
+    // Language buttons style
     ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
     ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
     ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
@@ -64,7 +63,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
     ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonFollowStyle)));
 
-    // Load control buttons style
+    // Control buttons style
     ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
     ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
     ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
@@ -73,12 +72,14 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
     ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonFollowStyle)));
 
-    copyLanguageButtons(sourceButtonGroup, sourceGroup);
-    copyLanguageButtons(translationButtonGroup, translationGroup);
-
+    // Shortcuts
     ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
     ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
     ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+
+    // Add languages to auto-language buttons
+    ui->autoSourceButton->setMenu(languagesMenu);
+    ui->autoTranslationButton->setMenu(languagesMenu);
 }
 
 PopupWindow::~PopupWindow()
@@ -89,6 +90,11 @@ PopupWindow::~PopupWindow()
 QTextEdit *PopupWindow::translationEdit()
 {
     return ui->translationEdit;
+}
+
+QToolButton *PopupWindow::swapButton()
+{
+    return ui->swapButton;
 }
 
 void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
@@ -117,21 +123,6 @@ void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
 {
     if (checked)
         translationButtonGroup->button(id)->setChecked(true);
-}
-
-QToolButton *PopupWindow::swapButton()
-{
-    return ui->swapButton;
-}
-
-QButtonGroup *PopupWindow::sourceButtons()
-{
-    return sourceButtonGroup;
-}
-
-QButtonGroup *PopupWindow::translationButtons()
-{
-    return translationButtonGroup;
 }
 
 QToolButton *PopupWindow::autoSourceButton()
@@ -177,6 +168,16 @@ QToolButton *PopupWindow::copyTranslationButton()
 QToolButton *PopupWindow::copyAllTranslationButton()
 {
     return ui->copyAllTranslationButton;
+}
+
+QButtonGroup *PopupWindow::sourceButtons()
+{
+    return sourceButtonGroup;
+}
+
+QButtonGroup *PopupWindow::translationButtons()
+{
+    return translationButtonGroup;
 }
 
 // Move popup to cursor and prevent window from appearing outside the screen

@@ -41,10 +41,14 @@ public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
     ~SettingsDialog();
 
+signals:
+    void languageChanged();
+    void proxyChanged();
+
 private slots:
     void on_dialogBox_accepted();
-    void on_trayCheckBox_toggled(bool checked);
     void on_resetSettingsButton_clicked();
+    void on_trayCheckBox_toggled(bool checked);
 #if defined(Q_OS_WIN)
     void checkForUpdates();
 #endif
@@ -60,10 +64,6 @@ private slots:
     void on_acceptShortcutButton_clicked();
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
-
-signals:
-    void languageChanged();
-    void proxyChanged();
 
 private:
     Ui::SettingsDialog *ui;

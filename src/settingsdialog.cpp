@@ -41,33 +41,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
 
-#if defined(Q_OS_WIN)
-    // Add information about icons
-    QLabel *papirusTitleLabel = new QLabel(tr("Interface icons:"), this);
-    QLabel *papirusLabel = new QLabel("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>", this);
-    papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    papirusLabel->setOpenExternalLinks(true);
-    ui->aboutBox->layout()->addWidget(papirusTitleLabel);
-    ui->aboutBox->layout()->addWidget(papirusLabel);
-
-    // Add updater options
-    checkForUpdatesLabel = new QLabel(tr("Check for updates:"), this);
-    checkForUpdatesComboBox = new QComboBox(this);
-    checkForUpdatesButton = new QPushButton(tr("Check now"), this);
-    checkForUpdatesButton->setToolTip(tr("Check for updates now"));
-    checkForUpdatesStatusLabel = new QLabel(this);
-    checkForUpdatesComboBox->addItem(tr("Every day"));
-    checkForUpdatesComboBox->addItem(tr("Every week"));
-    checkForUpdatesComboBox->addItem(tr("Every month"));
-    checkForUpdatesComboBox->addItem(tr("Never"));
-    ui->checkForUpdatesLayout->addWidget(checkForUpdatesLabel);
-    ui->checkForUpdatesLayout->addWidget(checkForUpdatesComboBox);
-    ui->checkForUpdatesLayout->addWidget(checkForUpdatesButton);
-    ui->checkForUpdatesLayout->addWidget(checkForUpdatesStatusLabel);
-    ui->checkForUpdatesLayout->addStretch();
-    connect(checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
-#endif
-
     // Set item data in comboboxes
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
     ui->trayIconComboBox->setItemData(1, "crow-translate-tray-light");
@@ -117,21 +90,45 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     // Pages selection mechanism
     connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
 
+#if defined(Q_OS_WIN)
+    // Add information about icons
+    QLabel *papirusTitleLabel = new QLabel(tr("Interface icons:"), this);
+    QLabel *papirusLabel = new QLabel("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>", this);
+    papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    papirusLabel->setOpenExternalLinks(true);
+    ui->aboutBox->layout()->addWidget(papirusTitleLabel);
+    ui->aboutBox->layout()->addWidget(papirusLabel);
+
+    // Add updater options
+    checkForUpdatesLabel = new QLabel(tr("Check for updates:"), this);
+    checkForUpdatesComboBox = new QComboBox(this);
+    checkForUpdatesButton = new QPushButton(tr("Check now"), this);
+    checkForUpdatesButton->setToolTip(tr("Check for updates now"));
+    checkForUpdatesStatusLabel = new QLabel(this);
+    checkForUpdatesComboBox->addItem(tr("Every day"));
+    checkForUpdatesComboBox->addItem(tr("Every week"));
+    checkForUpdatesComboBox->addItem(tr("Every month"));
+    checkForUpdatesComboBox->addItem(tr("Never"));
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesLabel);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesComboBox);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesButton);
+    ui->checkForUpdatesLayout->addWidget(checkForUpdatesStatusLabel);
+    ui->checkForUpdatesLayout->addStretch();
+    connect(checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
+#endif
+
     // General settings
     QSettings settings;
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
-#if defined(Q_OS_WIN)
-    checkForUpdatesComboBox->setCurrentIndex(settings.value("CheckForUpdatesInterval", 1).toInt());
-#endif
-
 #if defined(Q_OS_LINUX)
     ui->autostartCheckBox->setChecked(QFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop").exists());
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     ui->autostartCheckBox->setChecked(autostartSettings.contains("Crow Translate"));
+    checkForUpdatesComboBox->setCurrentIndex(settings.value("CheckForUpdatesInterval", 1).toInt());
 #endif
 
     // Interface settings
@@ -195,9 +192,8 @@ SettingsDialog::~SettingsDialog()
 
 void SettingsDialog::on_dialogBox_accepted()
 {
-    QSettings settings;
-
     // Check if language changed
+    QSettings settings;
     if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
         emit languageChanged(); // Emit signal if language changed
@@ -305,13 +301,6 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Hotkeys/CopyTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
 }
 
-// Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
-void SettingsDialog::on_trayCheckBox_toggled(bool checked)
-{
-    ui->startMinimizedCheckBox->setEnabled(checked);
-    ui->startMinimizedCheckBox->setChecked(false);
-}
-
 void SettingsDialog::on_resetSettingsButton_clicked()
 {
     // General settings
@@ -351,6 +340,13 @@ void SettingsDialog::on_resetSettingsButton_clicked()
 
     // Shortcuts
     on_resetAllShortcutsButton_clicked();
+}
+
+// Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
+void SettingsDialog::on_trayCheckBox_toggled(bool checked)
+{
+    ui->startMinimizedCheckBox->setEnabled(checked);
+    ui->startMinimizedCheckBox->setChecked(false);
 }
 
 void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)

@@ -35,7 +35,6 @@ int main(int argc, char *argv[])
         QApplication::setApplicationName("Crow Translate");
         QCoreApplication::setOrganizationName("crow");
         app.setApplicationVersion("0.9.9");
-
 #if defined(Q_OS_WIN)
         QIcon::setThemeName("Papirus");
 #endif
@@ -72,13 +71,13 @@ int main(int argc, char *argv[])
                 waitUntilPlayedLoop.quit();
         });
 
-        // Translate and / or speach all arguments
-        foreach (auto text, parser.positionalArguments()) {
-            QStringList targetLanguages = parser.value("t").split("+");
-            for (auto i = 0; i < targetLanguages.size(); i++) {
-                // Translate into each target language
-                if (parser.isSet("a")) {
-                    // For only audio option
+        if (parser.isSet("a")) {
+            // For only audio option
+            foreach (auto text, parser.positionalArguments()) {
+                // Speak all text arguments
+                QStringList targetLanguages = parser.value("t").split("+");
+                for (auto i = 0; i < targetLanguages.size(); i++) {
+                    // Speak into each target language
                     if (parser.isSet("q") && i == 0) {
                         out << text << endl;
                         playlist.addMedia(QOnlineTranslator::media(text, parser.value("s")));
@@ -96,86 +95,94 @@ int main(int argc, char *argv[])
                         waitUntilPlayedLoop.exec();
                         playlist.clear();
                     }
-                    continue;
-                }
-
-                QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
-
-                // Check for network error
-                if (onlineTranslator.error()) {
-                    out << onlineTranslator.translation();
-                    return 0;
-                }
-
-                // Show source text and transliteration only once
-                if (i == 0) {
-                    out << text << endl;
-                    if (!onlineTranslator.sourceTranscription().isEmpty())
-                        out << "(" << onlineTranslator.sourceTranscription().replace("\n", ")\n(") << ")" << endl << endl;
-                    else
-                        out << endl;
-                }
-
-                // Show languages
-                out << "[ " << onlineTranslator.codeToLanguage(onlineTranslator.sourceLanguage()) << " -> ";
-                out << onlineTranslator.codeToLanguage(onlineTranslator.translationLanguage()) << " ]" << endl << endl ;
-
-                // Show translation text and transliteration
-                if (!onlineTranslator.translation().isEmpty()) {
-                    out << onlineTranslator.translation() << endl;
-                    if (!onlineTranslator.translationTranscription().isEmpty())
-                        out << "/" << onlineTranslator.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
-                    else
-                        out << endl;
-                }
-
-                // Show translation options
-                if (!onlineTranslator.translationOptionsList().isEmpty()) {
-                    out << onlineTranslator.source() << " - translation options:" << endl;
-                    foreach (auto optionType, onlineTranslator.translationOptionsList()) {
-                        out << optionType.typeOfSpeech() << endl;
-                        for (auto i = 0; i <  optionType.count(); i++) {
-                            out << "\t";
-                            if (!optionType.gender(i).isEmpty())
-                                out << optionType.gender(i) << " ";
-                            out << optionType.word(i) << ": ";
-
-                            out << optionType.translations(i).at(0);
-                            for (auto j = 1; j < optionType.translations(i).size(); j++) {
-                                out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
-                            }
-                            out << endl;
-                        }
-                        out << endl;
-                    }
-                }
-
-                // Show definitions
-                if (!onlineTranslator.definitionsList().isEmpty()) {
-                    out << onlineTranslator.source() << " - definitions:" << endl;
-                    foreach (auto definition, onlineTranslator.definitionsList()) {
-                        out << definition.typeOfSpeech() << endl;
-                        out << "\t" << definition.description() << endl;
-                        out << "\t" << definition.example() << endl;
-                    }
-                }
-
-                if (parser.isSet("q") && i == 0) {
-                    playlist.addMedia(onlineTranslator.sourceMedia());
-                    player.setPlaylist(&playlist);
-                    player.play();
-                    waitUntilPlayedLoop.exec();
-                    playlist.clear();
-                }
-                if (parser.isSet("e")) {
-                    playlist.addMedia(onlineTranslator.translationMedia());
-                    player.setPlaylist(&playlist);
-                    player.play();
-                    waitUntilPlayedLoop.exec();
-                    playlist.clear();
                 }
             }
         }
+        else {
+            foreach (auto text, parser.positionalArguments()) {
+                // Translate all arguments
+                QStringList targetLanguages = parser.value("t").split("+");
+                for (auto i = 0; i < targetLanguages.size(); i++) {
+                    // Translate into each target language
+                    QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+
+                    // Check for network error
+                    if (onlineTranslator.error()) {
+                        out << onlineTranslator.translation();
+                        return 0;
+                    }
+
+                    // Show source text and transliteration only once
+                    if (i == 0) {
+                        out << text << endl;
+                        if (!onlineTranslator.sourceTranscription().isEmpty())
+                            out << "(" << onlineTranslator.sourceTranscription().replace("\n", ")\n(") << ")" << endl << endl;
+                        else
+                            out << endl;
+                    }
+
+                    // Show languages
+                    out << "[ " << onlineTranslator.codeToLanguage(onlineTranslator.sourceLanguage()) << " -> ";
+                    out << onlineTranslator.codeToLanguage(onlineTranslator.translationLanguage()) << " ]" << endl << endl ;
+
+                    // Show translation text and transliteration
+                    if (!onlineTranslator.translation().isEmpty()) {
+                        out << onlineTranslator.translation() << endl;
+                        if (!onlineTranslator.translationTranscription().isEmpty())
+                            out << "/" << onlineTranslator.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
+                        else
+                            out << endl;
+                    }
+
+                    // Show translation options
+                    if (!onlineTranslator.translationOptionsList().isEmpty()) {
+                        out << onlineTranslator.source() << " - translation options:" << endl;
+                        foreach (auto optionType, onlineTranslator.translationOptionsList()) {
+                            out << optionType.typeOfSpeech() << endl;
+                            for (auto i = 0; i <  optionType.count(); i++) {
+                                out << "\t";
+                                if (!optionType.gender(i).isEmpty())
+                                    out << optionType.gender(i) << " ";
+                                out << optionType.word(i) << ": ";
+
+                                out << optionType.translations(i).at(0);
+                                for (auto j = 1; j < optionType.translations(i).size(); j++) {
+                                    out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
+                                }
+                                out << endl;
+                            }
+                            out << endl;
+                        }
+                    }
+
+                    // Show definitions
+                    if (!onlineTranslator.definitionsList().isEmpty()) {
+                        out << onlineTranslator.source() << " - definitions:" << endl;
+                        foreach (auto definition, onlineTranslator.definitionsList()) {
+                            out << definition.typeOfSpeech() << endl;
+                            out << "\t" << definition.description() << endl;
+                            out << "\t" << definition.example() << endl;
+                        }
+                    }
+
+                    if (parser.isSet("q") && i == 0) {
+                        playlist.addMedia(onlineTranslator.sourceMedia());
+                        player.setPlaylist(&playlist);
+                        player.play();
+                        waitUntilPlayedLoop.exec();
+                        playlist.clear();
+                    }
+                    if (parser.isSet("e")) {
+                        playlist.addMedia(onlineTranslator.translationMedia());
+                        player.setPlaylist(&playlist);
+                        player.play();
+                        waitUntilPlayedLoop.exec();
+                        playlist.clear();
+                    }
+                }
+            }
+        }
+
         return 0;
     }
 }

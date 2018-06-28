@@ -59,6 +59,24 @@ void UpdaterWindow::on_downloadButton_clicked()
     ui->cancelDownloadButton->setVisible(true);
 }
 
+void UpdaterWindow::on_installButton_clicked()
+{
+    QProcess::startDetached(downloadPath);
+    qApp->exit();
+}
+
+void UpdaterWindow::on_updateLaterButton_clicked()
+{
+    this->close();
+}
+
+void UpdaterWindow::on_cancelDownloadButton_clicked()
+{
+    downloading->abort();
+    ui->downloadBar->setVisible(false);
+    ui->cancelDownloadButton->setVisible(false);
+}
+
 void UpdaterWindow::finishDownload(QNetworkReply *reply)
 {
     ui->installButton->setEnabled(true);
@@ -85,22 +103,4 @@ void UpdaterWindow::finishDownload(QNetworkReply *reply)
 
     ui->cancelDownloadButton->setEnabled(false);
     downloadManager->deleteLater();
-}
-
-void UpdaterWindow::on_cancelDownloadButton_clicked()
-{
-    downloading->abort();
-    ui->downloadBar->setVisible(false);
-    ui->cancelDownloadButton->setVisible(false);
-}
-
-void UpdaterWindow::on_installButton_clicked()
-{
-    QProcess::startDetached(downloadPath);
-    qApp->exit();
-}
-
-void UpdaterWindow::on_updateLaterButton_clicked()
-{
-    this->close();
 }

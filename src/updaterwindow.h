@@ -21,15 +21,17 @@ public:
 
 private slots:
     void on_downloadButton_clicked();
-    void finishDownload(QNetworkReply *downloading);
-    void on_cancelDownloadButton_clicked();
     void on_installButton_clicked();
     void on_updateLaterButton_clicked();
+
+    void on_cancelDownloadButton_clicked();
+    void finishDownload(QNetworkReply *downloading);
 
 private:
     Ui::UpdaterWindow *ui;
     QNetworkAccessManager *downloadManager;
     QNetworkReply *downloading;
+
     QUrl downloadUrl;
     QString downloadPath;
 };

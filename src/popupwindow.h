@@ -41,10 +41,7 @@ public:
     ~PopupWindow();
 
     QTextEdit *translationEdit();
-
     QToolButton *swapButton();
-    QButtonGroup *sourceButtons();
-    QButtonGroup *translationButtons();
 
     QToolButton *autoSourceButton();
     QToolButton *playSourceButton();
@@ -57,6 +54,8 @@ public:
     QToolButton *copyTranslationButton();
     QToolButton *copyAllTranslationButton();
 
+    QButtonGroup *sourceButtons();
+    QButtonGroup *translationButtons();
 
 public slots:
     void loadSourceButton(QAbstractButton *button, const int &id);
@@ -69,7 +68,6 @@ private:
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;
-
     QButtonGroup *sourceButtonGroup;
     QButtonGroup *translationButtonGroup;
 };
