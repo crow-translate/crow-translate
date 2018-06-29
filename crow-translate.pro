@@ -22,35 +22,42 @@ include(src/qonlinetranslator/qonlinetranslator.pri)
 include(src/qgitrelease/qgitrelease.pri)
 include(src/third-party/qhotkey/qhotkey.pri)
 include(src/third-party/singleapplication/singleapplication.pri)
-DEFINES += QAPPLICATION_CLASS=QApplication
 
-DEFINES += QT_DEPRECATED_WARNINGS
-
+DEFINES += \
+    QAPPLICATION_CLASS=QApplication \
+    QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/main.cpp \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
-    src/popupwindow.cpp \
-    src/updaterwindow.cpp
+    src/popupwindow.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
-    src/popupwindow.h \
-    src/updaterwindow.h
+    src/popupwindow.h
 
 FORMS += \
     src/settingsdialog.ui \
     src/mainwindow.ui \
-    src/popupwindow.ui \
-    src/updaterwindow.ui
+    src/popupwindow.ui
 
 RESOURCES += \
     data/resources.qrc
 
 win32 {
-RESOURCES += data/windows-icons.qrc
+SOURCES += \
+    src/updaterwindow.cpp
+
+HEADERS += \
+    src/updaterwindow.h
+
+FORMS += \
+    src/updaterwindow.ui
+
+RESOURCES += \
+    data/windows-icons.qrc
 }
 
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
