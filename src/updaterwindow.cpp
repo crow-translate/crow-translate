@@ -46,8 +46,14 @@ void UpdaterWindow::on_downloadButton_clicked()
 
     // Send request
     downloadManager = new QNetworkAccessManager(this);
-    downloadManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy); // Need for GitHub
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
+    downloadManager->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
     downloading = downloadManager->get(QNetworkRequest(downloadUrl));
+#else
+    QNetworkRequest request(downloadUrl);
+    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+    downloading = downloadManager->get(request);
+#endif
 
     connect(downloadManager, &QNetworkAccessManager::finished, this, &UpdaterWindow::finishDownload);
     connect(downloading, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
