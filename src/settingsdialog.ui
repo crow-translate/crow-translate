@@ -308,14 +308,7 @@
            <item>
             <layout class="QGridLayout" name="popupSizeLayout">
              <item row="0" column="2">
-              <widget class="QSpinBox" name="popupHeightSpinBox">
-               <property name="minimum">
-                <number>200</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-              </widget>
+              <widget class="QSpinBox" name="popupHeightSpinBox"/>
              </item>
              <item row="0" column="0">
               <widget class="QLabel" name="popupHeightLabel">
@@ -326,15 +319,6 @@
              </item>
              <item row="0" column="1">
               <widget class="QSlider" name="popupHeightSlider">
-               <property name="minimum">
-                <number>200</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-               <property name="singleStep">
-                <number>1</number>
-               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -342,12 +326,6 @@
              </item>
              <item row="1" column="1">
               <widget class="QSlider" name="popupWidthSlider">
-               <property name="minimum">
-                <number>350</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -361,14 +339,7 @@
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QSpinBox" name="popupWidthSpinBox">
-               <property name="minimum">
-                <number>350</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-              </widget>
+              <widget class="QSpinBox" name="popupWidthSpinBox"/>
              </item>
             </layout>
            </item>

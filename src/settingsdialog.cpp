@@ -24,6 +24,7 @@
 #include <QStandardPaths>
 #include <QNetworkProxy>
 #include <QFileDialog>
+#include <QScreen>
 
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
@@ -86,6 +87,16 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     connect(ui->popupWidthSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupWidthSlider, &QSlider::setValue);
     connect(ui->popupHeightSlider, &QSlider::valueChanged, ui->popupHeightSpinBox, &QSpinBox::setValue);
     connect(ui->popupHeightSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupHeightSlider, &QSlider::setValue);
+
+    // Set maximum and minimum values for the size of the popup window
+    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width() / 2);
+    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width() / 2);
+    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height() / 2);
+    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height() / 2);
+    ui->popupWidthSlider->setMinimum(200);
+    ui->popupWidthSpinBox->setMinimum(200);
+    ui->popupHeightSlider->setMinimum(200);
+    ui->popupHeightSpinBox->setMinimum(200);
 
     // Pages selection mechanism
     connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
