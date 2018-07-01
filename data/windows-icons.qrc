@@ -15,9 +15,6 @@
         <file>icons/Papirus/16x16/actions/object-flip-horizontal.svg</file>
         <file>icons/Papirus/16x16/actions/window.svg</file>
         <file>icons/Papirus/16x16/apps/preferences-desktop-locale.svg</file>
-        <file>icons/Papirus/16x16/status/crow-translate-tray-dark.svg</file>
-        <file>icons/Papirus/16x16/status/crow-translate-tray-light.svg</file>
-        <file>icons/Papirus/16x16/status/crow-translate.svg</file>
         <file>icons/Papirus/32x32/apps/preferences-desktop-keyboard.svg</file>
         <file>icons/Papirus/32x32/apps/preferences-desktop-locale.svg</file>
         <file>icons/Papirus/32x32/apps/preferences-desktop-theme.svg</file>
@@ -26,5 +23,8 @@
         <file>icons/Papirus/32x32/status/dialog-information.svg</file>
         <file>icons/Papirus/16x16/actions/document-export.svg</file>
         <file>icons/Papirus/16x16/apps/software-update-available.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate-tray-dark.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate-tray-light.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate.svg</file>
     </qresource>
 </RCC>

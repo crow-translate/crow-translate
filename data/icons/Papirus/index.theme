@@ -1,6 +1,6 @@
 [Icon Theme]
 Name=Papirus
-Directories=16x16/actions,16x16/apps,16x16/status,32x32/apps,32x32/status
+Directories=16x16/actions,16x16/apps,32x32/apps,32x32/status
 
 [16x16/actions]
 Context=Actions
