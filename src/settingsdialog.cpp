@@ -41,6 +41,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->expandAll();
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
+    ui->versionLabel->setText(qApp->applicationVersion());
 
     // Set item data in comboboxes
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
