@@ -487,7 +487,6 @@ void MainWindow::toggleTranslationButton(QAbstractButton *button, const bool &ch
             autoTranslateTimer.start(300);
 
         settings.setValue("Buttons/CheckedTranslationButton", translationButtonGroup->checkedId());
-
     }
 }
 
@@ -916,8 +915,9 @@ void MainWindow::insertLanguage(QButtonGroup *group, const QString &settingsName
         settings.setValue("Buttons/" + settingsName + "Button" + QString::number(i), group->button(i)->toolTip());
     }
 
-    // Shift pressed button in settings
-    settings.setValue("Buttons/Checked" + settingsName + "Button", settings.value("Buttons/Checked" + settingsName + "Button", 0).toInt() + 1);
+    // Shift checked button in the settings
+    if (group->checkedId() != 0 && group->checkedId() != 3)
+        settings.setValue("Buttons/Checked" + settingsName + "Button", settings.value("Buttons/Checked" + settingsName + "Button", 0).toInt() + 1);
 
     // Insert new language to first button
     group->button(1)->setText(onlineTranslator->codeToLanguage(languageCode));
