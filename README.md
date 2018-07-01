@@ -34,7 +34,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * Translator window with native interface similar to Google Translate
 * Command-line interface with rich options
 * Highly customizable shortcuts
-* Low memory consumption (~19MB)
+* Low memory consumption (~20MB)
 
 ## Default keyboard shortcuts
 

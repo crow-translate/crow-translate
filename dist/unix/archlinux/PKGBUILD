@@ -1,9 +1,9 @@
 # Maintainer: Shatur95 <genaloner@gmail.com>
 
 pkgname=crow-translate-git
-pkgver=0.9.9.r14.g18e88f9
+pkgver=1.0.0
 pkgrel=1
-pkgdesc="A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API"
+pkgdesc="A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more"
 arch=('x86_64')
 url="https://github.com/Shatur95/Crow"
 license=('GPL3')
