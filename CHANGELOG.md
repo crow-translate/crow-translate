@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ### Changed
 - Improve the prevention of a pop-up window outside the screen
+- Fix wrong layout properties in settings
 
 ## [1.0.0] - 2018-07-01
 ### Added

@@ -100,6 +100,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     checkForUpdatesButton = new QPushButton(tr("Check now"), this);
     checkForUpdatesButton->setToolTip(tr("Check for updates now"));
     checkForUpdatesStatusLabel = new QLabel(this);
+    checkForUpdatesStatusLabel->setWordWrap(true);
     checkForUpdatesComboBox->addItem(tr("Every day"));
     checkForUpdatesComboBox->addItem(tr("Every week"));
     checkForUpdatesComboBox->addItem(tr("Every month"));
