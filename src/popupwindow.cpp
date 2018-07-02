@@ -39,7 +39,8 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
     QSettings settings;
-    PopupWindow::setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
+    setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
+    resize(settings.value("PopupSize", QSize(350, 300)).toSize());
 
     // Translation button group
     sourceButtonGroup->addButton(ui->autoSourceButton, 0);
@@ -180,32 +181,28 @@ QButtonGroup *PopupWindow::translationButtons()
     return translationButtonGroup;
 }
 
-// Move popup to cursor and prevent window from appearing outside the screen
+// Move popup to cursor and prevent appearing outside the screen
 void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
-    QSettings settings;
-    QSize windowSize = settings.value("PopupSize", QSize(350, 300)).toSize();
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     QSize availableSize = QGuiApplication::screenAt(position)->availableSize();
 #else
     QSize availableSize = QApplication::desktop()->screenGeometry(position).size();
 #endif
 
-    // Check if the size of the pop-up window is more than the allowed size
-    if (windowSize.width() > availableSize.width() / 2 || windowSize.height() > availableSize.height() / 2) {
-        windowSize.rwidth() = windowSize.width() / 2;
-        windowSize.rheight() = windowSize.height() / 2;
-        settings.setValue("PopupSize", windowSize);
-    }
-    resize(windowSize);
-
-    if (availableSize.width() - position.x() - this->geometry().width() < 0)
+    if (availableSize.width() - position.x() - this->geometry().width() < 0) {
         position.rx()-= this->frameGeometry().width();
-    if (availableSize.height() - position.y() - this->geometry().height() < 0)
+        if (position.x() < 0)
+            position.rx() = 0;
+    }
+    if (availableSize.height() - position.y() - this->geometry().height() < 0) {
         position.ry()-= this->frameGeometry().height();
+        if (position.y() < 0)
+            position.ry() = 0;
+    }
 
-    PopupWindow::move(position);
+    move(position);
     QWidget::showEvent(event);
 }
 

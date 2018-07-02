@@ -90,10 +90,10 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     connect(ui->popupHeightSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupHeightSlider, &QSlider::setValue);
 
     // Set maximum and minimum values for the size of the popup window
-    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width() / 2);
-    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width() / 2);
-    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height() / 2);
-    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height() / 2);
+    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
+    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
     ui->popupWidthSlider->setMinimum(200);
     ui->popupWidthSpinBox->setMinimum(200);
     ui->popupHeightSlider->setMinimum(200);
