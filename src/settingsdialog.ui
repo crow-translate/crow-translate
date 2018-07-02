@@ -829,17 +829,17 @@
                </item>
                <item>
                 <property name="text">
+                 <string notr="true">SOCKS5</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>Don't use a proxy</string>
                 </property>
                </item>
                <item>
                 <property name="text">
                  <string notr="true">HTTP</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">SOCKS5</string>
                 </property>
                </item>
               </widget>

@@ -53,11 +53,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->languageComboBox->setItemData(1, "en");
     ui->languageComboBox->setItemData(2, "ru");
 
-    ui->proxyTypeComboBox->setItemData(0, QNetworkProxy::ProxyType::DefaultProxy);
-    ui->proxyTypeComboBox->setItemData(1, QNetworkProxy::ProxyType::NoProxy);
-    ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
-    ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
-
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     foreach (auto language, languagesMenu->actions()) {
@@ -153,7 +148,8 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
 
     // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(ui->proxyTypeComboBox->findData(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+    ui->proxyTypeComboBox->setCurrentIndex(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt());
+
     ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
     ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
     ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
@@ -204,13 +200,13 @@ void SettingsDialog::on_dialogBox_accepted()
     }
 
     // Check if proxy changed
-    if (settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt() != ui->proxyTypeComboBox->currentData() ||
-            settings.value("Connection/ProxyHost", "").toString() != ui->proxyHostEdit->text() ||
-            settings.value("Connection/ProxyPort", 8080).toInt() != ui->proxyPortSpinbox->value() ||
-            settings.value("Connection/ProxyAuthEnabled", false).toInt() != ui->proxyAuthCheckBox->isChecked() ||
-            settings.value("Connection/ProxyUsername", "").toString() != ui->proxyUsernameEdit->text() ||
-            settings.value("Connection/ProxyPassword", "").toString() != ui->proxyPasswordEdit->text()) {
-        settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+    if (ui->proxyTypeComboBox->currentIndex() != settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt() ||
+            ui->proxyHostEdit->text() != settings.value("Connection/ProxyHost", "").toString() ||
+            ui->proxyPortSpinbox->value() != settings.value("Connection/ProxyPort", 8080).toInt() ||
+            ui->proxyAuthCheckBox->isChecked() != settings.value("Connection/ProxyAuthEnabled", false).toInt() ||
+            ui->proxyUsernameEdit->text() != settings.value("Connection/ProxyUsername", "").toString() ||
+            ui->proxyPasswordEdit->text() != settings.value("Connection/ProxyPassword", "").toString()) {
+        settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentIndex());
         settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
         settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
         settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
@@ -286,7 +282,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Translation/SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
 
     // Connection settings
-    settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentData());
+    settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentIndex());
     settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
     settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
     settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
@@ -343,7 +339,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
 
     // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(0);
+    ui->proxyTypeComboBox->setCurrentIndex(1);
     ui->proxyHostEdit->setText("");
     ui->proxyPortSpinbox->setValue(8080);
     ui->proxyAuthCheckBox->setChecked(false);
