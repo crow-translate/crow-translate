@@ -1,3 +1,10 @@
+crow-translate (1.0.1~git-1) stretch; urgency=low
+
+ * Button style settings for pop-up window.
+ * Improve the prevention of a pop-up window outside the screen.
+ * Fix wrong layout properties in settings.
+ * Fix parsing for new changlog.
+
 crow-translate (1.0.0~git-1) stretch; urgency=low
 
  * Word gender support for translation options

@@ -5,8 +5,11 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+*No unreleased changes*
+
+## [1.0.1] - 2018-07-02
 ### Added
-- Button style settings for the pop-up window.
+- Button style settings for pop-up window.
 
 ### Changed
 - Improve the prevention of a pop-up window outside the screen.
