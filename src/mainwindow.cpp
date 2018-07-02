@@ -740,22 +740,22 @@ void MainWindow::loadSettings()
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
 
     // Language buttons style
-    ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->firstTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->firstTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
 
     // Control buttons style
-    ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->playTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->stopTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->settingsButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("ControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->playTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->stopTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    ui->settingsButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
 
     // Shortcuts
     translateSelectedHotkey->setShortcut(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString(), true);

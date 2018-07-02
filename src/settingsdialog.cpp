@@ -58,18 +58,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->proxyTypeComboBox->setItemData(2, QNetworkProxy::ProxyType::HttpProxy);
     ui->proxyTypeComboBox->setItemData(3, QNetworkProxy::ProxyType::Socks5Proxy);
 
-    ui->languagesStyleComboBox->setItemData(0, Qt::ToolButtonFollowStyle);
-    ui->languagesStyleComboBox->setItemData(1, Qt::ToolButtonIconOnly);
-    ui->languagesStyleComboBox->setItemData(2, Qt::ToolButtonTextOnly);
-    ui->languagesStyleComboBox->setItemData(3, Qt::ToolButtonTextBesideIcon);
-    ui->languagesStyleComboBox->setItemData(4, Qt::ToolButtonTextUnderIcon);
-
-    ui->controlsStyleComboBox->setItemData(0, Qt::ToolButtonFollowStyle);
-    ui->controlsStyleComboBox->setItemData(1, Qt::ToolButtonIconOnly);
-    ui->controlsStyleComboBox->setItemData(2, Qt::ToolButtonTextOnly);
-    ui->controlsStyleComboBox->setItemData(3, Qt::ToolButtonTextBesideIcon);
-    ui->controlsStyleComboBox->setItemData(4, Qt::ToolButtonTextUnderIcon);
-
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     foreach (auto language, languagesMenu->actions()) {
@@ -144,11 +132,15 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 #endif
 
     // Interface settings
-    ui->languagesStyleComboBox->setCurrentIndex(ui->languagesStyleComboBox->findData(settings.value("LanguagesStyle", Qt::ToolButtonTextBesideIcon).toInt()));
-    ui->controlsStyleComboBox->setCurrentIndex(ui->controlsStyleComboBox->findData(settings.value("ControlsStyle", Qt::ToolButtonIconOnly).toInt()));
     ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
     ui->popupHeightSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().height());
     ui->popupWidthSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().width());
+    ui->popupLanguagesComboBox->setCurrentIndex(settings.value("PopupLanguagesStyle", Qt::ToolButtonIconOnly).toInt());
+    ui->popupControlsComboBox->setCurrentIndex(settings.value("PopupControlsStyle", Qt::ToolButtonIconOnly).toInt());
+
+    ui->windowLanguagesComboBox->setCurrentIndex(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon).toInt());
+    ui->windowControlsComboBox->setCurrentIndex(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly).toInt());
+
     ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
     ui->customTrayIconLineEdit->setText(settings.value("CustomIconPath", "").toString());
 
@@ -274,10 +266,14 @@ void SettingsDialog::on_dialogBox_accepted()
 #endif
 
     // Interface settings
-    settings.setValue("LanguagesStyle", ui->languagesStyleComboBox->currentData());
-    settings.setValue("ControlsStyle", ui->controlsStyleComboBox->currentData());
     settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setValue("PopupSize", QSize(ui->popupWidthSpinBox->value(), ui->popupHeightSpinBox->value()));
+    settings.setValue("PopupLanguagesStyle", ui->popupLanguagesComboBox->currentIndex());
+    settings.setValue("PopupControlsStyle", ui->popupControlsComboBox->currentIndex());
+
+    settings.setValue("WindowLanguagesStyle", ui->windowLanguagesComboBox->currentIndex());
+    settings.setValue("WindowControlsStyle", ui->windowControlsComboBox->currentIndex());
+
     settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
     settings.setValue("CustomIconPath", ui->customTrayIconLineEdit->text());
 
@@ -326,11 +322,15 @@ void SettingsDialog::on_resetSettingsButton_clicked()
 #endif
 
     // Interface settings
-    ui->languagesStyleComboBox->setCurrentIndex(0);
-    ui->controlsStyleComboBox->setCurrentIndex(0);
     ui->popupOpacitySlider->setValue(80);
     ui->popupWidthSpinBox->setValue(350);
     ui->popupHeightSpinBox->setValue(300);
+    ui->popupLanguagesComboBox->setCurrentIndex(0);
+    ui->popupControlsComboBox->setCurrentIndex(0);
+
+    ui->windowLanguagesComboBox->setCurrentIndex(2);
+    ui->windowControlsComboBox->setCurrentIndex(0);
+
     ui->trayIconComboBox->setCurrentIndex(0);
     ui->customTrayIconLineEdit->setText("");
 

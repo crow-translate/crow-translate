@@ -138,7 +138,7 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Full window</string>
+                 <string>Main window</string>
                 </property>
                </item>
               </widget>
@@ -343,31 +343,17 @@
              </item>
             </layout>
            </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="buttonsStyleGroupBox">
-          <property name="title">
-           <string>Buttons style</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
-            <layout class="QHBoxLayout" name="languagesStyleLayout">
+            <layout class="QHBoxLayout" name="popupLanguagesLayout">
              <item>
-              <widget class="QLabel" name="languagesStyleLabel">
+              <widget class="QLabel" name="popupLanguagesLabel">
                <property name="text">
                 <string>Language buttons:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="languagesStyleComboBox">
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
+              <widget class="QComboBox" name="popupLanguagesComboBox">
                <item>
                 <property name="text">
                  <string>Icon only</string>
@@ -388,10 +374,15 @@
                  <string>Text under icon</string>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
-              <spacer name="languagesStyleSpacer">
+              <spacer name="popupLanguagesSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -406,21 +397,16 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="controlsStyleLayout">
+            <layout class="QHBoxLayout" name="popupControlsLayout">
              <item>
-              <widget class="QLabel" name="controlsStyleLabel">
+              <widget class="QLabel" name="popupControlsLabel">
                <property name="text">
                 <string>Control buttons:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="controlsStyleComboBox">
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
+              <widget class="QComboBox" name="popupControlsComboBox">
                <item>
                 <property name="text">
                  <string>Icon only</string>
@@ -441,10 +427,130 @@
                  <string>Text under icon</string>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
-              <spacer name="controlsStyleSpacer">
+              <spacer name="popupControlsSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="windowInterfaceGroupBox">
+          <property name="title">
+           <string>Main window</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <layout class="QHBoxLayout" name="windowLanguagesLayout">
+             <item>
+              <widget class="QLabel" name="windowLanguagesLabel">
+               <property name="text">
+                <string>Language buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="windowLanguagesComboBox">
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="windowLanguagesSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="windowControlsLayout">
+             <item>
+              <widget class="QLabel" name="windowControlsLabel">
+               <property name="text">
+                <string>Control buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="windowControlsComboBox">
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="windowControlsSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
