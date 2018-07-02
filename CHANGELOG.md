@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Changed
 - Improve the prevention of a pop-up window outside the screen.
 - Fix wrong layout properties in settings.
-- Fix parsing for new changlog.
+- Windows: Fix new changelog parsing for Updater.
 
 ## [1.0.0] - 2018-07-01
 ### Added
@@ -22,7 +22,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Definition support.
 - Support for SOCKS5 proxies.
 - Ability to set a custom system tray icon.
-- Auto-update for Windows.
 - Flag icons for languages.
 - Display of network error in the pop-up window.
 - Options to select buttons style.
@@ -30,6 +29,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - A global shortcut to stop playing the selected text.
 - A button to copy translation to the source field.
 - Minor visual design improvements.
+- Windows: Auto-update.
 
 ### Changed
 - Redesign application icon.
@@ -61,17 +61,17 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - More buttons in the pop-up window.
 - Saving of the main window size state.
 - Major performance optimizations.
-- Icons for the tray context menu for Windows.
+- Windows: Icons for the tray context menu.
 
 ### Changed
-- Improve icon look for Windows.
-- Change icon names for better compatibility for Linux.
 - Redesign interface of the settings menu.
 - Fix pop-up window appearing outside the screen.
 - Fix reactivation for the translation hotkey.
 - Fix the bug when an empty field was displayed instead of translation when the hotkey was pressed.
 - Fix wrong interpretation of some symbols.
 - Fix automatic translation in the main window after inserting a new language.
+- Linux: Change icon names for better compatibility.
+- Windows: Improve icon look.
 
 ### Removed
 - "Automatic detection" from the context menu of languages ​​as useless.
@@ -82,8 +82,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Displaying detected languages on the language auto-detection buttons.
 - "Automatically translate" checkbox.
 - Tooltips for buttons.
-- Icon for the "Show Window" action in the system tray for Linux.
 - Perfomance improvements.
+- Linux: Icon for the "Show Window" action in the system tray.
 
 ### Changed
 - Redesigned settings appearance.
@@ -93,15 +93,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [0.9.6] - 2018-04-04
 ### Added
-- Icons to tray context menu for Linux.
 - Close window shortcut.
 - Minor optimizations.
+- Linux: Icons to tray context menu.
 
 ### Changed
 - New default Windows compatible keyboard shortcuts.
 - Fix memory leak after closing settings.
 - Fix language detection when saying selected text.
-- Fix the obtaining of selected text on Windows.
+- Windows: Fix the obtaining of selected text.
 
 ## [0.9.5] - 2018-03-25
 ### Added
@@ -113,7 +113,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Improve network error output.
 - Rework behavior of the button "Reset settings".
 - Now list of languages is sorted alphabetically.
-- Fix bug on Windows, when Cyrillic characters are reproduced as "?".
+- Windows: Fix reproduction of Cyrillic characters as "?".
 
 ## [0.9.5] - 2018-03-14
 *Initial release*
