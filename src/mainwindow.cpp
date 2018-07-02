@@ -200,6 +200,8 @@ void MainWindow::on_translateButton_clicked()
         // Check for network error
         if (onlineTranslator->error()) {
             ui->translationEdit->setHtml(onlineTranslator->translation());
+            ui->translateButton->setEnabled(true);
+            emit translationTextChanged(onlineTranslator->translation());
             return;
         }
 
@@ -221,6 +223,7 @@ void MainWindow::on_translateButton_clicked()
             // Check for network error
             if (onlineTranslator->error()) {
                 ui->translationEdit->setHtml(onlineTranslator->translation());
+                ui->translateButton->setEnabled(true);
                 emit translationTextChanged(onlineTranslator->translation());
                 return;
             }
