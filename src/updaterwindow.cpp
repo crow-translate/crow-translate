@@ -27,12 +27,20 @@ UpdaterWindow::UpdaterWindow(const QGitRelease &release, QWidget *parent) :
     }
 
     // Load release data
-    ui->infoLabel->setText(tr("A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.") +
-                           "<br><b>" + tr("Current version:") + " </b>" + qApp->applicationVersion() +
-                           "<br><b>" + tr("Latest version:") + " </b>" + release.tagName() +
-                           "<br>" + tr("You can also download the release manually from this") + " <a href=\"" + downloadUrl.toString() + "\"> " + tr("link") + "</a>.");
-    ui->changelogTextEdit->setText("<b>" + tr("Changelog:") + "</b><ul>" +
-                                   release.body().replace("* ", "<li>").replace("\n", "</li>") + "</ul>");
+    QString info(tr("A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often."));
+    info.append("<br><b>" + tr("Current version:") + " </b>" + qApp->applicationVersion());
+    info.append("<br><b>" + tr("Latest version:") + " </b>" + release.tagName());
+    info.append("<br>" + tr("You can also download the release manually from this") + " <a href=\"" + downloadUrl.toString() + "\"> " + tr("link") + "</a>.");
+    ui->infoLabel->setText(info);
+
+    QString changelog = release.body();
+    changelog.prepend("<b>" + tr("Changelog:") + "</b><br><br>");
+    changelog.replace("### Added", "<b>Added</b><ul>");
+    changelog.replace("### Changed", "</ul><b>Changed</b><ul>");
+    changelog.replace("- ", "<li>");
+    changelog.replace(".\n", "</li>");
+    changelog.append("</ul>");
+    ui->changelogTextEdit->setText(changelog);
 }
 
 UpdaterWindow::~UpdaterWindow()
