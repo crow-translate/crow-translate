@@ -311,9 +311,7 @@ void MainWindow::on_translateButton_clicked()
         ui->translateButton->setEnabled(true);
     }
     else
-        // Check if function called by pressing the button
-        if (QObject::sender() == ui->translateButton)
-            qDebug() << tr("Text field is empty");
+        ui->translationEdit->clear();
 }
 
 void MainWindow::on_swapButton_clicked()

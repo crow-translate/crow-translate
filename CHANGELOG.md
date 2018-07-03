@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
+- Clear the translation field if the source field is empty
 - Fix wrong proxy combobox behavior.
 - Windows: fix missing tray icon.
 
