@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Fix wrong proxy combobox behavior.
+- Windows: fix missing tray icon.
 
 ## [1.0.1] - 2018-07-02
 ### Added

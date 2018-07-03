@@ -727,17 +727,18 @@ void MainWindow::loadSettings()
     // System tray icon
     QString iconName = settings.value("TrayIcon", "crow-translate-tray").toString();
     if (iconName == "custom") {
-        QFile icon(settings.value("CustomIconPath", "").toString());
-        if (icon.exists())
-            trayIcon->setIcon(QIcon(icon.fileName()));
-        else
+        QIcon customIcon(settings.value("CustomIconPath", "").toString());
+        if (customIcon.isNull())
             trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
+        else
+            trayIcon->setIcon(customIcon);
     }
     else {
-        if (QIcon::hasThemeIcon(iconName))
-            trayIcon->setIcon(QIcon::fromTheme(iconName));
-        else
+        QIcon crowIcon = QIcon::fromTheme(iconName);
+        if (crowIcon.isNull())
             trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
+        else
+            trayIcon->setIcon(crowIcon);
     }
     trayIcon->setVisible(settings.value("TrayIconVisible", true).toBool());
     QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
