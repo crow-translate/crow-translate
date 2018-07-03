@@ -382,7 +382,7 @@ void SettingsDialog::on_customTrayIconButton_clicked()
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
 {
-    if (index >= 2) {
+    if (index == QNetworkProxy::HttpProxy || index == QNetworkProxy::Socks5Proxy) {
         ui->proxyHostEdit->setEnabled(true);
         ui->proxyHostLabel->setEnabled(true);
         ui->proxyPortLabel->setEnabled(true);
