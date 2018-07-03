@@ -64,12 +64,13 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
     connect(showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::display);
     connect(playSelectedHotkey, &QHotkey::activated, this, &MainWindow::playSelected);
-    connect(stopSelectedHotkey, &QHotkey::activated, &sourcePlayer, &QMediaPlayer::stop);
+    connect(stopSelectedHotkey, &QHotkey::activated, &selectionPlayer, &QMediaPlayer::stop);
     connect(translateSelectedHotkey, &QHotkey::activated, this, &MainWindow::translateSelected);
 
     // Text speaking
     sourcePlayer.setPlaylist(&sourcePlaylist); // Use playlist to split long queries due Google limit
     translationPlayer.setPlaylist(&translationPlaylist);
+    selectionPlayer.setPlaylist(&selectionPlaylist);
     connect(ui->sourceEdit, &QPlainTextEdit::textChanged, &sourcePlayer, &QMediaPlayer::stop);
     connect(&sourcePlayer, &QMediaPlayer::stateChanged,this, &MainWindow::changeSourcePlayerState);
     connect(&translationPlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeTranslationPlayerState);
@@ -352,9 +353,6 @@ void MainWindow::on_settingsButton_clicked()
 void MainWindow::on_playSourceButton_clicked()
 {
     if (ui->sourceEdit->toPlainText() != "") {
-        if (translationPlayer.state() == QMediaPlayer::PlayingState)
-            translationPlayer.pause();
-
         switch (sourcePlayer.state()) {
         case QMediaPlayer::PlayingState:
         {
@@ -363,11 +361,25 @@ void MainWindow::on_playSourceButton_clicked()
         }
         case QMediaPlayer::PausedState:
         {
+            // Pause other players
+            if (translationPlayer.state() == QMediaPlayer::PlayingState)
+                translationPlayer.pause();
+            else
+                if (selectionPlayer.state() == QMediaPlayer::PlayingState)
+                    selectionPlayer.pause();
+
             sourcePlayer.play();
             break;
         }
         case QMediaPlayer::StoppedState:
         {
+            // Pause other players
+            if (translationPlayer.state() == QMediaPlayer::PlayingState)
+                translationPlayer.pause();
+            else
+                if (selectionPlayer.state() == QMediaPlayer::PlayingState)
+                    selectionPlayer.pause();
+
             sourcePlaylist.clear();
             sourcePlaylist.addMedia(QOnlineTranslator::media(ui->sourceEdit->toPlainText(), sourceButtonGroup->checkedButton()->toolTip()));
             sourcePlayer.play();
@@ -382,9 +394,6 @@ void MainWindow::on_playSourceButton_clicked()
 void MainWindow::on_playTranslationButton_clicked()
 {
     if (ui->translationEdit->toPlainText() != "") {
-        if (sourcePlayer.state() == QMediaPlayer::PlayingState)
-            sourcePlayer.pause();
-
         switch (translationPlayer.state()) {
         case QMediaPlayer::PlayingState:
         {
@@ -393,11 +402,21 @@ void MainWindow::on_playTranslationButton_clicked()
         }
         case QMediaPlayer::PausedState:
         {
+            if (sourcePlayer.state() == QMediaPlayer::PlayingState)
+                sourcePlayer.pause();
+            else
+                if (selectionPlayer.state() == QMediaPlayer::PlayingState)
+                    selectionPlayer.pause();
             translationPlayer.play();
             break;
         }
         case QMediaPlayer::StoppedState:
         {
+            if (sourcePlayer.state() == QMediaPlayer::PlayingState)
+                sourcePlayer.pause();
+            else
+                if (selectionPlayer.state() == QMediaPlayer::PlayingState)
+                selectionPlayer.pause();
             translationPlaylist.clear();
             translationPlaylist.addMedia(onlineTranslator->translationMedia());
             translationPlayer.play();
@@ -589,9 +608,16 @@ void MainWindow::playSelected()
 {
     QString selection = selectedText();
     if (selection != "") {
-        sourcePlaylist.clear();
-        sourcePlaylist.addMedia(QOnlineTranslator::media(selectedText()));
-        sourcePlayer.play();
+        // Pause other players
+        if (translationPlayer.state() == QMediaPlayer::PlayingState)
+            translationPlayer.pause();
+        else
+            if (sourcePlayer.state() == QMediaPlayer::PlayingState)
+                sourcePlayer.pause();
+
+        selectionPlaylist.clear();
+        selectionPlaylist.addMedia(QOnlineTranslator::media(selectedText()));
+        selectionPlayer.play();
     }
     else
         qDebug() << tr("The selection does not contain text");

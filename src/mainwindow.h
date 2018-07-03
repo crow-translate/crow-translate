@@ -116,6 +116,8 @@ private:
     QMediaPlaylist sourcePlaylist;
     QMediaPlayer translationPlayer;
     QMediaPlaylist translationPlaylist;
+    QMediaPlayer selectionPlayer;
+    QMediaPlaylist selectionPlaylist;
 
     QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
