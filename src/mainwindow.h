@@ -89,8 +89,6 @@ private slots:
     void translateSelection();
     void playSelection();
     void playTranslatedSelection();
-    void changeSourcePlayerState(QMediaPlayer::State state);
-    void changeTranslationPlayerState(QMediaPlayer::State state);
 
     void display();
     void reloadTranslation();
