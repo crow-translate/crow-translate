@@ -91,7 +91,6 @@ private slots:
     void playTranslatedSelection();
 
     void display();
-    void reloadTranslation();
     void loadProxy();
     void resetAutoSourceButtonText();
 

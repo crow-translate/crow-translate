@@ -193,13 +193,23 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
+bool SettingsDialog::languageChanged()
+{
+    return m_languageChanged;
+}
+
+bool SettingsDialog::proxyChanged()
+{
+    return m_proxyChanged;
+}
+
 void SettingsDialog::on_dialogBox_accepted()
 {
     // Check if language changed
     QSettings settings;
     if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
-        emit languageChanged(); // Emit signal if language changed
+        m_languageChanged = true;
     }
 
     // Check if proxy changed
@@ -215,7 +225,7 @@ void SettingsDialog::on_dialogBox_accepted()
         settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
         settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
         settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
-        emit proxyChanged(); // Emit signal if language changed
+        m_proxyChanged = true;
     }
 
     // Check if autostart options changed

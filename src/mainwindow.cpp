@@ -396,9 +396,39 @@ void MainWindow::on_copyToSourceButton_clicked()
 void MainWindow::on_settingsButton_clicked()
 {
     SettingsDialog config(languagesMenu, this);
-    connect(&config, &SettingsDialog::languageChanged, this, &MainWindow::reloadTranslation);
-    connect(&config, &SettingsDialog::proxyChanged, this, &MainWindow::loadProxy);
     if (config.exec()) {
+        if (config.languageChanged()) {
+            // Reload localization
+            QSettings settings;
+            QString localeCode = settings.value("Language", "auto").toString();
+            if (localeCode == "auto") {
+                QLocale::setDefault(QLocale::system());
+                localeCode = QOnlineTranslator::defaultLocaleToCode();
+            }
+            else
+                QLocale::setDefault(QLocale(localeCode));
+            if (interfaceTranslator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
+                qApp->installTranslator(&interfaceTranslator);
+
+            // Reload UI
+            delete onlineTranslator;
+            onlineTranslator = new QOnlineTranslator(this);
+            ui->retranslateUi(this);
+            trayMenu->actions().at(0)->setText(tr("Show window"));
+            trayMenu->actions().at(1)->setText(tr("Settings"));
+            trayMenu->actions().at(2)->setText(tr("Exit"));
+            languagesMenu->clear();
+            languagesMenu->addActions(languagesList());
+            loadLanguageButtons(sourceButtonGroup, "Source");
+            loadLanguageButtons(translationButtonGroup, "Translation");
+            ui->autoTranslationButton->setToolTip("auto");
+            ui->autoTranslationButton->setText(tr("Auto"));
+            ui->autoSourceButton->setToolTip("auto");
+            ui->autoSourceButton->setText(tr("Auto"));
+        }
+        if (config.proxyChanged())
+            loadProxy();
+
         config.done(0);
         loadSettings();
     }
@@ -714,37 +744,6 @@ void MainWindow::display()
 {
     showNormal();
     activateWindow();
-}
-
-void MainWindow::reloadTranslation()
-{
-    // Reload localization
-    QSettings settings;
-    QString localeCode = settings.value("Language", "auto").toString();
-    if (localeCode == "auto") {
-        QLocale::setDefault(QLocale::system());
-        localeCode = QOnlineTranslator::defaultLocaleToCode();
-    }
-    else
-        QLocale::setDefault(QLocale(localeCode));
-    if (interfaceTranslator.load(QLocale(), QString("crow"), QString("_"), QString(":/translations")))
-        qApp->installTranslator(&interfaceTranslator);
-
-    // Reload UI
-    delete onlineTranslator;
-    onlineTranslator = new QOnlineTranslator(this);
-    ui->retranslateUi(this);
-    trayMenu->actions().at(0)->setText(tr("Show window"));
-    trayMenu->actions().at(1)->setText(tr("Settings"));
-    trayMenu->actions().at(2)->setText(tr("Exit"));
-    languagesMenu->clear();
-    languagesMenu->addActions(languagesList());
-    loadLanguageButtons(sourceButtonGroup, "Source");
-    loadLanguageButtons(translationButtonGroup, "Translation");
-    ui->autoTranslationButton->setToolTip("auto");
-    ui->autoTranslationButton->setText(tr("Auto"));
-    ui->autoSourceButton->setToolTip("auto");
-    ui->autoSourceButton->setText(tr("Auto"));
 }
 
 void MainWindow::loadProxy()

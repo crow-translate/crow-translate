@@ -41,9 +41,8 @@ public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
     ~SettingsDialog();
 
-signals:
-    void languageChanged();
-    void proxyChanged();
+    bool languageChanged();
+    bool proxyChanged();
 
 private slots:
     void on_dialogBox_accepted();
@@ -74,6 +73,9 @@ private:
     QPushButton *checkForUpdatesButton;
     QLabel *checkForUpdatesStatusLabel;
 #endif
+
+    bool m_languageChanged = false;
+    bool m_proxyChanged = false;
 };
 
 #endif // SETTINGSDIALOG_H

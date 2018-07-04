@@ -6,13 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Global shortcut to play translation of seleted text
+- Global shortcut to play translation of seleted text.
+- Minor optimizations.
 
 ### Changed
-- Clear the translation field if the source field is empty
+- Clear the translation field if the source field is empty.
 - Fix wrong proxy combobox behavior.
 - Windows: fix missing tray icon.
-- Separate source and selection players
+- Separate source and selection players.
+
 ## [1.0.1] - 2018-07-02
 ### Added
 - Button style settings for pop-up window.
