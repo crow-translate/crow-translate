@@ -863,7 +863,7 @@ QString MainWindow::selectedText()
         originalClipboard = QApplication::clipboard()->text();
 
     // Wait until the hot key is pressed
-    while (GetAsyncKeyState(translateSelectedHotkey->currentNativeShortcut().key) || GetAsyncKeyState(VK_CONTROL)
+    while (GetAsyncKeyState(translateSelectionHotkey->currentNativeShortcut().key) || GetAsyncKeyState(VK_CONTROL)
            || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_SHIFT))
         Sleep(50);
 
