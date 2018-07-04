@@ -3,3 +3,6 @@
 
 # Qt Creator project settings
 *.user
+
+# Compiled translations
+*.qm

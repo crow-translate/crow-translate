@@ -62,6 +62,9 @@ RESOURCES += \
 
 TRANSLATIONS += $$files(data/translations/crow_*.ts)
 
+# Compile translations
+system(lrelease crow-translate.pro)
+
 # For make install
 unix {
 bin.path   = /usr/bin
