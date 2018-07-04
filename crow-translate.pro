@@ -9,7 +9,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++14
 TARGET = crow
 TEMPLATE = app
-VERSION = 1.0.1
+VERSION = 1.0.2
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk

@@ -1,3 +1,12 @@
+crow-translate (1.0.2~git-1) stretch; urgency=low
+
+ * Global shortcut to play translation of seleted text
+ * Minor optimizations
+ * Clear the translation field if the source field is empty
+ * Fix wrong proxy combobox behavior
+ * Windows: fix missing tray icon
+ * Separate source and selection players
+
 crow-translate (1.0.1~git-1) stretch; urgency=low
 
  * Button style settings for pop-up window.

@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
         SingleApplication app(argc, argv);
         QApplication::setApplicationName("Crow Translate");
         QCoreApplication::setOrganizationName("crow");
-        app.setApplicationVersion("1.0.1");
+        app.setApplicationVersion("1.0.2");
 #if defined(Q_OS_WIN)
         QIcon::setThemeName("Papirus");
 #endif
@@ -47,7 +47,7 @@ int main(int argc, char *argv[])
     else {
         QCoreApplication app(argc, argv);
         app.setApplicationName("Crow Translate");
-        app.setApplicationVersion("1.0.1");
+        app.setApplicationVersion("1.0.2");
 
         QCommandLineParser parser;
         parser.setApplicationDescription("A simple and lightweight translator that allows to translate and say text using the Google Translate API and much more.");
