@@ -13,7 +13,7 @@ VERSION = 1.0.2
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
-QMAKE_TARGET_DESCRIPTION = Simple and lightweight translator
+QMAKE_TARGET_DESCRIPTION = Crow Translate
 QMAKE_TARGET_COPYRIGHT = Copyright © 2018 Gennady Chernyshchuk
 QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
