@@ -583,8 +583,7 @@
                  <string>Default</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate-tray">
-                  <normaloff>.</normaloff>.</iconset>
+                 <iconset theme="crow-translate-tray"/>
                 </property>
                </item>
                <item>
