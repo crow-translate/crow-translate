@@ -86,8 +86,9 @@ private slots:
 
     void on_autoTranslateCheckBox_toggled(const bool &state);
 
-    void translateSelected();
-    void playSelected();
+    void translateSelection();
+    void playSelection();
+    void playTranslatedSelection();
     void changeSourcePlayerState(QMediaPlayer::State state);
     void changeTranslationPlayerState(QMediaPlayer::State state);
 
@@ -123,9 +124,10 @@ private:
     QSystemTrayIcon *trayIcon;
 
     QShortcut *closeWindowsShortcut;
-    QHotkey *translateSelectedHotkey;
-    QHotkey *playSelectedHotkey;
-    QHotkey *stopSelectedHotkey;
+    QHotkey *translateSelectionHotkey;
+    QHotkey *playSelectionHotkey;
+    QHotkey *playTranslatedSelectionHotkey;
+    QHotkey *stopSelectionHotkey;
     QHotkey *showMainWindowHotkey;
 
     QButtonGroup *sourceButtonGroup;

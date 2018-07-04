@@ -583,7 +583,8 @@
                  <string>Default</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate-tray"/>
+                 <iconset theme="crow-translate-tray">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
                <item>
@@ -1040,6 +1041,14 @@
             <property name="icon">
              <iconset theme="media-playback-start">
               <normaloff>.</normaloff>.</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Play translation of selected text</string>
+            </property>
+            <property name="icon">
+             <iconset theme="media-playback-start"/>
             </property>
            </item>
            <item>

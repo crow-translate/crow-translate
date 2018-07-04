@@ -5,12 +5,14 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Global shortcut to play translation of seleted text
+
 ### Changed
 - Clear the translation field if the source field is empty
 - Fix wrong proxy combobox behavior.
 - Windows: fix missing tray icon.
 - Separate source and selection players
-
 ## [1.0.1] - 2018-07-02
 ### Added
 - Button style settings for pop-up window.

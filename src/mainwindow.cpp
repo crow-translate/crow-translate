@@ -43,9 +43,10 @@ MainWindow::MainWindow(QWidget *parent) :
     trayMenu (new QMenu(this)),
     trayIcon (new QSystemTrayIcon(this)),
     closeWindowsShortcut (new QShortcut(this)),
-    translateSelectedHotkey (new QHotkey(this)),
-    playSelectedHotkey (new QHotkey(this)),
-    stopSelectedHotkey (new QHotkey(this)),
+    translateSelectionHotkey (new QHotkey(this)),
+    playSelectionHotkey (new QHotkey(this)),
+    playTranslatedSelectionHotkey (new QHotkey(this)),
+    stopSelectionHotkey (new QHotkey(this)),
     showMainWindowHotkey (new QHotkey(this)),
     sourceButtonGroup (new QButtonGroup(this)),
     translationButtonGroup (new QButtonGroup(this))
@@ -63,9 +64,10 @@ MainWindow::MainWindow(QWidget *parent) :
     // Shortcuts
     connect(closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
     connect(showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::display);
-    connect(playSelectedHotkey, &QHotkey::activated, this, &MainWindow::playSelected);
-    connect(stopSelectedHotkey, &QHotkey::activated, &selectionPlayer, &QMediaPlayer::stop);
-    connect(translateSelectedHotkey, &QHotkey::activated, this, &MainWindow::translateSelected);
+    connect(playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
+    connect(playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
+    connect(stopSelectionHotkey, &QHotkey::activated, &selectionPlayer, &QMediaPlayer::stop);
+    connect(translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelection);
 
     // Text speaking
     sourcePlayer.setPlaylist(&sourcePlaylist); // Use playlist to split long queries due Google limit
@@ -525,10 +527,10 @@ void MainWindow::on_autoTranslateCheckBox_toggled(const bool &state)
     settings.setValue("AutoTranslate", state);
 }
 
-void MainWindow::translateSelected()
+void MainWindow::translateSelection()
 {
     // Prevent pressing the translation hotkey again
-    translateSelectedHotkey->blockSignals(true);
+    translateSelectionHotkey->blockSignals(true);
 
     // Stop previous playback
     sourcePlayer.stop();
@@ -571,7 +573,7 @@ void MainWindow::translateSelected()
 
         // Restore the keyboard shortcut
         connect(popup, &PopupWindow::destroyed, [this] {
-            translateSelectedHotkey->blockSignals(false);
+            translateSelectionHotkey->blockSignals(false);
         });
 
         // Send selected text to source field and translate it
@@ -600,11 +602,11 @@ void MainWindow::translateSelected()
         on_translateButton_clicked();
 
         // Restore the keyboard shortcut
-        translateSelectedHotkey->blockSignals(false);
+        translateSelectionHotkey->blockSignals(false);
     }
 }
 
-void MainWindow::playSelected()
+void MainWindow::playSelection()
 {
     QString selection = selectedText();
     if (selection != "") {
@@ -616,7 +618,40 @@ void MainWindow::playSelected()
                 sourcePlayer.pause();
 
         selectionPlaylist.clear();
-        selectionPlaylist.addMedia(QOnlineTranslator::media(selectedText()));
+        selectionPlaylist.addMedia(QOnlineTranslator::media(selection));
+        selectionPlayer.play();
+    }
+    else
+        qDebug() << tr("The selection does not contain text");
+}
+
+void MainWindow::playTranslatedSelection()
+{
+    QString selection = selectedText();
+    if (selection != "") {
+        // Pause other players
+        if (translationPlayer.state() == QMediaPlayer::PlayingState)
+            translationPlayer.pause();
+        else
+            if (sourcePlayer.state() == QMediaPlayer::PlayingState)
+                sourcePlayer.pause();
+
+        // Detect languages
+        QSettings settings;
+        QString primaryLanguage = settings.value("Translation/PrimaryLanguage", "auto").toString();
+        QString secondaryLanguage = settings.value("Translation/SecondaryLanguage", "en").toString();
+        if (primaryLanguage == "auto")
+            primaryLanguage = QOnlineTranslator::defaultLocaleToCode();
+        if (secondaryLanguage == "auto")
+            secondaryLanguage = QOnlineTranslator::defaultLocaleToCode();
+
+        // Translate text
+        QOnlineTranslator onlineTranslator(selection, primaryLanguage);
+        if (onlineTranslator.sourceLanguage() == primaryLanguage)
+            onlineTranslator.translate(selection, secondaryLanguage);
+
+        selectionPlaylist.clear();
+        selectionPlaylist.addMedia(QOnlineTranslator::media(onlineTranslator.translation()));
         selectionPlayer.play();
     }
     else
@@ -786,9 +821,10 @@ void MainWindow::loadSettings()
     ui->settingsButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
 
     // Shortcuts
-    translateSelectedHotkey->setShortcut(settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString(), true);
-    playSelectedHotkey->setShortcut(settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString(), true);
-    stopSelectedHotkey->setShortcut(settings.value("Hotkeys/StopSelected", "Ctrl+Alt+G").toString(), true);
+    translateSelectionHotkey->setShortcut(settings.value("Hotkeys/TranslateSelection", "Ctrl+Alt+E").toString(), true);
+    playSelectionHotkey->setShortcut(settings.value("Hotkeys/PlaySelection", "Ctrl+Alt+S").toString(), true);
+    stopSelectionHotkey->setShortcut(settings.value("Hotkeys/StopSelection", "Ctrl+Alt+G").toString(), true);
+    playTranslatedSelectionHotkey->setShortcut(settings.value("Hotkeys/PlayTranslatedSelection", "Ctrl+Alt+F").toString(), true);
     showMainWindowHotkey->setShortcut(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString(), true);
     ui->translateButton->setShortcut(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
     ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());

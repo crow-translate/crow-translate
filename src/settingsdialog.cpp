@@ -158,15 +158,17 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
 
     // Global shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.value("Hotkeys/TranslateSelected", "Ctrl+Alt+E").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.value("Hotkeys/PlaySelected", "Ctrl+Alt+S").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.value("Hotkeys/StopSelected", "Ctrl+Alt+G").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.value("Hotkeys/TranslateSelection", "Ctrl+Alt+E").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.value("Hotkeys/PlaySelection", "Ctrl+Alt+S").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.value("Hotkeys/PlayTranslatedSelection", "Ctrl+Alt+F").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.value("Hotkeys/StopSelection", "Ctrl+Alt+G").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
 
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, "Ctrl+Alt+E");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, "Ctrl+Alt+S");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, "Ctrl+Alt+G");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, "Ctrl+Alt+F");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, "Ctrl+Alt+G");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
 
     // Window shortcuts
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
@@ -291,10 +293,11 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
 
     // Global shortcuts
-    settings.setValue("Hotkeys/TranslateSelected", ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
-    settings.setValue("Hotkeys/PlaySelected", ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
-    settings.setValue("Hotkeys/StopSelected", ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
-    settings.setValue("Hotkeys/ShowMainWindow", ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
+    settings.setValue("Hotkeys/TranslateSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
+    settings.setValue("Hotkeys/PlaySelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
+    settings.setValue("Hotkeys/PlayTranslatedSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
+    settings.setValue("Hotkeys/StopSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
+    settings.setValue("Hotkeys/ShowMainWindow", ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
 
     // Window shortcuts
     settings.setValue("Hotkeys/Translate", ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
@@ -448,7 +451,9 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
     // Global shortcuts
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, "Ctrl+Alt+E");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, "Ctrl+Alt+S");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, "Ctrl+Alt+C");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, "Ctrl+Alt+F");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, "Ctrl+Alt+G");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, "Ctrl+Alt+C");
 
     // Window shortcuts
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, "Ctrl+Return");
