@@ -26,5 +26,8 @@
         <file>icons/Papirus/32x32/status/crow-translate-tray-dark.svg</file>
         <file>icons/Papirus/32x32/status/crow-translate-tray-light.svg</file>
         <file>icons/Papirus/32x32/status/crow-translate.svg</file>
+        <file>icons/Papirus/16x16/actions/view-refresh.svg</file>
+        <file>icons/Papirus/16x16/actions/dialog-ok-apply.svg</file>
+        <file>icons/Papirus/16x16/actions/edit-clear.svg</file>
     </qresource>
 </RCC>

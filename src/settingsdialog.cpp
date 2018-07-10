@@ -449,6 +449,12 @@ void SettingsDialog::on_acceptShortcutButton_clicked()
     ui->acceptShortcutButton->setEnabled(false);
 }
 
+void SettingsDialog::on_clearShortcutButton_clicked()
+{
+    ui->shortcutSequenceEdit->clear();
+    ui->acceptShortcutButton->setEnabled(true);
+}
+
 void SettingsDialog::on_resetShortcutButton_clicked()
 {
     ui->shortcutsTreeWidget->currentItem()->setText(1, ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString());

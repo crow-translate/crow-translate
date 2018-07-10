@@ -61,6 +61,7 @@ private slots:
     void on_shortcutsTreeWidget_itemSelectionChanged();
     void on_shortcutSequenceEdit_editingFinished();
     void on_acceptShortcutButton_clicked();
+    void on_clearShortcutButton_clicked();
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 

@@ -583,7 +583,8 @@
                  <string>Default</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate-tray"/>
+                 <iconset theme="crow-translate-tray">
+                  <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
                <item>
@@ -1047,7 +1048,8 @@
              <string>Play translation of selected text</string>
             </property>
             <property name="icon">
-             <iconset theme="media-playback-start"/>
+             <iconset theme="media-playback-start">
+              <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
            <item>
@@ -1195,6 +1197,9 @@
          <layout class="QHBoxLayout" name="resetAllShortcutsLayout">
           <item>
            <widget class="QPushButton" name="resetAllShortcutsButton">
+            <property name="toolTip">
+             <string>Reset all to default</string>
+            </property>
             <property name="text">
              <string>Reset all</string>
             </property>
@@ -1235,16 +1240,44 @@
             <widget class="QKeySequenceEdit" name="shortcutSequenceEdit"/>
            </item>
            <item>
-            <widget class="QPushButton" name="acceptShortcutButton">
+            <widget class="QToolButton" name="acceptShortcutButton">
+             <property name="toolTip">
+              <string>Accept</string>
+             </property>
              <property name="text">
               <string>Accept</string>
+             </property>
+             <property name="icon">
+              <iconset theme="dialog-ok-apply">
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="resetShortcutButton">
+            <widget class="QToolButton" name="clearShortcutButton">
+             <property name="toolTip">
+              <string>Clear</string>
+             </property>
+             <property name="text">
+              <string>Clear</string>
+             </property>
+             <property name="icon">
+              <iconset theme="edit-clear">
+               <normaloff>.</normaloff>.</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="resetShortcutButton">
+             <property name="toolTip">
+              <string>Reset to default</string>
+             </property>
              <property name="text">
               <string>Reset</string>
+             </property>
+             <property name="icon">
+              <iconset theme="view-refresh">
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
