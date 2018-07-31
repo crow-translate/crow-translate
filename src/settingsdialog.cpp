@@ -128,7 +128,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 #endif
 
     // Interface settings
-    ui->popupOpacitySlider->setValue(settings.value("PopupOpacity", 0.8).toDouble() * 100);
+    ui->popupOpacitySlider->setValue(static_cast<int>(settings.value("PopupOpacity", 0.8).toDouble() * 100));
     ui->popupHeightSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().height());
     ui->popupWidthSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().width());
     ui->popupLanguagesComboBox->setCurrentIndex(settings.value("PopupLanguagesStyle", Qt::ToolButtonIconOnly).toInt());

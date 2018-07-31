@@ -40,7 +40,7 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
     QSettings settings;
-    setWindowOpacity(settings.value("PopupOpacity", 0.8).toDouble());
+    setWindowOpacity(settings.value("PopupOpacity", 0.8).toReal());
     resize(settings.value("PopupSize", QSize(350, 300)).toSize());
 
     // Translation button group
