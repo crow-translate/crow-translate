@@ -753,7 +753,7 @@ void MainWindow::loadProxy()
     proxy.setType(static_cast<QNetworkProxy::ProxyType>(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
     if (proxy.type() == QNetworkProxy::HttpProxy || proxy.type() == QNetworkProxy::Socks5Proxy) {
         proxy.setHostName(settings.value("Connection/ProxyHost", "").toString());
-        proxy.setPort(settings.value("Connection/ProxyPort", 8080).toInt());
+        proxy.setPort(qvariant_cast<quint16>(settings.value("Connection/ProxyPort", 8080)));
         if (settings.value("Connection/ProxyAuthEnabled", false).toBool()) {
             proxy.setUser(settings.value("Connection/ProxyUsername", "").toString());
             proxy.setPassword(settings.value("Connection/ProxyPassword", "").toString());
