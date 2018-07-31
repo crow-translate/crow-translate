@@ -16,7 +16,7 @@ class UpdaterWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit UpdaterWindow(const QGitRelease &release, QWidget *parent = 0);
+    explicit UpdaterWindow(const QGitRelease &release, QWidget *parent = nullptr);
     ~UpdaterWindow();
 
 private slots:

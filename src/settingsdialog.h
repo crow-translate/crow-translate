@@ -38,7 +38,7 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
+    explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = nullptr);
     ~SettingsDialog();
 
     bool languageChanged();
