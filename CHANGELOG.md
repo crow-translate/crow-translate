@@ -9,8 +9,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - A button to remove shortcuts in settings.
 
 ### Changed
-- Improved appearance of shortcuts settings.
+- Improve appearance of shortcuts settings.
 - Close window shortcut now works in pop-up window.
+- Slightly increase settings window height.
 
 ## [1.0.2] - 2018-07-04
 ### Added
