@@ -25,6 +25,7 @@
 #include <QButtonGroup>
 #include <QToolButton>
 #include <QTextEdit>
+#include <QShortcut>
 
 #include "qonlinetranslator.h"
 
@@ -70,6 +71,7 @@ private:
     Ui::PopupWindow *ui;
     QButtonGroup *sourceButtonGroup;
     QButtonGroup *translationButtonGroup;
+    QShortcut *closeWindowsShortcut;
 };
 
 #endif // POPUPWINDOW_H

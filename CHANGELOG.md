@@ -6,14 +6,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Add a button to remove shortcuts in settings
+- A button to remove shortcuts in settings.
 
 ### Changed
-- Improved appearance of shortcuts settings
+- Improved appearance of shortcuts settings.
+- Close window shortcut now works in pop-up window.
 
 ## [1.0.2] - 2018-07-04
 ### Added
-- Global shortcut to play translation of seleted text.
+- A global shortcut to play translation of seleted text.
 - Minor optimizations.
 
 ### Changed

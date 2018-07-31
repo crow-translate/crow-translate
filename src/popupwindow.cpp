@@ -34,7 +34,8 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     QWidget(parent, Qt::Popup),
     ui(new Ui::PopupWindow),
     sourceButtonGroup (new QButtonGroup(this)),
-    translationButtonGroup (new QButtonGroup(this))
+    translationButtonGroup (new QButtonGroup(this)),
+    closeWindowsShortcut (new QShortcut(this))
 {
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
@@ -77,6 +78,8 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
     ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
     ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+    closeWindowsShortcut->setKey(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
+    connect(closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 
     // Add languages to auto-language buttons
     ui->autoSourceButton->setMenu(languagesMenu);
