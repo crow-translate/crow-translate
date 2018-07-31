@@ -65,7 +65,7 @@ void UpdaterWindow::on_downloadButton_clicked()
 
     connect(downloadManager, &QNetworkAccessManager::finished, this, &UpdaterWindow::finishDownload);
     connect(downloading, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
-        ui->downloadBar->setValue(bytesReceived * 100 / bytesTotal);
+        ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
     });
 
     // Show download progress ui
