@@ -750,6 +750,21 @@
         <source>Zulu</source>
         <translation>зулу</translation>
     </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="313"/>
+        <source>Unable to find language with code </source>
+        <translation>Не удалось найти язык для кода </translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="314"/>
+        <source>Unknown</source>
+        <translation>Неизвестно</translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="324"/>
+        <source>Unable to find code for language </source>
+        <translation>Не удалось найти код для языка </translation>
+    </message>
 </context>
 <context>
     <name>SettingsDialog</name>

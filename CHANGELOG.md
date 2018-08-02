@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Improve appearance of shortcuts settings.
 - Close window shortcut now works in pop-up window.
 - Slightly increase settings window height.
+- Prevent crashes when converting for non-existent languages or codes.
 
 ## [1.0.2] - 2018-07-04
 ### Added
