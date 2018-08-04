@@ -296,8 +296,8 @@ void MainWindow::on_translateButton_clicked()
         }
         if (ui->autoTranslationButton->isChecked()) {
             if (onlineTranslator->translationLanguage() != ui->autoTranslationButton->toolTip()) {
-                ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->codeToLanguage(onlineTranslator->translationLanguage()) + ")");
-                ui->autoTranslationButton->setToolTip(onlineTranslator->translationLanguage());
+                ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->codeToLanguage(translationlanguage) + ")");
+                ui->autoTranslationButton->setToolTip(translationlanguage);
                 emit translationButtonChanged(ui->autoTranslationButton, 0);
             }
         }
@@ -371,20 +371,20 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    QString sourceLanguage = sourceButtonGroup->checkedButton()->toolTip();
-    QString translationLanguage = translationButtonGroup->checkedButton()->toolTip();
+    QString sourceCode = sourceButtonGroup->checkedButton()->toolTip();
+    QString translationCode = translationButtonGroup->checkedButton()->toolTip();
 
     // Insert current translation language to source buttons
-    if (translationLanguage == "auto")
+    if (translationCode == "auto" || translationCode == "null")
         sourceButtonGroup->button(0)->setChecked(true);
     else
-        insertLanguage(sourceButtonGroup, "Source", translationLanguage);
+        insertLanguage(sourceButtonGroup, "Source", translationCode);
 
     // Insert current source language to translation buttons
-    if (sourceLanguage == "auto")
+    if (sourceCode == "auto" || sourceCode == "null")
         translationButtonGroup->button(0)->setChecked(true);
     else
-        insertLanguage(translationButtonGroup, "Translation", sourceLanguage);
+        insertLanguage(translationButtonGroup, "Translation", sourceCode);
 }
 
 void MainWindow::on_copyToSourceButton_clicked()
