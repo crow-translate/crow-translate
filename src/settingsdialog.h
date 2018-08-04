@@ -41,7 +41,7 @@ public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = nullptr);
     ~SettingsDialog();
 
-    bool languageChanged();
+    bool localizationChanged();
     bool proxyChanged();
 
 private slots:
@@ -75,7 +75,7 @@ private:
     QLabel *checkForUpdatesStatusLabel;
 #endif
 
-    bool m_languageChanged = false;
+    bool m_localizationChanged = false;
     bool m_proxyChanged = false;
 };
 

@@ -193,9 +193,9 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-bool SettingsDialog::languageChanged()
+bool SettingsDialog::localizationChanged()
 {
-    return m_languageChanged;
+    return m_localizationChanged;
 }
 
 bool SettingsDialog::proxyChanged()
@@ -205,11 +205,11 @@ bool SettingsDialog::proxyChanged()
 
 void SettingsDialog::on_dialogBox_accepted()
 {
-    // Check if language changed
+    // Check if localization changed
     QSettings settings;
     if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
-        m_languageChanged = true;
+        m_localizationChanged = true;
     }
 
     // Check if proxy changed
