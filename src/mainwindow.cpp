@@ -252,10 +252,16 @@ void MainWindow::on_translateButton_clicked()
 
         onlineTranslator->translate(ui->sourceEdit->toPlainText(), translationLanguageCode, sourceLanguageCode, translatorLanguageCode);
 
-        // Check for network error
+        // Check for error
         if (onlineTranslator->error()) {
             ui->translationEdit->setHtml(onlineTranslator->translation());
             ui->translateButton->setEnabled(true);
+
+            ui->autoSourceButton->setText(tr("Auto"));
+            ui->autoSourceButton->setToolTip("auto");
+            ui->autoTranslationButton->setText(tr("Auto"));
+            ui->autoTranslationButton->setToolTip("auto");
+
             emit translationTextChanged(onlineTranslator->translation());
             return;
         }
