@@ -1,3 +1,12 @@
+crow-translate (1.0.3~git-1) stretch; urgency=low
+
+ * A button to remove shortcuts in settings
+ * Improve appearance of shortcuts settings
+ * Close window shortcut now works in pop-up window
+ * Slightly increase settings window height
+ * Prevent crashes when converting for non-existent languages or codes
+ * Remove languages from "Auto" buttons ​​on error
+
 crow-translate (1.0.2~git-1) stretch; urgency=low
 
  * Global shortcut to play translation of seleted text
@@ -9,10 +18,10 @@ crow-translate (1.0.2~git-1) stretch; urgency=low
 
 crow-translate (1.0.1~git-1) stretch; urgency=low
 
- * Button style settings for pop-up window.
- * Improve the prevention of a pop-up window outside the screen.
- * Fix wrong layout properties in settings.
- * Fix parsing for new changlog.
+ * Button style settings for pop-up window
+ * Improve the prevention of a pop-up window outside the screen
+ * Fix wrong layout properties in settings
+ * Fix parsing for new changlog
 
 crow-translate (1.0.0~git-1) stretch; urgency=low
 
