@@ -22,6 +22,7 @@
 #include <QSettings>
 #include <QTranslator>
 #include <QMediaPlayer>
+#include <QFile>
 
 #include "singleapplication.h"
 #include "qonlinetranslator.h"
@@ -61,9 +62,10 @@ int main(int argc, char *argv[])
         parser.addOption(QCommandLineOption({"e", "speak-translation"}, "Speaks the translation."));
         parser.addOption(QCommandLineOption({"q", "speak-source"}, "Speaks the original text."));
         parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
+        parser.addOption(QCommandLineOption({"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."));
         parser.process(app);
 
-        QString text = parser.positionalArguments().join(" ");
+        QString text;
         QTextStream out(stdout);
         QMediaPlayer player;
         QMediaPlaylist playlist;
@@ -72,6 +74,28 @@ int main(int argc, char *argv[])
             if (state == QMediaPlayer::StoppedState)
                 waitUntilPlayedLoop.quit();
         });
+
+        // Read text for translation
+        if (parser.isSet("file")) {
+            foreach (auto filePath,  parser.positionalArguments()) {
+                QFile file(filePath);
+                if (file.exists()) {
+                    if (file.open(QFile::ReadOnly))
+                        text += file.readAll();
+                    else
+                        out << "Unable to open file: " << file.fileName() << endl;
+                }
+                else
+                    out << "File does not exist: " << file.fileName() << endl;
+            }
+        }
+        else
+            text = parser.positionalArguments().join(" ");
+
+        if (text.isEmpty()) {
+            out << "There is no text for translation." << endl;
+            return 0;
+        }
 
         if (parser.isSet("audio-only")) {
             if (!parser.isSet("speak-source") && !parser.isSet("speak-translation")) {
