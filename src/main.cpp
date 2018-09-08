@@ -122,8 +122,8 @@ int main(int argc, char *argv[])
                     }
 
                     // Show languages
-                    out << "[ " << onlineTranslator.codeToLanguage(onlineTranslator.sourceLanguage()) << " -> ";
-                    out << onlineTranslator.codeToLanguage(onlineTranslator.translationLanguage()) << " ]" << endl << endl ;
+                    out << "[ " << onlineTranslator.sourceLanguage() << " -> ";
+                    out << onlineTranslator.translationLanguage() << " ]" << endl << endl ;
 
                     // Show translation text and transliteration
                     if (!onlineTranslator.translation().isEmpty()) {
