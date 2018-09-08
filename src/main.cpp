@@ -74,6 +74,11 @@ int main(int argc, char *argv[])
         });
 
         if (parser.isSet("audio-only")) {
+            if (!parser.isSet("speak-source") && !parser.isSet("speak-translation")) {
+                out << "For --audio-only you must specify --speak-source or --speak-translation options." << endl;
+                parser.showHelp();
+            }
+
             // Play source
             if (parser.isSet("speak-source")) {
                 out << "Source text:" << endl;
