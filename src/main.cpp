@@ -71,23 +71,23 @@ int main(int argc, char *argv[])
                 waitUntilPlayedLoop.quit();
         });
 
-        if (parser.isSet("a")) {
+        if (parser.isSet("audio-only")) {
             // For only audio option
             foreach (auto text, parser.positionalArguments()) {
                 // Speak all text arguments
-                QStringList targetLanguages = parser.value("t").split("+");
+                QStringList targetLanguages = parser.value("translation").split("+");
                 for (auto i = 0; i < targetLanguages.size(); i++) {
                     // Speak into each target language
-                    if (parser.isSet("q") && i == 0) {
+                    if (parser.isSet("speak-source") && i == 0) {
                         out << text << endl;
-                        playlist.addMedia(QOnlineTranslator::media(text, parser.value("s")));
+                        playlist.addMedia(QOnlineTranslator::media(text, parser.value("source")));
                         player.setPlaylist(&playlist);
                         player.play();
                         waitUntilPlayedLoop.exec();
                         playlist.clear();
                     }
-                    if (parser.isSet("e")) {
-                        QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+                    if (parser.isSet("speak-translation")) {
+                        QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("source"), parser.value("translator"));
                         out << translationData.translation() << endl;
                         playlist.addMedia(translationData.translationMedia());
                         player.setPlaylist(&playlist);
@@ -101,10 +101,10 @@ int main(int argc, char *argv[])
         else {
             foreach (auto text, parser.positionalArguments()) {
                 // Translate all arguments
-                QStringList targetLanguages = parser.value("t").split("+");
+                QStringList targetLanguages = parser.value("translation").split("+");
                 for (auto i = 0; i < targetLanguages.size(); i++) {
                     // Translate into each target language
-                    QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+                    QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("source"), parser.value("translator"));
 
                     // Check for network error
                     if (onlineTranslator.error()) {
@@ -165,14 +165,14 @@ int main(int argc, char *argv[])
                         }
                     }
 
-                    if (parser.isSet("q") && i == 0) {
+                    if (parser.isSet("speak-source") && i == 0) {
                         playlist.addMedia(onlineTranslator.sourceMedia());
                         player.setPlaylist(&playlist);
                         player.play();
                         waitUntilPlayedLoop.exec();
                         playlist.clear();
                     }
-                    if (parser.isSet("e")) {
+                    if (parser.isSet("speak-translation")) {
                         playlist.addMedia(onlineTranslator.translationMedia());
                         player.setPlaylist(&playlist);
                         player.play();
