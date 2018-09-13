@@ -248,6 +248,8 @@ void SettingsDialog::on_dialogBox_accepted()
                 outStream << autorunContent;
                 autorunFile.close();
             }
+            else
+                qDebug() << tr("Unable to create autorun file");
         }
     }
     // Remove autorun file if box unchecked

@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - An option for CLI to read source text from file.
 - An option for CLI to read stdin.
+- Linux: autorun file creation error message.
 
 ### Changed
 - Fix display of languages in the terminal.

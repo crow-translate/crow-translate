@@ -6,12 +6,14 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="39"/>
         <location filename="../../src/mainwindow.ui" line="226"/>
-        <location filename="../../src/mainwindow.cpp" line="292"/>
-        <location filename="../../src/mainwindow.cpp" line="299"/>
-        <location filename="../../src/mainwindow.cpp" line="306"/>
-        <location filename="../../src/mainwindow.cpp" line="425"/>
-        <location filename="../../src/mainwindow.cpp" line="427"/>
-        <location filename="../../src/mainwindow.cpp" line="767"/>
+        <location filename="../../src/mainwindow.cpp" line="260"/>
+        <location filename="../../src/mainwindow.cpp" line="262"/>
+        <location filename="../../src/mainwindow.cpp" line="298"/>
+        <location filename="../../src/mainwindow.cpp" line="305"/>
+        <location filename="../../src/mainwindow.cpp" line="312"/>
+        <location filename="../../src/mainwindow.cpp" line="431"/>
+        <location filename="../../src/mainwindow.cpp" line="433"/>
+        <location filename="../../src/mainwindow.cpp" line="773"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
@@ -102,7 +104,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="416"/>
         <location filename="../../src/mainwindow.cpp" line="148"/>
-        <location filename="../../src/mainwindow.cpp" line="418"/>
+        <location filename="../../src/mainwindow.cpp" line="424"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -114,38 +116,38 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="147"/>
-        <location filename="../../src/mainwindow.cpp" line="417"/>
+        <location filename="../../src/mainwindow.cpp" line="423"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="149"/>
-        <location filename="../../src/mainwindow.cpp" line="419"/>
+        <location filename="../../src/mainwindow.cpp" line="425"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="322"/>
+        <location filename="../../src/mainwindow.cpp" line="328"/>
         <source>translation options:</source>
         <translation>варианты перевода:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="350"/>
+        <location filename="../../src/mainwindow.cpp" line="356"/>
         <source>definitions:</source>
         <translation>определения:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="475"/>
-        <location filename="../../src/mainwindow.cpp" line="512"/>
-        <location filename="../../src/mainwindow.cpp" line="530"/>
-        <location filename="../../src/mainwindow.cpp" line="538"/>
-        <location filename="../../src/mainwindow.cpp" line="546"/>
+        <location filename="../../src/mainwindow.cpp" line="481"/>
+        <location filename="../../src/mainwindow.cpp" line="518"/>
+        <location filename="../../src/mainwindow.cpp" line="536"/>
+        <location filename="../../src/mainwindow.cpp" line="544"/>
+        <location filename="../../src/mainwindow.cpp" line="552"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="707"/>
-        <location filename="../../src/mainwindow.cpp" line="740"/>
+        <location filename="../../src/mainwindow.cpp" line="713"/>
+        <location filename="../../src/mainwindow.cpp" line="746"/>
         <source>The selection does not contain text</source>
         <translation>Выделение не содержит текста</translation>
     </message>
@@ -1242,27 +1244,32 @@
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="391"/>
+        <location filename="../../src/settingsdialog.cpp" line="252"/>
+        <source>Unable to create autorun file</source>
+        <translation>Не удалось создать файл автозапуска</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.cpp" line="389"/>
         <source>Select icon</source>
         <translation>Выберите значок</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="391"/>
+        <location filename="../../src/settingsdialog.cpp" line="389"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="488"/>
+        <location filename="../../src/settingsdialog.cpp" line="486"/>
         <source>Checking for updates...</source>
         <translation>Проверка обновлений...</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="495"/>
+        <location filename="../../src/settingsdialog.cpp" line="493"/>
         <source>Update available!</source>
         <translation>Доступно обновление!</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="500"/>
+        <location filename="../../src/settingsdialog.cpp" line="498"/>
         <source>No updates available.</source>
         <translation>Нет доступных обновлений.</translation>
     </message>
