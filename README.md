@@ -72,7 +72,7 @@ The program also supports the console interface.
 | `-v, --version`            | Displays version information                                                                     |
 | `-s, --source <code>`      | Specifies the source language (by default, Google will try to determine the language on its own) |
 | `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
-| `-l, --translator <code>`  | Specifies the translator language (by default, the system language is used)                      |
+| `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                      |
 | `-e, --speak-translation`  | Speaks the translation                                                                           |
 | `-q, --speak-source`       | Speaks the original text                                                                         |
 | `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |

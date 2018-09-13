@@ -59,7 +59,7 @@ int main(int argc, char *argv[])
         parser.addVersionOption();
         parser.addOption(QCommandLineOption({"s", "source"}, "Specifies the source language. By default, Google will try to determine the language on its own.", "code", "auto"));
         parser.addOption(QCommandLineOption({"t", "translation"}, "Specifies the translation language(s), joined by '+'. By default, the system language is used.", "code", "auto"));
-        parser.addOption(QCommandLineOption({"l", "translator"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
+        parser.addOption(QCommandLineOption({"l", "locale"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
         parser.addOption(QCommandLineOption({"e", "speak-translation"}, "Speaks the translation."));
         parser.addOption(QCommandLineOption({"q", "speak-source"}, "Speaks the original text."));
         parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
@@ -147,7 +147,7 @@ int main(int argc, char *argv[])
                 QStringList targetLanguages = parser.value("translation").split("+");
                 foreach (auto targetLanguage, targetLanguages) {
                     // Speak into each target language
-                    QOnlineTranslator translationData(text, targetLanguage, parser.value("source"), parser.value("translator"));
+                    QOnlineTranslator translationData(text, targetLanguage, parser.value("source"), parser.value("locale"));
                     out << "Translation into " << translationData.translationLanguage() << ":" << endl;
                     out << translationData.translation() << endl;
 
@@ -163,7 +163,7 @@ int main(int argc, char *argv[])
             // Translate into each target language
             QStringList targetLanguages = parser.value("translation").split("+");
             for (auto i = 0; i < targetLanguages.size(); i++) {
-                QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("source"), parser.value("translator"));
+                QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("source"), parser.value("locale"));
 
                 // Check for network error
                 if (onlineTranslator.error()) {
