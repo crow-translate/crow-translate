@@ -23,6 +23,7 @@
 #include <QTranslator>
 #include <QMediaPlayer>
 #include <QFile>
+#include <QRegularExpression>
 
 #include "singleapplication.h"
 #include "qonlinetranslator.h"
@@ -30,7 +31,7 @@
 
 int main(int argc, char *argv[])
 {
-    // If there are no arguments, just launch Crow Translate
+    // Launch GUI if there are no arguments
     if (argc == 1) {
         SingleApplication app(argc, argv);
         QApplication::setApplicationName("Crow Translate");
@@ -63,6 +64,7 @@ int main(int argc, char *argv[])
         parser.addOption(QCommandLineOption({"q", "speak-source"}, "Speaks the original text."));
         parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
         parser.addOption(QCommandLineOption({"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."));
+        parser.addOption(QCommandLineOption({"i", "stdin"}, "Add stdin data to source text."));
         parser.process(app);
 
         QString text;
@@ -77,6 +79,23 @@ int main(int argc, char *argv[])
 
         // Read text for translation
         if (parser.isSet("file")) {
+            // Read from stdin first
+            if (parser.isSet("stdin")) {
+                QString stdinText = QTextStream(stdin).readAll();
+                foreach (auto filePath,  stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
+                    QFile file(filePath);
+                    if (file.exists()) {
+                        if (file.open(QFile::ReadOnly))
+                            text += file.readAll();
+                        else
+                            out << "Unable to open file: " << file.fileName() << endl;
+                    }
+                    else
+                        out << "File does not exist: " << file.fileName() << endl;
+                }
+            }
+
+            // Read from arguments
             foreach (auto filePath,  parser.positionalArguments()) {
                 QFile file(filePath);
                 if (file.exists()) {
@@ -89,8 +108,16 @@ int main(int argc, char *argv[])
                     out << "File does not exist: " << file.fileName() << endl;
             }
         }
-        else
-            text = parser.positionalArguments().join(" ");
+        else {
+            if (parser.isSet("stdin"))
+                text += QTextStream(stdin).readAll();
+            text += parser.positionalArguments().join(" ");
+        }
+
+        // Remove last line break
+        if (text.endsWith("\n")) {
+            text.chop(2);
+        }
 
         if (text.isEmpty()) {
             out << "There is no text for translation." << endl;

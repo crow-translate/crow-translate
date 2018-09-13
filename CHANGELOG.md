@@ -6,11 +6,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- A command for CLI to read source text from file
+- An option for CLI to read source text from file.
+- An option for CLI to read stdin.
 
 ### Changed
-- Fix display of languages in the terminal
-- Show message if not specified --speak-source or --speak-translation options in --audio-only mode
+- Fix display of languages in the terminal.
+- Show message if not specified --speak-source or --speak-translation options in --audio-only mode.
 
 ## [1.0.3] - 2018-07-04
 ### Added

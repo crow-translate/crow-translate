@@ -77,6 +77,7 @@ The program also supports the console interface.
 | `-q, --speak-source`       | Speaks the original text                                                                         |
 | `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |
 | `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                        |
+| `-i, --stdin`              | Add stdin data to source text.                                                                   |
 
 If you do not pass startup arguments to the program, the GUI starts.
 
