@@ -233,8 +233,8 @@ void SettingsDialog::on_dialogBox_accepted()
     QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
     if(ui->autostartCheckBox->isChecked()) {
         // Create autorun file if checked
-        if(!autorunFile.exists()) {
-            if(autorunFile.open(QFile::WriteOnly)){
+        if (!autorunFile.exists()) {
+            if (autorunFile.open(QFile::WriteOnly)) {
                 QString autorunContent("[Desktop Entry]\n"
                                        "Type=Application\n"
                                        "Exec=crow\n"
@@ -246,10 +246,6 @@ void SettingsDialog::on_dialogBox_accepted()
                                        "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
                 QTextStream outStream(&autorunFile);
                 outStream << autorunContent;
-
-                // Set permissions
-                autorunFile.setPermissions(QFileDevice::ExeUser|QFileDevice::ExeOwner|QFileDevice::ExeOther|QFileDevice::ExeGroup|
-                                           QFileDevice::WriteUser|QFileDevice::ReadUser);
                 autorunFile.close();
             }
         }

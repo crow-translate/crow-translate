@@ -43,7 +43,8 @@ int main(int argc, char *argv[])
 
         QSettings settings;
         MainWindow w;
-        if (!settings.value("StartMinimized", false).toBool()) w.show();
+        if (!settings.value("StartMinimized", false).toBool())
+            w.show();
         return app.exec();
     }
     // Use command line interface
