@@ -117,7 +117,7 @@ int main(int argc, char *argv[])
 
         // Remove last line break
         if (text.endsWith("\n")) {
-            text.chop(2);
+            text.chop(1);
         }
 
         if (text.isEmpty()) {
