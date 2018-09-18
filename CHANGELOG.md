@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix display of languages in the terminal.
 - Show message if not specified --speak-source or --speak-translation options in --audio-only mode.
 - Change the CLI option "translator" to "locale".
+- Move the functionality of the "Copy to source" button to the "Swap languages" button.
 
 ## [1.0.3] - 2018-07-04
 ### Added

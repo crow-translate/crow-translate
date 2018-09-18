@@ -391,10 +391,8 @@ void MainWindow::on_swapButton_clicked()
         translationButtonGroup->button(0)->setChecked(true);
     else
         insertLanguage(translationButtonGroup, "Translation", sourceCode);
-}
 
-void MainWindow::on_copyToSourceButton_clicked()
-{
+    // Copy translation to source text
     ui->sourceEdit->setPlainText(onlineTranslator->translation());
     ui->sourceEdit->moveCursor(QTextCursor::End);
 }
