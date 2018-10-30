@@ -41,7 +41,6 @@ constexpr int AUTOTRANSLATE_TIMEOUT = 500;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui (new Ui::MainWindow),
-    onlineTranslator (new QOnlineTranslator),
     trayMenu (new QMenu(this)),
     trayIcon (new QSystemTrayIcon(this)),
     languagesMenu (new QMenu),
@@ -55,6 +54,8 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtonGroup (new QButtonGroup(this))
 {
     loadLocale(); // Load application locale
+
+    onlineTranslator = new QOnlineTranslator(this); // Need to create after localization
 
     ui->setupUi(this);
 
