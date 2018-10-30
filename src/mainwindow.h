@@ -83,7 +83,7 @@ private slots:
     void toggleSourceButton(QAbstractButton *button, const bool &checked);
     void toggleTranslationButton(QAbstractButton *button, const bool &checked);
 
-    void on_autoTranslateCheckBox_toggled(const bool &state);
+    void on_autoTranslateCheckBox_toggled(const bool &checked);
 
     void translateSelection();
     void playSelection();
@@ -94,20 +94,23 @@ private slots:
     void resetAutoSourceButtonText();
 
 private:
+    // Helper functions
+    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang, QOnlineTranslator::Language uiLang);
     void loadSettings();
+    void loadLocale();
     QList<QAction *> languagesList();
     QString selectedText();
 
     void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
-    void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
+    void insertLanguage(QButtonGroup *group, const QString &settingsName, QOnlineTranslator::Language language);
     void checkSourceButton(const int &id, const bool &checked);
     void checkTranslationButton(const int &id, const bool &checked);
 
     Ui::MainWindow *ui;
+
     QTranslator interfaceTranslator;
-    QTimer autoTranslateTimer;
+    QOnlineTranslator::Language uiLang;
     QOnlineTranslator *onlineTranslator;
-    QMenu *languagesMenu;
 
     QMediaPlayer sourcePlayer;
     QMediaPlaylist sourcePlaylist;
@@ -118,6 +121,8 @@ private:
 
     QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
+    QTimer autoTranslateTimer;
+    QMenu *languagesMenu;
 
     QShortcut *closeWindowsShortcut;
     QHotkey *translateSelectionHotkey;

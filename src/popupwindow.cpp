@@ -101,29 +101,23 @@ QToolButton *PopupWindow::swapButton()
     return ui->swapButton;
 }
 
-void PopupWindow::loadSourceButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadSourceButton(QAbstractButton *button, int id)
 {
-    sourceButtonGroup->button(id)->setText(button->text());
-    sourceButtonGroup->button(id)->setToolTip(button->toolTip());
-    sourceButtonGroup->button(id)->setIcon(button->icon());
-    sourceButtonGroup->button(id)->setVisible(true);
+    copyButton(sourceButtonGroup, button, id);
 }
 
-void PopupWindow::loadTranslationButton(QAbstractButton *button, const int &id)
+void PopupWindow::loadTranslationButton(QAbstractButton *button, int id)
 {
-    translationButtonGroup->button(id)->setText(button->text());
-    translationButtonGroup->button(id)->setToolTip(button->toolTip());
-    translationButtonGroup->button(id)->setIcon(button->icon());
-    translationButtonGroup->button(id)->setVisible(true);
+    copyButton(translationButtonGroup, button, id);
 }
 
-void PopupWindow::checkSourceButton(const int &id, const bool &checked)
+void PopupWindow::checkSourceButton(int id, bool checked)
 {
     if (checked)
         sourceButtonGroup->button(id)->setChecked(true);
 }
 
-void PopupWindow::checkTranslationButton(const int &id, const bool &checked)
+void PopupWindow::checkTranslationButton(int id, bool checked)
 {
     if (checked)
         translationButtonGroup->button(id)->setChecked(true);
@@ -209,16 +203,18 @@ void PopupWindow::showEvent(QShowEvent *event)
     QWidget::showEvent(event);
 }
 
+void PopupWindow::copyButton(QButtonGroup *group, QAbstractButton *button, int id)
+{
+    group->button(id)->setText(button->text());
+    group->button(id)->setProperty("Lang", button->property("Lang"));
+    group->button(id)->setIcon(button->icon());
+    group->button(id)->setVisible(button->isVisible());
+}
+
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
 {
-    for (auto i = 0; i < 4; i++) {
-        if (copyingGroup->button(i)->text() != "") {
-            existingGroup->button(i)->setText(copyingGroup->button(i)->text());
-            existingGroup->button(i)->setToolTip(copyingGroup->button(i)->toolTip());
-            existingGroup->button(i)->setIcon(copyingGroup->button(i)->icon());
-        }
-        else
-            existingGroup->button(i)->setVisible(false);
-    }
+    for (auto i = 0; i < 4; i++)
+        copyButton(existingGroup, copyingGroup->button(i), i);
+
     existingGroup->button(copyingGroup->checkedId())->setChecked(true);
 }

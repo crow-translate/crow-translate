@@ -39,7 +39,7 @@ class PopupWindow : public QWidget
 
 public:
     explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = nullptr);
-    ~PopupWindow();
+    ~PopupWindow() override;
 
     QTextEdit *translationEdit();
     QToolButton *swapButton();
@@ -59,13 +59,14 @@ public:
     QButtonGroup *translationButtons();
 
 public slots:
-    void loadSourceButton(QAbstractButton *button, const int &id);
-    void loadTranslationButton(QAbstractButton *button, const int &id);
-    void checkSourceButton(const int &id, const bool &checked);
-    void checkTranslationButton(const int &id, const bool &checked);
+    void loadSourceButton(QAbstractButton *button, int id);
+    void loadTranslationButton(QAbstractButton *button, int id);
+    void checkSourceButton(int id, bool checked);
+    void checkTranslationButton(int id, bool checked);
 
 private:
-    void showEvent(QShowEvent *event);
+    void showEvent(QShowEvent *event) override;
+    void copyButton(QButtonGroup *group, QAbstractButton *button, int id);
     void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;

@@ -56,6 +56,9 @@
         <property name="arrowType">
          <enum>Qt::NoArrow</enum>
         </property>
+        <property name="Lang" stdset="0">
+         <number>0</number>
+        </property>
        </widget>
       </item>
       <item>
@@ -75,6 +78,9 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
+        </property>
        </widget>
       </item>
       <item>
@@ -93,6 +99,9 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
+        </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -115,6 +124,9 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
+        </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -171,6 +183,9 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
+        </property>
        </widget>
       </item>
       <item>
@@ -190,6 +205,9 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
+        </property>
        </widget>
       </item>
       <item>
@@ -208,6 +226,9 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
+        </property>
+        <property name="Lang" stdset="0">
+         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -239,6 +260,9 @@
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextOnly</enum>
+        </property>
+        <property name="Lang" stdset="0">
+         <number>0</number>
         </property>
        </widget>
       </item>

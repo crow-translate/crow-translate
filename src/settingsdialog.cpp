@@ -49,15 +49,15 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->trayIconComboBox->setItemData(2, "crow-translate-tray-dark");
     ui->trayIconComboBox->setItemData(3, "custom");
 
-    ui->languageComboBox->setItemData(0, "auto");
-    ui->languageComboBox->setItemData(1, "en");
-    ui->languageComboBox->setItemData(2, "ru");
+    ui->languageComboBox->setItemData(0, QLocale::AnyLanguage);
+    ui->languageComboBox->setItemData(1, QLocale::English);
+    ui->languageComboBox->setItemData(2, QLocale::Russian);
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     foreach (auto language, languagesMenu->actions()) {
-        ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->toolTip());
-        ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->toolTip());
+        ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
+        ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
     }
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
@@ -115,7 +115,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 
     // General settings
     QSettings settings;
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", "auto").toString()));
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", QLocale::AnyLanguage).toInt()));
     ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
     ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
     ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
@@ -207,7 +207,7 @@ void SettingsDialog::on_dialogBox_accepted()
 {
     // Check if localization changed
     QSettings settings;
-    if (settings.value("Language", "auto").toString() != ui->languageComboBox->currentData()) {
+    if (settings.value("Language", QLocale::AnyLanguage).toInt() != ui->languageComboBox->currentData().toInt()) {
         settings.setValue("Language", ui->languageComboBox->currentData());
         m_localizationChanged = true;
     }
@@ -231,7 +231,7 @@ void SettingsDialog::on_dialogBox_accepted()
     // Check if autostart options changed
 #if defined(Q_OS_LINUX)
     QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
-    if(ui->autostartCheckBox->isChecked()) {
+    if (ui->autostartCheckBox->isChecked()) {
         // Create autorun file if checked
         if (!autorunFile.exists()) {
             if (autorunFile.open(QFile::WriteOnly)) {
@@ -320,7 +320,7 @@ void SettingsDialog::on_dialogBox_accepted()
 void SettingsDialog::on_resetSettingsButton_clicked()
 {
     // General settings
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData("auto"));
+    ui->languageComboBox->setCurrentIndex(0);
     ui->windowModeComboBox->setCurrentIndex(0);
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
@@ -348,7 +348,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->translationOptionsCheckBox->setChecked(true);
     ui->definitionsCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(0);
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->languageComboBox->findData("en"));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(1);
