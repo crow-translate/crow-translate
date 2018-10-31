@@ -48,9 +48,6 @@ private slots:
     void on_dialogBox_accepted();
     void on_resetSettingsButton_clicked();
     void on_trayCheckBox_toggled(bool checked);
-#if defined(Q_OS_WIN)
-    void checkForUpdates();
-#endif
 
     void on_trayIconComboBox_currentIndexChanged(int index);
     void on_customTrayIconButton_clicked();
@@ -65,8 +62,15 @@ private slots:
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 
+#if defined(Q_OS_WIN)
+    void checkForUpdates();
+#endif
+
 private:
     Ui::SettingsDialog *ui;
+
+    bool m_localizationChanged = false;
+    bool m_proxyChanged = false;
 
 #if defined(Q_OS_WIN)
     QLabel *checkForUpdatesLabel;
@@ -74,9 +78,6 @@ private:
     QPushButton *checkForUpdatesButton;
     QLabel *checkForUpdatesStatusLabel;
 #endif
-
-    bool m_localizationChanged = false;
-    bool m_proxyChanged = false;
 };
 
 #endif // SETTINGSDIALOG_H

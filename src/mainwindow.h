@@ -51,12 +51,12 @@ public:
 #endif
 
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
 signals:
     void translationTextChanged(const QString &text);
-    void sourceButtonChanged(QAbstractButton *button, const int &id);
-    void translationButtonChanged(QAbstractButton *button, const int &id);
+    void sourceButtonChanged(QAbstractButton *button, int id);
+    void translationButtonChanged(QAbstractButton *button, int id);
     void playSourceButtonIconChanged(QIcon icon);
     void stopSourceButtonEnabled(bool enabled);
     void playTranslationButtonIconChanged(QIcon icon);
@@ -80,49 +80,53 @@ private slots:
     void on_autoSourceButton_triggered(QAction *language);
     void on_autoTranslationButton_triggered(QAction *language);
 
-    void toggleSourceButton(QAbstractButton *button, const bool &checked);
-    void toggleTranslationButton(QAbstractButton *button, const bool &checked);
+    void on_autoTranslateCheckBox_toggled(bool checked);
 
-    void on_autoTranslateCheckBox_toggled(const bool &checked);
+    // Show windows
+    void showMainWindow();
+    void showPopupWindow();
 
-    void translateSelection();
+    // Players
     void playSelection();
     void playTranslatedSelection();
 
-    void display();
-    void loadProxy();
+    // Language buttons
+    void checkSourceButton(int id, bool checked);
+    void checkTranslationButton(int id, bool checked);
+    void toggleSourceButton(QAbstractButton *button, bool checked);
+    void toggleTranslationButton(QAbstractButton *button, bool checked);
     void resetAutoSourceButtonText();
 
 private:
-    // Helper functions
-    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang, QOnlineTranslator::Language uiLang);
+    // Settings
+    void loadLanguageButtons(QButtonGroup *group);
     void loadSettings();
     void loadLocale();
-    QList<QAction *> languagesList();
-    QString selectedText();
+    void setProxy();
 
-    void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
-    void insertLanguage(QButtonGroup *group, const QString &settingsName, QOnlineTranslator::Language language);
-    void checkSourceButton(const int &id, const bool &checked);
-    void checkTranslationButton(const int &id, const bool &checked);
+    // Helper functions
+    void insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language);
+    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang, QOnlineTranslator::Language uiLang);
+    QString selectedText();
+    QList<QAction *> languagesList();
 
     Ui::MainWindow *ui;
 
-    QTranslator interfaceTranslator;
-    QOnlineTranslator::Language uiLang;
+    QTranslator *interfaceTranslator;
     QOnlineTranslator *onlineTranslator;
+    QOnlineTranslator::Language uiLang;
 
-    QMediaPlayer sourcePlayer;
-    QMediaPlaylist sourcePlaylist;
-    QMediaPlayer translationPlayer;
-    QMediaPlaylist translationPlaylist;
-    QMediaPlayer selectionPlayer;
-    QMediaPlaylist selectionPlaylist;
+    QMediaPlayer *sourcePlayer;
+    QMediaPlayer *translationPlayer;
+    QMediaPlayer *selectionPlayer;
+    QMediaPlaylist *sourcePlaylist;
+    QMediaPlaylist *translationPlaylist;
+    QMediaPlaylist *selectionPlaylist;
 
     QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
-    QTimer autoTranslateTimer;
     QMenu *languagesMenu;
+    QTimer *autoTranslateTimer;
 
     QShortcut *closeWindowsShortcut;
     QHotkey *translateSelectionHotkey;

@@ -217,7 +217,7 @@ void PopupWindow::copyButton(QButtonGroup *group, QAbstractButton *button, int i
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
 {
-    for (auto i = 0; i < 4; i++)
+    for (int i = 0; i < 4; ++i)
         copyButton(existingGroup, copyingGroup->button(i), i);
 
     existingGroup->button(copyingGroup->checkedId())->setChecked(true);

@@ -55,7 +55,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
-    foreach (auto language, languagesMenu->actions()) {
+    foreach (const auto language, languagesMenu->actions()) {
         ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
         ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
     }
@@ -247,15 +247,15 @@ void SettingsDialog::on_dialogBox_accepted()
                 QTextStream outStream(&autorunFile);
                 outStream << autorunContent;
                 autorunFile.close();
-            }
-            else
+            } else {
                 qDebug() << tr("Unable to create autorun file");
+            }
         }
-    }
-    // Remove autorun file if box unchecked
-    else
+    } else {
+        // Remove autorun file if box unchecked
         if(autorunFile.exists())
             autorunFile.remove();
+    }
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (ui->autostartCheckBox->isChecked())
@@ -375,8 +375,7 @@ void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
         ui->customTrayIconLabel->setEnabled(true);
         ui->customTrayIconLineEdit->setEnabled(true);
         ui->customTrayIconButton->setEnabled(true);
-    }
-    else {
+    } else {
         ui->customTrayIconLabel->setEnabled(false);
         ui->customTrayIconLineEdit->setEnabled(false);
         ui->customTrayIconButton->setEnabled(false);
@@ -387,7 +386,7 @@ void SettingsDialog::on_customTrayIconButton_clicked()
 {
     QString path = ui->customTrayIconLineEdit->text().left(ui->customTrayIconLineEdit->text().lastIndexOf("/"));
     QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
-    if (file != "")
+    if (!file.isEmpty())
         ui->customTrayIconLineEdit->setText(file);
 }
 
@@ -400,8 +399,7 @@ void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
         ui->proxyPortSpinbox->setEnabled(true);
         ui->proxyInfoLabel->setEnabled(true);
         ui->proxyAuthCheckBox->setEnabled(true);
-    }
-    else {
+    } else {
         ui->proxyHostEdit->setEnabled(false);
         ui->proxyHostLabel->setEnabled(false);
         ui->proxyPortLabel->setEnabled(false);
@@ -425,11 +423,11 @@ void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()
     if (ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString() != "") {
         ui->shortcutGroupBox->setEnabled(true);
         ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
-    }
-    else {
+    } else {
         ui->shortcutGroupBox->setEnabled(false);
         ui->shortcutSequenceEdit->clear();
     }
+
     ui->acceptShortcutButton->setEnabled(false);
 }
 
@@ -486,16 +484,16 @@ void SettingsDialog::checkForUpdates()
     checkForUpdatesStatusLabel->setText(tr("Checking for updates..."));
     QGitRelease release("Shatur95", "Crow-Translate");
 
-    if (release.error())
+    if (release.error()) {
         checkForUpdatesStatusLabel->setText("<font color=\"red\">" + release.body() + "</font>");
-    else {
+    } else {
         if (qApp->applicationVersion() > release.tagName()) {
             checkForUpdatesStatusLabel->setText("<font color=\"green\">" + tr("Update available!") + "</font>");
             UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
             updaterWindow->show();
-        }
-        else
+        } else {
             checkForUpdatesStatusLabel->setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
+        }
     }
 
     checkForUpdatesButton->setEnabled(true);

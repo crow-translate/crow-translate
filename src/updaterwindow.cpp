@@ -18,7 +18,7 @@ UpdaterWindow::UpdaterWindow(const QGitRelease &release, QWidget *parent) :
     ui->cancelDownloadButton->setVisible(false);
 
     // Search for Windows installer
-    foreach (auto asset, release.assets()) {
+    foreach (const auto asset, release.assets()) {
         if (asset.contentType() == "application/x-ms-dos-executable") {
             downloadUrl = asset.url();
             downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/" + asset.name();
@@ -99,16 +99,14 @@ void UpdaterWindow::finishDownload(QNetworkReply *reply)
         // Show error
         ui->updateStatusLabel->setText(reply->errorString());
         ui->downloadButton->setEnabled(true);
-    }
-    else {
+    } else {
         // Write file
         QFile installer(downloadPath);
         if (installer.open(QFile::WriteOnly)) {
             installer.write(reply->readAll());
             installer.close();
             ui->updateStatusLabel->setText(tr("Downloading is complete"));
-        }
-        else {
+        } else {
             ui->updateStatusLabel->setText(tr("Unable to write file"));
             ui->downloadBar->setValue(0);
             ui->downloadButton->setEnabled(true);
