@@ -672,6 +672,7 @@ void MainWindow::playTranslatedSelection()
         auto primaryLanguageCode = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
         if (primaryLanguageCode == QOnlineTranslator::Auto)
             primaryLanguageCode = uiLang;
+
         // Translate text
         onlineTranslator->translate(selection, QOnlineTranslator::Google, primaryLanguageCode);
 

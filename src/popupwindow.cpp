@@ -205,10 +205,14 @@ void PopupWindow::showEvent(QShowEvent *event)
 
 void PopupWindow::copyButton(QButtonGroup *group, QAbstractButton *button, int id)
 {
-    group->button(id)->setText(button->text());
-    group->button(id)->setProperty("Lang", button->property("Lang"));
-    group->button(id)->setIcon(button->icon());
-    group->button(id)->setVisible(button->isVisible());
+    if (button->property("Lang").toInt() != QOnlineTranslator::NoLanguage) {
+        group->button(id)->setText(button->text());
+        group->button(id)->setProperty("Lang", button->property("Lang"));
+        group->button(id)->setIcon(button->icon());
+        group->button(id)->setVisible(true);
+    } else {
+        group->button(id)->setVisible(false);
+    }
 }
 
 void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
