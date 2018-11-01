@@ -23,6 +23,7 @@
 #include <QClipboard>
 #include <QNetworkProxy>
 #include <QSettings>
+#include <QMessageBox>
 
 #if defined(Q_OS_WIN)
 #include <QMimeData>
@@ -253,7 +254,7 @@ void MainWindow::on_translateButton_clicked()
     }
 
     // Get translation
-    if (!translate(translationLang, sourceLang, uiLang))
+    if (!translate(translationLang, sourceLang))
         return;
 
     // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
@@ -272,7 +273,7 @@ void MainWindow::on_translateButton_clicked()
             translationLang = primaryLanguage;
 
         // Get translation
-        if (!translate(translationLang, sourceLang, uiLang))
+        if (!translate(translationLang, sourceLang))
             return;
     }
 
@@ -280,6 +281,7 @@ void MainWindow::on_translateButton_clicked()
     if (ui->autoSourceButton->isChecked()) {
         if (onlineTranslator->sourceLanguage() != sourceButtonGroup->checkedButton()->property("Lang").toInt()) {
             ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->sourceLanguageString() + ")");
+            ui->autoSourceButton->setProperty("Lang", onlineTranslator->sourceLanguage());
             emit sourceButtonChanged(ui->autoSourceButton, 0);
             connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
         }
@@ -287,11 +289,13 @@ void MainWindow::on_translateButton_clicked()
     if (ui->autoTranslationButton->isChecked()) {
         if (onlineTranslator->translationLanguage() != translationButtonGroup->checkedButton()->property("Lang").toInt()) {
             ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->translationLanguageString() + ")");
+            ui->autoTranslationButton->setProperty("Lang", onlineTranslator->translationLanguage());
             emit translationButtonChanged(ui->autoTranslationButton, 0);
         }
     } else {
         if (ui->autoTranslationButton->property("Lang").toInt() != QOnlineTranslator::Auto) {
             ui->autoTranslationButton->setText(tr("Auto"));
+            ui->autoTranslationButton->setProperty("Lang", QOnlineTranslator::Auto);
             emit translationButtonChanged(ui->autoTranslationButton, 0);
         }
     }
@@ -399,8 +403,10 @@ void MainWindow::on_settingsButton_clicked()
             loadLanguageButtons(sourceButtonGroup);
             loadLanguageButtons(translationButtonGroup);
 
-            ui->autoTranslationButton->setText(tr("Auto"));
-            ui->autoSourceButton->setText(tr("Auto"));
+            auto sourceLang = ui->autoSourceButton->property("Lang").value<QOnlineTranslator::Language>();
+            auto translationLang = ui->autoTranslationButton->property("Lang").value<QOnlineTranslator::Language>();
+            ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->languageString(sourceLang) + ")");
+            ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->languageString(translationLang) + ")");
         }
 
         if (config.proxyChanged())
@@ -437,9 +443,7 @@ void MainWindow::on_playSourceButton_clicked()
         else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
             selectionPlayer->pause();
 
-        sourcePlaylist->clear();
-        sourcePlaylist->addMedia(onlineTranslator->media(ui->sourceEdit->toPlainText(), QOnlineTranslator::Google, static_cast<QOnlineTranslator::Language>(sourceButtonGroup->checkedId())));
-        sourcePlayer->play();
+        play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtonGroup->checkedButton()->property("Lang").value<QOnlineTranslator::Language>());
         break;
     }
 }
@@ -469,9 +473,7 @@ void MainWindow::on_playTranslationButton_clicked()
         else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
             selectionPlayer->pause();
 
-        translationPlaylist->clear();
-        translationPlaylist->addMedia(onlineTranslator->translationMedia(QOnlineTranslator::Google));
-        translationPlayer->play();
+        play(translationPlayer, translationPlaylist, onlineTranslator->translation(), onlineTranslator->translationLanguage());
         break;
     }
 }
@@ -632,9 +634,7 @@ void MainWindow::playSelection()
     else if (sourcePlayer->state() == QMediaPlayer::PlayingState)
         sourcePlayer->pause();
 
-    selectionPlaylist->clear();
-    selectionPlaylist->addMedia(onlineTranslator->media(selection, QOnlineTranslator::Google));
-    selectionPlayer->play();
+    play(sourcePlayer, sourcePlaylist, selection);
 }
 
 void MainWindow::playTranslatedSelection()
@@ -654,34 +654,24 @@ void MainWindow::playTranslatedSelection()
 
     // Detect languages
     QSettings settings;
-    auto primaryLanguageCode = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
-    if (primaryLanguageCode == QOnlineTranslator::Auto)
-        primaryLanguageCode = uiLang;
+    auto primaryLanguage = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+    if (primaryLanguage == QOnlineTranslator::Auto)
+        primaryLanguage = uiLang;
 
     // Translate text
-    onlineTranslator->translate(selection, QOnlineTranslator::Google, primaryLanguageCode);
-
-    if (onlineTranslator->error()) {
-        qDebug() << "Unable to translate!"; // FIXME!
+    if (!translateOutside(selection, primaryLanguage))
         return;
-    }
 
-    if (onlineTranslator->sourceLanguage() == primaryLanguageCode) {
-        auto secondaryLanguageCode = settings.value("Translation/SecondaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
-        if (secondaryLanguageCode == QOnlineTranslator::Auto)
-            secondaryLanguageCode = uiLang;
+    if (onlineTranslator->sourceLanguage() == primaryLanguage) {
+        auto secondaryLanguage = settings.value("Translation/SecondaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+        if (secondaryLanguage == QOnlineTranslator::Auto)
+            secondaryLanguage = uiLang;
 
-        onlineTranslator->translate(selection, QOnlineTranslator::Google, secondaryLanguageCode);
-
-        if (onlineTranslator->error()) {
-            qDebug() << "Unable to translate!";
+        if (!translateOutside(selection, secondaryLanguage))
             return;
-        }
     }
 
-    selectionPlaylist->clear();
-    selectionPlaylist->addMedia(onlineTranslator->translationMedia(QOnlineTranslator::Google));
-    selectionPlayer->play();
+    play(selectionPlayer, selectionPlaylist, onlineTranslator->translation(), onlineTranslator->translationLanguage());
 }
 
 void MainWindow::checkSourceButton(int id, bool checked)
@@ -921,7 +911,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
     settings.setValue("Buttons/" + groupCategory + "Button" + QString::number(1), group->button(1)->property("Lang"));
 }
 
-bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang, QOnlineTranslator::Language uiLang)
+bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang)
 {
     onlineTranslator->translate(ui->sourceEdit->toPlainText(), QOnlineTranslator::Google, translationLang, sourceLang, uiLang);
 
@@ -930,14 +920,41 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
         ui->translationEdit->setHtml(onlineTranslator->errorString());
         ui->translateButton->setEnabled(true);
 
-        ui->autoSourceButton->setText(tr("Auto"));
         ui->autoTranslationButton->setText(tr("Auto"));
+        ui->autoTranslationButton->setProperty("Lang", QOnlineTranslator::Auto);
 
         emit translationTextChanged(onlineTranslator->errorString());
         return false;
     } else {
         return true;
     }
+}
+
+bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Language translationLang)
+{
+    onlineTranslator->translate(text, QOnlineTranslator::Google, translationLang);
+
+    if (onlineTranslator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
+        errorMessage.exec();
+        return false;
+    } else {
+        return true;
+    }
+}
+
+void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang)
+{
+    playlist->clear();
+    auto media = onlineTranslator->media(text, QOnlineTranslator::Google, lang);
+    if (onlineTranslator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), onlineTranslator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    playlist->addMedia(media);
+    player->play();
 }
 
 QList<QAction *> MainWindow::languagesList()

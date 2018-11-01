@@ -106,7 +106,9 @@ private:
 
     // Helper functions
     void insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language);
-    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang, QOnlineTranslator::Language uiLang);
+    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
+    bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
+    void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
     QList<QAction *> languagesList();
 
