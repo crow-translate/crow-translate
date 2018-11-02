@@ -100,7 +100,7 @@ private:
 
     // Translation
     bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
-    bool translateOutside(const QString &text);
+    bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
 
     // Helper functions
     void insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language);

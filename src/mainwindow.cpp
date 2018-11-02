@@ -651,8 +651,24 @@ void MainWindow::playTranslatedSelection()
         if (sourcePlayer->state() == QMediaPlayer::PlayingState)
             sourcePlayer->pause();
 
-    if (!translateOutside(selection))
+    // Detect languages
+    AppSettings settings;
+    QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
+    if (primaryLanguage == QOnlineTranslator::Auto)
+        primaryLanguage = uiLang;
+
+    // Translate text
+    if (!translateOutside(selection, primaryLanguage))
         return;
+
+    if (onlineTranslator->sourceLanguage() == primaryLanguage) {
+        QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
+        if (secondaryLanguage == QOnlineTranslator::Auto)
+            secondaryLanguage = uiLang;
+
+        if (!translateOutside(selection, secondaryLanguage))
+            return;
+    }
 
     play(selectionPlayer, selectionPlaylist, onlineTranslator->translation(), onlineTranslator->translationLanguage());
 }
@@ -721,8 +737,17 @@ void MainWindow::resetAutoSourceButtonText()
 
 void MainWindow::copyTranslatedSelection()
 {
-    if (translateOutside(selectedText()))
-        QApplication::clipboard()->setText(onlineTranslator->translation());
+    ui->sourceEdit->setPlainText(selectedText());
+
+    on_translateButton_clicked();
+
+    if (onlineTranslator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    QApplication::clipboard()->setText(onlineTranslator->translation());
 }
 
 void MainWindow::loadLanguageButtons(QButtonGroup *group)
@@ -866,39 +891,17 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
 }
 
 // Translate text outside the window
-bool MainWindow::translateOutside(const QString &text)
+bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Language translationLang)
 {
-    // Detect languages
-    AppSettings settings;
-    QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
-    if (primaryLanguage == QOnlineTranslator::Auto)
-        primaryLanguage = uiLang;
-
-    // Translate text
-    onlineTranslator->translate(text, QOnlineTranslator::Google, primaryLanguage);
+    onlineTranslator->translate(text, QOnlineTranslator::Google, translationLang);
 
     if (onlineTranslator->error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
         errorMessage.exec();
         return false;
+    } else {
+        return true;
     }
-
-    // Check if source and translation languages are the same
-    if (onlineTranslator->sourceLanguage() == primaryLanguage) {
-        QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
-        if (secondaryLanguage == QOnlineTranslator::Auto)
-            secondaryLanguage = uiLang;
-
-        onlineTranslator->translate(text, QOnlineTranslator::Google, secondaryLanguage);
-
-        if (onlineTranslator->error()) {
-            QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
-            errorMessage.exec();
-            return false;
-        }
-    }
-
-    return true;
 }
 
 void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language)
