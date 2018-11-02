@@ -82,49 +82,9 @@ MainWindow::MainWindow(QWidget *parent) :
     sourcePlayer->setPlaylist(sourcePlaylist); // Use playlist to split long queries due Google limit
     translationPlayer->setPlaylist(translationPlaylist);
     selectionPlayer->setPlaylist(selectionPlaylist);
+    connect(sourcePlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeSourcePlayerIcons);
+    connect(translationPlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeTranslationPlayerIcons);
     connect(ui->sourceEdit, &QPlainTextEdit::textChanged, sourcePlayer, &QMediaPlayer::stop);
-
-    // Dynamic players buttons
-    connect(sourcePlayer, &QMediaPlayer::stateChanged, [&](QMediaPlayer::State state) {
-        switch (state) {
-        case QMediaPlayer::PlayingState:
-            ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-pause"));
-            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
-            ui->stopSourceButton->setEnabled(true);
-            emit stopSourceButtonEnabled(true);
-            break;
-        case QMediaPlayer::PausedState:
-            ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
-            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
-            break;
-        case QMediaPlayer::StoppedState:
-            ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
-            emit playSourceButtonIconChanged(ui->playSourceButton->icon());
-            ui->stopSourceButton->setEnabled(false);
-            emit stopSourceButtonEnabled(false);
-            break;
-        }
-    });
-    connect(translationPlayer, &QMediaPlayer::stateChanged, [&](QMediaPlayer::State state) {
-        switch (state) {
-        case QMediaPlayer::PlayingState:
-            ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-pause"));
-            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
-            ui->stopTranslationButton->setEnabled(true);
-            emit stopTranslationButtonEnabled(true);
-            break;
-        case QMediaPlayer::PausedState:
-            ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
-            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
-            break;
-        case QMediaPlayer::StoppedState:
-            ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
-            emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
-            ui->stopTranslationButton->setEnabled(false);
-            emit stopTranslationButtonEnabled(false);
-            break;
-        }
-    });
 
     // Source button group
     sourceButtonGroup->addButton(ui->autoSourceButton, 0);
@@ -671,6 +631,50 @@ void MainWindow::playTranslatedSelection()
     }
 
     play(selectionPlayer, selectionPlaylist, onlineTranslator->translation(), onlineTranslator->translationLanguage());
+}
+
+void MainWindow::changeSourcePlayerIcons(QMediaPlayer::State state)
+{
+    switch (state) {
+    case QMediaPlayer::PlayingState:
+        ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+        emit playSourceButtonIconChanged(ui->playSourceButton->icon());
+        ui->stopSourceButton->setEnabled(true);
+        emit stopSourceButtonEnabled(true);
+        break;
+    case QMediaPlayer::PausedState:
+        ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        emit playSourceButtonIconChanged(ui->playSourceButton->icon());
+        break;
+    case QMediaPlayer::StoppedState:
+        ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        emit playSourceButtonIconChanged(ui->playSourceButton->icon());
+        ui->stopSourceButton->setEnabled(false);
+        emit stopSourceButtonEnabled(false);
+        break;
+    }
+}
+
+void MainWindow::changeTranslationPlayerIcons(QMediaPlayer::State state)
+{
+    switch (state) {
+    case QMediaPlayer::PlayingState:
+        ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+        emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
+        ui->stopTranslationButton->setEnabled(true);
+        emit stopTranslationButtonEnabled(true);
+        break;
+    case QMediaPlayer::PausedState:
+        ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
+        break;
+    case QMediaPlayer::StoppedState:
+        ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
+        ui->stopTranslationButton->setEnabled(false);
+        emit stopTranslationButtonEnabled(false);
+        break;
+    }
 }
 
 void MainWindow::checkSourceButton(int id, bool checked)

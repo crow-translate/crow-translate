@@ -80,6 +80,8 @@ private slots:
     // Players
     void playSelection();
     void playTranslatedSelection();
+    void changeSourcePlayerIcons(QMediaPlayer::State state);
+    void changeTranslationPlayerIcons(QMediaPlayer::State state);
 
     // Language buttons
     void checkSourceButton(int id, bool checked);
