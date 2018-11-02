@@ -156,12 +156,14 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.playTranslatedSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.stopSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.showMainWindowHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, settings.copyTranslatedSelectionHotkey());
 
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, "Ctrl+Alt+E");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, "Ctrl+Alt+S");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, "Ctrl+Alt+F");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, "Ctrl+Alt+G");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, "");
 
     // Window shortcuts
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.translateHotkey());
@@ -259,6 +261,7 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setPlayTranslatedSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
     settings.setStopSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
     settings.setShowMainWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
+    settings.setCopyTranslatedSelectionHotkeyHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->text(1));
 
     // Window shortcuts
     settings.setTranslateHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
@@ -374,7 +377,7 @@ void SettingsDialog::on_proxyAuthCheckBox_toggled(bool checked)
 
 void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()
 {
-    if (ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString() != "") {
+    if (ui->shortcutsTreeWidget->currentItem()->childCount() == 0) {
         ui->shortcutGroupBox->setEnabled(true);
         ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
     } else {
@@ -420,6 +423,7 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
     ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, "Ctrl+Alt+F");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, "Ctrl+Alt+G");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, "Ctrl+Alt+C");
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, "");
 
     // Window shortcuts
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, "Ctrl+Return");

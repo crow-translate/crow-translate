@@ -203,7 +203,7 @@ void AppSettings::setTrayIconName(const QString &name)
 
 QString AppSettings::customIconPath()
 {
-    return value("CustomIconPath", "").toString();
+    return value("CustomIconPath").toString();
 }
 
 void AppSettings::setCustomIconPath(const QString &path)
@@ -283,7 +283,7 @@ void AppSettings::setProxyType(QNetworkProxy::ProxyType type)
 
 QString AppSettings::proxyHost()
 {
-    return value("Connection/ProxyHost", "").toString();
+    return value("Connection/ProxyHost").toString();
 }
 
 void AppSettings::setProxyHost(const QString &hostName)
@@ -313,7 +313,7 @@ void AppSettings::setProxyAuthEnabled(bool enabled)
 
 QString AppSettings::proxyUsername()
 {
-    return value("Connection/ProxyUsername", "").toString();
+    return value("Connection/ProxyUsername").toString();
 }
 
 void AppSettings::setProxyUsername(const QString &username)
@@ -323,7 +323,7 @@ void AppSettings::setProxyUsername(const QString &username)
 
 QString AppSettings::proxyPassword()
 {
-    return value("Connection/ProxyPassword", "").toString();
+    return value("Connection/ProxyPassword").toString();
 }
 
 void AppSettings::setProxyPassword(const QString &password)
@@ -379,6 +379,16 @@ QString AppSettings::showMainWindowHotkey()
 void AppSettings::setShowMainWindowHotkey(const QString &hotkey)
 {
     setValue("Hotkeys/ShowMainWindow", hotkey);
+}
+
+QString AppSettings::copyTranslatedSelectionHotkey()
+{
+    return value("Hotkeys/CopyTranslatedSelection").toString();
+}
+
+void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey)
+{
+    setValue("Hotkeys/CopyTranslatedSelection", hotkey);
 }
 
 QString AppSettings::translateHotkey()

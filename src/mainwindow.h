@@ -88,6 +88,9 @@ private slots:
     void toggleTranslationButton(QAbstractButton *button, bool checked);
     void resetAutoSourceButtonText();
 
+    // Other
+    void copyTranslatedSelection();
+
 private:
     // Settings
     void loadLanguageButtons(QButtonGroup *group);
@@ -95,13 +98,15 @@ private:
     void loadLocale();
     void setProxy();
 
+    // Translation
+    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
+    bool translateOutside(const QString &text);
+
     // Helper functions
     void insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language);
-    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
-    bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
-    QString selectedText();
     QList<QAction *> languagesList();
+    QString selectedText();
 
     Ui::MainWindow *ui;
 
@@ -127,6 +132,7 @@ private:
     QHotkey *playTranslatedSelectionHotkey;
     QHotkey *stopSelectionHotkey;
     QHotkey *showMainWindowHotkey;
+    QHotkey *copyTranslatedSelectionHotkey;
 
     QButtonGroup *sourceButtonGroup;
     QButtonGroup *translationButtonGroup;

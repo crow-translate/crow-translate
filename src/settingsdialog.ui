@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>730</width>
+    <width>800</width>
     <height>545</height>
    </rect>
   </property>
@@ -1067,6 +1067,15 @@
             </property>
             <property name="icon">
              <iconset theme="window">
+              <normaloff>.</normaloff>.</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Translate selected text and copy to clipboard</string>
+            </property>
+            <property name="icon">
+             <iconset theme="edit-copy">
               <normaloff>.</normaloff>.</iconset>
             </property>
            </item>

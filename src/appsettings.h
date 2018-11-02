@@ -135,6 +135,10 @@ public:
     QString showMainWindowHotkey();
     void setShowMainWindowHotkey(const QString &hotkey);
 
+    QString copyTranslatedSelectionHotkey();
+    void setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey);
+
+    // Window shortcuts
     QString translateHotkey();
     void setTranslateHotkey(const QString &hotkey);
 
