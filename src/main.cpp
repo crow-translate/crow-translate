@@ -19,12 +19,12 @@
  */
 
 #include <QCommandLineParser>
-#include <QSettings>
 #include <QMediaPlayer>
 #include <QFile>
 #include <QRegularExpression>
 
 #include "singleapplication.h"
+#include "appsettings.h"
 #include "qonlinetranslator.h"
 #include "mainwindow.h"
 
@@ -43,9 +43,9 @@ int main(int argc, char *argv[])
         QIcon::setThemeName("Papirus");
 #endif
 
-        QSettings settings;
+        AppSettings settings;
         MainWindow w;
-//        if (!settings.value("StartMinimized", false).toBool())
+        if (!settings.isStartMinimized())
             w.show();
         return app.exec();
     }

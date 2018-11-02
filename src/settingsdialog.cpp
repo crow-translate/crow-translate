@@ -20,7 +20,6 @@
 
 #include "settingsdialog.h"
 
-#include <QSettings>
 #include <QStandardPaths>
 #include <QNetworkProxy>
 #include <QFileDialog>
@@ -30,7 +29,7 @@
 #include "updaterwindow.h"
 #endif
 
-#include "qonlinetranslator.h"
+#include "appsettings.h"
 #include "ui_settingsdialog.h"
 
 SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
@@ -53,12 +52,22 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->languageComboBox->setItemData(1, QLocale::English);
     ui->languageComboBox->setItemData(2, QLocale::Russian);
 
-    ui->primaryLanguageComboBox->addItem(tr("<System language>"), "auto");
-    ui->secondaryLanguageComboBox->addItem(tr("<System language>"), "auto");
+    ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
+    ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     foreach (const auto language, languagesMenu->actions()) {
         ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
         ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
     }
+
+    // Set maximum and minimum values for the size of the popup window
+    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
+    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
+    ui->popupWidthSlider->setMinimum(200);
+    ui->popupWidthSpinBox->setMinimum(200);
+    ui->popupHeightSlider->setMinimum(200);
+    ui->popupHeightSpinBox->setMinimum(200);
 
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
@@ -71,16 +80,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     connect(ui->popupWidthSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupWidthSlider, &QSlider::setValue);
     connect(ui->popupHeightSlider, &QSlider::valueChanged, ui->popupHeightSpinBox, &QSpinBox::setValue);
     connect(ui->popupHeightSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupHeightSlider, &QSlider::setValue);
-
-    // Set maximum and minimum values for the size of the popup window
-    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
-    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
-    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
-    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
-    ui->popupWidthSlider->setMinimum(200);
-    ui->popupWidthSpinBox->setMinimum(200);
-    ui->popupHeightSlider->setMinimum(200);
-    ui->popupHeightSpinBox->setMinimum(200);
 
     // Pages selection mechanism
     connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
@@ -114,55 +113,49 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 #endif
 
     // General settings
-    QSettings settings;
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.value("Language", QLocale::AnyLanguage).toInt()));
-    ui->windowModeComboBox->setCurrentIndex(settings.value("WindowMode", 0).toInt());
-    ui->trayCheckBox->setChecked(settings.value("TrayIconVisible", true).toBool());
-    ui->startMinimizedCheckBox->setChecked(settings.value("StartMinimized", false).toBool());
-#if defined(Q_OS_LINUX)
-    ui->autostartCheckBox->setChecked(QFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop").exists());
-#elif defined(Q_OS_WIN)
-    QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-    ui->autostartCheckBox->setChecked(autostartSettings.contains("Crow Translate"));
-    checkForUpdatesComboBox->setCurrentIndex(settings.value("CheckForUpdatesInterval", 1).toInt());
-#endif
+    AppSettings settings;
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
+    ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
+    ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
+    ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
+    ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
 
     // Interface settings
-    ui->popupOpacitySlider->setValue(static_cast<int>(settings.value("PopupOpacity", 0.8).toDouble() * 100));
-    ui->popupHeightSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().height());
-    ui->popupWidthSpinBox->setValue(settings.value("PopupSize", QSize(350, 300)).toSize().width());
-    ui->popupLanguagesComboBox->setCurrentIndex(settings.value("PopupLanguagesStyle", Qt::ToolButtonIconOnly).toInt());
-    ui->popupControlsComboBox->setCurrentIndex(settings.value("PopupControlsStyle", Qt::ToolButtonIconOnly).toInt());
+    ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
+    ui->popupWidthSpinBox->setValue(settings.popupWidth());
+    ui->popupHeightSpinBox->setValue(settings.popupHeight());
+    ui->popupLanguagesComboBox->setCurrentIndex(settings.popupLanguagesStyle());
+    ui->popupControlsComboBox->setCurrentIndex(settings.popupControlsStyle());
 
-    ui->windowLanguagesComboBox->setCurrentIndex(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon).toInt());
-    ui->windowControlsComboBox->setCurrentIndex(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly).toInt());
+    ui->windowLanguagesComboBox->setCurrentIndex(settings.windowLanguagesStyle());
+    ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
 
-    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.value("TrayIcon", "crow-translate-tray").toString()));
-    ui->customTrayIconLineEdit->setText(settings.value("CustomIconPath", "").toString());
+    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.trayIconName()));
+    ui->customTrayIconLineEdit->setText(settings.customIconPath());
 
     // Translation settings
-    ui->sourceTransliterationCheckBox->setChecked(settings.value("Translation/ShowSourceTransliteration", true).toBool());
-    ui->translationTransliterationCheckBox->setChecked(settings.value("Translation/ShowTranslationTransliteration", true).toBool());
-    ui->translationOptionsCheckBox->setChecked(settings.value("Translation/TranslationOptions", true).toBool());
-    ui->definitionsCheckBox->setChecked(settings.value("Translation/Definitions", true).toBool());
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.value("Translation/PrimaryLanguage", "auto").toString()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.value("Translation/SecondaryLanguage", "en").toString()));
+    ui->sourceTransliterationCheckBox->setChecked(settings.showSourceTranslit());
+    ui->translationTransliterationCheckBox->setChecked(settings.showTranslationTranslit());
+    ui->translationOptionsCheckBox->setChecked(settings.showTranslationOptions());
+    ui->definitionsCheckBox->setChecked(settings.showDefinitions());
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
 
     // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt());
+    ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
 
-    ui->proxyHostEdit->setText(settings.value("Connection/ProxyHost", "").toString());
-    ui->proxyPortSpinbox->setValue(settings.value("Connection/ProxyPort", 8080).toInt());
-    ui->proxyAuthCheckBox->setChecked(settings.value("Connection/ProxyAuthEnabled", false).toBool());
-    ui->proxyUsernameEdit->setText(settings.value("Connection/ProxyUsername", "").toString());
-    ui->proxyPasswordEdit->setText(settings.value("Connection/ProxyPassword", "").toString());
+    ui->proxyHostEdit->setText(settings.proxyHost());
+    ui->proxyPortSpinbox->setValue(settings.proxyPort());
+    ui->proxyAuthCheckBox->setChecked(settings.isProxyAuthEnabled());
+    ui->proxyUsernameEdit->setText(settings.proxyUsername());
+    ui->proxyPasswordEdit->setText(settings.proxyPassword());
 
     // Global shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.value("Hotkeys/TranslateSelection", "Ctrl+Alt+E").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.value("Hotkeys/PlaySelection", "Ctrl+Alt+S").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.value("Hotkeys/PlayTranslatedSelection", "Ctrl+Alt+F").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.value("Hotkeys/StopSelection", "Ctrl+Alt+G").toString());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.translateSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.playSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.playTranslatedSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.stopSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.showMainWindowHotkey());
 
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, "Ctrl+Alt+E");
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, "Ctrl+Alt+S");
@@ -171,13 +164,13 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
 
     // Window shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, settings.value("Hotkeys/StopSource", "Ctrl+G").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+G").toString());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.translateHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.closeWindowHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, settings.playSourceHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, settings.stopSourceHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, settings.playTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.stopTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, settings.copyTranslationHotkey());
 
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, "Ctrl+Return");
     ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, "Ctrl+Q");
@@ -206,127 +199,87 @@ bool SettingsDialog::proxyChanged()
 void SettingsDialog::on_dialogBox_accepted()
 {
     // Check if localization changed
-    QSettings settings;
-    if (settings.value("Language", QLocale::AnyLanguage).toInt() != ui->languageComboBox->currentData().toInt()) {
-        settings.setValue("Language", ui->languageComboBox->currentData());
+    AppSettings settings;
+    if (settings.locale() != ui->languageComboBox->currentData().toInt()) {
+        settings.setLocale(ui->languageComboBox->currentData().value<QLocale::Language>());
         m_localizationChanged = true;
     }
 
     // Check if proxy changed
-    if (ui->proxyTypeComboBox->currentIndex() != settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt() ||
-            ui->proxyHostEdit->text() != settings.value("Connection/ProxyHost", "").toString() ||
-            ui->proxyPortSpinbox->value() != settings.value("Connection/ProxyPort", 8080).toInt() ||
-            ui->proxyAuthCheckBox->isChecked() != settings.value("Connection/ProxyAuthEnabled", false).toInt() ||
-            ui->proxyUsernameEdit->text() != settings.value("Connection/ProxyUsername", "").toString() ||
-            ui->proxyPasswordEdit->text() != settings.value("Connection/ProxyPassword", "").toString()) {
-        settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentIndex());
-        settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
-        settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
-        settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
-        settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
-        settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+    if (ui->proxyTypeComboBox->currentIndex() != settings.proxyType()
+            || ui->proxyHostEdit->text() != settings.proxyHost()
+            || ui->proxyPortSpinbox->value() != settings.proxyPort()
+            || ui->proxyAuthCheckBox->isChecked() != settings.isProxyAuthEnabled()
+            || ui->proxyUsernameEdit->text() != settings.proxyUsername()
+            || ui->proxyPasswordEdit->text() != settings.proxyPassword()) {
+        settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
+        settings.setProxyHost(ui->proxyHostEdit->text());
+        settings.setProxyPort(static_cast<quint16>(ui->proxyPortSpinbox->value()));
+        settings.setProxyAuthEnabled(ui->proxyAuthCheckBox->isChecked());
+        settings.setProxyUsername(ui->proxyUsernameEdit->text());
+        settings.setProxyPassword(ui->proxyPasswordEdit->text());
         m_proxyChanged = true;
     }
 
     // Check if autostart options changed
-#if defined(Q_OS_LINUX)
-    QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
-    if (ui->autostartCheckBox->isChecked()) {
-        // Create autorun file if checked
-        if (!autorunFile.exists()) {
-            if (autorunFile.open(QFile::WriteOnly)) {
-                QString autorunContent("[Desktop Entry]\n"
-                                       "Type=Application\n"
-                                       "Exec=crow\n"
-                                       "Hidden=false\n"
-                                       "NoDisplay=false\n"
-                                       "Icon=crow-translate\n"
-                                       "Name=Crow Translate\n"
-                                       "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more\n"
-                                       "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
-                QTextStream outStream(&autorunFile);
-                outStream << autorunContent;
-                autorunFile.close();
-            } else {
-                qDebug() << tr("Unable to create autorun file");
-            }
-        }
-    } else {
-        // Remove autorun file if box unchecked
-        if(autorunFile.exists())
-            autorunFile.remove();
-    }
-#elif defined(Q_OS_WIN)
-    QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
-    if (ui->autostartCheckBox->isChecked())
-        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
-    else
-        autostartSettings.remove("Crow Translate");
-#endif
+    settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
 
     // Other general settings
-    settings.setValue("WindowMode", ui->windowModeComboBox->currentIndex());
-    settings.setValue("TrayIconVisible", ui->trayCheckBox->isChecked());
-    settings.setValue("StartMinimized", ui->startMinimizedCheckBox->isChecked());
+    settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
+    settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
+    settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
 #if defined(Q_OS_WIN)
-    settings.setValue("CheckForUpdatesInterval", checkForUpdatesComboBox->currentIndex());
+    settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(checkForUpdatesComboBox->currentIndex()));
 #endif
 
     // Interface settings
-    settings.setValue("PopupOpacity", static_cast<double>(ui->popupOpacitySlider->value()) / 100);
-    settings.setValue("PopupSize", QSize(ui->popupWidthSpinBox->value(), ui->popupHeightSpinBox->value()));
-    settings.setValue("PopupLanguagesStyle", ui->popupLanguagesComboBox->currentIndex());
-    settings.setValue("PopupControlsStyle", ui->popupControlsComboBox->currentIndex());
+    settings.setPopupOpacity(static_cast<double>(ui->popupOpacitySlider->value()) / 100);
+    settings.setPopupWidth(ui->popupWidthSpinBox->value());
+    settings.setPopupHeight(ui->popupHeightSpinBox->value());
+    settings.setPopupLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->popupLanguagesComboBox->currentIndex()));
+    settings.setPopupControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->popupControlsComboBox->currentIndex()));
 
-    settings.setValue("WindowLanguagesStyle", ui->windowLanguagesComboBox->currentIndex());
-    settings.setValue("WindowControlsStyle", ui->windowControlsComboBox->currentIndex());
+    settings.setWindowLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->windowLanguagesComboBox->currentIndex()));
+    settings.setWindowControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->windowControlsComboBox->currentIndex()));
 
-    settings.setValue("TrayIcon", ui->trayIconComboBox->currentData());
-    settings.setValue("CustomIconPath", ui->customTrayIconLineEdit->text());
+    settings.setTrayIconName(ui->trayIconComboBox->currentData().toString());
+    settings.setCustomIconPath(ui->customTrayIconLineEdit->text());
 
     // Translation settings
-    settings.setValue("Translation/ShowSourceTransliteration", ui->sourceTransliterationCheckBox->isChecked());
-    settings.setValue("Translation/ShowTranslationTransliteration", ui->translationTransliterationCheckBox->isChecked());
-    settings.setValue("Translation/TranslationOptions", ui->translationOptionsCheckBox->isChecked());
-    settings.setValue("Translation/Definitions", ui->definitionsCheckBox->isChecked());
-    settings.setValue("Translation/PrimaryLanguage", ui->primaryLanguageComboBox->currentData());
-    settings.setValue("Translation/SecondaryLanguage", ui->secondaryLanguageComboBox->currentData());
-
-    // Connection settings
-    settings.setValue("Connection/ProxyType", ui->proxyTypeComboBox->currentIndex());
-    settings.setValue("Connection/ProxyHost", ui->proxyHostEdit->text());
-    settings.setValue("Connection/ProxyPort", ui->proxyPortSpinbox->value());
-    settings.setValue("Connection/ProxyAuthEnabled", ui->proxyAuthCheckBox->isChecked());
-    settings.setValue("Connection/ProxyUsername", ui->proxyUsernameEdit->text());
-    settings.setValue("Connection/ProxyPassword", ui->proxyPasswordEdit->text());
+    settings.setShowSourceTranslit(ui->sourceTransliterationCheckBox->isChecked());
+    settings.setShowTranslationTranslit(ui->translationTransliterationCheckBox->isChecked());
+    settings.setShowTranslationOptions(ui->translationOptionsCheckBox->isChecked());
+    settings.setShowDefinitions(ui->definitionsCheckBox->isChecked());
+    settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
+    settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
 
     // Global shortcuts
-    settings.setValue("Hotkeys/TranslateSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
-    settings.setValue("Hotkeys/PlaySelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
-    settings.setValue("Hotkeys/PlayTranslatedSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
-    settings.setValue("Hotkeys/StopSelection", ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
-    settings.setValue("Hotkeys/ShowMainWindow", ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
+    settings.setTranslateSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
+    settings.setPlaySelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
+    settings.setPlayTranslatedSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
+    settings.setStopSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
+    settings.setShowMainWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
 
     // Window shortcuts
-    settings.setValue("Hotkeys/Translate", ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
-    settings.setValue("Hotkeys/CloseWindow", ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->text(1));
-    settings.setValue("Hotkeys/PlaySource", ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->text(1));
-    settings.setValue("Hotkeys/StopSource", ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->text(1));
-    settings.setValue("Hotkeys/PlayTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
-    settings.setValue("Hotkeys/StopTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
-    settings.setValue("Hotkeys/CopyTranslation", ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
+    settings.setTranslateHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
+    settings.setCloseWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->text(1));
+    settings.setPlaySourceHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->text(1));
+    settings.setStopSourceHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->text(1));
+    settings.setPlayTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
+    settings.setStopTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
+    settings.setCopyTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
 }
 
 void SettingsDialog::on_resetSettingsButton_clicked()
 {
     // General settings
     ui->languageComboBox->setCurrentIndex(0);
-    ui->windowModeComboBox->setCurrentIndex(0);
+    ui->windowModeComboBox->setCurrentIndex(AppSettings::PopupWindow);
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 #if defined(Q_OS_WIN)
-    checkForUpdatesComboBox->setCurrentIndex(1);
+    checkForUpdatesComboBox->setCurrentIndex(AppSettings::Month);
 #endif
 
     // Interface settings
@@ -347,7 +300,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->translationTransliterationCheckBox->setChecked(true);
     ui->translationOptionsCheckBox->setChecked(true);
     ui->definitionsCheckBox->setChecked(true);
-    ui->primaryLanguageComboBox->setCurrentIndex(0);
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
 
     // Connection settings
@@ -369,6 +322,7 @@ void SettingsDialog::on_trayCheckBox_toggled(bool checked)
     ui->startMinimizedCheckBox->setChecked(false);
 }
 
+// Disable (enable) "Custom icon path" option
 void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
 {
     if (index == 3) {

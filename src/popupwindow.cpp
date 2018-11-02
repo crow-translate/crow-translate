@@ -22,12 +22,12 @@
 
 #include <QScreen>
 #include <QClipboard>
-#include <QSettings>
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
 
 #include "ui_popupwindow.h"
+#include "appsettings.h"
 #include "mainwindow.h"
 
 PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
@@ -39,9 +39,9 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
 {
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
-    QSettings settings;
-    setWindowOpacity(settings.value("PopupOpacity", 0.8).toReal());
-    resize(settings.value("PopupSize", QSize(350, 300)).toSize());
+    AppSettings settings;
+    setWindowOpacity(settings.popupOpacity());
+    resize(settings.popupWidth(), settings.popupHeight());
 
     // Translation button group
     sourceButtonGroup->addButton(ui->autoSourceButton, 0);
@@ -58,27 +58,29 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     copyLanguageButtons(translationButtonGroup, translationGroup);
 
     // Language buttons style
-    ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
-    ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
-    ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
-    ui->firstTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
-    ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
-    ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupLanguagesStyle", Qt::ToolButtonFollowStyle)));
+    Qt::ToolButtonStyle langsStyle = settings.popupLanguagesStyle();
+    ui->firstSourceButton->setToolButtonStyle(langsStyle);
+    ui->secondSourceButton->setToolButtonStyle(langsStyle);
+    ui->thirdSourceButton->setToolButtonStyle(langsStyle);
+    ui->firstTranslationButton->setToolButtonStyle(langsStyle);
+    ui->secondTranslationButton->setToolButtonStyle(langsStyle);
+    ui->thirdTranslationButton->setToolButtonStyle(langsStyle);
 
     // Control buttons style
-    ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->playTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->stopTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
-    ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("PopupControlsStyle", Qt::ToolButtonFollowStyle)));
+    Qt::ToolButtonStyle controlsStyle = settings.popupLanguagesStyle();
+    ui->playSourceButton->setToolButtonStyle(controlsStyle);
+    ui->stopSourceButton->setToolButtonStyle(controlsStyle);
+    ui->copySourceButton->setToolButtonStyle(controlsStyle);
+    ui->playTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->stopTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
 
     // Shortcuts
-    ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
-    ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
-    ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
-    closeWindowsShortcut->setKey(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
+    ui->playSourceButton->setShortcut(settings.playSourceHotkey());
+    ui->playTranslationButton->setShortcut(settings.playTranslationHotkey());
+    ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
+    closeWindowsShortcut->setKey(settings.closeWindowHotkey());
     connect(closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 
     // Add languages to auto-language buttons

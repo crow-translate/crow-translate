@@ -22,7 +22,6 @@
 
 #include <QClipboard>
 #include <QNetworkProxy>
-#include <QSettings>
 #include <QMessageBox>
 
 #if defined(Q_OS_WIN)
@@ -34,6 +33,7 @@
 #endif
 
 #include "ui_mainwindow.h"
+#include "appsettings.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
 
@@ -137,7 +137,7 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtonGroup->addButton(ui->firstTranslationButton, 1);
     translationButtonGroup->addButton(ui->secondTranslationButton, 2);
     translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
-    translationButtonGroup->setProperty("GroupCategory", "Source");
+    translationButtonGroup->setProperty("GroupCategory", "Translation");
     connect(translationButtonGroup, qOverload<QAbstractButton*, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::toggleTranslationButton);
 
     // System tray icon
@@ -176,37 +176,32 @@ MainWindow::MainWindow(QWidget *parent) :
     loadLanguageButtons(translationButtonGroup);
     loadSettings();
     setProxy();
-    QSettings settings;
-    restoreGeometry(settings.value("MainWindowGeometry").toByteArray());
+    AppSettings settings;
+    restoreGeometry(settings.mainWindowGeometry());
 
     // Check for updates
 #if defined(Q_OS_WIN)
-    int updateInterval = settings.value("CheckForUpdatesInterval", 1).toInt();
-    if (updateInterval < Interval::Never) {
-        QDate checkDate = settings.value("LastUpdateCheckDate", QDate::currentDate()).toDate();
-        switch (updateInterval) {
-        case Interval::Day:
-        {
-            checkDate = checkDate.addDays(1);
-            break;
-        }
-        case Interval::Week:
-        {
-            checkDate = checkDate.addDays(7);
-            break;
-        }
-        case Interval::Month:
-        {
-            checkDate = checkDate.addMonths(1);
-            break;
-        }
-        }
-        if (QDate::currentDate() >= checkDate) {
-            QGitRelease release("Shatur95", "Crow-Translate");
-            if (!release.error() && qApp->applicationVersion() == release.tagName()) {
-                UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
-                updaterWindow->show();
-            }
+    auto updateInterval = settings.checkForUpdatesInterval();
+    QDate checkDate = settings.lastUpdateCheckDate();
+    switch (updateInterval) {
+    case AppSettings::Day:
+        checkDate = checkDate.addDays(1);
+        break;
+    case AppSettings::Week:
+        checkDate = checkDate.addDays(7);
+        break;
+    case AppSettings::Month:
+        checkDate = checkDate.addMonths(1);
+        break;
+    case AppSettings::Never:
+        return;
+    }
+
+    if (QDate::currentDate() >= checkDate) {
+        QGitRelease release("Shatur95", "Crow-Translate");
+        if (!release.error() && qApp->applicationVersion() < release.tagName()) {
+            UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
+            updaterWindow->show();
         }
     }
 #endif
@@ -214,8 +209,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-    QSettings settings;
-    settings.setValue("MainWindowGeometry", saveGeometry());
+    AppSettings settings;
+    settings.setMainWindowGeometry(saveGeometry());
     delete ui;
 }
 
@@ -233,19 +228,19 @@ void MainWindow::on_translateButton_clicked()
     translationPlayer->stop();
 
     // Source Language
-    QSettings settings;
     auto sourceLang = sourceButtonGroup->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
 
     // Translation language
+    AppSettings settings;
     QOnlineTranslator::Language translationLang;
     if (ui->autoTranslationButton->isChecked()) {
         // Use primary target language from settings
-        translationLang = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+        translationLang = settings.primaryLanguage();
         if (translationLang == QOnlineTranslator::Auto)
             translationLang = uiLang;
         if (translationLang == sourceLang) {
             // If primary language is equal to source language, than use secondary language
-            translationLang = settings.value("Translation/SecondaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+            translationLang = settings.secondaryLanguage();
             if (translationLang == QOnlineTranslator::Auto)
                 translationLang = uiLang;
         }
@@ -259,8 +254,8 @@ void MainWindow::on_translateButton_clicked()
 
     // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
     if (ui->autoTranslationButton->isChecked() && onlineTranslator->sourceLanguage() == onlineTranslator->translationLanguage()) {
-        auto primaryLanguage = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
-        auto secondaryLanguage = settings.value("Translation/SecondaryLanguage", QOnlineTranslator::English).value<QOnlineTranslator::Language>();
+        auto primaryLanguage = settings.primaryLanguage();
+        auto secondaryLanguage = settings.secondaryLanguage();
         if (primaryLanguage == QOnlineTranslator::Auto)
             primaryLanguage = uiLang;
         if (secondaryLanguage == QOnlineTranslator::Auto)
@@ -302,16 +297,16 @@ void MainWindow::on_translateButton_clicked()
 
     // Show translation and transcription
     ui->translationEdit->setHtml(onlineTranslator->translation().toHtmlEscaped().replace("\n", "<br>"));
-    if (!onlineTranslator->translationTranslit().isEmpty() && settings.value("Translation/ShowTranslationTransliteration", true).toBool())
+    if (!onlineTranslator->translationTranslit().isEmpty() && settings.showTranslationTranslit())
         ui->translationEdit->append("<font color=\"grey\"><i>/" + onlineTranslator->translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
 
-    if (!onlineTranslator->sourceTranslit().isEmpty() && settings.value("Translation/ShowSourceTransliteration", true).toBool())
+    if (!onlineTranslator->sourceTranslit().isEmpty() && settings.showSourceTranslit())
         ui->translationEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator->sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
 
     ui->translationEdit->append("");
 
     // Show translation options
-    if (!onlineTranslator->dictionaryList().isEmpty() && settings.value("Translation/TranslationOptions", true).toBool()) {
+    if (!onlineTranslator->dictionaryList().isEmpty() && settings.showTranslationOptions()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator->source() + "</i> – " + tr("translation options:") + "</font>");
         foreach (const auto translationOptions, onlineTranslator->dictionaryList()) {
             ui->translationEdit->append("<b>" + translationOptions.typeOfSpeech() + "</b>");
@@ -338,7 +333,7 @@ void MainWindow::on_translateButton_clicked()
     }
 
     // Show definitions
-    if (!onlineTranslator->definitionsList().isEmpty() && settings.value("Translation/Definitions", true).toBool()) {
+    if (!onlineTranslator->definitionsList().isEmpty() && settings.showDefinitions()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator->source() + "</i> – " + tr("definitions:") + "</font>");
         foreach (const auto definition, onlineTranslator->definitionsList()) {
             ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
@@ -535,8 +530,8 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 
     autoTranslateTimer->blockSignals(!checked);
 
-    QSettings settings;
-    settings.setValue("AutoTranslate", checked);
+    AppSettings settings;
+    settings.setAutoTranslateEnabled(checked);
 }
 
 void MainWindow::showMainWindow()
@@ -554,8 +549,8 @@ void MainWindow::showPopupWindow()
     sourcePlayer->stop();
     translationPlayer->stop();
 
-    QSettings settings;
-    if (this->isHidden() && settings.value("WindowMode", 0).toInt() == 0) {
+    AppSettings settings;
+    if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
         PopupWindow *popup = new PopupWindow(languagesMenu, sourceButtonGroup, translationButtonGroup, this);
         connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
@@ -655,8 +650,8 @@ void MainWindow::playTranslatedSelection()
             sourcePlayer->pause();
 
     // Detect languages
-    QSettings settings;
-    auto primaryLanguage = settings.value("Translation/PrimaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+    AppSettings settings;
+    QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
     if (primaryLanguage == QOnlineTranslator::Auto)
         primaryLanguage = uiLang;
 
@@ -665,7 +660,7 @@ void MainWindow::playTranslatedSelection()
         return;
 
     if (onlineTranslator->sourceLanguage() == primaryLanguage) {
-        auto secondaryLanguage = settings.value("Translation/SecondaryLanguage", QOnlineTranslator::Auto).value<QOnlineTranslator::Language>();
+        QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
         if (secondaryLanguage == QOnlineTranslator::Auto)
             secondaryLanguage = uiLang;
 
@@ -692,20 +687,20 @@ void MainWindow::toggleSourceButton(QAbstractButton *button, bool checked)
 {
     if (checked) {
         // If the target and source languages are the same (and they are not automatic translation buttons), then change target language to previous source language
-        QSettings settings;
+        AppSettings settings;
         if (sourceButtonGroup->id(button) != 0
                 && translationButtonGroup->checkedId() != 0
                 && button->property("Lang") == translationButtonGroup->checkedButton()->property("Lang")) {
-            int previousCheckedButton = settings.value("Buttons/CheckedSourceButton", 0).toInt();
+            int previousCheckedButton = settings.checkedButton(sourceButtonGroup);
             insertLanguage(translationButtonGroup, sourceButtonGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
-            settings.setValue("Buttons/CheckedTranslationButton", translationButtonGroup->checkedId()); // Save the pressed button
+            settings.setCheckedButton(translationButtonGroup, translationButtonGroup->checkedId()); // Save the pressed button
         }
 
         // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
         if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
             autoTranslateTimer->start(300);
 
-        settings.setValue("Buttons/CheckedSourceButton", sourceButtonGroup->checkedId());
+        settings.setCheckedButton(sourceButtonGroup, sourceButtonGroup->checkedId());
     }
 }
 
@@ -713,20 +708,20 @@ void MainWindow::toggleTranslationButton(QAbstractButton *button, bool checked)
 {
     if (checked) {
         // If the target and source languages are the same (and they are not automatic translation buttons), then source target language to previous target language
-        QSettings settings;
+        AppSettings settings;
         if (translationButtonGroup->id(button) != 0
                 && sourceButtonGroup->checkedId() != 0
                 && button->property("Lang") == sourceButtonGroup->checkedButton()->property("Lang")) {
-            int previousCheckedButton = settings.value("Buttons/CheckedTranslationButton", 0).toInt();
+            int previousCheckedButton = settings.checkedButton(translationButtonGroup);
             insertLanguage(sourceButtonGroup, translationButtonGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
-            settings.setValue("Buttons/CheckedSourceButton", sourceButtonGroup->checkedId());
+            settings.setCheckedButton(sourceButtonGroup, sourceButtonGroup->checkedId());
         }
 
         // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
         if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
             autoTranslateTimer->start(300);
 
-        settings.setValue("Buttons/CheckedTranslationButton", translationButtonGroup->checkedId());
+        settings.setCheckedButton(translationButtonGroup, translationButtonGroup->checkedId());
     }
 }
 
@@ -740,28 +735,27 @@ void MainWindow::resetAutoSourceButtonText()
 
 void MainWindow::setProxy()
 {
-    QSettings settings;
+    AppSettings settings;
     QNetworkProxy proxy;
-    proxy.setType(static_cast<QNetworkProxy::ProxyType>(settings.value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt()));
+    proxy.setType(settings.proxyType());
     if (proxy.type() == QNetworkProxy::HttpProxy || proxy.type() == QNetworkProxy::Socks5Proxy) {
-        proxy.setHostName(settings.value("Connection/ProxyHost", "").toString());
-        proxy.setPort(settings.value("Connection/ProxyPort", 8080).value<quint16>());
-        if (settings.value("Connection/ProxyAuthEnabled", false).toBool()) {
-            proxy.setUser(settings.value("Connection/ProxyUsername", "").toString());
-            proxy.setPassword(settings.value("Connection/ProxyPassword", "").toString());
+        proxy.setHostName(settings.proxyHost());
+        proxy.setPort(settings.proxyPort());
+        if (settings.isProxyAuthEnabled()) {
+            proxy.setUser(settings.proxyUsername());
+            proxy.setPassword(settings.proxyPassword());
         }
     }
+
     QNetworkProxy::setApplicationProxy(proxy);
 }
 
 void MainWindow::loadLanguageButtons(QButtonGroup *group)
 {
-    const QString groupCategory = group->property("GroupCategory").toString();
-
     // Load buttons text and tooltip
-    QSettings settings;
+    AppSettings settings;
     for (int i = 1; i < 4; ++i) {
-        auto language = settings.value("Buttons/" + groupCategory + "Button" + QString::number(i), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
+        auto language = settings.buttonLanguage(group, i);
 
         // Check if the code is set
         if (language == QOnlineTranslator::NoLanguage) {
@@ -775,73 +769,76 @@ void MainWindow::loadLanguageButtons(QButtonGroup *group)
     }
 
     // Load checked button
-    group->button(settings.value("Buttons/Checked" + groupCategory + "Button", 0).toInt())->setChecked(true);
+    group->button(settings.checkedButton(group))->setChecked(true);
 }
 
 void MainWindow::loadSettings()
 {
-    QSettings settings;
+    AppSettings settings;
 
     // Autotranslation
-    ui->autoTranslateCheckBox->setChecked(settings.value("AutoTranslate", true).toBool());
+    ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     on_autoTranslateCheckBox_toggled(ui->autoTranslateCheckBox->isChecked());
 
     // System tray icon
-    QString iconName = settings.value("TrayIcon", "crow-translate-tray").toString();
+    QString iconName = settings.trayIconName();
     if (iconName == "custom") {
-        QIcon customIcon(settings.value("CustomIconPath", "").toString());
+        QIcon customIcon(settings.customIconPath());
         if (customIcon.isNull())
             trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
         else
             trayIcon->setIcon(customIcon);
-    }
-    else {
+    } else {
         QIcon crowIcon = QIcon::fromTheme(iconName);
         if (crowIcon.isNull())
             trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
         else
             trayIcon->setIcon(crowIcon);
     }
-    trayIcon->setVisible(settings.value("TrayIconVisible", true).toBool());
-    QApplication::setQuitOnLastWindowClosed(!settings.value("TrayIconVisible", true).toBool());
+
+    bool traIconVisible = settings.isTrayIconVisible();
+    trayIcon->setVisible(traIconVisible);
+    QApplication::setQuitOnLastWindowClosed(!traIconVisible);
 
     // Language buttons style
-    ui->firstSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->secondSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->thirdSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->firstTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->secondTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
-    ui->thirdTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowLanguagesStyle", Qt::ToolButtonTextBesideIcon)));
+    Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
+    ui->firstSourceButton->setToolButtonStyle(languagesStyle);
+    ui->secondSourceButton->setToolButtonStyle(languagesStyle);
+    ui->thirdSourceButton->setToolButtonStyle(languagesStyle);
+    ui->firstTranslationButton->setToolButtonStyle(languagesStyle);
+    ui->secondTranslationButton->setToolButtonStyle(languagesStyle);
+    ui->thirdTranslationButton->setToolButtonStyle(languagesStyle);
 
     // Control buttons style
-    ui->playSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->stopSourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copySourceButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->playTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->stopTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copyTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->copyAllTranslationButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
-    ui->settingsButton->setToolButtonStyle(qvariant_cast<Qt::ToolButtonStyle>(settings.value("WindowControlsStyle", Qt::ToolButtonIconOnly)));
+    Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
+    ui->playSourceButton->setToolButtonStyle(controlsStyle);
+    ui->stopSourceButton->setToolButtonStyle(controlsStyle);
+    ui->copySourceButton->setToolButtonStyle(controlsStyle);
+    ui->playTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->stopTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
+    ui->settingsButton->setToolButtonStyle(controlsStyle);
 
     // Shortcuts
-    translateSelectionHotkey->setShortcut(settings.value("Hotkeys/TranslateSelection", "Ctrl+Alt+E").toString(), true);
-    playSelectionHotkey->setShortcut(settings.value("Hotkeys/PlaySelection", "Ctrl+Alt+S").toString(), true);
-    stopSelectionHotkey->setShortcut(settings.value("Hotkeys/StopSelection", "Ctrl+Alt+G").toString(), true);
-    playTranslatedSelectionHotkey->setShortcut(settings.value("Hotkeys/PlayTranslatedSelection", "Ctrl+Alt+F").toString(), true);
-    showMainWindowHotkey->setShortcut(settings.value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString(), true);
-    ui->translateButton->setShortcut(settings.value("Hotkeys/Translate", "Ctrl+Return").toString());
-    ui->playSourceButton->setShortcut(settings.value("Hotkeys/PlaySource", "Ctrl+S").toString());
-    ui->stopSourceButton->setShortcut(settings.value("Hotkeys/StopSource", "Ctrl+G").toString());
-    ui->playTranslationButton->setShortcut(settings.value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString());
-    ui->stopTranslationButton->setShortcut(settings.value("Hotkeys/StopTranslation", "Ctrl+Shift+G").toString());
-    ui->copyTranslationButton->setShortcut(settings.value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString());
-    closeWindowsShortcut->setKey(settings.value("Hotkeys/CloseWindow", "Ctrl+Q").toString());
+    translateSelectionHotkey->setShortcut(settings.translateSelectionHotkey(), true);
+    playSelectionHotkey->setShortcut(settings.playSelectionHotkey(), true);
+    stopSelectionHotkey->setShortcut(settings.stopSelectionHotkey(), true);
+    playTranslatedSelectionHotkey->setShortcut(settings.playTranslatedSelectionHotkey(), true);
+    showMainWindowHotkey->setShortcut(settings.showMainWindowHotkey(), true);
+    ui->translateButton->setShortcut(settings.translateHotkey());
+    ui->playSourceButton->setShortcut(settings.playSourceHotkey());
+    ui->stopSourceButton->setShortcut(settings.stopSourceHotkey());
+    ui->playTranslationButton->setShortcut(settings.playTranslationHotkey());
+    ui->stopTranslationButton->setShortcut(settings.stopTranslationHotkey());
+    ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
+    closeWindowsShortcut->setKey(settings.closeWindowHotkey());
 }
 
 void MainWindow::loadLocale()
 {
-    QSettings settings;
-    auto locale = settings.value("Language", QLocale::AnyLanguage).value<QLocale::Language>();
+    AppSettings settings;
+    auto locale = settings.locale();
     if (locale == QLocale::AnyLanguage)
         QLocale::setDefault(QLocale::system());
     else
@@ -863,10 +860,8 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
         }
     }
 
-    const QString groupCategory = group->property("GroupCategory").toString();
-
     // Shift buttons (2 -> 3, 1 -> 2)
-    QSettings settings;
+    AppSettings settings;
     for (int i = 3; i > 1; --i) {
         // Skip iteration, if previous button is not specified
         if (group->button(i-1)->property("Lang").toInt() == QOnlineTranslator::NoLanguage)
@@ -885,12 +880,12 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
             emit translationButtonChanged(group->button(i), i);
 
         // Save settings
-        settings.setValue("Buttons/" + groupCategory + "Button" + QString::number(i), group->button(i)->property("Lang"));
+        settings.setButtonLanguage(group, i, group->button(i)->property("Lang").value<QOnlineTranslator::Language>());
     }
 
     // Shift checked button in the settings
     if (group->checkedId() != 0 && group->checkedId() != 3)
-        settings.setValue("Buttons/Checked" + groupCategory + "Button", settings.value("Buttons/Checked" + groupCategory + "Button", 0).toInt() + 1);
+        settings.setCheckedButton(group, settings.checkedButton(group) + 1);
 
     // Insert new language to first button
     group->button(1)->setText(onlineTranslator->languageString(language));
@@ -910,7 +905,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
         emit translationButtonChanged(group->button(1), 1);
 
     // Save first button settings
-    settings.setValue("Buttons/" + groupCategory + "Button" + QString::number(1), group->button(1)->property("Lang"));
+    settings.setButtonLanguage(group, 1, language);
 }
 
 bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang)
