@@ -90,7 +90,7 @@ int main(int argc, char *argv[])
     if (parser.value("engine") == "google")
         engine = QOnlineTranslator::Google;
     else if (parser.value("engine") == "yandex")
-        engine = QOnlineTranslator::Google;
+        engine = QOnlineTranslator::Yandex;
     else {
         out << "Error: Unknown engine" << endl;
         parser.showHelp();
