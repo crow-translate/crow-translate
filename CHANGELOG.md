@@ -8,6 +8,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 - An option for CLI to read source text from file.
 - An option for CLI to read stdin.
+- Placeholders.
+- Hotkey to copy translated selection.
 - Linux: autorun file creation error message.
 
 ### Changed
@@ -15,6 +17,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Show message if not specified --speak-source or --speak-translation options in --audio-only mode.
 - Change the CLI option "translator" to "locale".
 - Move the functionality of the "Copy to source" button to the "Swap languages" button.
+- Select first row in settings by default.
+- Change tab order in main window.
+- Minor optimizations.
 
 ## [1.0.3] - 2018-07-04
 ### Added
