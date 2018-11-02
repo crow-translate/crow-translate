@@ -488,6 +488,29 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>sourceEdit</tabstop>
+  <tabstop>autoSourceButton</tabstop>
+  <tabstop>firstSourceButton</tabstop>
+  <tabstop>secondSourceButton</tabstop>
+  <tabstop>thirdSourceButton</tabstop>
+  <tabstop>swapButton</tabstop>
+  <tabstop>firstTranslationButton</tabstop>
+  <tabstop>secondTranslationButton</tabstop>
+  <tabstop>thirdTranslationButton</tabstop>
+  <tabstop>autoTranslationButton</tabstop>
+  <tabstop>translateButton</tabstop>
+  <tabstop>translationEdit</tabstop>
+  <tabstop>playSourceButton</tabstop>
+  <tabstop>stopSourceButton</tabstop>
+  <tabstop>copySourceButton</tabstop>
+  <tabstop>autoTranslateCheckBox</tabstop>
+  <tabstop>playTranslationButton</tabstop>
+  <tabstop>stopTranslationButton</tabstop>
+  <tabstop>copyTranslationButton</tabstop>
+  <tabstop>copyAllTranslationButton</tabstop>
+  <tabstop>settingsButton</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
