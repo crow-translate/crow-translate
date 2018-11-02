@@ -142,43 +142,69 @@ public:
     // Global shortcuts
     QString translateSelectionHotkey();
     void setTranslateSelectionHotkey(const QString &hotkey);
+    constexpr const char *defaultTranslateSelectionHotkey()
+    { return "Ctrl+Alt+E"; }
 
     QString playSelectionHotkey();
     void setPlaySelectionHotkey(const QString &hotkey);
+    constexpr const char *defaultPlaySelectionHotkey()
+    { return "Ctrl+Alt+S"; }
 
     QString playTranslatedSelectionHotkey();
     void setPlayTranslatedSelectionHotkey(const QString &hotkey);
+    constexpr const char *defaultPlayTranslatedSelectionHotkey()
+    { return "Ctrl+Alt+F"; }
 
     QString stopSelectionHotkey();
     void setStopSelectionHotkey(const QString &hotkey);
+    constexpr const char *defaultStopSelectionHotkey()
+    { return "Ctrl+Alt+G"; }
 
     QString showMainWindowHotkey();
     void setShowMainWindowHotkey(const QString &hotkey);
+    constexpr const char *defaultShowMainWindowHotkey()
+    { return "Ctrl+Alt+C"; }
 
     QString copyTranslatedSelectionHotkey();
     void setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey);
+    constexpr const char *defaultCopyTranslatedSelectionHotkey()
+    { return ""; }
 
     // Window shortcuts
     QString translateHotkey();
     void setTranslateHotkey(const QString &hotkey);
+    constexpr const char *defaultTranslateHotkey()
+    { return "Ctrl+Return"; }
 
     QString closeWindowHotkey();
     void setCloseWindowHotkey(const QString &hotkey);
+    constexpr const char *defaultCloseWindowHotkey()
+    { return "Ctrl+Q"; }
 
     QString playSourceHotkey();
     void setPlaySourceHotkey(const QString &hotkey);
+    constexpr const char *defaultPlaySourceHotkey()
+    { return "Ctrl+S"; }
 
     QString stopSourceHotkey();
     void setStopSourceHotkey(const QString &hotkey);
+    constexpr const char *defaultStopSourceHotkey()
+    { return "Ctrl+G"; }
 
     QString playTranslationHotkey();
     void setPlayTranslationHotkey(const QString &hotkey);
+    constexpr const char *defaultPlayTranslationHotkey()
+    { return "Ctrl+Shift+S"; }
 
     QString stopTranslationHotkey();
     void setStopTranslationHotkey(const QString &hotkey);
+    constexpr const char *defaultStopTranslationHotkey()
+    { return "Ctrl+Shift+G"; }
 
     QString copyTranslationHotkey();
     void setCopyTranslationHotkey(const QString &hotkey);
+    constexpr const char *defaultCopyTranslationHotkey()
+    { return "Ctrl+Shift+C"; }
 
     // Buttons
     QOnlineTranslator::Language buttonLanguage(QButtonGroup *group, int id);

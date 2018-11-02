@@ -353,7 +353,7 @@ void AppSettings::setProxyPassword(const QString &password)
 
 QString AppSettings::translateSelectionHotkey()
 {
-    return value("Hotkeys/TranslateSelection", "Ctrl+Alt+E").toString();
+    return value("Hotkeys/TranslateSelection", defaultTranslateSelectionHotkey()).toString();
 }
 
 void AppSettings::setTranslateSelectionHotkey(const QString &hotkey)
@@ -363,7 +363,7 @@ void AppSettings::setTranslateSelectionHotkey(const QString &hotkey)
 
 QString AppSettings::playSelectionHotkey()
 {
-    return value("Hotkeys/PlaySelection", "Ctrl+Alt+S").toString();
+    return value("Hotkeys/PlaySelection", defaultPlaySelectionHotkey()).toString();
 }
 
 void AppSettings::setPlaySelectionHotkey(const QString &hotkey)
@@ -373,7 +373,7 @@ void AppSettings::setPlaySelectionHotkey(const QString &hotkey)
 
 QString AppSettings::playTranslatedSelectionHotkey()
 {
-    return value("Hotkeys/PlayTranslatedSelection", "Ctrl+Alt+F").toString();
+    return value("Hotkeys/PlayTranslatedSelection", defaultPlayTranslatedSelectionHotkey()).toString();
 }
 
 void AppSettings::setPlayTranslatedSelectionHotkey(const QString &hotkey)
@@ -383,7 +383,7 @@ void AppSettings::setPlayTranslatedSelectionHotkey(const QString &hotkey)
 
 QString AppSettings::stopSelectionHotkey()
 {
-    return value("Hotkeys/StopSelection", "Ctrl+Alt+G").toString();
+    return value("Hotkeys/StopSelection", defaultStopSelectionHotkey()).toString();
 }
 
 void AppSettings::setStopSelectionHotkey(const QString &hotkey)
@@ -393,7 +393,7 @@ void AppSettings::setStopSelectionHotkey(const QString &hotkey)
 
 QString AppSettings::showMainWindowHotkey()
 {
-    return value("Hotkeys/ShowMainWindow", "Ctrl+Alt+C").toString();
+    return value("Hotkeys/ShowMainWindow", defaultShowMainWindowHotkey()).toString();
 }
 
 void AppSettings::setShowMainWindowHotkey(const QString &hotkey)
@@ -403,7 +403,7 @@ void AppSettings::setShowMainWindowHotkey(const QString &hotkey)
 
 QString AppSettings::copyTranslatedSelectionHotkey()
 {
-    return value("Hotkeys/CopyTranslatedSelection").toString();
+    return value("Hotkeys/CopyTranslatedSelection", defaultCopyTranslatedSelectionHotkey()).toString();
 }
 
 void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey)
@@ -413,7 +413,7 @@ void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey)
 
 QString AppSettings::translateHotkey()
 {
-    return value("Hotkeys/Translate", "Ctrl+Return").toString();
+    return value("Hotkeys/Translate", defaultTranslateHotkey()).toString();
 }
 
 void AppSettings::setTranslateHotkey(const QString &hotkey)
@@ -423,7 +423,7 @@ void AppSettings::setTranslateHotkey(const QString &hotkey)
 
 QString AppSettings::closeWindowHotkey()
 {
-    return value("Hotkeys/CloseWindow", "Ctrl+Q").toString();
+    return value("Hotkeys/CloseWindow", defaultCloseWindowHotkey()).toString();
 }
 
 void AppSettings::setCloseWindowHotkey(const QString &hotkey)
@@ -433,7 +433,7 @@ void AppSettings::setCloseWindowHotkey(const QString &hotkey)
 
 QString AppSettings::playSourceHotkey()
 {
-    return value("Hotkeys/PlaySource", "Ctrl+S").toString();
+    return value("Hotkeys/PlaySource", defaultPlaySourceHotkey()).toString();
 }
 
 void AppSettings::setPlaySourceHotkey(const QString &hotkey)
@@ -443,7 +443,7 @@ void AppSettings::setPlaySourceHotkey(const QString &hotkey)
 
 QString AppSettings::stopSourceHotkey()
 {
-    return value("Hotkeys/StopSource", "Ctrl+G").toString();
+    return value("Hotkeys/StopSource", defaultStopSourceHotkey()).toString();
 }
 
 void AppSettings::setStopSourceHotkey(const QString &hotkey)
@@ -453,7 +453,7 @@ void AppSettings::setStopSourceHotkey(const QString &hotkey)
 
 QString AppSettings::playTranslationHotkey()
 {
-    return value("Hotkeys/PlayTranslation", "Ctrl+Shift+S").toString();
+    return value("Hotkeys/PlayTranslation", defaultPlayTranslationHotkey()).toString();
 }
 
 void AppSettings::setPlayTranslationHotkey(const QString &hotkey)
@@ -463,7 +463,7 @@ void AppSettings::setPlayTranslationHotkey(const QString &hotkey)
 
 QString AppSettings::stopTranslationHotkey()
 {
-    return value("Hotkeys/StopTranslation", "Ctrl+Shift+G").toString();
+    return value("Hotkeys/StopTranslation", defaultStopTranslationHotkey()).toString();
 }
 
 void AppSettings::setStopTranslationHotkey(const QString &hotkey)
@@ -473,7 +473,7 @@ void AppSettings::setStopTranslationHotkey(const QString &hotkey)
 
 QString AppSettings::copyTranslationHotkey()
 {
-    return value("Hotkeys/CopyTranslation", "Ctrl+Shift+C").toString();
+    return value("Hotkeys/CopyTranslation", defaultCopyTranslationHotkey()).toString();
 }
 
 void AppSettings::setCopyTranslationHotkey(const QString &hotkey)

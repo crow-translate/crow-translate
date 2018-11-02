@@ -158,13 +158,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.showMainWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, settings.copyTranslatedSelectionHotkey());
 
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, "Ctrl+Alt+E");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, "Ctrl+Alt+S");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, "Ctrl+Alt+F");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, "Ctrl+Alt+G");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, "Ctrl+Alt+C");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, "");
-
     // Window shortcuts
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.translateHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.closeWindowHotkey());
@@ -174,13 +167,21 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.stopTranslationHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, settings.copyTranslationHotkey());
 
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, "Ctrl+Return");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, "Ctrl+Q");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setData(1, Qt::UserRole, "Ctrl+S");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setData(1, Qt::UserRole, "Ctrl+G");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, "Ctrl+Shift+S");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, "Ctrl+Shift+G");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, "Ctrl+Shift+C");
+    // Save default shortcuts
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, settings.defaultPlaySelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, settings.defaultStopSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, settings.defaultShowMainWindowHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, settings.defaultCopyTranslatedSelectionHotkey());
+
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, settings.defaultCloseWindowHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setData(1, Qt::UserRole, settings.defaultPlaySourceHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setData(1, Qt::UserRole, settings.defaultStopSourceHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, settings.defaultStopTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
 }
 
 SettingsDialog::~SettingsDialog()
@@ -417,22 +418,11 @@ void SettingsDialog::on_resetShortcutButton_clicked()
 
 void SettingsDialog::on_resetAllShortcutsButton_clicked()
 {
-    // Global shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, "Ctrl+Alt+E");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, "Ctrl+Alt+S");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, "Ctrl+Alt+F");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, "Ctrl+Alt+G");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, "Ctrl+Alt+C");
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, "");
-
-    // Window shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, "Ctrl+Return");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, "Ctrl+Q");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, "Ctrl+S");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, "Ctrl+D");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, "Ctrl+Shift+S");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, "Ctrl+Shift+D");
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, "Ctrl+Shift+C");
+    QTreeWidgetItemIterator it(ui->shortcutsTreeWidget, QTreeWidgetItemIterator::NoChildren);
+    while (*it) {
+        (*it)->setText(1, (*it)->data(1, Qt::UserRole).toString());
+        ++it;
+    }
 }
 
 #if defined(Q_OS_WIN)
