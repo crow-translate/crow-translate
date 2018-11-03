@@ -170,7 +170,7 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     // Save default shortcuts
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, settings.defaultPlaySelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, settings.defaultPlayTranslatedSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, settings.defaultStopSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, settings.defaultShowMainWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, settings.defaultCopyTranslatedSelectionHotkey());
