@@ -92,6 +92,7 @@ private slots:
 
     // Other
     void copyTranslatedSelection();
+    void activateTray(QSystemTrayIcon::ActivationReason reason);
 
 private:
     // Settings

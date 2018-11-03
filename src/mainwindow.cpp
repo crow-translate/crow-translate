@@ -107,14 +107,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
     trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), qApp, &QApplication::quit);
     trayIcon->setContextMenu(trayMenu);
-    connect(trayIcon, &QSystemTrayIcon::activated, [&](QSystemTrayIcon::ActivationReason reason) {
-        if (reason == QSystemTrayIcon::Trigger) {
-            if (!this->isVisible())
-                showMainWindow();
-            else
-                hide();
-        }
-    });
+    connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::activateTray);
 
     // Timer for automatic translation
     autoTranslateTimer->setSingleShot(true);
@@ -752,6 +745,16 @@ void MainWindow::copyTranslatedSelection()
     }
 
     QApplication::clipboard()->setText(onlineTranslator->translation());
+}
+
+void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
+{
+    if (reason == QSystemTrayIcon::Trigger) {
+        if (!this->isVisible())
+            showMainWindow();
+        else
+            hide();
+    }
 }
 
 void MainWindow::loadLanguageButtons(QButtonGroup *group)
