@@ -93,6 +93,8 @@ private slots:
     // Other
     void copyTranslatedSelection();
     void activateTray(QSystemTrayIcon::ActivationReason reason);
+    void startTranslateTimer();
+    void translateTimerExpires();
 
 private:
     // Settings
@@ -127,7 +129,7 @@ private:
     QMenu *trayMenu;
     QSystemTrayIcon *trayIcon;
     QMenu *languagesMenu;
-    QTimer *autoTranslateTimer;
+    QTimer *translateTimer;
 
     QShortcut *closeWindowsShortcut;
     QHotkey *translateSelectionHotkey;

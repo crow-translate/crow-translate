@@ -37,7 +37,8 @@
 #include "popupwindow.h"
 #include "settingsdialog.h"
 
-constexpr int AUTOTRANSLATE_TIMEOUT = 500;
+constexpr int AUTOTRANSLATE_DELAY = 500;
+constexpr int SHORT_AUTOTRANSLATE_DELAY = 300;
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow (parent),
@@ -52,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
     trayMenu (new QMenu(this)),
     trayIcon (new QSystemTrayIcon(this)),
     languagesMenu (new QMenu(this)),
-    autoTranslateTimer (new QTimer(this)),
+    translateTimer (new QTimer(this)),
     closeWindowsShortcut (new QShortcut(this)),
     translateSelectionHotkey (new QHotkey(this)),
     playSelectionHotkey (new QHotkey(this)),
@@ -110,16 +111,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::activateTray);
 
     // Timer for automatic translation
-    autoTranslateTimer->setSingleShot(true);
-    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, [&]() {
-        autoTranslateTimer->start(AUTOTRANSLATE_TIMEOUT);
-    });
-    connect(autoTranslateTimer, &QTimer::timeout, [&]() {
-        if (ui->translateButton->isEnabled())
-            on_translateButton_clicked();
-        else
-            autoTranslateTimer->start(AUTOTRANSLATE_TIMEOUT);
-    });
+    translateTimer->setSingleShot(true);
+    connect(translateTimer, &QTimer::timeout, this, &MainWindow::translateTimerExpires);
 
     // Add languages menu to auto-language buttons
     languagesMenu->addActions(languagesList());
@@ -166,6 +159,7 @@ MainWindow::~MainWindow()
 {
     AppSettings settings;
     settings.setMainWindowGeometry(saveGeometry());
+    settings.setAutoTranslateEnabled(ui->autoTranslateCheckBox->isChecked());
     delete ui;
 }
 
@@ -477,16 +471,11 @@ void MainWindow::on_autoTranslationButton_triggered(QAction *language)
 void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 {
     if (checked) {
-        if (ui->translateButton->isEnabled())
-            on_translateButton_clicked();
-        else
-            autoTranslateTimer->start(AUTOTRANSLATE_TIMEOUT);
+        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
+        translateTimerExpires();
+    } else {
+        disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
     }
-
-    autoTranslateTimer->blockSignals(!checked);
-
-    AppSettings settings;
-    settings.setAutoTranslateEnabled(checked);
 }
 
 void MainWindow::showMainWindow()
@@ -697,7 +686,7 @@ void MainWindow::toggleSourceButton(QAbstractButton *button, bool checked)
 
         // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
         if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-            autoTranslateTimer->start(300);
+            translateTimer->start(SHORT_AUTOTRANSLATE_DELAY);
 
         settings.setCheckedButton(sourceButtonGroup, sourceButtonGroup->checkedId());
     }
@@ -718,7 +707,7 @@ void MainWindow::toggleTranslationButton(QAbstractButton *button, bool checked)
 
         // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
         if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-            autoTranslateTimer->start(300);
+            translateTimer->start(SHORT_AUTOTRANSLATE_DELAY);
 
         settings.setCheckedButton(translationButtonGroup, translationButtonGroup->checkedId());
     }
@@ -757,6 +746,19 @@ void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
     }
 }
 
+void MainWindow::startTranslateTimer()
+{
+    translateTimer->start(AUTOTRANSLATE_DELAY);
+}
+
+void MainWindow::translateTimerExpires()
+{
+    if (ui->translateButton->isEnabled())
+        on_translateButton_clicked();
+    else
+        startTranslateTimer();
+}
+
 void MainWindow::loadLanguageButtons(QButtonGroup *group)
 {
     // Load buttons text and tooltip
@@ -785,7 +787,6 @@ void MainWindow::loadSettings()
 
     // Autotranslation
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
-    on_autoTranslateCheckBox_toggled(ui->autoTranslateCheckBox->isChecked());
 
     // System tray icon
     QString iconName = settings.trayIconName();
