@@ -103,28 +103,6 @@ QToolButton *PopupWindow::swapButton()
     return ui->swapButton;
 }
 
-void PopupWindow::loadSourceButton(QAbstractButton *button, int id)
-{
-    copyButton(sourceButtonGroup, button, id);
-}
-
-void PopupWindow::loadTranslationButton(QAbstractButton *button, int id)
-{
-    copyButton(translationButtonGroup, button, id);
-}
-
-void PopupWindow::checkSourceButton(int id, bool checked)
-{
-    if (checked)
-        sourceButtonGroup->button(id)->setChecked(true);
-}
-
-void PopupWindow::checkTranslationButton(int id, bool checked)
-{
-    if (checked)
-        translationButtonGroup->button(id)->setChecked(true);
-}
-
 QToolButton *PopupWindow::autoSourceButton()
 {
     return ui->autoSourceButton;
@@ -178,6 +156,26 @@ QButtonGroup *PopupWindow::sourceButtons()
 QButtonGroup *PopupWindow::translationButtons()
 {
     return translationButtonGroup;
+}
+
+void PopupWindow::loadButton(QButtonGroup *group, int id)
+{
+    if (group->property("GroupCategory") == "Source")
+        copyButton(sourceButtonGroup, group->button(id), id);
+    else
+        copyButton(translationButtonGroup, group->button(id), id);
+}
+
+void PopupWindow::checkSourceButton(int id, bool checked)
+{
+    if (checked)
+        sourceButtonGroup->button(id)->setChecked(true);
+}
+
+void PopupWindow::checkTranslationButton(int id, bool checked)
+{
+    if (checked)
+        translationButtonGroup->button(id)->setChecked(true);
 }
 
 // Move popup to cursor and prevent appearing outside the screen

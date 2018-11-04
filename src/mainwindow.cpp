@@ -226,7 +226,7 @@ void MainWindow::on_translateButton_clicked()
         if (onlineTranslator->sourceLanguage() != sourceButtonGroup->checkedButton()->property("Lang").toInt()) {
             ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->sourceLanguageString() + ")");
             ui->autoSourceButton->setProperty("Lang", onlineTranslator->sourceLanguage());
-            emit sourceButtonChanged(ui->autoSourceButton, 0);
+            emit buttonChanged(sourceButtonGroup, 0);
             connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
         }
     }
@@ -234,13 +234,13 @@ void MainWindow::on_translateButton_clicked()
         if (onlineTranslator->translationLanguage() != translationButtonGroup->checkedButton()->property("Lang").toInt()) {
             ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->translationLanguageString() + ")");
             ui->autoTranslationButton->setProperty("Lang", onlineTranslator->translationLanguage());
-            emit translationButtonChanged(ui->autoTranslationButton, 0);
+            emit buttonChanged(translationButtonGroup, 0);
         }
     } else {
         if (ui->autoTranslationButton->property("Lang").toInt() != QOnlineTranslator::Auto) {
             ui->autoTranslationButton->setText(tr("Auto"));
             ui->autoTranslationButton->setProperty("Lang", QOnlineTranslator::Auto);
-            emit translationButtonChanged(ui->autoTranslationButton, 0);
+            emit buttonChanged(translationButtonGroup, 0);
         }
     }
 
@@ -499,9 +499,7 @@ void MainWindow::showPopupWindow()
         PopupWindow *popup = new PopupWindow(languagesMenu, sourceButtonGroup, translationButtonGroup, this);
         connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
 
-        connect(this, &MainWindow::sourceButtonChanged, popup, &PopupWindow::loadSourceButton);
-        connect(this, &MainWindow::translationButtonChanged, popup, &PopupWindow::loadTranslationButton);
-
+        connect(this, &MainWindow::buttonChanged, popup, &PopupWindow::loadButton);
         connect(this, &MainWindow::playSourceButtonIconChanged, popup->playSourceButton(), &QToolButton::setIcon);
         connect(this, &MainWindow::stopSourceButtonEnabled, popup->stopSourceButton(), &QToolButton::setEnabled);
         connect(this, &MainWindow::playTranslationButtonIconChanged, popup->playTranslationButton(), &QToolButton::setIcon);
@@ -718,7 +716,7 @@ void MainWindow::resetAutoSourceButtonText()
     ui->autoSourceButton->setText(tr("Auto"));
     ui->autoSourceButton->setProperty("Lang", QOnlineTranslator::Auto);
     disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-    emit sourceButtonChanged(ui->autoSourceButton, 0);
+    emit buttonChanged(sourceButtonGroup, 0);
 }
 
 void MainWindow::copyTranslatedSelection()
@@ -936,10 +934,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
         group->button(i)->setVisible(true);
 
         // Send signal
-        if (group == sourceButtonGroup)
-            emit sourceButtonChanged(group->button(i), i);
-        else
-            emit translationButtonChanged(group->button(i), i);
+        emit buttonChanged(group, i);
 
         // Save settings
         settings.setButtonLanguage(group, i, group->button(i)->property("Lang").value<QOnlineTranslator::Language>());
@@ -961,10 +956,7 @@ void MainWindow::insertLanguage(QButtonGroup *group, QOnlineTranslator::Language
         group->button(1)->setChecked(true);
 
     // Send signal
-    if (group == sourceButtonGroup)
-        emit sourceButtonChanged(group->button(1), 1);
-    else
-        emit translationButtonChanged(group->button(1), 1);
+    emit buttonChanged(group, 1);
 
     // Save first button settings
     settings.setButtonLanguage(group, 1, language);

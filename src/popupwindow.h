@@ -59,8 +59,7 @@ public:
     QButtonGroup *translationButtons();
 
 public slots:
-    void loadSourceButton(QAbstractButton *button, int id);
-    void loadTranslationButton(QAbstractButton *button, int id);
+    void loadButton(QButtonGroup *group, int id);
     void checkSourceButton(int id, bool checked);
     void checkTranslationButton(int id, bool checked);
 

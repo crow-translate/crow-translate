@@ -46,8 +46,7 @@ public:
 
 signals:
     void translationTextChanged(const QString &text);
-    void sourceButtonChanged(QAbstractButton *button, int id);
-    void translationButtonChanged(QAbstractButton *button, int id);
+    void buttonChanged(QButtonGroup *group, int id);
     void playSourceButtonIconChanged(QIcon icon);
     void stopSourceButtonEnabled(bool enabled);
     void playTranslationButtonIconChanged(QIcon icon);
