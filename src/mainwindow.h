@@ -72,9 +72,9 @@ private slots:
 
     void on_autoTranslateCheckBox_toggled(bool checked);
 
-    // Show windows
-    void showMainWindow();
-    void showPopupWindow();
+    // Shortcuts
+    void translateSelectedText();
+    void copyTranslatedSelection();
 
     // Players
     void playSelection();
@@ -85,12 +85,11 @@ private slots:
     // Language buttons
     void checkSourceButton(int id, bool checked);
     void checkTranslationButton(int id, bool checked);
-    void toggleSourceButton(QAbstractButton *button, bool checked);
-    void toggleTranslationButton(QAbstractButton *button, bool checked);
+    void toggleLangButton(QButtonGroup *checkedGroup, QButtonGroup *anotherGroup, QAbstractButton *button);
     void resetAutoSourceButtonText();
 
     // Other
-    void copyTranslatedSelection();
+    void showMainWindow();
     void activateTray(QSystemTrayIcon::ActivationReason reason);
     void startTranslateTimer();
     void translateTimerExpires();

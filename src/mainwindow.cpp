@@ -71,7 +71,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Shortcuts
-    connect(translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::showPopupWindow);
+    connect(translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelectedText);
     connect(playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
     connect(playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
     connect(stopSelectionHotkey, &QHotkey::activated, selectionPlayer, &QMediaPlayer::stop);
@@ -93,7 +93,10 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtonGroup->addButton(ui->secondSourceButton, 2);
     sourceButtonGroup->addButton(ui->thirdSourceButton, 3);
     sourceButtonGroup->setProperty("GroupCategory", "Source");
-    connect(sourceButtonGroup, qOverload<QAbstractButton*, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::toggleSourceButton);
+    connect(sourceButtonGroup, qOverload<QAbstractButton*, bool>(&QButtonGroup::buttonToggled), [&](QAbstractButton* button, bool checked) {
+        if (checked)
+            toggleLangButton(sourceButtonGroup, translationButtonGroup, button);
+    });
 
     // Translation button group
     translationButtonGroup->addButton(ui->autoTranslationButton, 0);
@@ -101,7 +104,10 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtonGroup->addButton(ui->secondTranslationButton, 2);
     translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
     translationButtonGroup->setProperty("GroupCategory", "Translation");
-    connect(translationButtonGroup, qOverload<QAbstractButton*, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::toggleTranslationButton);
+    connect(translationButtonGroup, qOverload<QAbstractButton*, bool>(&QButtonGroup::buttonToggled), [&](QAbstractButton* button, bool checked) {
+        if (checked)
+            toggleLangButton(translationButtonGroup, sourceButtonGroup, button);
+    });
 
     // System tray icon
     trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
@@ -482,13 +488,7 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
     }
 }
 
-void MainWindow::showMainWindow()
-{
-    showNormal();
-    activateWindow();
-}
-
-void MainWindow::showPopupWindow()
+void MainWindow::translateSelectedText()
 {
     // Prevent pressing the translation hotkey again
     translateSelectionHotkey->blockSignals(true);
@@ -501,26 +501,22 @@ void MainWindow::showPopupWindow()
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
         PopupWindow *popup = new PopupWindow(languagesMenu, sourceButtonGroup, translationButtonGroup, this);
-        connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
 
+        // Connect main window events to popup events
+        connect(sourceButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkSourceButton);
+        connect(translationButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkTranslationButton);
+        connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
         connect(this, &MainWindow::buttonChanged, popup, &PopupWindow::loadButton);
         connect(this, &MainWindow::playSourceButtonIconChanged, popup->playSourceButton(), &QToolButton::setIcon);
         connect(this, &MainWindow::stopSourceButtonEnabled, popup->stopSourceButton(), &QToolButton::setEnabled);
         connect(this, &MainWindow::playTranslationButtonIconChanged, popup->playTranslationButton(), &QToolButton::setIcon);
         connect(this, &MainWindow::stopTranslationButtonEnabled, popup->stopTranslationButton(), &QToolButton::setEnabled);
 
-        connect(sourceButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkSourceButton);
-        connect(translationButtonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), popup, &PopupWindow::checkTranslationButton);
-
-        connect(popup, &PopupWindow::destroyed, sourcePlayer, &QMediaPlayer::stop);
-        connect(popup, &PopupWindow::destroyed, translationPlayer, &QMediaPlayer::stop);
-
+        // Connect popup events
         connect(popup->sourceButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkSourceButton);
         connect(popup->translationButtons(),  qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &MainWindow::checkTranslationButton);
-
         connect(popup->autoSourceButton(), &QToolButton::triggered, this, &MainWindow::on_autoSourceButton_triggered);
         connect(popup->autoTranslationButton(), &QToolButton::triggered, this, &MainWindow::on_autoTranslationButton_triggered);
-
         connect(popup->swapButton(), &QToolButton::clicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup->playSourceButton(), &QToolButton::clicked, this, &MainWindow::on_playSourceButton_clicked);
         connect(popup->stopSourceButton(), &QToolButton::clicked, sourcePlayer, &QMediaPlayer::stop);
@@ -529,6 +525,8 @@ void MainWindow::showPopupWindow()
         connect(popup->stopTranslationButton(), &QToolButton::clicked, translationPlayer, &QMediaPlayer::stop);
         connect(popup->copyTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyTranslationButton_clicked);
         connect(popup->copyAllTranslationButton(), &QToolButton::clicked, this, &MainWindow::on_copyAllTranslationButton_clicked);
+        connect(popup, &PopupWindow::destroyed, sourcePlayer, &QMediaPlayer::stop);
+        connect(popup, &PopupWindow::destroyed, translationPlayer, &QMediaPlayer::stop);
 
         // Restore the keyboard shortcut
         connect(popup, &PopupWindow::destroyed, [this] {
@@ -537,6 +535,7 @@ void MainWindow::showPopupWindow()
 
         // Send selected text to source field and translate it
         if (ui->autoTranslateCheckBox->isChecked()) {
+            // Block signals and translate text without delay
             ui->sourceEdit->blockSignals(true);
             ui->sourceEdit->setPlainText(selectedText());
             ui->sourceEdit->blockSignals(false);
@@ -556,12 +555,27 @@ void MainWindow::showPopupWindow()
             ui->sourceEdit->setPlainText(selectedText());
         }
 
-        showMainWindow();
         on_translateButton_clicked();
+        showMainWindow();
 
         // Restore the keyboard shortcut
         translateSelectionHotkey->blockSignals(false);
     }
+}
+
+void MainWindow::copyTranslatedSelection()
+{
+    ui->sourceEdit->setPlainText(selectedText());
+
+    on_translateButton_clicked();
+
+    if (onlineTranslator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    QApplication::clipboard()->setText(onlineTranslator->translation());
 }
 
 void MainWindow::playSelection()
@@ -673,46 +687,23 @@ void MainWindow::checkTranslationButton(int id, bool checked)
         translationButtonGroup->button(id)->setChecked(true);
 }
 
-void MainWindow::toggleSourceButton(QAbstractButton *button, bool checked)
+void MainWindow::toggleLangButton(QButtonGroup *checkedGroup, QButtonGroup *anotherGroup, QAbstractButton *button)
 {
-    if (checked) {
-        // If the target and source languages are the same (and they are not automatic translation buttons), then change target language to previous source language
-        AppSettings settings;
-        if (sourceButtonGroup->id(button) != 0
-                && translationButtonGroup->checkedId() != 0
-                && button->property("Lang") == translationButtonGroup->checkedButton()->property("Lang")) {
-            int previousCheckedButton = settings.checkedButton(sourceButtonGroup);
-            insertLanguage(translationButtonGroup, sourceButtonGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
-            settings.setCheckedButton(translationButtonGroup, translationButtonGroup->checkedId()); // Save the pressed button
-        }
-
-        // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
-        if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-            translateTimer->start(SHORT_AUTOTRANSLATE_DELAY);
-
-        settings.setCheckedButton(sourceButtonGroup, sourceButtonGroup->checkedId());
+    // If the target and source languages are the same (and they are not automatic translation buttons), then source target language to previous target language
+    AppSettings settings;
+    if (checkedGroup->id(button) != 0
+            && anotherGroup->checkedId() != 0
+            && button->property("Lang") == anotherGroup->checkedButton()->property("Lang")) {
+        int previousCheckedButton = settings.checkedButton(checkedGroup);
+        insertLanguage(anotherGroup, checkedGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
+        settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
     }
-}
 
-void MainWindow::toggleTranslationButton(QAbstractButton *button, bool checked)
-{
-    if (checked) {
-        // If the target and source languages are the same (and they are not automatic translation buttons), then source target language to previous target language
-        AppSettings settings;
-        if (translationButtonGroup->id(button) != 0
-                && sourceButtonGroup->checkedId() != 0
-                && button->property("Lang") == sourceButtonGroup->checkedButton()->property("Lang")) {
-            int previousCheckedButton = settings.checkedButton(translationButtonGroup);
-            insertLanguage(sourceButtonGroup, translationButtonGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
-            settings.setCheckedButton(sourceButtonGroup, sourceButtonGroup->checkedId());
-        }
+    // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
+    if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
+        translateTimer->start(SHORT_AUTOTRANSLATE_DELAY);
 
-        // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
-        if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-            translateTimer->start(SHORT_AUTOTRANSLATE_DELAY);
-
-        settings.setCheckedButton(translationButtonGroup, translationButtonGroup->checkedId());
-    }
+    settings.setCheckedButton(checkedGroup, checkedGroup->checkedId());
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -723,19 +714,10 @@ void MainWindow::resetAutoSourceButtonText()
     emit buttonChanged(sourceButtonGroup, 0);
 }
 
-void MainWindow::copyTranslatedSelection()
+void MainWindow::showMainWindow()
 {
-    ui->sourceEdit->setPlainText(selectedText());
-
-    on_translateButton_clicked();
-
-    if (onlineTranslator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator->errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    QApplication::clipboard()->setText(onlineTranslator->translation());
+    showNormal();
+    activateWindow();
 }
 
 void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
