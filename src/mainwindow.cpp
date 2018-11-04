@@ -177,7 +177,11 @@ void MainWindow::on_translateButton_clicked()
     translationPlayer->stop();
 
     // Source Language
-    auto sourceLang = sourceButtonGroup->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    QOnlineTranslator::Language sourceLang;
+    if (ui->autoSourceButton->isChecked())
+        sourceLang = QOnlineTranslator::Auto;
+    else
+        sourceLang = sourceButtonGroup->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
 
     // Translation language
     AppSettings settings;
