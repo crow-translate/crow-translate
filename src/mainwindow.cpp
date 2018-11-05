@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtons->addButton(ui->firstSourceButton);
     sourceButtons->addButton(ui->secondSourceButton);
     sourceButtons->addButton(ui->thirdSourceButton);
-    sourceButtons->setProperty("GroupCategory", "Source");
+    sourceButtons->setName("Source");
     connect(sourceButtons, &LangButtonGroup::buttonChecked, [&](int id) {
         toggleLangButton(sourceButtons, translationButtons, id);
     });
@@ -102,7 +102,7 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtons->addButton(ui->firstTranslationButton);
     translationButtons->addButton(ui->secondTranslationButton);
     translationButtons->addButton(ui->thirdTranslationButton);
-    translationButtons->setProperty("GroupCategory", "Translation");
+    translationButtons->setName("Translation");
     connect(translationButtons, &LangButtonGroup::buttonChecked, [&](int id) {
         toggleLangButton(translationButtons, sourceButtons, id);
     });
@@ -124,8 +124,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->autoTranslationButton->setMenu(languagesMenu);
 
     // Load settings
-    loadLanguageButtons(sourceButtons);
-    loadLanguageButtons(translationButtons);
+    sourceButtons->loadLanguageButtons(onlineTranslator);
+    translationButtons->loadLanguageButtons(onlineTranslator);
     loadSettings();
     setProxy();
     AppSettings settings;
@@ -185,7 +185,7 @@ void MainWindow::on_translateButton_clicked()
     if (ui->autoSourceButton->isChecked())
         sourceLang = QOnlineTranslator::Auto;
     else
-        sourceLang = sourceButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+        sourceLang = sourceButtons->checkedLang();
 
     // Translation language
     AppSettings settings;
@@ -202,7 +202,7 @@ void MainWindow::on_translateButton_clicked()
                 translationLang = uiLang;
         }
     } else {
-        translationLang = translationButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+        translationLang = translationButtons->checkedLang();
     }
 
     // Get translation
@@ -231,7 +231,7 @@ void MainWindow::on_translateButton_clicked()
 
     // Display languages on "Auto" buttons.
     if (ui->autoSourceButton->isChecked()) {
-        if (onlineTranslator->sourceLanguage() != sourceButtons->checkedButton()->property("Lang").toInt()) {
+        if (onlineTranslator->sourceLanguage() != sourceButtons->checkedLang()) {
             ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->sourceLanguageString() + ")");
             ui->autoSourceButton->setProperty("Lang", onlineTranslator->sourceLanguage());
             emit buttonChanged(sourceButtons, 0);
@@ -239,7 +239,7 @@ void MainWindow::on_translateButton_clicked()
         }
     }
     if (ui->autoTranslationButton->isChecked()) {
-        if (onlineTranslator->translationLanguage() != translationButtons->checkedButton()->property("Lang").toInt()) {
+        if (onlineTranslator->translationLanguage() != translationButtons->checkedLang()) {
             ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->translationLanguageString() + ")");
             ui->autoTranslationButton->setProperty("Lang", onlineTranslator->translationLanguage());
             emit buttonChanged(translationButtons, 0);
@@ -312,8 +312,8 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    auto sourceLang = sourceButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
-    auto translationLang = translationButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    auto sourceLang = sourceButtons->checkedLang();
+    auto translationLang = translationButtons->checkedLang();
     int checkedSourceButton = sourceButtons->checkedId();
     int checkedTranslationButton = translationButtons->checkedId();
 
@@ -354,8 +354,8 @@ void MainWindow::on_settingsButton_clicked()
             languagesMenu->clear();
             languagesMenu->addActions(languagesList());
 
-            loadLanguageButtons(sourceButtons);
-            loadLanguageButtons(translationButtons);
+            sourceButtons->loadLanguageButtons(onlineTranslator);
+            translationButtons->loadLanguageButtons(onlineTranslator);
 
             auto sourceLang = ui->autoSourceButton->property("Lang").value<QOnlineTranslator::Language>();
             auto translationLang = ui->autoTranslationButton->property("Lang").value<QOnlineTranslator::Language>();
@@ -397,7 +397,7 @@ void MainWindow::on_playSourceButton_clicked()
         else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
             selectionPlayer->pause();
 
-        play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>());
+        play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtons->checkedLang());
         break;
     }
 }
@@ -679,9 +679,9 @@ void MainWindow::toggleLangButton(LangButtonGroup *checkedGroup, LangButtonGroup
     AppSettings settings;
     if (id != 0
             && anotherGroup->checkedId() != 0
-            && checkedGroup->button(id)->property("Lang") == anotherGroup->checkedButton()->property("Lang")) {
+            && checkedGroup->lang(id) == anotherGroup->checkedLang()) {
         int previousCheckedButton = settings.checkedButton(checkedGroup);
-        insertLanguage(anotherGroup, checkedGroup->button(previousCheckedButton)->property("Lang").value<QOnlineTranslator::Language>());
+        insertLanguage(anotherGroup, checkedGroup->lang(previousCheckedButton));
         settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
     }
 
@@ -727,28 +727,6 @@ void MainWindow::translateTimerExpires()
         on_translateButton_clicked();
     else
         startTranslateTimer();
-}
-
-void MainWindow::loadLanguageButtons(LangButtonGroup *group)
-{
-    // Load buttons text and tooltip
-    AppSettings settings;
-    for (int i = 1; i < 4; ++i) {
-        auto language = settings.buttonLanguage(group, i);
-
-        // Check if the code is set
-        if (language == QOnlineTranslator::NoLanguage) {
-            group->button(i)->setVisible(false);
-        } else {
-            group->button(i)->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(language) + ".svg"));
-            group->button(i)->setText(onlineTranslator->languageString(language));
-            group->button(i)->setProperty("Lang", language);
-            group->button(i)->setVisible(true);
-        }
-    }
-
-    // Load checked button
-    group->button(settings.checkedButton(group))->setChecked(true);
 }
 
 void MainWindow::loadSettings()
@@ -886,7 +864,7 @@ void MainWindow::insertLanguage(LangButtonGroup *group, QOnlineTranslator::Langu
 {
     // Exit the function if the current language already has a button
     for (int i = 0; i < 4; ++i) {
-        if (language == group->button(i)->property("Lang").toInt()) {
+        if (language == group->lang(i)) {
             group->button(i)->setChecked(true);
             return;
         }
@@ -896,12 +874,12 @@ void MainWindow::insertLanguage(LangButtonGroup *group, QOnlineTranslator::Langu
     AppSettings settings;
     for (int i = 3; i > 1; --i) {
         // Skip iteration, if previous button is not specified
-        if (group->button(i-1)->property("Lang").toInt() == QOnlineTranslator::NoLanguage)
+        if (group->lang(i-1) == QOnlineTranslator::NoLanguage)
             continue;
 
         // Set values
         group->button(i)->setText(group->button(i-1)->text());
-        group->button(i)->setProperty("Lang", group->button(i-1)->property("Lang"));
+        group->button(i)->setProperty("Lang", group->lang(i-1));
         group->button(i)->setIcon(group->button(i-1)->icon());
         group->button(i)->setVisible(true);
 
@@ -909,7 +887,7 @@ void MainWindow::insertLanguage(LangButtonGroup *group, QOnlineTranslator::Langu
         emit buttonChanged(group, i);
 
         // Save settings
-        settings.setButtonLanguage(group, i, group->button(i)->property("Lang").value<QOnlineTranslator::Language>());
+        settings.setButtonLanguage(group, i, group->lang(i));
     }
 
     // Shift checked button in the settings

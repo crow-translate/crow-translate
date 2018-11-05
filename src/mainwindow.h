@@ -94,7 +94,6 @@ private slots:
 
 private:
     // Settings
-    void loadLanguageButtons(LangButtonGroup *group);
     void loadSettings();
     void loadLocale();
     void setProxy();

@@ -160,7 +160,7 @@ LangButtonGroup *PopupWindow::translationButtons()
 
 void PopupWindow::loadButton(LangButtonGroup *group, int id)
 {
-    if (group->property("GroupCategory") == "Source")
+    if (group->name() == "Source")
         copyButton(sourceButtonGroup, group->button(id), id);
     else
         copyButton(translationButtonGroup, group->button(id), id);
