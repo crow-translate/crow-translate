@@ -26,11 +26,11 @@
 #include <QTranslator>
 #include <QShortcut>
 #include <QTimer>
-#include <QButtonGroup>
 #include <QMediaPlayer>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
+#include "langbuttongroup.h"
 
 namespace Ui {
 class MainWindow;
@@ -46,7 +46,7 @@ public:
 
 signals:
     void translationTextChanged(const QString &text);
-    void buttonChanged(QButtonGroup *group, int id);
+    void buttonChanged(LangButtonGroup *group, int id);
     void playSourceButtonIconChanged(QIcon icon);
     void stopSourceButtonEnabled(bool enabled);
     void playTranslationButtonIconChanged(QIcon icon);
@@ -83,9 +83,7 @@ private slots:
     void changeTranslationPlayerIcons(QMediaPlayer::State state);
 
     // Language buttons
-    void checkSourceButton(int id, bool checked);
-    void checkTranslationButton(int id, bool checked);
-    void toggleLangButton(QButtonGroup *checkedGroup, QButtonGroup *anotherGroup, QAbstractButton *button);
+    void toggleLangButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
 
     // Other
@@ -96,7 +94,7 @@ private slots:
 
 private:
     // Settings
-    void loadLanguageButtons(QButtonGroup *group);
+    void loadLanguageButtons(LangButtonGroup *group);
     void loadSettings();
     void loadLocale();
     void setProxy();
@@ -106,7 +104,7 @@ private:
     bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
 
     // Helper functions
-    void insertLanguage(QButtonGroup *group, QOnlineTranslator::Language language);
+    void insertLanguage(LangButtonGroup *group, QOnlineTranslator::Language language);
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QList<QAction *> languagesList();
     QString selectedText();
@@ -137,8 +135,8 @@ private:
     QHotkey *showMainWindowHotkey;
     QHotkey *copyTranslatedSelectionHotkey;
 
-    QButtonGroup *sourceButtonGroup;
-    QButtonGroup *translationButtonGroup;
+    LangButtonGroup *sourceButtons;
+    LangButtonGroup *translationButtons;
 };
 
 #endif // MAINWINDOW_H

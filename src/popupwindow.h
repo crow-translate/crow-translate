@@ -22,12 +22,12 @@
 #define POPUPWINDOW_H
 
 #include <QMenu>
-#include <QButtonGroup>
 #include <QToolButton>
 #include <QTextEdit>
 #include <QShortcut>
 
 #include "qonlinetranslator.h"
+#include "langbuttongroup.h"
 
 namespace Ui {
 class PopupWindow;
@@ -38,7 +38,7 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = nullptr);
+    explicit PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent = nullptr);
     ~PopupWindow() override;
 
     QTextEdit *translationEdit();
@@ -55,23 +55,21 @@ public:
     QToolButton *copyTranslationButton();
     QToolButton *copyAllTranslationButton();
 
-    QButtonGroup *sourceButtons();
-    QButtonGroup *translationButtons();
+    LangButtonGroup *sourceButtons();
+    LangButtonGroup *translationButtons();
 
 public slots:
-    void loadButton(QButtonGroup *group, int id);
-    void checkSourceButton(int id, bool checked);
-    void checkTranslationButton(int id, bool checked);
+    void loadButton(LangButtonGroup *group, int id);
 
 private:
     void showEvent(QShowEvent *event) override;
-    void copyButton(QButtonGroup *group, QAbstractButton *button, int id);
-    void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
+    void copyButton(LangButtonGroup *group, QAbstractButton *button, int id);
+    void copyLanguageButtons(LangButtonGroup *existingGroup, LangButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;
-    QButtonGroup *sourceButtonGroup;
-    QButtonGroup *translationButtonGroup;
     QShortcut *closeWindowsShortcut;
+    LangButtonGroup *sourceButtonGroup;
+    LangButtonGroup *translationButtonGroup;
 };
 
 #endif // POPUPWINDOW_H

@@ -481,22 +481,22 @@ void AppSettings::setCopyTranslationHotkey(const QString &hotkey)
     setValue("Hotkeys/CopyTranslation", hotkey);
 }
 
-QOnlineTranslator::Language AppSettings::buttonLanguage(QButtonGroup *group, int id)
+QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup *group, int id)
 {
     return value("Buttons/" + group->property("GroupCategory").toString() + "Button" + QString::number(id), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
 }
 
-void AppSettings::setButtonLanguage(QButtonGroup *group, int id, QOnlineTranslator::Language lang)
+void AppSettings::setButtonLanguage(LangButtonGroup *group, int id, QOnlineTranslator::Language lang)
 {
     setValue("Buttons/"  + group->property("GroupCategory").toString() + "Button" + QString::number(id), lang);
 }
 
-int AppSettings::checkedButton(QButtonGroup *group)
+int AppSettings::checkedButton(LangButtonGroup *group)
 {
     return value("Buttons/Checked" + group->property("GroupCategory").toString() + "Button", 0).toInt();
 }
 
-void AppSettings::setCheckedButton(QButtonGroup *group, int id)
+void AppSettings::setCheckedButton(LangButtonGroup *group, int id)
 {
     setValue("Buttons/Checked" + group->property("GroupCategory").toString() + "Button", id);
 }

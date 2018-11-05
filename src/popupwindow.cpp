@@ -30,12 +30,12 @@
 #include "appsettings.h"
 #include "mainwindow.h"
 
-PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent) :
+PopupWindow::PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent) :
     QWidget(parent, Qt::Popup),
     ui(new Ui::PopupWindow),
-    sourceButtonGroup (new QButtonGroup(this)),
-    translationButtonGroup (new QButtonGroup(this)),
-    closeWindowsShortcut (new QShortcut(this))
+    closeWindowsShortcut (new QShortcut(this)),
+    sourceButtonGroup (new LangButtonGroup(this)),
+    translationButtonGroup (new LangButtonGroup(this))
 {
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
@@ -44,17 +44,17 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButto
     resize(settings.popupWidth(), settings.popupHeight());
 
     // Translation button group
-    sourceButtonGroup->addButton(ui->autoSourceButton, 0);
-    sourceButtonGroup->addButton(ui->firstSourceButton, 1);
-    sourceButtonGroup->addButton(ui->secondSourceButton, 2);
-    sourceButtonGroup->addButton(ui->thirdSourceButton, 3);
+    sourceButtonGroup->addButton(ui->autoSourceButton);
+    sourceButtonGroup->addButton(ui->firstSourceButton);
+    sourceButtonGroup->addButton(ui->secondSourceButton);
+    sourceButtonGroup->addButton(ui->thirdSourceButton);
     copyLanguageButtons(sourceButtonGroup, sourceGroup);
 
     // Source button group
-    translationButtonGroup->addButton(ui->autoTranslationButton, 0);
-    translationButtonGroup->addButton(ui->firstTranslationButton, 1);
-    translationButtonGroup->addButton(ui->secondTranslationButton, 2);
-    translationButtonGroup->addButton(ui->thirdTranslationButton, 3);
+    translationButtonGroup->addButton(ui->autoTranslationButton);
+    translationButtonGroup->addButton(ui->firstTranslationButton);
+    translationButtonGroup->addButton(ui->secondTranslationButton);
+    translationButtonGroup->addButton(ui->thirdTranslationButton);
     copyLanguageButtons(translationButtonGroup, translationGroup);
 
     // Language buttons style
@@ -148,34 +148,22 @@ QToolButton *PopupWindow::copyAllTranslationButton()
     return ui->copyAllTranslationButton;
 }
 
-QButtonGroup *PopupWindow::sourceButtons()
+LangButtonGroup *PopupWindow::sourceButtons()
 {
     return sourceButtonGroup;
 }
 
-QButtonGroup *PopupWindow::translationButtons()
+LangButtonGroup *PopupWindow::translationButtons()
 {
     return translationButtonGroup;
 }
 
-void PopupWindow::loadButton(QButtonGroup *group, int id)
+void PopupWindow::loadButton(LangButtonGroup *group, int id)
 {
     if (group->property("GroupCategory") == "Source")
         copyButton(sourceButtonGroup, group->button(id), id);
     else
         copyButton(translationButtonGroup, group->button(id), id);
-}
-
-void PopupWindow::checkSourceButton(int id, bool checked)
-{
-    if (checked)
-        sourceButtonGroup->button(id)->setChecked(true);
-}
-
-void PopupWindow::checkTranslationButton(int id, bool checked)
-{
-    if (checked)
-        translationButtonGroup->button(id)->setChecked(true);
 }
 
 // Move popup to cursor and prevent appearing outside the screen
@@ -203,7 +191,7 @@ void PopupWindow::showEvent(QShowEvent *event)
     QWidget::showEvent(event);
 }
 
-void PopupWindow::copyButton(QButtonGroup *group, QAbstractButton *button, int id)
+void PopupWindow::copyButton(LangButtonGroup *group, QAbstractButton *button, int id)
 {
     if (button->property("Lang").toInt() != QOnlineTranslator::NoLanguage) {
         group->button(id)->setText(button->text());
@@ -215,7 +203,7 @@ void PopupWindow::copyButton(QButtonGroup *group, QAbstractButton *button, int i
     }
 }
 
-void PopupWindow::copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup)
+void PopupWindow::copyLanguageButtons(LangButtonGroup *existingGroup, LangButtonGroup *copyingGroup)
 {
     for (int i = 0; i < 4; ++i)
         copyButton(existingGroup, copyingGroup->button(i), i);

@@ -24,9 +24,9 @@
 #include <QSettings>
 #include <QLocale>
 #include <QNetworkProxy>
-#include <QButtonGroup>
 
 #include "qonlinetranslator.h"
+#include "langbuttongroup.h"
 
 class AppSettings : private QSettings
 {
@@ -207,11 +207,11 @@ public:
     { return "Ctrl+Shift+C"; }
 
     // Buttons
-    QOnlineTranslator::Language buttonLanguage(QButtonGroup *group, int id);
-    void setButtonLanguage(QButtonGroup *group, int id, QOnlineTranslator::Language lang);
+    QOnlineTranslator::Language buttonLanguage(LangButtonGroup *group, int id);
+    void setButtonLanguage(LangButtonGroup *group, int id, QOnlineTranslator::Language lang);
 
-    int checkedButton(QButtonGroup *group);
-    void setCheckedButton(QButtonGroup *group, int id);
+    int checkedButton(LangButtonGroup *group);
+    void setCheckedButton(LangButtonGroup *group, int id);
 
     // Other settings
     QByteArray mainWindowGeometry();
