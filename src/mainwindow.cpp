@@ -312,22 +312,22 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
+    auto sourceLang = sourceButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    auto translationLang = translationButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    int checkedSourceButton = sourceButtons->checkedId();
+    int checkedTranslationButton = translationButtons->checkedId();
 
     // Insert current translation language to source buttons
-    if (sourceButtons->checkedId() == 0) {
+    if (checkedTranslationButton == 0)
         sourceButtons->button(0)->setChecked(true); // Select "Auto" button
-    } else {
-        auto translationLang = translationButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    else
         insertLanguage(sourceButtons, translationLang);
-    }
 
     // Insert current source language to translation buttons
-    if (translationButtons->checkedId() == 0) {
+    if (checkedSourceButton == 0)
         translationButtons->button(0)->setChecked(true); // Select "Auto" button
-    } else {
-        auto sourceLang = sourceButtons->checkedButton()->property("Lang").value<QOnlineTranslator::Language>();
+    else
         insertLanguage(translationButtons, sourceLang);
-    }
 
     // Copy translation to source text
     ui->sourceEdit->setPlainText(onlineTranslator->translation());
