@@ -19,7 +19,6 @@
  */
 
 #include <QCommandLineParser>
-#include <QMediaPlayer>
 #include <QFile>
 #include <QRegularExpression>
 

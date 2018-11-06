@@ -36,6 +36,8 @@ public:
     void loadLanguages();
     void loadLanguages(const LangButtonGroup *group);
     void insertLanguage(QOnlineTranslator::Language lang);
+    void setAutoLanguage(QOnlineTranslator::Language lang);
+    void retranslate();
 
     QOnlineTranslator::Language checkedLanguage() const;
     QOnlineTranslator::Language language(int id) const;
@@ -49,11 +51,9 @@ signals:
 
 public slots:
     void checkButton(int id);
-    void setLanguage(int id, QOnlineTranslator::Language language);
+    void setLanguage(int id, QOnlineTranslator::Language lang);
 
 private:
-    void setAtributes(int id, QOnlineTranslator::Language lang);
-
     QString m_name;
 };
 

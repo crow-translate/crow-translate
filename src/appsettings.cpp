@@ -36,23 +36,23 @@ AppSettings::AppSettings(QObject *parent) :
 
 }
 
+void AppSettings::setupLocale()
+{
+    loadLocale(locale());
+    SingleApplication::installTranslator(&appTranslator);
+}
+
 QLocale::Language AppSettings::locale()
 {
     return value("Locale", QLocale::AnyLanguage).value<QLocale::Language>();
 }
 
-void AppSettings::setLocale(QLocale::Language language)
+void AppSettings::setLocale(QLocale::Language lang)
 {
-    if (language != locale()) {
-        setValue("Locale", language);
-        loadLocale(language);
+    if (lang != locale()) {
+        setValue("Locale", lang);
+        loadLocale(lang);
     }
-}
-
-void AppSettings::setupLocale()
-{
-    loadLocale(locale());
-    SingleApplication::installTranslator(&appTranslator);
 }
 
 void AppSettings::loadLocale(QLocale::Language lang)

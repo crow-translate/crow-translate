@@ -41,9 +41,8 @@ public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = nullptr);
     ~SettingsDialog();
 
-    bool proxyChanged();
-
 private slots:
+    // UI
     void on_dialogBox_accepted();
     void on_resetSettingsButton_clicked();
     void on_trayCheckBox_toggled(bool checked);
@@ -67,8 +66,6 @@ private slots:
 
 private:
     Ui::SettingsDialog *ui;
-
-    bool m_proxyChanged = false;
 
 #if defined(Q_OS_WIN)
     QLabel *checkForUpdatesLabel;

@@ -20,6 +20,7 @@ public:
     ~UpdaterWindow();
 
 private slots:
+    // UI
     void on_downloadButton_clicked();
     void on_installButton_clicked();
     void on_updateLaterButton_clicked();

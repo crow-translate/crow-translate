@@ -23,7 +23,6 @@
 
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QTranslator>
 #include <QShortcut>
 #include <QTimer>
 #include <QMediaPlayer>
@@ -52,13 +51,14 @@ signals:
     void stopTranslationButtonEnabled(bool enabled);
 
 private slots:
+    // UI
     void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
+    void on_autoTranslateCheckBox_toggled(bool checked);
 
     void on_playSourceButton_clicked();
     void on_playTranslationButton_clicked();
-
     void on_stopSourceButton_clicked();
     void on_stopTranslationButton_clicked();
 
@@ -69,21 +69,19 @@ private slots:
     void on_autoSourceButton_triggered(QAction *language);
     void on_autoTranslationButton_triggered(QAction *language);
 
-    void on_autoTranslateCheckBox_toggled(bool checked);
-
     // Shortcuts
     void translateSelectedText();
     void copyTranslatedSelection();
-
-    // Players
     void playSelection();
     void playTranslatedSelection();
-    void changeSourcePlayerIcons(QMediaPlayer::State state);
-    void changeTranslationPlayerIcons(QMediaPlayer::State state);
 
     // Language buttons
     void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
+
+    // Player icons
+    void changeSourcePlayerIcons(QMediaPlayer::State state);
+    void changeTranslationPlayerIcons(QMediaPlayer::State state);
 
     // Autotranslate timer
     void startTranslateTimer();
@@ -96,22 +94,18 @@ private slots:
 private:
     void changeEvent(QEvent *event) override;
 
-    // Settings
-    void loadSettings();
-    void setProxy();
-
     // Translation
     bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
     bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
 
     // Helper functions
+    void loadSettings();
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QList<QAction *> languagesList();
     QString selectedText();
 
     Ui::MainWindow *ui;
 
-    QTranslator *interfaceTranslator;
     QOnlineTranslator *onlineTranslator;
     QOnlineTranslator::Language uiLang;
 
@@ -121,11 +115,6 @@ private:
     QMediaPlaylist *sourcePlaylist;
     QMediaPlaylist *translationPlaylist;
     QMediaPlaylist *selectionPlaylist;
-
-    QMenu *trayMenu;
-    QSystemTrayIcon *trayIcon;
-    QMenu *languagesMenu;
-    QTimer *translateTimer;
 
     QShortcut *closeWindowsShortcut;
     QHotkey *translateSelectionHotkey;
@@ -137,6 +126,11 @@ private:
 
     LangButtonGroup *sourceButtons;
     LangButtonGroup *translationButtons;
+
+    QMenu *trayMenu;
+    QSystemTrayIcon *trayIcon;
+    QMenu *languagesMenu;
+    QTimer *translateTimer;
 };
 
 #endif // MAINWINDOW_H

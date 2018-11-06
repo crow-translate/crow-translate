@@ -20,7 +20,6 @@
 
 #include "settingsdialog.h"
 
-#include <QStandardPaths>
 #include <QNetworkProxy>
 #include <QFileDialog>
 #include <QScreen>
@@ -189,38 +188,15 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-bool SettingsDialog::proxyChanged()
-{
-    return m_proxyChanged;
-}
-
 void SettingsDialog::on_dialogBox_accepted()
 {
-    // Check if proxy changed
+    // General settings
     AppSettings settings;
-    if (ui->proxyTypeComboBox->currentIndex() != settings.proxyType()
-            || ui->proxyHostEdit->text() != settings.proxyHost()
-            || ui->proxyPortSpinbox->value() != settings.proxyPort()
-            || ui->proxyAuthCheckBox->isChecked() != settings.isProxyAuthEnabled()
-            || ui->proxyUsernameEdit->text() != settings.proxyUsername()
-            || ui->proxyPasswordEdit->text() != settings.proxyPassword()) {
-        settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
-        settings.setProxyHost(ui->proxyHostEdit->text());
-        settings.setProxyPort(static_cast<quint16>(ui->proxyPortSpinbox->value()));
-        settings.setProxyAuthEnabled(ui->proxyAuthCheckBox->isChecked());
-        settings.setProxyUsername(ui->proxyUsernameEdit->text());
-        settings.setProxyPassword(ui->proxyPasswordEdit->text());
-        m_proxyChanged = true;
-    }
-
-    // Check if autostart options changed
-    settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
-
-    // Other general settings
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setLocale(ui->languageComboBox->currentData().value<QLocale::Language>());
     settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
+    settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #if defined(Q_OS_WIN)
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(checkForUpdatesComboBox->currentIndex()));
 #endif
@@ -245,6 +221,14 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setShowDefinitions(ui->definitionsCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
+
+    // Connection settings
+    settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
+    settings.setProxyHost(ui->proxyHostEdit->text());
+    settings.setProxyPort(static_cast<quint16>(ui->proxyPortSpinbox->value()));
+    settings.setProxyAuthEnabled(ui->proxyAuthCheckBox->isChecked());
+    settings.setProxyUsername(ui->proxyUsernameEdit->text());
+    settings.setProxyPassword(ui->proxyPasswordEdit->text());
 
     // Global shortcuts
     settings.setTranslateSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
