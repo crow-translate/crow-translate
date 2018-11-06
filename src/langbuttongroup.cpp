@@ -63,6 +63,7 @@ void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
     for (int i = 0; i < buttons().size(); ++i) {
         if (group->language(i) != QOnlineTranslator::NoLanguage) {
             button(i)->setText(group->button(i)->text());
+            button(i)->setToolTip(group->button(i)->toolTip());
             button(i)->setIcon(group->button(i)->icon());
             button(i)->setProperty("Lang", group->language(i));
             button(i)->setVisible(true);
@@ -153,6 +154,7 @@ void LangButtonGroup::setAtributes(int id, QOnlineTranslator::Language lang)
     if (lang != QOnlineTranslator::NoLanguage) {
         // Set button appearance
         button(id)->setVisible(true);
+        button(id)->setToolTip(QOnlineTranslator::languageString(lang));
         if (id != 0) {
             // Language buttomn
             button(id)->setText(QOnlineTranslator::languageString(lang));
