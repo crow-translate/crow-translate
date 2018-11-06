@@ -189,11 +189,6 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-bool SettingsDialog::localizationChanged()
-{
-    return m_localizationChanged;
-}
-
 bool SettingsDialog::proxyChanged()
 {
     return m_proxyChanged;
@@ -201,14 +196,8 @@ bool SettingsDialog::proxyChanged()
 
 void SettingsDialog::on_dialogBox_accepted()
 {
-    // Check if localization changed
-    AppSettings settings;
-    if (settings.locale() != ui->languageComboBox->currentData().toInt()) {
-        settings.setLocale(ui->languageComboBox->currentData().value<QLocale::Language>());
-        m_localizationChanged = true;
-    }
-
     // Check if proxy changed
+    AppSettings settings;
     if (ui->proxyTypeComboBox->currentIndex() != settings.proxyType()
             || ui->proxyHostEdit->text() != settings.proxyHost()
             || ui->proxyPortSpinbox->value() != settings.proxyPort()
@@ -229,6 +218,7 @@ void SettingsDialog::on_dialogBox_accepted()
 
     // Other general settings
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
+    settings.setLocale(ui->languageComboBox->currentData().value<QLocale::Language>());
     settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
 #if defined(Q_OS_WIN)

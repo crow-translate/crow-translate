@@ -94,9 +94,10 @@ private slots:
     void activateTray(QSystemTrayIcon::ActivationReason reason);
 
 private:
+    void changeEvent(QEvent *event) override;
+
     // Settings
     void loadSettings();
-    void loadLocale();
     void setProxy();
 
     // Translation

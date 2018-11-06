@@ -44,6 +44,7 @@ int main(int argc, char *argv[])
 #endif
 
         AppSettings settings;
+        settings.setupLocale();
         MainWindow w;
         if (!settings.isStartMinimized())
             w.show();

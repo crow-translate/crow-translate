@@ -41,7 +41,6 @@ public:
     explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = nullptr);
     ~SettingsDialog();
 
-    bool localizationChanged();
     bool proxyChanged();
 
 private slots:
@@ -69,7 +68,6 @@ private slots:
 private:
     Ui::SettingsDialog *ui;
 
-    bool m_localizationChanged = false;
     bool m_proxyChanged = false;
 
 #if defined(Q_OS_WIN)

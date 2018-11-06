@@ -24,6 +24,11 @@
 #include <QFileInfo>
 #include <QDebug>
 #include <QTextStream>
+#include <QLibraryInfo>
+
+#include "singleapplication.h"
+
+QTranslator AppSettings::appTranslator;
 
 AppSettings::AppSettings(QObject *parent) :
     QSettings (parent)
@@ -38,7 +43,26 @@ QLocale::Language AppSettings::locale()
 
 void AppSettings::setLocale(QLocale::Language language)
 {
-    setValue("Locale", language);
+    if (language != locale()) {
+        setValue("Locale", language);
+        loadLocale(language);
+    }
+}
+
+void AppSettings::setupLocale()
+{
+    loadLocale(locale());
+    SingleApplication::installTranslator(&appTranslator);
+}
+
+void AppSettings::loadLocale(QLocale::Language lang)
+{
+    if (lang == QLocale::AnyLanguage)
+        QLocale::setDefault(QLocale::system());
+    else
+        QLocale::setDefault(QLocale(lang));
+
+    appTranslator.load(QLocale(), "crow", "_", ":/translations");
 }
 
 AppSettings::WindowMode AppSettings::windowMode()

@@ -65,8 +65,6 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtons (new LangButtonGroup(this)),
     translationButtons (new LangButtonGroup(this))
 {
-    loadLocale(); // Load application locale
-
     ui->setupUi(this);
 
     // Shortcuts
@@ -125,6 +123,9 @@ MainWindow::MainWindow(QWidget *parent) :
     languagesMenu->addActions(languagesList());
     ui->autoSourceButton->setMenu(languagesMenu);
     ui->autoTranslationButton->setMenu(languagesMenu);
+
+    // Get UI language for translation
+    uiLang = QOnlineTranslator::language(QLocale());
 
     // Load settings
     loadSettings();
@@ -328,26 +329,6 @@ void MainWindow::on_settingsButton_clicked()
 {
     SettingsDialog config(languagesMenu, this);
     if (config.exec()) {
-        if (config.localizationChanged()) {
-            loadLocale();
-
-            // Reload UI
-            ui->retranslateUi(this);
-
-            trayMenu->actions().at(0)->setText(tr("Show window"));
-            trayMenu->actions().at(1)->setText(tr("Settings"));
-            trayMenu->actions().at(2)->setText(tr("Exit"));
-
-            languagesMenu->clear();
-            languagesMenu->addActions(languagesList());
-
-            sourceButtons->loadLanguages();
-            translationButtons->loadLanguages();
-
-            sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
-            translationButtons->setLanguage(0, QOnlineTranslator::Auto);
-        }
-
         if (config.proxyChanged())
             setProxy();
 
@@ -713,6 +694,37 @@ void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
     }
 }
 
+void MainWindow::changeEvent(QEvent *event)
+{
+    switch (event->type()) {
+    case QEvent::LocaleChange:
+    {
+        // System language chaged
+        AppSettings settings;
+        QLocale::Language lang = settings.locale();
+        if (lang == QLocale::AnyLanguage)
+            settings.loadLocale(lang); // Reload language if application use system language
+        break;
+    }
+    case QEvent::LanguageChange:
+        // Reload UI if application language changed
+        ui->retranslateUi(this);
+
+        trayMenu->actions().at(0)->setText(tr("Show window"));
+        trayMenu->actions().at(1)->setText(tr("Settings"));
+        trayMenu->actions().at(2)->setText(tr("Exit"));
+
+        languagesMenu->clear();
+        languagesMenu->addActions(languagesList());
+
+        sourceButtons->loadLanguages();
+        translationButtons->loadLanguages();
+        break;
+    default:
+        QMainWindow::changeEvent(event);
+    }
+}
+
 void MainWindow::loadSettings()
 {
     AppSettings settings;
@@ -776,21 +788,6 @@ void MainWindow::loadSettings()
     ui->stopTranslationButton->setShortcut(settings.stopTranslationHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     closeWindowsShortcut->setKey(settings.closeWindowHotkey());
-}
-
-void MainWindow::loadLocale()
-{
-    AppSettings settings;
-    auto locale = settings.locale();
-    if (locale == QLocale::AnyLanguage)
-        QLocale::setDefault(QLocale::system());
-    else
-        QLocale::setDefault(QLocale(locale));
-
-    if (interfaceTranslator->load(QLocale(), "crow", "_", ":/translations"))
-        qApp->installTranslator(interfaceTranslator);
-
-    uiLang = QOnlineTranslator::language(QLocale()); // Language for translator hints
 }
 
 void MainWindow::setProxy()

@@ -24,6 +24,7 @@
 #include <QSettings>
 #include <QLocale>
 #include <QNetworkProxy>
+#include <QTranslator>
 
 #include "qonlinetranslator.h"
 #include "langbuttongroup.h"
@@ -52,6 +53,8 @@ public:
     // General settings
     QLocale::Language locale();
     void setLocale(QLocale::Language language);
+    void setupLocale();
+    void loadLocale(QLocale::Language lang);
 
     WindowMode windowMode();
     void setWindowMode(WindowMode mode);
@@ -219,6 +222,9 @@ public:
 
     bool isAutoTranslateEnabled();
     void setAutoTranslateEnabled(bool enable);
+
+private:
+    static QTranslator appTranslator;
 };
 
 #endif // APPSETTINGS_H
