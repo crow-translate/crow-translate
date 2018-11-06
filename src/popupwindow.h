@@ -58,13 +58,8 @@ public:
     LangButtonGroup *sourceButtons();
     LangButtonGroup *translationButtons();
 
-public slots:
-    void loadButton(LangButtonGroup *group, int id);
-
 private:
     void showEvent(QShowEvent *event) override;
-    void copyButton(LangButtonGroup *group, QAbstractButton *button, int id);
-    void copyLanguageButtons(LangButtonGroup *existingGroup, LangButtonGroup *copyingGroup);
 
     Ui::PopupWindow *ui;
     QShortcut *closeWindowsShortcut;

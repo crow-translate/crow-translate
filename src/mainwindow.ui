@@ -35,13 +35,7 @@
         <property name="toolTip">
          <string notr="true">auto</string>
         </property>
-        <property name="text">
-         <string>Auto</string>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="checked">
          <bool>true</bool>
         </property>
         <property name="autoExclusive">
@@ -52,12 +46,6 @@
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextOnly</enum>
-        </property>
-        <property name="arrowType">
-         <enum>Qt::NoArrow</enum>
-        </property>
-        <property name="Lang" stdset="0">
-         <number>0</number>
         </property>
        </widget>
       </item>
@@ -78,9 +66,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
-        </property>
        </widget>
       </item>
       <item>
@@ -99,9 +84,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -124,9 +106,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -183,9 +162,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
-        </property>
        </widget>
       </item>
       <item>
@@ -204,9 +180,6 @@
         </property>
         <property name="autoExclusive">
          <bool>true</bool>
-        </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
         </property>
        </widget>
       </item>
@@ -227,9 +200,6 @@
         <property name="autoExclusive">
          <bool>true</bool>
         </property>
-        <property name="Lang" stdset="0">
-         <number>-1</number>
-        </property>
        </widget>
       </item>
       <item>
@@ -243,13 +213,7 @@
         <property name="toolTip">
          <string notr="true">auto</string>
         </property>
-        <property name="text">
-         <string>Auto</string>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="checked">
          <bool>true</bool>
         </property>
         <property name="autoExclusive">
@@ -260,9 +224,6 @@
         </property>
         <property name="toolButtonStyle">
          <enum>Qt::ToolButtonTextOnly</enum>
-        </property>
-        <property name="Lang" stdset="0">
-         <number>0</number>
         </property>
        </widget>
       </item>

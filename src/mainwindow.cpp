@@ -37,13 +37,14 @@
 #include "popupwindow.h"
 #include "settingsdialog.h"
 
-constexpr int AUTOTRANSLATE_DELAY = 500;
-constexpr int SHORT_AUTOTRANSLATE_DELAY = 300;
+constexpr int AUTOTRANSLATE_DELAY = 500; // Used when changing text
+constexpr int SHORT_AUTOTRANSLATE_DELAY = 300; // Used when changing language
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow (parent),
     ui (new Ui::MainWindow),
     interfaceTranslator (new QTranslator(this)),
+    onlineTranslator (new QOnlineTranslator(this)),
     sourcePlayer (new QMediaPlayer(this)),
     translationPlayer (new QMediaPlayer(this)),
     selectionPlayer (new QMediaPlayer(this)),
@@ -65,8 +66,6 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtons (new LangButtonGroup(this))
 {
     loadLocale(); // Load application locale
-
-    onlineTranslator = new QOnlineTranslator(this); // Need to create after localization
 
     ui->setupUi(this);
 
@@ -93,9 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     sourceButtons->addButton(ui->secondSourceButton);
     sourceButtons->addButton(ui->thirdSourceButton);
     sourceButtons->setName("Source");
-    connect(sourceButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        toggleLangButton(sourceButtons, translationButtons, id);
-    });
+    sourceButtons->loadLanguages();
 
     // Translation button group
     translationButtons->addButton(ui->autoTranslationButton);
@@ -103,8 +100,14 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtons->addButton(ui->secondTranslationButton);
     translationButtons->addButton(ui->thirdTranslationButton);
     translationButtons->setName("Translation");
+    translationButtons->loadLanguages();
+
+    // Setup toggle logic
     connect(translationButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        toggleLangButton(translationButtons, sourceButtons, id);
+        checkLanguageButton(translationButtons, sourceButtons, id);
+    });
+    connect(sourceButtons, &LangButtonGroup::buttonChecked, [&](int id) {
+        checkLanguageButton(sourceButtons, translationButtons, id);
     });
 
     // System tray icon
@@ -124,8 +127,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->autoTranslationButton->setMenu(languagesMenu);
 
     // Load settings
-    sourceButtons->loadLanguageButtons(onlineTranslator);
-    translationButtons->loadLanguageButtons(onlineTranslator);
     loadSettings();
     setProxy();
     AppSettings settings;
@@ -171,6 +172,7 @@ void MainWindow::on_translateButton_clicked()
 {
     if (ui->sourceEdit->toPlainText().isEmpty()) {
         ui->translationEdit->clear();
+        translationButtons->setLanguage(0, QOnlineTranslator::Auto);
         return;
     }
 
@@ -185,7 +187,7 @@ void MainWindow::on_translateButton_clicked()
     if (ui->autoSourceButton->isChecked())
         sourceLang = QOnlineTranslator::Auto;
     else
-        sourceLang = sourceButtons->checkedLang();
+        sourceLang = sourceButtons->checkedLanguage();
 
     // Translation language
     AppSettings settings;
@@ -202,7 +204,7 @@ void MainWindow::on_translateButton_clicked()
                 translationLang = uiLang;
         }
     } else {
-        translationLang = translationButtons->checkedLang();
+        translationLang = translationButtons->checkedLanguage();
     }
 
     // Get translation
@@ -231,25 +233,13 @@ void MainWindow::on_translateButton_clicked()
 
     // Display languages on "Auto" buttons.
     if (ui->autoSourceButton->isChecked()) {
-        if (onlineTranslator->sourceLanguage() != sourceButtons->checkedLang()) {
-            ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->sourceLanguageString() + ")");
-            ui->autoSourceButton->setProperty("Lang", onlineTranslator->sourceLanguage());
-            emit buttonChanged(sourceButtons, 0);
-            connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-        }
+        sourceButtons->setLanguage(0, onlineTranslator->sourceLanguage());
+        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
     }
     if (ui->autoTranslationButton->isChecked()) {
-        if (onlineTranslator->translationLanguage() != translationButtons->checkedLang()) {
-            ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->translationLanguageString() + ")");
-            ui->autoTranslationButton->setProperty("Lang", onlineTranslator->translationLanguage());
-            emit buttonChanged(translationButtons, 0);
-        }
+        translationButtons->setLanguage(0, onlineTranslator->translationLanguage());
     } else {
-        if (ui->autoTranslationButton->property("Lang").toInt() != QOnlineTranslator::Auto) {
-            ui->autoTranslationButton->setText(tr("Auto"));
-            ui->autoTranslationButton->setProperty("Lang", QOnlineTranslator::Auto);
-            emit buttonChanged(translationButtons, 0);
-        }
+        translationButtons->setLanguage(0, QOnlineTranslator::Auto);
     }
 
     // Show translation and transcription
@@ -312,22 +302,22 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    auto sourceLang = sourceButtons->checkedLang();
-    auto translationLang = translationButtons->checkedLang();
+    auto sourceLang = sourceButtons->checkedLanguage();
+    auto translationLang = translationButtons->checkedLanguage();
     int checkedSourceButton = sourceButtons->checkedId();
     int checkedTranslationButton = translationButtons->checkedId();
 
     // Insert current translation language to source buttons
     if (checkedTranslationButton == 0)
-        sourceButtons->button(0)->setChecked(true); // Select "Auto" button
+        sourceButtons->checkButton(0); // Select "Auto" button
     else
-        insertLanguage(sourceButtons, translationLang);
+        sourceButtons->insertLanguage(translationLang);
 
     // Insert current source language to translation buttons
     if (checkedSourceButton == 0)
-        translationButtons->button(0)->setChecked(true); // Select "Auto" button
+        translationButtons->checkButton(0); // Select "Auto" button
     else
-        insertLanguage(translationButtons, sourceLang);
+        translationButtons->insertLanguage(sourceLang);
 
     // Copy translation to source text
     ui->sourceEdit->setPlainText(onlineTranslator->translation());
@@ -344,9 +334,6 @@ void MainWindow::on_settingsButton_clicked()
             // Reload UI
             ui->retranslateUi(this);
 
-            delete onlineTranslator;
-            onlineTranslator = new QOnlineTranslator(this);
-
             trayMenu->actions().at(0)->setText(tr("Show window"));
             trayMenu->actions().at(1)->setText(tr("Settings"));
             trayMenu->actions().at(2)->setText(tr("Exit"));
@@ -354,13 +341,11 @@ void MainWindow::on_settingsButton_clicked()
             languagesMenu->clear();
             languagesMenu->addActions(languagesList());
 
-            sourceButtons->loadLanguageButtons(onlineTranslator);
-            translationButtons->loadLanguageButtons(onlineTranslator);
+            sourceButtons->loadLanguages();
+            translationButtons->loadLanguages();
 
-            auto sourceLang = ui->autoSourceButton->property("Lang").value<QOnlineTranslator::Language>();
-            auto translationLang = ui->autoTranslationButton->property("Lang").value<QOnlineTranslator::Language>();
-            ui->autoSourceButton->setText(tr("Auto") + " (" + onlineTranslator->languageString(sourceLang) + ")");
-            ui->autoTranslationButton->setText(tr("Auto") + " (" + onlineTranslator->languageString(translationLang) + ")");
+            sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
+            translationButtons->setLanguage(0, QOnlineTranslator::Auto);
         }
 
         if (config.proxyChanged())
@@ -397,7 +382,7 @@ void MainWindow::on_playSourceButton_clicked()
         else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
             selectionPlayer->pause();
 
-        play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtons->checkedLang());
+        play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtons->checkedLanguage());
         break;
     }
 }
@@ -468,12 +453,12 @@ void MainWindow::on_copyAllTranslationButton_clicked()
 
 void MainWindow::on_autoSourceButton_triggered(QAction *language)
 {
-    insertLanguage(sourceButtons, language->data().value<QOnlineTranslator::Language>());
+    sourceButtons->insertLanguage(language->data().value<QOnlineTranslator::Language>());
 }
 
 void MainWindow::on_autoTranslationButton_triggered(QAction *language)
 {
-    insertLanguage(translationButtons, language->data().value<QOnlineTranslator::Language>());
+    translationButtons->insertLanguage(language->data().value<QOnlineTranslator::Language>());
 }
 
 void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
@@ -502,9 +487,10 @@ void MainWindow::translateSelectedText()
 
         // Connect main window events to popup events
         connect(sourceButtons, &LangButtonGroup::buttonChecked, popup->sourceButtons(), &LangButtonGroup::checkButton);
+        connect(sourceButtons, &LangButtonGroup::languageChanged, popup->sourceButtons(),  &LangButtonGroup::setLanguage);
         connect(translationButtons, &LangButtonGroup::buttonChecked, popup->translationButtons(), &LangButtonGroup::checkButton);
+        connect(translationButtons, &LangButtonGroup::languageChanged, popup->translationButtons(),  &LangButtonGroup::setLanguage);
         connect(this, &MainWindow::translationTextChanged, popup->translationEdit(), &QTextEdit::setHtml);
-        connect(this, &MainWindow::buttonChanged, popup, &PopupWindow::loadButton);
         connect(this, &MainWindow::playSourceButtonIconChanged, popup->playSourceButton(), &QToolButton::setIcon);
         connect(this, &MainWindow::stopSourceButtonEnabled, popup->stopSourceButton(), &QToolButton::setEnabled);
         connect(this, &MainWindow::playTranslationButtonIconChanged, popup->playTranslationButton(), &QToolButton::setIcon);
@@ -673,15 +659,15 @@ void MainWindow::changeTranslationPlayerIcons(QMediaPlayer::State state)
     }
 }
 
-void MainWindow::toggleLangButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
+void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
 {
     // If the target and source languages are the same (and they are not automatic translation buttons), then source target language to previous target language
     AppSettings settings;
     if (id != 0
             && anotherGroup->checkedId() != 0
-            && checkedGroup->lang(id) == anotherGroup->checkedLang()) {
+            && checkedGroup->language(id) == anotherGroup->checkedLanguage()) {
         int previousCheckedButton = settings.checkedButton(checkedGroup);
-        insertLanguage(anotherGroup, checkedGroup->lang(previousCheckedButton));
+        anotherGroup->insertLanguage(checkedGroup->language(previousCheckedButton));
         settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
     }
 
@@ -694,10 +680,21 @@ void MainWindow::toggleLangButton(LangButtonGroup *checkedGroup, LangButtonGroup
 
 void MainWindow::resetAutoSourceButtonText()
 {
-    ui->autoSourceButton->setText(tr("Auto"));
-    ui->autoSourceButton->setProperty("Lang", QOnlineTranslator::Auto);
     disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-    emit buttonChanged(sourceButtons, 0);
+    sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
+}
+
+void MainWindow::startTranslateTimer()
+{
+    translateTimer->start(AUTOTRANSLATE_DELAY);
+}
+
+void MainWindow::translateTimerExpires()
+{
+    if (ui->translateButton->isEnabled())
+        on_translateButton_clicked();
+    else
+        startTranslateTimer();
 }
 
 void MainWindow::showMainWindow()
@@ -714,19 +711,6 @@ void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
         else
             hide();
     }
-}
-
-void MainWindow::startTranslateTimer()
-{
-    translateTimer->start(AUTOTRANSLATE_DELAY);
-}
-
-void MainWindow::translateTimerExpires()
-{
-    if (ui->translateButton->isEnabled())
-        on_translateButton_clicked();
-    else
-        startTranslateTimer();
 }
 
 void MainWindow::loadSettings()
@@ -835,10 +819,7 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
     if (onlineTranslator->error()) {
         ui->translationEdit->setHtml(onlineTranslator->errorString());
         ui->translateButton->setEnabled(true);
-
-        ui->autoTranslationButton->setText(tr("Auto"));
-        ui->autoTranslationButton->setProperty("Lang", QOnlineTranslator::Auto);
-
+        sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
         emit translationTextChanged(onlineTranslator->errorString());
         return false;
     } else {
@@ -858,58 +839,6 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
     } else {
         return true;
     }
-}
-
-void MainWindow::insertLanguage(LangButtonGroup *group, QOnlineTranslator::Language language)
-{
-    // Exit the function if the current language already has a button
-    for (int i = 0; i < 4; ++i) {
-        if (language == group->lang(i)) {
-            group->button(i)->setChecked(true);
-            return;
-        }
-    }
-
-    // Shift buttons (2 -> 3, 1 -> 2)
-    AppSettings settings;
-    for (int i = 3; i > 1; --i) {
-        // Skip iteration, if previous button is not specified
-        if (group->lang(i-1) == QOnlineTranslator::NoLanguage)
-            continue;
-
-        // Set values
-        group->button(i)->setText(group->button(i-1)->text());
-        group->button(i)->setProperty("Lang", group->lang(i-1));
-        group->button(i)->setIcon(group->button(i-1)->icon());
-        group->button(i)->setVisible(true);
-
-        // Send signal
-        emit buttonChanged(group, i);
-
-        // Save settings
-        settings.setButtonLanguage(group, i, group->lang(i));
-    }
-
-    // Shift checked button in the settings
-    if (group->checkedId() != 0 && group->checkedId() != 3)
-        settings.setCheckedButton(group, settings.checkedButton(group) + 1);
-
-    // Insert new language to first button
-    group->button(1)->setText(onlineTranslator->languageString(language));
-    group->button(1)->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(language) + ".svg"));
-    group->button(1)->setProperty("Lang", language);
-    group->button(1)->setVisible(true);
-
-    if (group->button(1)->isChecked())
-        emit group->buttonToggled(group->button(1), true);
-    else
-        group->button(1)->setChecked(true);
-
-    // Send signal
-    emit buttonChanged(group, 1);
-
-    // Save first button settings
-    settings.setButtonLanguage(group, 1, language);
 }
 
 void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang)
@@ -933,7 +862,7 @@ QList<QAction *> MainWindow::languagesList()
     for (int i = 1; i != QOnlineTranslator::Zulu; ++i) {
         auto Language = static_cast<QOnlineTranslator::Language>(i);
         QAction *action = new QAction();
-        action->setText(onlineTranslator->languageString(Language));
+        action->setText(QOnlineTranslator::languageString(Language));
         action->setIcon(QIcon(":/icons/flags/" + onlineTranslator->languageCode(Language) + ".svg"));
         action->setData(Language);
         languagesList.append(action);

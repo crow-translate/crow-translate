@@ -48,14 +48,14 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, Lan
     sourceButtonGroup->addButton(ui->firstSourceButton);
     sourceButtonGroup->addButton(ui->secondSourceButton);
     sourceButtonGroup->addButton(ui->thirdSourceButton);
-    copyLanguageButtons(sourceButtonGroup, sourceGroup);
+    sourceButtonGroup->loadLanguages(sourceGroup);
 
     // Source button group
     translationButtonGroup->addButton(ui->autoTranslationButton);
     translationButtonGroup->addButton(ui->firstTranslationButton);
     translationButtonGroup->addButton(ui->secondTranslationButton);
     translationButtonGroup->addButton(ui->thirdTranslationButton);
-    copyLanguageButtons(translationButtonGroup, translationGroup);
+    translationButtonGroup->loadLanguages(translationGroup);
 
     // Language buttons style
     Qt::ToolButtonStyle langsStyle = settings.popupLanguagesStyle();
@@ -158,14 +158,6 @@ LangButtonGroup *PopupWindow::translationButtons()
     return translationButtonGroup;
 }
 
-void PopupWindow::loadButton(LangButtonGroup *group, int id)
-{
-    if (group->name() == "Source")
-        copyButton(sourceButtonGroup, group->button(id), id);
-    else
-        copyButton(translationButtonGroup, group->button(id), id);
-}
-
 // Move popup to cursor and prevent appearing outside the screen
 void PopupWindow::showEvent(QShowEvent *event)
 {
@@ -189,24 +181,4 @@ void PopupWindow::showEvent(QShowEvent *event)
 
     move(position);
     QWidget::showEvent(event);
-}
-
-void PopupWindow::copyButton(LangButtonGroup *group, QAbstractButton *button, int id)
-{
-    if (button->property("Lang").toInt() != QOnlineTranslator::NoLanguage) {
-        group->button(id)->setText(button->text());
-        group->button(id)->setProperty("Lang", button->property("Lang"));
-        group->button(id)->setIcon(button->icon());
-        group->button(id)->setVisible(true);
-    } else {
-        group->button(id)->setVisible(false);
-    }
-}
-
-void PopupWindow::copyLanguageButtons(LangButtonGroup *existingGroup, LangButtonGroup *copyingGroup)
-{
-    for (int i = 0; i < 4; ++i)
-        copyButton(existingGroup, copyingGroup->button(i), i);
-
-    existingGroup->button(copyingGroup->checkedId())->setChecked(true);
 }

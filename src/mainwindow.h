@@ -46,7 +46,6 @@ public:
 
 signals:
     void translationTextChanged(const QString &text);
-    void buttonChanged(LangButtonGroup *group, int id);
     void playSourceButtonIconChanged(QIcon icon);
     void stopSourceButtonEnabled(bool enabled);
     void playTranslationButtonIconChanged(QIcon icon);
@@ -83,14 +82,16 @@ private slots:
     void changeTranslationPlayerIcons(QMediaPlayer::State state);
 
     // Language buttons
-    void toggleLangButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
+    void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
+
+    // Autotranslate timer
+    void startTranslateTimer();
+    void translateTimerExpires();
 
     // Other
     void showMainWindow();
     void activateTray(QSystemTrayIcon::ActivationReason reason);
-    void startTranslateTimer();
-    void translateTimerExpires();
 
 private:
     // Settings
@@ -103,7 +104,6 @@ private:
     bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
 
     // Helper functions
-    void insertLanguage(LangButtonGroup *group, QOnlineTranslator::Language language);
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QList<QAction *> languagesList();
     QString selectedText();
