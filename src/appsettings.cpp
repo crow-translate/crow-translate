@@ -203,7 +203,7 @@ void AppSettings::setWindowLanguagesStyle(Qt::ToolButtonStyle style)
 
 Qt::ToolButtonStyle AppSettings::windowControlsStyle()
 {
-    return value("WindowControlsStyle", Qt::ToolButtonTextBesideIcon).value<Qt::ToolButtonStyle>();
+    return value("WindowControlsStyle", Qt::ToolButtonIconOnly).value<Qt::ToolButtonStyle>();
 }
 
 void AppSettings::setWindowControlsStyle(Qt::ToolButtonStyle style)
