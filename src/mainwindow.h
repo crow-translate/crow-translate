@@ -80,8 +80,9 @@ private slots:
     void resetAutoSourceButtonText();
 
     // Player icons
-    void changeSourcePlayerIcons(QMediaPlayer::State state);
-    void changeTranslationPlayerIcons(QMediaPlayer::State state);
+    void changeSourcePlayerState(QMediaPlayer::State state);
+    void changeTranslationPlayerState(QMediaPlayer::State state);
+    void changeSelectionPlayerState(QMediaPlayer::State state);
 
     // Autotranslate timer
     void startTranslateTimer();

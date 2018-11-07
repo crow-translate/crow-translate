@@ -79,9 +79,10 @@ MainWindow::MainWindow(QWidget *parent) :
     sourcePlayer->setPlaylist(sourcePlaylist); // Use playlist to split long queries due Google limit
     translationPlayer->setPlaylist(translationPlaylist);
     selectionPlayer->setPlaylist(selectionPlaylist);
-    connect(sourcePlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeSourcePlayerIcons);
-    connect(translationPlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeTranslationPlayerIcons);
     connect(ui->sourceEdit, &QPlainTextEdit::textChanged, sourcePlayer, &QMediaPlayer::stop);
+    connect(sourcePlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeSourcePlayerState);
+    connect(translationPlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeTranslationPlayerState);
+    connect(selectionPlayer, &QMediaPlayer::stateChanged, this, &MainWindow::changeSelectionPlayerState);
 
     // Source button group
     sourceButtons->addButton(ui->autoSourceButton);
@@ -171,7 +172,7 @@ void MainWindow::on_translateButton_clicked()
 {
     if (ui->sourceEdit->toPlainText().isEmpty()) {
         ui->translationEdit->clear();
-        translationButtons->setAutoLanguage(QOnlineTranslator::Auto);
+        translationButtons->setLanguage(0, QOnlineTranslator::Auto);
         return;
     }
 
@@ -232,14 +233,14 @@ void MainWindow::on_translateButton_clicked()
 
     // Display languages on "Auto" buttons.
     if (ui->autoSourceButton->isChecked()) {
-        sourceButtons->setAutoLanguage(onlineTranslator->sourceLanguage());
+        sourceButtons->setLanguage(0, onlineTranslator->sourceLanguage());
         connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
     }
 
     if (ui->autoTranslationButton->isChecked())
-        translationButtons->setAutoLanguage(onlineTranslator->translationLanguage());
+        translationButtons->setLanguage(0, onlineTranslator->translationLanguage());
     else
-        translationButtons->setAutoLanguage(QOnlineTranslator::Auto);
+        translationButtons->setLanguage(0, QOnlineTranslator::Auto);
 
     // Show translation and transcription
     ui->translationEdit->setHtml(onlineTranslator->translation().toHtmlEscaped().replace("\n", "<br>"));
@@ -342,31 +343,15 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 
 void MainWindow::on_playSourceButton_clicked()
 {
-    if (ui->sourceEdit->toPlainText().isEmpty()) {
-        qDebug() << tr("Text field is empty");
-        return;
-    }
 
     switch (sourcePlayer->state()) {
     case QMediaPlayer::PlayingState:
         sourcePlayer->pause();
         break;
     case QMediaPlayer::PausedState:
-        // Pause other players
-        if (translationPlayer->state() == QMediaPlayer::PlayingState)
-            translationPlayer->pause();
-        else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
-            selectionPlayer->pause();
-
         sourcePlayer->play();
         break;
     case QMediaPlayer::StoppedState:
-        // Pause other players
-        if (translationPlayer->state() == QMediaPlayer::PlayingState)
-            translationPlayer->pause();
-        else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
-            selectionPlayer->pause();
-
         play(sourcePlayer, sourcePlaylist, ui->sourceEdit->toPlainText(), sourceButtons->checkedLanguage());
         break;
     }
@@ -374,29 +359,14 @@ void MainWindow::on_playSourceButton_clicked()
 
 void MainWindow::on_playTranslationButton_clicked()
 {
-    if (ui->translationEdit->toPlainText().isEmpty()) {
-        qDebug() << tr("Text field is empty");
-        return;
-    }
-
     switch (translationPlayer->state()) {
     case QMediaPlayer::PlayingState:
         translationPlayer->pause();
         break;
     case QMediaPlayer::PausedState:
-        if (sourcePlayer->state() == QMediaPlayer::PlayingState)
-            sourcePlayer->pause();
-        else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
-            selectionPlayer->pause();
-
         translationPlayer->play();
         break;
     case QMediaPlayer::StoppedState:
-        if (sourcePlayer->state() == QMediaPlayer::PlayingState)
-            sourcePlayer->pause();
-        else if (selectionPlayer->state() == QMediaPlayer::PlayingState)
-            selectionPlayer->pause();
-
         play(translationPlayer, translationPlaylist, onlineTranslator->translation(), onlineTranslator->translationLanguage());
         break;
     }
@@ -539,34 +509,12 @@ void MainWindow::copyTranslatedSelection()
 
 void MainWindow::playSelection()
 {
-    QString selection = selectedText();
-    if (selection.isEmpty()) {
-        qDebug() << tr("The selection does not contain text");
-        return;
-    }
-    // Pause other players
-    if (translationPlayer->state() == QMediaPlayer::PlayingState)
-        translationPlayer->pause();
-    else if (sourcePlayer->state() == QMediaPlayer::PlayingState)
-        sourcePlayer->pause();
-
-    play(sourcePlayer, sourcePlaylist, selection);
+    play(sourcePlayer, sourcePlaylist, selectedText());
 }
 
 void MainWindow::playTranslatedSelection()
 {
-    QString selection = selectedText();
-    if (selection.isEmpty()) {
-        qDebug() << tr("The selection does not contain text");
-        return;
-    }
-
-    // Pause other players
-    if (translationPlayer->state() == QMediaPlayer::PlayingState)
-        translationPlayer->pause();
-    else
-        if (sourcePlayer->state() == QMediaPlayer::PlayingState)
-            sourcePlayer->pause();
+    const QString selection = selectedText();
 
     // Detect languages
     AppSettings settings;
@@ -612,50 +560,81 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
 void MainWindow::resetAutoSourceButtonText()
 {
     disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-    sourceButtons->setAutoLanguage(QOnlineTranslator::Auto);
+    sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
 }
 
-void MainWindow::changeSourcePlayerIcons(QMediaPlayer::State state)
+void MainWindow::changeSourcePlayerState(QMediaPlayer::State state)
 {
     switch (state) {
     case QMediaPlayer::PlayingState:
+        // Change icon
         ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-pause"));
         emit playSourceButtonIconChanged(ui->playSourceButton->icon());
+
+        // Disable stop button
         ui->stopSourceButton->setEnabled(true);
         emit stopSourceButtonEnabled(true);
+
+        // Pause other players
+        translationPlayer->stop();
+        selectionPlayer->stop();
         break;
     case QMediaPlayer::PausedState:
+        // Change icon
         ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
         emit playSourceButtonIconChanged(ui->playSourceButton->icon());
         break;
     case QMediaPlayer::StoppedState:
+        // Change icon
         ui->playSourceButton->setIcon(QIcon::fromTheme("media-playback-start"));
         emit playSourceButtonIconChanged(ui->playSourceButton->icon());
+
+        // Enable stop button
         ui->stopSourceButton->setEnabled(false);
         emit stopSourceButtonEnabled(false);
         break;
     }
 }
 
-void MainWindow::changeTranslationPlayerIcons(QMediaPlayer::State state)
+void MainWindow::changeTranslationPlayerState(QMediaPlayer::State state)
 {
     switch (state) {
     case QMediaPlayer::PlayingState:
+        // Change icon
         ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-pause"));
         emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
+
+        // Disable stop button
         ui->stopTranslationButton->setEnabled(true);
         emit stopTranslationButtonEnabled(true);
+
+        // Pause other players
+        sourcePlayer->stop();
+        selectionPlayer->stop();
         break;
     case QMediaPlayer::PausedState:
+        // Change icon
         ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
         emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
         break;
     case QMediaPlayer::StoppedState:
+        // Change icon
         ui->playTranslationButton->setIcon(QIcon::fromTheme("media-playback-start"));
         emit playTranslationButtonIconChanged(ui->playTranslationButton->icon());
+
+        // Enable stop button
         ui->stopTranslationButton->setEnabled(false);
         emit stopTranslationButtonEnabled(false);
         break;
+    }
+}
+
+void MainWindow::changeSelectionPlayerState(QMediaPlayer::State state)
+{
+    if (state == QMediaPlayer::PlayingState) {
+        // Pause other players
+        sourcePlayer->stop();
+        translationPlayer->stop();
     }
 }
 
@@ -728,7 +707,7 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
     if (onlineTranslator->error()) {
         ui->translationEdit->setHtml(onlineTranslator->errorString());
         ui->translateButton->setEnabled(true);
-        sourceButtons->setAutoLanguage(QOnlineTranslator::Auto);
+        sourceButtons->setLanguage(0, QOnlineTranslator::Auto);
         emit translationTextChanged(onlineTranslator->errorString());
         return false;
     } else {
@@ -830,6 +809,12 @@ void MainWindow::loadSettings()
 
 void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang)
 {
+    if (text.isEmpty()) {
+        QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
+        errorMessage.exec();
+        return;
+    }
+
     playlist->clear();
     auto media = onlineTranslator->media(text, QOnlineTranslator::Google, lang);
     if (onlineTranslator->error()) {

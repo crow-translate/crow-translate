@@ -36,7 +36,6 @@ public:
     void loadLanguages();
     void loadLanguages(const LangButtonGroup *group);
     void insertLanguage(QOnlineTranslator::Language lang);
-    void setAutoLanguage(QOnlineTranslator::Language lang);
     void retranslate();
 
     QOnlineTranslator::Language checkedLanguage() const;
