@@ -26,6 +26,10 @@
 #include <QTextStream>
 #include <QLibraryInfo>
 
+#if defined(Q_OS_WIN)
+#include <QDir>
+#endif
+
 #include "singleapplication.h"
 
 QTranslator AppSettings::appTranslator;
