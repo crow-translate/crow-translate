@@ -27,6 +27,7 @@
 #if defined(Q_OS_WIN)
 #include <QLabel>
 #include <QComboBox>
+#include <QPushButton>
 #endif
 
 namespace Ui {
@@ -68,12 +69,13 @@ private:
     Ui::SettingsDialog *ui;
 
 #if defined(Q_OS_WIN)
-    QLabel *papirusTitleLabel;
-    QLabel *papirusLabel;
-    QLabel *checkForUpdatesLabel;
-    QComboBox *checkForUpdatesComboBox;
-    QPushButton *checkForUpdatesButton;
-    QLabel *checkForUpdatesStatusLabel;
+    QLabel papirusTitleLabel;
+    QLabel papirusLabel;
+    QLabel checkForUpdatesLabel;
+
+    QComboBox checkForUpdatesComboBox;
+    QPushButton checkForUpdatesButton;
+    QLabel checkForUpdatesStatusLabel;
 #endif
 };
 

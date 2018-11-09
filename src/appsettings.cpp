@@ -35,9 +35,8 @@
 QTranslator AppSettings::appTranslator;
 
 AppSettings::AppSettings(QObject *parent) :
-    QSettings (parent)
+    QSettings(parent)
 {
-
 }
 
 void AppSettings::setupLocale()

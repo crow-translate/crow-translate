@@ -25,7 +25,7 @@
 #include "appsettings.h"
 
 LangButtonGroup::LangButtonGroup(QObject *parent) :
-    QButtonGroup (parent)
+    QButtonGroup(parent)
 {
     // Setup "Checked" signal
     connect(this, qOverload<int, bool>(&LangButtonGroup::buttonToggled), [&](int id, bool checked) {

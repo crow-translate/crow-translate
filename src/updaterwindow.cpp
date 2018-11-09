@@ -7,8 +7,8 @@
 #include "ui_updaterwindow.h"
 
 UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
-    QWidget (parent, Qt::Dialog),
-    ui (new Ui::UpdaterWindow)
+    QWidget(parent, Qt::Dialog),
+    ui(new Ui::UpdaterWindow)
 {
     ui->setupUi(this);
     this->setWindowModality(Qt::WindowModal);

@@ -29,7 +29,7 @@ private slots:
 private:
     Ui::UpdaterWindow *ui;
 
-    QNetworkAccessManager downloadManager;
+    QNetworkAccessManager downloadManager{this};
     QNetworkReply *reply;
 
     QUrl downloadUrl;

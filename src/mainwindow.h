@@ -26,6 +26,7 @@
 #include <QShortcut>
 #include <QTimer>
 #include <QMediaPlayer>
+#include <QMenu>
 
 #include "qhotkey.h"
 #include "qonlinetranslator.h"
@@ -110,31 +111,31 @@ private:
 
     Ui::MainWindow *ui;
 
-    QOnlineTranslator *onlineTranslator;
+    QOnlineTranslator onlineTranslator{this};
     QOnlineTranslator::Language uiLang;
 
-    QMediaPlayer *sourcePlayer;
-    QMediaPlayer *translationPlayer;
-    QMediaPlayer *selectionPlayer;
-    QMediaPlaylist *sourcePlaylist;
-    QMediaPlaylist *translationPlaylist;
-    QMediaPlaylist *selectionPlaylist;
+    QMediaPlayer sourcePlayer{this};
+    QMediaPlayer translationPlayer{this};
+    QMediaPlayer selectionPlayer{this};
+    QMediaPlaylist sourcePlaylist{this};
+    QMediaPlaylist translationPlaylist{this};
+    QMediaPlaylist selectionPlaylist{this};
 
-    QShortcut *closeWindowsShortcut;
-    QHotkey *translateSelectionHotkey;
-    QHotkey *playSelectionHotkey;
-    QHotkey *playTranslatedSelectionHotkey;
-    QHotkey *stopSelectionHotkey;
-    QHotkey *showMainWindowHotkey;
-    QHotkey *copyTranslatedSelectionHotkey;
+    QShortcut closeWindowsShortcut{this};
+    QHotkey translateSelectionHotkey{this};
+    QHotkey playSelectionHotkey{this};
+    QHotkey playTranslatedSelectionHotkey{this};
+    QHotkey stopSelectionHotkey{this};
+    QHotkey showMainWindowHotkey{this};
+    QHotkey copyTranslatedSelectionHotkey{this};
 
-    LangButtonGroup *sourceButtons;
-    LangButtonGroup *translationButtons;
+    LangButtonGroup sourceButtons{this};
+    LangButtonGroup translationButtons{this};
 
-    QMenu *trayMenu;
-    QSystemTrayIcon *trayIcon;
-    QMenu *languagesMenu;
-    QTimer *translateTimer;
+    QMenu trayMenu{this};
+    QSystemTrayIcon trayIcon{this};
+    QMenu languagesMenu{this};
+    QTimer translateTimer{this};
 };
 
 #endif // MAINWINDOW_H

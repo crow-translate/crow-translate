@@ -62,9 +62,9 @@ private:
     void showEvent(QShowEvent *event) override;
 
     Ui::PopupWindow *ui;
-    QShortcut *closeWindowsShortcut;
-    LangButtonGroup *sourceButtonGroup;
-    LangButtonGroup *translationButtonGroup;
+    QShortcut closeWindowsShortcut{this};
+    LangButtonGroup sourceButtonGroup{this};
+    LangButtonGroup translationButtonGroup{this};
 };
 
 #endif // POPUPWINDOW_H
