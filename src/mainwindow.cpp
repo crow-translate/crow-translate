@@ -281,10 +281,10 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    auto sourceLang = sourceButtons.checkedLanguage();
-    auto translationLang = translationButtons.checkedLanguage();
-    int checkedSourceButton = sourceButtons.checkedId();
-    int checkedTranslationButton = translationButtons.checkedId();
+    const auto sourceLang = sourceButtons.checkedLanguage();
+    const auto translationLang = translationButtons.checkedLanguage();
+    const int checkedSourceButton = sourceButtons.checkedId();
+    const int checkedTranslationButton = translationButtons.checkedId();
 
     // Insert current translation language to source buttons
     if (checkedTranslationButton == 0)
@@ -322,7 +322,6 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 
 void MainWindow::on_playSourceButton_clicked()
 {
-
     switch (sourcePlayer.state()) {
     case QMediaPlayer::PlayingState:
         sourcePlayer.pause();
@@ -524,7 +523,7 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
     if (id != 0
             && anotherGroup->checkedId() != 0
             && checkedGroup->language(id) == anotherGroup->checkedLanguage()) {
-        int previousCheckedButton = settings.checkedButton(checkedGroup);
+        const int previousCheckedButton = settings.checkedButton(checkedGroup);
         anotherGroup->insertLanguage(checkedGroup->language(previousCheckedButton));
         settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
     }
@@ -674,7 +673,7 @@ void MainWindow::changeEvent(QEvent *event)
     {
         // System language chaged
         AppSettings settings;
-        QLocale::Language lang = settings.locale();
+        const QLocale::Language lang = settings.locale();
         if (lang == QLocale::AnyLanguage)
             settings.loadLocale(lang); // Reload language if application use system language
         break;
@@ -737,7 +736,7 @@ void MainWindow::loadSettings()
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
 
     // System tray icon
-    QString iconName = settings.trayIconName();
+    const QString iconName = settings.trayIconName();
     if (iconName == "custom") {
         QIcon customIcon(settings.customIconPath());
         if (customIcon.isNull())
@@ -752,9 +751,9 @@ void MainWindow::loadSettings()
             trayIcon.setIcon(crowIcon);
     }
 
-    bool traIconVisible = settings.isTrayIconVisible();
-    trayIcon.setVisible(traIconVisible);
-    QApplication::setQuitOnLastWindowClosed(!traIconVisible);
+    const bool trayIconVisible = settings.isTrayIconVisible();
+    trayIcon.setVisible(trayIconVisible);
+    QApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 
     // Connection
     QNetworkProxy proxy;
@@ -770,7 +769,7 @@ void MainWindow::loadSettings()
     QNetworkProxy::setApplicationProxy(proxy);
 
     // Language buttons style
-    Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
+    const Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
     ui->firstSourceButton->setToolButtonStyle(languagesStyle);
     ui->secondSourceButton->setToolButtonStyle(languagesStyle);
     ui->thirdSourceButton->setToolButtonStyle(languagesStyle);
@@ -779,7 +778,7 @@ void MainWindow::loadSettings()
     ui->thirdTranslationButton->setToolButtonStyle(languagesStyle);
 
     // Control buttons style
-    Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
+    const Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
     ui->playSourceButton->setToolButtonStyle(controlsStyle);
     ui->stopSourceButton->setToolButtonStyle(controlsStyle);
     ui->copySourceButton->setToolButtonStyle(controlsStyle);
@@ -816,7 +815,7 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     }
 
     playlist->clear();
-    auto media = onlineTranslator.media(text, QOnlineTranslator::Google, lang);
+    const auto media = onlineTranslator.media(text, QOnlineTranslator::Google, lang);
     if (onlineTranslator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), onlineTranslator.errorString());
         errorMessage.exec();
@@ -832,7 +831,7 @@ QList<QAction *> MainWindow::languagesList()
     // Load all languages and codes from QOnlineTranslator
     QList<QAction *> languagesList;
     for (int i = 1; i != QOnlineTranslator::Zulu; ++i) {
-        auto Language = static_cast<QOnlineTranslator::Language>(i);
+        const auto Language = static_cast<QOnlineTranslator::Language>(i);
         QAction *action = new QAction();
         action->setText(QOnlineTranslator::languageString(Language));
         action->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(Language) + ".svg"));
