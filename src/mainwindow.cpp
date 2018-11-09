@@ -399,10 +399,6 @@ void MainWindow::translateSelectedText()
     // Prevent pressing the translation hotkey again
     translateSelectionHotkey.blockSignals(true);
 
-    // Stop previous playback
-    sourcePlayer.stop();
-    translationPlayer.stop();
-
     AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
