@@ -14,18 +14,28 @@
    <string notr="true">Crow Translate</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="software-update-available"/>
+   <iconset theme="software-update-available">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
     <widget class="QLabel" name="infoLabel">
+     <property name="text">
+      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0000ff;&quot;&gt;link&lt;/span&gt;&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+     </property>
      <property name="wordWrap">
       <bool>true</bool>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
      </property>
+     <property name="textInteractionFlags">
+      <set>Qt::TextBrowserInteraction</set>
+     </property>
     </widget>
+   </item>
+   <item>
+    <widget class="QLabel" name="versionsLabel"/>
    </item>
    <item>
     <widget class="QTextEdit" name="changelogTextEdit"/>

@@ -68,6 +68,8 @@ private:
     Ui::SettingsDialog *ui;
 
 #if defined(Q_OS_WIN)
+    QLabel *papirusTitleLabel;
+    QLabel *papirusLabel;
     QLabel *checkForUpdatesLabel;
     QComboBox *checkForUpdatesComboBox;
     QPushButton *checkForUpdatesButton;

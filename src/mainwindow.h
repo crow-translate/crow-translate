@@ -91,6 +91,9 @@ private slots:
     // Other
     void showMainWindow();
     void activateTray(QSystemTrayIcon::ActivationReason reason);
+#if defined(Q_OS_WIN)
+    void checkForUpdates();
+#endif
 
 private:
     void changeEvent(QEvent *event) override;

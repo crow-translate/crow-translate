@@ -27,9 +27,10 @@
 #if defined(Q_OS_WIN)
 #include <QMimeData>
 #include <QTimer>
-#include <windows.h>
+#include <Windows.h>
 
 #include "updaterwindow.h"
+#include "singleapplication.h"
 #endif
 
 #include "ui_mainwindow.h"
@@ -132,9 +133,9 @@ MainWindow::MainWindow(QWidget *parent) :
     AppSettings settings;
     restoreGeometry(settings.mainWindowGeometry());
 
-    // Check for updates
 #if defined(Q_OS_WIN)
-    auto updateInterval = settings.checkForUpdatesInterval();
+    // Check date for updates
+    const auto updateInterval = settings.checkForUpdatesInterval();
     QDate checkDate = settings.lastUpdateCheckDate();
     switch (updateInterval) {
     case AppSettings::Day:
@@ -151,11 +152,9 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     if (QDate::currentDate() >= checkDate) {
-        QGitRelease release("Shatur95", "Crow-Translate");
-        if (!release.error() && qApp->applicationVersion() < release.tagName()) {
-            UpdaterWindow *updaterWindow = new UpdaterWindow(release, this);
-            updaterWindow->show();
-        }
+        auto release = new QGitTag(this);
+        connect(release, &QGitTag::requestFinished, this, &MainWindow::checkForUpdates);
+        release->get("Shatur95", "crow-translate");
     }
 #endif
 }
@@ -667,6 +666,27 @@ void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
     }
 }
 
+#if defined(Q_OS_WIN)
+void MainWindow::checkForUpdates()
+{
+    auto release = qobject_cast<QGitTag *>(sender());
+    if (release->error()) {
+        delete release;
+        return;
+    }
+
+    const int installer = release->assetId(".exe");
+    if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
+        auto updater = new UpdaterWindow(release, installer, this);
+        updater->show();
+    }
+
+    delete release;
+    AppSettings settings;
+    settings.setLastUpdateCheckDate(QDate::currentDate());
+}
+#endif
+
 void MainWindow::changeEvent(QEvent *event)
 {
     switch (event->type()) {
@@ -862,9 +882,12 @@ QString MainWindow::selectedText()
         originalClipboard = QApplication::clipboard()->text();
 
     // Wait until the hot key is pressed
-    while (GetAsyncKeyState(translateSelectionHotkey->currentNativeShortcut().key) || GetAsyncKeyState(VK_CONTROL)
-           || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_SHIFT))
+    while (GetAsyncKeyState(static_cast<int>(translateSelectionHotkey->currentNativeShortcut().key))
+           || GetAsyncKeyState(VK_CONTROL)
+           || GetAsyncKeyState(VK_MENU)
+           || GetAsyncKeyState(VK_SHIFT)) {
         Sleep(50);
+    }
 
     // Generate key sequence
     INPUT copyText[4];

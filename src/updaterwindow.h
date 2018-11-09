@@ -5,7 +5,7 @@
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
 
-#include "qgitrelease.h"
+#include "qgittag.h"
 
 namespace Ui {
 class UpdaterWindow;
@@ -16,7 +16,7 @@ class UpdaterWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit UpdaterWindow(const QGitRelease &release, QWidget *parent = nullptr);
+    explicit UpdaterWindow(QGitTag *release, int installer, QWidget *parent = nullptr);
     ~UpdaterWindow();
 
 private slots:
@@ -26,12 +26,11 @@ private slots:
     void on_updateLaterButton_clicked();
     void on_cancelDownloadButton_clicked();
 
-    void finishDownload(QNetworkReply *downloading);
-
 private:
     Ui::UpdaterWindow *ui;
-    QNetworkAccessManager *downloadManager;
-    QNetworkReply *downloading;
+
+    QNetworkAccessManager downloadManager;
+    QNetworkReply *reply;
 
     QUrl downloadUrl;
     QString downloadPath;
