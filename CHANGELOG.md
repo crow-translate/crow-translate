@@ -20,6 +20,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Select first row in settings by default.
 - Change tab order in main window.
 - Minor optimizations.
+- Windows: Improve updater.
 
 ## [1.0.3] - 2018-07-04
 ### Added
@@ -41,8 +42,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Clear the translation field if the source field is empty.
 - Fix wrong proxy combobox behavior.
 - Windows: fix missing tray icon.
-- Windows: show the application name instead of the description in the list of running processes.
 - Separate source and selection players.
+- Windows: show the application name instead of the description in the list of running processes.
 
 ## [1.0.1] - 2018-07-02
 ### Added
