@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>334</width>
+    <width>390</width>
     <height>296</height>
    </rect>
   </property>
@@ -295,6 +295,26 @@
         </size>
        </property>
       </spacer>
+     </item>
+     <item>
+      <widget class="QComboBox" name="engineComboBox">
+       <item>
+        <property name="text">
+         <string>Google</string>
+        </property>
+        <property name="icon">
+         <iconset theme="google"/>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Yandex</string>
+        </property>
+        <property name="icon">
+         <iconset theme="yandex-browser"/>
+        </property>
+       </item>
+      </widget>
      </item>
      <item>
       <widget class="QToolButton" name="playTranslationButton">

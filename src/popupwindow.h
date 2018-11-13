@@ -25,6 +25,7 @@
 #include <QToolButton>
 #include <QTextEdit>
 #include <QShortcut>
+#include <QComboBox>
 
 #include "qonlinetranslator.h"
 #include "langbuttongroup.h"
@@ -43,6 +44,7 @@ public:
 
     QTextEdit *translationEdit();
     QToolButton *swapButton();
+    QComboBox *engineCombobox();
 
     QToolButton *autoSourceButton();
     QToolButton *playSourceButton();

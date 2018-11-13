@@ -100,6 +100,11 @@ QToolButton *PopupWindow::swapButton()
     return ui->swapButton;
 }
 
+QComboBox *PopupWindow::engineCombobox()
+{
+    return ui->engineComboBox;
+}
+
 QToolButton *PopupWindow::autoSourceButton()
 {
     return ui->autoSourceButton;

@@ -57,6 +57,7 @@ private slots:
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
     void on_autoTranslateCheckBox_toggled(bool checked);
+    void on_engineComboBox_currentIndexChanged(int index);
 
     void on_playSourceButton_clicked();
     void on_playTranslationButton_clicked();

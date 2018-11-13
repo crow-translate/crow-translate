@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>650</width>
-    <height>300</height>
+    <width>649</width>
+    <height>318</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -277,6 +277,13 @@
        </widget>
       </item>
       <item>
+       <widget class="QCheckBox" name="autoTranslateCheckBox">
+        <property name="text">
+         <string>Automatically translate</string>
+        </property>
+       </widget>
+      </item>
+      <item>
        <spacer name="buttomSourceSpacer">
         <property name="orientation">
          <enum>Qt::Horizontal</enum>
@@ -288,13 +295,6 @@
          </size>
         </property>
        </spacer>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="autoTranslateCheckBox">
-        <property name="text">
-         <string>Automatically translate</string>
-        </property>
-       </widget>
       </item>
      </layout>
     </item>
@@ -319,6 +319,26 @@
          </size>
         </property>
        </spacer>
+      </item>
+      <item>
+       <widget class="QComboBox" name="engineComboBox">
+        <item>
+         <property name="text">
+          <string>Google</string>
+         </property>
+         <property name="icon">
+          <iconset theme="google-chrome"/>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>Yandex</string>
+         </property>
+         <property name="icon">
+          <iconset theme="yandex-browser"/>
+         </property>
+        </item>
+       </widget>
       </item>
       <item>
        <widget class="QToolButton" name="playTranslationButton">
@@ -462,7 +482,6 @@
   <tabstop>playSourceButton</tabstop>
   <tabstop>stopSourceButton</tabstop>
   <tabstop>copySourceButton</tabstop>
-  <tabstop>autoTranslateCheckBox</tabstop>
   <tabstop>playTranslationButton</tabstop>
   <tabstop>stopTranslationButton</tabstop>
   <tabstop>copyTranslationButton</tabstop>

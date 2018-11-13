@@ -225,11 +225,10 @@ void MainWindow::on_translateButton_clicked()
     ui->translationEdit->setHtml(onlineTranslator.translation().toHtmlEscaped().replace("\n", "<br>"));
     if (!onlineTranslator.translationTranslit().isEmpty() && settings.showTranslationTranslit())
         ui->translationEdit->append("<font color=\"grey\"><i>/" + onlineTranslator.translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
-
     if (!onlineTranslator.sourceTranslit().isEmpty() && settings.showSourceTranslit())
         ui->translationEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
 
-    ui->translationEdit->append("");
+    ui->translationEdit->append(""); // Add new line before translation options
 
     // Show translation options
     if (!onlineTranslator.dictionaryList().isEmpty() && settings.showTranslationOptions()) {
@@ -241,20 +240,29 @@ void MainWindow::on_translateButton_clicked()
             ui->translationEdit->textCursor().setBlockFormat(indent);
 
             for (int i = 0; i <  translationOptions.count(); ++i) {
+                // Show word gender
                 QString wordLine;
                 if (!translationOptions.gender(i).isEmpty())
                     wordLine.append("<i>" + translationOptions.gender(i) + "</i> ");
-                wordLine.append(translationOptions.word(i) + ": ");
 
-                wordLine.append("<font color=\"grey\"><i>");
-                wordLine.append(translationOptions.translations(i));
-                wordLine.append("</i></font>");
+                // Show Word
+                wordLine.append(translationOptions.word(i));
+
+                // Show word meaning
+                if (!translationOptions.translations(i).isEmpty()) {
+                    wordLine.append(": ");
+                    wordLine.append("<font color=\"grey\"><i>");
+                    wordLine.append(translationOptions.translations(i));
+                    wordLine.append("</i></font>");
+                }
+
+                // Add generated line to edit
                 ui->translationEdit->append(wordLine);
             }
 
             indent.setTextIndent(0);
             ui->translationEdit->textCursor().setBlockFormat(indent);
-            ui->translationEdit->append("");
+            ui->translationEdit->append(""); // Add a new line before the next type of speech
         }
     }
 
@@ -281,10 +289,10 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    const auto sourceLang = sourceButtons.checkedLanguage();
-    const auto translationLang = translationButtons.checkedLanguage();
     const int checkedSourceButton = sourceButtons.checkedId();
     const int checkedTranslationButton = translationButtons.checkedId();
+    const QOnlineTranslator::Language sourceLang = sourceButtons.checkedLanguage();
+    const QOnlineTranslator::Language translationLang = translationButtons.checkedLanguage();
 
     // Insert current translation language to source buttons
     if (checkedTranslationButton == 0)
@@ -318,6 +326,14 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
     } else {
         disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
     }
+}
+
+void MainWindow::on_engineComboBox_currentIndexChanged(int index)
+{
+    Q_UNUSED(index)
+
+    if (ui->autoTranslateCheckBox->isChecked())
+        translateTimer.start(SHORT_AUTOTRANSLATE_DELAY);
 }
 
 void MainWindow::on_playSourceButton_clicked()
@@ -416,6 +432,7 @@ void MainWindow::translateSelectedText()
         connect(this, &MainWindow::stopTranslationButtonEnabled, popup->stopTranslationButton(), &QToolButton::setEnabled);
 
         // Connect popup events
+        connect(popup->engineCombobox(), qOverload<int>(&QComboBox::currentIndexChanged), ui->engineComboBox, &QComboBox::setCurrentIndex);
         connect(popup->sourceButtons(), &LangButtonGroup::buttonChecked, &sourceButtons, &LangButtonGroup::checkButton);
         connect(popup->translationButtons(), &LangButtonGroup::buttonChecked, &translationButtons, &LangButtonGroup::checkButton);
         connect(popup->autoSourceButton(), &QToolButton::triggered, this, &MainWindow::on_autoSourceButton_triggered);
@@ -696,7 +713,8 @@ void MainWindow::changeEvent(QEvent *event)
 // Translate text in window
 bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang)
 {
-    onlineTranslator.translate(ui->sourceEdit->toPlainText(), QOnlineTranslator::Google, translationLang, sourceLang, uiLang);
+    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    onlineTranslator.translate(ui->sourceEdit->toPlainText(), engine, translationLang, sourceLang, uiLang);
 
     // Check for error
     if (onlineTranslator.error()) {
@@ -713,7 +731,8 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
 // Translate text outside the window
 bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Language translationLang)
 {
-    onlineTranslator.translate(text, QOnlineTranslator::Google, translationLang);
+    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    onlineTranslator.translate(text, engine, translationLang);
 
     if (onlineTranslator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator.errorString());
@@ -811,7 +830,8 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     }
 
     playlist->clear();
-    const auto media = onlineTranslator.media(text, QOnlineTranslator::Google, lang);
+    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    const auto media = onlineTranslator.media(text, engine, lang);
     if (onlineTranslator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), onlineTranslator.errorString());
         errorMessage.exec();
