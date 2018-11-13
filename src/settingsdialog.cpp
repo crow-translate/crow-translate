@@ -73,17 +73,6 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
-    // Connect sliders to their spin boxes
-    connect(ui->popupOpacitySlider, &QSlider::valueChanged, ui->popupOpacitySpinBox, &QSpinBox::setValue);
-    connect(ui->popupOpacitySpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupOpacitySlider, &QSlider::setValue);
-    connect(ui->popupWidthSlider, &QSlider::valueChanged, ui->popupWidthSpinBox, &QSpinBox::setValue);
-    connect(ui->popupWidthSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupWidthSlider, &QSlider::setValue);
-    connect(ui->popupHeightSlider, &QSlider::valueChanged, ui->popupHeightSpinBox, &QSpinBox::setValue);
-    connect(ui->popupHeightSpinBox, qOverload<int>(&QSpinBox::valueChanged), ui->popupHeightSlider, &QSlider::setValue);
-
-    // Pages selection mechanism
-    connect(ui->pagesListWidget, &QListWidget::currentRowChanged, ui->pagesStackedWidget, &QStackedWidget::setCurrentIndex);
-
 #if defined(Q_OS_WIN)
     // Add information about icons
     papirusTitleLabel.setText(tr("Interface icons:"));
@@ -299,11 +288,23 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     on_resetAllShortcutsButton_clicked();
 }
 
-// Disable (enable) "Start minimized" option when tray mode is disabled (enabled)
-void SettingsDialog::on_trayCheckBox_toggled(bool checked)
+void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
 {
-    ui->startMinimizedCheckBox->setEnabled(checked);
-    ui->startMinimizedCheckBox->setChecked(false);
+    if (index == QNetworkProxy::HttpProxy || index == QNetworkProxy::Socks5Proxy) {
+        ui->proxyHostEdit->setEnabled(true);
+        ui->proxyHostLabel->setEnabled(true);
+        ui->proxyPortLabel->setEnabled(true);
+        ui->proxyPortSpinbox->setEnabled(true);
+        ui->proxyInfoLabel->setEnabled(true);
+        ui->proxyAuthCheckBox->setEnabled(true);
+    } else {
+        ui->proxyHostEdit->setEnabled(false);
+        ui->proxyHostLabel->setEnabled(false);
+        ui->proxyPortLabel->setEnabled(false);
+        ui->proxyPortSpinbox->setEnabled(false);
+        ui->proxyInfoLabel->setEnabled(false);
+        ui->proxyAuthCheckBox->setEnabled(false);
+    }
 }
 
 // Disable (enable) "Custom icon path" option
@@ -326,34 +327,6 @@ void SettingsDialog::on_customTrayIconButton_clicked()
     QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
     if (!file.isEmpty())
         ui->customTrayIconLineEdit->setText(file);
-}
-
-void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
-{
-    if (index == QNetworkProxy::HttpProxy || index == QNetworkProxy::Socks5Proxy) {
-        ui->proxyHostEdit->setEnabled(true);
-        ui->proxyHostLabel->setEnabled(true);
-        ui->proxyPortLabel->setEnabled(true);
-        ui->proxyPortSpinbox->setEnabled(true);
-        ui->proxyInfoLabel->setEnabled(true);
-        ui->proxyAuthCheckBox->setEnabled(true);
-    } else {
-        ui->proxyHostEdit->setEnabled(false);
-        ui->proxyHostLabel->setEnabled(false);
-        ui->proxyPortLabel->setEnabled(false);
-        ui->proxyPortSpinbox->setEnabled(false);
-        ui->proxyInfoLabel->setEnabled(false);
-        ui->proxyAuthCheckBox->setEnabled(false);
-    }
-}
-
-void SettingsDialog::on_proxyAuthCheckBox_toggled(bool checked)
-{
-    ui->proxyUsernameEdit->setEnabled(checked);
-    ui->proxyUsernameLabel->setEnabled(checked);
-    ui->proxyPasswordEdit->setEnabled(checked);
-    ui->proxyPasswordLabel->setEnabled(checked);
-    ui->proxyPasswordInfoLabel->setEnabled(checked);
 }
 
 void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()

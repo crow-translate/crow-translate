@@ -90,7 +90,7 @@ void AppSettings::setTrayIconVisible(bool visible)
 
 bool AppSettings::isStartMinimized()
 {
-    return value("StartMinimized", false).toBool();
+    return value("StartMinimized", true).toBool();
 }
 
 void AppSettings::setStartMinimized(bool minimized)

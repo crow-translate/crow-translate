@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>649</width>
+    <width>664</width>
     <height>318</height>
    </rect>
   </property>
@@ -327,7 +327,8 @@
           <string>Google</string>
          </property>
          <property name="icon">
-          <iconset theme="google-chrome"/>
+          <iconset theme="google-chrome">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </item>
         <item>
@@ -335,7 +336,8 @@
           <string>Yandex</string>
          </property>
          <property name="icon">
-          <iconset theme="yandex-browser"/>
+          <iconset theme="yandex-browser">
+           <normaloff>.</normaloff>.</iconset>
          </property>
         </item>
        </widget>

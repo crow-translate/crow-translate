@@ -46,13 +46,10 @@ private slots:
     // UI
     void on_dialogBox_accepted();
     void on_resetSettingsButton_clicked();
-    void on_trayCheckBox_toggled(bool checked);
+    void on_proxyTypeComboBox_currentIndexChanged(int index);
 
     void on_trayIconComboBox_currentIndexChanged(int index);
     void on_customTrayIconButton_clicked();
-
-    void on_proxyTypeComboBox_currentIndexChanged(int index);
-    void on_proxyAuthCheckBox_toggled(bool checked);
 
     void on_shortcutsTreeWidget_itemSelectionChanged();
     void on_shortcutSequenceEdit_editingFinished();

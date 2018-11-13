@@ -217,9 +217,6 @@
              <property name="text">
               <string>Show tray icon</string>
              </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -229,9 +226,6 @@
              </property>
              <property name="text">
               <string>Start minimized</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -1307,9 +1301,6 @@
               <height>200</height>
              </size>
             </property>
-            <property name="text">
-             <string/>
-            </property>
             <property name="scaledContents">
              <bool>true</bool>
             </property>
@@ -1534,6 +1525,230 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pagesListWidget</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>pagesStackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupOpacitySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupOpacitySpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>476</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>723</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupOpacitySpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupOpacitySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>723</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>476</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupWidthSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupWidthSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>483</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupWidthSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupWidthSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>732</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>483</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupHeightSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupHeightSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>483</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupHeightSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupHeightSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>732</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>483</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyUsernameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>259</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>36</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyUsernameLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordInfoLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>startMinimizedCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>startMinimizedCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>182</y>
     </hint>
    </hints>
   </connection>
