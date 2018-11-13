@@ -327,8 +327,8 @@
           <string>Google</string>
          </property>
          <property name="icon">
-          <iconset theme="google-chrome">
-           <normaloff>.</normaloff>.</iconset>
+          <iconset resource="../data/resources.qrc">
+           <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
          </property>
         </item>
         <item>
@@ -336,8 +336,8 @@
           <string>Yandex</string>
          </property>
          <property name="icon">
-          <iconset theme="yandex-browser">
-           <normaloff>.</normaloff>.</iconset>
+          <iconset resource="../data/resources.qrc">
+           <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
          </property>
         </item>
        </widget>
@@ -490,6 +490,8 @@
   <tabstop>copyAllTranslationButton</tabstop>
   <tabstop>settingsButton</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../data/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>

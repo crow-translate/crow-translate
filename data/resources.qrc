@@ -112,5 +112,7 @@
         <file>icons/flags/pap.svg</file>
         <file>icons/flags/tt.svg</file>
         <file>icons/flags/udm.svg</file>
+        <file>icons/engines/google.svg</file>
+        <file>icons/engines/yandex.svg</file>
     </qresource>
 </RCC>

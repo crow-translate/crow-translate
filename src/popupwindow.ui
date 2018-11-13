@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>390</width>
+    <width>405</width>
     <height>296</height>
    </rect>
   </property>
@@ -303,7 +303,8 @@
          <string>Google</string>
         </property>
         <property name="icon">
-         <iconset theme="google"/>
+         <iconset resource="../data/resources.qrc">
+          <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
         </property>
        </item>
        <item>
@@ -311,7 +312,8 @@
          <string>Yandex</string>
         </property>
         <property name="icon">
-         <iconset theme="yandex-browser"/>
+         <iconset resource="../data/resources.qrc">
+          <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
         </property>
        </item>
       </widget>
@@ -379,6 +381,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../data/resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
