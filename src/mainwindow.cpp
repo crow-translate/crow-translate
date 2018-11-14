@@ -104,10 +104,13 @@ MainWindow::MainWindow(QWidget *parent) :
     // Get UI language for translation
     uiLang = QOnlineTranslator::language(QLocale());
 
-    // Load settings
+    // Load app settings
     loadSettings();
+
+    // Load main window settings
     AppSettings settings;
     restoreGeometry(settings.mainWindowGeometry());
+    ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
 
 #if defined(Q_OS_WIN)
     // Check date for updates
@@ -729,9 +732,6 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
 void MainWindow::loadSettings()
 {
     AppSettings settings;
-
-    // Autotranslation
-    ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
 
     // System tray icon
     const QString iconName = settings.trayIconName();
