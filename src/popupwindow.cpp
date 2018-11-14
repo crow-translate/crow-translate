@@ -22,6 +22,7 @@
 
 #include <QScreen>
 #include <QClipboard>
+#include <QCloseEvent>
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
@@ -29,9 +30,11 @@
 #include "ui_popupwindow.h"
 #include "appsettings.h"
 #include "mainwindow.h"
+#include "addlangdialog.h"
+#include "singleapplication.h"
 
-PopupWindow::PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent) :
-    QWidget(parent, Qt::Popup),
+PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent) :
+    QWidget(parent, Qt::Window | Qt::FramelessWindowHint),
     ui(new Ui::PopupWindow)
 {
     ui->setupUi(this);
@@ -79,10 +82,6 @@ PopupWindow::PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, Lan
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     closeWindowsShortcut.setKey(settings.closeWindowHotkey());
     connect(&closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
-
-    // Add languages to auto-language buttons
-    ui->autoSourceButton->setMenu(languagesMenu);
-    ui->autoTranslationButton->setMenu(languagesMenu);
 }
 
 PopupWindow::~PopupWindow()
@@ -105,9 +104,9 @@ QComboBox *PopupWindow::engineCombobox()
     return ui->engineComboBox;
 }
 
-QToolButton *PopupWindow::autoSourceButton()
+QToolButton *PopupWindow::addSourceLangButton()
 {
-    return ui->autoSourceButton;
+    return ui->addSourceLangButton;
 }
 
 QToolButton *PopupWindow::playSourceButton()
@@ -125,9 +124,9 @@ QToolButton *PopupWindow::copySourceButton()
     return ui->copySourceButton;
 }
 
-QToolButton *PopupWindow::autoTranslationButton()
+QToolButton *PopupWindow::addTranslationLangButton()
 {
-    return ui->autoTranslationButton;
+    return ui->addTranslationLangButton;
 }
 
 QToolButton *PopupWindow::playTranslationButton()
@@ -183,4 +182,15 @@ void PopupWindow::showEvent(QShowEvent *event)
 
     move(position);
     QWidget::showEvent(event);
+}
+
+bool PopupWindow::event(QEvent *event)
+{
+    // Close window when focus is lost
+    if (event->type() == QEvent::WindowDeactivate) {
+        // Do not close the window if the language selection menu is active
+        if (QApplication::activeModalWidget() == nullptr)
+            close();
+    }
+    return QWidget::event(event);
 }

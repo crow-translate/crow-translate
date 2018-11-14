@@ -32,7 +32,7 @@
 #include "appsettings.h"
 #include "ui_settingsdialog.h"
 
-SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
+SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
 {
@@ -54,9 +54,12 @@ SettingsDialog::SettingsDialog(QMenu *languagesMenu, QWidget *parent) :
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
-    foreach (const auto language, languagesMenu->actions()) {
-        ui->primaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
-        ui->secondaryLanguageComboBox->addItem(language->icon(), language->text(), language->data());
+    for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
+        const auto lang = static_cast<QOnlineTranslator::Language>(i);
+        const QIcon langIcon(":/icons/flags/" + QOnlineTranslator::languageCode(lang) + ".svg");
+
+        ui->primaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
+        ui->secondaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
     }
 
     // Set maximum and minimum values for the size of the popup window

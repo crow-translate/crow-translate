@@ -37,6 +37,7 @@
 #include "appsettings.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
+#include "addlangdialog.h"
 
 constexpr int AUTOTRANSLATE_DELAY = 500; // Used when changing text
 constexpr int SHORT_AUTOTRANSLATE_DELAY = 300; // Used when changing language
@@ -99,11 +100,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Timer for automatic translation
     translateTimer.setSingleShot(true);
     connect(&translateTimer, &QTimer::timeout, this, &MainWindow::translateTimerExpires);
-
-    // Add languages menu to auto-language buttons
-    languagesMenu.addActions(languagesList());
-    ui->autoSourceButton->setMenu(&languagesMenu);
-    ui->autoTranslationButton->setMenu(&languagesMenu);
 
     // Get UI language for translation
     uiLang = QOnlineTranslator::language(QLocale());
@@ -313,7 +309,7 @@ void MainWindow::on_swapButton_clicked()
 
 void MainWindow::on_settingsButton_clicked()
 {
-    SettingsDialog config(&languagesMenu, this);
+    SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted)
         loadSettings();
 }
@@ -400,16 +396,6 @@ void MainWindow::on_copyAllTranslationButton_clicked()
         qDebug() << tr("Text field is empty");
 }
 
-void MainWindow::on_autoSourceButton_triggered(QAction *language)
-{
-    sourceButtons.insertLanguage(language->data().value<QOnlineTranslator::Language>());
-}
-
-void MainWindow::on_autoTranslationButton_triggered(QAction *language)
-{
-    translationButtons.insertLanguage(language->data().value<QOnlineTranslator::Language>());
-}
-
 void MainWindow::translateSelectedText()
 {
     // Prevent pressing the translation hotkey again
@@ -418,7 +404,7 @@ void MainWindow::translateSelectedText()
     AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
-        PopupWindow *popup = new PopupWindow(&languagesMenu, &sourceButtons, &translationButtons, this);
+        PopupWindow *popup = new PopupWindow(&sourceButtons, &translationButtons, this);
 
         // Connect main window events to popup events
         connect(&sourceButtons, &LangButtonGroup::buttonChecked, popup->sourceButtons(), &LangButtonGroup::checkButton);
@@ -435,8 +421,8 @@ void MainWindow::translateSelectedText()
         connect(popup->engineCombobox(), qOverload<int>(&QComboBox::currentIndexChanged), ui->engineComboBox, &QComboBox::setCurrentIndex);
         connect(popup->sourceButtons(), &LangButtonGroup::buttonChecked, &sourceButtons, &LangButtonGroup::checkButton);
         connect(popup->translationButtons(), &LangButtonGroup::buttonChecked, &translationButtons, &LangButtonGroup::checkButton);
-        connect(popup->autoSourceButton(), &QToolButton::triggered, this, &MainWindow::on_autoSourceButton_triggered);
-        connect(popup->autoTranslationButton(), &QToolButton::triggered, this, &MainWindow::on_autoTranslationButton_triggered);
+        connect(popup->addSourceLangButton(), &QToolButton::clicked, ui->addSourceLangButton, &QToolButton::click);
+        connect(popup->addTranslationLangButton(), &QToolButton::clicked, ui->addTranslationLangButton, &QToolButton::click);
         connect(popup->swapButton(), &QToolButton::clicked, this, &MainWindow::on_swapButton_clicked);
         connect(popup->playSourceButton(), &QToolButton::clicked, this, &MainWindow::on_playSourceButton_clicked);
         connect(popup->stopSourceButton(), &QToolButton::clicked, &sourcePlayer, &QMediaPlayer::stop);
@@ -701,9 +687,6 @@ void MainWindow::changeEvent(QEvent *event)
         trayMenu.actions().at(0)->setText(tr("Show window"));
         trayMenu.actions().at(1)->setText(tr("Settings"));
         trayMenu.actions().at(2)->setText(tr("Exit"));
-
-        languagesMenu.clear();
-        languagesMenu.addActions(languagesList());
         break;
     default:
         QMainWindow::changeEvent(event);
@@ -842,27 +825,6 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     player->play();
 }
 
-QList<QAction *> MainWindow::languagesList()
-{
-    // Load all languages and codes from QOnlineTranslator
-    QList<QAction *> languagesList;
-    for (int i = 1; i != QOnlineTranslator::Zulu; ++i) {
-        const auto Language = static_cast<QOnlineTranslator::Language>(i);
-        QAction *action = new QAction();
-        action->setText(QOnlineTranslator::languageString(Language));
-        action->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(Language) + ".svg"));
-        action->setData(Language);
-        languagesList.append(action);
-    }
-
-    // Sort alphabetically
-    std::sort(languagesList.begin() + 1, languagesList.end(), [](QAction *first, QAction *second) {
-        return first->text() < second->text();
-    });
-
-    return languagesList;
-}
-
 QString MainWindow::selectedText()
 {
     QString selectedText;
@@ -934,4 +896,18 @@ QString MainWindow::selectedText()
         QApplication::clipboard()->setText(originalClipboard.toString());
 #endif
     return selectedText;
+}
+
+void MainWindow::on_addSourceLangButton_clicked()
+{
+    AddLangDialog langDialog(this);
+    if (langDialog.exec() == QDialog::Accepted)
+        sourceButtons.insertLanguage(langDialog.language());
+}
+
+void MainWindow::on_addTranslationLangButton_clicked()
+{
+    AddLangDialog langDialog(this);
+    if (langDialog.exec() == QDialog::Accepted)
+        translationButtons.insertLanguage(langDialog.language());
 }

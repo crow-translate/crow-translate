@@ -6,7 +6,8 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Added
-- Yandex support
+- Yandex support.
+- New convenient languages menu.
 - An option for CLI to read source text from file.
 - An option for CLI to read stdin.
 - Placeholders.

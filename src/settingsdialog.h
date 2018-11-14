@@ -39,7 +39,7 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = nullptr);
+    explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
 private slots:

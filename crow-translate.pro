@@ -33,19 +33,22 @@ SOURCES += \
     src/mainwindow.cpp \
     src/popupwindow.cpp \
     src/appsettings.cpp \
-    src/langbuttongroup.cpp
+    src/langbuttongroup.cpp \
+    src/addlangdialog.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
     src/popupwindow.h \
     src/appsettings.h \
-    src/langbuttongroup.h
+    src/langbuttongroup.h \
+    src/addlangdialog.h
 
 FORMS += \
     src/settingsdialog.ui \
     src/mainwindow.ui \
-    src/popupwindow.ui
+    src/popupwindow.ui \
+    src/addlangdialog.ui
 
 RESOURCES += \
     data/resources.qrc

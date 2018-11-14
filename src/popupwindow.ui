@@ -24,64 +24,36 @@
       <number>0</number>
      </property>
      <item>
+      <widget class="QToolButton" name="addSourceLangButton">
+       <property name="icon">
+        <iconset theme="add">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QToolButton" name="autoSourceButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string notr="true">auto</string>
-       </property>
        <property name="checkable">
         <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
-        <bool>true</bool>
-       </property>
-       <property name="popupMode">
-        <enum>QToolButton::MenuButtonPopup</enum>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextOnly</enum>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="firstSourceButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
        <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="secondSourceButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
        <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
         <bool>true</bool>
        </property>
       </widget>
@@ -98,9 +70,6 @@
         <string/>
        </property>
        <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
         <bool>true</bool>
        </property>
       </widget>
@@ -159,9 +128,6 @@
        <property name="checkable">
         <bool>true</bool>
        </property>
-       <property name="autoExclusive">
-        <bool>true</bool>
-       </property>
       </widget>
      </item>
      <item>
@@ -176,9 +142,6 @@
         <string/>
        </property>
        <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
         <bool>true</bool>
        </property>
       </widget>
@@ -197,33 +160,20 @@
        <property name="checkable">
         <bool>true</bool>
        </property>
-       <property name="autoExclusive">
+      </widget>
+     </item>
+     <item>
+      <widget class="QToolButton" name="autoTranslationButton">
+       <property name="checkable">
         <bool>true</bool>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="autoTranslationButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="toolTip">
-        <string notr="true">auto</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
-        <bool>true</bool>
-       </property>
-       <property name="popupMode">
-        <enum>QToolButton::MenuButtonPopup</enum>
-       </property>
-       <property name="toolButtonStyle">
-        <enum>Qt::ToolButtonTextOnly</enum>
+      <widget class="QToolButton" name="addTranslationLangButton">
+       <property name="icon">
+        <iconset theme="add">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
@@ -300,7 +250,7 @@
       <widget class="QComboBox" name="engineComboBox">
        <item>
         <property name="text">
-         <string>Google</string>
+         <string notr="true">Google</string>
         </property>
         <property name="icon">
          <iconset resource="../data/resources.qrc">
@@ -309,7 +259,7 @@
        </item>
        <item>
         <property name="text">
-         <string>Yandex</string>
+         <string notr="true">Yandex</string>
         </property>
         <property name="icon">
          <iconset resource="../data/resources.qrc">

@@ -68,8 +68,8 @@ private slots:
     void on_copyTranslationButton_clicked();
     void on_copyAllTranslationButton_clicked();
 
-    void on_autoSourceButton_triggered(QAction *language);
-    void on_autoTranslationButton_triggered(QAction *language);
+    void on_addSourceLangButton_clicked();
+    void on_addTranslationLangButton_clicked();
 
     // Shortcuts
     void translateSelectedText();
@@ -107,7 +107,6 @@ private:
     // Helper functions
     void loadSettings();
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
-    QList<QAction *> languagesList();
     QString selectedText();
 
     Ui::MainWindow *ui;
@@ -135,7 +134,6 @@ private:
 
     QMenu trayMenu{this};
     QSystemTrayIcon trayIcon{this};
-    QMenu languagesMenu{this};
     QTimer translateTimer{this};
 };
 

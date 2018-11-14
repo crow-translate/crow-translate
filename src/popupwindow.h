@@ -39,19 +39,19 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent = nullptr);
+    explicit PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent = nullptr);
     ~PopupWindow() override;
 
     QTextEdit *translationEdit();
     QToolButton *swapButton();
     QComboBox *engineCombobox();
 
-    QToolButton *autoSourceButton();
+    QToolButton *addSourceLangButton();
     QToolButton *playSourceButton();
     QToolButton *stopSourceButton();
     QToolButton *copySourceButton();
 
-    QToolButton *autoTranslationButton();
+    QToolButton *addTranslationLangButton();
     QToolButton *playTranslationButton();
     QToolButton *stopTranslationButton();
     QToolButton *copyTranslationButton();
@@ -62,6 +62,8 @@ public:
 
 private:
     void showEvent(QShowEvent *event) override;
+    bool event(QEvent *event) override;
+//    void closeEvent(QCloseEvent *event) override;
 
     Ui::PopupWindow *ui;
     QShortcut closeWindowsShortcut{this};

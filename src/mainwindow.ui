@@ -25,64 +25,30 @@
        <number>0</number>
       </property>
       <item>
+       <widget class="QToolButton" name="addSourceLangButton">
+        <property name="icon">
+         <iconset theme="add">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QToolButton" name="autoSourceButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip">
-         <string notr="true">auto</string>
-        </property>
         <property name="checkable">
          <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::MenuButtonPopup</enum>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextOnly</enum>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="firstSourceButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="secondSourceButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
@@ -92,19 +58,7 @@
         <property name="enabled">
          <bool>true</bool>
         </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
@@ -144,86 +98,46 @@
       </item>
       <item>
        <widget class="QToolButton" name="firstTranslationButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
          <bool>true</bool>
         </property>
         <property name="autoRepeat">
          <bool>false</bool>
         </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="secondTranslationButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="thirdTranslationButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text">
-         <string/>
-        </property>
         <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
          <bool>true</bool>
         </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="autoTranslationButton">
+        <property name="checkable">
+         <bool>true</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="addTranslationLangButton">
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip">
-         <string notr="true">auto</string>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoExclusive">
-         <bool>true</bool>
-        </property>
-        <property name="popupMode">
-         <enum>QToolButton::MenuButtonPopup</enum>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextOnly</enum>
+        <property name="icon">
+         <iconset theme="add">
+          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -324,7 +238,7 @@
        <widget class="QComboBox" name="engineComboBox">
         <item>
          <property name="text">
-          <string>Google</string>
+          <string notr="true">Google</string>
          </property>
          <property name="icon">
           <iconset resource="../data/resources.qrc">
@@ -333,7 +247,7 @@
         </item>
         <item>
          <property name="text">
-          <string>Yandex</string>
+          <string notr="true">Yandex</string>
          </property>
          <property name="icon">
           <iconset resource="../data/resources.qrc">
@@ -422,9 +336,6 @@
       <property name="toolTip">
        <string>Swap languages</string>
       </property>
-      <property name="text">
-       <string>Swap languages</string>
-      </property>
       <property name="icon">
        <iconset theme="object-flip-horizontal">
         <normaloff>.</normaloff>.</iconset>
@@ -440,9 +351,6 @@
        </sizepolicy>
       </property>
       <property name="toolTip">
-       <string>Translate</string>
-      </property>
-      <property name="text">
        <string>Translate</string>
       </property>
       <property name="icon">
@@ -470,7 +378,6 @@
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
   <tabstop>sourceEdit</tabstop>
-  <tabstop>autoSourceButton</tabstop>
   <tabstop>firstSourceButton</tabstop>
   <tabstop>secondSourceButton</tabstop>
   <tabstop>thirdSourceButton</tabstop>
@@ -478,7 +385,6 @@
   <tabstop>firstTranslationButton</tabstop>
   <tabstop>secondTranslationButton</tabstop>
   <tabstop>thirdTranslationButton</tabstop>
-  <tabstop>autoTranslationButton</tabstop>
   <tabstop>translateButton</tabstop>
   <tabstop>translationEdit</tabstop>
   <tabstop>playSourceButton</tabstop>
