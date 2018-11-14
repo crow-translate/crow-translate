@@ -111,6 +111,7 @@ MainWindow::MainWindow(QWidget *parent) :
     AppSettings settings;
     restoreGeometry(settings.mainWindowGeometry());
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
+    ui->engineComboBox->setCurrentIndex(settings.currentEngine());
 
 #if defined(Q_OS_WIN)
     // Check date for updates
@@ -143,6 +144,7 @@ MainWindow::~MainWindow()
     AppSettings settings;
     settings.setMainWindowGeometry(saveGeometry());
     settings.setAutoTranslateEnabled(ui->autoTranslateCheckBox->isChecked());
+    settings.setCurrentEngine(static_cast<AppSettings::Engine>(ui->engineComboBox->currentIndex()));
     delete ui;
 }
 

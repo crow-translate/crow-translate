@@ -38,6 +38,11 @@ public:
         MainWindow
     };
     Q_ENUM(WindowMode)
+    enum Engine {
+        Google,
+        Yandex
+    };
+    Q_ENUM(Engine)
 #ifdef Q_OS_WIN
     enum Interval {
         Day,
@@ -216,12 +221,15 @@ public:
     int checkedButton(LangButtonGroup *group);
     void setCheckedButton(LangButtonGroup *group, int id);
 
-    // Other settings
+    // Main window settings
     QByteArray mainWindowGeometry();
     void setMainWindowGeometry(const QByteArray &geometry);
 
     bool isAutoTranslateEnabled();
     void setAutoTranslateEnabled(bool enable);
+
+    Engine currentEngine();
+    void setCurrentEngine(Engine currentEngine);
 
 private:
     static QTranslator appTranslator;

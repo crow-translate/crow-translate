@@ -547,3 +547,13 @@ void AppSettings::setAutoTranslateEnabled(bool enable)
 {
     setValue("AutoTranslate", enable);
 }
+
+AppSettings::Engine AppSettings::currentEngine()
+{
+    return value("CurrentEngine", Google).value<Engine>();
+}
+
+void AppSettings::setCurrentEngine(AppSettings::Engine currentEngine)
+{
+    setValue("CurrentEngine", currentEngine);
+}
