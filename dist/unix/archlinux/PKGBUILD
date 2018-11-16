@@ -1,7 +1,7 @@
 # Maintainer: Shatur95 <genaloner@gmail.com>
 
 pkgname=crow-translate-git
-pkgver=1.0.3
+pkgver=2.0.0
 pkgrel=1
 pkgdesc="A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more"
 arch=('x86_64')
