@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>545</height>
+    <height>552</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -693,6 +693,13 @@
             <widget class="QCheckBox" name="translationTransliterationCheckBox">
              <property name="text">
               <string>Show translation transliteration</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
+             <property name="text">
+              <string>Show source transcription</string>
              </property>
             </widget>
            </item>

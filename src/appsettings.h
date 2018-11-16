@@ -116,6 +116,9 @@ public:
     bool showTranslationTranslit();
     void setShowTranslationTranslit(bool show);
 
+    bool showSourceTranscription();
+    void setShowSourceTranscription(bool show);
+
     bool showTranslationOptions();
     void setShowTranslationOptions(bool show);
 

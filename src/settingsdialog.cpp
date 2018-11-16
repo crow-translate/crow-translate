@@ -133,6 +133,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(settings.showSourceTranslit());
     ui->translationTransliterationCheckBox->setChecked(settings.showTranslationTranslit());
+    ui->sourceTranscriptionCheckBox->setChecked(settings.showSourceTranscription());
     ui->translationOptionsCheckBox->setChecked(settings.showTranslationOptions());
     ui->definitionsCheckBox->setChecked(settings.showDefinitions());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
@@ -215,6 +216,7 @@ void SettingsDialog::on_dialogBox_accepted()
     // Translation settings
     settings.setShowSourceTranslit(ui->sourceTransliterationCheckBox->isChecked());
     settings.setShowTranslationTranslit(ui->translationTransliterationCheckBox->isChecked());
+    settings.setShowSourceTranscription(ui->sourceTranscriptionCheckBox->isChecked());
     settings.setShowTranslationOptions(ui->translationOptionsCheckBox->isChecked());
     settings.setShowDefinitions(ui->definitionsCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
@@ -274,6 +276,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     // Translation settings
     ui->sourceTransliterationCheckBox->setChecked(true);
     ui->translationTransliterationCheckBox->setChecked(true);
+    ui->sourceTranscriptionCheckBox->setChecked(true);
     ui->translationOptionsCheckBox->setChecked(true);
     ui->definitionsCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));

@@ -229,11 +229,18 @@ void MainWindow::on_translateButton_clicked()
     if (!onlineTranslator.sourceTranslit().isEmpty() && settings.showSourceTranslit())
         ui->translationEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
 
+    // Show transcription
+    if (!onlineTranslator.sourceTranscription().isEmpty() && settings.showSourceTranscription())
+        ui->translationEdit->append("<font color=\"grey\">[" + onlineTranslator.sourceTranscription() + "]</font>");
+
     ui->translationEdit->append(""); // Add new line before translation options
 
     // Show translation options
     if (!onlineTranslator.dictionaryList().isEmpty() && settings.showTranslationOptions()) {
+        // Label
         ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator.source() + "</i> – " + tr("translation options:") + "</font>");
+
+        // Print words for each type of speech
         foreach (const auto translationOptions, onlineTranslator.dictionaryList()) {
             ui->translationEdit->append("<b>" + translationOptions.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;

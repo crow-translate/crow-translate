@@ -278,6 +278,16 @@ void AppSettings::setShowTranslationTranslit(bool show)
     setValue("Translation/ShowTranslationTranslit", show);
 }
 
+bool AppSettings::showSourceTranscription()
+{
+    return value("Translation/ShowSourceTranscription", true).toBool();
+}
+
+void AppSettings::setShowSourceTranscription(bool show)
+{
+    setValue("Translation/ShowSourceTranscription", show);
+}
+
 bool AppSettings::showTranslationOptions()
 {
     return value("Translation/ShowTranslationOptions", true).toBool();
