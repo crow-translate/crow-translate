@@ -19,7 +19,7 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
-    <widget class="QLineEdit" name="searchLineEdit">
+    <widget class="QLineEdit" name="searchEdit">
      <property name="placeholderText">
       <string>Filter</string>
      </property>

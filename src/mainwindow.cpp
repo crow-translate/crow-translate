@@ -192,7 +192,7 @@ void MainWindow::on_translateButton_clicked()
         return;
 
     // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
-    if (ui->autoTranslationButton->isChecked() && onlineTranslator.sourceLanguage() == onlineTranslator.translationLanguage()) {
+    if (ui->autoTranslationButton->isChecked() && translator.sourceLanguage() == translator.translationLanguage()) {
         auto primaryLanguage = settings.primaryLanguage();
         auto secondaryLanguage = settings.secondaryLanguage();
         if (primaryLanguage == QOnlineTranslator::Auto)
@@ -213,35 +213,35 @@ void MainWindow::on_translateButton_clicked()
 
     // Display languages on "Auto" buttons.
     if (ui->autoSourceButton->isChecked()) {
-        sourceButtons.setLanguage(0, onlineTranslator.sourceLanguage());
+        sourceButtons.setLanguage(0, translator.sourceLanguage());
         connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
     }
 
     if (ui->autoTranslationButton->isChecked())
-        translationButtons.setLanguage(0, onlineTranslator.translationLanguage());
+        translationButtons.setLanguage(0, translator.translationLanguage());
     else
         translationButtons.setLanguage(0, QOnlineTranslator::Auto);
 
     // Show translation and transcription
-    ui->translationEdit->setHtml(onlineTranslator.translation().toHtmlEscaped().replace("\n", "<br>"));
-    if (!onlineTranslator.translationTranslit().isEmpty() && settings.showTranslationTranslit())
-        ui->translationEdit->append("<font color=\"grey\"><i>/" + onlineTranslator.translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
-    if (!onlineTranslator.sourceTranslit().isEmpty() && settings.showSourceTranslit())
-        ui->translationEdit->append("<font color=\"grey\"><i><b>(" + onlineTranslator.sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
+    ui->translationEdit->setHtml(translator.translation().toHtmlEscaped().replace("\n", "<br>"));
+    if (!translator.translationTranslit().isEmpty() && settings.showTranslationTranslit())
+        ui->translationEdit->append("<font color=\"grey\"><i>/" + translator.translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
+    if (!translator.sourceTranslit().isEmpty() && settings.showSourceTranslit())
+        ui->translationEdit->append("<font color=\"grey\"><i><b>(" + translator.sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
 
     // Show transcription
-    if (!onlineTranslator.sourceTranscription().isEmpty() && settings.showSourceTranscription())
-        ui->translationEdit->append("<font color=\"grey\">[" + onlineTranslator.sourceTranscription() + "]</font>");
+    if (!translator.sourceTranscription().isEmpty() && settings.showSourceTranscription())
+        ui->translationEdit->append("<font color=\"grey\">[" + translator.sourceTranscription() + "]</font>");
 
     ui->translationEdit->append(""); // Add new line before translation options
 
     // Show translation options
-    if (!onlineTranslator.dictionaryList().isEmpty() && settings.showTranslationOptions()) {
+    if (!translator.dictionaryList().isEmpty() && settings.showTranslationOptions()) {
         // Label
-        ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator.source() + "</i> – " + tr("translation options:") + "</font>");
+        ui->translationEdit->append("<font color=\"grey\"><i>" + translator.source() + "</i> – " + tr("translation options:") + "</font>");
 
         // Print words for each type of speech
-        foreach (const auto translationOptions, onlineTranslator.dictionaryList()) {
+        foreach (const auto translationOptions, translator.dictionaryList()) {
             ui->translationEdit->append("<b>" + translationOptions.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
@@ -275,9 +275,9 @@ void MainWindow::on_translateButton_clicked()
     }
 
     // Show definitions
-    if (!onlineTranslator.definitionsList().isEmpty() && settings.showDefinitions()) {
-        ui->translationEdit->append("<font color=\"grey\"><i>" + onlineTranslator.source() + "</i> – " + tr("definitions:") + "</font>");
-        foreach (const auto definition, onlineTranslator.definitionsList()) {
+    if (!translator.definitionsList().isEmpty() && settings.showDefinitions()) {
+        ui->translationEdit->append("<font color=\"grey\"><i>" + translator.source() + "</i> – " + tr("definitions:") + "</font>");
+        foreach (const auto definition, translator.definitionsList()) {
             ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
@@ -315,7 +315,7 @@ void MainWindow::on_swapButton_clicked()
         translationButtons.insertLanguage(sourceLang);
 
     // Copy translation to source text
-    ui->sourceEdit->setPlainText(onlineTranslator.translation());
+    ui->sourceEdit->setPlainText(translator.translation());
     ui->sourceEdit->moveCursor(QTextCursor::End);
 }
 
@@ -369,7 +369,7 @@ void MainWindow::on_playTranslationButton_clicked()
         translationPlayer.play();
         break;
     case QMediaPlayer::StoppedState:
-        play(&translationPlayer, &translationPlaylist, onlineTranslator.translation(), onlineTranslator.translationLanguage());
+        play(&translationPlayer, &translationPlaylist, translator.translation(), translator.translationLanguage());
         break;
     }
 }
@@ -387,7 +387,7 @@ void MainWindow::on_stopTranslationButton_clicked()
 void MainWindow::on_copySourceButton_clicked()
 {
     if (!ui->sourceEdit->toPlainText().isEmpty())
-        QApplication::clipboard()->setText(onlineTranslator.source());
+        QApplication::clipboard()->setText(translator.source());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -395,7 +395,7 @@ void MainWindow::on_copySourceButton_clicked()
 void MainWindow::on_copyTranslationButton_clicked()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        QApplication::clipboard()->setText(onlineTranslator.translation());
+        QApplication::clipboard()->setText(translator.translation());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -487,13 +487,13 @@ void MainWindow::copyTranslatedSelection()
 
     on_translateButton_clicked();
 
-    if (onlineTranslator.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator.errorString());
+    if (translator.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), translator.errorString());
         errorMessage.exec();
         return;
     }
 
-    QApplication::clipboard()->setText(onlineTranslator.translation());
+    QApplication::clipboard()->setText(translator.translation());
 }
 
 void MainWindow::playSelection()
@@ -515,7 +515,7 @@ void MainWindow::playTranslatedSelection()
     if (!translateOutside(selection, primaryLanguage))
         return;
 
-    if (onlineTranslator.sourceLanguage() == primaryLanguage) {
+    if (translator.sourceLanguage() == primaryLanguage) {
         QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
         if (secondaryLanguage == QOnlineTranslator::Auto)
             secondaryLanguage = uiLang;
@@ -524,7 +524,7 @@ void MainWindow::playTranslatedSelection()
             return;
     }
 
-    play(&selectionPlayer, &selectionPlaylist, onlineTranslator.translation(), onlineTranslator.translationLanguage());
+    play(&selectionPlayer, &selectionPlaylist, translator.translation(), translator.translationLanguage());
 }
 
 void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
@@ -709,14 +709,14 @@ void MainWindow::changeEvent(QEvent *event)
 bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang)
 {
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    onlineTranslator.translate(ui->sourceEdit->toPlainText(), engine, translationLang, sourceLang, uiLang);
+    translator.translate(ui->sourceEdit->toPlainText(), engine, translationLang, sourceLang, uiLang);
 
     // Check for error
-    if (onlineTranslator.error()) {
-        ui->translationEdit->setHtml(onlineTranslator.errorString());
+    if (translator.error()) {
+        ui->translationEdit->setHtml(translator.errorString());
         ui->translateButton->setEnabled(true);
         sourceButtons.setLanguage(0, QOnlineTranslator::Auto);
-        emit translationTextChanged(onlineTranslator.errorString());
+        emit translationTextChanged(translator.errorString());
         return false;
     } else {
         return true;
@@ -727,10 +727,10 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
 bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Language translationLang)
 {
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    onlineTranslator.translate(text, engine, translationLang);
+    translator.translate(text, engine, translationLang);
 
-    if (onlineTranslator.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), onlineTranslator.errorString());
+    if (translator.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), translator.errorString());
         errorMessage.exec();
         return false;
     } else {
@@ -824,9 +824,9 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     playlist->clear();
     AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    const QList<QMediaContent> media = onlineTranslator.media(text, engine, lang, settings.speaker(), settings.emotion());
-    if (onlineTranslator.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), onlineTranslator.errorString());
+    const QList<QMediaContent> media = translator.media(text, engine, lang, settings.speaker(), settings.emotion());
+    if (translator.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), translator.errorString());
         errorMessage.exec();
         return;
     }

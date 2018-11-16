@@ -111,7 +111,7 @@ private:
 
     Ui::MainWindow *ui;
 
-    QOnlineTranslator onlineTranslator{this};
+    QOnlineTranslator translator{this};
     QOnlineTranslator::Language uiLang;
 
     QMediaPlayer sourcePlayer{this};

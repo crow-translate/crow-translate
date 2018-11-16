@@ -82,7 +82,8 @@
         <string>Speech synthesis</string>
        </property>
        <property name="icon">
-        <iconset theme="audio-speakers"/>
+        <iconset theme="audio-speakers">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
@@ -123,7 +124,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
-            <layout class="QHBoxLayout" name="windowModeHorizontalLayout">
+            <layout class="QHBoxLayout" name="windowModeLayout">
              <item>
               <widget class="QLabel" name="windowModeLabel">
                <property name="text">
@@ -146,7 +147,7 @@
               </widget>
              </item>
              <item>
-              <spacer name="windowModeHorizontalSpacer">
+              <spacer name="windowModeSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -161,7 +162,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="languageHorizontalLayout">
+            <layout class="QHBoxLayout" name="languageLayout">
              <item>
               <widget class="QLabel" name="languageLabel">
                <property name="sizePolicy">
@@ -203,7 +204,7 @@
               </widget>
              </item>
              <item>
-              <spacer name="languageHorizontalSpacer">
+              <spacer name="languageSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -570,7 +571,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
-            <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
+            <layout class="QHBoxLayout" name="trayIconLayout">
              <item>
               <widget class="QLabel" name="trayIconLabel">
                <property name="text">
@@ -619,7 +620,7 @@
               </widget>
              </item>
              <item>
-              <spacer name="trayIconHorizontalSpacer">
+              <spacer name="trayIconSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -646,7 +647,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="customTrayIconLineEdit">
+              <widget class="QLineEdit" name="customTrayIconEdit">
                <property name="enabled">
                 <bool>false</bool>
                </property>
@@ -691,14 +692,14 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
            <item>
-            <widget class="QCheckBox" name="sourceTransliterationCheckBox">
+            <widget class="QCheckBox" name="sourceTranslitCheckBox">
              <property name="text">
               <string>Show source transliteration</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="translationTransliterationCheckBox">
+            <widget class="QCheckBox" name="translationTranslitCheckBox">
              <property name="text">
               <string>Show translation transliteration</string>
              </property>
@@ -809,7 +810,7 @@
       <widget class="QWidget" name="speechPage">
        <layout class="QVBoxLayout" name="verticalLayout_15">
         <item>
-         <widget class="QGroupBox" name="speechBox">
+         <widget class="QGroupBox" name="speechGroupBox">
           <property name="title">
            <string>Speech synthesis</string>
           </property>
@@ -932,7 +933,7 @@
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Emotion:</string>
+                <string>Emotional connotation:</string>
                </property>
               </widget>
              </item>
@@ -991,7 +992,8 @@
                 <string>Play</string>
                </property>
                <property name="icon">
-                <iconset theme="media-playback-start"/>
+                <iconset theme="media-playback-start">
+                 <normaloff>.</normaloff>.</iconset>
                </property>
               </widget>
              </item>
@@ -1018,7 +1020,7 @@
       <widget class="QWidget" name="connectionPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QGroupBox" name="proxyBox">
+         <widget class="QGroupBox" name="proxyGroupBox">
           <property name="title">
            <string>Proxy server</string>
           </property>
@@ -1534,7 +1536,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="aboutBox">
+           <widget class="QGroupBox" name="aboutGroupBox">
             <property name="title">
              <string notr="true">Crow Translate</string>
             </property>
@@ -1703,7 +1705,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDialogButtonBox" name="dialogBox">
+      <widget class="QDialogButtonBox" name="dialogButtonBox">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -1721,7 +1723,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>dialogBox</sender>
+   <sender>dialogButtonBox</sender>
    <signal>accepted()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
@@ -1737,7 +1739,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dialogBox</sender>
+   <sender>dialogButtonBox</sender>
    <signal>rejected()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>

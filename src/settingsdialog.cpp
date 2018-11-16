@@ -130,11 +130,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
 
     ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.trayIconName()));
-    ui->customTrayIconLineEdit->setText(settings.customIconPath());
+    ui->customTrayIconEdit->setText(settings.customIconPath());
 
     // Translation settings
-    ui->sourceTransliterationCheckBox->setChecked(settings.showSourceTranslit());
-    ui->translationTransliterationCheckBox->setChecked(settings.showTranslationTranslit());
+    ui->sourceTranslitCheckBox->setChecked(settings.showSourceTranslit());
+    ui->translationTranslitCheckBox->setChecked(settings.showTranslationTranslit());
     ui->sourceTranscriptionCheckBox->setChecked(settings.showSourceTranscription());
     ui->translationOptionsCheckBox->setChecked(settings.showTranslationOptions());
     ui->definitionsCheckBox->setChecked(settings.showDefinitions());
@@ -193,7 +193,7 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::on_dialogBox_accepted()
+void SettingsDialog::on_dialogButtonBox_accepted()
 {
     // General settings
     AppSettings settings;
@@ -217,11 +217,11 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setWindowControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->windowControlsComboBox->currentIndex()));
 
     settings.setTrayIconName(ui->trayIconComboBox->currentData().toString());
-    settings.setCustomIconPath(ui->customTrayIconLineEdit->text());
+    settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
     // Translation settings
-    settings.setShowSourceTranslit(ui->sourceTransliterationCheckBox->isChecked());
-    settings.setShowTranslationTranslit(ui->translationTransliterationCheckBox->isChecked());
+    settings.setShowSourceTranslit(ui->sourceTranslitCheckBox->isChecked());
+    settings.setShowTranslationTranslit(ui->translationTranslitCheckBox->isChecked());
     settings.setShowSourceTranscription(ui->sourceTranscriptionCheckBox->isChecked());
     settings.setShowTranslationOptions(ui->translationOptionsCheckBox->isChecked());
     settings.setShowDefinitions(ui->definitionsCheckBox->isChecked());
@@ -281,11 +281,11 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->windowControlsComboBox->setCurrentIndex(0);
 
     ui->trayIconComboBox->setCurrentIndex(0);
-    ui->customTrayIconLineEdit->setText("");
+    ui->customTrayIconEdit->setText("");
 
     // Translation settings
-    ui->sourceTransliterationCheckBox->setChecked(true);
-    ui->translationTransliterationCheckBox->setChecked(true);
+    ui->sourceTranslitCheckBox->setChecked(true);
+    ui->translationTranslitCheckBox->setChecked(true);
     ui->sourceTranscriptionCheckBox->setChecked(true);
     ui->translationOptionsCheckBox->setChecked(true);
     ui->definitionsCheckBox->setChecked(true);
@@ -332,21 +332,21 @@ void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
 {
     if (index == 3) {
         ui->customTrayIconLabel->setEnabled(true);
-        ui->customTrayIconLineEdit->setEnabled(true);
+        ui->customTrayIconEdit->setEnabled(true);
         ui->customTrayIconButton->setEnabled(true);
     } else {
         ui->customTrayIconLabel->setEnabled(false);
-        ui->customTrayIconLineEdit->setEnabled(false);
+        ui->customTrayIconEdit->setEnabled(false);
         ui->customTrayIconButton->setEnabled(false);
     }
 }
 
 void SettingsDialog::on_customTrayIconButton_clicked()
 {
-    QString path = ui->customTrayIconLineEdit->text().left(ui->customTrayIconLineEdit->text().lastIndexOf("/"));
+    QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf("/"));
     QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
     if (!file.isEmpty())
-        ui->customTrayIconLineEdit->setText(file);
+        ui->customTrayIconEdit->setText(file);
 }
 
 // Diable voice options for Google

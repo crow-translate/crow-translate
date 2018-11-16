@@ -28,7 +28,7 @@ AddLangDialog::~AddLangDialog()
     delete ui;
 }
 
-void AddLangDialog::on_searchLineEdit_textChanged(const QString &text)
+void AddLangDialog::on_searchEdit_textChanged(const QString &text)
 {
     bool isItemSelected = false;
     for (int i = 0; i < ui->langListWidget->count(); ++i) {
@@ -53,7 +53,7 @@ QOnlineTranslator::Language AddLangDialog::language() const
     return m_lang;
 }
 
-void AddLangDialog::on_AddLangDialog_accepted()
+void AddLangDialog::on_dialogButtonBox_accepted()
 {
     m_lang = ui->langListWidget->currentItem()->data(Qt::UserRole).value<QOnlineTranslator::Language>();
 }

@@ -20,8 +20,8 @@ public:
     QOnlineTranslator::Language language() const;
 
 private slots:
-    void on_searchLineEdit_textChanged(const QString &text);
-    void on_AddLangDialog_accepted();
+    void on_searchEdit_textChanged(const QString &text);
+    void on_dialogButtonBox_accepted();
 
 private:
     Ui::AddLangDialog *ui;
