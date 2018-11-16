@@ -186,6 +186,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, settings.defaultStopTranslationHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
+
+    // Check current date
+    if (const int currentDay = QDate::currentDate().dayOfYear(); currentDay == 365 || currentDay == 1)
+        ui->testSpeechEdit->setText(tr("Happy New Year!"));
 }
 
 SettingsDialog::~SettingsDialog()
