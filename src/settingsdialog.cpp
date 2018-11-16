@@ -86,8 +86,8 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     papirusLabel.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
     papirusLabel.setOpenExternalLinks(true);
 
-    ui->aboutBox->layout()->addWidget(&papirusTitleLabel);
-    ui->aboutBox->layout()->addWidget(&papirusLabel);
+    ui->aboutGroupBox->layout()->addWidget(&papirusTitleLabel);
+    ui->aboutGroupBox->layout()->addWidget(&papirusLabel);
 
     // Add updater options
     checkForUpdatesLabel.setText(tr("Check for updates:"));
@@ -113,7 +113,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
 #if defined(Q_OS_WIN)
-    checkForUpdatesComboBox.setCurrentIndex(checkForUpdatesComboBox->findData(settings.checkForUpdatesInterval()));
+    checkForUpdatesComboBox.setCurrentIndex(checkForUpdatesComboBox.findData(settings.checkForUpdatesInterval()));
 #endif
     ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
@@ -477,6 +477,6 @@ void SettingsDialog::checkForUpdates()
         settings.setLastUpdateCheckDate(QDate::currentDate());
     }
 
-    checkForUpdatesButton->setEnabled(true);
+    checkForUpdatesButton.setEnabled(true);
 }
 #endif
