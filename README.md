@@ -3,8 +3,8 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API and much more.
-You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google and Yandex translate API and much more.
+You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API. ") used in this project. 
 
 ## Content
 
@@ -25,7 +25,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="dist/unix/screenshots/linux-plasma-screenshot-settings.png?raw=true" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://www.deviantart.com/ub18aux/art/Low-Poly-Poly-Art-Island-477366752">Low-Poly (Poly Art) Island</a></sub></sup>
+  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub></sup>
 </p>
 
 ## Features
@@ -70,7 +70,7 @@ The program also supports the console interface.
 |----------------------------|--------------------------------------------------------------------------------------------------|
 | `-h, --help`               | Displays help                                                                                    |
 | `-v, --version`            | Displays version information                                                                     |
-| `-s, --source <code>`      | Specifies the source language (by default, Google will try to determine the language on its own) |
+| `-s, --source <code>`      | Specifies the source language (by default, backend will try to determine the language on its own) |
 | `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
 | `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                      |
 | `-e, --engine <engine>`    | Specifies the translator engine ('google' or 'yandex'), Google is used by default                |
@@ -93,7 +93,7 @@ If you do not pass startup arguments to the program, the GUI starts.
 ### Libraries
 
 This project uses following third-party libraries:
-* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google Translate API for Qt5.
+* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google and Yandex translate API for Qt5.
 * [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
 * [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
@@ -134,7 +134,7 @@ Than you can install it as usual. The script will tell you where the package wil
 
 ### Arch Linux and derivatives
 
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google Translate API") from AUR.
+You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google and Yandex translate API") from AUR.
 
 ### Manual building
 
