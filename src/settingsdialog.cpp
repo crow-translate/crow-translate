@@ -23,6 +23,7 @@
 #include <QNetworkProxy>
 #include <QFileDialog>
 #include <QScreen>
+#include <QMessageBox>
 
 #if defined(Q_OS_WIN)
 #include "singleapplication.h"
@@ -41,6 +42,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
     ui->versionLabel->setText(qApp->applicationVersion());
+    m_player.setPlaylist(&m_playlist);
 
     // Set item data in comboboxes
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
@@ -139,6 +141,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
 
+    // Speech synthesis settings
+    ui->speakerComboBox->setCurrentIndex(settings.speaker());
+    ui->emotionComboBox->setCurrentIndex(settings.emotion());
+
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
 
@@ -222,6 +228,10 @@ void SettingsDialog::on_dialogBox_accepted()
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
 
+    // Speech synthesis settings
+    settings.setSpeaker(static_cast<QOnlineTranslator::Speaker>(ui->speakerComboBox->currentIndex()));
+    settings.setEmotion(static_cast<QOnlineTranslator::Emotion>(ui->emotionComboBox->currentIndex()));
+
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
     settings.setProxyHost(ui->proxyHostEdit->text());
@@ -282,6 +292,10 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
 
+    // Speech synthesis settings
+    ui->speakerComboBox->setCurrentIndex(QOnlineTranslator::Zahar);
+    ui->emotionComboBox->setCurrentIndex(QOnlineTranslator::Neutral);
+
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(1);
     ui->proxyHostEdit->setText("");
@@ -333,6 +347,50 @@ void SettingsDialog::on_customTrayIconButton_clicked()
     QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
     if (!file.isEmpty())
         ui->customTrayIconLineEdit->setText(file);
+}
+
+// Diable voice options for Google
+void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
+{
+    if (index == QOnlineTranslator::Google) {
+        ui->speakerLabel->setEnabled(false);
+        ui->speakerComboBox->setEnabled(false);
+        ui->emotionLabel->setEnabled(false);
+        ui->emotionComboBox->setEnabled(false);
+    } else {
+        ui->speakerLabel->setEnabled(true);
+        ui->speakerComboBox->setEnabled(true);
+        ui->emotionLabel->setEnabled(true);
+        ui->emotionComboBox->setEnabled(true);
+    }
+}
+
+// Play test text
+void SettingsDialog::on_testSpeechButton_clicked()
+{
+    // Clear previous playlist (this will stop playback)
+    m_playlist.clear();
+
+    if (ui->testSpeechEdit->text().isEmpty()) {
+        QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
+        errorMessage.exec();
+        return;
+    }
+
+    QOnlineTranslator translator;
+    QList<QMediaContent> media = translator.media(ui->testSpeechEdit->text(),
+                                                  static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
+                                                  QOnlineTranslator::Auto,
+                                                  static_cast<QOnlineTranslator::Speaker>(ui->speakerComboBox->currentIndex()),
+                                                  static_cast<QOnlineTranslator::Emotion>(ui->emotionComboBox->currentIndex()));
+    if (translator.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), translator.errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    m_playlist.addMedia(media);
+    m_player.play();
 }
 
 void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()

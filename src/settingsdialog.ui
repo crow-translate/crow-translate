@@ -48,7 +48,7 @@
        <enum>QListView::Adjust</enum>
       </property>
       <property name="currentRow">
-       <number>0</number>
+       <number>-1</number>
       </property>
       <item>
        <property name="text">
@@ -75,6 +75,14 @@
        <property name="icon">
         <iconset theme="preferences-desktop-locale">
          <normaloff>.</normaloff>.</iconset>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Speech synthesis</string>
+       </property>
+       <property name="icon">
+        <iconset theme="audio-speakers"/>
        </property>
       </item>
       <item>
@@ -106,7 +114,7 @@
       </item>
      </widget>
      <widget class="QStackedWidget" name="pagesStackedWidget">
-      <widget class="QWidget" name="generalWidget">
+      <widget class="QWidget" name="generalPage">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QGroupBox" name="generalGroupBox">
@@ -798,7 +806,216 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="connectionWidget">
+      <widget class="QWidget" name="speechPage">
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QGroupBox" name="speechBox">
+          <property name="title">
+           <string>Speech synthesis</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <layout class="QHBoxLayout" name="engineLayout">
+             <item>
+              <widget class="QLabel" name="engineLabel">
+               <property name="text">
+                <string>Select engine to configure:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="engineComboBox">
+               <item>
+                <property name="text">
+                 <string notr="true">Google</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">Yandex</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="engineSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="speakerLayout">
+             <item>
+              <widget class="QLabel" name="speakerLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Speaker:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="speakerComboBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Zahar</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ermil</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jane</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Oksana</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Alyss</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Omazh</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="speakerSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="emotionLayout">
+             <item>
+              <widget class="QLabel" name="emotionLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Emotion:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="emotionComboBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Neutral</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Good</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Evil</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="emotionSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="testSpeechLayout">
+             <item>
+              <widget class="QLineEdit" name="testSpeechEdit">
+               <property name="text">
+                <string>This is an example of speech synthesis.</string>
+               </property>
+               <property name="placeholderText">
+                <string>Test voice</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="testSpeechButton">
+               <property name="text">
+                <string>Play</string>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start"/>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="speechSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="connectionPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QGroupBox" name="proxyBox">
@@ -993,7 +1210,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="shortcutsWidget">
+      <widget class="QWidget" name="shortcutsPage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QTreeWidget" name="shortcutsTreeWidget">
@@ -1296,7 +1513,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="aboutWidget">
+      <widget class="QWidget" name="aboutPage">
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
          <layout class="QHBoxLayout" name="aboutLayout">

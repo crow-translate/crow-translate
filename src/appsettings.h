@@ -131,6 +131,13 @@ public:
     QOnlineTranslator::Language secondaryLanguage();
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
+    // Speech synthesis settings
+    QOnlineTranslator::Speaker speaker();
+    void setSpeaker(QOnlineTranslator::Speaker speaker);
+
+    QOnlineTranslator::Emotion emotion();
+    void setEmotion(QOnlineTranslator::Emotion emotion);
+
     // Connection settings
     QNetworkProxy::ProxyType proxyType();
     void setProxyType(QNetworkProxy::ProxyType type);

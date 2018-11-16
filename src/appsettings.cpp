@@ -328,6 +328,26 @@ void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
     setValue("Translation/SecondaryLanguage", lang);
 }
 
+QOnlineTranslator::Speaker AppSettings::speaker()
+{
+    return value("Translation/Speaker", QOnlineTranslator::Zahar).value<QOnlineTranslator::Speaker>();
+}
+
+void AppSettings::setSpeaker(QOnlineTranslator::Speaker speaker)
+{
+    setValue("Translation/Speaker", speaker);
+}
+
+QOnlineTranslator::Emotion AppSettings::emotion()
+{
+    return value("Translation/Emotion", QOnlineTranslator::Neutral).value<QOnlineTranslator::Emotion>();
+}
+
+void AppSettings::setEmotion(QOnlineTranslator::Emotion emotion)
+{
+    setValue("Translation/Emotion", emotion);
+}
+
 QNetworkProxy::ProxyType AppSettings::proxyType()
 {
     return static_cast<QNetworkProxy::ProxyType>(value("Connection/ProxyType", QNetworkProxy::DefaultProxy).toInt());

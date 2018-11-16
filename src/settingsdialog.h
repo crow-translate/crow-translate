@@ -23,6 +23,8 @@
 
 #include <QDialog>
 #include <QMenu>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
 
 #if defined(Q_OS_WIN)
 #include <QLabel>
@@ -51,6 +53,9 @@ private slots:
     void on_trayIconComboBox_currentIndexChanged(int index);
     void on_customTrayIconButton_clicked();
 
+    void on_engineComboBox_currentIndexChanged(int index);
+    void on_testSpeechButton_clicked();
+
     void on_shortcutsTreeWidget_itemSelectionChanged();
     void on_shortcutSequenceEdit_editingFinished();
     void on_acceptShortcutButton_clicked();
@@ -61,9 +66,10 @@ private slots:
 #if defined(Q_OS_WIN)
     void checkForUpdates();
 #endif
-
 private:
     Ui::SettingsDialog *ui;
+    QMediaPlayer m_player{this};
+    QMediaPlaylist m_playlist{this};
 
 #if defined(Q_OS_WIN)
     QLabel papirusTitleLabel;

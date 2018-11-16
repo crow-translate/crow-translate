@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent) :
     translationButtons.setName("Translation");
     translationButtons.loadLanguages();
 
-    // Setup toggle logic
+    // Toggle language logic
     connect(&translationButtons, &LangButtonGroup::buttonChecked, [&](int id) {
         checkLanguageButton(&translationButtons, &sourceButtons, id);
     });
@@ -822,8 +822,9 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     }
 
     playlist->clear();
+    AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    const auto media = onlineTranslator.media(text, engine, lang);
+    const QList<QMediaContent> media = onlineTranslator.media(text, engine, lang, settings.speaker(), settings.emotion());
     if (onlineTranslator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), onlineTranslator.errorString());
         errorMessage.exec();
