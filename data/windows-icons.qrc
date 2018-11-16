@@ -30,5 +30,6 @@
         <file>icons/Papirus/16x16/actions/dialog-ok-apply.svg</file>
         <file>icons/Papirus/16x16/actions/edit-clear.svg</file>
         <file>icons/Papirus/32x32/apps/audio-speakers.svg</file>
+        <file>icons/Papirus/16x16/actions/add.svg</file>
     </qresource>
 </RCC>
