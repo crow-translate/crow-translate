@@ -52,7 +52,7 @@ void AddLangDialog::on_searchEdit_textChanged(const QString &text)
     bool isItemSelected = false;
     for (int i = 0; i < ui->langListWidget->count(); ++i) {
         QListWidgetItem *item = ui->langListWidget->item(i);
-        if (item->text().contains(text)) {
+        if (item->text().contains(text, Qt::CaseInsensitive)) {
             item->setHidden(false);
             if (!isItemSelected) {
                 item->setSelected(true); // Select first unhidden item
