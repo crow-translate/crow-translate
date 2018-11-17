@@ -21,9 +21,9 @@
 #ifndef LANGBUTTONGROUP_H
 #define LANGBUTTONGROUP_H
 
-#include <QButtonGroup>
-
 #include "qonlinetranslator.h"
+
+#include <QButtonGroup>
 
 class LangButtonGroup : public QButtonGroup
 {

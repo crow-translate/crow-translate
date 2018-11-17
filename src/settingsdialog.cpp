@@ -19,19 +19,18 @@
  */
 
 #include "settingsdialog.h"
+#include "ui_settingsdialog.h"
 
-#include <QNetworkProxy>
-#include <QFileDialog>
-#include <QScreen>
-#include <QMessageBox>
-
+#include "appsettings.h"
 #if defined(Q_OS_WIN)
 #include "singleapplication.h"
 #include "updaterwindow.h"
 #endif
 
-#include "appsettings.h"
-#include "ui_settingsdialog.h"
+#include <QNetworkProxy>
+#include <QFileDialog>
+#include <QScreen>
+#include <QMessageBox>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -80,32 +79,33 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
 #if defined(Q_OS_WIN)
     // Add information about icons
-    papirusTitleLabel.setText(tr("Interface icons:"));
+    m_papirusTitleLabel.setText(tr("Interface icons:"));
 
-    papirusLabel.setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
-    papirusLabel.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    papirusLabel.setOpenExternalLinks(true);
+    m_papirusLabel.setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
+    m_papirusLabel.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    m_papirusLabel.setOpenExternalLinks(true);
 
-    ui->aboutGroupBox->layout()->addWidget(&papirusTitleLabel);
-    ui->aboutGroupBox->layout()->addWidget(&papirusLabel);
+    ui->aboutGroupBox->layout()->addWidget(&m_papirusTitleLabel);
+    ui->aboutGroupBox->layout()->addWidget(&m_papirusLabel);
 
     // Add updater options
-    checkForUpdatesLabel.setText(tr("Check for updates:"));
+    m_checkForUpdatesLabel.setText(tr("Check for updates:"));
 
-    checkForUpdatesComboBox.addItem(tr("Every day"), AppSettings::Day);
-    checkForUpdatesComboBox.addItem(tr("Every week"), AppSettings::Week);
-    checkForUpdatesComboBox.addItem(tr("Every month"), AppSettings::Month);
-    checkForUpdatesComboBox.addItem(tr("Never"), AppSettings::Never);
+    m_checkForUpdatesComboBox.addItem(tr("Every day"));
+    m_checkForUpdatesComboBox.addItem(tr("Every week"));
+    m_checkForUpdatesComboBox.addItem(tr("Every month"));
+    m_checkForUpdatesComboBox.addItem(tr("Never"));
 
-    checkForUpdatesButton.setText(tr("Check now"));
-    checkForUpdatesButton.setToolTip(tr("Check for updates now"));
-    connect(&checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
+    m_checkForUpdatesButton.setText(tr("Check now"));
+    m_checkForUpdatesButton.setToolTip(tr("Check for updates now"));
+    connect(&m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
 
-    ui->checkForUpdatesLayout->addWidget(&checkForUpdatesLabel);
-    ui->checkForUpdatesLayout->addWidget(&checkForUpdatesComboBox);
-    ui->checkForUpdatesLayout->addWidget(&checkForUpdatesButton);
-    ui->checkForUpdatesLayout->addWidget(&checkForUpdatesStatusLabel);
-    ui->checkForUpdatesLayout->addStretch();
+    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesLabel);
+    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesComboBox);
+    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesButton);
+    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesStatusLabel);
+    m_checkForUpdatesLayout.addStretch();
+    static_cast<QVBoxLayout*>(ui->generalGroupBox->layout())->insertLayout(2, &m_checkForUpdatesLayout);
 #endif
 
     // General settings
@@ -113,7 +113,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
 #if defined(Q_OS_WIN)
-    checkForUpdatesComboBox.setCurrentIndex(checkForUpdatesComboBox.findData(settings.checkForUpdatesInterval()));
+    m_checkForUpdatesComboBox.setCurrentIndex(settings.checkForUpdatesInterval());
 #endif
     ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
@@ -207,7 +207,7 @@ void SettingsDialog::on_dialogButtonBox_accepted()
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #if defined(Q_OS_WIN)
-    settings.setCheckForUpdatesInterval(checkForUpdatesComboBox.currentData().value<AppSettings::Interval>());
+    settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox.currentIndex()));
 #endif
 
     // Interface settings
@@ -271,7 +271,7 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 #if defined(Q_OS_WIN)
-    checkForUpdatesComboBox.setCurrentIndex(checkForUpdatesComboBox.findData(AppSettings::Month));
+    m_checkForUpdatesComboBox.setCurrentIndex(AppSettings::Month);
 #endif
 
     // Interface settings
@@ -449,8 +449,8 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
 #if defined(Q_OS_WIN)
 void SettingsDialog::checkForUpdates()
 {
-    checkForUpdatesButton.setEnabled(false);
-    checkForUpdatesStatusLabel.setText(tr("Checking for updates..."));
+    m_checkForUpdatesButton.setEnabled(false);
+    m_checkForUpdatesStatusLabel.setText(tr("Checking for updates..."));
 
     // Get update information
     auto release = new QGitTag(this);
@@ -460,16 +460,16 @@ void SettingsDialog::checkForUpdates()
     loop.exec();
 
     if (release->error()) {
-        checkForUpdatesStatusLabel.setText("<font color=\"red\">" + release->body() + "</font>");
+        m_checkForUpdatesStatusLabel.setText("<font color=\"red\">" + release->body() + "</font>");
         delete release;
     } else {
         const int installer = release->assetId(".exe");
         if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
-            checkForUpdatesStatusLabel.setText("<font color=\"green\">" + tr("Update available!") + "</font>");
+            m_checkForUpdatesStatusLabel.setText("<font color=\"green\">" + tr("Update available!") + "</font>");
             auto updaterWindow = new UpdaterWindow(release, installer, this);
             updaterWindow->show();
         } else {
-            checkForUpdatesStatusLabel.setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
+            m_checkForUpdatesStatusLabel.setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
             delete release;
         }
 
@@ -477,6 +477,6 @@ void SettingsDialog::checkForUpdates()
         settings.setLastUpdateCheckDate(QDate::currentDate());
     }
 
-    checkForUpdatesButton.setEnabled(true);
+    m_checkForUpdatesButton.setEnabled(true);
 }
 #endif

@@ -21,16 +21,16 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "qonlinetranslator.h"
+#include "langbuttongroup.h"
+#include "qhotkey.h"
+
 #include <QMainWindow>
 #include <QSystemTrayIcon>
 #include <QShortcut>
 #include <QTimer>
 #include <QMediaPlayer>
 #include <QMenu>
-
-#include "qhotkey.h"
-#include "qonlinetranslator.h"
-#include "langbuttongroup.h"
 
 namespace Ui {
 class MainWindow;
@@ -111,30 +111,30 @@ private:
 
     Ui::MainWindow *ui;
 
-    QOnlineTranslator translator{this};
-    QOnlineTranslator::Language uiLang;
+    QOnlineTranslator m_translator{this};
+    QOnlineTranslator::Language m_uiLang;
 
-    QMediaPlayer sourcePlayer{this};
-    QMediaPlayer translationPlayer{this};
-    QMediaPlayer selectionPlayer{this};
-    QMediaPlaylist sourcePlaylist{this};
-    QMediaPlaylist translationPlaylist{this};
-    QMediaPlaylist selectionPlaylist{this};
+    QMediaPlayer m_sourcePlayer{this};
+    QMediaPlayer m_translationPlayer{this};
+    QMediaPlayer m_selectionPlayer{this};
+    QMediaPlaylist m_sourcePlaylist{this};
+    QMediaPlaylist m_translationPlaylist{this};
+    QMediaPlaylist m_selectionPlaylist{this};
 
-    QShortcut closeWindowsShortcut{this};
-    QHotkey translateSelectionHotkey{this};
-    QHotkey playSelectionHotkey{this};
-    QHotkey playTranslatedSelectionHotkey{this};
-    QHotkey stopSelectionHotkey{this};
-    QHotkey showMainWindowHotkey{this};
-    QHotkey copyTranslatedSelectionHotkey{this};
+    QShortcut m_closeWindowsShortcut{this};
+    QHotkey m_translateSelectionHotkey{this};
+    QHotkey m_playSelectionHotkey{this};
+    QHotkey m_playTranslatedSelectionHotkey{this};
+    QHotkey m_stopSelectionHotkey{this};
+    QHotkey m_showMainWindowHotkey{this};
+    QHotkey m_copyTranslatedSelectionHotkey{this};
 
-    LangButtonGroup sourceButtons{this};
-    LangButtonGroup translationButtons{this};
+    LangButtonGroup m_sourceButtons{this};
+    LangButtonGroup m_translationButtons{this};
 
-    QMenu trayMenu{this};
-    QSystemTrayIcon trayIcon{this};
-    QTimer translateTimer{this};
+    QMenu m_trayMenu{this};
+    QSystemTrayIcon m_trayIcon{this};
+    QTimer m_translateTimer{this};
 };
 
 #endif // MAINWINDOW_H

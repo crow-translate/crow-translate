@@ -219,9 +219,6 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="checkForUpdatesLayout"/>
-           </item>
-           <item>
             <widget class="QCheckBox" name="trayCheckBox">
              <property name="text">
               <string>Show tray icon</string>
@@ -1541,6 +1538,32 @@
              <string notr="true">Crow Translate</string>
             </property>
             <layout class="QGridLayout" name="aboutBoxLayout">
+             <item row="11" column="1">
+              <widget class="QLabel" name="flagIconsLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;FlagKit&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="mailLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="versionTitleLabel">
                <property name="text">
@@ -1548,10 +1571,17 @@
                </property>
               </widget>
              </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="mailLabel">
+             <item row="10" column="0">
+              <widget class="QLabel" name="telegramTitleLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;genaloner@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string notr="true">Telegram:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QLabel" name="telegramLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;@Shatur&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="openExternalLinks">
                 <bool>true</bool>
@@ -1568,28 +1598,15 @@
                </property>
               </widget>
              </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="telegramLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;@Shatur&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="telegramTitleLabel">
-               <property name="text">
-                <string notr="true">Telegram:</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="1">
               <widget class="QLabel" name="versionLabel"/>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLabel" name="licenseLabel">
+               <property name="text">
+                <string notr="true">GPL v3 </string>
+               </property>
+              </widget>
              </item>
              <item row="5" column="1">
               <widget class="QLabel" name="nationLabel">
@@ -1612,13 +1629,6 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="licenseLabel">
-               <property name="text">
-                <string notr="true">GPL v3 </string>
-               </property>
-              </widget>
-             </item>
              <item row="11" column="0">
               <widget class="QLabel" name="flagIconsTitleLabel">
                <property name="text">
@@ -1626,36 +1636,23 @@
                </property>
               </widget>
              </item>
-             <item row="11" column="1">
-              <widget class="QLabel" name="flagIconsLabel">
+             <item row="6" column="0">
+              <widget class="QLabel" name="autorTitleLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;FlagKit&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                <string>Autor:</string>
                </property>
               </widget>
              </item>
              <item row="6" column="1">
               <widget class="QLabel" name="autorLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Shatur95&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="openExternalLinks">
                 <bool>true</bool>
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="autorTitleLabel">
-               <property name="text">
-                <string>Autor:</string>
                </property>
               </widget>
              </item>

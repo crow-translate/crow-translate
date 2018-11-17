@@ -25,8 +25,8 @@
 #include <QMenu>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
-
 #if defined(Q_OS_WIN)
+#include <QHBoxLayout>
 #include <QLabel>
 #include <QComboBox>
 #include <QPushButton>
@@ -68,17 +68,21 @@ private slots:
 #endif
 private:
     Ui::SettingsDialog *ui;
+
     QMediaPlayer m_player{this};
     QMediaPlaylist m_playlist{this};
 
 #if defined(Q_OS_WIN)
-    QLabel papirusTitleLabel;
-    QLabel papirusLabel;
-    QLabel checkForUpdatesLabel;
+    // Icon theme info
+    QLabel m_papirusTitleLabel;
+    QLabel m_papirusLabel;
+    QLabel m_checkForUpdatesLabel;
 
-    QComboBox checkForUpdatesComboBox;
-    QPushButton checkForUpdatesButton;
-    QLabel checkForUpdatesStatusLabel;
+    // Check for updates
+    QHBoxLayout m_checkForUpdatesLayout;
+    QComboBox m_checkForUpdatesComboBox;
+    QPushButton m_checkForUpdatesButton;
+    QLabel m_checkForUpdatesStatusLabel;
 #endif
 };
 

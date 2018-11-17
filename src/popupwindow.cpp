@@ -19,6 +19,12 @@
  */
 
 #include "popupwindow.h"
+#include "ui_popupwindow.h"
+
+#include "singleapplication.h"
+#include "appsettings.h"
+#include "mainwindow.h"
+#include "addlangdialog.h"
 
 #include <QScreen>
 #include <QClipboard>
@@ -26,12 +32,6 @@
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
-
-#include "ui_popupwindow.h"
-#include "appsettings.h"
-#include "mainwindow.h"
-#include "addlangdialog.h"
-#include "singleapplication.h"
 
 PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent) :
     QWidget(parent, Qt::Window | Qt::FramelessWindowHint),
@@ -44,18 +44,18 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     resize(settings.popupWidth(), settings.popupHeight());
 
     // Translation button group
-    sourceButtonGroup.addButton(ui->autoSourceButton);
-    sourceButtonGroup.addButton(ui->firstSourceButton);
-    sourceButtonGroup.addButton(ui->secondSourceButton);
-    sourceButtonGroup.addButton(ui->thirdSourceButton);
-    sourceButtonGroup.loadLanguages(sourceGroup);
+    m_sourceButtonGroup.addButton(ui->autoSourceButton);
+    m_sourceButtonGroup.addButton(ui->firstSourceButton);
+    m_sourceButtonGroup.addButton(ui->secondSourceButton);
+    m_sourceButtonGroup.addButton(ui->thirdSourceButton);
+    m_sourceButtonGroup.loadLanguages(sourceGroup);
 
     // Source button group
-    translationButtonGroup.addButton(ui->autoTranslationButton);
-    translationButtonGroup.addButton(ui->firstTranslationButton);
-    translationButtonGroup.addButton(ui->secondTranslationButton);
-    translationButtonGroup.addButton(ui->thirdTranslationButton);
-    translationButtonGroup.loadLanguages(translationGroup);
+    m_translationButtonGroup.addButton(ui->autoTranslationButton);
+    m_translationButtonGroup.addButton(ui->firstTranslationButton);
+    m_translationButtonGroup.addButton(ui->secondTranslationButton);
+    m_translationButtonGroup.addButton(ui->thirdTranslationButton);
+    m_translationButtonGroup.loadLanguages(translationGroup);
 
     // Language buttons style
     Qt::ToolButtonStyle langsStyle = settings.popupLanguagesStyle();
@@ -80,8 +80,8 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     ui->playSourceButton->setShortcut(settings.playSourceHotkey());
     ui->playTranslationButton->setShortcut(settings.playTranslationHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
-    closeWindowsShortcut.setKey(settings.closeWindowHotkey());
-    connect(&closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
+    m_closeWindowsShortcut.setKey(settings.closeWindowHotkey());
+    connect(&m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 }
 
 PopupWindow::~PopupWindow()
@@ -151,12 +151,12 @@ QToolButton *PopupWindow::copyAllTranslationButton()
 
 LangButtonGroup *PopupWindow::sourceButtons()
 {
-    return &sourceButtonGroup;
+    return &m_sourceButtonGroup;
 }
 
 LangButtonGroup *PopupWindow::translationButtons()
 {
-    return &translationButtonGroup;
+    return &m_translationButtonGroup;
 }
 
 // Move popup to cursor and prevent appearing outside the screen

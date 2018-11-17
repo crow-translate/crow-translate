@@ -21,13 +21,13 @@
 #ifndef APPSETTINGS_H
 #define APPSETTINGS_H
 
+#include "qonlinetranslator.h"
+#include "langbuttongroup.h"
+
 #include <QSettings>
 #include <QLocale>
 #include <QNetworkProxy>
 #include <QTranslator>
-
-#include "qonlinetranslator.h"
-#include "langbuttongroup.h"
 
 class AppSettings : private QSettings
 {
@@ -242,7 +242,7 @@ public:
     void setCurrentEngine(Engine currentEngine);
 
 private:
-    static QTranslator appTranslator;
+    static QTranslator m_appTranslator;
 };
 
 #endif // APPSETTINGS_H

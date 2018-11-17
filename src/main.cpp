@@ -18,14 +18,14 @@
  *
  */
 
-#include <QCommandLineParser>
-#include <QFile>
-#include <QRegularExpression>
-
 #include "singleapplication.h"
 #include "appsettings.h"
 #include "qonlinetranslator.h"
 #include "mainwindow.h"
+
+#include <QCommandLineParser>
+#include <QFile>
+#include <QRegularExpression>
 
 bool speak(QOnlineTranslator &translator, const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language);
 

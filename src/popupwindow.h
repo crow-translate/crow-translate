@@ -21,14 +21,14 @@
 #ifndef POPUPWINDOW_H
 #define POPUPWINDOW_H
 
+#include "qonlinetranslator.h"
+#include "langbuttongroup.h"
+
 #include <QMenu>
 #include <QToolButton>
 #include <QTextEdit>
 #include <QShortcut>
 #include <QComboBox>
-
-#include "qonlinetranslator.h"
-#include "langbuttongroup.h"
 
 namespace Ui {
 class PopupWindow;
@@ -63,12 +63,12 @@ public:
 private:
     void showEvent(QShowEvent *event) override;
     bool event(QEvent *event) override;
-//    void closeEvent(QCloseEvent *event) override;
 
     Ui::PopupWindow *ui;
-    QShortcut closeWindowsShortcut{this};
-    LangButtonGroup sourceButtonGroup{this};
-    LangButtonGroup translationButtonGroup{this};
+
+    QShortcut m_closeWindowsShortcut{this};
+    LangButtonGroup m_sourceButtonGroup{this};
+    LangButtonGroup m_translationButtonGroup{this};
 };
 
 #endif // POPUPWINDOW_H

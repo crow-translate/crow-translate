@@ -1,8 +1,7 @@
 #include "addlangdialog.h"
+#include "ui_addlangdialog.h"
 
 #include <QPushButton>
-
-#include "ui_addlangdialog.h"
 
 AddLangDialog::AddLangDialog(QWidget *parent) :
     QDialog(parent),

@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/appsettings.cpp" line="132"/>
+        <location filename="../../src/appsettings.cpp" line="131"/>
         <source>Unable to create autorun file</source>
         <translation>Не удалось создать файл автозапуска</translation>
     </message>
@@ -43,147 +43,147 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.ui" line="151"/>
+        <location filename="../../src/mainwindow.ui" line="157"/>
         <source>Play / pause source text</source>
         <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="307"/>
+        <location filename="../../src/mainwindow.ui" line="313"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="154"/>
-        <location filename="../../src/mainwindow.ui" line="265"/>
+        <location filename="../../src/mainwindow.ui" line="160"/>
+        <location filename="../../src/mainwindow.ui" line="271"/>
         <source>Play</source>
         <translation>Воспроизвести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="168"/>
+        <location filename="../../src/mainwindow.ui" line="174"/>
         <source>Stop source playback</source>
         <translation>Остановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="171"/>
-        <location filename="../../src/mainwindow.ui" line="282"/>
+        <location filename="../../src/mainwindow.ui" line="177"/>
+        <location filename="../../src/mainwindow.ui" line="288"/>
         <source>Stop</source>
         <translation>Остановить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="182"/>
+        <location filename="../../src/mainwindow.ui" line="188"/>
         <source>Copy source text to the clipboard</source>
         <translation>Скопировать исходный текст в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="218"/>
+        <location filename="../../src/mainwindow.ui" line="224"/>
         <source>Source</source>
         <translation>Исходный текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="279"/>
+        <location filename="../../src/mainwindow.ui" line="285"/>
         <source>Stop translation playback</source>
         <translation>Остановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="321"/>
+        <location filename="../../src/mainwindow.ui" line="327"/>
         <source>Application settings</source>
         <translation>Настройки приложения</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="337"/>
+        <location filename="../../src/mainwindow.ui" line="343"/>
         <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="371"/>
+        <location filename="../../src/mainwindow.ui" line="377"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="185"/>
-        <location filename="../../src/mainwindow.ui" line="296"/>
+        <location filename="../../src/mainwindow.ui" line="191"/>
+        <location filename="../../src/mainwindow.ui" line="302"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="196"/>
+        <location filename="../../src/mainwindow.ui" line="202"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="262"/>
+        <location filename="../../src/mainwindow.ui" line="268"/>
         <source>Play / pause translation</source>
         <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="293"/>
+        <location filename="../../src/mainwindow.ui" line="299"/>
         <source>Copy translation to the clipboard</source>
         <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="310"/>
+        <location filename="../../src/mainwindow.ui" line="316"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="324"/>
-        <location filename="../../src/mainwindow.cpp" line="95"/>
-        <location filename="../../src/mainwindow.cpp" line="700"/>
+        <location filename="../../src/mainwindow.ui" line="330"/>
+        <location filename="../../src/mainwindow.cpp" line="93"/>
+        <location filename="../../src/mainwindow.cpp" line="698"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="354"/>
+        <location filename="../../src/mainwindow.ui" line="360"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="94"/>
-        <location filename="../../src/mainwindow.cpp" line="699"/>
+        <location filename="../../src/mainwindow.cpp" line="92"/>
+        <location filename="../../src/mainwindow.cpp" line="697"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="96"/>
-        <location filename="../../src/mainwindow.cpp" line="701"/>
+        <location filename="../../src/mainwindow.cpp" line="94"/>
+        <location filename="../../src/mainwindow.cpp" line="699"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="241"/>
+        <location filename="../../src/mainwindow.cpp" line="239"/>
         <source>translation options:</source>
         <translation>варианты перевода:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="279"/>
+        <location filename="../../src/mainwindow.cpp" line="277"/>
         <source>definitions:</source>
         <translation>определения:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="392"/>
-        <location filename="../../src/mainwindow.cpp" line="400"/>
-        <location filename="../../src/mainwindow.cpp" line="408"/>
+        <location filename="../../src/mainwindow.cpp" line="390"/>
+        <location filename="../../src/mainwindow.cpp" line="398"/>
+        <location filename="../../src/mainwindow.cpp" line="406"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="491"/>
-        <location filename="../../src/mainwindow.cpp" line="733"/>
+        <location filename="../../src/mainwindow.cpp" line="489"/>
+        <location filename="../../src/mainwindow.cpp" line="731"/>
         <source>Unable to translate text</source>
         <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="819"/>
+        <location filename="../../src/mainwindow.cpp" line="817"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="819"/>
+        <location filename="../../src/mainwindow.cpp" line="817"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="829"/>
+        <location filename="../../src/mainwindow.cpp" line="827"/>
         <source>Unable to play text</source>
         <translation>Не удалось воспроизвести текст</translation>
     </message>
@@ -828,8 +828,8 @@
         <translation>Ошибка: Один из языков не поддерживается для этого бэкэнда.</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1445"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1463"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1446"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1464"/>
         <source>Error: Backend systems have detected unusual traffic from your computer network. Please try your request again later.</source>
         <translation>Ошибка: Системы бэкэнда обнаружили подозрительный трафик из вашей компьютерной сети. Повторите попытку позже.</translation>
     </message>
@@ -845,7 +845,7 @@
         <translation>Ошибка: Неподдерживаемый язык для озвучивания.</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1478"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1479"/>
         <source>Error: Unable to parse Yandex SID.</source>
         <translation>Ошибка: Не удалось разобрать Yandex SID.</translation>
     </message>
@@ -1146,8 +1146,8 @@
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="183"/>
+        <location filename="../../src/settingsdialog.cpp" line="56"/>
         <location filename="../../src/settingsdialog.cpp" line="57"/>
-        <location filename="../../src/settingsdialog.cpp" line="58"/>
         <source>&lt;System language&gt;</source>
         <translation>&lt;Язык системы&gt;</translation>
     </message>
@@ -1364,87 +1364,87 @@
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="83"/>
+        <location filename="../../src/settingsdialog.cpp" line="82"/>
         <source>Interface icons:</source>
         <translation>Значки интерфейса:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="93"/>
+        <location filename="../../src/settingsdialog.cpp" line="92"/>
         <source>Check for updates:</source>
         <translation>Проверять обновления:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="100"/>
+        <location filename="../../src/settingsdialog.cpp" line="99"/>
         <source>Check now</source>
         <translation>Проверить сейчас</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="101"/>
+        <location filename="../../src/settingsdialog.cpp" line="100"/>
         <source>Check for updates now</source>
         <translation>Проверить обновления сейчас</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="95"/>
+        <location filename="../../src/settingsdialog.cpp" line="94"/>
         <source>Every day</source>
         <translation>Каждый день</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="96"/>
+        <location filename="../../src/settingsdialog.cpp" line="95"/>
         <source>Every week</source>
         <translation>Каждую неделю</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="97"/>
+        <location filename="../../src/settingsdialog.cpp" line="96"/>
         <source>Every month</source>
         <translation>Каждый месяц</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="98"/>
+        <location filename="../../src/settingsdialog.cpp" line="97"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="192"/>
+        <location filename="../../src/settingsdialog.cpp" line="191"/>
         <source>Happy New Year!</source>
         <translation>С Новым Годом!</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="351"/>
+        <location filename="../../src/settingsdialog.cpp" line="350"/>
         <source>Select icon</source>
         <translation>Выберите значок</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="351"/>
+        <location filename="../../src/settingsdialog.cpp" line="350"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="379"/>
+        <location filename="../../src/settingsdialog.cpp" line="378"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="379"/>
+        <location filename="../../src/settingsdialog.cpp" line="378"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="391"/>
+        <location filename="../../src/settingsdialog.cpp" line="390"/>
         <source>Unable to play text</source>
         <translation>Не удалось воспроизвести текст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="453"/>
+        <location filename="../../src/settingsdialog.cpp" line="452"/>
         <source>Checking for updates...</source>
         <translation>Проверка обновлений...</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="468"/>
+        <location filename="../../src/settingsdialog.cpp" line="467"/>
         <source>Update available!</source>
         <translation>Доступно обновление!</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="472"/>
+        <location filename="../../src/settingsdialog.cpp" line="471"/>
         <source>No updates available.</source>
         <translation>Нет доступных обновлений.</translation>
     </message>
@@ -1497,27 +1497,27 @@
         <translation>Обновить позже</translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="27"/>
+        <location filename="../../src/updaterwindow.cpp" line="29"/>
         <source>Current version:</source>
         <translation>Текущая версия:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="31"/>
+        <location filename="../../src/updaterwindow.cpp" line="33"/>
         <source>Latest version:</source>
         <translation>Последняя версия:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="36"/>
+        <location filename="../../src/updaterwindow.cpp" line="38"/>
         <source>Changelog:</source>
         <translation>Список изменений:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="88"/>
+        <location filename="../../src/updaterwindow.cpp" line="90"/>
         <source>Downloading is complete</source>
         <translation>Загрузка завершена</translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="92"/>
+        <location filename="../../src/updaterwindow.cpp" line="94"/>
         <source>Unable to write file</source>
         <translation>Не удалось записать файл</translation>
     </message>

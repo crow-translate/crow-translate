@@ -1,9 +1,9 @@
 #ifndef ADDLANGDIALOG_H
 #define ADDLANGDIALOG_H
 
-#include <QDialog>
-
 #include "qonlinetranslator.h"
+
+#include <QDialog>
 
 namespace Ui {
 class AddLangDialog;

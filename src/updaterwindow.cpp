@@ -1,26 +1,31 @@
+
+#include "updaterwindow.h"
+#include "ui_updaterwindow.h"
+
+#include "singleapplication.h"
+
 #include <QFile>
 #include <QStandardPaths>
 #include <QProcess>
-
-#include "singleapplication.h"
-#include "updaterwindow.h"
-#include "ui_updaterwindow.h"
 
 UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     QWidget(parent, Qt::Dialog),
     ui(new Ui::UpdaterWindow)
 {
     ui->setupUi(this);
-    this->setWindowModality(Qt::WindowModal);
-    this->setAttribute(Qt::WA_DeleteOnClose);
+    setWindowModality(Qt::WindowModal);
+    setAttribute(Qt::WA_DeleteOnClose);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
+    m_network.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+#endif
 
     // Hide the download progress ui until the download begins
     ui->downloadBar->setVisible(false);
     ui->cancelDownloadButton->setVisible(false);
 
     // Get download information
-    downloadUrl = release->assets().at(installer).url();
-    downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/" + release->assets().at(installer).name();
+    m_downloadUrl = release->assets().at(installer).url();
+    m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/" + release->assets().at(installer).name();
 
     // Show release data
     ui->versionsLabel->setText("<b>"
@@ -54,15 +59,14 @@ void UpdaterWindow::on_downloadButton_clicked()
 
     // Send request
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
-    downloadManager.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
-    reply = downloadManager.get(QNetworkRequest(downloadUrl));
+    m_reply = m_network.get(QNetworkRequest(m_downloadUrl));
 #else
-    QNetworkRequest request(downloadUrl);
+    QNetworkRequest request(m_downloadUrl);
     request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
-    reply = downloadManager->get(request);
+    m_reply = m_network->get(request);
 #endif
 
-    connect(reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
+    connect(m_reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
         ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
     });
 
@@ -72,18 +76,18 @@ void UpdaterWindow::on_downloadButton_clicked()
 
     // Wait until download
     QEventLoop loop;
-    connect(reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
+    connect(m_reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();
 
-    if (reply->error()) {
+    if (m_reply->error()) {
         // Show error
-        ui->updateStatusLabel->setText(reply->errorString());
+        ui->updateStatusLabel->setText(m_reply->errorString());
         ui->downloadButton->setEnabled(true);
     } else {
-        QFile installer(downloadPath);
+        QFile installer(m_downloadPath);
         if (installer.open(QFile::WriteOnly)) {
             // Save file
-            installer.write(reply->readAll());
+            installer.write(m_reply->readAll());
             installer.close();
             ui->updateStatusLabel->setText(tr("Downloading is complete"));
             ui->installButton->setEnabled(true);
@@ -95,12 +99,12 @@ void UpdaterWindow::on_downloadButton_clicked()
         }
     }
 
-    delete reply;
+    delete m_reply;
 }
 
 void UpdaterWindow::on_installButton_clicked()
 {
-    QProcess::startDetached(downloadPath);
+    QProcess::startDetached(m_downloadPath);
     SingleApplication::exit();
 }
 
@@ -111,7 +115,7 @@ void UpdaterWindow::on_updateLaterButton_clicked()
 
 void UpdaterWindow::on_cancelDownloadButton_clicked()
 {
-    reply->abort();
+    m_reply->abort();
     ui->downloadBar->setVisible(false);
     ui->downloadBar->setValue(0);
     ui->cancelDownloadButton->setVisible(false);
