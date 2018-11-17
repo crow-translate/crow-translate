@@ -26,8 +26,7 @@
      <item>
       <widget class="QToolButton" name="addSourceLangButton">
        <property name="icon">
-        <iconset theme="add">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="list-add"/>
        </property>
       </widget>
      </item>
@@ -172,8 +171,7 @@
      <item>
       <widget class="QToolButton" name="addTranslationLangButton">
        <property name="icon">
-        <iconset theme="add">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="list-add"/>
        </property>
       </widget>
      </item>
