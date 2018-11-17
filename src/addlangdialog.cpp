@@ -47,12 +47,12 @@ void AddLangDialog::on_searchEdit_textChanged(const QString &text)
     ui->dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(isItemSelected);
 }
 
+void AddLangDialog::on_AddLangDialog_accepted()
+{
+    m_lang = ui->langListWidget->currentItem()->data(Qt::UserRole).value<QOnlineTranslator::Language>();
+}
+
 QOnlineTranslator::Language AddLangDialog::language() const
 {
     return m_lang;
-}
-
-void AddLangDialog::on_dialogButtonBox_accepted()
-{
-    m_lang = ui->langListWidget->currentItem()->data(Qt::UserRole).value<QOnlineTranslator::Language>();
 }

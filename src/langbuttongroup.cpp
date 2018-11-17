@@ -76,7 +76,7 @@ void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
 void LangButtonGroup::insertLanguage(QOnlineTranslator::Language lang)
 {
     // Exit the function if the current language already has a button
-    for (int i = 0; i < buttons().size(); ++i) {
+    for (int i = 1; i < buttons().size(); ++i) {
         if (lang == language(i)) {
             button(i)->setChecked(true);
             return;

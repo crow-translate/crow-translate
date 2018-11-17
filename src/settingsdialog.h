@@ -46,7 +46,7 @@ public:
 
 private slots:
     // UI
-    void on_dialogButtonBox_accepted();
+    void on_SettingsDialog_accepted();
     void on_resetSettingsButton_clicked();
     void on_proxyTypeComboBox_currentIndexChanged(int index);
 

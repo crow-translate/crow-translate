@@ -197,7 +197,7 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::on_dialogButtonBox_accepted()
+void SettingsDialog::on_SettingsDialog_accepted()
 {
     // General settings
     AppSettings settings;
