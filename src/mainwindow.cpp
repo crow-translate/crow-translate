@@ -239,26 +239,26 @@ void MainWindow::on_translateButton_clicked()
         ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("translation options:") + "</font>");
 
         // Print words for each type of speech
-        foreach (const auto translationOptions, m_translator.dictionaryList()) {
-            ui->translationEdit->append("<b>" + translationOptions.typeOfSpeech() + "</b>");
+        foreach (const QDictionary &dictionary, m_translator.dictionaryList()) {
+            ui->translationEdit->append("<b>" + dictionary.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             ui->translationEdit->textCursor().setBlockFormat(indent);
 
-            for (int i = 0; i <  translationOptions.count(); ++i) {
+            for (int i = 0; i <  dictionary.count(); ++i) {
                 // Show word gender
                 QString wordLine;
-                if (!translationOptions.gender(i).isEmpty())
-                    wordLine.append("<i>" + translationOptions.gender(i) + "</i> ");
+                if (!dictionary.gender(i).isEmpty())
+                    wordLine.append("<i>" + dictionary.gender(i) + "</i> ");
 
                 // Show Word
-                wordLine.append(translationOptions.word(i));
+                wordLine.append(dictionary.word(i));
 
                 // Show word meaning
-                if (!translationOptions.translations(i).isEmpty()) {
+                if (!dictionary.translations(i).isEmpty()) {
                     wordLine.append(": ");
                     wordLine.append("<font color=\"grey\"><i>");
-                    wordLine.append(translationOptions.translations(i));
+                    wordLine.append(dictionary.translations(i));
                     wordLine.append("</i></font>");
                 }
 
@@ -275,7 +275,7 @@ void MainWindow::on_translateButton_clicked()
     // Show definitions
     if (!m_translator.definitionsList().isEmpty() && settings.showDefinitions()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("definitions:") + "</font>");
-        foreach (const auto definition, m_translator.definitionsList()) {
+        foreach (const QDefinition &definition, m_translator.definitionsList()) {
             ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);

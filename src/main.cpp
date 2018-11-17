@@ -100,7 +100,7 @@ int main(int argc, char *argv[])
     auto sourceLang = QOnlineTranslator::language(parser.value("source"));
     auto uiLang = QOnlineTranslator::language(parser.value("locale"));
     QVector<QOnlineTranslator::Language> translationLangs;
-    foreach (QString language, parser.value("translation").split("+")) {
+    foreach (const QString &language, parser.value("translation").split("+")) {
         translationLangs << QOnlineTranslator::language(language);
     }
 
@@ -110,7 +110,7 @@ int main(int argc, char *argv[])
         // Read from stdin first
         if (parser.isSet("stdin")) {
             QString stdinText = QTextStream(stdin).readAll();
-            foreach (auto filePath,  stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
+            foreach (const QString &filePath,  stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
                 QFile file(filePath);
                 if (file.exists()) {
                     if (file.open(QFile::ReadOnly))
@@ -124,7 +124,7 @@ int main(int argc, char *argv[])
         }
 
         // Read from arguments
-        foreach (auto filePath,  parser.positionalArguments()) {
+        foreach (const QString &filePath,  parser.positionalArguments()) {
             QFile file(filePath);
             if (file.exists()) {
                 if (file.open(QFile::ReadOnly))
@@ -169,7 +169,7 @@ int main(int argc, char *argv[])
 
         // Play translation in all languages
         if (parser.isSet("speak-translation")) {
-            foreach (auto translationLang, translationLangs) {
+            foreach (QOnlineTranslator::Language translationLang, translationLangs) {
                 // Speak into each target language
                 translator.translate(text, engine, translationLang, sourceLang, uiLang);
                 out << "Translation into " << translator.translationLanguageString() << ":" << endl;
@@ -219,15 +219,15 @@ int main(int argc, char *argv[])
         // Show translation options
         if (!translator.dictionaryList().isEmpty()) {
             out << translator.source() << " - translation options:" << endl;
-            foreach (auto optionType, translator.dictionaryList()) {
-                out << optionType.typeOfSpeech() << endl;
-                for (auto i = 0; i < optionType.count(); i++) {
+            foreach (const QDictionary &dictionary, translator.dictionaryList()) {
+                out << dictionary.typeOfSpeech() << endl;
+                for (auto i = 0; i < dictionary.count(); i++) {
                     out << "\t";
-                    if (!optionType.gender(i).isEmpty())
-                        out << optionType.gender(i) << " ";
-                    out << optionType.word(i) << ": ";
+                    if (!dictionary.gender(i).isEmpty())
+                        out << dictionary.gender(i) << " ";
+                    out << dictionary.word(i) << ": ";
 
-                    out << optionType.translations(i) << endl;
+                    out << dictionary.translations(i) << endl;
                 }
                 out << endl;
             }
@@ -236,7 +236,7 @@ int main(int argc, char *argv[])
         // Show definitions
         if (!translator.definitionsList().isEmpty()) {
             out << translator.source() << " - definitions:" << endl;
-            foreach (auto definition, translator.definitionsList()) {
+            foreach (const QDefinition &definition, translator.definitionsList()) {
                 out << definition.typeOfSpeech() << endl;
                 out << "\t" << definition.description() << endl;
                 out << "\t" << definition.example() << endl;
