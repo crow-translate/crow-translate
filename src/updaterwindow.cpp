@@ -86,7 +86,8 @@ void UpdaterWindow::on_downloadButton_clicked()
 #endif
 
     connect(m_reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
-        ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
+        if (bytesTotal != 0) // May be 0 if network disabled
+            ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
     });
 
     // Show download progress ui
@@ -101,6 +102,9 @@ void UpdaterWindow::on_downloadButton_clicked()
     if (m_reply->error()) {
         // Show error
         ui->updateStatusLabel->setText(m_reply->errorString());
+        ui->downloadBar->setVisible(false);
+        ui->downloadBar->setValue(0);
+        ui->cancelDownloadButton->setVisible(false);
         ui->downloadButton->setEnabled(true);
     } else {
         QFile installer(m_downloadPath);
@@ -109,11 +113,14 @@ void UpdaterWindow::on_downloadButton_clicked()
             installer.write(m_reply->readAll());
             installer.close();
             ui->updateStatusLabel->setText(tr("Downloading is complete"));
+            ui->cancelDownloadButton->setEnabled(false);
             ui->installButton->setEnabled(true);
         } else {
             // Show error
             ui->updateStatusLabel->setText(tr("Unable to write file"));
+            ui->downloadBar->setVisible(false);
             ui->downloadBar->setValue(0);
+            ui->cancelDownloadButton->setVisible(false);
             ui->downloadButton->setEnabled(true);
         }
     }
