@@ -3,7 +3,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google and Yandex translate API and much more.
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API. ") used in this project. 
 
 ## Content
