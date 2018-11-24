@@ -65,7 +65,9 @@ RESOURCES += \
     data/windows-icons.qrc
 }
 
-TRANSLATIONS += $$files(data/translations/crow_*.ts)
+TRANSLATIONS += \
+    data/translations/crow.ts \
+    data/translations/crow_ru.ts
 
 # Compile translations
 system(lrelease crow-translate.pro)

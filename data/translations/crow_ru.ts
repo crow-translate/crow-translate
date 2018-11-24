@@ -43,97 +43,97 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.ui" line="157"/>
+        <location filename="../../src/mainwindow.ui" line="155"/>
         <source>Play / pause source text</source>
         <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="313"/>
+        <location filename="../../src/mainwindow.ui" line="311"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="160"/>
-        <location filename="../../src/mainwindow.ui" line="271"/>
+        <location filename="../../src/mainwindow.ui" line="158"/>
+        <location filename="../../src/mainwindow.ui" line="269"/>
         <source>Play</source>
         <translation>Воспроизвести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="174"/>
+        <location filename="../../src/mainwindow.ui" line="172"/>
         <source>Stop source playback</source>
         <translation>Остановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="177"/>
-        <location filename="../../src/mainwindow.ui" line="288"/>
+        <location filename="../../src/mainwindow.ui" line="175"/>
+        <location filename="../../src/mainwindow.ui" line="286"/>
         <source>Stop</source>
         <translation>Остановить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="188"/>
+        <location filename="../../src/mainwindow.ui" line="186"/>
         <source>Copy source text to the clipboard</source>
         <translation>Скопировать исходный текст в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="224"/>
+        <location filename="../../src/mainwindow.ui" line="222"/>
         <source>Source</source>
         <translation>Исходный текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="285"/>
+        <location filename="../../src/mainwindow.ui" line="283"/>
         <source>Stop translation playback</source>
         <translation>Остановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="327"/>
+        <location filename="../../src/mainwindow.ui" line="325"/>
         <source>Application settings</source>
         <translation>Настройки приложения</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="343"/>
+        <location filename="../../src/mainwindow.ui" line="341"/>
         <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="377"/>
+        <location filename="../../src/mainwindow.ui" line="375"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="191"/>
-        <location filename="../../src/mainwindow.ui" line="302"/>
+        <location filename="../../src/mainwindow.ui" line="189"/>
+        <location filename="../../src/mainwindow.ui" line="300"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="202"/>
+        <location filename="../../src/mainwindow.ui" line="200"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="268"/>
+        <location filename="../../src/mainwindow.ui" line="266"/>
         <source>Play / pause translation</source>
         <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="299"/>
+        <location filename="../../src/mainwindow.ui" line="297"/>
         <source>Copy translation to the clipboard</source>
         <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="316"/>
+        <location filename="../../src/mainwindow.ui" line="314"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="330"/>
+        <location filename="../../src/mainwindow.ui" line="328"/>
         <location filename="../../src/mainwindow.cpp" line="93"/>
         <location filename="../../src/mainwindow.cpp" line="698"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="360"/>
+        <location filename="../../src/mainwindow.ui" line="358"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
@@ -191,66 +191,66 @@
 <context>
     <name>PopupWindow</name>
     <message>
-        <location filename="../../src/popupwindow.ui" line="93"/>
-        <location filename="../../src/popupwindow.ui" line="96"/>
+        <location filename="../../src/popupwindow.ui" line="92"/>
+        <location filename="../../src/popupwindow.ui" line="95"/>
         <source>Swap languages</source>
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="194"/>
+        <location filename="../../src/popupwindow.ui" line="192"/>
         <source>Play / pause source text</source>
         <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="197"/>
-        <location filename="../../src/popupwindow.ui" line="277"/>
+        <location filename="../../src/popupwindow.ui" line="195"/>
+        <location filename="../../src/popupwindow.ui" line="275"/>
         <source>Play</source>
         <translation>Воспроизвести</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="211"/>
+        <location filename="../../src/popupwindow.ui" line="209"/>
         <source>Stop source playback</source>
         <translation>Остановить воспроизведение исходного текста</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="214"/>
-        <location filename="../../src/popupwindow.ui" line="294"/>
+        <location filename="../../src/popupwindow.ui" line="212"/>
+        <location filename="../../src/popupwindow.ui" line="292"/>
         <source>Stop</source>
         <translation>Остановить</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="225"/>
+        <location filename="../../src/popupwindow.ui" line="223"/>
         <source>Copy source text to the clipboard</source>
         <translation>Скопировать исходный текст в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="274"/>
+        <location filename="../../src/popupwindow.ui" line="272"/>
         <source>Play / pause translation</source>
         <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="319"/>
+        <location filename="../../src/popupwindow.ui" line="317"/>
         <source>Copy translation to the clipboard</source>
         <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="228"/>
-        <location filename="../../src/popupwindow.ui" line="322"/>
+        <location filename="../../src/popupwindow.ui" line="226"/>
+        <location filename="../../src/popupwindow.ui" line="320"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="291"/>
+        <location filename="../../src/popupwindow.ui" line="289"/>
         <source>Stop translation playback</source>
         <translation>Остановить воспроизведение перевода</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="305"/>
+        <location filename="../../src/popupwindow.ui" line="303"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="308"/>
+        <location filename="../../src/popupwindow.ui" line="306"/>
         <source>Copy all</source>
         <translation>Скопировать всё</translation>
     </message>
@@ -1454,8 +1454,7 @@
     <message>
         <location filename="../../src/updaterwindow.ui" line="24"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translatorcomment>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Доступна новая версия Crow Translate! Обновления добавляют функциональность и улучшают стабильность приложения. Чаще всего.&lt;br/&gt;Вы также можете скачать релиз вручную по этой &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;ссылке&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translatorcomment>
-        <translation></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Доступна новая версия Crow Translate! Обновления добавляют функциональность и улучшают стабильность приложения. Чаще всего.&lt;br/&gt;Вы также можете скачать релиз вручную по этой &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;ссылке&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="51"/>

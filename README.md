@@ -15,6 +15,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * [Dependencies](#dependencies)
 * [Third-party](#third-party)
 * [Installation](#installation)
+* [Localization](#localization)
 
 ## Screenshots
 
@@ -147,3 +148,7 @@ make clean
 ```
 
 Then you can use standalone binary `crow`.
+
+## Localization
+
+To help with localization you can use [Transefix](https://www.transifex.com/crow-translate/crow-translate) or [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly (translation files are located in `data/translations` repository folder).
