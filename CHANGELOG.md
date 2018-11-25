@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased]
 ### Changed
-- Make pop-up window active explicity for some window systems
-- Fix selected language on search
-- Fix size of auto language buttons in pop-up window
-- Windows: Load Qt library translations
+- Make pop-up window active explicity for some window systems.
+- Fix selected language on search.
+- Fix size of auto language buttons in pop-up window.
+- Windows: Load Qt library translations.
+- Windows: Improve getting selection.
 
 ## [2.0.0] - 2018-11-17
 ### Added

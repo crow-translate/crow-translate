@@ -31,6 +31,7 @@
 
 #include <QMimeData>
 #include <QTimer>
+#include <QThread>
 #include <Windows.h>
 #endif
 #include <QClipboard>
@@ -852,7 +853,6 @@ QString MainWindow::selectedText()
            || GetAsyncKeyState(VK_CONTROL)
            || GetAsyncKeyState(VK_MENU)
            || GetAsyncKeyState(VK_SHIFT)) {
-        Sleep(50);
     }
 
     // Generate key sequence
@@ -881,24 +881,34 @@ QString MainWindow::selectedText()
     // Send key sequence to system
     SendInput(4, copyText, sizeof(INPUT));
 
-    // Wait for the clipboard to change
+    // Wait for clipboard changes
     QEventLoop loop;
-    QTimer timer; // Add a timer for the case where the text is not selected
     loop.connect(QApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
+
+    // Set the timer to exit the loop if no text is selected for a second
+    QTimer timer;
+    timer.setSingleShot(true);
+    timer.setInterval(1000);
     loop.connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-    timer.start(1000);
+
+    // Start waiting
+    timer.start();
     loop.exec();
 
-    // Translate the text from the clipboard if the selected text was not copied
-    if (timer.isActive())
-        return QApplication::clipboard()->text();
+    // Check if timer is out
+    if (!timer.isActive())
+        return QApplication::clipboard()->text(); // No text selected, just return the clipboard
     else
         timer.stop();
+
+    // Workaround for the case where the clipboard has changed but not yet available
+    if (QApplication::clipboard()->text().isEmpty())
+        QThread::msleep(1);
 
     // Get clipboard data
     selectedText = QApplication::clipboard()->text();
 
-    // Return original clipboard
+    // Restore original clipboard
     if (originalClipboard.type() == QVariant::Image)
         QApplication::clipboard()->setImage(originalClipboard.value<QImage>());
     else
