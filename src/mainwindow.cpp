@@ -461,6 +461,7 @@ void MainWindow::translateSelectedText()
 
         on_translateButton_clicked();
         popup->show();
+        popup->activateWindow();
     } else {
         // Send selected text to source field and translate it
         if (ui->autoTranslateCheckBox->isChecked()) {
