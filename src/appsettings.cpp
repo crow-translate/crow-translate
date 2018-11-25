@@ -119,29 +119,17 @@ bool AppSettings::isAutostartEnabled()
 void AppSettings::setAutostartEnabled(bool enabled)
 {
 #if defined(Q_OS_LINUX)
+    constexpr char desktopFileName[] = "/usr/share/applications/crow-translate.desktop";
     QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
+
     if (enabled) {
-        // Create autorun file if checked
+        // Create autorun file
         if (!autorunFile.exists()) {
-            if (autorunFile.open(QFile::WriteOnly)) {
-                QString autorunContent("[Desktop Entry]\n"
-                                       "Type=Application\n"
-                                       "Exec=crow\n"
-                                       "Hidden=false\n"
-                                       "NoDisplay=false\n"
-                                       "Icon=crow-translate\n"
-                                       "Name=Crow Translate\n"
-                                       "Comment=A simple and lightweight translator that allows to translate and say selected text using the Google Translate API and much more\n"
-                                       "Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а также многое другое\n");
-                QTextStream outStream(&autorunFile);
-                outStream << autorunContent;
-                autorunFile.close();
-            } else {
-                qDebug() << tr("Unable to create autorun file");
-            }
+            if (!QFile::copy(desktopFileName, autorunFile.fileName()))
+                qDebug() << tr("Unable to create autorun file from ") + desktopFileName;
         }
     } else {
-        // Remove autorun file if box unchecked
+        // Remove autorun file
         if(autorunFile.exists())
             autorunFile.remove();
     }

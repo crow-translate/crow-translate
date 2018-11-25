@@ -17,8 +17,8 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/appsettings.cpp" line="131"/>
-        <source>Unable to create autorun file</source>
+        <location filename="../../src/appsettings.cpp" line="129"/>
+        <source>Unable to create autorun file from </source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -117,8 +117,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="328"/>
-        <location filename="../../src/mainwindow.cpp" line="93"/>
-        <location filename="../../src/mainwindow.cpp" line="698"/>
+        <location filename="../../src/mainwindow.cpp" line="94"/>
+        <location filename="../../src/mainwindow.cpp" line="700"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -138,52 +138,52 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="92"/>
-        <location filename="../../src/mainwindow.cpp" line="697"/>
+        <location filename="../../src/mainwindow.cpp" line="93"/>
+        <location filename="../../src/mainwindow.cpp" line="699"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="94"/>
-        <location filename="../../src/mainwindow.cpp" line="699"/>
+        <location filename="../../src/mainwindow.cpp" line="95"/>
+        <location filename="../../src/mainwindow.cpp" line="701"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="239"/>
+        <location filename="../../src/mainwindow.cpp" line="240"/>
         <source>translation options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="277"/>
+        <location filename="../../src/mainwindow.cpp" line="278"/>
         <source>definitions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="390"/>
-        <location filename="../../src/mainwindow.cpp" line="398"/>
-        <location filename="../../src/mainwindow.cpp" line="406"/>
+        <location filename="../../src/mainwindow.cpp" line="391"/>
+        <location filename="../../src/mainwindow.cpp" line="399"/>
+        <location filename="../../src/mainwindow.cpp" line="407"/>
         <source>Text field is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="489"/>
-        <location filename="../../src/mainwindow.cpp" line="731"/>
+        <location filename="../../src/mainwindow.cpp" line="491"/>
+        <location filename="../../src/mainwindow.cpp" line="733"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="817"/>
+        <location filename="../../src/mainwindow.cpp" line="819"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="817"/>
+        <location filename="../../src/mainwindow.cpp" line="819"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="827"/>
+        <location filename="../../src/mainwindow.cpp" line="829"/>
         <source>Unable to play text</source>
         <translation type="unfinished"></translation>
     </message>
@@ -191,66 +191,66 @@
 <context>
     <name>PopupWindow</name>
     <message>
-        <location filename="../../src/popupwindow.ui" line="92"/>
-        <location filename="../../src/popupwindow.ui" line="95"/>
+        <location filename="../../src/popupwindow.ui" line="93"/>
+        <location filename="../../src/popupwindow.ui" line="96"/>
         <source>Swap languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="192"/>
+        <location filename="../../src/popupwindow.ui" line="182"/>
         <source>Play / pause source text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="195"/>
-        <location filename="../../src/popupwindow.ui" line="275"/>
+        <location filename="../../src/popupwindow.ui" line="185"/>
+        <location filename="../../src/popupwindow.ui" line="265"/>
         <source>Play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="209"/>
+        <location filename="../../src/popupwindow.ui" line="199"/>
         <source>Stop source playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="212"/>
-        <location filename="../../src/popupwindow.ui" line="292"/>
+        <location filename="../../src/popupwindow.ui" line="202"/>
+        <location filename="../../src/popupwindow.ui" line="282"/>
         <source>Stop</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="223"/>
+        <location filename="../../src/popupwindow.ui" line="213"/>
         <source>Copy source text to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="226"/>
-        <location filename="../../src/popupwindow.ui" line="320"/>
+        <location filename="../../src/popupwindow.ui" line="216"/>
+        <location filename="../../src/popupwindow.ui" line="310"/>
         <source>Copy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="272"/>
+        <location filename="../../src/popupwindow.ui" line="262"/>
         <source>Play / pause translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="289"/>
+        <location filename="../../src/popupwindow.ui" line="279"/>
         <source>Stop translation playback</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="303"/>
+        <location filename="../../src/popupwindow.ui" line="293"/>
         <source>Copy all translation data to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="306"/>
+        <location filename="../../src/popupwindow.ui" line="296"/>
         <source>Copy all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="317"/>
+        <location filename="../../src/popupwindow.ui" line="307"/>
         <source>Copy translation to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
