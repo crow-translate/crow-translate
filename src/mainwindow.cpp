@@ -388,7 +388,7 @@ void MainWindow::on_copySourceButton_clicked()
     if (!ui->sourceEdit->toPlainText().isEmpty())
         SingleApplication::clipboard()->setText(m_translator.source());
     else
-        qDebug() << tr("Text field is empty");
+        qInfo() << tr("Text field is empty");
 }
 
 void MainWindow::on_copyTranslationButton_clicked()
@@ -396,7 +396,7 @@ void MainWindow::on_copyTranslationButton_clicked()
     if (!ui->translationEdit->toPlainText().isEmpty())
         SingleApplication::clipboard()->setText(m_translator.translation());
     else
-        qDebug() << tr("Text field is empty");
+        qInfo() << tr("Text field is empty");
 }
 
 void MainWindow::on_copyAllTranslationButton_clicked()
@@ -404,7 +404,7 @@ void MainWindow::on_copyAllTranslationButton_clicked()
     if (!ui->translationEdit->toPlainText().isEmpty())
         SingleApplication::clipboard()->setText(ui->translationEdit->toPlainText());
     else
-        qDebug() << tr("Text field is empty");
+        qInfo() << tr("Text field is empty");
 }
 
 void MainWindow::translateSelectedText()

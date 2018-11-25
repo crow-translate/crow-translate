@@ -61,7 +61,7 @@ void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
 {
     // Check group sizes
     if (group->buttons().size() != buttons().size()) {
-        qDebug() << tr("Different number of buttons in copied groups");
+        qCritical() << tr("Different number of buttons in copied groups");
         return;
     }
 

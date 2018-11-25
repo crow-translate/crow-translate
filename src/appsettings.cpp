@@ -126,7 +126,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
         // Create autorun file
         if (!autorunFile.exists()) {
             if (!QFile::copy(desktopFileName, autorunFile.fileName()))
-                qDebug() << tr("Unable to create autorun file from ") + desktopFileName;
+                qCritical() << tr("Unable to create autorun file from ") + desktopFileName;
         }
     } else {
         // Remove autorun file
