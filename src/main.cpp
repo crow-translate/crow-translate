@@ -18,10 +18,9 @@
  *
  */
 
-#include "singleapplication.h"
-#include "appsettings.h"
-#include "qonlinetranslator.h"
 #include "mainwindow.h"
+#include "appsettings.h"
+#include "singleapplication.h"
 
 #include <QCommandLineParser>
 #include <QFile>

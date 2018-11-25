@@ -21,7 +21,6 @@
 #ifndef POPUPWINDOW_H
 #define POPUPWINDOW_H
 
-#include "qonlinetranslator.h"
 #include "langbuttongroup.h"
 
 #include <QMenu>

@@ -21,13 +21,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "appsettings.h"
 #include "popupwindow.h"
 #include "settingsdialog.h"
 #include "addlangdialog.h"
+#include "appsettings.h"
+#include "singleapplication.h"
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
-#include "singleapplication.h"
 
 #include <QMimeData>
 #include <QTimer>
@@ -92,7 +92,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // System tray icon
     m_trayMenu.addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
     m_trayMenu.addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
-    m_trayMenu.addAction(QIcon::fromTheme("application-exit"), tr("Exit"), qApp, &QApplication::quit);
+    m_trayMenu.addAction(QIcon::fromTheme("application-exit"), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
     m_trayIcon.setContextMenu(&m_trayMenu);
     connect(&m_trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::activateTray);
 
@@ -386,7 +386,7 @@ void MainWindow::on_stopTranslationButton_clicked()
 void MainWindow::on_copySourceButton_clicked()
 {
     if (!ui->sourceEdit->toPlainText().isEmpty())
-        QApplication::clipboard()->setText(m_translator.source());
+        SingleApplication::clipboard()->setText(m_translator.source());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -394,7 +394,7 @@ void MainWindow::on_copySourceButton_clicked()
 void MainWindow::on_copyTranslationButton_clicked()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        QApplication::clipboard()->setText(m_translator.translation());
+        SingleApplication::clipboard()->setText(m_translator.translation());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -402,7 +402,7 @@ void MainWindow::on_copyTranslationButton_clicked()
 void MainWindow::on_copyAllTranslationButton_clicked()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        QApplication::clipboard()->setText(ui->translationEdit->toPlainText());
+        SingleApplication::clipboard()->setText(ui->translationEdit->toPlainText());
     else
         qDebug() << tr("Text field is empty");
 }
@@ -493,7 +493,7 @@ void MainWindow::copyTranslatedSelection()
         return;
     }
 
-    QApplication::clipboard()->setText(m_translator.translation());
+    SingleApplication::clipboard()->setText(m_translator.translation());
 }
 
 void MainWindow::playSelection()
@@ -760,7 +760,7 @@ void MainWindow::loadSettings()
 
     const bool trayIconVisible = settings.isTrayIconVisible();
     m_trayIcon.setVisible(trayIconVisible);
-    QApplication::setQuitOnLastWindowClosed(!trayIconVisible);
+    SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 
     // Connection
     QNetworkProxy proxy;
@@ -839,14 +839,14 @@ QString MainWindow::selectedText()
 {
     QString selectedText;
 #if defined(Q_OS_LINUX)
-    selectedText = QApplication::clipboard()->text(QClipboard::Selection);
+    selectedText = SingleApplication::clipboard()->text(QClipboard::Selection);
 #elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
     // Save original clipboard data
     QVariant originalClipboard;
-    if (QApplication::clipboard()->mimeData()->hasImage())
-        originalClipboard = QApplication::clipboard()->image();
+    if (SingleApplication::clipboard()->mimeData()->hasImage())
+        originalClipboard = SingleApplication::clipboard()->image();
     else
-        originalClipboard = QApplication::clipboard()->text();
+        originalClipboard = SingleApplication::clipboard()->text();
 
     // Wait until the hot key is pressed
     while (GetAsyncKeyState(static_cast<int>(m_translateSelectionHotkey.currentNativeShortcut().key))
@@ -883,7 +883,7 @@ QString MainWindow::selectedText()
 
     // Wait for clipboard changes
     QEventLoop loop;
-    loop.connect(QApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
+    loop.connect(SingleApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
 
     // Set the timer to exit the loop if no text is selected for a second
     QTimer timer;
@@ -897,22 +897,22 @@ QString MainWindow::selectedText()
 
     // Check if timer is out
     if (!timer.isActive())
-        return QApplication::clipboard()->text(); // No text selected, just return the clipboard
+        return SingleApplication::clipboard()->text(); // No text selected, just return the clipboard
     else
         timer.stop();
 
     // Workaround for the case where the clipboard has changed but not yet available
-    if (QApplication::clipboard()->text().isEmpty())
+    if (SingleApplication::clipboard()->text().isEmpty())
         QThread::msleep(1);
 
     // Get clipboard data
-    selectedText = QApplication::clipboard()->text();
+    selectedText = SingleApplication::clipboard()->text();
 
     // Restore original clipboard
     if (originalClipboard.type() == QVariant::Image)
-        QApplication::clipboard()->setImage(originalClipboard.value<QImage>());
+        SingleApplication::clipboard()->setImage(originalClipboard.value<QImage>());
     else
-        QApplication::clipboard()->setText(originalClipboard.toString());
+        SingleApplication::clipboard()->setText(originalClipboard.toString());
 #endif
     return selectedText;
 }

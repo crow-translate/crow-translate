@@ -22,8 +22,8 @@
 #include "ui_settingsdialog.h"
 
 #include "appsettings.h"
-#if defined(Q_OS_WIN)
 #include "singleapplication.h"
+#if defined(Q_OS_WIN)
 #include "updaterwindow.h"
 #endif
 
@@ -40,7 +40,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->expandAll();
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
-    ui->versionLabel->setText(qApp->applicationVersion());
+    ui->versionLabel->setText(SingleApplication::applicationVersion());
     m_player.setPlaylist(&m_playlist);
 
     // Set item data in comboboxes

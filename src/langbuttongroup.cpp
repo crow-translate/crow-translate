@@ -20,9 +20,9 @@
 
 #include "langbuttongroup.h"
 
-#include <QAbstractButton>
-
 #include "appsettings.h"
+
+#include <QAbstractButton>
 
 LangButtonGroup::LangButtonGroup(QObject *parent) :
     QButtonGroup(parent)

@@ -21,10 +21,10 @@
 #include "popupwindow.h"
 #include "ui_popupwindow.h"
 
-#include "singleapplication.h"
-#include "appsettings.h"
 #include "mainwindow.h"
 #include "addlangdialog.h"
+#include "appsettings.h"
+#include "singleapplication.h"
 
 #include <QScreen>
 #include <QClipboard>
@@ -166,7 +166,7 @@ void PopupWindow::showEvent(QShowEvent *event)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     const QSize availableSize = QGuiApplication::screenAt(position)->availableSize();
 #else
-    const QSize availableSize = QApplication::desktop()->screenGeometry(position).size();
+    const QSize availableSize = SingleApplication::desktop()->screenGeometry(position).size();
 #endif
 
     if (availableSize.width() - position.x() - this->geometry().width() < 0) {
@@ -189,7 +189,7 @@ bool PopupWindow::event(QEvent *event)
     // Close window when focus is lost
     if (event->type() == QEvent::WindowDeactivate) {
         // Do not close the window if the language selection menu is active
-        if (QApplication::activeModalWidget() == nullptr)
+        if (SingleApplication::activeModalWidget() == nullptr)
             close();
     }
     return QWidget::event(event);

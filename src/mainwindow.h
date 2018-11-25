@@ -21,7 +21,6 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "qonlinetranslator.h"
 #include "langbuttongroup.h"
 #include "qhotkey.h"
 

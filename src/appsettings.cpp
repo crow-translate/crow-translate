@@ -20,6 +20,8 @@
 
 #include "appsettings.h"
 
+#include "singleapplication.h"
+
 #include <QStandardPaths>
 #include <QFileInfo>
 #include <QDebug>
@@ -28,8 +30,6 @@
 #if defined(Q_OS_WIN)
 #include <QDir>
 #endif
-
-#include "singleapplication.h"
 
 QTranslator AppSettings::m_appTranslator;
 #if defined(Q_OS_WIN)
