@@ -26,12 +26,19 @@
      <item>
       <widget class="QToolButton" name="addSourceLangButton">
        <property name="icon">
-        <iconset theme="list-add"/>
+        <iconset theme="list-add">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QToolButton" name="autoSourceButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="checkable">
         <bool>true</bool>
        </property>
@@ -59,12 +66,6 @@
      </item>
      <item>
       <widget class="QToolButton" name="thirdSourceButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -115,12 +116,6 @@
      </item>
      <item>
       <widget class="QToolButton" name="firstTranslationButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -131,12 +126,6 @@
      </item>
      <item>
       <widget class="QToolButton" name="secondTranslationButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -147,12 +136,6 @@
      </item>
      <item>
       <widget class="QToolButton" name="thirdTranslationButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
        <property name="text">
         <string/>
        </property>
@@ -163,6 +146,12 @@
      </item>
      <item>
       <widget class="QToolButton" name="autoTranslationButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
        <property name="checkable">
         <bool>true</bool>
        </property>
@@ -171,7 +160,8 @@
      <item>
       <widget class="QToolButton" name="addTranslationLangButton">
        <property name="icon">
-        <iconset theme="list-add"/>
+        <iconset theme="list-add">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </widget>
      </item>
