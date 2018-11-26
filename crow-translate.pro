@@ -6,7 +6,7 @@
 
 TARGET = crow
 TEMPLATE = app
-VERSION = 2.0.0
+VERSION = 2.0.1
 QT += core gui widgets
 
 # Windows specific stuff

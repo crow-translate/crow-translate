@@ -15,7 +15,7 @@
   ;App information and out file
   Name "Crow Translate"
   BrandingText "Crow Translate"
-  !define VERSION "2.0.0"
+  !define VERSION "2.0.1"
   OutFile "crow-translate-${VERSION}-win32.exe"
   
   ;Properly display all languages (Installer will not work on Windows 95, 98 or ME!)

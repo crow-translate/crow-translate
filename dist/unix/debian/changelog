@@ -1,3 +1,15 @@
+crow-translate (2.0.1~git-1) stretch; urgency=low
+
+ * Make pop-up window active explicity for some window systems
+ * Use different channels to display messages
+ * Fix selected language on search
+ * Fix size of auto language buttons in pop-up window
+ * Fix pop-up window engine selection
+ * Google: Fix parsing for text with non-breaking space
+ * Linux: Create autorun file from desktop file
+ * Windows: Load Qt library translations
+ * Windows: Improve getting selection
+
 crow-translate (2.0.0~git-1) stretch; urgency=low
 
  * Add Yandex support
@@ -18,7 +30,7 @@ crow-translate (2.0.0~git-1) stretch; urgency=low
 
 crow-translate (1.0.3~git-1) stretch; urgency=low
 
- * Add A button to remove shortcuts in settings
+ * Add a button to remove shortcuts in settings
  * Improve appearance of shortcuts settings
  * Close window shortcut now works in pop-up window
  * Slightly increase settings window height
