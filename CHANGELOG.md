@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 - Fix selected language on search.
 - Fix size of auto language buttons in pop-up window.
 - Use different channels to display messages.
+- Google: Fix parsing for text with non-breaking space.
 - Linux: create autorun file from desktop file.
 - Windows: Load Qt library translations.
 - Windows: Improve getting selection.
