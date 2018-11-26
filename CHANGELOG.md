@@ -7,11 +7,12 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ## [Unreleased]
 ### Changed
 - Make pop-up window active explicity for some window systems.
+- Use different channels to display messages.
 - Fix selected language on search.
 - Fix size of auto language buttons in pop-up window.
-- Use different channels to display messages.
+- Fix pop-up window engine selection.
 - Google: Fix parsing for text with non-breaking space.
-- Linux: create autorun file from desktop file.
+- Linux: Create autorun file from desktop file.
 - Windows: Load Qt library translations.
 - Windows: Improve getting selection.
 

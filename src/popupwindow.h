@@ -38,7 +38,7 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent = nullptr);
+    explicit PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, int engineIndex, QWidget *parent = nullptr);
     ~PopupWindow() override;
 
     QTextEdit *translationEdit();

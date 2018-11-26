@@ -33,15 +33,18 @@
 #include <QDesktopWidget>
 #endif
 
-PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, QWidget *parent) :
+PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, int engineIndex, QWidget *parent) :
     QWidget(parent, Qt::Window | Qt::FramelessWindowHint),
     ui(new Ui::PopupWindow)
 {
     ui->setupUi(this);
     this->setAttribute(Qt::WA_DeleteOnClose);
+
+    // Window settings
     AppSettings settings;
     setWindowOpacity(settings.popupOpacity());
     resize(settings.popupWidth(), settings.popupHeight());
+    ui->engineComboBox->setCurrentIndex(engineIndex);
 
     // Translation button group
     m_sourceButtonGroup.addButton(ui->autoSourceButton);

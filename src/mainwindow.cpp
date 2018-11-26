@@ -415,7 +415,7 @@ void MainWindow::translateSelectedText()
     AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
-        PopupWindow *popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, this);
+        PopupWindow *popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, ui->engineComboBox->currentIndex(), this);
 
         // Connect main window events to popup events
         connect(&m_sourceButtons, &LangButtonGroup::buttonChecked, popup->sourceButtons(), &LangButtonGroup::checkButton);
