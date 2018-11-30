@@ -58,9 +58,9 @@ UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
 
     QString changelog = release->body();
     changelog.prepend("<b>" + tr("Changelog:") + "</b><br><br>");
-    changelog.replace("### Added", "<b>Added</b><ul>");
-    changelog.replace("### Changed", "</ul><b>Changed</b><ul>");
-    changelog.replace("- ", "<li>");
+    changelog.replace("**Added**", "<b>Added</b><ul>");
+    changelog.replace("**Changed**", "</ul><b>Changed</b><ul>");
+    changelog.replace("-   ", "<li>");
     changelog.replace(".\n", "</li>");
     changelog.append("</ul>");
     ui->changelogTextEdit->setText(changelog);

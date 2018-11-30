@@ -6,7 +6,7 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.1...HEAD)
 
-_No unreleased changes yet_
+-   Windows: Update changelog parser.
 
 ## [2.0.1](https://github.com/Shatur95/crow-translate/tree/2.0.1) (2018-11-26)
 
