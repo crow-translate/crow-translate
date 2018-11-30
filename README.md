@@ -2,20 +2,19 @@
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
-
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
-You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API. ") used in this project. 
+You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API.") used in this project. 
 
 ## Content
 
-* [Screenshots](#screenshots)
-* [Features](#features)
-* [Default keyboard shortcuts](#default-keyboard-shortcuts)
-* [CLI commands](#cli-commands)
-* [Dependencies](#dependencies)
-* [Third-party](#third-party)
-* [Installation](#installation)
-* [Localization](#localization)
+-   [Screenshots](#screenshots)
+-   [Features](#features)
+-   [Default keyboard shortcuts](#default-keyboard-shortcuts)
+-   [CLI commands](#cli-commands)
+-   [Dependencies](#dependencies)
+-   [Third-party](#third-party)
+-   [Installation](#installation)
+-   [Localization](#localization)
 
 ## Screenshots
 
@@ -31,11 +30,11 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 ## Features
 
-* Translate and say text in any application that supports text selection
-* Translator window with native interface similar to Google Translate
-* Command-line interface with rich options
-* Highly customizable shortcuts
-* Low memory consumption (~20MB)
+-   Translate and say text in any application that supports text selection
+-   Translator window with native interface similar to Google Translate
+-   Command-line interface with rich options
+-   Highly customizable shortcuts
+-   Low memory consumption (~20MB)
 
 ## Default keyboard shortcuts
 
@@ -43,16 +42,16 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### Global
 
-|  Key                                            | Description             |
-|-------------------------------------------------|-------------------------|
+| Key                                             | Description             |
+| ----------------------------------------------- | ----------------------- |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Speak selected text     |
 | <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
 
 ### In main window
 
-|  Key                                              | Description               |
-|---------------------------------------------------|---------------------------|
+| Key                                               | Description               |
+| ------------------------------------------------- | ------------------------- |
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text  |
@@ -67,19 +66,19 @@ The program also supports the console interface.
 
 **Usage:** `crow [options] text`
 
-|  Option                    | Description                                                                                      |
-|----------------------------|--------------------------------------------------------------------------------------------------|
-| `-h, --help`               | Displays help                                                                                    |
-| `-v, --version`            | Displays version information                                                                     |
+| Option                     | Description                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------- |
+| `-h, --help`               | Displays help                                                                                     |
+| `-v, --version`            | Displays version information                                                                      |
 | `-s, --source <code>`      | Specifies the source language (by default, backend will try to determine the language on its own) |
-| `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
-| `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                      |
-| `-e, --engine <engine>`    | Specifies the translator engine ('google' or 'yandex'), Google is used by default                |
-| `-p, --speak-translation`  | Speaks the translation                                                                           |
-| `-u, --speak-source`       | Speaks the original text                                                                         |
-| `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |
-| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                        |
-| `-i, --stdin`              | Add stdin data to source text.                                                                   |
+| `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)    |
+| `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                       |
+| `-e, --engine <engine>`    | Specifies the translator engine ('google' or 'yandex'), Google is used by default                 |
+| `-p, --speak-translation`  | Speaks the translation                                                                            |
+| `-u, --speak-source`       | Speaks the original text                                                                          |
+| `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.                |
+| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                         |
+| `-i, --stdin`              | Add stdin data to source text.                                                                    |
 
 If you do not pass startup arguments to the program, the GUI starts.
 
@@ -94,9 +93,10 @@ If you do not pass startup arguments to the program, the GUI starts.
 ### Libraries
 
 This project uses following third-party libraries:
-* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google and Yandex translate API for Qt5.
-* [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
-* [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
+
+-   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google and Yandex translate API for Qt5.
+-   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
+-   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
 Therefore, if you want to clone this project, you need to use the `--recursive` option:
 
