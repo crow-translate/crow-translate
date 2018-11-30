@@ -1,13 +1,18 @@
 # Changelog
 
-All notable changes to this project will be documented in this file.
+All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/)
-and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
+## [Unreleased](https://github.com/Shatur95/crow-translate/tree/HEAD)
 
-## \[2.0.1\] - 2018-11-26
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.1...HEAD)
 
-### Changed
+_No unreleased changes yet_
+
+## [2.0.1](https://github.com/Shatur95/crow-translate/tree/2.0.1) (2018-11-26)
+
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.0...2.0.1)
+
+**Changed**
 
 -   Make pop-up window active explicity for some window systems.
 -   Use different channels to display messages.
@@ -19,9 +24,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Windows: Load Qt library translations.
 -   Windows: Improve getting selection.
 
-## \[2.0.0\] - 2018-11-17
+## [2.0.0](https://github.com/Shatur95/crow-translate/tree/2.0.0) (2018-11-17)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.3...2.0.0)
+
+**Added**
 
 -   Yandex support.
 -   Speech synthesis settings.
@@ -32,10 +39,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Hotkey to copy translated selection.
 -   Linux: autorun file creation error message.
 
-### Changed
+**Changed**
 
 -   Fix display of languages in the terminal.
--   Show message if not specified --speak-source or --speak-translation options in --audio-only mode.
+-   Show message if not specified `--speak-source` or `--speak-translation` options in `--audio-only` mode.
 -   Change the CLI option "translator" to "locale".
 -   Move the functionality of the "Copy to source" button to the "Swap languages" button.
 -   Select first row in settings by default.
@@ -43,13 +50,15 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Minor optimizations.
 -   Windows: Improve updater.
 
-## \[1.0.3\] - 2018-07-04
+## [1.0.3](https://github.com/Shatur95/crow-translate/tree/1.0.3) (2018-08-05)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.2...1.0.3)
+
+**Added**
 
 -   A button to remove shortcuts in settings.
 
-### Changed
+**Changed**
 
 -   Improve appearance of shortcuts settings.
 -   Close window shortcut now works in pop-up window.
@@ -57,14 +66,16 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Prevent crashes when converting for non-existent languages or codes.
 -   Remove languages from "Auto" buttons ​​on error.
 
-## \[1.0.2\] - 2018-07-04
+## [1.0.2](https://github.com/Shatur95/crow-translate/tree/1.0.2) (2018-07-04)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.1...1.0.2)
+
+**Added**
 
 -   A global shortcut to play translation of seleted text.
 -   Minor optimizations.
 
-### Changed
+**Changed**
 
 -   Clear the translation field if the source field is empty.
 -   Fix wrong proxy combobox behavior.
@@ -72,22 +83,26 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Separate source and selection players.
 -   Windows: show the application name instead of the description in the list of running processes.
 
-## \[1.0.1\] - 2018-07-02
+## [1.0.1](https://github.com/Shatur95/crow-translate/tree/1.0.1) (2018-07-02)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.0...1.0.1)
+
+**Added**
 
 -   Button style settings for pop-up window.
 
-### Changed
+**Changed**
 
 -   Improve the prevention of a pop-up window outside the screen.
 -   Fix wrong layout properties in settings.
 -   Fix the inactive translation button after a network error.
 -   Windows: Fix new changelog parsing for Updater.
 
-## \[1.0.0\] - 2018-07-01
+## [1.0.0](https://github.com/Shatur95/crow-translate/tree/1.0.0) (2018-07-01)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.9...1.0.0)
+
+**Added**
 
 -   Word gender support for translation options.
 -   Definition support.
@@ -102,21 +117,23 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Minor visual design improvements.
 -   Windows: Auto-update.
 
-### Changed
+**Changed**
 
 -   Redesign application icon.
 -   Fix the incorrect behavior of adding language button.
 
-## \[0.9.9\] - 2018-06-04
+## [0.9.9](https://github.com/Shatur95/crow-translate/tree/0.9.9) (2018-06-04)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.8...0.9.9)
+
+**Added**
 
 -   Ability to stop and pause the text.
 -   Menu item "Translation" in the settings.
 -   Splitting queries to parts if they exceed the limit.
 -   Ability to disable transliteration and translation options.
 
-### Changed
+**Changed**
 
 -   Redesign the console interface.
 -   Rework the shortcuts menu.
@@ -128,9 +145,11 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Fix disabling of the keyboard shortcut for translating selected text after translation in the main window.
 -   Fix wrong behaviour for "Automatically translate" checkbox.
 
-## \[0.9.8\] - 2018-05-19
+## [0.9.8](https://github.com/Shatur95/crow-translate/tree/0.9.8) (2018-05-19)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.7...0.9.8)
+
+**Added**
 
 -   Proxy settings.
 -   Button and shortcut for copying only translation.
@@ -140,7 +159,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Major performance optimizations.
 -   Windows: Icons for the tray context menu.
 
-### Changed
+**Changed**
 
 -   Redesign interface of the settings menu.
 -   Fix pop-up window appearing outside the screen.
@@ -150,14 +169,13 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Fix automatic translation in the main window after inserting a new language.
 -   Linux: Change icon names for better compatibility.
 -   Windows: Improve icon look.
+-   "Automatic detection" removed from the context menu of languages ​​as useless.
 
-### Removed
+## [0.9.7](https://github.com/Shatur95/crow-translate/tree/0.9.7) (2018-04-23)
 
--   "Automatic detection" from the context menu of languages ​​as useless.
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.6...0.9.7)
 
-## \[0.9.7\] - 2018-04-23
-
-### Added
+**Added**
 
 -   The selection of the previous language if the source language and the target language are the same.
 -   Displaying detected languages on the language auto-detection buttons.
@@ -166,36 +184,38 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Perfomance improvements.
 -   Linux: Icon for the "Show Window" action in the system tray.
 
-### Changed
+**Changed**
 
 -   Redesigned settings appearance.
 -   Fix the crash when changing the application language.
 -   Fix memory leak with system tray menu.
 -   Fix incorrect formatting of the translation text.
 
-## \[0.9.6\] - 2018-04-04
+## [0.9.6](https://github.com/Shatur95/crow-translate/tree/0.9.6) (2018-04-05)
 
-### Added
+[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.5...0.9.6)
+
+**Added**
 
 -   Close window shortcut.
 -   Minor optimizations.
 -   Linux: Icons to tray context menu.
 
-### Changed
+**Changed**
 
 -   New default Windows compatible keyboard shortcuts.
 -   Fix memory leak after closing settings.
 -   Fix language detection when saying selected text.
 -   Windows: Fix the obtaining of selected text.
 
-## \[0.9.5\] - 2018-03-25
+## [0.9.5](https://github.com/Shatur95/crow-translate/tree/0.9.5) (2018-04-05)
 
-### Added
+**Added**
 
 -   Display options for translation and transcriptions with formatting.
 -   Minor optimizations.
 
-### Changed
+**Changed**
 
 -   Improve translation parsing.
 -   Improve network error output.
@@ -203,6 +223,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 -   Now list of languages is sorted alphabetically.
 -   Windows: Fix reproduction of Cyrillic characters as "?".
 
-## \[0.9.5\] - 2018-03-14
+## 0.9.0 (2018-03-14)
 
 _Initial release_
