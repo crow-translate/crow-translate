@@ -1,5 +1,6 @@
 # ![Crow Translate logo](./dist/unix/generic/hicolor/72x72/apps/crow-translate.png) Crow Translate
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b28c6646bb324ffb98092f63a9b5896e)](https://app.codacy.com/app/Shatur95/crow-translate?utm_source=github.com&utm_medium=referral&utm_content=Shatur95/crow-translate&utm_campaign=Badge_Grade_Settings)
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
