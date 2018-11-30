@@ -85,9 +85,9 @@ If you do not pass startup arguments to the program, the GUI starts.
 
 ## Dependencies
 
-**Arch Linux:** qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl qt5-tools (make)
+**Arch Linux:** qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl
 
-**Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qtbase5-dev qtbase5-dev-tools qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
+**Debian:** gstreamer1.0-fluendo-mp3, qtgstreamer-plugins-qt5, gstreamer1.0-plugins-good, gstreamer1.0-alsa, gstreamer1.0-pulseaudio, libqt5multimedia5-plugins
 
 ## Third-party
 
