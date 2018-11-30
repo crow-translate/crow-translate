@@ -18,163 +18,261 @@
  *
  */
 
-#include <QCommandLineParser>
-#include <QSettings>
-#include <QTranslator>
-#include <QMediaPlayer>
-
-#include "singleapplication.h"
-#include "qonlinetranslator.h"
 #include "mainwindow.h"
+#include "appsettings.h"
+#include "singleapplication.h"
+
+#include <QCommandLineParser>
+#include <QFile>
+#include <QRegularExpression>
+
+bool speak(QOnlineTranslator &translator, const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language);
 
 int main(int argc, char *argv[])
 {
-    // If there are no arguments, just launch Crow Translate
+    // Launch GUI if there are no arguments
     if (argc == 1) {
         SingleApplication app(argc, argv);
-        QApplication::setApplicationName("Crow Translate");
-        QCoreApplication::setOrganizationName("crow");
+        SingleApplication::setApplicationName("Crow Translate");
+        SingleApplication::setOrganizationName("crow");
+        SingleApplication::setApplicationVersion("2.0.1");
 
 #if defined(Q_OS_WIN)
         QIcon::setThemeName("Papirus");
 #endif
 
-        QSettings settings;
+        AppSettings settings;
+        settings.setupLocale();
         MainWindow w;
-        if (!settings.value("StartMinimized", false).toBool()) w.show();
+        if (!settings.isStartMinimized())
+            w.show();
         return app.exec();
     }
+
+    // Command line interface
+    QCoreApplication app(argc, argv);
+    QCoreApplication::setApplicationName("Crow Translate");
+    QCoreApplication::setApplicationVersion("2.0.1");
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription("A simple and lightweight translator that allows to translate and say text using the Google Translate API and much more.");
+    parser.addPositionalArgument("text", "Text to translate. By default, the translation will be done to the system language.");
+    parser.addHelpOption();
+    parser.addVersionOption();
+    parser.addOption(QCommandLineOption({"c", "codes"}, "Show all language codes."));
+    parser.addOption(QCommandLineOption({"s", "source"}, "Specifies the source language. By default, Google will try to determine the language on its own.", "code", "auto"));
+    parser.addOption(QCommandLineOption({"t", "translation"}, "Specifies the translation language(s), joined by '+'. By default, the system language is used.", "code", "auto"));
+    parser.addOption(QCommandLineOption({"l", "locale"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
+    parser.addOption(QCommandLineOption({"e", "engine"}, "Specifies the translator engine ('google' or 'yandex'). Google is used by default.", "engine", "google"));
+    parser.addOption(QCommandLineOption({"p", "speak-translation"}, "Speaks the translation."));
+    parser.addOption(QCommandLineOption({"u", "speak-source"}, "Speaks the original text."));
+    parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
+    parser.addOption(QCommandLineOption({"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."));
+    parser.addOption(QCommandLineOption({"i", "stdin"}, "Add stdin data to source text."));
+    parser.process(app);
+
+    QOnlineTranslator translator;
+    QTextStream out(stdout);
+
+    // Show all language codes
+    if (parser.isSet("codes")) {
+        for (int language = QOnlineTranslator::Auto; language != QOnlineTranslator::Zulu; ++language) {
+            out << translator.languageString(static_cast<QOnlineTranslator::Language>(language));
+            out << " - ";
+            out << translator.languageCode(static_cast<QOnlineTranslator::Language>(language)) << endl;
+        }
+        return 0;
+    }
+
+    // Parse engine
+    QOnlineTranslator::Engine engine;
+    if (parser.value("engine") == "google")
+        engine = QOnlineTranslator::Google;
+    else if (parser.value("engine") == "yandex")
+        engine = QOnlineTranslator::Yandex;
     else {
-        QCoreApplication app(argc, argv);
-        app.setApplicationName("Crow Translate");
-        app.setApplicationVersion("0.9.9");
+        out << "Error: Unknown engine" << endl;
+        parser.showHelp();
+    }
 
-        QCommandLineParser parser;
-        parser.setApplicationDescription("A simple and lightweight translator that allows to translate and say text using the Google Translate API and much more.");
-        parser.addPositionalArgument("text", "Text to translate. By default, the translation will be done to the system language.");
-        parser.addHelpOption();
-        parser.addVersionOption();
-        parser.addOption(QCommandLineOption({"s", "source"}, "Specifies the source language. By default, Google will try to determine the language on its own.", "code", "auto"));
-        parser.addOption(QCommandLineOption({"t", "translation"}, "Specifies the translation language(s), joined by '+'. By default, the system language is used.", "code", "auto"));
-        parser.addOption(QCommandLineOption({"l", "translator"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
-        parser.addOption(QCommandLineOption({"e", "speak-translation"}, "Speaks the translation."));
-        parser.addOption(QCommandLineOption({"q", "speak-source"}, "Speaks the original text."));
-        parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
-        parser.process(app);
+    // Parse languages
+    auto sourceLang = QOnlineTranslator::language(parser.value("source"));
+    auto uiLang = QOnlineTranslator::language(parser.value("locale"));
+    QVector<QOnlineTranslator::Language> translationLangs;
+    foreach (const QString &language, parser.value("translation").split("+")) {
+        translationLangs << QOnlineTranslator::language(language);
+    }
 
-        QTextStream out(stdout);
-        QMediaPlayer player;
-        QMediaPlaylist playlist;
-        QEventLoop waitUntilPlayedLoop;
-        QObject::connect(&player, &QMediaPlayer::stateChanged, [&](QMediaPlayer::State state) {
-            if (state == QMediaPlayer::StoppedState)
-                waitUntilPlayedLoop.quit();
-        });
-
-        // Translate and / or speach all arguments
-        foreach (auto text, parser.positionalArguments()) {
-            QStringList targetLanguages = parser.value("t").split("+");
-            for (auto i = 0; i < targetLanguages.size(); i++) {
-                // Translate into each target language
-                if (parser.isSet("a")) {
-                    // For only audio option
-                    if (parser.isSet("q") && i == 0) {
-                        out << text << endl;
-                        playlist.addMedia(QOnlineTranslator::media(text, parser.value("s")));
-                        player.setPlaylist(&playlist);
-                        player.play();
-                        waitUntilPlayedLoop.exec();
-                        playlist.clear();
-                    }
-                    if (parser.isSet("e")) {
-                        QOnlineTranslator translationData(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
-                        out << translationData.translation() << endl;
-                        playlist.addMedia(translationData.translationMedia());
-                        player.setPlaylist(&playlist);
-                        player.play();
-                        waitUntilPlayedLoop.exec();
-                        playlist.clear();
-                    }
-                    continue;
+    // Read text for translation
+    QString text;
+    if (parser.isSet("file")) {
+        // Read from stdin first
+        if (parser.isSet("stdin")) {
+            QString stdinText = QTextStream(stdin).readAll();
+            foreach (const QString &filePath,  stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
+                QFile file(filePath);
+                if (file.exists()) {
+                    if (file.open(QFile::ReadOnly))
+                        text += file.readAll();
+                    else
+                        out << "Error: Unable to open file: " << file.fileName() << endl;
+                } else {
+                    out << "Error: File does not exist: " << file.fileName() << endl;
                 }
+            }
+        }
 
-                QOnlineTranslator onlineTranslator(text, targetLanguages.at(i), parser.value("s"), parser.value("l"));
+        // Read from arguments
+        foreach (const QString &filePath,  parser.positionalArguments()) {
+            QFile file(filePath);
+            if (file.exists()) {
+                if (file.open(QFile::ReadOnly))
+                    text += file.readAll();
+                else
+                    out << "Error: Unable to open file: " << file.fileName() << endl;
+            } else {
+                out << "Error: File does not exist: " << file.fileName() << endl;
+            }
+        }
+    } else {
+        if (parser.isSet("stdin"))
+            text += QTextStream(stdin).readAll();
+        text += parser.positionalArguments().join(" ");
+    }
 
-                // Check for network error
-                if (onlineTranslator.error()) {
-                    out << onlineTranslator.translation();
+    // Remove last line break
+    if (text.endsWith("\n")) {
+        text.chop(1);
+    }
+
+    if (text.isEmpty()) {
+        out << "Error: There is no text for translation." << endl;
+        return 0;
+    }
+
+    // Only tts option
+    if (parser.isSet("audio-only")) {
+        if (!parser.isSet("speak-source") && !parser.isSet("speak-translation")) {
+            out << "Error: For --audio-only you must specify --speak-source or --speak-translation options." << endl;
+            parser.showHelp();
+        }
+
+        // Play source
+        if (parser.isSet("speak-source")) {
+            out << "Source text:" << endl;
+            out << text << endl;
+
+            if (!speak(translator, translator.source(), engine, translator.sourceLanguage()))
+                return 0;
+        }
+
+        // Play translation in all languages
+        if (parser.isSet("speak-translation")) {
+            foreach (QOnlineTranslator::Language translationLang, translationLangs) {
+                // Speak into each target language
+                translator.translate(text, engine, translationLang, sourceLang, uiLang);
+                out << "Translation into " << translator.translationLanguageString() << ":" << endl;
+                out << translator.translation() << endl;
+
+                if (speak(translator, translator.translation(), engine, translator.translationLanguage()))
                     return 0;
-                }
-
-                // Show source text and transliteration only once
-                if (i == 0) {
-                    out << text << endl;
-                    if (!onlineTranslator.sourceTranscription().isEmpty())
-                        out << "(" << onlineTranslator.sourceTranscription().replace("\n", ")\n(") << ")" << endl << endl;
-                    else
-                        out << endl;
-                }
-
-                // Show languages
-                out << "[ " << onlineTranslator.codeToLanguage(onlineTranslator.sourceLanguage()) << " -> ";
-                out << onlineTranslator.codeToLanguage(onlineTranslator.translationLanguage()) << " ]" << endl << endl ;
-
-                // Show translation text and transliteration
-                if (!onlineTranslator.translation().isEmpty()) {
-                    out << onlineTranslator.translation() << endl;
-                    if (!onlineTranslator.translationTranscription().isEmpty())
-                        out << "/" << onlineTranslator.translationTranscription().replace("\n", "/\n/") << "/" << endl << endl;
-                    else
-                        out << endl;
-                }
-
-                // Show translation options
-                if (!onlineTranslator.translationOptionsList().isEmpty()) {
-                    out << onlineTranslator.source() << " - translation options:" << endl;
-                    foreach (auto optionType, onlineTranslator.translationOptionsList()) {
-                        out << optionType.typeOfSpeech() << endl;
-                        for (auto i = 0; i <  optionType.count(); i++) {
-                            out << "\t";
-                            if (!optionType.gender(i).isEmpty())
-                                out << optionType.gender(i) << " ";
-                            out << optionType.word(i) << ": ";
-
-                            out << optionType.translations(i).at(0);
-                            for (auto j = 1; j < optionType.translations(i).size(); j++) {
-                                out << ", " << optionType.translations(i).at(j); // Print the rest of the translation options
-                            }
-                            out << endl;
-                        }
-                        out << endl;
-                    }
-                }
-
-                // Show definitions
-                if (!onlineTranslator.definitionsList().isEmpty()) {
-                    out << onlineTranslator.source() << " - definitions:" << endl;
-                    foreach (auto definition, onlineTranslator.definitionsList()) {
-                        out << definition.typeOfSpeech() << endl;
-                        out << "\t" << definition.description() << endl;
-                        out << "\t" << definition.example() << endl;
-                    }
-                }
-
-                if (parser.isSet("q") && i == 0) {
-                    playlist.addMedia(onlineTranslator.sourceMedia());
-                    player.setPlaylist(&playlist);
-                    player.play();
-                    waitUntilPlayedLoop.exec();
-                    playlist.clear();
-                }
-                if (parser.isSet("e")) {
-                    playlist.addMedia(onlineTranslator.translationMedia());
-                    player.setPlaylist(&playlist);
-                    player.play();
-                    waitUntilPlayedLoop.exec();
-                    playlist.clear();
-                }
             }
         }
         return 0;
     }
+
+    // Translate into each target language
+    for (auto i = 0; i < translationLangs.size(); i++) {
+        translator.translate(text, engine, translationLangs.at(i), sourceLang, uiLang);
+
+        // Check for network error
+        if (translator.error()) {
+            out << translator.errorString();
+            return 0;
+        }
+
+        // Show source text and transliteration only once
+        if (i == 0) {
+            out << text << endl;
+            if (!translator.sourceTranslit().isEmpty())
+                out << "(" << translator.sourceTranslit().replace("\n", ")\n(") << ")" << endl << endl;
+            else
+                out << endl;
+        } else {
+            out << endl;
+        }
+
+        // Show languages
+        out << "[ " << translator.sourceLanguageString() << " -> ";
+        out << translator.translationLanguageString() << " ]" << endl << endl ;
+
+        // Show text translation and transliteration
+        if (!translator.translation().isEmpty()) {
+            out << translator.translation() << endl;
+            if (!translator.translationTranslit().isEmpty())
+                out << "/" << translator.translationTranslit().replace("\n", "/\n/") << "/" << endl << endl;
+            else
+                out << endl;
+        }
+
+        // Show translation options
+        if (!translator.dictionaryList().isEmpty()) {
+            out << translator.source() << " - translation options:" << endl;
+            foreach (const QDictionary &dictionary, translator.dictionaryList()) {
+                out << dictionary.typeOfSpeech() << endl;
+                for (auto i = 0; i < dictionary.count(); i++) {
+                    out << "\t";
+                    if (!dictionary.gender(i).isEmpty())
+                        out << dictionary.gender(i) << " ";
+                    out << dictionary.word(i) << ": ";
+
+                    out << dictionary.translations(i) << endl;
+                }
+                out << endl;
+            }
+        }
+
+        // Show definitions
+        if (!translator.definitionsList().isEmpty()) {
+            out << translator.source() << " - definitions:" << endl;
+            foreach (const QDefinition &definition, translator.definitionsList()) {
+                out << definition.typeOfSpeech() << endl;
+                out << "\t" << definition.description() << endl;
+                out << "\t" << definition.example() << endl;
+            }
+        }
+
+        if (parser.isSet("speak-source") && i == 0)
+            if (speak(translator, translator.source(), engine, translator.sourceLanguage()))
+                return 0;
+
+        if (parser.isSet("speak-translation"))
+            if (speak(translator, translator.translation(), engine, translator.translationLanguage()))
+                return 0;
+    }
+
+    return 0;
+}
+
+bool speak(QOnlineTranslator &translator, const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language) {
+    QMediaPlayer player;
+    QMediaPlaylist playlist;
+    QEventLoop waitUntilPlayedLoop;
+    QObject::connect(&player, &QMediaPlayer::stateChanged, [&](QMediaPlayer::State state) {
+        if (state == QMediaPlayer::StoppedState)
+            waitUntilPlayedLoop.quit();
+    });
+
+    playlist.addMedia(translator.media(text, engine, language));
+    if (translator.error() != QOnlineTranslator::NoError) {
+        QTextStream out(stdout);
+        out << translator.errorString() << endl;
+        return false;
+    }
+
+    player.setPlaylist(&playlist);
+    player.play();
+    waitUntilPlayedLoop.exec();
+
+    return true;
 }

@@ -21,17 +21,15 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "langbuttongroup.h"
+#include "qhotkey.h"
+
 #include <QMainWindow>
 #include <QSystemTrayIcon>
-#include <QTranslator>
 #include <QShortcut>
 #include <QTimer>
-#include <QButtonGroup>
 #include <QMediaPlayer>
-#include <QToolButton>
-
-#include "qhotkey.h"
-#include "qonlinetranslator.h"
+#include <QMenu>
 
 namespace Ui {
 class MainWindow;
@@ -42,91 +40,100 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    explicit MainWindow(QWidget *parent = nullptr);
+    ~MainWindow() override;
 
 signals:
     void translationTextChanged(const QString &text);
-    void sourceButtonChanged(QAbstractButton *button, const int &id);
-    void translationButtonChanged(QAbstractButton *button, const int &id);
     void playSourceButtonIconChanged(QIcon icon);
     void stopSourceButtonEnabled(bool enabled);
     void playTranslationButtonIconChanged(QIcon icon);
     void stopTranslationButtonEnabled(bool enabled);
 
 private slots:
+    // UI
     void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
-    void on_copyToSourceButton_clicked();
+    void on_autoTranslateCheckBox_toggled(bool checked);
+    void on_engineComboBox_currentIndexChanged(int index);
 
     void on_playSourceButton_clicked();
     void on_playTranslationButton_clicked();
-
     void on_stopSourceButton_clicked();
     void on_stopTranslationButton_clicked();
 
     void on_copySourceButton_clicked();
     void on_copyTranslationButton_clicked();
-
     void on_copyAllTranslationButton_clicked();
 
-    void on_autoSourceButton_triggered(QAction *language);
-    void on_autoTranslationButton_triggered(QAction *language);
+    void on_addSourceLangButton_clicked();
+    void on_addTranslationLangButton_clicked();
 
-    void on_sourceButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
-    void on_translationButtonGroup_buttonToggled(QAbstractButton *button, const bool &checked);
+    // Shortcuts
+    void translateSelectedText();
+    void copyTranslatedSelection();
+    void playSelection();
+    void playTranslatedSelection();
 
-    void on_translateSelectedHotkey_activated();
-    void on_playSelectedHotkey_activated();
-    void on_stopSelectedHotkey_activated();
-    void on_showMainWindowHotkey_activated();
-
-    void on_tray_activated(QSystemTrayIcon::ActivationReason reason);
-    void on_autoTranslateCheckBox_toggled(const bool &state);
-
-    void reloadTranslation();
-    void loadProxy();
+    // Language buttons
+    void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
 
-private:
-    void loadSettings();
+    // Player icons
+    void changeSourcePlayerState(QMediaPlayer::State state);
+    void changeTranslationPlayerState(QMediaPlayer::State state);
+    void changeSelectionPlayerState(QMediaPlayer::State state);
 
-    // Language button groups
-    void loadLanguageButtons(QButtonGroup *group, const QString &settingsName);
-    void insertLanguage(QButtonGroup *group, const QString &settingsName, const QString &languageCode);
-    void checkSourceButton(const int &id, const bool &checked);
-    void checkTranslationButton(const int &id, const bool &checked);
-    QList<QAction *> languagesList();
+    // Autotranslate timer
+    void startTranslateTimer();
+    void translateTimerExpires();
+
+    // Other
+    void showMainWindow();
+    void activateTray(QSystemTrayIcon::ActivationReason reason);
+#if defined(Q_OS_WIN)
+    void checkForUpdates();
+#endif
+
+private:
+    void changeEvent(QEvent *event) override;
+
+    // Translation
+    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
+    bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
+
+    // Helper functions
+    void loadSettings();
+    void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
 
     Ui::MainWindow *ui;
-    QTranslator interfaceTranslator;
-    QTimer autoTranslateTimer;
-    QOnlineTranslator *onlineTranslator;
-    QMenu *languagesMenu;
 
-    QMediaPlayer sourcePlayer;
-    QMediaPlaylist sourcePlaylist;
-    QMediaPlayer translationPlayer;
-    QMediaPlaylist translationPlaylist;
+    QOnlineTranslator m_translator{this};
+    QOnlineTranslator::Language m_uiLang;
 
-    // System tray
-    QMenu *trayMenu;
-    QSystemTrayIcon *trayIcon;
+    QMediaPlayer m_sourcePlayer{this};
+    QMediaPlayer m_translationPlayer{this};
+    QMediaPlayer m_selectionPlayer{this};
+    QMediaPlaylist m_sourcePlaylist{this};
+    QMediaPlaylist m_translationPlaylist{this};
+    QMediaPlaylist m_selectionPlaylist{this};
 
-    // Window shortcuts
-    QShortcut *closeWindowsShortcut;
+    QShortcut m_closeWindowsShortcut{this};
+    QHotkey m_translateSelectionHotkey{this};
+    QHotkey m_playSelectionHotkey{this};
+    QHotkey m_playTranslatedSelectionHotkey{this};
+    QHotkey m_stopSelectionHotkey{this};
+    QHotkey m_showMainWindowHotkey{this};
+    QHotkey m_copyTranslatedSelectionHotkey{this};
 
-    // Global shortcuts
-    QHotkey *translateSelectedHotkey;
-    QHotkey *playSelectedHotkey;
-    QHotkey *stopSelectedHotkey;
-    QHotkey *showMainWindowHotkey;
+    LangButtonGroup m_sourceButtons{this};
+    LangButtonGroup m_translationButtons{this};
 
-    // Language button groups
-    QButtonGroup *sourceButtonGroup;
-    QButtonGroup *translationButtonGroup;
+    QMenu m_trayMenu{this};
+    QSystemTrayIcon m_trayIcon{this};
+    QTimer m_translateTimer{this};
 };
 
 #endif // MAINWINDOW_H

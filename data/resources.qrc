@@ -105,5 +105,14 @@
         <file>icons/flags/sq.svg</file>
         <file>icons/flags/zh-TW.svg</file>
         <file>icons/flags/zh-CN.svg</file>
+        <file>icons/flags/ba.svg</file>
+        <file>icons/flags/he.svg</file>
+        <file>icons/flags/mhr.svg</file>
+        <file>icons/flags/mrj.svg</file>
+        <file>icons/flags/pap.svg</file>
+        <file>icons/flags/tt.svg</file>
+        <file>icons/flags/udm.svg</file>
+        <file>icons/engines/google.svg</file>
+        <file>icons/engines/yandex.svg</file>
     </qresource>
 </RCC>

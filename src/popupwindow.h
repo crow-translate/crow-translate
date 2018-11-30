@@ -21,12 +21,13 @@
 #ifndef POPUPWINDOW_H
 #define POPUPWINDOW_H
 
+#include "langbuttongroup.h"
+
 #include <QMenu>
-#include <QButtonGroup>
 #include <QToolButton>
 #include <QTextEdit>
-
-#include "qonlinetranslator.h"
+#include <QShortcut>
+#include <QComboBox>
 
 namespace Ui {
 class PopupWindow;
@@ -37,41 +38,36 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(QMenu *languagesMenu, QButtonGroup *sourceGroup, QButtonGroup *translationGroup, QWidget *parent = 0);
-    ~PopupWindow();
+    explicit PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, int engineIndex, QWidget *parent = nullptr);
+    ~PopupWindow() override;
 
     QTextEdit *translationEdit();
-
     QToolButton *swapButton();
-    QButtonGroup *sourceButtons();
-    QButtonGroup *translationButtons();
+    QComboBox *engineCombobox();
 
-    QToolButton *autoSourceButton();
+    QToolButton *addSourceLangButton();
     QToolButton *playSourceButton();
     QToolButton *stopSourceButton();
     QToolButton *copySourceButton();
 
-    QToolButton *autoTranslationButton();
+    QToolButton *addTranslationLangButton();
     QToolButton *playTranslationButton();
     QToolButton *stopTranslationButton();
     QToolButton *copyTranslationButton();
     QToolButton *copyAllTranslationButton();
 
-
-public slots:
-    void loadSourceButton(QAbstractButton *button, const int &id);
-    void loadTranslationButton(QAbstractButton *button, const int &id);
-    void checkSourceButton(const int &id, const bool &checked);
-    void checkTranslationButton(const int &id, const bool &checked);
+    LangButtonGroup *sourceButtons();
+    LangButtonGroup *translationButtons();
 
 private:
-    void showEvent(QShowEvent *event);
-    void copyLanguageButtons(QButtonGroup *existingGroup, QButtonGroup *copyingGroup);
+    void showEvent(QShowEvent *event) override;
+    bool event(QEvent *event) override;
 
     Ui::PopupWindow *ui;
 
-    QButtonGroup *sourceButtonGroup;
-    QButtonGroup *translationButtonGroup;
+    QShortcut m_closeWindowsShortcut{this};
+    LangButtonGroup m_sourceButtonGroup{this};
+    LangButtonGroup m_translationButtonGroup{this};
 };
 
 #endif // POPUPWINDOW_H

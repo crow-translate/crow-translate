@@ -22,9 +22,15 @@
 #define SETTINGSDIALOG_H
 
 #include <QDialog>
-#include <QSettings>
 #include <QMenu>
-#include <QTreeWidget>
+#include <QMediaPlayer>
+#include <QMediaPlaylist>
+#if defined(Q_OS_WIN)
+#include <QHBoxLayout>
+#include <QLabel>
+#include <QComboBox>
+#include <QPushButton>
+#endif
 
 namespace Ui {
 class SettingsDialog;
@@ -35,29 +41,49 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(QMenu *languagesMenu, QWidget *parent = 0);
+    explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog();
 
 private slots:
-    void on_dialogBox_accepted();
-    void on_trayCheckBox_toggled(bool checked);
+    // UI
+    void on_SettingsDialog_accepted();
     void on_resetSettingsButton_clicked();
-
     void on_proxyTypeComboBox_currentIndexChanged(int index);
-    void on_proxyAuthCheckBox_toggled(bool checked);
+
+    void on_trayIconComboBox_currentIndexChanged(int index);
+    void on_customTrayIconButton_clicked();
+
+    void on_engineComboBox_currentIndexChanged(int index);
+    void on_testSpeechButton_clicked();
 
     void on_shortcutsTreeWidget_itemSelectionChanged();
     void on_shortcutSequenceEdit_editingFinished();
     void on_acceptShortcutButton_clicked();
+    void on_clearShortcutButton_clicked();
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 
-signals:
-    void languageChanged();
-    void proxyChanged();
-
+#if defined(Q_OS_WIN)
+    void checkForUpdates();
+#endif
 private:
     Ui::SettingsDialog *ui;
+
+    QMediaPlayer m_player{this};
+    QMediaPlaylist m_playlist{this};
+
+#if defined(Q_OS_WIN)
+    // Icon theme info
+    QLabel m_papirusTitleLabel;
+    QLabel m_papirusLabel;
+    QLabel m_checkForUpdatesLabel;
+
+    // Check for updates
+    QHBoxLayout m_checkForUpdatesLayout;
+    QComboBox m_checkForUpdatesComboBox;
+    QPushButton m_checkForUpdatesButton;
+    QLabel m_checkForUpdatesStatusLabel;
+#endif
 };
 
 #endif // SETTINGSDIALOG_H

@@ -3,8 +3,8 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using the Google Translate API and much more.
-You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library that provides free use of the Google Translate API for Qt5") used in this project. 
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
+You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API. ") used in this project. 
 
 ## Content
 
@@ -15,6 +15,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * [Dependencies](#dependencies)
 * [Third-party](#third-party)
 * [Installation](#installation)
+* [Localization](#localization)
 
 ## Screenshots
 
@@ -25,7 +26,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="dist/unix/screenshots/linux-plasma-screenshot-settings.png?raw=true" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: <a href="https://github.com/PapirusDevelopmentTeam/materia-kde">Materia</a> | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="http://vunature.com/tilt-lakes-landscapes-shift-free-download-wallpaper-for-desktop-of-nature/">Devany Walsh</a></sub></sup>
+  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub></sup>
 </p>
 
 ## Features
@@ -34,7 +35,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 * Translator window with native interface similar to Google Translate
 * Command-line interface with rich options
 * Highly customizable shortcuts
-* Low memory consumption (~19MB)
+* Low memory consumption (~20MB)
 
 ## Default keyboard shortcuts
 
@@ -70,18 +71,21 @@ The program also supports the console interface.
 |----------------------------|--------------------------------------------------------------------------------------------------|
 | `-h, --help`               | Displays help                                                                                    |
 | `-v, --version`            | Displays version information                                                                     |
-| `-s, --source <code>`      | Specifies the source language (by default, Google will try to determine the language on its own) |
+| `-s, --source <code>`      | Specifies the source language (by default, backend will try to determine the language on its own) |
 | `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)   |
-| `-l, --translator <code>`  | Specifies the translator language (by default, the system language is used)                      |
-| `-e, --speak-translation`  | Speaks the translation                                                                           |
-| `-q, --speak-source`       | Speaks the original text                                                                         |
+| `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                      |
+| `-e, --engine <engine>`    | Specifies the translator engine ('google' or 'yandex'), Google is used by default                |
+| `-p, --speak-translation`  | Speaks the translation                                                                           |
+| `-u, --speak-source`       | Speaks the original text                                                                         |
 | `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.               |
+| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                        |
+| `-i, --stdin`              | Add stdin data to source text.                                                                   |
 
 If you do not pass startup arguments to the program, the GUI starts.
 
 ## Dependencies
 
-**Arch Linux:** qt5-base qt5-multimedia gst-plugins-good openssl qt5-tools (make)
+**Arch Linux:** qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl qt5-tools (make)
 
 **Debian:** qt5-default qt5-qmake libqt5x11extras5-dev qtbase5-dev qtbase5-dev-tools qttools5-dev-tools qtmultimedia5-dev gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa
 
@@ -90,7 +94,7 @@ If you do not pass startup arguments to the program, the GUI starts.
 ### Libraries
 
 This project uses following third-party libraries:
-* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google Translate API for Qt5.
+* [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google and Yandex translate API for Qt5.
 * [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
 * [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
@@ -131,7 +135,7 @@ Than you can install it as usual. The script will tell you where the package wil
 
 ### Arch Linux and derivatives
 
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google Translate API") from AUR.
+You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google and Yandex translate API") from AUR.
 
 ### Manual building
 
@@ -144,3 +148,7 @@ make clean
 ```
 
 Then you can use standalone binary `crow`.
+
+## Localization
+
+To help with localization you can use [Transefix](https://www.transifex.com/crow-translate/crow-translate) or [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly (translation files are located in `data/translations` repository folder).

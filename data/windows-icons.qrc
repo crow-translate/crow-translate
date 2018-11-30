@@ -1,27 +1,35 @@
 <RCC>
     <qresource prefix="/">
         <file>icons/Papirus/index.theme</file>
-        <file>icons/Papirus/32x32/dialog-information.svg</file>
-        <file>icons/Papirus/32x32/preferences-desktop-keyboard.svg</file>
-        <file>icons/Papirus/32x32/preferences-system-network.svg</file>
-        <file>icons/Papirus/32x32/preferences-system.svg</file>
-        <file>icons/Papirus/16x16/application-exit.svg</file>
-        <file>icons/Papirus/16x16/dialog-information.svg</file>
-        <file>icons/Papirus/16x16/dialog-object-properties.svg</file>
-        <file>icons/Papirus/16x16/edit-copy.svg</file>
-        <file>icons/Papirus/16x16/go-next.svg</file>
-        <file>icons/Papirus/16x16/object-flip-horizontal.svg</file>
-        <file>icons/Papirus/16x16/window.svg</file>
-        <file>icons/Papirus/16x16/document-export.svg</file>
-        <file>icons/Papirus/32x32/preferences-desktop-locale.svg</file>
-        <file>icons/Papirus/16x16/media-playback-start.svg</file>
-        <file>icons/Papirus/16x16/media-playback-pause.svg</file>
-        <file>icons/Papirus/16x16/preferences-desktop-locale.svg</file>
-        <file>icons/Papirus/16x16/media-playback-stop.svg</file>
-        <file>icons/Papirus/scalable/crow-translate.svg</file>
-        <file>icons/Papirus/scalable/crow-translate-tray-dark.svg</file>
-        <file>icons/Papirus/scalable/crow-translate-tray-light.svg</file>
-        <file>icons/Papirus/32x32/preferences-desktop-theme.svg</file>
-        <file>icons/Papirus/16x16/go-previous.svg</file>
+        <file>icons/Papirus/16x16/actions/application-exit.svg</file>
+        <file>icons/Papirus/16x16/actions/dialog-error.svg</file>
+        <file>icons/Papirus/16x16/actions/dialog-information.svg</file>
+        <file>icons/Papirus/16x16/actions/dialog-object-properties.svg</file>
+        <file>icons/Papirus/16x16/actions/edit-copy.svg</file>
+        <file>icons/Papirus/16x16/actions/folder.svg</file>
+        <file>icons/Papirus/16x16/actions/go-next.svg</file>
+        <file>icons/Papirus/16x16/actions/go-previous.svg</file>
+        <file>icons/Papirus/16x16/actions/media-playback-pause.svg</file>
+        <file>icons/Papirus/16x16/actions/media-playback-start.svg</file>
+        <file>icons/Papirus/16x16/actions/media-playback-stop.svg</file>
+        <file>icons/Papirus/16x16/actions/object-flip-horizontal.svg</file>
+        <file>icons/Papirus/16x16/actions/window.svg</file>
+        <file>icons/Papirus/16x16/apps/preferences-desktop-locale.svg</file>
+        <file>icons/Papirus/32x32/apps/preferences-desktop-keyboard.svg</file>
+        <file>icons/Papirus/32x32/apps/preferences-desktop-locale.svg</file>
+        <file>icons/Papirus/32x32/apps/preferences-desktop-theme.svg</file>
+        <file>icons/Papirus/32x32/apps/preferences-system-network.svg</file>
+        <file>icons/Papirus/32x32/apps/preferences-system.svg</file>
+        <file>icons/Papirus/32x32/status/dialog-information.svg</file>
+        <file>icons/Papirus/16x16/actions/document-export.svg</file>
+        <file>icons/Papirus/16x16/apps/software-update-available.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate-tray-dark.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate-tray-light.svg</file>
+        <file>icons/Papirus/32x32/status/crow-translate.svg</file>
+        <file>icons/Papirus/16x16/actions/view-refresh.svg</file>
+        <file>icons/Papirus/16x16/actions/dialog-ok-apply.svg</file>
+        <file>icons/Papirus/16x16/actions/edit-clear.svg</file>
+        <file>icons/Papirus/32x32/apps/audio-speakers.svg</file>
+        <file>icons/Papirus/16x16/actions/list-add.svg</file>
     </qresource>
 </RCC>

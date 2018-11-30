@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>521</height>
+    <width>800</width>
+    <height>552</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
      </property>
      <widget class="QListWidget" name="pagesListWidget">
       <property name="sizePolicy">
-       <sizepolicy hsizetype="Maximum" vsizetype="Expanding">
+       <sizepolicy hsizetype="MinimumExpanding" vsizetype="Expanding">
         <horstretch>0</horstretch>
         <verstretch>0</verstretch>
        </sizepolicy>
@@ -79,6 +79,15 @@
       </item>
       <item>
        <property name="text">
+        <string>Speech synthesis</string>
+       </property>
+       <property name="icon">
+        <iconset theme="audio-speakers">
+         <normaloff>.</normaloff>.</iconset>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Connection</string>
        </property>
        <property name="icon">
@@ -106,13 +115,7 @@
       </item>
      </widget>
      <widget class="QStackedWidget" name="pagesStackedWidget">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <widget class="QWidget" name="generalWidget">
+      <widget class="QWidget" name="generalPage">
        <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
          <widget class="QGroupBox" name="generalGroupBox">
@@ -121,7 +124,7 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
-            <layout class="QHBoxLayout" name="windowModeHorizontalLayout">
+            <layout class="QHBoxLayout" name="windowModeLayout">
              <item>
               <widget class="QLabel" name="windowModeLabel">
                <property name="text">
@@ -138,13 +141,13 @@
                </item>
                <item>
                 <property name="text">
-                 <string>Full window</string>
+                 <string>Main window</string>
                 </property>
                </item>
               </widget>
              </item>
              <item>
-              <spacer name="windowModeHorizontalSpacer">
+              <spacer name="windowModeSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -159,7 +162,7 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="languageHorizontalLayout">
+            <layout class="QHBoxLayout" name="languageLayout">
              <item>
               <widget class="QLabel" name="languageLabel">
                <property name="sizePolicy">
@@ -201,7 +204,7 @@
               </widget>
              </item>
              <item>
-              <spacer name="languageHorizontalSpacer">
+              <spacer name="languageSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -220,9 +223,6 @@
              <property name="text">
               <string>Show tray icon</string>
              </property>
-             <property name="checked">
-              <bool>true</bool>
-             </property>
             </widget>
            </item>
            <item>
@@ -232,9 +232,6 @@
              </property>
              <property name="text">
               <string>Start minimized</string>
-             </property>
-             <property name="checkable">
-              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -305,14 +302,7 @@
            <item>
             <layout class="QGridLayout" name="popupSizeLayout">
              <item row="0" column="2">
-              <widget class="QSpinBox" name="popupHeightSpinBox">
-               <property name="minimum">
-                <number>200</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-              </widget>
+              <widget class="QSpinBox" name="popupHeightSpinBox"/>
              </item>
              <item row="0" column="0">
               <widget class="QLabel" name="popupHeightLabel">
@@ -323,15 +313,6 @@
              </item>
              <item row="0" column="1">
               <widget class="QSlider" name="popupHeightSlider">
-               <property name="minimum">
-                <number>200</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-               <property name="singleStep">
-                <number>1</number>
-               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -339,12 +320,6 @@
              </item>
              <item row="1" column="1">
               <widget class="QSlider" name="popupWidthSlider">
-               <property name="minimum">
-                <number>350</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -358,42 +333,21 @@
               </widget>
              </item>
              <item row="1" column="2">
-              <widget class="QSpinBox" name="popupWidthSpinBox">
-               <property name="minimum">
-                <number>350</number>
-               </property>
-               <property name="maximum">
-                <number>1000</number>
-               </property>
-              </widget>
+              <widget class="QSpinBox" name="popupWidthSpinBox"/>
              </item>
             </layout>
            </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="buttonsStyleGroupBox">
-          <property name="title">
-           <string>Buttons style</string>
-          </property>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
            <item>
-            <layout class="QHBoxLayout" name="languagesStyleLayout">
+            <layout class="QHBoxLayout" name="popupLanguagesLayout">
              <item>
-              <widget class="QLabel" name="languagesStyleLabel">
+              <widget class="QLabel" name="popupLanguagesLabel">
                <property name="text">
                 <string>Language buttons:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="languagesStyleComboBox">
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
+              <widget class="QComboBox" name="popupLanguagesComboBox">
                <item>
                 <property name="text">
                  <string>Icon only</string>
@@ -414,10 +368,15 @@
                  <string>Text under icon</string>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
-              <spacer name="languagesStyleSpacer">
+              <spacer name="popupLanguagesSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -432,21 +391,16 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="controlsStyleLayout">
+            <layout class="QHBoxLayout" name="popupControlsLayout">
              <item>
-              <widget class="QLabel" name="controlsStyleLabel">
+              <widget class="QLabel" name="popupControlsLabel">
                <property name="text">
                 <string>Control buttons:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="controlsStyleComboBox">
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
+              <widget class="QComboBox" name="popupControlsComboBox">
                <item>
                 <property name="text">
                  <string>Icon only</string>
@@ -467,10 +421,15 @@
                  <string>Text under icon</string>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
-              <spacer name="controlsStyleSpacer">
+              <spacer name="popupControlsSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -488,17 +447,132 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="otherInterfaceGroupBox">
+         <widget class="QGroupBox" name="windowInterfaceGroupBox">
           <property name="title">
-           <string>Other</string>
+           <string>Main window</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11">
+           <item>
+            <layout class="QHBoxLayout" name="windowLanguagesLayout">
+             <item>
+              <widget class="QLabel" name="windowLanguagesLabel">
+               <property name="text">
+                <string>Language buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="windowLanguagesComboBox">
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="windowLanguagesSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="windowControlsLayout">
+             <item>
+              <widget class="QLabel" name="windowControlsLabel">
+               <property name="text">
+                <string>Control buttons:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="windowControlsComboBox">
+               <item>
+                <property name="text">
+                 <string>Icon only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text only</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text beside icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Text under icon</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Follow system style</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="windowControlsSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="trayIconGroupBox">
+          <property name="title">
+           <string>Tray icon</string>
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_13">
            <item>
-            <layout class="QHBoxLayout" name="trayIconHorizontalLayout">
+            <layout class="QHBoxLayout" name="trayIconLayout">
              <item>
               <widget class="QLabel" name="trayIconLabel">
                <property name="text">
-                <string>Tray icon:</string>
+                <string>Icon:</string>
                </property>
               </widget>
              </item>
@@ -509,7 +583,7 @@
                  <string>Default</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="crow-translate">
+                 <iconset theme="crow-translate-tray">
                   <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
@@ -531,10 +605,19 @@
                   <normaloff>.</normaloff>.</iconset>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string>Custom</string>
+                </property>
+                <property name="icon">
+                 <iconset theme="folder">
+                  <normaloff>.</normaloff>.</iconset>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
-              <spacer name="trayIconHorizontalSpacer">
+              <spacer name="trayIconSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -545,6 +628,37 @@
                 </size>
                </property>
               </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="customTrayIconLayout">
+             <item>
+              <widget class="QLabel" name="customTrayIconLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Custom:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="customTrayIconEdit">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="customTrayIconButton">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string notr="true">...</string>
+               </property>
+              </widget>
              </item>
             </layout>
            </item>
@@ -575,16 +689,23 @@
           </property>
           <layout class="QVBoxLayout" name="verticalLayout_10">
            <item>
-            <widget class="QCheckBox" name="sourceTransliterationCheckBox">
+            <widget class="QCheckBox" name="sourceTranslitCheckBox">
              <property name="text">
               <string>Show source transliteration</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="translationTransliterationCheckBox">
+            <widget class="QCheckBox" name="translationTranslitCheckBox">
              <property name="text">
               <string>Show translation transliteration</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
+             <property name="text">
+              <string>Show source transcription</string>
              </property>
             </widget>
            </item>
@@ -683,10 +804,220 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="connectionWidget">
+      <widget class="QWidget" name="speechPage">
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QGroupBox" name="speechGroupBox">
+          <property name="title">
+           <string>Speech synthesis</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_16">
+           <item>
+            <layout class="QHBoxLayout" name="engineLayout">
+             <item>
+              <widget class="QLabel" name="engineLabel">
+               <property name="text">
+                <string>Select engine to configure:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="engineComboBox">
+               <item>
+                <property name="text">
+                 <string notr="true">Google</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string notr="true">Yandex</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="engineSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="speakerLayout">
+             <item>
+              <widget class="QLabel" name="speakerLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Speaker:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="speakerComboBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Zahar</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Ermil</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Jane</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Oksana</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Alyss</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Omazh</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="speakerSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="emotionLayout">
+             <item>
+              <widget class="QLabel" name="emotionLabel">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <property name="text">
+                <string>Emotional connotation:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="emotionComboBox">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Neutral</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Good</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Evil</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <spacer name="emotionSpacer">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="testSpeechLayout">
+             <item>
+              <widget class="QLineEdit" name="testSpeechEdit">
+               <property name="text">
+                <string>This is an example of speech synthesis.</string>
+               </property>
+               <property name="placeholderText">
+                <string>Test voice</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QToolButton" name="testSpeechButton">
+               <property name="text">
+                <string>Play</string>
+               </property>
+               <property name="icon">
+                <iconset theme="media-playback-start">
+                 <normaloff>.</normaloff>.</iconset>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <spacer name="speechSpacer">
+          <property name="orientation">
+           <enum>Qt::Vertical</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>20</width>
+            <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="connectionPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QGroupBox" name="proxyBox">
+         <widget class="QGroupBox" name="proxyGroupBox">
           <property name="title">
            <string>Proxy server</string>
           </property>
@@ -709,17 +1040,17 @@
                </item>
                <item>
                 <property name="text">
+                 <string notr="true">SOCKS5</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
                  <string>Don't use a proxy</string>
                 </property>
                </item>
                <item>
                 <property name="text">
                  <string notr="true">HTTP</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">SOCKS5</string>
                 </property>
                </item>
               </widget>
@@ -878,7 +1209,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="shortcutsWidget">
+      <widget class="QWidget" name="shortcutsPage">
        <layout class="QVBoxLayout" name="verticalLayout_4">
         <item>
          <widget class="QTreeWidget" name="shortcutsTreeWidget">
@@ -931,6 +1262,15 @@
            </item>
            <item>
             <property name="text">
+             <string>Play translation of selected text</string>
+            </property>
+            <property name="icon">
+             <iconset theme="media-playback-start">
+              <normaloff>.</normaloff>.</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
              <string>Stop playing selected text</string>
             </property>
             <property name="icon">
@@ -944,6 +1284,15 @@
             </property>
             <property name="icon">
              <iconset theme="window">
+              <normaloff>.</normaloff>.</iconset>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Translate selected text and copy to clipboard</string>
+            </property>
+            <property name="icon">
+             <iconset theme="edit-copy">
               <normaloff>.</normaloff>.</iconset>
             </property>
            </item>
@@ -1074,6 +1423,9 @@
          <layout class="QHBoxLayout" name="resetAllShortcutsLayout">
           <item>
            <widget class="QPushButton" name="resetAllShortcutsButton">
+            <property name="toolTip">
+             <string>Reset all to default</string>
+            </property>
             <property name="text">
              <string>Reset all</string>
             </property>
@@ -1114,16 +1466,44 @@
             <widget class="QKeySequenceEdit" name="shortcutSequenceEdit"/>
            </item>
            <item>
-            <widget class="QPushButton" name="acceptShortcutButton">
+            <widget class="QToolButton" name="acceptShortcutButton">
+             <property name="toolTip">
+              <string>Accept</string>
+             </property>
              <property name="text">
               <string>Accept</string>
+             </property>
+             <property name="icon">
+              <iconset theme="dialog-ok-apply">
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="resetShortcutButton">
+            <widget class="QToolButton" name="clearShortcutButton">
+             <property name="toolTip">
+              <string>Clear</string>
+             </property>
+             <property name="text">
+              <string>Clear</string>
+             </property>
+             <property name="icon">
+              <iconset theme="edit-clear">
+               <normaloff>.</normaloff>.</iconset>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="resetShortcutButton">
+             <property name="toolTip">
+              <string>Reset to default</string>
+             </property>
              <property name="text">
               <string>Reset</string>
+             </property>
+             <property name="icon">
+              <iconset theme="view-refresh">
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -1132,7 +1512,7 @@
         </item>
        </layout>
       </widget>
-      <widget class="QWidget" name="aboutWidget">
+      <widget class="QWidget" name="aboutPage">
        <layout class="QVBoxLayout" name="verticalLayout_7">
         <item>
          <layout class="QHBoxLayout" name="aboutLayout">
@@ -1144,9 +1524,6 @@
               <height>200</height>
              </size>
             </property>
-            <property name="text">
-             <string/>
-            </property>
             <property name="scaledContents">
              <bool>true</bool>
             </property>
@@ -1156,11 +1533,37 @@
            </widget>
           </item>
           <item>
-           <widget class="QGroupBox" name="aboutBox">
+           <widget class="QGroupBox" name="aboutGroupBox">
             <property name="title">
              <string notr="true">Crow Translate</string>
             </property>
             <layout class="QGridLayout" name="aboutBoxLayout">
+             <item row="11" column="1">
+              <widget class="QLabel" name="flagIconsLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;FlagKit&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
+             <item row="8" column="1">
+              <widget class="QLabel" name="mailLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
+               <property name="openExternalLinks">
+                <bool>true</bool>
+               </property>
+               <property name="textInteractionFlags">
+                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+               </property>
+              </widget>
+             </item>
              <item row="0" column="0">
               <widget class="QLabel" name="versionTitleLabel">
                <property name="text">
@@ -1168,10 +1571,17 @@
                </property>
               </widget>
              </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="mailLabel">
+             <item row="10" column="0">
+              <widget class="QLabel" name="telegramTitleLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;genaloner@gmail.com&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string notr="true">Telegram:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="10" column="1">
+              <widget class="QLabel" name="telegramLabel">
+               <property name="text">
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;@Shatur&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="openExternalLinks">
                 <bool>true</bool>
@@ -1188,30 +1598,13 @@
                </property>
               </widget>
              </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="telegramLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;@Shatur&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="telegramTitleLabel">
-               <property name="text">
-                <string notr="true">Telegram:</string>
-               </property>
-              </widget>
-             </item>
              <item row="0" column="1">
-              <widget class="QLabel" name="versionLabel">
+              <widget class="QLabel" name="versionLabel"/>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLabel" name="licenseLabel">
                <property name="text">
-                <string notr="true">0.9.9</string>
+                <string notr="true">GPL v3 </string>
                </property>
               </widget>
              </item>
@@ -1236,13 +1629,6 @@
                </property>
               </widget>
              </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="licenseLabel">
-               <property name="text">
-                <string notr="true">GPL v3 </string>
-               </property>
-              </widget>
-             </item>
              <item row="11" column="0">
               <widget class="QLabel" name="flagIconsTitleLabel">
                <property name="text">
@@ -1250,36 +1636,23 @@
                </property>
               </widget>
              </item>
-             <item row="11" column="1">
-              <widget class="QLabel" name="flagIconsLabel">
+             <item row="6" column="0">
+              <widget class="QLabel" name="autorTitleLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;FlagKit&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                <string>Autor:</string>
                </property>
               </widget>
              </item>
              <item row="6" column="1">
               <widget class="QLabel" name="autorLabel">
                <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#0057ae;&quot;&gt;Shatur95&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                </property>
                <property name="openExternalLinks">
                 <bool>true</bool>
                </property>
                <property name="textInteractionFlags">
                 <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="autorTitleLabel">
-               <property name="text">
-                <string>Autor:</string>
                </property>
               </widget>
              </item>
@@ -1329,7 +1702,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QDialogButtonBox" name="dialogBox">
+      <widget class="QDialogButtonBox" name="dialogButtonBox">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -1347,7 +1720,7 @@
  </resources>
  <connections>
   <connection>
-   <sender>dialogBox</sender>
+   <sender>dialogButtonBox</sender>
    <signal>accepted()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>accept()</slot>
@@ -1363,7 +1736,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>dialogBox</sender>
+   <sender>dialogButtonBox</sender>
    <signal>rejected()</signal>
    <receiver>SettingsDialog</receiver>
    <slot>reject()</slot>
@@ -1375,6 +1748,230 @@
     <hint type="destinationlabel">
      <x>286</x>
      <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pagesListWidget</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>pagesStackedWidget</receiver>
+   <slot>setCurrentIndex(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>108</x>
+     <y>250</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>250</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupOpacitySlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupOpacitySpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>476</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>723</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupOpacitySpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupOpacitySlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>723</x>
+     <y>63</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>476</x>
+     <y>63</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupWidthSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupWidthSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>483</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupWidthSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupWidthSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>732</x>
+     <y>137</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>483</x>
+     <y>137</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupHeightSlider</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupHeightSpinBox</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>483</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>732</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>popupHeightSpinBox</sender>
+   <signal>valueChanged(int)</signal>
+   <receiver>popupHeightSlider</receiver>
+   <slot>setValue(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>732</x>
+     <y>101</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>483</x>
+     <y>101</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyUsernameEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>259</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>276</x>
+     <y>36</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyUsernameLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>262</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordEdit</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>536</x>
+     <y>235</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>proxyAuthCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>proxyPasswordInfoLabel</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>162</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>266</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>startMinimizedCheckBox</receiver>
+   <slot>setEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>182</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trayCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>startMinimizedCheckBox</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>146</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>500</x>
+     <y>182</y>
     </hint>
    </hints>
   </connection>

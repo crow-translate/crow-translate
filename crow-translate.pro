@@ -4,52 +4,73 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-CONFIG += c++14
 TARGET = crow
 TEMPLATE = app
-VERSION = 0.9.9
+VERSION = 2.0.1
+QT += core gui widgets
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
-QMAKE_TARGET_DESCRIPTION = Simple and lightweight translator
+QMAKE_TARGET_DESCRIPTION = Crow Translate
 QMAKE_TARGET_COPYRIGHT = Copyright © 2018 Gennady Chernyshchuk
 QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
 
 include(src/qonlinetranslator/qonlinetranslator.pri)
+include(src/qgittag/qgittag.pri)
 include(src/third-party/qhotkey/qhotkey.pri)
 include(src/third-party/singleapplication/singleapplication.pri)
-DEFINES += QAPPLICATION_CLASS=QApplication
 
-DEFINES += QT_DEPRECATED_WARNINGS
-
+DEFINES += \
+    QAPPLICATION_CLASS=QApplication \
+    QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     src/main.cpp \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
-    src/popupwindow.cpp
+    src/popupwindow.cpp \
+    src/appsettings.cpp \
+    src/langbuttongroup.cpp \
+    src/addlangdialog.cpp
 
 HEADERS += \
     src/settingsdialog.h \
     src/mainwindow.h \
-    src/popupwindow.h
+    src/popupwindow.h \
+    src/appsettings.h \
+    src/langbuttongroup.h \
+    src/addlangdialog.h
 
 FORMS += \
     src/settingsdialog.ui \
     src/mainwindow.ui \
-    src/popupwindow.ui
+    src/popupwindow.ui \
+    src/addlangdialog.ui
 
 RESOURCES += \
     data/resources.qrc
 
 win32 {
-RESOURCES += data/windows-icons.qrc
+SOURCES += \
+    src/updaterwindow.cpp
+
+HEADERS += \
+    src/updaterwindow.h
+
+FORMS += \
+    src/updaterwindow.ui
+
+RESOURCES += \
+    data/windows-icons.qrc
 }
 
-TRANSLATIONS += $$files(data/translations/crow_*.ts)
+TRANSLATIONS += \
+    data/translations/crow.ts \
+    data/translations/crow_ru.ts
+
+# Compile translations
+system(lrelease crow-translate.pro)
 
 # For make install
 unix {
