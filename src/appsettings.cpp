@@ -119,12 +119,13 @@ bool AppSettings::isAutostartEnabled()
 void AppSettings::setAutostartEnabled(bool enabled)
 {
 #if defined(Q_OS_LINUX)
-    constexpr char desktopFileName[] = "/usr/share/applications/crow-translate.desktop";
     QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
 
     if (enabled) {
         // Create autorun file
         if (!autorunFile.exists()) {
+            constexpr char desktopFileName[] = "/usr/share/applications/crow-translate.desktop";
+
             if (!QFile::copy(desktopFileName, autorunFile.fileName()))
                 qCritical() << tr("Unable to create autorun file from ") + desktopFileName;
         }
