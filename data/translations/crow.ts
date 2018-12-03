@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/appsettings.cpp" line="129"/>
+        <location filename="../../src/appsettings.cpp" line="130"/>
         <source>Unable to create autorun file from </source>
         <translation type="unfinished"></translation>
     </message>
@@ -117,8 +117,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="328"/>
-        <location filename="../../src/mainwindow.cpp" line="94"/>
-        <location filename="../../src/mainwindow.cpp" line="700"/>
+        <location filename="../../src/mainwindow.cpp" line="97"/>
+        <location filename="../../src/mainwindow.cpp" line="711"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -138,52 +138,57 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="93"/>
-        <location filename="../../src/mainwindow.cpp" line="699"/>
+        <location filename="../../src/mainwindow.cpp" line="96"/>
+        <location filename="../../src/mainwindow.cpp" line="710"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="95"/>
-        <location filename="../../src/mainwindow.cpp" line="701"/>
+        <location filename="../../src/mainwindow.cpp" line="98"/>
+        <location filename="../../src/mainwindow.cpp" line="712"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="240"/>
+        <location filename="../../src/mainwindow.cpp" line="243"/>
         <source>translation options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="278"/>
+        <location filename="../../src/mainwindow.cpp" line="281"/>
         <source>definitions:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="391"/>
-        <location filename="../../src/mainwindow.cpp" line="399"/>
-        <location filename="../../src/mainwindow.cpp" line="407"/>
+        <location filename="../../src/mainwindow.cpp" line="394"/>
+        <location filename="../../src/mainwindow.cpp" line="402"/>
+        <location filename="../../src/mainwindow.cpp" line="410"/>
         <source>Text field is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="491"/>
-        <location filename="../../src/mainwindow.cpp" line="733"/>
+        <location filename="../../src/mainwindow.cpp" line="494"/>
+        <location filename="../../src/mainwindow.cpp" line="744"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="819"/>
+        <location filename="../../src/mainwindow.cpp" line="654"/>
+        <source>The application is already running</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.cpp" line="830"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="819"/>
+        <location filename="../../src/mainwindow.cpp" line="830"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="829"/>
+        <location filename="../../src/mainwindow.cpp" line="840"/>
         <source>Unable to play text</source>
         <translation type="unfinished"></translation>
     </message>

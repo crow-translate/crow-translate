@@ -91,6 +91,7 @@ private slots:
 
     // Other
     void showMainWindow();
+    void showAppRunningMessage();
     void activateTray(QSystemTrayIcon::ActivationReason reason);
 #if defined(Q_OS_WIN)
     void checkForUpdates();

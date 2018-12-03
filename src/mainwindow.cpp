@@ -47,6 +47,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    // Show a message that the application is already running
+    connect(static_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+
     // Shortcuts
     connect(&m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelectedText);
     connect(&m_playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
@@ -644,6 +647,14 @@ void MainWindow::showMainWindow()
 {
     showNormal();
     activateWindow();
+}
+
+void MainWindow::showAppRunningMessage()
+{
+    auto message = new QMessageBox(QMessageBox::Information, "Crow Translate", tr("The application is already running"));
+    message->setAttribute(Qt::WA_DeleteOnClose); // Need to allocate on heap to avoid crash!
+    showMainWindow();
+    message->show();
 }
 
 void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
