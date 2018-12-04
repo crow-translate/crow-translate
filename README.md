@@ -1,7 +1,7 @@
 # ![Crow Translate logo](./dist/unix/generic/hicolor/72x72/apps/crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b28c6646bb324ffb98092f63a9b5896e)](https://app.codacy.com/app/Shatur95/crow-translate?utm_source=github.com&utm_medium=referral&utm_content=Shatur95/crow-translate&utm_campaign=Badge_Grade_Settings)
+[![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/Shatur95/crow-translate/dashboard)
 
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API.") used in this project. 
