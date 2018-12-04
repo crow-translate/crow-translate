@@ -129,7 +129,7 @@ You can use the automatic script that builds **Crow Translate** and creates a pa
 
 ```bash
 cd dist/unix
-./create-package
+./create-package.sh
 ```
 
 Than you can install it as usual. The script will tell you where the package will be after the making. Currently, only **Arch Linux**, **Debian** and their derivatives are supported.

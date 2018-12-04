@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 ARRAY=(16 22 24 32 36 48 64 72 96 128 192 256)
 
