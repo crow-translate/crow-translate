@@ -645,8 +645,9 @@ void MainWindow::translateTimerExpires()
 
 void MainWindow::showMainWindow()
 {
-    showNormal();
+    show();
     activateWindow();
+    raise();
 }
 
 void MainWindow::showAppRunningMessage()

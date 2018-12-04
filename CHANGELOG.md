@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 **Changed**
 
 -   Show a message if the application is already running.
+-   Fix main window activation on some window systems.
 -   Windows: Update changelog parser.
 
 ## [2.0.1](https://github.com/Shatur95/crow-translate/tree/2.0.1) (2018-11-26)
