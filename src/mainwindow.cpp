@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Show a message that the application is already running
-    connect(static_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+    connect(dynamic_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Shortcuts
     connect(&m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelectedText);
@@ -418,7 +418,7 @@ void MainWindow::translateSelectedText()
     AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
-        PopupWindow *popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, ui->engineComboBox->currentIndex(), this);
+        auto popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, ui->engineComboBox->currentIndex(), this);
 
         // Connect main window events to popup events
         connect(&m_sourceButtons, &LangButtonGroup::buttonChecked, popup->sourceButtons(), &LangButtonGroup::checkButton);
@@ -730,9 +730,9 @@ bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineT
         m_sourceButtons.setLanguage(0, QOnlineTranslator::Auto);
         emit translationTextChanged(m_translator.errorString());
         return false;
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 // Translate text outside the window
@@ -745,9 +745,9 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), m_translator.errorString());
         errorMessage.exec();
         return false;
-    } else {
-        return true;
     }
+
+    return true;
 }
 
 void MainWindow::loadSettings()

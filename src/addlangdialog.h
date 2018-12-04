@@ -46,7 +46,7 @@ private slots:
 private:
     Ui::AddLangDialog *ui;
 
-    QOnlineTranslator::Language m_lang;
+    QOnlineTranslator::Language m_lang = QOnlineTranslator::NoLanguage;
 };
 
 #endif // ADDLANGDIALOG_H

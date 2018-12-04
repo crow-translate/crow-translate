@@ -109,7 +109,7 @@ void AppSettings::setStartMinimized(bool minimized)
 bool AppSettings::isAutostartEnabled()
 {
 #if defined(Q_OS_LINUX)
-    return QFileInfo(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop").exists();
+    return QFileInfo::exists(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     return autostartSettings.contains("Crow Translate");

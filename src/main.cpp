@@ -46,7 +46,7 @@ int main(int argc, char *argv[])
         MainWindow window;
         if (!settings.isStartMinimized())
             window.show();
-        return app.exec();
+        return SingleApplication::exec();
     }
 
     // Command line interface
@@ -77,9 +77,9 @@ int main(int argc, char *argv[])
     // Show all language codes
     if (parser.isSet("codes")) {
         for (int language = QOnlineTranslator::Auto; language != QOnlineTranslator::Zulu; ++language) {
-            out << translator.languageString(static_cast<QOnlineTranslator::Language>(language));
+            out << QOnlineTranslator::languageString(static_cast<QOnlineTranslator::Language>(language));
             out << " - ";
-            out << translator.languageCode(static_cast<QOnlineTranslator::Language>(language)) << endl;
+            out << QOnlineTranslator::languageCode(static_cast<QOnlineTranslator::Language>(language)) << endl;
         }
         return 0;
     }
