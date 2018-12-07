@@ -146,7 +146,7 @@ MainWindow::~MainWindow()
     AppSettings settings;
     settings.setMainWindowGeometry(saveGeometry());
     settings.setAutoTranslateEnabled(ui->autoTranslateCheckBox->isChecked());
-    settings.setCurrentEngine(static_cast<AppSettings::Engine>(ui->engineComboBox->currentIndex()));
+    settings.setCurrentEngine(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()));
     delete ui;
 }
 
@@ -238,31 +238,30 @@ void MainWindow::on_translateButton_clicked()
     ui->translationEdit->append(""); // Add new line before translation options
 
     // Show translation options
-    if (!m_translator.dictionaryList().isEmpty() && settings.showTranslationOptions()) {
-        // Label
+    if (!m_translator.translationOptions().isEmpty() && settings.showTranslationOptions()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("translation options:") + "</font>");
 
         // Print words for each type of speech
-        foreach (const QDictionary &dictionary, m_translator.dictionaryList()) {
-            ui->translationEdit->append("<b>" + dictionary.typeOfSpeech() + "</b>");
+        foreach (const QOption &option, m_translator.translationOptions()) {
+            ui->translationEdit->append("<b>" + option.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             ui->translationEdit->textCursor().setBlockFormat(indent);
 
-            for (int i = 0; i <  dictionary.count(); ++i) {
+            for (int i = 0; i <  option.count(); ++i) {
                 // Show word gender
                 QString wordLine;
-                if (!dictionary.gender(i).isEmpty())
-                    wordLine.append("<i>" + dictionary.gender(i) + "</i> ");
+                if (!option.gender(i).isEmpty())
+                    wordLine.append("<i>" + option.gender(i) + "</i> ");
 
                 // Show Word
-                wordLine.append(dictionary.word(i));
+                wordLine.append(option.word(i));
 
                 // Show word meaning
-                if (!dictionary.translations(i).isEmpty()) {
+                if (!option.translations(i).isEmpty()) {
                     wordLine.append(": ");
                     wordLine.append("<font color=\"grey\"><i>");
-                    wordLine.append(dictionary.translations(i));
+                    wordLine.append(option.translations(i));
                     wordLine.append("</i></font>");
                 }
 
@@ -276,19 +275,21 @@ void MainWindow::on_translateButton_clicked()
         }
     }
 
-    // Show definitions
-    if (!m_translator.definitionsList().isEmpty() && settings.showDefinitions()) {
-        ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("definitions:") + "</font>");
-        foreach (const QDefinition &definition, m_translator.definitionsList()) {
-            ui->translationEdit->append("<b>" + definition.typeOfSpeech() + "</b>");
+    // Show examples
+    if (!m_translator.examples().isEmpty() && settings.showExamples()) {
+        ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("examples:") + "</font>");
+        foreach (const QExample &example, m_translator.examples()) {
+            ui->translationEdit->append("<b>" + example.typeOfSpeech() + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             ui->translationEdit->textCursor().setBlockFormat(indent);
-            ui->translationEdit->append(definition.description());
-            ui->translationEdit->append("<font color=\"grey\"><i>" + definition.example()+ "</i></font>");
+            for (int i = 0; i < example.count(); ++i) {
+                ui->translationEdit->append(example.description(i));
+                ui->translationEdit->append("<font color=\"grey\"><i>" + example.example(i) + "</i></font>");
+                ui->translationEdit->append("");
+            }
             indent.setTextIndent(0);
             ui->translationEdit->textCursor().setBlockFormat(indent);
-            ui->translationEdit->append("");
         }
     }
 
@@ -836,7 +837,23 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     playlist->clear();
     AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    const QList<QMediaContent> media = m_translator.media(text, engine, lang, settings.speaker(), settings.emotion());
+    QOnlineTranslator::Voice voice;
+    QOnlineTranslator::Emotion emotion;
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        voice = QOnlineTranslator::DefaultVoice;
+        emotion = QOnlineTranslator::DefaultEmotion;
+        break;
+    case QOnlineTranslator::Yandex:
+        voice = settings.yandexVoice();
+        emotion = settings.yandexEmotion();
+        break;
+    case QOnlineTranslator::Bing:
+        voice = settings.bingVoice();
+        emotion = QOnlineTranslator::DefaultEmotion;
+    }
+
+    const QList<QMediaContent> media = m_translator.media(text, engine, lang, voice, emotion);
     if (m_translator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator.errorString());
         errorMessage.exec();

@@ -37,11 +37,6 @@ public:
         MainWindow
     };
     Q_ENUM(WindowMode)
-    enum Engine {
-        Google,
-        Yandex
-    };
-    Q_ENUM(Engine)
 #ifdef Q_OS_WIN
     enum Interval {
         Day,
@@ -121,8 +116,8 @@ public:
     bool showTranslationOptions();
     void setShowTranslationOptions(bool show);
 
-    bool showDefinitions();
-    void setShowDefinitions(bool show);
+    bool showExamples();
+    void setShowExamples(bool show);
 
     QOnlineTranslator::Language primaryLanguage();
     void setPrimaryLanguage(QOnlineTranslator::Language lang);
@@ -131,11 +126,14 @@ public:
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
     // Speech synthesis settings
-    QOnlineTranslator::Speaker speaker();
-    void setSpeaker(QOnlineTranslator::Speaker speaker);
+    QOnlineTranslator::Voice yandexVoice();
+    void setYandexVoice(QOnlineTranslator::Voice voice);
 
-    QOnlineTranslator::Emotion emotion();
-    void setEmotion(QOnlineTranslator::Emotion emotion);
+    QOnlineTranslator::Voice bingVoice();
+    void setBingVoice(QOnlineTranslator::Voice voice);
+
+    QOnlineTranslator::Emotion yandexEmotion();
+    void setYandexEmotion(QOnlineTranslator::Emotion emotion);
 
     // Connection settings
     QNetworkProxy::ProxyType proxyType();
@@ -237,8 +235,8 @@ public:
     bool isAutoTranslateEnabled();
     void setAutoTranslateEnabled(bool enable);
 
-    Engine currentEngine();
-    void setCurrentEngine(Engine currentEngine);
+    QOnlineTranslator::Engine currentEngine();
+    void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
 
 private:
     static QTranslator m_appTranslator;

@@ -295,14 +295,14 @@ void AppSettings::setShowTranslationOptions(bool show)
     setValue("Translation/ShowTranslationOptions", show);
 }
 
-bool AppSettings::showDefinitions()
+bool AppSettings::showExamples()
 {
-    return value("Translation/ShowDefinitions", true).toBool();
+    return value("Translation/ShowExamples", true).toBool();
 }
 
-void AppSettings::setShowDefinitions(bool show)
+void AppSettings::setShowExamples(bool show)
 {
-    setValue("Translation/ShowDefinitions", show);
+    setValue("Translation/ShowExamples", show);
 }
 
 QOnlineTranslator::Language AppSettings::primaryLanguage()
@@ -325,24 +325,35 @@ void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
     setValue("Translation/SecondaryLanguage", lang);
 }
 
-QOnlineTranslator::Speaker AppSettings::speaker()
+QOnlineTranslator::Voice AppSettings::yandexVoice()
 {
-    return value("Translation/Speaker", QOnlineTranslator::Zahar).value<QOnlineTranslator::Speaker>();
+    return value("Translation/YandexVoice", QOnlineTranslator::Zahar).value<QOnlineTranslator::Voice>();
 }
 
-void AppSettings::setSpeaker(QOnlineTranslator::Speaker speaker)
+void AppSettings::setYandexVoice(QOnlineTranslator::Voice voice)
 {
-    setValue("Translation/Speaker", speaker);
+    setValue("Translation/YandexVoice", voice);
 }
 
-QOnlineTranslator::Emotion AppSettings::emotion()
+QOnlineTranslator::Voice AppSettings::bingVoice()
 {
-    return value("Translation/Emotion", QOnlineTranslator::Neutral).value<QOnlineTranslator::Emotion>();
+    return value("Translation/BingVoice", QOnlineTranslator::Female).value<QOnlineTranslator::Voice>();
 }
 
-void AppSettings::setEmotion(QOnlineTranslator::Emotion emotion)
+void AppSettings::setBingVoice(QOnlineTranslator::Voice voice)
 {
-    setValue("Translation/Emotion", emotion);
+    setValue("Translation/BingVoice", voice);
+}
+
+// Affects only Yandex
+QOnlineTranslator::Emotion AppSettings::yandexEmotion()
+{
+    return value("Translation/YandexEmotion", QOnlineTranslator::Neutral).value<QOnlineTranslator::Emotion>();
+}
+
+void AppSettings::setYandexEmotion(QOnlineTranslator::Emotion emotion)
+{
+    setValue("Translation/YandexEmotion", emotion);
 }
 
 QNetworkProxy::ProxyType AppSettings::proxyType()
@@ -575,12 +586,12 @@ void AppSettings::setAutoTranslateEnabled(bool enable)
     setValue("AutoTranslate", enable);
 }
 
-AppSettings::Engine AppSettings::currentEngine()
+QOnlineTranslator::Engine AppSettings::currentEngine()
 {
-    return value("CurrentEngine", Google).value<Engine>();
+    return value("CurrentEngine", QOnlineTranslator::Google).value<QOnlineTranslator::Engine>();
 }
 
-void AppSettings::setCurrentEngine(AppSettings::Engine currentEngine)
+void AppSettings::setCurrentEngine(QOnlineTranslator::Engine currentEngine)
 {
     setValue("CurrentEngine", currentEngine);
 }

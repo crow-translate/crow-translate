@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
     parser.addOption(QCommandLineOption({"s", "source"}, "Specifies the source language. By default, Google will try to determine the language on its own.", "code", "auto"));
     parser.addOption(QCommandLineOption({"t", "translation"}, "Specifies the translation language(s), joined by '+'. By default, the system language is used.", "code", "auto"));
     parser.addOption(QCommandLineOption({"l", "locale"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
-    parser.addOption(QCommandLineOption({"e", "engine"}, "Specifies the translator engine ('google' or 'yandex'). Google is used by default.", "engine", "google"));
+    parser.addOption(QCommandLineOption({"e", "engine"}, "Specifies the translator engine ('google', 'yandex' or 'bing'). Google is used by default.", "engine", "google"));
     parser.addOption(QCommandLineOption({"p", "speak-translation"}, "Speaks the translation."));
     parser.addOption(QCommandLineOption({"u", "speak-source"}, "Speaks the original text."));
     parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
@@ -90,6 +90,8 @@ int main(int argc, char *argv[])
         engine = QOnlineTranslator::Google;
     else if (parser.value("engine") == "yandex")
         engine = QOnlineTranslator::Yandex;
+    else if (parser.value("engine") == "bing")
+        engine = QOnlineTranslator::Bing;
     else {
         out << "Error: Unknown engine" << endl;
         parser.showHelp();
@@ -216,29 +218,31 @@ int main(int argc, char *argv[])
         }
 
         // Show translation options
-        if (!translator.dictionaryList().isEmpty()) {
+        if (!translator.translationOptions().isEmpty()) {
             out << translator.source() << " - translation options:" << endl;
-            foreach (const QDictionary &dictionary, translator.dictionaryList()) {
-                out << dictionary.typeOfSpeech() << endl;
-                for (auto i = 0; i < dictionary.count(); i++) {
+            foreach (const QOption &option, translator.translationOptions()) {
+                out << option.typeOfSpeech() << endl;
+                for (int i = 0; i < option.count(); i++) {
                     out << "\t";
-                    if (!dictionary.gender(i).isEmpty())
-                        out << dictionary.gender(i) << " ";
-                    out << dictionary.word(i) << ": ";
+                    if (!option.gender(i).isEmpty())
+                        out << option.gender(i) << " ";
+                    out << option.word(i) << ": ";
 
-                    out << dictionary.translations(i) << endl;
+                    out << option.translations(i) << endl;
                 }
                 out << endl;
             }
         }
 
-        // Show definitions
-        if (!translator.definitionsList().isEmpty()) {
-            out << translator.source() << " - definitions:" << endl;
-            foreach (const QDefinition &definition, translator.definitionsList()) {
-                out << definition.typeOfSpeech() << endl;
-                out << "\t" << definition.description() << endl;
-                out << "\t" << definition.example() << endl;
+        // Show examples
+        if (!translator.examples().isEmpty()) {
+            out << translator.source() << " - examples:" << endl;
+            foreach (const QExample &example, translator.examples()) {
+                out << example.typeOfSpeech() << endl;
+                for (int i = 0; i < example.count(); ++ i) {
+                    out << "\t" << example.description(i) << endl;
+                    out << "\t" << example.example(i) << endl;
+                }
             }
         }
 

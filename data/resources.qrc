@@ -34,7 +34,6 @@
         <file>icons/flags/sm.svg</file>
         <file>icons/flags/sn.svg</file>
         <file>icons/flags/so.svg</file>
-        <file>icons/flags/sr.svg</file>
         <file>icons/flags/te.svg</file>
         <file>icons/flags/tg.svg</file>
         <file>icons/flags/uk.svg</file>
@@ -114,5 +113,18 @@
         <file>icons/flags/udm.svg</file>
         <file>icons/engines/google.svg</file>
         <file>icons/engines/yandex.svg</file>
+        <file>icons/flags/fil.svg</file>
+        <file>icons/flags/fj.svg</file>
+        <file>icons/flags/otq.svg</file>
+        <file>icons/flags/sr-Cyrl.svg</file>
+        <file>icons/flags/sr-Latin.svg</file>
+        <file>icons/flags/tlh-Qaak.svg</file>
+        <file>icons/flags/tlh.svg</file>
+        <file>icons/flags/to.svg</file>
+        <file>icons/flags/ty.svg</file>
+        <file>icons/flags/yua.svg</file>
+        <file>icons/flags/yue.svg</file>
+        <file>icons/flags/apc.svg</file>
+        <file>icons/engines/bing.svg</file>
     </qresource>
 </RCC>

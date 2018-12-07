@@ -137,13 +137,14 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->translationTranslitCheckBox->setChecked(settings.showTranslationTranslit());
     ui->sourceTranscriptionCheckBox->setChecked(settings.showSourceTranscription());
     ui->translationOptionsCheckBox->setChecked(settings.showTranslationOptions());
-    ui->definitionsCheckBox->setChecked(settings.showDefinitions());
+    ui->examplesCheckBox->setChecked(settings.showExamples());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
 
     // Speech synthesis settings
-    ui->speakerComboBox->setCurrentIndex(settings.speaker());
-    ui->emotionComboBox->setCurrentIndex(settings.emotion());
+    yandexVoice = settings.yandexVoice();
+    bingVoice = settings.bingVoice();
+    yandexEmotion = settings.yandexEmotion();
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
@@ -228,13 +229,14 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setShowTranslationTranslit(ui->translationTranslitCheckBox->isChecked());
     settings.setShowSourceTranscription(ui->sourceTranscriptionCheckBox->isChecked());
     settings.setShowTranslationOptions(ui->translationOptionsCheckBox->isChecked());
-    settings.setShowDefinitions(ui->definitionsCheckBox->isChecked());
+    settings.setShowExamples(ui->examplesCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
 
     // Speech synthesis settings
-    settings.setSpeaker(static_cast<QOnlineTranslator::Speaker>(ui->speakerComboBox->currentIndex()));
-    settings.setEmotion(static_cast<QOnlineTranslator::Emotion>(ui->emotionComboBox->currentIndex()));
+    settings.setYandexVoice(yandexVoice);
+    settings.setBingVoice(bingVoice);
+    settings.setYandexEmotion(yandexEmotion);
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -292,13 +294,14 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->translationTranslitCheckBox->setChecked(true);
     ui->sourceTranscriptionCheckBox->setChecked(true);
     ui->translationOptionsCheckBox->setChecked(true);
-    ui->definitionsCheckBox->setChecked(true);
+    ui->examplesCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
 
     // Speech synthesis settings
-    ui->speakerComboBox->setCurrentIndex(QOnlineTranslator::Zahar);
-    ui->emotionComboBox->setCurrentIndex(QOnlineTranslator::Neutral);
+    yandexVoice = QOnlineTranslator::Zahar;
+    bingVoice = QOnlineTranslator::Female;
+    yandexEmotion = QOnlineTranslator::Neutral;
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(1);
@@ -347,26 +350,101 @@ void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
 
 void SettingsDialog::on_customTrayIconButton_clicked()
 {
-    QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf("/"));
-    QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
+    const QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf("/"));
+    const QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
     if (!file.isEmpty())
         ui->customTrayIconEdit->setText(file);
 }
 
-// Diable voice options for Google
+// Disable unsupported voice settings for engines.
 void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
 {
-    if (index == QOnlineTranslator::Google) {
-        ui->speakerLabel->setEnabled(false);
-        ui->speakerComboBox->setEnabled(false);
+    // Avoid index changed signal
+    ui->voiceComboBox->blockSignals(true);
+    ui->emotionComboBox->blockSignals(true);
+
+    switch (index) {
+    case QOnlineTranslator::Google:
+        ui->voiceLabel->setEnabled(false);
+        ui->voiceComboBox->setEnabled(false);
         ui->emotionLabel->setEnabled(false);
         ui->emotionComboBox->setEnabled(false);
-    } else {
-        ui->speakerLabel->setEnabled(true);
-        ui->speakerComboBox->setEnabled(true);
+
+        // Google has no voice settings
+        ui->voiceComboBox->clear();
+        ui->voiceComboBox->addItem(tr("Default"));
+
+        // Google has no emotion settings
+        if (ui->emotionComboBox->count() != 1) {
+            ui->emotionComboBox->clear();
+            ui->emotionComboBox->addItem(tr("Default"));
+        }
+        break;
+    case QOnlineTranslator::Yandex:
+        ui->voiceLabel->setEnabled(true);
+        ui->voiceComboBox->setEnabled(true);
         ui->emotionLabel->setEnabled(true);
         ui->emotionComboBox->setEnabled(true);
+
+        // Add Yandex voices
+        ui->voiceComboBox->clear();
+        ui->voiceComboBox->addItem(tr("Zahar"), QOnlineTranslator::Zahar);
+        ui->voiceComboBox->addItem(tr("Ermil"), QOnlineTranslator::Ermil);
+        ui->voiceComboBox->addItem(tr("Jane"), QOnlineTranslator::Jane);
+        ui->voiceComboBox->addItem(tr("Oksana"), QOnlineTranslator::Oksana);
+        ui->voiceComboBox->addItem(tr("Alyss"), QOnlineTranslator::Alyss);
+        ui->voiceComboBox->addItem(tr("Omazh"), QOnlineTranslator::Omazh);
+        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(yandexVoice));
+
+        // Add Yandex emotion options
+        ui->emotionComboBox->clear();
+        ui->emotionComboBox->addItem(tr("Neutral"), QOnlineTranslator::Neutral);
+        ui->emotionComboBox->addItem(tr("Good"), QOnlineTranslator::Good);
+        ui->emotionComboBox->addItem(tr("Evil"), QOnlineTranslator::Evil);
+        ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(yandexEmotion));
+        break;
+    case QOnlineTranslator::Bing:
+        ui->voiceLabel->setEnabled(true);
+        ui->voiceComboBox->setEnabled(true);
+        ui->emotionLabel->setEnabled(false);
+        ui->emotionComboBox->setEnabled(false);
+
+        // Add Bing voices
+        ui->voiceComboBox->clear();
+        ui->voiceComboBox->addItem(tr("Female"), QOnlineTranslator::Female);
+        ui->voiceComboBox->addItem(tr("Male"), QOnlineTranslator::Male);
+        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(bingVoice));
+
+        // Bing has no emotion settings
+        if (ui->emotionComboBox->count() != 1) {
+            ui->emotionComboBox->clear();
+            ui->emotionComboBox->addItem(tr("Default"));
+        }
+        break;
     }
+
+    ui->voiceComboBox->blockSignals(false);
+    ui->emotionComboBox->blockSignals(false);
+}
+
+// Save current engine voice settings
+void SettingsDialog::on_voiceComboBox_currentIndexChanged(int index)
+{
+    switch (ui->engineComboBox->currentIndex()) {
+    case QOnlineTranslator::Yandex:
+        yandexVoice = ui->voiceComboBox->itemData(index).value<QOnlineTranslator::Voice>();
+        break;
+    case QOnlineTranslator::Bing:
+        bingVoice = ui->voiceComboBox->itemData(index).value<QOnlineTranslator::Voice>();
+        break;
+    }
+}
+
+// Save current engine emotion settings
+void SettingsDialog::on_emotionComboBox_currentIndexChanged(int index)
+{
+    if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
+        yandexEmotion = ui->emotionComboBox->itemData(index).value<QOnlineTranslator::Emotion>();
 }
 
 // Play test text
@@ -381,12 +459,26 @@ void SettingsDialog::on_testSpeechButton_clicked()
         return;
     }
 
+    QOnlineTranslator::Engine engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    QOnlineTranslator::Voice voice;
+    QOnlineTranslator::Emotion emotion;
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        voice = QOnlineTranslator::DefaultVoice;
+        emotion = QOnlineTranslator::DefaultEmotion;
+        break;
+    case QOnlineTranslator::Yandex:
+        voice = yandexVoice;
+        emotion = yandexEmotion;
+        break;
+    case QOnlineTranslator::Bing:
+        voice = bingVoice;
+        emotion = QOnlineTranslator::DefaultEmotion;
+        break;
+    }
+
     QOnlineTranslator translator;
-    QList<QMediaContent> media = translator.media(ui->testSpeechEdit->text(),
-                                                  static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
-                                                  QOnlineTranslator::Auto,
-                                                  static_cast<QOnlineTranslator::Speaker>(ui->speakerComboBox->currentIndex()),
-                                                  static_cast<QOnlineTranslator::Emotion>(ui->emotionComboBox->currentIndex()));
+    QList<QMediaContent> media = translator.media(ui->testSpeechEdit->text(), engine, QOnlineTranslator::Auto, voice, emotion);
     if (translator.error()) {
         QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), translator.errorString());
         errorMessage.exec();

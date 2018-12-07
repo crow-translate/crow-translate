@@ -717,9 +717,9 @@
             </widget>
            </item>
            <item>
-            <widget class="QCheckBox" name="definitionsCheckBox">
+            <widget class="QCheckBox" name="examplesCheckBox">
              <property name="text">
-              <string>Show definitions</string>
+              <string>Show examples</string>
              </property>
             </widget>
            </item>
@@ -841,6 +841,15 @@
                   <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string notr="true">Bing</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
@@ -859,56 +868,31 @@
             </layout>
            </item>
            <item>
-            <layout class="QHBoxLayout" name="speakerLayout">
+            <layout class="QHBoxLayout" name="voiceLayout">
              <item>
-              <widget class="QLabel" name="speakerLabel">
+              <widget class="QLabel" name="voiceLabel">
                <property name="enabled">
                 <bool>false</bool>
                </property>
                <property name="text">
-                <string>Speaker:</string>
+                <string>Voice:</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="speakerComboBox">
+              <widget class="QComboBox" name="voiceComboBox">
                <property name="enabled">
                 <bool>false</bool>
                </property>
                <item>
                 <property name="text">
-                 <string>Zahar</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Ermil</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Jane</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Oksana</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Alyss</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Omazh</string>
+                 <string>Default</string>
                 </property>
                </item>
               </widget>
              </item>
              <item>
-              <spacer name="speakerSpacer">
+              <spacer name="voiceSpacer">
                <property name="orientation">
                 <enum>Qt::Horizontal</enum>
                </property>
@@ -941,17 +925,7 @@
                </property>
                <item>
                 <property name="text">
-                 <string>Neutral</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Good</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Evil</string>
+                 <string>Default</string>
                 </property>
                </item>
               </widget>

@@ -21,6 +21,8 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
+#include "qonlinetranslator.h"
+
 #include <QDialog>
 #include <QMenu>
 #include <QMediaPlayer>
@@ -54,6 +56,8 @@ private slots:
     void on_customTrayIconButton_clicked();
 
     void on_engineComboBox_currentIndexChanged(int index);
+    void on_voiceComboBox_currentIndexChanged(int index);
+    void on_emotionComboBox_currentIndexChanged(int index);
     void on_testSpeechButton_clicked();
 
     void on_shortcutsTreeWidget_itemSelectionChanged();
@@ -66,11 +70,18 @@ private slots:
 #if defined(Q_OS_WIN)
     void checkForUpdates();
 #endif
+
 private:
     Ui::SettingsDialog *ui;
 
+    // Test voice
     QMediaPlayer m_player{this};
     QMediaPlaylist m_playlist{this};
+
+    // Engine voice settings
+    QOnlineTranslator::Voice yandexVoice;
+    QOnlineTranslator::Voice bingVoice;
+    QOnlineTranslator::Emotion yandexEmotion;
 
 #if defined(Q_OS_WIN)
     // Icon theme info

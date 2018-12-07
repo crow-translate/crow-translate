@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.1...HEAD)
 
+**Added**
+
+-   Bing support.
+
 **Changed**
 
 -   Show a message if the application is already running.
