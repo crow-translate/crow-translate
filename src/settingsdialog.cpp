@@ -133,11 +133,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->customTrayIconEdit->setText(settings.customIconPath());
 
     // Translation settings
-    ui->sourceTranslitCheckBox->setChecked(settings.showSourceTranslit());
-    ui->translationTranslitCheckBox->setChecked(settings.showTranslationTranslit());
-    ui->sourceTranscriptionCheckBox->setChecked(settings.showSourceTranscription());
-    ui->translationOptionsCheckBox->setChecked(settings.showTranslationOptions());
-    ui->examplesCheckBox->setChecked(settings.showExamples());
+    ui->sourceTranslitCheckBox->setChecked(settings.isSourceTranslitEnabled());
+    ui->translationTranslitCheckBox->setChecked(settings.isTranslationTranslitEnabled());
+    ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());
+    ui->translationOptionsCheckBox->setChecked(settings.isTranslationOptionsEnabled());
+    ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
 
@@ -225,11 +225,11 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
     // Translation settings
-    settings.setShowSourceTranslit(ui->sourceTranslitCheckBox->isChecked());
-    settings.setShowTranslationTranslit(ui->translationTranslitCheckBox->isChecked());
-    settings.setShowSourceTranscription(ui->sourceTranscriptionCheckBox->isChecked());
-    settings.setShowTranslationOptions(ui->translationOptionsCheckBox->isChecked());
-    settings.setShowExamples(ui->examplesCheckBox->isChecked());
+    settings.setSourceTranslitEnabled(ui->sourceTranslitCheckBox->isChecked());
+    settings.setTranslationTranslitEnabled(ui->translationTranslitCheckBox->isChecked());
+    settings.setSourceTranscriptionEnabled(ui->sourceTranscriptionCheckBox->isChecked());
+    settings.setTranslationOptionsEnabled(ui->translationOptionsCheckBox->isChecked());
+    settings.setExamplesEnabled(ui->examplesCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
 

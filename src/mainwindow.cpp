@@ -224,21 +224,23 @@ void MainWindow::on_translateButton_clicked()
     else
         m_translationButtons.setLanguage(0, QOnlineTranslator::Auto);
 
-    // Show translation and transcription
+    // Translation
     ui->translationEdit->setHtml(m_translator.translation().toHtmlEscaped().replace("\n", "<br>"));
-    if (!m_translator.translationTranslit().isEmpty() && settings.showTranslationTranslit())
+
+    // Translit
+    if (!m_translator.translationTranslit().isEmpty())
         ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translator.translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
-    if (!m_translator.sourceTranslit().isEmpty() && settings.showSourceTranslit())
+    if (!m_translator.sourceTranslit().isEmpty())
         ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translator.sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
 
-    // Show transcription
-    if (!m_translator.sourceTranscription().isEmpty() && settings.showSourceTranscription())
+    // Transcription
+    if (!m_translator.sourceTranscription().isEmpty())
         ui->translationEdit->append("<font color=\"grey\">[" + m_translator.sourceTranscription() + "]</font>");
 
     ui->translationEdit->append(""); // Add new line before translation options
 
-    // Show translation options
-    if (!m_translator.translationOptions().isEmpty() && settings.showTranslationOptions()) {
+    // Translation options
+    if (!m_translator.translationOptions().isEmpty()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("translation options:") + "</font>");
 
         // Print words for each type of speech
@@ -275,8 +277,8 @@ void MainWindow::on_translateButton_clicked()
         }
     }
 
-    // Show examples
-    if (!m_translator.examples().isEmpty() && settings.showExamples()) {
+    // Examples
+    if (!m_translator.examples().isEmpty()) {
         ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator.source() + "</i> – " + tr("examples:") + "</font>");
         foreach (const QExample &example, m_translator.examples()) {
             ui->translationEdit->append("<b>" + example.typeOfSpeech() + "</b>");
@@ -774,6 +776,13 @@ void MainWindow::loadSettings()
     const bool trayIconVisible = settings.isTrayIconVisible();
     m_trayIcon.setVisible(trayIconVisible);
     SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
+
+    // Translation
+    m_translator.setSourceTranscriptionEnabled(settings.isSourceTranslitEnabled());
+    m_translator.setTranslationTranslitEnabled(settings.isTranslationTranslitEnabled());
+    m_translator.setSourceTranscriptionEnabled(settings.isSourceTranscriptionEnabled());
+    m_translator.setTranslationOptionsEnabled(settings.isTranslationOptionsEnabled());
+    m_translator.setExamplesEnabled(settings.isExamplesEnabled());
 
     // Connection
     QNetworkProxy proxy;

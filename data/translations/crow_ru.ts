@@ -128,7 +128,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="339"/>
         <location filename="../../src/mainwindow.cpp" line="97"/>
-        <location filename="../../src/mainwindow.cpp" line="713"/>
+        <location filename="../../src/mainwindow.cpp" line="715"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -139,56 +139,56 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="96"/>
-        <location filename="../../src/mainwindow.cpp" line="712"/>
+        <location filename="../../src/mainwindow.cpp" line="714"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="98"/>
-        <location filename="../../src/mainwindow.cpp" line="714"/>
+        <location filename="../../src/mainwindow.cpp" line="716"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="242"/>
+        <location filename="../../src/mainwindow.cpp" line="244"/>
         <source>translation options:</source>
         <translation>варианты перевода:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="280"/>
+        <location filename="../../src/mainwindow.cpp" line="282"/>
         <source>examples:</source>
         <translation>примеры:</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="395"/>
-        <location filename="../../src/mainwindow.cpp" line="403"/>
-        <location filename="../../src/mainwindow.cpp" line="411"/>
+        <location filename="../../src/mainwindow.cpp" line="397"/>
+        <location filename="../../src/mainwindow.cpp" line="405"/>
+        <location filename="../../src/mainwindow.cpp" line="413"/>
         <source>Text field is empty</source>
         <translation>Текстовое поле пустое</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="495"/>
-        <location filename="../../src/mainwindow.cpp" line="746"/>
+        <location filename="../../src/mainwindow.cpp" line="497"/>
+        <location filename="../../src/mainwindow.cpp" line="748"/>
         <source>Unable to translate text</source>
         <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="656"/>
+        <location filename="../../src/mainwindow.cpp" line="658"/>
         <source>The application is already running</source>
         <translation>Приложение уже запущено</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="832"/>
+        <location filename="../../src/mainwindow.cpp" line="841"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="832"/>
+        <location filename="../../src/mainwindow.cpp" line="841"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="858"/>
+        <location filename="../../src/mainwindow.cpp" line="865"/>
         <source>Unable to play text</source>
         <translation>Не удалось воспроизвести текст</translation>
     </message>
@@ -754,7 +754,7 @@
         <translation>Ошибка: выбранный голос не поддерживается этим движком.</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1837"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1836"/>
         <source>Error: Selected emotion is not supported by this engine.</source>
         <translation>Ошибка: выбранная эмоция не поддерживается этим движком.</translation>
     </message>
@@ -985,16 +985,6 @@
         <location filename="../../src/settingsdialog.ui" line="642"/>
         <source>Custom:</source>
         <translation>Пользовательский:</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="708"/>
-        <source>Show source transcription</source>
-        <translation>Показывать транскрипцию исходного текста</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="722"/>
-        <source>Show examples</source>
-        <translation>Показывать примеры</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="820"/>
@@ -1250,21 +1240,6 @@
         <translation>Пользовательский</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="694"/>
-        <source>Show source transliteration</source>
-        <translation>Показывать транслитерацию исходного текста</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="701"/>
-        <source>Show translation transliteration</source>
-        <translation>Показывать транслитерацию перевода</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="715"/>
-        <source>Show translation options</source>
-        <translation>Показывать варианты перевода</translation>
-    </message>
-    <message>
         <location filename="../../src/settingsdialog.ui" line="740"/>
         <source>Primary language:</source>
         <translation>Основной язык:</translation>
@@ -1365,6 +1340,31 @@
         <location filename="../../src/settingsdialog.ui" line="1276"/>
         <source>Main window</source>
         <translation>Главное окно</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="694"/>
+        <source>Enable source transliteration</source>
+        <translation>Включить транслитерацию исходного текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="701"/>
+        <source>Enable translation transliteration</source>
+        <translation>Включить транслитерацию перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="708"/>
+        <source>Enable source transcription</source>
+        <translation>Включить транскрипцию исходного текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="715"/>
+        <source>Enable translation options</source>
+        <translation>Включить варианты перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="722"/>
+        <source>Enable examples</source>
+        <translation>Включить примеры</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1022"/>
@@ -1498,22 +1498,22 @@
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="483"/>
+        <location filename="../../src/settingsdialog.cpp" line="480"/>
         <source>Unable to play text</source>
         <translation>Не удалось воспроизвести текст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="545"/>
+        <location filename="../../src/settingsdialog.cpp" line="542"/>
         <source>Checking for updates...</source>
         <translation>Проверка обновлений...</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="560"/>
+        <location filename="../../src/settingsdialog.cpp" line="557"/>
         <source>Update available!</source>
         <translation>Доступно обновление!</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="564"/>
+        <location filename="../../src/settingsdialog.cpp" line="561"/>
         <source>No updates available.</source>
         <translation>Нет доступных обновлений.</translation>
     </message>

@@ -118,7 +118,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="339"/>
         <location filename="../../src/mainwindow.cpp" line="97"/>
-        <location filename="../../src/mainwindow.cpp" line="713"/>
+        <location filename="../../src/mainwindow.cpp" line="715"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -139,56 +139,56 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="96"/>
-        <location filename="../../src/mainwindow.cpp" line="712"/>
+        <location filename="../../src/mainwindow.cpp" line="714"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="98"/>
-        <location filename="../../src/mainwindow.cpp" line="714"/>
+        <location filename="../../src/mainwindow.cpp" line="716"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="242"/>
+        <location filename="../../src/mainwindow.cpp" line="244"/>
         <source>translation options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="280"/>
+        <location filename="../../src/mainwindow.cpp" line="282"/>
         <source>examples:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="395"/>
-        <location filename="../../src/mainwindow.cpp" line="403"/>
-        <location filename="../../src/mainwindow.cpp" line="411"/>
+        <location filename="../../src/mainwindow.cpp" line="397"/>
+        <location filename="../../src/mainwindow.cpp" line="405"/>
+        <location filename="../../src/mainwindow.cpp" line="413"/>
         <source>Text field is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="495"/>
-        <location filename="../../src/mainwindow.cpp" line="746"/>
+        <location filename="../../src/mainwindow.cpp" line="497"/>
+        <location filename="../../src/mainwindow.cpp" line="748"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="656"/>
+        <location filename="../../src/mainwindow.cpp" line="658"/>
         <source>The application is already running</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="832"/>
+        <location filename="../../src/mainwindow.cpp" line="841"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="832"/>
+        <location filename="../../src/mainwindow.cpp" line="841"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="858"/>
+        <location filename="../../src/mainwindow.cpp" line="865"/>
         <source>Unable to play text</source>
         <translation type="unfinished"></translation>
     </message>
@@ -733,7 +733,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1837"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1836"/>
         <source>Error: Selected emotion is not supported by this engine.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1103,26 +1103,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="694"/>
-        <source>Show source transliteration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="701"/>
-        <source>Show translation transliteration</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="708"/>
-        <source>Show source transcription</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="715"/>
-        <source>Show translation options</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/settingsdialog.ui" line="732"/>
         <source>Automatic language detection</source>
         <translation type="unfinished"></translation>
@@ -1193,8 +1173,28 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/settingsdialog.ui" line="694"/>
+        <source>Enable source transliteration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="701"/>
+        <source>Enable translation transliteration</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="708"/>
+        <source>Enable source transcription</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="715"/>
+        <source>Enable translation options</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/settingsdialog.ui" line="722"/>
-        <source>Show examples</source>
+        <source>Enable examples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1498,22 +1498,22 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="483"/>
+        <location filename="../../src/settingsdialog.cpp" line="480"/>
         <source>Unable to play text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="545"/>
+        <location filename="../../src/settingsdialog.cpp" line="542"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="560"/>
+        <location filename="../../src/settingsdialog.cpp" line="557"/>
         <source>Update available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.cpp" line="564"/>
+        <location filename="../../src/settingsdialog.cpp" line="561"/>
         <source>No updates available.</source>
         <translation type="unfinished"></translation>
     </message>

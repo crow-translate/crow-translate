@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 
 **Changed**
 
+-   Do not request / analyze parts of the translation that are not displayed.
 -   Show a message if the application is already running.
 -   Fix main window activation on some window systems.
 -   Windows: Update changelog parser.

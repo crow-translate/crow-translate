@@ -255,54 +255,54 @@ void AppSettings::setCustomIconPath(const QString &path)
     setValue("CustomIconPath", path);
 }
 
-bool AppSettings::showSourceTranslit()
+bool AppSettings::isSourceTranslitEnabled()
 {
-    return value("Translation/ShowSourceTranslit", true).toBool();
+    return value("Translation/SourceTranslitEnabled", true).toBool();
 }
 
-void AppSettings::setShowSourceTranslit(bool show)
+void AppSettings::setSourceTranslitEnabled(bool enable)
 {
-    setValue("Translation/ShowSourceTranslit", show);
+    setValue("Translation/SourceTranslitEnabled", enable);
 }
 
-bool AppSettings::showTranslationTranslit()
+bool AppSettings::isTranslationTranslitEnabled()
 {
-    return value("Translation/ShowTranslationTranslit", true).toBool();
+    return value("Translation/TranslationTranslitEnabled", true).toBool();
 }
 
-void AppSettings::setShowTranslationTranslit(bool show)
+void AppSettings::setTranslationTranslitEnabled(bool enable)
 {
-    setValue("Translation/ShowTranslationTranslit", show);
+    setValue("Translation/TranslationTranslitEnabled", enable);
 }
 
-bool AppSettings::showSourceTranscription()
+bool AppSettings::isSourceTranscriptionEnabled()
 {
-    return value("Translation/ShowSourceTranscription", true).toBool();
+    return value("Translation/SourceTranscriptionEnabled", true).toBool();
 }
 
-void AppSettings::setShowSourceTranscription(bool show)
+void AppSettings::setSourceTranscriptionEnabled(bool enable)
 {
-    setValue("Translation/ShowSourceTranscription", show);
+    setValue("Translation/SourceTranscriptionEnabled", enable);
 }
 
-bool AppSettings::showTranslationOptions()
+bool AppSettings::isTranslationOptionsEnabled()
 {
-    return value("Translation/ShowTranslationOptions", true).toBool();
+    return value("Translation/TranslationOptionsEnabled", true).toBool();
 }
 
-void AppSettings::setShowTranslationOptions(bool show)
+void AppSettings::setTranslationOptionsEnabled(bool enable)
 {
-    setValue("Translation/ShowTranslationOptions", show);
+    setValue("Translation/TranslationOptionsEnabled", enable);
 }
 
-bool AppSettings::showExamples()
+bool AppSettings::isExamplesEnabled()
 {
-    return value("Translation/ShowExamples", true).toBool();
+    return value("Translation/ExamplesEnabled", true).toBool();
 }
 
-void AppSettings::setShowExamples(bool show)
+void AppSettings::setExamplesEnabled(bool enable)
 {
-    setValue("Translation/ShowExamples", show);
+    setValue("Translation/ExamplesEnabled", enable);
 }
 
 QOnlineTranslator::Language AppSettings::primaryLanguage()

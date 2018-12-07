@@ -691,35 +691,35 @@
            <item>
             <widget class="QCheckBox" name="sourceTranslitCheckBox">
              <property name="text">
-              <string>Show source transliteration</string>
+              <string>Enable source transliteration</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="translationTranslitCheckBox">
              <property name="text">
-              <string>Show translation transliteration</string>
+              <string>Enable translation transliteration</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
              <property name="text">
-              <string>Show source transcription</string>
+              <string>Enable source transcription</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="translationOptionsCheckBox">
              <property name="text">
-              <string>Show translation options</string>
+              <string>Enable translation options</string>
              </property>
             </widget>
            </item>
            <item>
             <widget class="QCheckBox" name="examplesCheckBox">
              <property name="text">
-              <string>Show examples</string>
+              <string>Enable examples</string>
              </property>
             </widget>
            </item>

@@ -104,20 +104,20 @@ public:
     void setCustomIconPath(const QString &path);
 
     // Translation settings
-    bool showSourceTranslit();
-    void setShowSourceTranslit(bool show);
+    bool isSourceTranslitEnabled();
+    void setSourceTranslitEnabled(bool enable);
 
-    bool showTranslationTranslit();
-    void setShowTranslationTranslit(bool show);
+    bool isTranslationTranslitEnabled();
+    void setTranslationTranslitEnabled(bool enable);
 
-    bool showSourceTranscription();
-    void setShowSourceTranscription(bool show);
+    bool isSourceTranscriptionEnabled();
+    void setSourceTranscriptionEnabled(bool enable);
 
-    bool showTranslationOptions();
-    void setShowTranslationOptions(bool show);
+    bool isTranslationOptionsEnabled();
+    void setTranslationOptionsEnabled(bool enable);
 
-    bool showExamples();
-    void setShowExamples(bool show);
+    bool isExamplesEnabled();
+    void setExamplesEnabled(bool enable);
 
     QOnlineTranslator::Language primaryLanguage();
     void setPrimaryLanguage(QOnlineTranslator::Language lang);
