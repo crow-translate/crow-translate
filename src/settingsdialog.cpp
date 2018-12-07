@@ -459,21 +459,18 @@ void SettingsDialog::on_testSpeechButton_clicked()
         return;
     }
 
-    QOnlineTranslator::Engine engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTranslator::Voice voice;
-    QOnlineTranslator::Emotion emotion;
+    auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    QOnlineTranslator::Voice voice = QOnlineTranslator::DefaultVoice;
+    QOnlineTranslator::Emotion emotion = QOnlineTranslator::DefaultEmotion;
     switch (engine) {
-    case QOnlineTranslator::Google:
-        voice = QOnlineTranslator::DefaultVoice;
-        emotion = QOnlineTranslator::DefaultEmotion;
-        break;
     case QOnlineTranslator::Yandex:
         voice = yandexVoice;
         emotion = yandexEmotion;
         break;
     case QOnlineTranslator::Bing:
         voice = bingVoice;
-        emotion = QOnlineTranslator::DefaultEmotion;
+        break;
+    default:
         break;
     }
 

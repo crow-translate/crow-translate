@@ -837,20 +837,18 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     playlist->clear();
     AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTranslator::Voice voice;
-    QOnlineTranslator::Emotion emotion;
+    QOnlineTranslator::Voice voice = QOnlineTranslator::DefaultVoice;
+    QOnlineTranslator::Emotion emotion = QOnlineTranslator::DefaultEmotion;
     switch (engine) {
-    case QOnlineTranslator::Google:
-        voice = QOnlineTranslator::DefaultVoice;
-        emotion = QOnlineTranslator::DefaultEmotion;
-        break;
     case QOnlineTranslator::Yandex:
         voice = settings.yandexVoice();
         emotion = settings.yandexEmotion();
         break;
     case QOnlineTranslator::Bing:
         voice = settings.bingVoice();
-        emotion = QOnlineTranslator::DefaultEmotion;
+        break;
+    default:
+        break;
     }
 
     const QList<QMediaContent> media = m_translator.media(text, engine, lang, voice, emotion);

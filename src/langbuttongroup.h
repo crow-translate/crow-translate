@@ -30,7 +30,7 @@ class LangButtonGroup : public QButtonGroup
     Q_OBJECT
 
 public:
-    LangButtonGroup(QObject *parent = nullptr);
+    explicit LangButtonGroup(QObject *parent = nullptr);
 
     void addButton(QAbstractButton *button);
     void loadLanguages();
