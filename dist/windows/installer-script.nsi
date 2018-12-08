@@ -15,10 +15,10 @@
   ;App information and out file
   Name "Crow Translate"
   BrandingText "Crow Translate"
-  !define VERSION "2.0.1"
-  OutFile "crow-translate-${VERSION}-win32.exe"
+  !define VERSION "2.1.0"
+  OutFile "crow-translate-${VERSION}-win64.exe"
   
-  ;Properly display all languages (Installer will not work on Windows 95, 98 or ME!)
+  ;Properly display all languages
   Unicode true
 
   ;Default installation folder
@@ -27,7 +27,7 @@
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\Crow\Crow Translate" ""
 
-  ;Request application privileges for Windows Vista
+  ;Request application privileges
   RequestExecutionLevel user
   
   ;Set compressor

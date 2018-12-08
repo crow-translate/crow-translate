@@ -1,3 +1,14 @@
+crow-translate (2.1.0~git-1) buster; urgency=low
+
+  * Add Bing support
+  * Select the first supported engine if the selected language is not supported by the current one
+  * Do not request / analyze parts of the translation that are not displayed
+  * Show a message if the application is already running
+  * Fix main window activation on some window systems
+  * Windows: Update changelog parser
+ 
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 27 Oct 2018 00:00:00 +0000
+
 crow-translate (2.0.1~git-1) buster; urgency=low
 
   * Make pop-up window active explicity for some window systems
@@ -10,7 +21,7 @@ crow-translate (2.0.1~git-1) buster; urgency=low
   * Windows: Load Qt library translations
   * Windows: Improve getting selection
  
- -- Shatur95 <>  Tue, 27 Oct 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 27 Oct 2018 00:00:00 +0000
 
 crow-translate (2.0.0~git-1) stretch; urgency=low
 
@@ -30,7 +41,7 @@ crow-translate (2.0.0~git-1) stretch; urgency=low
   * Change tab order in main window
   * Minor optimizations
  
- -- Shatur95 <>  Sun, 18 Oct 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 18 Oct 2018 00:00:00 +0000
 
 crow-translate (1.0.3~git-1) stretch; urgency=low
 
@@ -41,7 +52,7 @@ crow-translate (1.0.3~git-1) stretch; urgency=low
   * Prevent crashes when converting for non-existent languages or codes
   * Remove languages from "Auto" buttons ​​on error
  
- -- Shatur95 <>  Sun, 5 Aug 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 5 Aug 2018 00:00:00 +0000
 
 crow-translate (1.0.2~git-1) stretch; urgency=low
 
@@ -52,7 +63,7 @@ crow-translate (1.0.2~git-1) stretch; urgency=low
   * Windows: fix missing tray icon
   * Separate source and selection players
  
- -- Shatur95 <>  Thu, 4 Jul 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Thu, 4 Jul 2018 00:00:00 +0000
 
 crow-translate (1.0.1~git-1) stretch; urgency=low
 
@@ -61,7 +72,7 @@ crow-translate (1.0.1~git-1) stretch; urgency=low
   * Fix wrong layout properties in settings
   * Fix parsing for new changlog
  
- -- Shatur95 <>  Wen, 3 Jul 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Wen, 3 Jul 2018 00:00:00 +0000
 
 crow-translate (1.0.0~git-1) stretch; urgency=low
 
@@ -80,7 +91,7 @@ crow-translate (1.0.0~git-1) stretch; urgency=low
   * Minor visual design improvements
   * Redesign application icon
  
- -- Shatur95 <>  Tue, 2 Jul 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 2 Jul 2018 00:00:00 +0000
   
 crow-translate (0.9.9~git-1) stretch; urgency=low
 
@@ -98,7 +109,7 @@ crow-translate (0.9.9~git-1) stretch; urgency=low
   * Fix disabling of the keyboard shortcut for translating selected text after translation in the main window
   * Fix wrong behaviour for "Automatically translate" checkbox
   
- -- Shatur95 <>  Tue, 5 Jun 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 5 Jun 2018 00:00:00 +0000
   
 crow-translate (0.9.8~git-1) stretch; urgency=low
 
@@ -117,7 +128,7 @@ crow-translate (0.9.8~git-1) stretch; urgency=low
   * Fix automatic translation in the main window after inserting a new language
   * Remove "Automatic detection" from the context menu of languages ​​as useless
 
- -- Shatur95 <>  Sun, 20 May 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 20 May 2018 00:00:00 +0000
 
 crow-translate (0.9.7~git-1) stretch; urgency=low
 
@@ -132,7 +143,7 @@ crow-translate (0.9.7~git-1) stretch; urgency=low
   * Fix memory leak with system tray menu
   * Fix incorrect formatting of the translation text
  
- -- Shatur95 <>  Mon, 23 Apr 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Mon, 23 Apr 2018 00:00:00 +0000
 
 crow-translate (0.9.6~git-1) stretch; urgency=low
 
@@ -144,7 +155,7 @@ crow-translate (0.9.6~git-1) stretch; urgency=low
   * Fix language detection when saying selected text
   * Fix the obtaining of selected text on Windows
  
- -- Shatur95 <>  Thu, 5 Apr 2018 00:00:00 +0000
+ -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Thu, 5 Apr 2018 00:00:00 +0000
 
 crow-translate (0.9.5~git-1) stretch; urgency=low
 

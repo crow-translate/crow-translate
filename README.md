@@ -3,8 +3,8 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/Shatur95/crow-translate/dashboard)
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google and Yandex translate API.
-You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google and Yandex translate API.") used in this project. 
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google, Yandex and Bing translate API.
+You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project. 
 
 ## Content
 
@@ -74,7 +74,7 @@ The program also supports the console interface.
 | `-s, --source <code>`      | Specifies the source language (by default, backend will try to determine the language on its own) |
 | `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)    |
 | `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                       |
-| `-e, --engine <engine>`    | Specifies the translator engine ('google' or 'yandex'), Google is used by default                 |
+| `-e, --engine <engine>`    | Specifies the translator engine ('google', 'yandex' or 'bing'), Google is used by default         |
 | `-p, --speak-translation`  | Speaks the translation                                                                            |
 | `-u, --speak-source`       | Speaks the original text                                                                          |
 | `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.                |
@@ -95,7 +95,7 @@ If you do not pass startup arguments to the program, the GUI starts.
 
 This project uses following third-party libraries:
 
--   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free use of the Google and Yandex translate API for Qt5.
+-   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
 -   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
 -   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
@@ -136,7 +136,7 @@ Than you can install it as usual. The script will tell you where the package wil
 
 ### Arch Linux and derivatives
 
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google and Yandex translate API") from AUR.
+You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google, Yandex and Bing translate API") from AUR.
 
 ### Manual building
 
