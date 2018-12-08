@@ -790,7 +790,7 @@ void MainWindow::loadSettings()
     SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 
     // Translation
-    m_translator.setSourceTranscriptionEnabled(settings.isSourceTranslitEnabled());
+    m_translator.setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
     m_translator.setTranslationTranslitEnabled(settings.isTranslationTranslitEnabled());
     m_translator.setSourceTranscriptionEnabled(settings.isSourceTranscriptionEnabled());
     m_translator.setTranslationOptionsEnabled(settings.isTranslationOptionsEnabled());
