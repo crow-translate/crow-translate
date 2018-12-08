@@ -535,7 +535,8 @@ void MainWindow::playTranslatedSelection()
 
 void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
 {
-    // If the target and source languages are the same (and they are not automatic translation buttons), then source target language to previous target language
+    /* If the target and source languages are the same (and they are not autodetect buttons),
+     * then insert previous checked language from just checked language group to another group */
     AppSettings settings;
     if (id != 0
             && anotherGroup->checkedId() != 0
@@ -545,9 +546,20 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
         settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
     }
 
-    // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
-    if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-        m_translateTimer.start(SHORT_AUTOTRANSLATE_DELAY);
+    // Check if selected language is supported by engine
+    if (!QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
+                                                checkedGroup->language(id))) {
+        for (int i = 0; i < ui->engineComboBox->count(); ++i) {
+            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedGroup->language(id))) {
+                ui->engineComboBox->setCurrentIndex(i); // Check first supported language
+                break;
+            }
+        }
+    } else {
+        // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
+        if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
+            m_translateTimer.start(SHORT_AUTOTRANSLATE_DELAY);
+    }
 
     settings.setCheckedButton(checkedGroup, checkedGroup->checkedId());
 }
