@@ -3,7 +3,7 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/Shatur95/crow-translate/dashboard)
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and say selected text using Google, Yandex and Bing translate API.
+**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project. 
 
 ## Content
@@ -19,27 +19,43 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 ## Screenshots
 
+### Linux
+
 <p align="center">
-  <img src="dist/unix/screenshots/linux-plasma-screenshot-main.png?raw=true" alt="Main screenshot"/>
-  <img src="dist/unix/screenshots/linux-plasma-screenshot-sentense.png?raw=true" width="250px" height="140px" alt="Sentense screenshot"/>
-  <img src="dist/unix/screenshots/linux-plasma-screenshot-popup.png?raw=true" width="250px" height="140px" alt="Popup screenshot"/>
-  <img src="dist/unix/screenshots/linux-plasma-screenshot-settings.png?raw=true" width="250px" height="140px" alt="Settings screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/main.png" alt="Main screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sup><sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub></sup>
+  <sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub>
 </p>
+
+### Windows
+
+<p align="center">
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/main.png" alt="Main screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
+</p>
+<p align="center">
+  <sub><b>Screenshots</b>: OS: <a href="https://www.microsoft.com/en-us/software-download/windows10">Windows 10</a> | Theme: <a href="https://www.deviantart.com/sagorpirbd/art/Windows-8-Themes-for-Win10-Final-556761647">Windows 8</a> | Wallpaper: Default Windows 10 flower</sub>
+</p>
+
 
 ## Features
 
--   Translate and say text in any application that supports text selection
--   Translator window with native interface similar to Google Translate
--   Command-line interface with rich options
--   Highly customizable shortcuts
+-   Translate and speak text in any application that supports text selection
+-   Support 117 different languages
 -   Low memory consumption (~20MB)
+-   Highly customizable shortcuts
+-   Command-line interface with rich options
+-   Available for Linux and Windows
 
 ## Default keyboard shortcuts
 
-You can change these shortcuts in the settings. Some key sequences may not be available due to OS limitations.
+You can change them in the settings. Some key sequences may not be available due to OS limitations.
 
 ### Global
 
@@ -51,37 +67,37 @@ You can change these shortcuts in the settings. Some key sequences may not be av
 
 ### In main window
 
-| Key                                               | Description               |
-| ------------------------------------------------- | ------------------------- |
-| <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                 |
-| <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window              |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text  |
-| <kbd>Ctrl</kbd> + <kbd>G</kbd>                    | Stop source text playback |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Play / pause translation  |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Stop translation playback |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copy to clipboard         |
+| Key                                               | Description                       |
+| ------------------------------------------------- | --------------------------------- |
+| <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                         |
+| <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window                      |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text speaking |
+| <kbd>Ctrl</kbd> + <kbd>G</kbd>                    | Stop source text speaking         |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Play / pause translation speaking |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Stop translation speaking         |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copy translation to clipboard     |
 
 ## CLI commands
 
-The program also supports the console interface.
+The program also has a console interface.
 
 **Usage:** `crow [options] text`
 
-| Option                     | Description                                                                                       |
-| -------------------------- | ------------------------------------------------------------------------------------------------- |
-| `-h, --help`               | Displays help                                                                                     |
-| `-v, --version`            | Displays version information                                                                      |
-| `-s, --source <code>`      | Specifies the source language (by default, backend will try to determine the language on its own) |
-| `-t, --translation <code>` | Specifies the translation language(s), joined by '+' (by default, the system language is used)    |
-| `-l, --locale <code>`      | Specifies the translator language (by default, the system language is used)                       |
-| `-e, --engine <engine>`    | Specifies the translator engine ('google', 'yandex' or 'bing'), Google is used by default         |
-| `-p, --speak-translation`  | Speaks the translation                                                                            |
-| `-u, --speak-source`       | Speaks the original text                                                                          |
-| `-a, --audio-only`         | Prints text only for playing when using `--speak-translation` or `--speak-source`.                |
-| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                         |
-| `-i, --stdin`              | Add stdin data to source text.                                                                    |
+| Option                     | Description                                                                                    |
+| -------------------------- | ---------------------------------------------------------------------------------------------- |
+| `-h, --help`               | Display help                                                                                   |
+| `-v, --version`            | Display version information                                                                    |
+| `-s, --source <code>`      | Specify the source language (by default, engine will try to determine the language on its own) |
+| `-t, --translation <code>` | Specify the translation language(s), joined by '+' (by default, the system language is used)   |
+| `-l, --locale <code>`      | Specify the translator language (by default, the system language is used)                      |
+| `-e, --engine <engine>`    | Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default        |
+| `-p, --speak-translation`  | Speak the translation                                                                          |
+| `-u, --speak-source`       | Speak the source                                                                               |
+| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`.             |
+| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                      |
+| `-i, --stdin`              | Add stdin data to source text.                                                                 |
 
-If you do not pass startup arguments to the program, the GUI starts.
+**Note:** If you do not pass startup arguments to the program, the GUI starts.
 
 ## Dependencies
 
@@ -93,13 +109,13 @@ If you do not pass startup arguments to the program, the GUI starts.
 
 ### Libraries
 
-This project uses following third-party libraries:
+This project uses the following third-party libraries:
 
 -   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
 -   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
 -   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
-Therefore, if you want to clone this project, you need to use the `--recursive` option:
+Therefore, if you want to clone this project, you need to use the `--recursive` option: 
 
 ```bash
 git clone --recursive git@github.com:Shatur95/CrowTranslate.git
@@ -121,7 +137,7 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 ## Installation
 
-To install a stable version, go to the [releases](https://github.com/Shatur95/CrowTranslate/releases) page. The instructions below will help you install Crow Translate with the latest commits. 
+To install a stable version, go to the [releases](https://github.com/Shatur95/CrowTranslate/releases) page. The instructions below will help you install Crow Translate with the latest commits.
 
 ### Automatic script
 
@@ -136,7 +152,7 @@ Than you can install it as usual. The script will tell you where the package wil
 
 ### Arch Linux and derivatives
 
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and say the selected text using the Google, Yandex and Bing translate API") from AUR.
+You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and speak text using the Google, Yandex and Bing translate API") from AUR.
 
 ### Manual building
 
@@ -148,7 +164,7 @@ make
 make clean
 ```
 
-Then you can use standalone binary `crow`.
+You will then get a binary named `crow`.
 
 ## Localization
 
