@@ -315,7 +315,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="721"/>
         <source>Corsican</source>
-        <translation>корсиканский</translation>
+        <translation type="unfinished">Корсиканский</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="725"/>
