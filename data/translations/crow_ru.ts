@@ -43,11 +43,6 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.ui" line="157"/>
-        <source>Play / pause source text</source>
-        <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
-    </message>
-    <message>
         <location filename="../../src/mainwindow.ui" line="322"/>
         <source>Copy all translation data to the clipboard</source>
         <translation>Скопировать все данные перевода в буфер обмена</translation>
@@ -57,11 +52,6 @@
         <location filename="../../src/mainwindow.ui" line="280"/>
         <source>Play</source>
         <translation>Воспроизвести</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="174"/>
-        <source>Stop source playback</source>
-        <translation>Остановить воспроизведение исходного текста</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="177"/>
@@ -78,11 +68,6 @@
         <location filename="../../src/mainwindow.ui" line="224"/>
         <source>Source</source>
         <translation>Исходный текст</translation>
-    </message>
-    <message>
-        <location filename="../../src/mainwindow.ui" line="294"/>
-        <source>Stop translation playback</source>
-        <translation>Остановить воспроизведение перевода</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="336"/>
@@ -106,14 +91,29 @@
         <translation>Скопировать</translation>
     </message>
     <message>
+        <location filename="../../src/mainwindow.ui" line="157"/>
+        <source>Play / pause source text speaking</source>
+        <translation>Воспроизвести / приостановить озвучивание исходного текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="174"/>
+        <source>Stop source text speaking</source>
+        <translation>Остановить озвучивание исходного текста</translation>
+    </message>
+    <message>
         <location filename="../../src/mainwindow.ui" line="202"/>
         <source>Automatically translate</source>
         <translation>Переводить автоматически</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="277"/>
-        <source>Play / pause translation</source>
-        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
+        <source>Play / pause translation speaking</source>
+        <translation>Воспроизвести / приостановить озвучивание перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/mainwindow.ui" line="294"/>
+        <source>Stop translation speaking</source>
+        <translation>Остановить озвучивание перевода</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="308"/>
@@ -128,7 +128,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="339"/>
         <location filename="../../src/mainwindow.cpp" line="97"/>
-        <location filename="../../src/mainwindow.cpp" line="715"/>
+        <location filename="../../src/mainwindow.cpp" line="727"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -139,13 +139,13 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="96"/>
-        <location filename="../../src/mainwindow.cpp" line="714"/>
+        <location filename="../../src/mainwindow.cpp" line="726"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="98"/>
-        <location filename="../../src/mainwindow.cpp" line="716"/>
+        <location filename="../../src/mainwindow.cpp" line="728"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -168,27 +168,27 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="497"/>
-        <location filename="../../src/mainwindow.cpp" line="748"/>
+        <location filename="../../src/mainwindow.cpp" line="760"/>
         <source>Unable to translate text</source>
         <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="658"/>
+        <location filename="../../src/mainwindow.cpp" line="670"/>
         <source>The application is already running</source>
         <translation>Приложение уже запущено</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="841"/>
+        <location filename="../../src/mainwindow.cpp" line="853"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="841"/>
+        <location filename="../../src/mainwindow.cpp" line="853"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="865"/>
+        <location filename="../../src/mainwindow.cpp" line="877"/>
         <source>Unable to play text</source>
         <translation>Не удалось воспроизвести текст</translation>
     </message>
@@ -202,20 +202,20 @@
         <translation>Поменять языки местами</translation>
     </message>
     <message>
-        <location filename="../../src/popupwindow.ui" line="182"/>
-        <source>Play / pause source text</source>
-        <translation>Воспроизвести / приостановить воспроизведение исходного текста</translation>
-    </message>
-    <message>
         <location filename="../../src/popupwindow.ui" line="185"/>
         <location filename="../../src/popupwindow.ui" line="274"/>
         <source>Play</source>
         <translation>Воспроизвести</translation>
     </message>
     <message>
+        <location filename="../../src/popupwindow.ui" line="182"/>
+        <source>Play / pause source text speaking</source>
+        <translation>Воспроизвести / приостановить озвучивание исходного текста</translation>
+    </message>
+    <message>
         <location filename="../../src/popupwindow.ui" line="199"/>
-        <source>Stop source playback</source>
-        <translation>Остановить воспроизведение исходного текста</translation>
+        <source>Stop source text speaking</source>
+        <translation>Остановить озвучивание исходного текста</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="202"/>
@@ -230,8 +230,13 @@
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="271"/>
-        <source>Play / pause translation</source>
-        <translation>Воспроизвести / приостановить воспроизведение перевода</translation>
+        <source>Play / pause translation speaking</source>
+        <translation>Воспроизвести / приостановить озвучивание перевода</translation>
+    </message>
+    <message>
+        <location filename="../../src/popupwindow.ui" line="288"/>
+        <source>Stop translation speaking</source>
+        <translation>Остановить озвучивание перевода</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="316"/>
@@ -243,11 +248,6 @@
         <location filename="../../src/popupwindow.ui" line="319"/>
         <source>Copy</source>
         <translation>Скопировать</translation>
-    </message>
-    <message>
-        <location filename="../../src/popupwindow.ui" line="288"/>
-        <source>Stop translation playback</source>
-        <translation>Остановить воспроизведение перевода</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="302"/>
@@ -1052,91 +1052,59 @@
         <translation>Проверка голоса</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="963"/>
-        <source>Play</source>
-        <translation>Воспроизвести</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1230"/>
-        <source>Play selected text</source>
-        <translation>Воспроизвести выделенный текст</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1239"/>
-        <source>Play translation of selected text</source>
-        <translation>Воспроизвести перевод выделенного текста</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1248"/>
-        <source>Stop playing selected text</source>
-        <translation>Остановить воспроизведение выделенного текста</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1313"/>
+        <location filename="../../src/settingsdialog.ui" line="1316"/>
         <source>Source text</source>
         <translation>Исходный текст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1323"/>
-        <location filename="../../src/settingsdialog.ui" line="1358"/>
-        <source>Play / pause</source>
-        <translation>Воспроизвести / приостановить</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1335"/>
-        <location filename="../../src/settingsdialog.ui" line="1370"/>
-        <source>Stop playback</source>
-        <translation>Остановить воспроизведение</translation>
-    </message>
-    <message>
-        <location filename="../../src/settingsdialog.ui" line="1382"/>
+        <location filename="../../src/settingsdialog.ui" line="1385"/>
         <source>Copy to clipboard</source>
         <translation>Скопировать в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1401"/>
+        <location filename="../../src/settingsdialog.ui" line="1404"/>
         <source>Reset all to default</source>
         <translation>Сбросить всё в исходное состояние</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1404"/>
+        <location filename="../../src/settingsdialog.ui" line="1407"/>
         <source>Reset all</source>
         <translation>Сбросить всё</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1435"/>
+        <location filename="../../src/settingsdialog.ui" line="1438"/>
         <source>Key sequence:</source>
         <translation>Комбинация клавиш:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1445"/>
         <location filename="../../src/settingsdialog.ui" line="1448"/>
+        <location filename="../../src/settingsdialog.ui" line="1451"/>
         <source>Accept</source>
         <translation>Принять</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1459"/>
         <location filename="../../src/settingsdialog.ui" line="1462"/>
+        <location filename="../../src/settingsdialog.ui" line="1465"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1473"/>
+        <location filename="../../src/settingsdialog.ui" line="1476"/>
         <source>Reset to default</source>
         <translation>Сбросить в исходное состояние</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1476"/>
+        <location filename="../../src/settingsdialog.ui" line="1479"/>
         <source>Reset</source>
         <translation>Сбросить</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1609"/>
+        <location filename="../../src/settingsdialog.ui" line="1612"/>
         <source>Flag icons:</source>
         <translation>Значки флагов:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1674"/>
+        <location filename="../../src/settingsdialog.ui" line="1677"/>
         <source>Reset settings</source>
         <translation>Сбросить настройки</translation>
     </message>
@@ -1174,7 +1142,7 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="73"/>
         <location filename="../../src/settingsdialog.ui" line="688"/>
-        <location filename="../../src/settingsdialog.ui" line="1348"/>
+        <location filename="../../src/settingsdialog.ui" line="1351"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
@@ -1255,47 +1223,53 @@
         <translation>Голос:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="996"/>
+        <location filename="../../src/settingsdialog.ui" line="963"/>
+        <location filename="../../src/settingsdialog.ui" line="966"/>
+        <source>Test</source>
+        <translation>Тест</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="999"/>
         <source>Proxy server</source>
         <translation>Прокси сервер</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1004"/>
+        <location filename="../../src/settingsdialog.ui" line="1007"/>
         <source>Type:</source>
         <translation>Тип:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1012"/>
+        <location filename="../../src/settingsdialog.ui" line="1015"/>
         <source>Use system settings</source>
         <translation>Использовать настойки системы</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1055"/>
+        <location filename="../../src/settingsdialog.ui" line="1058"/>
         <source>Host:</source>
         <translation>Хост:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1075"/>
+        <location filename="../../src/settingsdialog.ui" line="1078"/>
         <source>Port:</source>
         <translation>Порт:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1103"/>
+        <location filename="../../src/settingsdialog.ui" line="1106"/>
         <source>Info: the proxy works only for text translation</source>
         <translation>Информация: прокси работает только для перевода текста</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1113"/>
+        <location filename="../../src/settingsdialog.ui" line="1116"/>
         <source>Authentication</source>
         <translation>Аутентификация</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1125"/>
+        <location filename="../../src/settingsdialog.ui" line="1128"/>
         <source>Username:</source>
         <translation>Имя пользователя:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1142"/>
+        <location filename="../../src/settingsdialog.ui" line="1145"/>
         <source>Password:</source>
         <translation>Пароль:</translation>
     </message>
@@ -1305,39 +1279,39 @@
         <translation>Комбинации клавиш</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1205"/>
+        <location filename="../../src/settingsdialog.ui" line="1208"/>
         <source>Global</source>
         <translation>Глобальные</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1218"/>
+        <location filename="../../src/settingsdialog.ui" line="1221"/>
         <source>Translate selected text</source>
         <translation>Перевести выделенный текст</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1164"/>
+        <location filename="../../src/settingsdialog.ui" line="1167"/>
         <source>Info: the password is saved unencrypted</source>
         <translation>Информация: пароль хранится в незашифрованном виде</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1257"/>
+        <location filename="../../src/settingsdialog.ui" line="1260"/>
         <source>Show main window</source>
         <translation>Показать главное окно</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1304"/>
+        <location filename="../../src/settingsdialog.ui" line="1307"/>
         <source>Close window</source>
         <translation>Закрыть окно</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1602"/>
+        <location filename="../../src/settingsdialog.ui" line="1605"/>
         <source>License:</source>
         <translation>Лицензия:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="144"/>
         <location filename="../../src/settingsdialog.ui" line="452"/>
-        <location filename="../../src/settingsdialog.ui" line="1276"/>
+        <location filename="../../src/settingsdialog.ui" line="1279"/>
         <source>Main window</source>
         <translation>Главное окно</translation>
     </message>
@@ -1367,28 +1341,43 @@
         <translation>Включить примеры</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1022"/>
+        <location filename="../../src/settingsdialog.ui" line="1025"/>
         <source>Don&apos;t use a proxy</source>
         <translation>Не использовать прокси</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1195"/>
+        <location filename="../../src/settingsdialog.ui" line="1198"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1200"/>
-        <location filename="../../src/settingsdialog.ui" line="1429"/>
+        <location filename="../../src/settingsdialog.ui" line="1203"/>
+        <location filename="../../src/settingsdialog.ui" line="1432"/>
         <source>Shortcut</source>
         <translation>Комбинация</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1266"/>
+        <location filename="../../src/settingsdialog.ui" line="1233"/>
+        <source>Speak selected text</source>
+        <translation>Озвучить выделенный текст</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="1242"/>
+        <source>Speak translation of selected text</source>
+        <translation>Озвучить перевод выделенного текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="1251"/>
+        <source>Stop speaking selected text</source>
+        <translation>Остановить озвучивание выделенного текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="1269"/>
         <source>Translate selected text and copy to clipboard</source>
         <translation>Перевести выделенный текст и скопировать в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1295"/>
+        <location filename="../../src/settingsdialog.ui" line="1298"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
@@ -1403,22 +1392,34 @@
         <translation>Автоматическое определение языков</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1588"/>
+        <location filename="../../src/settingsdialog.ui" line="1326"/>
+        <location filename="../../src/settingsdialog.ui" line="1361"/>
+        <source>Play / pause text speaking</source>
+        <translation>Воспроизвести / приостановить озвучивание текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="1338"/>
+        <location filename="../../src/settingsdialog.ui" line="1373"/>
+        <source>Stop text speaking</source>
+        <translation>Остановить озвучивание текста</translation>
+    </message>
+    <message>
+        <location filename="../../src/settingsdialog.ui" line="1591"/>
         <source>Ukraine</source>
         <translation>Украина</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1595"/>
+        <location filename="../../src/settingsdialog.ui" line="1598"/>
         <source>Country:</source>
         <translation>Страна:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1616"/>
+        <location filename="../../src/settingsdialog.ui" line="1619"/>
         <source>Autor:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../../src/settingsdialog.ui" line="1544"/>
+        <location filename="../../src/settingsdialog.ui" line="1547"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>

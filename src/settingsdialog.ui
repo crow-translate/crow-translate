@@ -959,8 +959,11 @@
              </item>
              <item>
               <widget class="QToolButton" name="testSpeechButton">
+               <property name="toolTip">
+                <string>Test</string>
+               </property>
                <property name="text">
-                <string>Play</string>
+                <string>Test</string>
                </property>
                <property name="icon">
                 <iconset theme="media-playback-start">
@@ -1227,7 +1230,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Play selected text</string>
+             <string>Speak selected text</string>
             </property>
             <property name="icon">
              <iconset theme="media-playback-start">
@@ -1236,7 +1239,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Play translation of selected text</string>
+             <string>Speak translation of selected text</string>
             </property>
             <property name="icon">
              <iconset theme="media-playback-start">
@@ -1245,7 +1248,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Stop playing selected text</string>
+             <string>Stop speaking selected text</string>
             </property>
             <property name="icon">
              <iconset theme="media-playback-stop">
@@ -1320,7 +1323,7 @@
             </property>
             <item>
              <property name="text">
-              <string>Play / pause</string>
+              <string>Play / pause text speaking</string>
              </property>
              <property name="icon">
               <iconset theme="media-playback-start">
@@ -1332,7 +1335,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Stop playback</string>
+              <string>Stop text speaking</string>
              </property>
              <property name="icon">
               <iconset theme="media-playback-stop">
@@ -1355,7 +1358,7 @@
             </property>
             <item>
              <property name="text">
-              <string>Play / pause</string>
+              <string>Play / pause text speaking</string>
              </property>
              <property name="icon">
               <iconset theme="media-playback-start">
@@ -1367,7 +1370,7 @@
             </item>
             <item>
              <property name="text">
-              <string>Stop playback</string>
+              <string>Stop text speaking</string>
              </property>
              <property name="icon">
               <iconset theme="media-playback-stop">

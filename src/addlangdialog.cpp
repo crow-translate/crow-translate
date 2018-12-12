@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
+ *  Copyright © 2018 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *

@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
+ *  Copyright © 2018 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *
@@ -60,13 +60,13 @@ int main(int argc, char *argv[])
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOption(QCommandLineOption({"c", "codes"}, "Show all language codes."));
-    parser.addOption(QCommandLineOption({"s", "source"}, "Specifies the source language. By default, Google will try to determine the language on its own.", "code", "auto"));
-    parser.addOption(QCommandLineOption({"t", "translation"}, "Specifies the translation language(s), joined by '+'. By default, the system language is used.", "code", "auto"));
-    parser.addOption(QCommandLineOption({"l", "locale"}, "Specifies the translator language. By default, the system language is used.", "code", "auto"));
-    parser.addOption(QCommandLineOption({"e", "engine"}, "Specifies the translator engine ('google', 'yandex' or 'bing'). Google is used by default.", "engine", "google"));
-    parser.addOption(QCommandLineOption({"p", "speak-translation"}, "Speaks the translation."));
-    parser.addOption(QCommandLineOption({"u", "speak-source"}, "Speaks the original text."));
-    parser.addOption(QCommandLineOption({"a", "audio-only"}, "Prints text only for playing when using --speak-translation or --speak-source."));
+    parser.addOption(QCommandLineOption({"s", "source"}, "Specify the source language (by default, engine will try to determine the language on its own).", "code", "auto"));
+    parser.addOption(QCommandLineOption({"t", "translation"}, " 	Specify the translation language(s), joined by '+' (by default, the system language is used).", "code", "auto"));
+    parser.addOption(QCommandLineOption({"l", "locale"}, "Specify the translator language (by default, the system language is used).", "code", "auto"));
+    parser.addOption(QCommandLineOption({"e", "engine"}, "Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default.", "engine", "google"));
+    parser.addOption(QCommandLineOption({"p", "speak-translation"}, "Speak the translation."));
+    parser.addOption(QCommandLineOption({"u", "speak-source"}, "Speak the source."));
+    parser.addOption(QCommandLineOption({"a", "audio-only"}, "Print text only for speaking when using --speak-translation or --speak-source."));
     parser.addOption(QCommandLineOption({"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."));
     parser.addOption(QCommandLineOption({"i", "stdin"}, "Add stdin data to source text."));
     parser.process(app);
@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
             parser.showHelp();
         }
 
-        // Play source
+        // Speak source
         if (parser.isSet("speak-source")) {
             out << "Source text:" << endl;
             out << text << endl;
@@ -168,7 +168,7 @@ int main(int argc, char *argv[])
                 return 0;
         }
 
-        // Play translation in all languages
+        // Speak translation in all languages
         if (parser.isSet("speak-translation")) {
             foreach (QOnlineTranslator::Language translationLang, translationLangs) {
                 // Speak into each target language

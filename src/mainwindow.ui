@@ -154,7 +154,7 @@
       <item>
        <widget class="QToolButton" name="playSourceButton">
         <property name="toolTip">
-         <string>Play / pause source text</string>
+         <string>Play / pause source text speaking</string>
         </property>
         <property name="text">
          <string>Play</string>
@@ -171,7 +171,7 @@
          <bool>false</bool>
         </property>
         <property name="toolTip">
-         <string>Stop source playback</string>
+         <string>Stop source text speaking</string>
         </property>
         <property name="text">
          <string>Stop</string>
@@ -274,7 +274,7 @@
       <item>
        <widget class="QToolButton" name="playTranslationButton">
         <property name="toolTip">
-         <string>Play / pause translation</string>
+         <string>Play / pause translation speaking</string>
         </property>
         <property name="text">
          <string>Play</string>
@@ -291,7 +291,7 @@
          <bool>false</bool>
         </property>
         <property name="toolTip">
-         <string>Stop translation playback</string>
+         <string>Stop translation speaking</string>
         </property>
         <property name="text">
          <string>Stop</string>

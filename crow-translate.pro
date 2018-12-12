@@ -10,9 +10,9 @@ VERSION = 2.1.0
 QT += core gui widgets
 
 # Windows specific stuff
-QMAKE_TARGET_COMPANY = Gennady Chernyshchuk
+QMAKE_TARGET_COMPANY = Hennadii Chernyshchyk
 QMAKE_TARGET_DESCRIPTION = Crow Translate
-QMAKE_TARGET_COPYRIGHT = Copyright © 2018 Gennady Chernyshchuk
+QMAKE_TARGET_COPYRIGHT = Copyright © 2018 Hennadii Chernyshchyk
 QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
 

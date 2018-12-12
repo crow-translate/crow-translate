@@ -1,6 +1,6 @@
 ;NSIS Modern User Interface
 ;Crow Translate Installer Script
-;Written by Gennady Chernyshchuk
+;Written by Hennadii Chernyshchyk
 
 !pragma warning error all
 
@@ -193,7 +193,7 @@ Section "Install"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayName" "Crow Translate"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "UninstallString" "$\"$INSTDIR\Uninstall.exe$\""
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayIcon" "$\"$INSTDIR\icon.ico$\""
-  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Publisher" "Gennady Chernyshchuk"
+  WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Publisher" "Hennadii Chernyshchyk"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "URLInfoAbout" "https://github.com/Shatur95/Crow-Translate"
   WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "EstimatedSize" "56832"

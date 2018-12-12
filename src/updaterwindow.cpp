@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
+ *  Copyright © 2018 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *
@@ -38,7 +38,7 @@ UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     m_network.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 #endif
 
-    // Hide the download progress ui until the download begins
+    // Hide the download progress until download begins
     ui->downloadBar->setVisible(false);
     ui->cancelDownloadButton->setVisible(false);
 
@@ -94,7 +94,7 @@ void UpdaterWindow::on_downloadButton_clicked()
     ui->downloadBar->setVisible(true);
     ui->cancelDownloadButton->setVisible(true);
 
-    // Wait until download
+    // Wait until download ends
     QEventLoop loop;
     connect(m_reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
     loop.exec();

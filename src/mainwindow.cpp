@@ -1,5 +1,5 @@
 /*
- *  Copyright © 2018 Gennady Chernyshchuk <genaloner@gmail.com>
+ *  Copyright © 2018 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *
@@ -161,7 +161,7 @@ void MainWindow::on_translateButton_clicked()
     // Disable the translation button to prevent re-pressing
     ui->translateButton->setEnabled(false);
 
-    // Stop translation playback
+    // Stop translation speaking
     m_translationPlayer.stop();
 
     // Source Language

@@ -59,11 +59,13 @@ You can change them in the settings. Some key sequences may not be available due
 
 ### Global
 
-| Key                                             | Description             |
-| ----------------------------------------------- | ----------------------- |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Speak selected text     |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window        |
+| Key                                             | Description                        |
+| ----------------------------------------------- | ---------------------------------- |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Translate selected text            |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Speak selected text                |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> | Speak translation of selected text |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd> | Stop speaking selected text        |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Show main window                   |
 
 ### In main window
 
@@ -93,9 +95,9 @@ The program also has a console interface.
 | `-e, --engine <engine>`    | Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default        |
 | `-p, --speak-translation`  | Speak the translation                                                                          |
 | `-u, --speak-source`       | Speak the source                                                                               |
-| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`.             |
-| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths.                      |
-| `-i, --stdin`              | Add stdin data to source text.                                                                 |
+| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`              |
+| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths                       |
+| `-i, --stdin`              | Add stdin data to source text                                                                  |
 
 **Note:** If you do not pass startup arguments to the program, the GUI starts.
 

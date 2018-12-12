@@ -2,15 +2,15 @@
 
 All notable changes to this project will be documented in this file. This project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.html).
 
-## [Unreleased](https://github.com/Shatur95/crow-translate/tree/HEAD)
+## [Unreleased](https://github.com/crow-translate/crow-translate/tree/HEAD)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.1.0...HEAD)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.1.0...HEAD)
 
 _No unreleased changes yet_
 
-## [2.1.0](https://github.com/Shatur95/crow-translate/tree/2.1.0) (2018-12-08)
+## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.1...2.1.0)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.0.1...2.1.0)
 
 **Added**
 
@@ -24,9 +24,9 @@ _No unreleased changes yet_
 -   Fix main window activation on some window systems.
 -   Windows: Update changelog parser.
 
-## [2.0.1](https://github.com/Shatur95/crow-translate/tree/2.0.1) (2018-11-26)
+## [2.0.1](https://github.com/crow-translate/crow-translate/tree/2.0.1) (2018-11-26)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/2.0.0...2.0.1)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.0.0...2.0.1)
 
 **Changed**
 
@@ -40,9 +40,9 @@ _No unreleased changes yet_
 -   Windows: Load Qt library translations.
 -   Windows: Improve getting selection.
 
-## [2.0.0](https://github.com/Shatur95/crow-translate/tree/2.0.0) (2018-11-17)
+## [2.0.0](https://github.com/crow-translate/crow-translate/tree/2.0.0) (2018-11-17)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.3...2.0.0)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/1.0.3...2.0.0)
 
 **Added**
 
@@ -66,9 +66,9 @@ _No unreleased changes yet_
 -   Minor optimizations.
 -   Windows: Improve updater.
 
-## [1.0.3](https://github.com/Shatur95/crow-translate/tree/1.0.3) (2018-08-05)
+## [1.0.3](https://github.com/crow-translate/crow-translate/tree/1.0.3) (2018-08-05)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.2...1.0.3)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/1.0.2...1.0.3)
 
 **Added**
 
@@ -82,9 +82,9 @@ _No unreleased changes yet_
 -   Prevent crashes when converting for non-existent languages or codes.
 -   Remove languages from "Auto" buttons ​​on error.
 
-## [1.0.2](https://github.com/Shatur95/crow-translate/tree/1.0.2) (2018-07-04)
+## [1.0.2](https://github.com/crow-translate/crow-translate/tree/1.0.2) (2018-07-04)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.1...1.0.2)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/1.0.1...1.0.2)
 
 **Added**
 
@@ -99,9 +99,9 @@ _No unreleased changes yet_
 -   Separate source and selection players.
 -   Windows: show the application name instead of the description in the list of running processes.
 
-## [1.0.1](https://github.com/Shatur95/crow-translate/tree/1.0.1) (2018-07-02)
+## [1.0.1](https://github.com/crow-translate/crow-translate/tree/1.0.1) (2018-07-02)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/1.0.0...1.0.1)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/1.0.0...1.0.1)
 
 **Added**
 
@@ -114,9 +114,9 @@ _No unreleased changes yet_
 -   Fix the inactive translation button after a network error.
 -   Windows: Fix new changelog parsing for Updater.
 
-## [1.0.0](https://github.com/Shatur95/crow-translate/tree/1.0.0) (2018-07-01)
+## [1.0.0](https://github.com/crow-translate/crow-translate/tree/1.0.0) (2018-07-01)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.9...1.0.0)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/0.9.9...1.0.0)
 
 **Added**
 
@@ -138,9 +138,9 @@ _No unreleased changes yet_
 -   Redesign application icon.
 -   Fix the incorrect behavior of adding language button.
 
-## [0.9.9](https://github.com/Shatur95/crow-translate/tree/0.9.9) (2018-06-04)
+## [0.9.9](https://github.com/crow-translate/crow-translate/tree/0.9.9) (2018-06-04)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.8...0.9.9)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/0.9.8...0.9.9)
 
 **Added**
 
@@ -161,9 +161,9 @@ _No unreleased changes yet_
 -   Fix disabling of the keyboard shortcut for translating selected text after translation in the main window.
 -   Fix wrong behaviour for "Automatically translate" checkbox.
 
-## [0.9.8](https://github.com/Shatur95/crow-translate/tree/0.9.8) (2018-05-19)
+## [0.9.8](https://github.com/crow-translate/crow-translate/tree/0.9.8) (2018-05-19)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.7...0.9.8)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/0.9.7...0.9.8)
 
 **Added**
 
@@ -187,9 +187,9 @@ _No unreleased changes yet_
 -   Windows: Improve icon look.
 -   "Automatic detection" removed from the context menu of languages ​​as useless.
 
-## [0.9.7](https://github.com/Shatur95/crow-translate/tree/0.9.7) (2018-04-23)
+## [0.9.7](https://github.com/crow-translate/crow-translate/tree/0.9.7) (2018-04-23)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.6...0.9.7)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/0.9.6...0.9.7)
 
 **Added**
 
@@ -207,9 +207,9 @@ _No unreleased changes yet_
 -   Fix memory leak with system tray menu.
 -   Fix incorrect formatting of the translation text.
 
-## [0.9.6](https://github.com/Shatur95/crow-translate/tree/0.9.6) (2018-04-05)
+## [0.9.6](https://github.com/crow-translate/crow-translate/tree/0.9.6) (2018-04-05)
 
-[Full Changelog](https://github.com/Shatur95/crow-translate/compare/0.9.5...0.9.6)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/0.9.5...0.9.6)
 
 **Added**
 
@@ -224,7 +224,7 @@ _No unreleased changes yet_
 -   Fix language detection when saying selected text.
 -   Windows: Fix the obtaining of selected text.
 
-## [0.9.5](https://github.com/Shatur95/crow-translate/tree/0.9.5) (2018-04-05)
+## [0.9.5](https://github.com/crow-translate/crow-translate/tree/0.9.5) (2018-04-05)
 
 **Added**
 
