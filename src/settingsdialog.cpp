@@ -63,6 +63,10 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
         ui->secondaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
     }
 
+    // Sort languages in comboboxes alphabetically
+    ui->primaryLanguageComboBox->model()->sort(0);
+    ui->secondaryLanguageComboBox->model()->sort(0);
+
     // Set maximum and minimum values for the size of the popup window
     ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
     ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
