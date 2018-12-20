@@ -22,10 +22,10 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 ### Linux
 
 <p align="center">
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/main.png" alt="Main screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/linux-plasma/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/main.png" alt="Main screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
   <sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub>
@@ -34,10 +34,10 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 ### Windows
 
 <p align="center">
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/main.png" alt="Main screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
-  <img src="https://github.com/crow-translate/crow-translate.github.io/raw/master/static/img/screenshots/windows/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/main.png" alt="Main screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
   <sub><b>Screenshots</b>: OS: <a href="https://www.microsoft.com/en-us/software-download/windows10">Windows 10</a> | Theme: <a href="https://www.deviantart.com/sagorpirbd/art/Windows-8-Themes-for-Win10-Final-556761647">Windows 8</a> | Wallpaper: Default Windows 10 flower</sub>
