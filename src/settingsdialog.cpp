@@ -152,7 +152,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
-
     ui->proxyHostEdit->setText(settings.proxyHost());
     ui->proxyPortSpinbox->setValue(settings.proxyPort());
     ui->proxyAuthCheckBox->setChecked(settings.isProxyAuthEnabled());
@@ -221,10 +220,8 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
     settings.setPopupLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->popupLanguagesComboBox->currentIndex()));
     settings.setPopupControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->popupControlsComboBox->currentIndex()));
-
     settings.setWindowLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->windowLanguagesComboBox->currentIndex()));
     settings.setWindowControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->windowControlsComboBox->currentIndex()));
-
     settings.setTrayIconName(ui->trayIconComboBox->currentData().toString());
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
@@ -286,10 +283,8 @@ void SettingsDialog::on_resetSettingsButton_clicked()
     ui->popupHeightSpinBox->setValue(300);
     ui->popupLanguagesComboBox->setCurrentIndex(0);
     ui->popupControlsComboBox->setCurrentIndex(0);
-
     ui->windowLanguagesComboBox->setCurrentIndex(2);
     ui->windowControlsComboBox->setCurrentIndex(0);
-
     ui->trayIconComboBox->setCurrentIndex(0);
     ui->customTrayIconEdit->setText("");
 
@@ -534,7 +529,8 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
 {
     QTreeWidgetItemIterator it(ui->shortcutsTreeWidget, QTreeWidgetItemIterator::NoChildren);
     while (*it) {
-        (*it)->setText(1, (*it)->data(1, Qt::UserRole).toString());
+        QTreeWidgetItem *item = *it;
+        item->setText(1, item->data(1, Qt::UserRole).toString());
         ++it;
     }
 }

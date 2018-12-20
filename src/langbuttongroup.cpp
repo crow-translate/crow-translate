@@ -42,7 +42,7 @@ void LangButtonGroup::addButton(QAbstractButton *button)
     if (buttonId == 0) {
        button->setText(tr("Auto"));
        button->setToolTip(tr("Auto"));
-       button->setProperty("Lang", QOnlineTranslator::Auto);
+       button->setProperty("Lang", QOnlineTranslator::Auto); // Save language id in property
     }
 }
 
@@ -161,13 +161,13 @@ void LangButtonGroup::setLanguage(int id, QOnlineTranslator::Language lang)
     if (lang == language(id))
         return;
 
-    button(id)->setProperty("Lang", lang);
+    button(id)->setProperty("Lang", lang); // Save language id in property
 
     if (lang != QOnlineTranslator::NoLanguage) {
         const QString languageName = QOnlineTranslator::languageString(lang);
 
         if (id != 0) {
-            // Language buttomn
+            // Language button
             button(id)->setText(languageName);
             button(id)->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(lang) + ".svg"));
         } else {

@@ -77,7 +77,7 @@ private slots:
     void playTranslatedSelection();
 
     // Language buttons
-    void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
+    void checkLanguageButton(LangButtonGroup &checkedGroup, LangButtonGroup &anotherGroup, int id);
     void resetAutoSourceButtonText();
 
     // Player icons

@@ -86,10 +86,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Toggle language logic
     connect(&m_translationButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        checkLanguageButton(&m_translationButtons, &m_sourceButtons, id);
+        checkLanguageButton(m_translationButtons, m_sourceButtons, id);
     });
     connect(&m_sourceButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        checkLanguageButton(&m_sourceButtons, &m_translationButtons, id);
+        checkLanguageButton(m_sourceButtons, m_translationButtons, id);
     });
 
     // System tray icon
@@ -533,24 +533,24 @@ void MainWindow::playTranslatedSelection()
     play(&m_selectionPlayer, &m_selectionPlaylist, m_translator.translation(), m_translator.translationLanguage());
 }
 
-void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
+void MainWindow::checkLanguageButton(LangButtonGroup &checkedGroup, LangButtonGroup &anotherGroup, int id)
 {
     /* If the target and source languages are the same (and they are not autodetect buttons),
      * then insert previous checked language from just checked language group to another group */
     AppSettings settings;
     if (id != 0
-            && anotherGroup->checkedId() != 0
-            && checkedGroup->language(id) == anotherGroup->checkedLanguage()) {
-        const int previousCheckedButton = settings.checkedButton(checkedGroup);
-        anotherGroup->insertLanguage(checkedGroup->language(previousCheckedButton));
-        settings.setCheckedButton(anotherGroup, anotherGroup->checkedId());
+            && anotherGroup.checkedId() != 0
+            && checkedGroup.language(id) == anotherGroup.checkedLanguage()) {
+        const int previousCheckedButton = settings.checkedButton(&checkedGroup);
+        anotherGroup.insertLanguage(checkedGroup.language(previousCheckedButton));
+        settings.setCheckedButton(&anotherGroup, anotherGroup.checkedId());
     }
 
     // Check if selected language is supported by engine
     if (!QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
-                                                checkedGroup->language(id))) {
+                                                 checkedGroup.language(id))) {
         for (int i = 0; i < ui->engineComboBox->count(); ++i) {
-            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedGroup->language(id))) {
+            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedGroup.language(id))) {
                 ui->engineComboBox->setCurrentIndex(i); // Check first supported language
                 break;
             }
@@ -561,7 +561,7 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
             m_translateTimer.start(SHORT_AUTOTRANSLATE_DELAY);
     }
 
-    settings.setCheckedButton(checkedGroup, checkedGroup->checkedId());
+    settings.setCheckedButton(&checkedGroup, checkedGroup.checkedId());
 }
 
 void MainWindow::resetAutoSourceButtonText()
