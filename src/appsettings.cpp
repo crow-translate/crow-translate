@@ -546,24 +546,24 @@ void AppSettings::setCopyTranslationHotkey(const QString &hotkey)
     setValue("Hotkeys/CopyTranslation", hotkey);
 }
 
-QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup *group, int id)
+QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup &group, int id)
 {
-    return value("Buttons/" + group->name() + "Button" + QString::number(id), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
+    return value("Buttons/" + group.name() + "Button" + QString::number(id), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
 }
 
-void AppSettings::setButtonLanguage(LangButtonGroup *group, int id, QOnlineTranslator::Language lang)
+void AppSettings::setButtonLanguage(LangButtonGroup &group, int id, QOnlineTranslator::Language lang)
 {
-    setValue("Buttons/"  + group->name() + "Button" + QString::number(id), lang);
+    setValue("Buttons/"  + group.name() + "Button" + QString::number(id), lang);
 }
 
-int AppSettings::checkedButton(LangButtonGroup *group)
+int AppSettings::checkedButton(LangButtonGroup &group)
 {
-    return value("Buttons/Checked" + group->name() + "Button", 0).toInt();
+    return value("Buttons/Checked" + group.name() + "Button", 0).toInt();
 }
 
-void AppSettings::setCheckedButton(LangButtonGroup *group, int id)
+void AppSettings::setCheckedButton(LangButtonGroup &group, int id)
 {
-    setValue("Buttons/Checked" + group->name() + "Button", id);
+    setValue("Buttons/Checked" + group.name() + "Button", id);
 }
 
 QByteArray AppSettings::mainWindowGeometry()

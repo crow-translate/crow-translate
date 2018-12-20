@@ -192,8 +192,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
 
     // Check current date
-    if (const int currentDay = QDate::currentDate().dayOfYear(); currentDay == 365 || currentDay == 1)
+    const auto date = QDate::currentDate();
+    if ((date.month() == 12 && date.day() == 31)
+            || (date.month() == 1 && date.day() == 1)) {
         ui->testSpeechEdit->setText(tr("Happy New Year!"));
+    }
 }
 
 SettingsDialog::~SettingsDialog()

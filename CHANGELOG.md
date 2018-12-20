@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 **Changed**
 
 -   Sort languages in comboboxes alphabetically.
+-   Fix date check for leap years
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 

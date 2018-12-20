@@ -541,9 +541,9 @@ void MainWindow::checkLanguageButton(LangButtonGroup &checkedGroup, LangButtonGr
     if (id != 0
             && anotherGroup.checkedId() != 0
             && checkedGroup.language(id) == anotherGroup.checkedLanguage()) {
-        const int previousCheckedButton = settings.checkedButton(&checkedGroup);
+        const int previousCheckedButton = settings.checkedButton(checkedGroup);
         anotherGroup.insertLanguage(checkedGroup.language(previousCheckedButton));
-        settings.setCheckedButton(&anotherGroup, anotherGroup.checkedId());
+        settings.setCheckedButton(anotherGroup, anotherGroup.checkedId());
     }
 
     // Check if selected language is supported by engine
@@ -561,7 +561,7 @@ void MainWindow::checkLanguageButton(LangButtonGroup &checkedGroup, LangButtonGr
             m_translateTimer.start(SHORT_AUTOTRANSLATE_DELAY);
     }
 
-    settings.setCheckedButton(&checkedGroup, checkedGroup.checkedId());
+    settings.setCheckedButton(checkedGroup, checkedGroup.checkedId());
 }
 
 void MainWindow::resetAutoSourceButtonText()
