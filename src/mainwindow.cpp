@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     // Show a message that the application is already running
-    connect(dynamic_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+    connect(qobject_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Shortcuts
     connect(&m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelectedText);
