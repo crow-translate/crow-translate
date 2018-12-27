@@ -72,7 +72,7 @@ TRANSLATIONS += \
 # Compile translations
 system(lrelease crow-translate.pro)
 
-# For make install
+# Make install
 unix {
 bin.path   = /usr/bin
 bin.files   = crow
@@ -84,4 +84,15 @@ desktop.path = /usr/share/applications
 desktop.files = dist/unix/generic/crow-translate.desktop
 
 INSTALLS += bin icons desktop
+}
+
+# Check with PVS Studio
+#CONFIG += pvs
+CONFIG(pvs) {
+    pvs_studio.target = $${TARGET}
+    pvs_studio.sources = $${SOURCES}
+    pvs_studio.output = true
+    pvs_studio.cfg_text = "analysis-mode = 0"
+
+    include(src/third-party/pvs-studio/PVS-Studio.pri)
 }
