@@ -67,7 +67,8 @@ RESOURCES += \
 
 TRANSLATIONS += \
     data/translations/crow.ts \
-    data/translations/crow_ru.ts
+    data/translations/crow_ru.ts \
+    data/translations/crow_zh.ts
 
 # Compile translations
 system(lrelease crow-translate.pro)

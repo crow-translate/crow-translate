@@ -126,5 +126,6 @@
         <file>icons/flags/yue.svg</file>
         <file>icons/flags/apc.svg</file>
         <file>icons/engines/bing.svg</file>
+        <file>translations/crow_zh.qm</file>
     </qresource>
 </RCC>

@@ -201,6 +201,15 @@
                   <normaloff>:/icons/flags/ru.svg</normaloff>:/icons/flags/ru.svg</iconset>
                 </property>
                </item>
+               <item>
+                <property name="text">
+                 <string notr="true">简体中文</string>
+                </property>
+                <property name="icon">
+                 <iconset resource="../data/resources.qrc">
+                  <normaloff>:/icons/flags/zh-CN.svg</normaloff>:/icons/flags/zh-CN.svg</iconset>
+                </property>
+               </item>
               </widget>
              </item>
              <item>
