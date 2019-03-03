@@ -49,7 +49,6 @@ public:
 private slots:
     // UI
     void on_SettingsDialog_accepted();
-    void on_resetSettingsButton_clicked();
     void on_proxyTypeComboBox_currentIndexChanged(int index);
 
     void on_trayIconComboBox_currentIndexChanged(int index);
@@ -70,6 +69,7 @@ private slots:
 #if defined(Q_OS_WIN)
     void checkForUpdates();
 #endif
+    void restoreDefaults();
 
 private:
     Ui::SettingsDialog *ui;

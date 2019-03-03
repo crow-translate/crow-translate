@@ -1679,25 +1679,14 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="dialogLayout">
-     <item>
-      <widget class="QPushButton" name="resetSettingsButton">
-       <property name="text">
-        <string>Reset settings</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDialogButtonBox" name="dialogButtonBox">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="standardButtons">
-        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-       </property>
-      </widget>
-     </item>
-    </layout>
+    <widget class="QDialogButtonBox" name="dialogButtonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok|QDialogButtonBox::RestoreDefaults</set>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>

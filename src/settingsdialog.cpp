@@ -37,6 +37,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     ui->shortcutsTreeWidget->expandAll();
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
@@ -267,55 +268,6 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setPlayTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
     settings.setStopTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
     settings.setCopyTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
-}
-
-void SettingsDialog::on_resetSettingsButton_clicked()
-{
-    // General settings
-    ui->languageComboBox->setCurrentIndex(0);
-    ui->windowModeComboBox->setCurrentIndex(AppSettings::PopupWindow);
-    ui->trayCheckBox->setChecked(true);
-    ui->startMinimizedCheckBox->setChecked(false);
-    ui->autostartCheckBox->setChecked(false);
-#if defined(Q_OS_WIN)
-    m_checkForUpdatesComboBox.setCurrentIndex(AppSettings::Month);
-#endif
-
-    // Interface settings
-    ui->popupOpacitySlider->setValue(80);
-    ui->popupWidthSpinBox->setValue(350);
-    ui->popupHeightSpinBox->setValue(300);
-    ui->popupLanguagesComboBox->setCurrentIndex(0);
-    ui->popupControlsComboBox->setCurrentIndex(0);
-    ui->windowLanguagesComboBox->setCurrentIndex(2);
-    ui->windowControlsComboBox->setCurrentIndex(0);
-    ui->trayIconComboBox->setCurrentIndex(0);
-    ui->customTrayIconEdit->setText("");
-
-    // Translation settings
-    ui->sourceTranslitCheckBox->setChecked(true);
-    ui->translationTranslitCheckBox->setChecked(true);
-    ui->sourceTranscriptionCheckBox->setChecked(true);
-    ui->translationOptionsCheckBox->setChecked(true);
-    ui->examplesCheckBox->setChecked(true);
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
-
-    // Speech synthesis settings
-    yandexVoice = QOnlineTranslator::Zahar;
-    bingVoice = QOnlineTranslator::Female;
-    yandexEmotion = QOnlineTranslator::Neutral;
-
-    // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(1);
-    ui->proxyHostEdit->setText("");
-    ui->proxyPortSpinbox->setValue(8080);
-    ui->proxyAuthCheckBox->setChecked(false);
-    ui->proxyUsernameEdit->setText("");
-    ui->proxyPasswordEdit->setText("");
-
-    // Shortcuts
-    on_resetAllShortcutsButton_clicked();
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
@@ -573,3 +525,53 @@ void SettingsDialog::checkForUpdates()
     m_checkForUpdatesButton.setEnabled(true);
 }
 #endif
+
+
+void SettingsDialog::restoreDefaults()
+{
+    // General settings
+    ui->languageComboBox->setCurrentIndex(0);
+    ui->windowModeComboBox->setCurrentIndex(AppSettings::PopupWindow);
+    ui->trayCheckBox->setChecked(true);
+    ui->startMinimizedCheckBox->setChecked(false);
+    ui->autostartCheckBox->setChecked(false);
+#if defined(Q_OS_WIN)
+    m_checkForUpdatesComboBox.setCurrentIndex(AppSettings::Month);
+#endif
+
+    // Interface settings
+    ui->popupOpacitySlider->setValue(80);
+    ui->popupWidthSpinBox->setValue(350);
+    ui->popupHeightSpinBox->setValue(300);
+    ui->popupLanguagesComboBox->setCurrentIndex(0);
+    ui->popupControlsComboBox->setCurrentIndex(0);
+    ui->windowLanguagesComboBox->setCurrentIndex(2);
+    ui->windowControlsComboBox->setCurrentIndex(0);
+    ui->trayIconComboBox->setCurrentIndex(0);
+    ui->customTrayIconEdit->setText("");
+
+    // Translation settings
+    ui->sourceTranslitCheckBox->setChecked(true);
+    ui->translationTranslitCheckBox->setChecked(true);
+    ui->sourceTranscriptionCheckBox->setChecked(true);
+    ui->translationOptionsCheckBox->setChecked(true);
+    ui->examplesCheckBox->setChecked(true);
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
+
+    // Speech synthesis settings
+    yandexVoice = QOnlineTranslator::Zahar;
+    bingVoice = QOnlineTranslator::Female;
+    yandexEmotion = QOnlineTranslator::Neutral;
+
+    // Connection settings
+    ui->proxyTypeComboBox->setCurrentIndex(1);
+    ui->proxyHostEdit->setText("");
+    ui->proxyPortSpinbox->setValue(8080);
+    ui->proxyAuthCheckBox->setChecked(false);
+    ui->proxyUsernameEdit->setText("");
+    ui->proxyPasswordEdit->setText("");
+
+    // Shortcuts
+    on_resetAllShortcutsButton_clicked();
+}
