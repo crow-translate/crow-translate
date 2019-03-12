@@ -117,7 +117,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 #if defined(Q_OS_WIN)
     // Check date for updates
-    const auto updateInterval = settings.checkForUpdatesInterval();
+    const AppSettings::Interval updateInterval = settings.checkForUpdatesInterval();
     QDate checkDate = settings.lastUpdateCheckDate();
     switch (updateInterval) {
     case AppSettings::Day:
@@ -134,7 +134,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     if (QDate::currentDate() >= checkDate) {
-        auto release = new QGitTag(this);
+        auto *release = new QGitTag(this);
         connect(release, &QGitTag::requestFinished, this, &MainWindow::checkForUpdates);
         release->get("Shatur95", "crow-translate");
     }
@@ -195,8 +195,8 @@ void MainWindow::on_translateButton_clicked()
 
     // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
     if (ui->autoTranslationButton->isChecked() && m_translator.sourceLanguage() == m_translator.translationLanguage()) {
-        auto primaryLanguage = settings.primaryLanguage();
-        auto secondaryLanguage = settings.secondaryLanguage();
+        QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
+        QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
         if (primaryLanguage == QOnlineTranslator::Auto)
             primaryLanguage = m_uiLang;
         if (secondaryLanguage == QOnlineTranslator::Auto)
@@ -421,7 +421,7 @@ void MainWindow::translateSelectedText()
     AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
-        auto popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, ui->engineComboBox->currentIndex(), this);
+        auto *popup = new PopupWindow(&m_sourceButtons, &m_translationButtons, ui->engineComboBox->currentIndex(), this);
 
         // Connect main window events to popup events
         connect(&m_sourceButtons, &LangButtonGroup::buttonChecked, popup->sourceButtons(), &LangButtonGroup::checkButton);
@@ -667,7 +667,7 @@ void MainWindow::showMainWindow()
 
 void MainWindow::showAppRunningMessage()
 {
-    auto message = new QMessageBox(QMessageBox::Information, "Crow Translate", tr("The application is already running"));
+    auto *message = new QMessageBox(QMessageBox::Information, "Crow Translate", tr("The application is already running"));
     message->setAttribute(Qt::WA_DeleteOnClose); // Need to allocate on heap to avoid crash!
     showMainWindow();
     message->show();
@@ -686,7 +686,7 @@ void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
 #if defined(Q_OS_WIN)
 void MainWindow::checkForUpdates()
 {
-    auto release = qobject_cast<QGitTag *>(sender());
+    auto *release = qobject_cast<QGitTag *>(sender());
     if (release->error()) {
         delete release;
         return;
@@ -694,7 +694,7 @@ void MainWindow::checkForUpdates()
 
     const int installer = release->assetId(".exe");
     if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
-        auto updater = new UpdaterWindow(release, installer, this);
+        auto *updater = new UpdaterWindow(release, installer, this);
         updater->show();
     }
 

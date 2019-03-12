@@ -194,7 +194,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
 
     // Check current date
-    const auto date = QDate::currentDate();
+    const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31)
             || (date.month() == 1 && date.day() == 1)) {
         ui->testSpeechEdit->setText(tr("Happy New Year!"));
@@ -414,7 +414,7 @@ void SettingsDialog::on_testSpeechButton_clicked()
         return;
     }
 
-    auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
     QOnlineTranslator::Voice voice = QOnlineTranslator::DefaultVoice;
     QOnlineTranslator::Emotion emotion = QOnlineTranslator::DefaultEmotion;
     switch (engine) {
@@ -498,7 +498,7 @@ void SettingsDialog::checkForUpdates()
     m_checkForUpdatesStatusLabel.setText(tr("Checking for updates..."));
 
     // Get update information
-    auto release = new QGitTag(this);
+    auto *release = new QGitTag(this);
     QEventLoop loop;
     connect(release, &QGitTag::requestFinished, &loop, &QEventLoop::quit);
     release->get("Shatur95", "crow-translate");
@@ -511,7 +511,7 @@ void SettingsDialog::checkForUpdates()
         const int installer = release->assetId(".exe");
         if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
             m_checkForUpdatesStatusLabel.setText("<font color=\"green\">" + tr("Update available!") + "</font>");
-            auto updaterWindow = new UpdaterWindow(release, installer, this);
+            auto *updaterWindow = new UpdaterWindow(release, installer, this);
             updaterWindow->show();
         } else {
             m_checkForUpdatesStatusLabel.setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");

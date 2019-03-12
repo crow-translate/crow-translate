@@ -33,7 +33,7 @@ AddLangDialog::AddLangDialog(QWidget *parent) :
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
 
-        auto item = new QListWidgetItem();
+        auto *item = new QListWidgetItem();
         item->setText(QOnlineTranslator::languageString(lang));
         item->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(lang) + ".svg"));
         item->setData(Qt::UserRole, lang);
