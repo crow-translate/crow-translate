@@ -27,6 +27,7 @@ DEFINES += \
 
 SOURCES += \
     src/main.cpp \
+    src/cli.cpp \
     src/settingsdialog.cpp \
     src/mainwindow.cpp \
     src/popupwindow.cpp \
@@ -35,6 +36,7 @@ SOURCES += \
     src/addlangdialog.cpp
 
 HEADERS += \
+    src/cli.h \
     src/settingsdialog.h \
     src/mainwindow.h \
     src/popupwindow.h \
