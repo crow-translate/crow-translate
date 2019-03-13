@@ -20,12 +20,14 @@
 
 #include "updaterwindow.h"
 #include "ui_updaterwindow.h"
-
+#include "qgittag.h"
 #include "singleapplication.h"
 
 #include <QFile>
 #include <QStandardPaths>
 #include <QProcess>
+#include <QNetworkAccessManager>
+#include <QNetworkReply>
 
 UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     QWidget(parent, Qt::Dialog),
@@ -34,8 +36,10 @@ UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     ui->setupUi(this);
     setWindowModality(Qt::WindowModal);
     setAttribute(Qt::WA_DeleteOnClose);
+
+    m_network = new QNetworkAccessManager(this);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
-    m_network.setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
+    m_network->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 #endif
 
     // Hide the download progress until download begins
@@ -78,10 +82,10 @@ void UpdaterWindow::on_downloadButton_clicked()
 
     // Send request
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
-    m_reply = m_network.get(QNetworkRequest(m_downloadUrl));
+    m_reply = m_network->get(QNetworkRequest(m_downloadUrl));
 #else
     QNetworkRequest request(m_downloadUrl);
-    request.setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
+    request->setAttribute(QNetworkRequest::FollowRedirectsAttribute, true);
     m_reply = m_network->get(request);
 #endif
 

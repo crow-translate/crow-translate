@@ -19,7 +19,6 @@
  */
 
 #include "langbuttongroup.h"
-
 #include "appsettings.h"
 
 #include <QAbstractButton>
@@ -51,10 +50,10 @@ void LangButtonGroup::loadLanguages()
     // Load buttons data from settings
     AppSettings settings;
     for (int i = 1; i < buttons().size(); ++i)
-        setLanguage(i, settings.buttonLanguage(*this, i));
+        setLanguage(i, settings.buttonLanguage(m_name, i));
 
     // Load checked button
-    button(settings.checkedButton(*this))->setChecked(true);
+    button(settings.checkedButton(m_name))->setChecked(true);
 }
 
 void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
@@ -89,18 +88,18 @@ void LangButtonGroup::insertLanguage(QOnlineTranslator::Language lang)
         setLanguage(i, language(i - 1));
 
         // Save button in settings
-        settings.setButtonLanguage(*this, i, language(i));
+        settings.setButtonLanguage(m_name, i, language(i));
     }
 
     // Shift checked button in the settings
     if (checkedId() != 0 && checkedId() != 3)
-        settings.setCheckedButton(*this, settings.checkedButton(*this) + 1);
+        settings.setCheckedButton(m_name, settings.checkedButton(m_name) + 1);
 
     // Insert new language to first button
     setLanguage(1, lang);
 
     // Save first button settings
-    settings.setButtonLanguage(*this, 1, lang);
+    settings.setButtonLanguage(m_name, 1, lang);
 
     if (button(1)->isChecked())
         emit buttonChecked(1); // Emit signal, because first button has shifted to second

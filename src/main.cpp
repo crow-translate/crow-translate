@@ -22,6 +22,7 @@
 #include "appsettings.h"
 #include "cli.h"
 #include "singleapplication.h"
+
 int launchGui(int argc, char *argv[]);
 int launchCli(int argc, char *argv[]);
 

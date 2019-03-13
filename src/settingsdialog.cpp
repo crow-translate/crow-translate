@@ -20,7 +20,6 @@
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
-
 #include "appsettings.h"
 #include "singleapplication.h"
 #if defined(Q_OS_WIN)
@@ -31,6 +30,7 @@
 #include <QFileDialog>
 #include <QScreen>
 #include <QMessageBox>
+#include <QMediaPlayer>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -42,7 +42,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
     ui->versionLabel->setText(SingleApplication::applicationVersion());
-    m_player.setPlaylist(&m_playlist);
+
+    // Test voice
+    m_player = new QMediaPlayer(this);
+    m_playlist = new QMediaPlaylist(this);
+    m_player->setPlaylist(m_playlist);
 
     // Set item data in comboboxes
     ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
@@ -85,33 +89,39 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
 #if defined(Q_OS_WIN)
     // Add information about icons
-    m_papirusTitleLabel.setText(tr("Interface icons:"));
+    m_papirusTitleLabel = new QLabel(this);
+    m_papirusTitleLabel->setText(tr("Interface icons:"));
+    ui->aboutGroupBox->layout()->addWidget(m_papirusTitleLabel);
 
-    m_papirusLabel.setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
-    m_papirusLabel.setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    m_papirusLabel.setOpenExternalLinks(true);
+    m_papirusLabel = new QLabel(this);
+    m_papirusLabel->setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
+    m_papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    m_papirusLabel->setOpenExternalLinks(true);
+    ui->aboutGroupBox->layout()->addWidget(m_papirusLabel);
 
-    ui->aboutGroupBox->layout()->addWidget(&m_papirusTitleLabel);
-    ui->aboutGroupBox->layout()->addWidget(&m_papirusLabel);
 
     // Add updater options
-    m_checkForUpdatesLabel.setText(tr("Check for updates:"));
+    m_checkForUpdatesLabel = new QLabel(this);
+    m_checkForUpdatesLabel->setText(tr("Check for updates:"));
 
-    m_checkForUpdatesComboBox.addItem(tr("Every day"));
-    m_checkForUpdatesComboBox.addItem(tr("Every week"));
-    m_checkForUpdatesComboBox.addItem(tr("Every month"));
-    m_checkForUpdatesComboBox.addItem(tr("Never"));
+    m_checkForUpdatesComboBox = new QComboBox(this);
+    m_checkForUpdatesComboBox->addItem(tr("Every day"));
+    m_checkForUpdatesComboBox->addItem(tr("Every week"));
+    m_checkForUpdatesComboBox->addItem(tr("Every month"));
+    m_checkForUpdatesComboBox->addItem(tr("Never"));
 
-    m_checkForUpdatesButton.setText(tr("Check now"));
-    m_checkForUpdatesButton.setToolTip(tr("Check for updates now"));
-    connect(&m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
+    m_checkForUpdatesButton = new QPushButton(this);
+    m_checkForUpdatesButton->setText(tr("Check now"));
+    m_checkForUpdatesButton->setToolTip(tr("Check for updates now"));
+    connect(m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
 
-    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesLabel);
-    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesComboBox);
-    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesButton);
-    m_checkForUpdatesLayout.addWidget(&m_checkForUpdatesStatusLabel);
-    m_checkForUpdatesLayout.addStretch();
-    static_cast<QVBoxLayout*>(ui->generalGroupBox->layout())->insertLayout(2, &m_checkForUpdatesLayout);
+    m_checkForUpdatesLayout = new QHBoxLayout(this);
+    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesLabel);
+    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesComboBox);
+    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesButton);
+    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesStatusLabel);
+    m_checkForUpdatesLayout->addStretch();
+    static_cast<QVBoxLayout*>(ui->generalGroupBox->layout())->insertLayout(2, m_checkForUpdatesLayout);
 #endif
 
     // General settings
@@ -119,7 +129,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
 #if defined(Q_OS_WIN)
-    m_checkForUpdatesComboBox.setCurrentIndex(settings.checkForUpdatesInterval());
+    m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
 #endif
     ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
@@ -216,7 +226,7 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #if defined(Q_OS_WIN)
-    settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox.currentIndex()));
+    settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
 
     // Interface settings
@@ -406,7 +416,7 @@ void SettingsDialog::on_emotionComboBox_currentIndexChanged(int index)
 void SettingsDialog::on_testSpeechButton_clicked()
 {
     // Clear previous playlist (this will stop playback)
-    m_playlist.clear();
+    m_playlist->clear();
 
     if (ui->testSpeechEdit->text().isEmpty()) {
         QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
@@ -437,8 +447,8 @@ void SettingsDialog::on_testSpeechButton_clicked()
         return;
     }
 
-    m_playlist.addMedia(media);
-    m_player.play();
+    m_playlist->addMedia(media);
+    m_player->play();
 }
 
 void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()
@@ -494,8 +504,8 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
 #if defined(Q_OS_WIN)
 void SettingsDialog::checkForUpdates()
 {
-    m_checkForUpdatesButton.setEnabled(false);
-    m_checkForUpdatesStatusLabel.setText(tr("Checking for updates..."));
+    m_checkForUpdatesButton->setEnabled(false);
+    m_checkForUpdatesStatusLabel->setText(tr("Checking for updates..."));
 
     // Get update information
     auto *release = new QGitTag(this);
@@ -505,16 +515,16 @@ void SettingsDialog::checkForUpdates()
     loop.exec();
 
     if (release->error()) {
-        m_checkForUpdatesStatusLabel.setText("<font color=\"red\">" + release->body() + "</font>");
+        m_checkForUpdatesStatusLabel->setText("<font color=\"red\">" + release->body() + "</font>");
         delete release;
     } else {
         const int installer = release->assetId(".exe");
         if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
-            m_checkForUpdatesStatusLabel.setText("<font color=\"green\">" + tr("Update available!") + "</font>");
+            m_checkForUpdatesStatusLabel->setText("<font color=\"green\">" + tr("Update available!") + "</font>");
             auto *updaterWindow = new UpdaterWindow(release, installer, this);
             updaterWindow->show();
         } else {
-            m_checkForUpdatesStatusLabel.setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
+            m_checkForUpdatesStatusLabel->setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
             delete release;
         }
 
@@ -522,7 +532,7 @@ void SettingsDialog::checkForUpdates()
         settings.setLastUpdateCheckDate(QDate::currentDate());
     }
 
-    m_checkForUpdatesButton.setEnabled(true);
+    m_checkForUpdatesButton->setEnabled(true);
 }
 #endif
 
@@ -536,7 +546,7 @@ void SettingsDialog::restoreDefaults()
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
 #if defined(Q_OS_WIN)
-    m_checkForUpdatesComboBox.setCurrentIndex(AppSettings::Month);
+    m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::Month);
 #endif
 
     // Interface settings

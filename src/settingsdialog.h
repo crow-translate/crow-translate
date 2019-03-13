@@ -24,14 +24,14 @@
 #include "qonlinetranslator.h"
 
 #include <QDialog>
-#include <QMenu>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
-#if defined(Q_OS_WIN)
-#include <QHBoxLayout>
-#include <QLabel>
-#include <QComboBox>
-#include <QPushButton>
+
+class QMediaPlayer;
+class QMediaPlaylist;
+#ifdef Q_OS_WIN
+class QHBoxLayout;
+class QComboBox;
+class QPushButton;
+class QLabel;
 #endif
 
 namespace Ui {
@@ -75,8 +75,8 @@ private:
     Ui::SettingsDialog *ui;
 
     // Test voice
-    QMediaPlayer m_player{this};
-    QMediaPlaylist m_playlist{this};
+    QMediaPlayer *m_player;
+    QMediaPlaylist *m_playlist;
 
     // Engine voice settings
     QOnlineTranslator::Voice yandexVoice;
@@ -85,15 +85,15 @@ private:
 
 #if defined(Q_OS_WIN)
     // Icon theme info
-    QLabel m_papirusTitleLabel;
-    QLabel m_papirusLabel;
-    QLabel m_checkForUpdatesLabel;
+    QLabel *m_papirusTitleLabel;
+    QLabel *m_papirusLabel;
+    QLabel *m_checkForUpdatesLabel;
 
     // Check for updates
-    QHBoxLayout m_checkForUpdatesLayout;
-    QComboBox m_checkForUpdatesComboBox;
-    QPushButton m_checkForUpdatesButton;
-    QLabel m_checkForUpdatesStatusLabel;
+    QHBoxLayout *m_checkForUpdatesLayout;
+    QComboBox *m_checkForUpdatesComboBox;
+    QPushButton *m_checkForUpdatesButton;
+    QLabel *m_checkForUpdatesStatusLabel;
 #endif
 };
 

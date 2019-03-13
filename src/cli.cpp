@@ -114,10 +114,9 @@ int CLI::printLangCodes()
 {
     QTextStream out(stdout);
 
-    for (int language = QOnlineTranslator::Auto; language != QOnlineTranslator::Zulu; ++language) {
-        out << QOnlineTranslator::languageString(static_cast<QOnlineTranslator::Language>(language));
-        out << " - ";
-        out << QOnlineTranslator::languageCode(static_cast<QOnlineTranslator::Language>(language)) << endl;
+    for (int languageIndex = QOnlineTranslator::Auto; languageIndex != QOnlineTranslator::Zulu; ++languageIndex) {
+        const auto language = static_cast<QOnlineTranslator::Language>(languageIndex);
+        out << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << endl;
     }
 
     return 0;

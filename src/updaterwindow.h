@@ -21,11 +21,12 @@
 #ifndef UPDATERWINDOW_H
 #define UPDATERWINDOW_H
 
-#include "qgittag.h"
-
 #include <QWidget>
-#include <QNetworkAccessManager>
-#include <QNetworkReply>
+#include <QUrl>
+
+class QGitTag;
+class QNetworkAccessManager;
+class QNetworkReply;
 
 namespace Ui {
 class UpdaterWindow;
@@ -48,8 +49,7 @@ private slots:
 
 private:
     Ui::UpdaterWindow *ui;
-
-    QNetworkAccessManager m_network{this};
+    QNetworkAccessManager *m_network;
     QNetworkReply *m_reply;
 
     QUrl m_downloadUrl;
