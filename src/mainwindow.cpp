@@ -691,7 +691,7 @@ void MainWindow::showMainWindow()
 
 void MainWindow::showAppRunningMessage()
 {
-    auto *message = new QMessageBox(QMessageBox::Information, "Crow Translate", tr("The application is already running"));
+    auto *message = new QMessageBox(QMessageBox::Information, SingleApplication::applicationName(), tr("The application is already running"));
     message->setAttribute(Qt::WA_DeleteOnClose); // Need to allocate on heap to avoid crash!
     showMainWindow();
     message->show();
