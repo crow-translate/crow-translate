@@ -1,4 +1,5 @@
 #include "cli.h"
+#include "qonlinetts.h"
 #include "singleapplication.h"
 
 #include <QCommandLineParser>
@@ -7,7 +8,8 @@
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 
-CLI::CLI()
+Cli::Cli(QObject *parent) :
+    QObject(parent)
 {
     m_translator = new QOnlineTranslator(this);
     m_player = new QMediaPlayer(this);
@@ -19,7 +21,7 @@ CLI::CLI()
     });
 }
 
-void CLI::parseArguments(QCoreApplication &app)
+void Cli::parseArguments(QCoreApplication &app)
 {
     QCommandLineParser parser;
     parser.setApplicationDescription("A simple and lightweight translator that allows to translate and say text using the Google Translate API and much more.");
@@ -69,20 +71,20 @@ void CLI::parseArguments(QCoreApplication &app)
     // Source text
     if (parser.isSet("file")) {
         if (parser.isSet("stdin"))
-            m_text += readFilesFromStdin();
+            m_sourceText += readFilesFromStdin();
 
-        m_text += readFilesFromArguments(parser.positionalArguments());
+        m_sourceText += readFilesFromArguments(parser.positionalArguments());
     } else {
         if (parser.isSet("stdin"))
-            m_text += QTextStream(stdin).readAll();
+            m_sourceText += QTextStream(stdin).readAll();
 
-        m_text += parser.positionalArguments().join(" ");
+        m_sourceText += parser.positionalArguments().join(" ");
     }
 
-    if (m_text.endsWith("\n"))
-        m_text.chop(1);
+    if (m_sourceText.endsWith("\n"))
+        m_sourceText.chop(1);
 
-    if (m_text.isEmpty()) {
+    if (m_sourceText.isEmpty()) {
         qCritical() << "Error: There is no text for translation." << endl;
         parser.showHelp();
     }
@@ -98,7 +100,7 @@ void CLI::parseArguments(QCoreApplication &app)
     }
 }
 
-int CLI::exec()
+int Cli::exec()
 {
     switch (m_mode) {
     case PrintLangCodes:
@@ -110,7 +112,7 @@ int CLI::exec()
     }
 }
 
-int CLI::printLangCodes()
+int Cli::printLangCodes()
 {
     QTextStream out(stdout);
 
@@ -122,16 +124,16 @@ int CLI::printLangCodes()
     return 0;
 }
 
-int CLI::audioOnly()
+int Cli::audioOnly()
 {
     QTextStream out(stdout);
 
     // Speak source
     if (m_speakSource) {
         out << "Source text:" << endl;
-        out << m_text << endl;
+        out << m_sourceText << endl;
 
-        if (!speak(m_text, m_engine, m_sourceLang))
+        if (!speak(m_sourceText, m_engine, m_sourceLang))
             return 1;
     }
 
@@ -139,7 +141,7 @@ int CLI::audioOnly()
     if (m_speakTranslation) {
         foreach (QOnlineTranslator::Language translationLang, m_translationLangs) {
             // Speak into each target language
-            m_translator->translate(m_text, m_engine, translationLang, m_sourceLang, m_uiLang);
+            m_translator->translate(m_sourceText, m_engine, translationLang, m_sourceLang, m_uiLang);
 
             out << "Translation into " << m_translator->translationLanguageString() << ":" << endl;
             out << m_translator->translation() << endl;
@@ -152,13 +154,13 @@ int CLI::audioOnly()
     return 0;
 }
 
-int CLI::translation()
+int Cli::translation()
 {
     QTextStream out(stdout);
 
     // Translate into each target language
     for (int i = 0; i < m_translationLangs.size(); ++i) {
-        m_translator->translate(m_text, m_engine, m_translationLangs.at(i), m_sourceLang, m_uiLang);
+        m_translator->translate(m_sourceText, m_engine, m_translationLangs.at(i), m_sourceLang, m_uiLang);
         if (m_translator->error()) {
             qCritical() << m_translator->errorString();
             return 1;
@@ -232,9 +234,11 @@ int CLI::translation()
     return 0;
 }
 
-bool CLI::speak(const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language)
+bool Cli::speak(const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language)
 {
-    m_playlist->addMedia(m_translator->media(text, engine, language));
+    QOnlineTts tts;
+    tts.generateUrls(text, engine, language);
+    m_playlist->addMedia(tts.media());
     if (m_translator->error() != QOnlineTranslator::NoError) {
         qCritical() << m_translator->errorString() << endl;
         return false;
@@ -248,7 +252,7 @@ bool CLI::speak(const QString &text, QOnlineTranslator::Engine engine, QOnlineTr
 }
 
 
-QByteArray CLI::readFilesFromStdin()
+QByteArray Cli::readFilesFromStdin()
 {
     QString stdinText = QTextStream(stdin).readAll();
     QByteArray filesData;
@@ -270,7 +274,7 @@ QByteArray CLI::readFilesFromStdin()
     return filesData;
 }
 
-QByteArray CLI::readFilesFromArguments(const QStringList &arguments)
+QByteArray Cli::readFilesFromArguments(const QStringList &arguments)
 {
     QByteArray filesData;
     foreach (const QString &filePath, arguments) {

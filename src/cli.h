@@ -3,12 +3,15 @@
 
 #include "qonlinetranslator.h"
 
+#include <QObject>
+#include <QVector>
+
 class QCoreApplication;
 class QMediaPlayer;
 class QMediaPlaylist;
 class QEventLoop;
 
-class CLI : public QObject
+class Cli : public QObject
 {
     Q_OBJECT
 
@@ -19,7 +22,7 @@ public:
         Translation
     };
 
-    CLI();
+    explicit Cli(QObject *parent = nullptr);
 
     void parseArguments(QCoreApplication &app);
     int exec();
@@ -40,7 +43,7 @@ private:
     QEventLoop *m_waitUntilPlayedLoop;
     QOnlineTranslator *m_translator;
 
-    QString m_text;
+    QString m_sourceText;
     Mode m_mode = Translation;
     QOnlineTranslator::Engine m_engine = QOnlineTranslator::Google;
     QOnlineTranslator::Language m_sourceLang = QOnlineTranslator::NoLanguage;

@@ -31,6 +31,8 @@
 #include <QScreen>
 #include <QMessageBox>
 #include <QMediaPlayer>
+#include <QMediaPlaylist>
+#include <QDate>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
     QDialog(parent),
@@ -353,19 +355,19 @@ void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
 
         // Add Yandex voices
         ui->voiceComboBox->clear();
-        ui->voiceComboBox->addItem(tr("Zahar"), QOnlineTranslator::Zahar);
-        ui->voiceComboBox->addItem(tr("Ermil"), QOnlineTranslator::Ermil);
-        ui->voiceComboBox->addItem(tr("Jane"), QOnlineTranslator::Jane);
-        ui->voiceComboBox->addItem(tr("Oksana"), QOnlineTranslator::Oksana);
-        ui->voiceComboBox->addItem(tr("Alyss"), QOnlineTranslator::Alyss);
-        ui->voiceComboBox->addItem(tr("Omazh"), QOnlineTranslator::Omazh);
+        ui->voiceComboBox->addItem(tr("Zahar"), QOnlineTts::Zahar);
+        ui->voiceComboBox->addItem(tr("Ermil"), QOnlineTts::Ermil);
+        ui->voiceComboBox->addItem(tr("Jane"), QOnlineTts::Jane);
+        ui->voiceComboBox->addItem(tr("Oksana"), QOnlineTts::Oksana);
+        ui->voiceComboBox->addItem(tr("Alyss"), QOnlineTts::Alyss);
+        ui->voiceComboBox->addItem(tr("Omazh"), QOnlineTts::Omazh);
         ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(yandexVoice));
 
         // Add Yandex emotion options
         ui->emotionComboBox->clear();
-        ui->emotionComboBox->addItem(tr("Neutral"), QOnlineTranslator::Neutral);
-        ui->emotionComboBox->addItem(tr("Good"), QOnlineTranslator::Good);
-        ui->emotionComboBox->addItem(tr("Evil"), QOnlineTranslator::Evil);
+        ui->emotionComboBox->addItem(tr("Neutral"), QOnlineTts::Neutral);
+        ui->emotionComboBox->addItem(tr("Good"), QOnlineTts::Good);
+        ui->emotionComboBox->addItem(tr("Evil"), QOnlineTts::Evil);
         ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(yandexEmotion));
         break;
     case QOnlineTranslator::Bing:
@@ -376,8 +378,8 @@ void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
 
         // Add Bing voices
         ui->voiceComboBox->clear();
-        ui->voiceComboBox->addItem(tr("Female"), QOnlineTranslator::Female);
-        ui->voiceComboBox->addItem(tr("Male"), QOnlineTranslator::Male);
+        ui->voiceComboBox->addItem(tr("Female"), QOnlineTts::Female);
+        ui->voiceComboBox->addItem(tr("Male"), QOnlineTts::Male);
         ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(bingVoice));
 
         // Bing has no emotion settings
@@ -397,10 +399,10 @@ void SettingsDialog::on_voiceComboBox_currentIndexChanged(int index)
 {
     switch (ui->engineComboBox->currentIndex()) {
     case QOnlineTranslator::Yandex:
-        yandexVoice = ui->voiceComboBox->itemData(index).value<QOnlineTranslator::Voice>();
+        yandexVoice = ui->voiceComboBox->itemData(index).value<QOnlineTts::Voice>();
         break;
     case QOnlineTranslator::Bing:
-        bingVoice = ui->voiceComboBox->itemData(index).value<QOnlineTranslator::Voice>();
+        bingVoice = ui->voiceComboBox->itemData(index).value<QOnlineTts::Voice>();
         break;
     }
 }
@@ -409,7 +411,7 @@ void SettingsDialog::on_voiceComboBox_currentIndexChanged(int index)
 void SettingsDialog::on_emotionComboBox_currentIndexChanged(int index)
 {
     if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
-        yandexEmotion = ui->emotionComboBox->itemData(index).value<QOnlineTranslator::Emotion>();
+        yandexEmotion = ui->emotionComboBox->itemData(index).value<QOnlineTts::Emotion>();
 }
 
 // Play test text
@@ -425,8 +427,8 @@ void SettingsDialog::on_testSpeechButton_clicked()
     }
 
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTranslator::Voice voice = QOnlineTranslator::DefaultVoice;
-    QOnlineTranslator::Emotion emotion = QOnlineTranslator::DefaultEmotion;
+    QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
+    QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
     switch (engine) {
     case QOnlineTranslator::Yandex:
         voice = yandexVoice;
@@ -440,9 +442,18 @@ void SettingsDialog::on_testSpeechButton_clicked()
     }
 
     QOnlineTranslator translator;
-    QList<QMediaContent> media = translator.media(ui->testSpeechEdit->text(), engine, QOnlineTranslator::Auto, voice, emotion);
+    translator.detectLanguage(ui->testSpeechEdit->text(), engine);
     if (translator.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), translator.errorString());
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), translator.errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    QOnlineTts tts;
+    tts.generateUrls(ui->testSpeechEdit->text(), engine, translator.sourceLanguage(), voice, emotion);
+    QList<QMediaContent> media = tts.media();
+    if (tts.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
         errorMessage.exec();
         return;
     }
@@ -570,9 +581,9 @@ void SettingsDialog::restoreDefaults()
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
 
     // Speech synthesis settings
-    yandexVoice = QOnlineTranslator::Zahar;
-    bingVoice = QOnlineTranslator::Female;
-    yandexEmotion = QOnlineTranslator::Neutral;
+    yandexVoice = QOnlineTts::Zahar;
+    bingVoice = QOnlineTts::Female;
+    yandexEmotion = QOnlineTts::Neutral;
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(1);

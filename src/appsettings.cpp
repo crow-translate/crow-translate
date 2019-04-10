@@ -324,33 +324,32 @@ void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
     setValue("Translation/SecondaryLanguage", lang);
 }
 
-QOnlineTranslator::Voice AppSettings::yandexVoice()
+QOnlineTts::Voice AppSettings::yandexVoice()
 {
-    return value("Translation/YandexVoice", QOnlineTranslator::Zahar).value<QOnlineTranslator::Voice>();
+    return value("Translation/YandexVoice", QOnlineTts::Zahar).value<QOnlineTts::Voice>();
 }
 
-void AppSettings::setYandexVoice(QOnlineTranslator::Voice voice)
+void AppSettings::setYandexVoice(QOnlineTts::Voice voice)
 {
     setValue("Translation/YandexVoice", voice);
 }
 
-QOnlineTranslator::Voice AppSettings::bingVoice()
+QOnlineTts::Voice AppSettings::bingVoice()
 {
-    return value("Translation/BingVoice", QOnlineTranslator::Female).value<QOnlineTranslator::Voice>();
+    return value("Translation/BingVoice", QOnlineTts::Female).value<QOnlineTts::Voice>();
 }
 
-void AppSettings::setBingVoice(QOnlineTranslator::Voice voice)
+void AppSettings::setBingVoice(QOnlineTts::Voice voice)
 {
     setValue("Translation/BingVoice", voice);
 }
 
-// Affects only Yandex
-QOnlineTranslator::Emotion AppSettings::yandexEmotion()
+QOnlineTts::Emotion AppSettings::yandexEmotion()
 {
-    return value("Translation/YandexEmotion", QOnlineTranslator::Neutral).value<QOnlineTranslator::Emotion>();
+    return value("Translation/YandexEmotion", QOnlineTts::Neutral).value<QOnlineTts::Emotion>();
 }
 
-void AppSettings::setYandexEmotion(QOnlineTranslator::Emotion emotion)
+void AppSettings::setYandexEmotion(QOnlineTts::Emotion emotion)
 {
     setValue("Translation/YandexEmotion", emotion);
 }

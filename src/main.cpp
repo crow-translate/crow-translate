@@ -60,7 +60,7 @@ int launchCli(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    CLI cli;
+    Cli cli;
     cli.parseArguments(app);
     return cli.exec();
 }

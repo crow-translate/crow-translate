@@ -21,7 +21,7 @@
 #ifndef SETTINGSDIALOG_H
 #define SETTINGSDIALOG_H
 
-#include "qonlinetranslator.h"
+#include "qonlinetts.h"
 
 #include <QDialog>
 
@@ -79,9 +79,9 @@ private:
     QMediaPlaylist *m_playlist;
 
     // Engine voice settings
-    QOnlineTranslator::Voice yandexVoice;
-    QOnlineTranslator::Voice bingVoice;
-    QOnlineTranslator::Emotion yandexEmotion;
+    QOnlineTts::Voice yandexVoice;
+    QOnlineTts::Voice bingVoice;
+    QOnlineTts::Emotion yandexEmotion;
 
 #if defined(Q_OS_WIN)
     // Icon theme info

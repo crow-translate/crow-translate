@@ -22,6 +22,7 @@
 #define APPSETTINGS_H
 
 #include "qonlinetranslator.h"
+#include "qonlinetts.h"
 
 #include <QSettings>
 #include <QLocale>
@@ -126,14 +127,14 @@ public:
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
     // Speech synthesis settings
-    QOnlineTranslator::Voice yandexVoice();
-    void setYandexVoice(QOnlineTranslator::Voice voice);
+    QOnlineTts::Voice yandexVoice();
+    void setYandexVoice(QOnlineTts::Voice voice);
 
-    QOnlineTranslator::Voice bingVoice();
-    void setBingVoice(QOnlineTranslator::Voice voice);
+    QOnlineTts::Voice bingVoice();
+    void setBingVoice(QOnlineTts::Voice voice);
 
-    QOnlineTranslator::Emotion yandexEmotion();
-    void setYandexEmotion(QOnlineTranslator::Emotion emotion);
+    QOnlineTts::Emotion yandexEmotion();
+    void setYandexEmotion(QOnlineTts::Emotion emotion);
 
     // Connection settings
     QNetworkProxy::ProxyType proxyType();

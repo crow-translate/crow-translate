@@ -40,6 +40,7 @@
 #include <QMessageBox>
 #include <QTimer>
 #include <QMenu>
+#include <QMediaPlaylist>
 
 constexpr int autotranslateDelay = 500; // Used when changing text
 constexpr int shortAutotranslateDelay = 300; // Used when changing language
@@ -882,8 +883,8 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     playlist->clear();
     AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTranslator::Voice voice = QOnlineTranslator::DefaultVoice;
-    QOnlineTranslator::Emotion emotion = QOnlineTranslator::DefaultEmotion;
+    QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
+    QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
     switch (engine) {
     case QOnlineTranslator::Yandex:
         voice = settings.yandexVoice();
@@ -896,9 +897,21 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
         break;
     }
 
-    const QList<QMediaContent> media = m_translator->media(text, engine, lang, voice, emotion);
-    if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator->errorString());
+    if (lang == QOnlineTranslator::Auto) {
+        m_translator->detectLanguage(text, engine);
+        if (m_translator->error()) {
+            QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator->errorString());
+            errorMessage.exec();
+            return;
+        }
+        lang = m_translator->sourceLanguage();
+    }
+
+    QOnlineTts tts;
+    tts.generateUrls(text, engine, lang, voice, emotion);
+    const QList<QMediaContent> media = tts.media();
+    if (tts.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
         errorMessage.exec();
         return;
     }
