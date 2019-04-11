@@ -1406,31 +1406,20 @@
          </widget>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="resetAllShortcutsLayout">
-          <item>
-           <widget class="QPushButton" name="resetAllShortcutsButton">
-            <property name="toolTip">
-             <string>Reset all to default</string>
-            </property>
-            <property name="text">
-             <string>Reset all</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="resetAllShortcutsSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+         <widget class="QPushButton" name="resetAllShortcutsButton">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip">
+           <string>Reset all to default</string>
+          </property>
+          <property name="text">
+           <string>Reset all</string>
+          </property>
+         </widget>
         </item>
         <item>
          <widget class="QGroupBox" name="shortcutGroupBox">
