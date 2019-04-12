@@ -586,7 +586,7 @@ void SettingsDialog::restoreDefaults()
     yandexEmotion = QOnlineTts::Neutral;
 
     // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(1);
+    ui->proxyTypeComboBox->setCurrentIndex(0);
     ui->proxyHostEdit->setText("");
     ui->proxyPortSpinbox->setValue(8080);
     ui->proxyAuthCheckBox->setChecked(false);
