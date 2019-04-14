@@ -45,7 +45,7 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     ui->engineComboBox->setCurrentIndex(engineIndex);
 
     // Translation button group
-    m_sourceButtonGroup = new LangButtonGroup(this);
+    m_sourceButtonGroup = new LangButtonGroup(LangButtonGroup::Source, this);
     m_sourceButtonGroup->addButton(ui->autoSourceButton);
     m_sourceButtonGroup->addButton(ui->firstSourceButton);
     m_sourceButtonGroup->addButton(ui->secondSourceButton);
@@ -53,7 +53,7 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     m_sourceButtonGroup->loadLanguages(sourceGroup);
 
     // Source button group
-    m_translationButtonGroup = new LangButtonGroup(this);
+    m_translationButtonGroup = new LangButtonGroup(LangButtonGroup::Translation, this);
     m_translationButtonGroup->addButton(ui->autoTranslationButton);
     m_translationButtonGroup->addButton(ui->firstTranslationButton);
     m_translationButtonGroup->addButton(ui->secondTranslationButton);

@@ -28,6 +28,7 @@
 #include <QSystemTrayIcon>
 
 class LangButtonGroup;
+class AppSettings;
 class QHotkey;
 class QShortcut;
 class QTimer;
@@ -107,7 +108,7 @@ private:
     bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
 
     // Helper functions
-    void loadSettings();
+    void loadSettings(const AppSettings &settings);
     void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
 

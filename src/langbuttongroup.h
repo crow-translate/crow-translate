@@ -25,6 +25,8 @@
 
 #include <QButtonGroup>
 
+class AppSettings;
+
 class LangButtonGroup : public QButtonGroup
 {
     Q_OBJECT
@@ -36,15 +38,18 @@ public:
     };
     Q_ENUM(GroupType)
 
-    explicit LangButtonGroup(QObject *parent = nullptr);
+    explicit LangButtonGroup(GroupType type, QObject *parent = nullptr);
+
+    void loadLanguages(const AppSettings &settings);
+    void saveLanguages(AppSettings &settings);
 
     void addButton(QAbstractButton *button);
-    void loadLanguages();
     void loadLanguages(const LangButtonGroup *group);
     void insertLanguage(QOnlineTranslator::Language lang);
     void retranslate();
 
     QOnlineTranslator::Language checkedLanguage() const;
+    QOnlineTranslator::Language previousCheckedLanguage() const;
     QOnlineTranslator::Language language(int id) const;
 
     GroupType type() const;
@@ -58,8 +63,12 @@ public slots:
     void checkButton(int id);
     void setLanguage(int id, QOnlineTranslator::Language lang);
 
+private slots:
+    void processButtonToggled(int id, bool checked);
+
 private:
     GroupType m_type;
+    int m_previousCheckedId = 0;
 };
 
 #endif // LANGBUTTONGROUP_H

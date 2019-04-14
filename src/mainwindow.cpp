@@ -89,22 +89,21 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
 
     // Source button group
-    m_sourceButtons = new LangButtonGroup(this);
+    const AppSettings settings;
+    m_sourceButtons = new LangButtonGroup(LangButtonGroup::Source, this);
     m_sourceButtons->addButton(ui->autoSourceButton);
     m_sourceButtons->addButton(ui->firstSourceButton);
     m_sourceButtons->addButton(ui->secondSourceButton);
     m_sourceButtons->addButton(ui->thirdSourceButton);
-    m_sourceButtons->setType(LangButtonGroup::Source);
-    m_sourceButtons->loadLanguages();
+    m_sourceButtons->loadLanguages(settings);
 
     // Translation button group
-    m_translationButtons = new LangButtonGroup(this);
+    m_translationButtons = new LangButtonGroup(LangButtonGroup::Translation, this);
     m_translationButtons->addButton(ui->autoTranslationButton);
     m_translationButtons->addButton(ui->firstTranslationButton);
     m_translationButtons->addButton(ui->secondTranslationButton);
     m_translationButtons->addButton(ui->thirdTranslationButton);
-    m_translationButtons->setType(LangButtonGroup::Translation);
-    m_translationButtons->loadLanguages();
+    m_translationButtons->loadLanguages(settings);
 
     // Toggle language logic
     connect(m_translationButtons, &LangButtonGroup::buttonChecked, [&](int id) {
@@ -132,13 +131,12 @@ MainWindow::MainWindow(QWidget *parent) :
     m_uiLang = QOnlineTranslator::language(QLocale());
 
     // Load app settings
-    loadSettings();
+    loadSettings(settings);
 
     // Load main window settings
-    const AppSettings settings;
-    restoreGeometry(settings.mainWindowGeometry());
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
+    restoreGeometry(settings.mainWindowGeometry());
 
 #if defined(Q_OS_WIN)
     // Check date for updates
@@ -172,6 +170,9 @@ MainWindow::~MainWindow()
     settings.setMainWindowGeometry(saveGeometry());
     settings.setAutoTranslateEnabled(ui->autoTranslateCheckBox->isChecked());
     settings.setCurrentEngine(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()));
+
+    m_sourceButtons->saveLanguages(settings);
+    m_translationButtons->saveLanguages(settings);
     delete ui;
 }
 
@@ -352,8 +353,10 @@ void MainWindow::on_swapButton_clicked()
 void MainWindow::on_settingsButton_clicked()
 {
     SettingsDialog config(this);
-    if (config.exec() == QDialog::Accepted)
-        loadSettings();
+    if (config.exec() == QDialog::Accepted) {
+        const AppSettings settings;
+        loadSettings(settings);
+    }
 }
 
 void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
@@ -562,14 +565,8 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
 {
     /* If the target and source languages are the same (and they are not autodetect buttons),
      * then insert previous checked language from just checked language group to another group */
-    AppSettings settings;
-    if (id != 0
-            && anotherGroup->checkedId() != 0
-            && checkedGroup->language(id) == anotherGroup->checkedLanguage()) {
-        const int previousCheckedButton = settings.checkedButton(checkedGroup->type());
-        anotherGroup->insertLanguage(checkedGroup->language(previousCheckedButton));
-        settings.setCheckedButton(anotherGroup->type(), anotherGroup->checkedId());
-    }
+    if (checkedGroup->language(id) == anotherGroup->checkedLanguage() && anotherGroup->checkedId() != 0 && id != 0)
+        anotherGroup->insertLanguage(checkedGroup->previousCheckedLanguage());
 
     // Check if selected language is supported by engine
     if (!QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
@@ -585,8 +582,6 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
         if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
             m_translateTimer->start(shortAutotranslateDelay);
     }
-
-    settings.setCheckedButton(checkedGroup->type(), checkedGroup->checkedId());
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -790,10 +785,8 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
     return true;
 }
 
-void MainWindow::loadSettings()
+void MainWindow::loadSettings(const AppSettings &settings)
 {
-    const AppSettings settings;
-
     // System tray icon
     const QString iconName = settings.trayIconName();
     if (iconName == "custom") {

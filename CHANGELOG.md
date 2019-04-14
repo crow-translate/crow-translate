@@ -12,6 +12,7 @@ All notable changes to this project will be documented in this file. This projec
 -   Fix date check for leap years.
 -   Add simplified Chinese support.
 -   Rework CLI interface.
+-   Monor performance improvements.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 
