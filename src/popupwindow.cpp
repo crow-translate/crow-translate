@@ -39,7 +39,7 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     this->setAttribute(Qt::WA_DeleteOnClose);
 
     // Window settings
-    AppSettings settings;
+    const AppSettings settings;
     setWindowOpacity(settings.popupOpacity());
     resize(settings.popupWidth(), settings.popupHeight());
     ui->engineComboBox->setCurrentIndex(engineIndex);

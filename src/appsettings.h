@@ -52,191 +52,191 @@ public:
 
     // General settings
     void setupLocale();
-    QLocale::Language locale();
+    QLocale::Language locale() const;
     void setLocale(QLocale::Language lang);
     void loadLocale(QLocale::Language lang);
 
-    WindowMode windowMode();
+    WindowMode windowMode() const;
     void setWindowMode(WindowMode mode);
 
-    bool isTrayIconVisible();
+    bool isTrayIconVisible() const;
     void setTrayIconVisible(bool visible);
 
-    bool isStartMinimized();
+    bool isStartMinimized() const;
     void setStartMinimized(bool minimized);
 
-    bool isAutostartEnabled();
+    bool isAutostartEnabled() const;
     void setAutostartEnabled(bool enabled);
 
 #ifdef Q_OS_WIN
-    Interval checkForUpdatesInterval();
+    Interval checkForUpdatesInterval() const;
     void setCheckForUpdatesInterval(Interval interval);
 
-    QDate lastUpdateCheckDate();
+    QDate lastUpdateCheckDate() const;
     void setLastUpdateCheckDate(const QDate &date);
 #endif
 
     // Interface settings
-    double popupOpacity();
+    double popupOpacity() const;
     void setPopupOpacity(double opacity);
 
-    int popupHeight();
+    int popupHeight() const;
     void setPopupHeight(int height);
 
-    int popupWidth();
+    int popupWidth() const;
     void setPopupWidth(int width);
 
-    Qt::ToolButtonStyle popupLanguagesStyle();
+    Qt::ToolButtonStyle popupLanguagesStyle() const;
     void setPopupLanguagesStyle(Qt::ToolButtonStyle style);
 
-    Qt::ToolButtonStyle popupControlsStyle();
+    Qt::ToolButtonStyle popupControlsStyle() const;
     void setPopupControlsStyle(Qt::ToolButtonStyle style);
 
-    Qt::ToolButtonStyle windowLanguagesStyle();
+    Qt::ToolButtonStyle windowLanguagesStyle() const;
     void setWindowLanguagesStyle(Qt::ToolButtonStyle style);
 
-    Qt::ToolButtonStyle windowControlsStyle();
+    Qt::ToolButtonStyle windowControlsStyle() const;
     void setWindowControlsStyle(Qt::ToolButtonStyle style);
 
-    QString trayIconName();
+    QString trayIconName() const;
     void setTrayIconName(const QString &name);
 
-    QString customIconPath();
+    QString customIconPath() const;
     void setCustomIconPath(const QString &path);
 
     // Translation settings
-    bool isSourceTranslitEnabled();
+    bool isSourceTranslitEnabled() const;
     void setSourceTranslitEnabled(bool enable);
 
-    bool isTranslationTranslitEnabled();
+    bool isTranslationTranslitEnabled() const;
     void setTranslationTranslitEnabled(bool enable);
 
-    bool isSourceTranscriptionEnabled();
+    bool isSourceTranscriptionEnabled() const;
     void setSourceTranscriptionEnabled(bool enable);
 
-    bool isTranslationOptionsEnabled();
+    bool isTranslationOptionsEnabled() const;
     void setTranslationOptionsEnabled(bool enable);
 
-    bool isExamplesEnabled();
+    bool isExamplesEnabled() const;
     void setExamplesEnabled(bool enable);
 
-    QOnlineTranslator::Language primaryLanguage();
+    QOnlineTranslator::Language primaryLanguage() const;
     void setPrimaryLanguage(QOnlineTranslator::Language lang);
 
-    QOnlineTranslator::Language secondaryLanguage();
+    QOnlineTranslator::Language secondaryLanguage() const;
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
     // Speech synthesis settings
-    QOnlineTts::Voice yandexVoice();
+    QOnlineTts::Voice yandexVoice() const;
     void setYandexVoice(QOnlineTts::Voice voice);
 
-    QOnlineTts::Voice bingVoice();
+    QOnlineTts::Voice bingVoice() const;
     void setBingVoice(QOnlineTts::Voice voice);
 
-    QOnlineTts::Emotion yandexEmotion();
+    QOnlineTts::Emotion yandexEmotion() const;
     void setYandexEmotion(QOnlineTts::Emotion emotion);
 
     // Connection settings
-    QNetworkProxy::ProxyType proxyType();
+    QNetworkProxy::ProxyType proxyType() const;
     void setProxyType(QNetworkProxy::ProxyType type);
 
-    QString proxyHost();
+    QString proxyHost() const;
     void setProxyHost(const QString &hostName);
 
-    quint16 proxyPort();
+    quint16 proxyPort() const;
     void setProxyPort(quint16 port);
 
-    bool isProxyAuthEnabled();
+    bool isProxyAuthEnabled() const;
     void setProxyAuthEnabled(bool enabled);
 
-    QString proxyUsername();
+    QString proxyUsername() const;
     void setProxyUsername(const QString &username);
 
-    QString proxyPassword();
+    QString proxyPassword() const;
     void setProxyPassword(const QString &password);
 
     // Global shortcuts
-    QString translateSelectionHotkey();
+    QString translateSelectionHotkey() const;
     void setTranslateSelectionHotkey(const QString &hotkey);
-    constexpr const char *defaultTranslateSelectionHotkey()
+    static constexpr const char *defaultTranslateSelectionHotkey()
     { return "Ctrl+Alt+E"; }
 
-    QString playSelectionHotkey();
+    QString playSelectionHotkey() const;
     void setPlaySelectionHotkey(const QString &hotkey);
-    constexpr const char *defaultPlaySelectionHotkey()
+    static constexpr const char *defaultPlaySelectionHotkey()
     { return "Ctrl+Alt+S"; }
 
-    QString playTranslatedSelectionHotkey();
+    QString playTranslatedSelectionHotkey() const;
     void setPlayTranslatedSelectionHotkey(const QString &hotkey);
-    constexpr const char *defaultPlayTranslatedSelectionHotkey()
+    static constexpr const char *defaultPlayTranslatedSelectionHotkey()
     { return "Ctrl+Alt+F"; }
 
-    QString stopSelectionHotkey();
+    QString stopSelectionHotkey() const;
     void setStopSelectionHotkey(const QString &hotkey);
-    constexpr const char *defaultStopSelectionHotkey()
+    static constexpr const char *defaultStopSelectionHotkey()
     { return "Ctrl+Alt+G"; }
 
-    QString showMainWindowHotkey();
+    QString showMainWindowHotkey() const;
     void setShowMainWindowHotkey(const QString &hotkey);
-    constexpr const char *defaultShowMainWindowHotkey()
+    static constexpr const char *defaultShowMainWindowHotkey()
     { return "Ctrl+Alt+C"; }
 
-    QString copyTranslatedSelectionHotkey();
+    QString copyTranslatedSelectionHotkey() const;
     void setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey);
-    constexpr const char *defaultCopyTranslatedSelectionHotkey()
+    static constexpr const char *defaultCopyTranslatedSelectionHotkey()
     { return ""; }
 
     // Window shortcuts
-    QString translateHotkey();
+    QString translateHotkey() const;
     void setTranslateHotkey(const QString &hotkey);
-    constexpr const char *defaultTranslateHotkey()
+    static constexpr const char *defaultTranslateHotkey()
     { return "Ctrl+Return"; }
 
-    QString closeWindowHotkey();
+    QString closeWindowHotkey() const;
     void setCloseWindowHotkey(const QString &hotkey);
-    constexpr const char *defaultCloseWindowHotkey()
+    static constexpr const char *defaultCloseWindowHotkey()
     { return "Ctrl+Q"; }
 
-    QString playSourceHotkey();
+    QString playSourceHotkey() const;
     void setPlaySourceHotkey(const QString &hotkey);
-    constexpr const char *defaultPlaySourceHotkey()
+    static constexpr const char *defaultPlaySourceHotkey()
     { return "Ctrl+S"; }
 
-    QString stopSourceHotkey();
+    QString stopSourceHotkey() const;
     void setStopSourceHotkey(const QString &hotkey);
-    constexpr const char *defaultStopSourceHotkey()
+    static constexpr const char *defaultStopSourceHotkey()
     { return "Ctrl+G"; }
 
-    QString playTranslationHotkey();
+    QString playTranslationHotkey() const;
     void setPlayTranslationHotkey(const QString &hotkey);
-    constexpr const char *defaultPlayTranslationHotkey()
+    static constexpr const char *defaultPlayTranslationHotkey()
     { return "Ctrl+Shift+S"; }
 
-    QString stopTranslationHotkey();
+    QString stopTranslationHotkey() const;
     void setStopTranslationHotkey(const QString &hotkey);
-    constexpr const char *defaultStopTranslationHotkey()
+    static constexpr const char *defaultStopTranslationHotkey()
     { return "Ctrl+Shift+G"; }
 
-    QString copyTranslationHotkey();
+    QString copyTranslationHotkey() const;
     void setCopyTranslationHotkey(const QString &hotkey);
-    constexpr const char *defaultCopyTranslationHotkey()
+    static constexpr const char *defaultCopyTranslationHotkey()
     { return "Ctrl+Shift+C"; }
 
     // Buttons
-    QOnlineTranslator::Language buttonLanguage(const QString &groupName, int id);
+    QOnlineTranslator::Language buttonLanguage(const QString &groupName, int id) const;
     void setButtonLanguage(const QString &groupName, int id, QOnlineTranslator::Language lang);
 
-    int checkedButton(const QString &groupName);
+    int checkedButton(const QString &groupName) const;
     void setCheckedButton(const QString &groupName, int id);
 
     // Main window settings
-    QByteArray mainWindowGeometry();
+    QByteArray mainWindowGeometry() const;
     void setMainWindowGeometry(const QByteArray &geometry);
 
-    bool isAutoTranslateEnabled();
+    bool isAutoTranslateEnabled() const;
     void setAutoTranslateEnabled(bool enable);
 
-    QOnlineTranslator::Engine currentEngine();
+    QOnlineTranslator::Engine currentEngine() const;
     void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
 
 private:

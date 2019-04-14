@@ -135,7 +135,7 @@ MainWindow::MainWindow(QWidget *parent) :
     loadSettings();
 
     // Load main window settings
-    AppSettings settings;
+    const AppSettings settings;
     restoreGeometry(settings.mainWindowGeometry());
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
@@ -197,7 +197,7 @@ void MainWindow::on_translateButton_clicked()
         sourceLang = m_sourceButtons->checkedLanguage();
 
     // Translation language
-    AppSettings settings;
+    const AppSettings settings;
     QOnlineTranslator::Language translationLang;
     if (ui->autoTranslationButton->isChecked()) {
         // Use primary target language from settings
@@ -443,7 +443,7 @@ void MainWindow::translateSelectedText()
     // Prevent pressing the translation hotkey again
     m_translateSelectionHotkey->blockSignals(true);
 
-    AppSettings settings;
+    const AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         // Show popup
         auto *popup = new PopupWindow(m_sourceButtons, m_translationButtons, ui->engineComboBox->currentIndex(), this);
@@ -537,7 +537,7 @@ void MainWindow::playTranslatedSelection()
     const QString selection = selectedText();
 
     // Detect languages
-    AppSettings settings;
+    const AppSettings settings;
     QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
     if (primaryLanguage == QOnlineTranslator::Auto)
         primaryLanguage = m_uiLang;
@@ -792,7 +792,7 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
 
 void MainWindow::loadSettings()
 {
-    AppSettings settings;
+    const AppSettings settings;
 
     // System tray icon
     const QString iconName = settings.trayIconName();
@@ -881,7 +881,7 @@ void MainWindow::play(QMediaPlayer *player, QMediaPlaylist *playlist, const QStr
     }
 
     playlist->clear();
-    AppSettings settings;
+    const AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
     QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
     QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;

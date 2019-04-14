@@ -48,7 +48,7 @@ void LangButtonGroup::addButton(QAbstractButton *button)
 void LangButtonGroup::loadLanguages()
 {
     // Load buttons data from settings
-    AppSettings settings;
+    const AppSettings settings;
     for (int i = 1; i < buttons().size(); ++i)
         setLanguage(i, settings.buttonLanguage(m_name, i));
 

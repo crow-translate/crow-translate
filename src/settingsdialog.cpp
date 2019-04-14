@@ -127,7 +127,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 #endif
 
     // General settings
-    AppSettings settings;
+    const AppSettings settings;
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
 #if defined(Q_OS_WIN)
