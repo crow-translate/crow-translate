@@ -26,6 +26,7 @@
 #include <QDebug>
 #include <QTextStream>
 #include <QLibraryInfo>
+#include <QMetaEnum>
 #if defined(Q_OS_WIN)
 #include <QDir>
 #endif
@@ -544,24 +545,32 @@ void AppSettings::setCopyTranslationHotkey(const QString &hotkey)
     setValue("Hotkeys/CopyTranslation", hotkey);
 }
 
-QOnlineTranslator::Language AppSettings::buttonLanguage(const QString &groupName, int id) const
+QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup::GroupType group, int id) const
 {
-    return value("Buttons/" + groupName + "Button" + QString::number(id), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
+    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+
+    return value(QStringLiteral("Buttons/") + groupType.key(group) + QStringLiteral("Button") + QString::number(id), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
 }
 
-void AppSettings::setButtonLanguage(const QString &groupName, int id, QOnlineTranslator::Language lang)
+void AppSettings::setButtonLanguage(LangButtonGroup::GroupType group, int id, QOnlineTranslator::Language lang)
 {
-    setValue("Buttons/"  + groupName + "Button" + QString::number(id), lang);
+    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+
+    setValue(QStringLiteral("Buttons/") + groupType.key(group) + QStringLiteral("Button") + QString::number(id), lang);
 }
 
-int AppSettings::checkedButton(const QString &groupName) const
+int AppSettings::checkedButton(LangButtonGroup::GroupType group) const
 {
-    return value("Buttons/Checked" + groupName + "Button", 0).toInt();
+    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+
+    return value(QStringLiteral("Buttons/Checked") + groupType.key(group) + QStringLiteral("Button"), 0).toInt();
 }
 
-void AppSettings::setCheckedButton(const QString &groupName, int id)
+void AppSettings::setCheckedButton(LangButtonGroup::GroupType group, int id)
 {
-    setValue("Buttons/Checked" + groupName + "Button", id);
+    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+
+    setValue(QStringLiteral("Buttons/Checked") + groupType.key(group) + QStringLiteral("Button"), id);
 }
 
 QByteArray AppSettings::mainWindowGeometry() const

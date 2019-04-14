@@ -94,7 +94,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sourceButtons->addButton(ui->firstSourceButton);
     m_sourceButtons->addButton(ui->secondSourceButton);
     m_sourceButtons->addButton(ui->thirdSourceButton);
-    m_sourceButtons->setName("Source");
+    m_sourceButtons->setType(LangButtonGroup::Source);
     m_sourceButtons->loadLanguages();
 
     // Translation button group
@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_translationButtons->addButton(ui->firstTranslationButton);
     m_translationButtons->addButton(ui->secondTranslationButton);
     m_translationButtons->addButton(ui->thirdTranslationButton);
-    m_translationButtons->setName("Translation");
+    m_translationButtons->setType(LangButtonGroup::Translation);
     m_translationButtons->loadLanguages();
 
     // Toggle language logic
@@ -566,9 +566,9 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
     if (id != 0
             && anotherGroup->checkedId() != 0
             && checkedGroup->language(id) == anotherGroup->checkedLanguage()) {
-        const int previousCheckedButton = settings.checkedButton(checkedGroup->name());
+        const int previousCheckedButton = settings.checkedButton(checkedGroup->type());
         anotherGroup->insertLanguage(checkedGroup->language(previousCheckedButton));
-        settings.setCheckedButton(anotherGroup->name(), anotherGroup->checkedId());
+        settings.setCheckedButton(anotherGroup->type(), anotherGroup->checkedId());
     }
 
     // Check if selected language is supported by engine
@@ -586,7 +586,7 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
             m_translateTimer->start(shortAutotranslateDelay);
     }
 
-    settings.setCheckedButton(checkedGroup->name(), checkedGroup->checkedId());
+    settings.setCheckedButton(checkedGroup->type(), checkedGroup->checkedId());
 }
 
 void MainWindow::resetAutoSourceButtonText()

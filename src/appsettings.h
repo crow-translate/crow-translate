@@ -23,6 +23,7 @@
 
 #include "qonlinetranslator.h"
 #include "qonlinetts.h"
+#include "langbuttongroup.h"
 
 #include <QSettings>
 #include <QLocale>
@@ -223,11 +224,11 @@ public:
     { return "Ctrl+Shift+C"; }
 
     // Buttons
-    QOnlineTranslator::Language buttonLanguage(const QString &groupName, int id) const;
-    void setButtonLanguage(const QString &groupName, int id, QOnlineTranslator::Language lang);
+    QOnlineTranslator::Language buttonLanguage(LangButtonGroup::GroupType group, int id) const;
+    void setButtonLanguage(LangButtonGroup::GroupType group, int id, QOnlineTranslator::Language lang);
 
-    int checkedButton(const QString &groupName) const;
-    void setCheckedButton(const QString &groupName, int id);
+    int checkedButton(LangButtonGroup::GroupType group) const;
+    void setCheckedButton(LangButtonGroup::GroupType group, int id);
 
     // Main window settings
     QByteArray mainWindowGeometry() const;

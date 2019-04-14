@@ -30,6 +30,12 @@ class LangButtonGroup : public QButtonGroup
     Q_OBJECT
 
 public:
+    enum GroupType {
+        Source,
+        Translation
+    };
+    Q_ENUM(GroupType)
+
     explicit LangButtonGroup(QObject *parent = nullptr);
 
     void addButton(QAbstractButton *button);
@@ -41,8 +47,8 @@ public:
     QOnlineTranslator::Language checkedLanguage() const;
     QOnlineTranslator::Language language(int id) const;
 
-    QString name() const;
-    void setName(const QString &name);
+    GroupType type() const;
+    void setType(const GroupType &type);
 
 signals:
     void buttonChecked(int id);
@@ -53,7 +59,7 @@ public slots:
     void setLanguage(int id, QOnlineTranslator::Language lang);
 
 private:
-    QString m_name;
+    GroupType m_type;
 };
 
 #endif // LANGBUTTONGROUP_H
