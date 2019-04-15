@@ -109,21 +109,20 @@ void LangButtonGroup::retranslate()
 {
     for (int i = 0; i < buttons().size(); ++i) {
         const QOnlineTranslator::Language lang = language(i);
+        if (lang == QOnlineTranslator::NoLanguage)
+            continue;
 
-        if (lang != QOnlineTranslator::NoLanguage) {
-            const QString langName = QOnlineTranslator::languageString(lang);
-
-            button(i)->setToolTip(langName);
-            if (i != 0) {
-                // Language button
-                button(i)->setText(langName);
-            } else {
-                // Auto language button
-                if (lang == QOnlineTranslator::Auto)
-                    button(i)->setText(tr("Auto"));
-                else
-                    button(i)->setText(tr("Auto") + " (" + langName + ")");
-            }
+        const QString langName = QOnlineTranslator::languageString(lang);
+        button(i)->setToolTip(langName);
+        if (i != 0) {
+            // Language button
+            button(i)->setText(langName);
+        } else {
+            // Auto language button
+            if (lang == QOnlineTranslator::Auto)
+                button(i)->setText(tr("Auto"));
+            else
+                button(i)->setText(tr("Auto") + " (" + langName + ")");
         }
     }
 }

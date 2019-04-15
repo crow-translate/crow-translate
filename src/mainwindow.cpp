@@ -328,19 +328,17 @@ void MainWindow::on_translateButton_clicked()
 
 void MainWindow::on_swapButton_clicked()
 {
-    const int checkedSourceButton = m_sourceButtons->checkedId();
-    const int checkedTranslationButton = m_translationButtons->checkedId();
     const QOnlineTranslator::Language sourceLang = m_sourceButtons->checkedLanguage();
     const QOnlineTranslator::Language translationLang = m_translationButtons->checkedLanguage();
 
     // Insert current translation language to source buttons
-    if (checkedTranslationButton == 0)
+    if (m_translationButtons->checkedId() == 0)
         m_sourceButtons->checkButton(0); // Select "Auto" button
     else
         m_sourceButtons->insertLanguage(translationLang);
 
     // Insert current source language to translation buttons
-    if (checkedSourceButton == 0)
+    if (m_sourceButtons->checkedId() == 0)
         m_translationButtons->checkButton(0); // Select "Auto" button
     else
         m_translationButtons->insertLanguage(sourceLang);
@@ -369,10 +367,8 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
     }
 }
 
-void MainWindow::on_engineComboBox_currentIndexChanged(int index)
+void MainWindow::on_engineComboBox_currentIndexChanged(int)
 {
-    Q_UNUSED(index)
-
     if (ui->autoTranslateCheckBox->isChecked())
         m_translateTimer->start(shortAutotranslateDelay);
 }
