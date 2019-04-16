@@ -128,7 +128,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::translateTimerExpires);
 
     // Get UI language for translation
-    m_uiLang = QOnlineTranslator::language(QLocale());
+    m_uiLang = QOnlineTranslator::language(settings.locale());
 
     // Load app settings
     loadSettings(settings);
@@ -730,6 +730,7 @@ void MainWindow::changeEvent(QEvent *event)
         const QLocale::Language lang = settings.locale();
         if (lang == QLocale::AnyLanguage)
             settings.loadLocale(lang); // Reload language if application use system language
+        m_uiLang = QOnlineTranslator::language(lang);
         break;
     }
     case QEvent::LanguageChange:
