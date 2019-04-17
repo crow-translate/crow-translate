@@ -178,6 +178,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_translateButton_clicked()
 {
+    m_translateTimer->stop();
+
     if (ui->sourceEdit->toPlainText().isEmpty()) {
         ui->translationEdit->clear();
         m_translationButtons->setLanguage(0, QOnlineTranslator::Auto);

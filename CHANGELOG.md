@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 -   Add simplified Chinese support.
 -   Rework CLI interface.
 -   Monor performance improvements.
+-   Do not translate automatically if the translation button is pressed faster.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 
