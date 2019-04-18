@@ -42,8 +42,7 @@
 #include <QMenu>
 #include <QMediaPlaylist>
 
-constexpr int autotranslateDelay = 500; // Used when changing text
-constexpr int shortAutotranslateDelay = 300; // Used when changing language
+constexpr int autotranslateDelay = 500; // Automatic translation delay when changing source text
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -125,7 +124,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Timer for automatic translation
     m_translateTimer = new QTimer(this);
     m_translateTimer->setSingleShot(true);
-    connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::translateTimerExpires);
+    connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::processTranslateTimerExpires);
 
     // Get UI language for translation
     m_uiLang = QOnlineTranslator::language(settings.locale());
@@ -363,7 +362,7 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 {
     if (checked) {
         connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
-        translateTimerExpires();
+        processTranslateTimerExpires();
     } else {
         disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
     }
@@ -372,7 +371,7 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 void MainWindow::on_engineComboBox_currentIndexChanged(int)
 {
     if (ui->autoTranslateCheckBox->isChecked())
-        m_translateTimer->start(shortAutotranslateDelay);
+        processTranslateTimerExpires();
 }
 
 void MainWindow::on_playSourceButton_clicked()
@@ -575,11 +574,12 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
                 break;
             }
         }
-    } else {
-        // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
-        if (ui->autoTranslateCheckBox->isChecked() || this->isHidden())
-            m_translateTimer->start(shortAutotranslateDelay);
+        return;
     }
+
+    // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
+    if (ui->autoTranslateCheckBox->isChecked() || isHidden())
+        on_translateButton_clicked();
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -668,7 +668,7 @@ void MainWindow::startTranslateTimer()
     m_translateTimer->start(autotranslateDelay);
 }
 
-void MainWindow::translateTimerExpires()
+void MainWindow::processTranslateTimerExpires()
 {
     if (ui->translateButton->isEnabled())
         on_translateButton_clicked();

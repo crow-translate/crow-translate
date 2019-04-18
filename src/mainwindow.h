@@ -90,7 +90,7 @@ private slots:
 
     // Autotranslate timer
     void startTranslateTimer();
-    void translateTimerExpires();
+    void processTranslateTimerExpires();
 
     // Other
     void showMainWindow();
