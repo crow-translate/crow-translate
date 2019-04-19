@@ -2,7 +2,7 @@
 *.directory
 
 # Qt Creator project settings
-*.user
+*.user*
 
 # Compiled translations
 *.qm
