@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. This projec
 -   Monor performance improvements.
 -   Do not translate automatically if the translation button is pressed faster.
 -   Remove 300ms delay for automatic translation delay when changing source text.
+-   Cancel previous request if new was requested.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 
