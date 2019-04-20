@@ -124,7 +124,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Timer for automatic translation
     m_translateTimer = new QTimer(this);
     m_translateTimer->setSingleShot(true);
-    connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::processTranslateTimerExpires);
+    connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
 
     // Get UI language for translation
     m_uiLang = QOnlineTranslator::language(settings.locale());
@@ -362,7 +362,7 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 {
     if (checked) {
         connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
-        processTranslateTimerExpires();
+        on_translateButton_clicked();
     } else {
         disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
     }
@@ -371,7 +371,7 @@ void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
 void MainWindow::on_engineComboBox_currentIndexChanged(int)
 {
     if (ui->autoTranslateCheckBox->isChecked())
-        processTranslateTimerExpires();
+        on_translateButton_clicked();
 }
 
 void MainWindow::on_playSourceButton_clicked()
@@ -666,14 +666,6 @@ void MainWindow::changeSelectionPlayerState(QMediaPlayer::State state)
 void MainWindow::startTranslateTimer()
 {
     m_translateTimer->start(autotranslateDelay);
-}
-
-void MainWindow::processTranslateTimerExpires()
-{
-    if (ui->translateButton->isEnabled())
-        on_translateButton_clicked();
-    else
-        startTranslateTimer();
 }
 
 void MainWindow::showMainWindow()
