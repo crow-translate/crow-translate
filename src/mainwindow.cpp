@@ -83,7 +83,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
     connect(m_playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
     connect(m_stopSelectionHotkey, &QHotkey::activated, m_selectionPlayer, &QMediaPlayer::stop);
-    connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::showMainWindow);
+    connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
 
@@ -114,12 +114,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // System tray icon
     m_trayMenu = new QMenu(this);
-    m_trayIcon = new QSystemTrayIcon(this);
     m_trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
     m_trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
     m_trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
+    m_trayIcon = new TrayIcon(this);
     m_trayIcon->setContextMenu(m_trayMenu);
-    connect(m_trayIcon, &QSystemTrayIcon::activated, this, &MainWindow::activateTray);
 
     // Timer for automatic translation
     m_translateTimer = new QTimer(this);
@@ -173,6 +172,13 @@ MainWindow::~MainWindow()
     m_sourceButtons->saveLanguages(settings);
     m_translationButtons->saveLanguages(settings);
     delete ui;
+}
+
+void MainWindow::activate()
+{
+    show();
+    activateWindow();
+    raise();
 }
 
 void MainWindow::on_translateButton_clicked()
@@ -505,7 +511,7 @@ void MainWindow::translateSelectedText()
         }
 
         on_translateButton_clicked();
-        showMainWindow();
+        activate();
 
         // Restore the keyboard shortcut
         m_translateSelectionHotkey->blockSignals(false);
@@ -668,29 +674,12 @@ void MainWindow::startTranslateTimer()
     m_translateTimer->start(autotranslateDelay);
 }
 
-void MainWindow::showMainWindow()
-{
-    show();
-    activateWindow();
-    raise();
-}
-
 void MainWindow::showAppRunningMessage()
 {
     auto *message = new QMessageBox(QMessageBox::Information, SingleApplication::applicationName(), tr("The application is already running"));
     message->setAttribute(Qt::WA_DeleteOnClose); // Need to allocate on heap to avoid crash!
-    showMainWindow();
+    activate();
     message->show();
-}
-
-void MainWindow::activateTray(QSystemTrayIcon::ActivationReason reason)
-{
-    if (reason == QSystemTrayIcon::Trigger) {
-        if (!this->isVisible())
-            showMainWindow();
-        else
-            hide();
-    }
 }
 
 #if defined(Q_OS_WIN)
@@ -778,25 +767,7 @@ bool MainWindow::translateOutside(const QString &text, QOnlineTranslator::Langua
 
 void MainWindow::loadSettings(const AppSettings &settings)
 {
-    // System tray icon
-    const QString iconName = settings.trayIconName();
-    if (iconName == "custom") {
-        QIcon customIcon(settings.customIconPath());
-        if (customIcon.isNull())
-            m_trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
-        else
-            m_trayIcon->setIcon(customIcon);
-    } else {
-        QIcon crowIcon = QIcon::fromTheme(iconName);
-        if (crowIcon.isNull())
-            m_trayIcon->setIcon(QIcon::fromTheme("dialog-error"));
-        else
-            m_trayIcon->setIcon(crowIcon);
-    }
-
-    const bool trayIconVisible = settings.isTrayIconVisible();
-    m_trayIcon->setVisible(trayIconVisible);
-    SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
+    m_trayIcon->loadSettings(settings);
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());

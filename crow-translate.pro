@@ -7,7 +7,7 @@
 TARGET = crow
 TEMPLATE = app
 VERSION = 2.1.0
-QT += core gui widgets
+QT += core gui widgets dbus
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Hennadii Chernyshchyk
@@ -33,7 +33,8 @@ SOURCES += \
     src/popupwindow.cpp \
     src/appsettings.cpp \
     src/langbuttongroup.cpp \
-    src/addlangdialog.cpp
+    src/addlangdialog.cpp \
+    src/trayicon.cpp
 
 HEADERS += \
     src/cli.h \
@@ -42,7 +43,8 @@ HEADERS += \
     src/popupwindow.h \
     src/appsettings.h \
     src/langbuttongroup.h \
-    src/addlangdialog.h
+    src/addlangdialog.h \
+    src/trayicon.h
 
 FORMS += \
     src/settingsdialog.ui \

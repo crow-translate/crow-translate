@@ -25,8 +25,8 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
-#include <QSystemTrayIcon>
 
+class TrayIcon;
 class LangButtonGroup;
 class AppSettings;
 class QHotkey;
@@ -45,6 +45,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
+
+    void activate();
 
 signals:
     void translationTextChanged(const QString &text);
@@ -92,9 +94,7 @@ private slots:
     void startTranslateTimer();
 
     // Other
-    void showMainWindow();
     void showAppRunningMessage();
-    void activateTray(QSystemTrayIcon::ActivationReason reason);
 #if defined(Q_OS_WIN)
     void checkForUpdates();
 #endif
@@ -135,7 +135,7 @@ private:
     LangButtonGroup *m_translationButtons;
 
     QMenu *m_trayMenu;
-    QSystemTrayIcon *m_trayIcon;
+    TrayIcon *m_trayIcon;
     QTimer *m_translateTimer;
 };
 

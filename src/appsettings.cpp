@@ -235,14 +235,14 @@ void AppSettings::setWindowControlsStyle(Qt::ToolButtonStyle style)
     setValue("WindowControlsStyle", style);
 }
 
-QString AppSettings::trayIconName() const
+TrayIcon::IconType AppSettings::trayIconType() const
 {
-    return value("TrayIconName", "crow-translate-tray").toString();
+    return value("TrayIconName", TrayIcon::DefaultIcon).value<TrayIcon::IconType>();
 }
 
-void AppSettings::setTrayIconName(const QString &name)
+void AppSettings::setTrayIconType(TrayIcon::IconType type)
 {
-    setValue("TrayIconName", name);
+    setValue("TrayIconName", type);
 }
 
 QString AppSettings::customIconPath() const
