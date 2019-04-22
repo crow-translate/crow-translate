@@ -51,11 +51,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     m_player->setPlaylist(m_playlist);
 
     // Set item data in comboboxes
-    ui->trayIconComboBox->setItemData(0, "crow-translate-tray");
-    ui->trayIconComboBox->setItemData(1, "crow-translate-tray-light");
-    ui->trayIconComboBox->setItemData(2, "crow-translate-tray-dark");
-    ui->trayIconComboBox->setItemData(3, "custom");
-
     ui->languageComboBox->setItemData(0, QLocale::AnyLanguage);
     ui->languageComboBox->setItemData(1, QLocale::English);
     ui->languageComboBox->setItemData(2, QLocale::Russian);
@@ -147,7 +142,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->windowLanguagesComboBox->setCurrentIndex(settings.windowLanguagesStyle());
     ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
 
-    ui->trayIconComboBox->setCurrentIndex(ui->trayIconComboBox->findData(settings.trayIconName()));
+    ui->trayIconComboBox->setCurrentIndex(settings.trayIconType());
     ui->customTrayIconEdit->setText(settings.customIconPath());
 
     // Translation settings
@@ -239,7 +234,7 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setPopupControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->popupControlsComboBox->currentIndex()));
     settings.setWindowLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->windowLanguagesComboBox->currentIndex()));
     settings.setWindowControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->windowControlsComboBox->currentIndex()));
-    settings.setTrayIconName(ui->trayIconComboBox->currentData().toString());
+    settings.setTrayIconType(static_cast<TrayIcon::IconType>(ui->trayIconComboBox->currentIndex()));
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
     // Translation settings
@@ -304,7 +299,7 @@ void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
 // Disable (enable) "Custom icon path" option
 void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
 {
-    if (index == 3) {
+    if (index == TrayIcon::CustomIcon) {
         ui->customTrayIconLabel->setEnabled(true);
         ui->customTrayIconEdit->setEnabled(true);
         ui->customTrayIconButton->setEnabled(true);
@@ -568,7 +563,7 @@ void SettingsDialog::restoreDefaults()
     ui->popupControlsComboBox->setCurrentIndex(0);
     ui->windowLanguagesComboBox->setCurrentIndex(2);
     ui->windowControlsComboBox->setCurrentIndex(0);
-    ui->trayIconComboBox->setCurrentIndex(0);
+    ui->trayIconComboBox->setCurrentIndex(TrayIcon::DefaultIcon);
     ui->customTrayIconEdit->setText("");
 
     // Translation settings

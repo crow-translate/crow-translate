@@ -24,6 +24,7 @@
 #include "qonlinetranslator.h"
 #include "qonlinetts.h"
 #include "langbuttongroup.h"
+#include "trayicon.h"
 
 #include <QSettings>
 #include <QLocale>
@@ -33,6 +34,7 @@
 class AppSettings : private QSettings
 {
     Q_OBJECT
+
 public:
     enum WindowMode {
         PopupWindow,
@@ -99,8 +101,8 @@ public:
     Qt::ToolButtonStyle windowControlsStyle() const;
     void setWindowControlsStyle(Qt::ToolButtonStyle style);
 
-    QString trayIconName() const;
-    void setTrayIconName(const QString &name);
+    TrayIcon::IconType trayIconType() const;
+    void setTrayIconType(TrayIcon::IconType icon);
 
     QString customIconPath() const;
     void setCustomIconPath(const QString &path);
