@@ -23,7 +23,7 @@ void TrayIcon::loadSettings(const AppSettings &settings)
         if (icon.isNull()) {
             const QString defaultIconName = trayIconName(DefaultIcon);
             showNotification(tr("The specified icon '%1' for the Crow Translate is invalid. The default icon will be used.").arg(customIconName), defaultIconName);
-            icon = QIcon(defaultIconName);
+            icon = QIcon::fromTheme(defaultIconName);
         }
     } else {
         icon = QIcon::fromTheme(trayIconName(iconType));
