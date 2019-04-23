@@ -53,6 +53,7 @@ private slots:
 
     void on_trayIconComboBox_currentIndexChanged(int index);
     void on_customTrayIconButton_clicked();
+    void on_customTrayIconEdit_textChanged(const QString &iconPath);
 
     void on_engineComboBox_currentIndexChanged(int index);
     void on_voiceComboBox_currentIndexChanged(int index);

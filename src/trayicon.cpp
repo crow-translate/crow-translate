@@ -35,6 +35,21 @@ void TrayIcon::loadSettings(const AppSettings &settings)
     SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 }
 
+void TrayIcon::showNotification(const QString &message, const QString &iconName, int interval)
+{
+    QDBusInterface notify("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications");
+    QVariantList notifyArguments;
+    notifyArguments << SingleApplication::applicationName(); // Set program name
+    notifyArguments << QVariant(QVariant::UInt);
+    notifyArguments << iconName; // Icon
+    notifyArguments << SingleApplication::applicationName(); // Title
+    notifyArguments << message; // Body
+    notifyArguments << QStringList();
+    notifyArguments << QVariantMap();
+    notifyArguments << interval; // Show interval
+    notify.callWithArgumentList(QDBus::AutoDetect, "Notify", notifyArguments);
+}
+
 QIcon TrayIcon::customTrayIcon(const QString &customName)
 {
     if (QIcon::hasThemeIcon(customName))
@@ -70,19 +85,4 @@ void TrayIcon::processTrayActivated(QSystemTrayIcon::ActivationReason reason)
         mainWindow->activate();
     else
         mainWindow->hide();
-}
-
-void TrayIcon::showNotification(const QString &message, const QString &iconName, int interval)
-{
-    QDBusInterface notify("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications");
-    QVariantList notifyArguments;
-    notifyArguments << SingleApplication::applicationName(); // Set program name
-    notifyArguments << QVariant(QVariant::UInt);
-    notifyArguments << iconName; // Icon
-    notifyArguments << SingleApplication::applicationName(); // Title
-    notifyArguments << message; // Body
-    notifyArguments << QStringList();
-    notifyArguments << QVariantMap();
-    notifyArguments << interval; // Show interval
-    notify.callWithArgumentList(QDBus::AutoDetect, "Notify", notifyArguments);
 }

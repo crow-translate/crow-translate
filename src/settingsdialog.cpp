@@ -318,6 +318,11 @@ void SettingsDialog::on_customTrayIconButton_clicked()
         ui->customTrayIconEdit->setText(file);
 }
 
+void SettingsDialog::on_customTrayIconEdit_textChanged(const QString &iconPath)
+{
+    ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
+}
+
 // Disable unsupported voice settings for engines.
 void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
 {
