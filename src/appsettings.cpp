@@ -247,7 +247,7 @@ void AppSettings::setTrayIconType(TrayIcon::IconType type)
 
 QString AppSettings::customIconPath() const
 {
-    return value("CustomIconPath").toString();
+    return value("CustomIconPath", TrayIcon::trayIconName(TrayIcon::DefaultIcon)).toString();
 }
 
 void AppSettings::setCustomIconPath(const QString &path)
