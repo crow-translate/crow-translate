@@ -122,119 +122,98 @@
           <property name="title">
            <string>General</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_6">
-           <item>
-            <layout class="QHBoxLayout" name="windowModeLayout">
-             <item>
-              <widget class="QLabel" name="windowModeLabel">
-               <property name="text">
-                <string>Translation mode of the selected text:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="windowModeComboBox">
-               <item>
-                <property name="text">
-                 <string>Pop-up window</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Main window</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="windowModeSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="languageLayout">
-             <item>
-              <widget class="QLabel" name="languageLabel">
-               <property name="sizePolicy">
-                <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-                 <horstretch>0</horstretch>
-                 <verstretch>0</verstretch>
-                </sizepolicy>
-               </property>
-               <property name="text">
-                <string>Language:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="languageComboBox">
-               <item>
-                <property name="text">
-                 <string>&lt;System language&gt;</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">English</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/flags/en.svg</normaloff>:/icons/flags/en.svg</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">Русский</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/flags/ru.svg</normaloff>:/icons/flags/ru.svg</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">简体中文</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/flags/zh-CN.svg</normaloff>:/icons/flags/zh-CN.svg</iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="languageSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>13</width>
-                 <height>13</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="trayCheckBox">
+          <layout class="QGridLayout" name="gridLayout_8">
+           <item row="0" column="0">
+            <widget class="QLabel" name="languageLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <property name="text">
-              <string>Show tray icon</string>
+              <string>Language:</string>
              </property>
             </widget>
            </item>
-           <item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="windowModeLabel">
+             <property name="text">
+              <string>Translation mode:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="windowModeComboBox">
+             <item>
+              <property name="text">
+               <string>Pop-up window</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Main window</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="languageComboBox">
+             <item>
+              <property name="text">
+               <string>&lt;System language&gt;</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">English</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/flags/en.svg</normaloff>:/icons/flags/en.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">Русский</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/flags/ru.svg</normaloff>:/icons/flags/ru.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">简体中文</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/flags/zh-CN.svg</normaloff>:/icons/flags/zh-CN.svg</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="generalBoxSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="4" column="0" colspan="2">
+            <widget class="QCheckBox" name="autostartCheckBox">
+             <property name="text">
+              <string>Launch at startup</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="3">
             <widget class="QCheckBox" name="startMinimizedCheckBox">
              <property name="enabled">
               <bool>true</bool>
@@ -244,10 +223,10 @@
              </property>
             </widget>
            </item>
-           <item>
-            <widget class="QCheckBox" name="autostartCheckBox">
+           <item row="2" column="0" colspan="3">
+            <widget class="QCheckBox" name="trayCheckBox">
              <property name="text">
-              <string>Launch at startup</string>
+              <string>Show tray icon</string>
              </property>
             </widget>
            </item>
@@ -276,181 +255,151 @@
           <property name="title">
            <string>Pop-up window</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_14">
-           <item>
-            <layout class="QHBoxLayout" name="popupOpacityLayout">
-             <item>
-              <widget class="QLabel" name="popupOpacityLabel">
-               <property name="text">
-                <string>Opacity:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSlider" name="popupOpacitySlider">
-               <property name="maximum">
-                <number>100</number>
-               </property>
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="popupOpacitySpinBox">
-               <property name="suffix">
-                <string notr="true">%</string>
-               </property>
-               <property name="maximum">
-                <number>100</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
+          <layout class="QGridLayout" name="gridLayout_3">
+           <item row="3" column="0">
+            <widget class="QLabel" name="popupLanguagesLabel">
+             <property name="text">
+              <string>Language buttons:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QGridLayout" name="popupSizeLayout">
-             <item row="0" column="2">
-              <widget class="QSpinBox" name="popupHeightSpinBox"/>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="popupHeightLabel">
-               <property name="text">
-                <string>Height:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QSlider" name="popupHeightSlider">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QSlider" name="popupWidthSlider">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="popupWidthLabel">
-               <property name="text">
-                <string>Width:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="2">
-              <widget class="QSpinBox" name="popupWidthSpinBox"/>
-             </item>
-            </layout>
+           <item row="0" column="2">
+            <widget class="QSpinBox" name="popupOpacitySpinBox">
+             <property name="suffix">
+              <string notr="true">%</string>
+             </property>
+             <property name="maximum">
+              <number>100</number>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="popupLanguagesLayout">
-             <item>
-              <widget class="QLabel" name="popupLanguagesLabel">
-               <property name="text">
-                <string>Language buttons:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="popupLanguagesComboBox">
-               <item>
-                <property name="text">
-                 <string>Icon only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text beside icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text under icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="popupLanguagesSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+           <item row="1" column="0">
+            <widget class="QLabel" name="popupHeightLabel">
+             <property name="text">
+              <string>Height:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="popupControlsLayout">
+           <item row="1" column="2">
+            <widget class="QSpinBox" name="popupHeightSpinBox"/>
+           </item>
+           <item row="3" column="1">
+            <widget class="QComboBox" name="popupLanguagesComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
-              <widget class="QLabel" name="popupControlsLabel">
-               <property name="text">
-                <string>Control buttons:</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Icon only</string>
+              </property>
              </item>
              <item>
-              <widget class="QComboBox" name="popupControlsComboBox">
-               <item>
-                <property name="text">
-                 <string>Icon only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text beside icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text under icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
-              </widget>
+              <property name="text">
+               <string>Text only</string>
+              </property>
              </item>
              <item>
-              <spacer name="popupControlsSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              <property name="text">
+               <string>Text beside icon</string>
+              </property>
              </item>
-            </layout>
+             <item>
+              <property name="text">
+               <string>Text under icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Follow system style</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="popupOpacityLabel">
+             <property name="text">
+              <string>Opacity:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="popupOpacitySlider">
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="popupControlsLabel">
+             <property name="text">
+              <string>Control buttons:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="popupControlsComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <item>
+              <property name="text">
+               <string>Icon only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text beside icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text under icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Follow system style</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="popupWidthLabel">
+             <property name="text">
+              <string>Width:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QSlider" name="popupHeightSlider">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QSlider" name="popupWidthSlider">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="2">
+            <widget class="QSpinBox" name="popupWidthSpinBox"/>
            </item>
           </layout>
          </widget>
@@ -460,112 +409,91 @@
           <property name="title">
            <string>Main window</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_11">
-           <item>
-            <layout class="QHBoxLayout" name="windowLanguagesLayout">
-             <item>
-              <widget class="QLabel" name="windowLanguagesLabel">
-               <property name="text">
-                <string>Language buttons:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="windowLanguagesComboBox">
-               <item>
-                <property name="text">
-                 <string>Icon only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text beside icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text under icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="windowLanguagesSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="1" column="0">
+            <widget class="QLabel" name="windowControlsLabel">
+             <property name="text">
+              <string>Control buttons:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="windowControlsLayout">
+           <item row="1" column="1">
+            <widget class="QComboBox" name="windowControlsComboBox">
              <item>
-              <widget class="QLabel" name="windowControlsLabel">
-               <property name="text">
-                <string>Control buttons:</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Icon only</string>
+              </property>
              </item>
              <item>
-              <widget class="QComboBox" name="windowControlsComboBox">
-               <item>
-                <property name="text">
-                 <string>Icon only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text only</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text beside icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Text under icon</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Follow system style</string>
-                </property>
-               </item>
-              </widget>
+              <property name="text">
+               <string>Text only</string>
+              </property>
              </item>
              <item>
-              <spacer name="windowControlsSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
+              <property name="text">
+               <string>Text beside icon</string>
+              </property>
              </item>
-            </layout>
+             <item>
+              <property name="text">
+               <string>Text under icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Follow system style</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="windowLanguagesComboBox">
+             <item>
+              <property name="text">
+               <string>Icon only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text beside icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text under icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Follow system style</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="windowLanguagesLabel">
+             <property name="text">
+              <string>Language buttons:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="windowInterfaceSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -575,101 +503,86 @@
           <property name="title">
            <string>Tray icon</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_13">
-           <item>
-            <layout class="QHBoxLayout" name="trayIconLayout">
-             <item>
-              <widget class="QLabel" name="trayIconLabel">
-               <property name="text">
-                <string>Icon:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="trayIconComboBox">
-               <item>
-                <property name="text">
-                 <string>Default</string>
-                </property>
-                <property name="icon">
-                 <iconset theme="crow-translate-tray">
-                  <normaloff>.</normaloff>.</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Monochrome (dark theme)</string>
-                </property>
-                <property name="icon">
-                 <iconset theme="crow-translate-tray-light">
-                  <normaloff>.</normaloff>.</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Monochrome (light theme)</string>
-                </property>
-                <property name="icon">
-                 <iconset theme="crow-translate-tray-dark">
-                  <normaloff>.</normaloff>.</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Custom</string>
-                </property>
-                <property name="icon">
-                 <iconset theme="folder">
-                  <normaloff>.</normaloff>.</iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="trayIconSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+          <layout class="QGridLayout" name="gridLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="trayIconLabel">
+             <property name="text">
+              <string>Icon:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="customTrayIconLayout">
+           <item row="1" column="2">
+            <widget class="QToolButton" name="customTrayIconButton">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string notr="true"/>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="customTrayIconLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Custom:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="trayIconComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
              <item>
-              <widget class="QLabel" name="customTrayIconLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Custom:</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Default</string>
+              </property>
+              <property name="icon">
+               <iconset theme="crow-translate-tray">
+                <normaloff>.</normaloff>.</iconset>
+              </property>
              </item>
              <item>
-              <widget class="QLineEdit" name="customTrayIconEdit">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Monochrome (dark theme)</string>
+              </property>
+              <property name="icon">
+               <iconset theme="crow-translate-tray-light">
+                <normaloff>.</normaloff>.</iconset>
+              </property>
              </item>
              <item>
-              <widget class="QToolButton" name="customTrayIconButton">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string notr="true"/>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Monochrome (light theme)</string>
+              </property>
+              <property name="icon">
+               <iconset theme="crow-translate-tray-dark">
+                <normaloff>.</normaloff>.</iconset>
+              </property>
              </item>
-            </layout>
+             <item>
+              <property name="text">
+               <string>Custom</string>
+              </property>
+              <property name="icon">
+               <iconset theme="folder">
+                <normaloff>.</normaloff>.</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="customTrayIconEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
            </item>
           </layout>
          </widget>
@@ -740,60 +653,39 @@
           <property name="title">
            <string>Automatic language detection</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_8">
-           <item>
-            <layout class="QHBoxLayout" name="primaryLanguageLayout">
-             <item>
-              <widget class="QLabel" name="primaryLanguageLabel">
-               <property name="text">
-                <string>Primary language:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="primaryLanguageComboBox"/>
-             </item>
-             <item>
-              <spacer name="primaryLanguageSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+          <layout class="QGridLayout" name="gridLayout_4">
+           <item row="1" column="0">
+            <widget class="QLabel" name="secondaryLanguageLabel">
+             <property name="text">
+              <string>Secondary language:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="secondaryLanguageLayout">
-             <item>
-              <widget class="QLabel" name="secondaryLanguageLabel">
-               <property name="text">
-                <string>Secondary language:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="secondaryLanguageComboBox"/>
-             </item>
-             <item>
-              <spacer name="secondaryLanguageSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="primaryLanguageComboBox"/>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="secondaryLanguageComboBox"/>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="primaryLanguageLabel">
+             <property name="text">
+              <string>Primary language:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="languageDetectionSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -820,167 +712,125 @@
           <property name="title">
            <string>Speech synthesis</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_16">
-           <item>
-            <layout class="QHBoxLayout" name="engineLayout">
-             <item>
-              <widget class="QLabel" name="engineLabel">
-               <property name="text">
-                <string>Select engine to configure:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="engineComboBox">
-               <item>
-                <property name="text">
-                 <string notr="true">Google</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">Yandex</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">Bing</string>
-                </property>
-                <property name="icon">
-                 <iconset resource="../data/resources.qrc">
-                  <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="engineSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+          <layout class="QGridLayout" name="gridLayout_5">
+           <item row="1" column="0">
+            <widget class="QLabel" name="voiceLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Voice:</string>
+             </property>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="voiceLayout">
+           <item row="1" column="1">
+            <widget class="QComboBox" name="voiceComboBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <item>
-              <widget class="QLabel" name="voiceLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Voice:</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Default</string>
+              </property>
              </item>
-             <item>
-              <widget class="QComboBox" name="voiceComboBox">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Default</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="voiceSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="emotionLayout">
+           <item row="2" column="1">
+            <widget class="QComboBox" name="emotionComboBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <item>
-              <widget class="QLabel" name="emotionLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Emotional connotation:</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string>Default</string>
+              </property>
              </item>
-             <item>
-              <widget class="QComboBox" name="emotionComboBox">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Default</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="emotionSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
+            </widget>
            </item>
-           <item>
-            <layout class="QHBoxLayout" name="testSpeechLayout">
+           <item row="0" column="1">
+            <widget class="QComboBox" name="engineComboBox">
              <item>
-              <widget class="QLineEdit" name="testSpeechEdit">
-               <property name="text">
-                <string>This is an example of speech synthesis.</string>
-               </property>
-               <property name="placeholderText">
-                <string>Test voice</string>
-               </property>
-              </widget>
+              <property name="text">
+               <string notr="true">Google</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+              </property>
              </item>
              <item>
-              <widget class="QToolButton" name="testSpeechButton">
-               <property name="toolTip">
-                <string>Test</string>
-               </property>
-               <property name="text">
-                <string>Test</string>
-               </property>
-               <property name="icon">
-                <iconset theme="media-playback-start">
-                 <normaloff>.</normaloff>.</iconset>
-               </property>
-              </widget>
+              <property name="text">
+               <string notr="true">Yandex</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+              </property>
              </item>
-            </layout>
+             <item>
+              <property name="text">
+               <string notr="true">Bing</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="emotionLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Emotional connotation:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="engineLabel">
+             <property name="text">
+              <string>Engine:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0" colspan="3">
+            <widget class="QLineEdit" name="testSpeechEdit">
+             <property name="text">
+              <string>This is an example of speech synthesis.</string>
+             </property>
+             <property name="placeholderText">
+              <string>Test voice</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="3">
+            <widget class="QToolButton" name="testSpeechButton">
+             <property name="toolTip">
+              <string>Test</string>
+             </property>
+             <property name="text">
+              <string>Test</string>
+             </property>
+             <property name="icon">
+              <iconset theme="media-playback-start">
+               <normaloff>.</normaloff>.</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
            </item>
           </layout>
          </widget>
@@ -1007,116 +857,15 @@
           <property name="title">
            <string>Proxy server</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_5">
-           <item>
-            <layout class="QHBoxLayout" name="proxyTypeLayout">
-             <item>
-              <widget class="QLabel" name="proxyTypeLabel">
-               <property name="text">
-                <string>Type:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="proxyTypeComboBox">
-               <item>
-                <property name="text">
-                 <string>Use system settings</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">SOCKS5</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Don't use a proxy</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string notr="true">HTTP</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-             <item>
-              <spacer name="proxyTypeSpacer">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="proxyAdressLayout">
-             <item>
-              <widget class="QLabel" name="proxyHostLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Host:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="proxyHostEdit">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLabel" name="proxyPortLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Port:</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QSpinBox" name="proxyPortSpinbox">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="minimum">
-                <number>1</number>
-               </property>
-               <property name="maximum">
-                <number>65535</number>
-               </property>
-               <property name="value">
-                <number>8080</number>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </item>
-           <item>
-            <widget class="QLabel" name="proxyInfoLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
+          <layout class="QGridLayout" name="gridLayout_6">
+           <item row="0" column="0">
+            <widget class="QLabel" name="proxyTypeLabel">
              <property name="text">
-              <string>Info: the proxy works only for text translation</string>
+              <string>Type:</string>
              </property>
             </widget>
            </item>
-           <item>
+           <item row="4" column="0" colspan="2">
             <widget class="QCheckBox" name="proxyAuthCheckBox">
              <property name="enabled">
               <bool>false</bool>
@@ -1126,54 +875,136 @@
              </property>
             </widget>
            </item>
-           <item>
-            <layout class="QGridLayout" name="proxyAuthLayout">
-             <item row="0" column="0">
-              <widget class="QLabel" name="proxyUsernameLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Username:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLineEdit" name="proxyUsernameEdit">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="0">
-              <widget class="QLabel" name="proxyPasswordLabel">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="text">
-                <string>Password:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="1" column="1">
-              <widget class="QLineEdit" name="proxyPasswordEdit">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="echoMode">
-                <enum>QLineEdit::Password</enum>
-               </property>
-              </widget>
-             </item>
-            </layout>
+           <item row="5" column="0">
+            <widget class="QLabel" name="proxyUsernameLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Username:</string>
+             </property>
+            </widget>
            </item>
-           <item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="proxyHostLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Host:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLineEdit" name="proxyPasswordEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="echoMode">
+              <enum>QLineEdit::Password</enum>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="3">
+            <widget class="QSpinBox" name="proxyPortSpinbox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>65535</number>
+             </property>
+             <property name="value">
+              <number>8080</number>
+             </property>
+            </widget>
+           </item>
+           <item row="7" column="1">
             <widget class="QLabel" name="proxyPasswordInfoLabel">
              <property name="enabled">
               <bool>false</bool>
              </property>
              <property name="text">
               <string>Info: the password is saved unencrypted</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLineEdit" name="proxyUsernameEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="2">
+            <widget class="QLabel" name="proxyPortLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Port:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="proxyPasswordLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Password:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="proxyTypeComboBox">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <item>
+              <property name="text">
+               <string>Use system settings</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">SOCKS5</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Don't use a proxy</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string notr="true">HTTP</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="proxyHostEdit">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string/>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QLabel" name="proxyInfoLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Info: the proxy works only for text translation</string>
              </property>
             </widget>
            </item>
@@ -1488,169 +1319,152 @@
        </layout>
       </widget>
       <widget class="QWidget" name="aboutPage">
-       <layout class="QVBoxLayout" name="verticalLayout_7">
-        <item>
-         <layout class="QHBoxLayout" name="aboutLayout">
-          <item>
-           <widget class="QLabel" name="logoLabel">
-            <property name="maximumSize">
-             <size>
-              <width>200</width>
-              <height>200</height>
-             </size>
-            </property>
-            <property name="scaledContents">
-             <bool>true</bool>
-            </property>
-            <property name="margin">
-             <number>20</number>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="aboutGroupBox">
-            <property name="title">
-             <string notr="true">Crow Translate</string>
-            </property>
-            <layout class="QGridLayout" name="aboutBoxLayout">
-             <item row="11" column="1">
-              <widget class="QLabel" name="flagIconsLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;FlagKit&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="1">
-              <widget class="QLabel" name="mailLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="versionTitleLabel">
-               <property name="text">
-                <string>Version:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="0">
-              <widget class="QLabel" name="telegramTitleLabel">
-               <property name="text">
-                <string notr="true">Telegram:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="10" column="1">
-              <widget class="QLabel" name="telegramLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;@Shatur&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-             <item row="8" column="0">
-              <widget class="QLabel" name="mailTitleLabel">
-               <property name="text">
-                <string notr="true">E-mail:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="versionLabel"/>
-             </item>
-             <item row="3" column="1">
-              <widget class="QLabel" name="licenseLabel">
-               <property name="text">
-                <string notr="true">GPL v3 </string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="1">
-              <widget class="QLabel" name="nationLabel">
-               <property name="text">
-                <string>Ukraine</string>
-               </property>
-              </widget>
-             </item>
-             <item row="5" column="0">
-              <widget class="QLabel" name="nationTitleLabel">
-               <property name="text">
-                <string>Country:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="3" column="0">
-              <widget class="QLabel" name="licenseTitleLabel">
-               <property name="text">
-                <string>License:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="11" column="0">
-              <widget class="QLabel" name="flagIconsTitleLabel">
-               <property name="text">
-                <string>Flag icons:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="0">
-              <widget class="QLabel" name="autorTitleLabel">
-               <property name="text">
-                <string>Autor:</string>
-               </property>
-              </widget>
-             </item>
-             <item row="6" column="1">
-              <widget class="QLabel" name="autorLabel">
-               <property name="text">
-                <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="openExternalLinks">
-                <bool>true</bool>
-               </property>
-               <property name="textInteractionFlags">
-                <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <spacer name="aboutBoxSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-         </layout>
+       <layout class="QGridLayout" name="gridLayout_7">
+        <item row="0" column="0">
+         <widget class="QLabel" name="logoLabel">
+          <property name="maximumSize">
+           <size>
+            <width>200</width>
+            <height>200</height>
+           </size>
+          </property>
+          <property name="scaledContents">
+           <bool>true</bool>
+          </property>
+          <property name="margin">
+           <number>20</number>
+          </property>
+         </widget>
         </item>
-        <item>
-         <spacer name="aboutSpacer">
+        <item row="0" column="1">
+         <widget class="QGroupBox" name="aboutGroupBox">
+          <property name="title">
+           <string notr="true">Crow Translate</string>
+          </property>
+          <layout class="QGridLayout" name="aboutBoxLayout">
+           <item row="0" column="0">
+            <widget class="QLabel" name="versionTitleLabel">
+             <property name="text">
+              <string>Version:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="0">
+            <widget class="QLabel" name="mailTitleLabel">
+             <property name="text">
+              <string notr="true">E-mail:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="8" column="1">
+            <widget class="QLabel" name="mailLabel">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="licenseTitleLabel">
+             <property name="text">
+              <string>License:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="1">
+            <widget class="QLabel" name="telegramLabel">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;@Shatur&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="0">
+            <widget class="QLabel" name="autorTitleLabel">
+             <property name="text">
+              <string>Autor:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="10" column="0">
+            <widget class="QLabel" name="telegramTitleLabel">
+             <property name="text">
+              <string notr="true">Telegram:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="11" column="0">
+            <widget class="QLabel" name="flagIconsTitleLabel">
+             <property name="text">
+              <string>Flag icons:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="versionLabel"/>
+           </item>
+           <item row="11" column="1">
+            <widget class="QLabel" name="flagIconsLabel">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;FlagKit&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="1">
+            <widget class="QLabel" name="licenseLabel">
+             <property name="text">
+              <string notr="true">GPL v3 </string>
+             </property>
+            </widget>
+           </item>
+           <item row="6" column="1">
+            <widget class="QLabel" name="autorLabel">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="nationTitleLabel">
+             <property name="text">
+              <string>Country:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="nationLabel">
+             <property name="text">
+              <string>Ukraine</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item row="1" column="1">
+         <spacer name="aboutVerticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1658,6 +1472,19 @@
            <size>
             <width>20</width>
             <height>40</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="2">
+         <spacer name="aboutHorizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
            </size>
           </property>
          </spacer>
