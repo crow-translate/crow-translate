@@ -145,6 +145,9 @@
            </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="windowModeComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Pop-up window</string>
@@ -159,6 +162,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="languageComboBox">
+             <property name="toolTip">
+              <string>Application language</string>
+             </property>
              <item>
               <property name="text">
                <string>&lt;System language&gt;</string>
@@ -195,6 +201,9 @@
            </item>
            <item row="4" column="0" colspan="2">
             <widget class="QCheckBox" name="autostartCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Launch at startup</string>
              </property>
@@ -205,6 +214,9 @@
              <property name="enabled">
               <bool>true</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Start minimized</string>
              </property>
@@ -212,6 +224,9 @@
            </item>
            <item row="2" column="0" colspan="3">
             <widget class="QCheckBox" name="trayCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Show tray icon</string>
              </property>
@@ -275,6 +290,9 @@
            </item>
            <item row="0" column="2">
             <widget class="QSpinBox" name="popupOpacitySpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="suffix">
               <string notr="true">%</string>
              </property>
@@ -298,7 +316,11 @@
             </widget>
            </item>
            <item row="1" column="2">
-            <widget class="QSpinBox" name="popupHeightSpinBox"/>
+            <widget class="QSpinBox" name="popupHeightSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item row="2" column="0">
             <widget class="QLabel" name="popupWidthLabel">
@@ -315,7 +337,11 @@
             </widget>
            </item>
            <item row="2" column="2">
-            <widget class="QSpinBox" name="popupWidthSpinBox"/>
+            <widget class="QSpinBox" name="popupWidthSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="popupLanguagesLabel">
@@ -331,6 +357,9 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <item>
               <property name="text">
@@ -374,6 +403,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Icon only</string>
@@ -410,44 +442,11 @@
            <string>Main window</string>
           </property>
           <layout class="QGridLayout" name="windowInterfaceBoxLayout">
-           <item row="1" column="0">
-            <widget class="QLabel" name="windowControlsLabel">
-             <property name="text">
-              <string>Control buttons:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="windowControlsComboBox">
-             <item>
-              <property name="text">
-               <string>Icon only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text beside icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text under icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Follow system style</string>
-              </property>
-             </item>
-            </widget>
-           </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="windowLanguagesComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Icon only</string>
@@ -480,6 +479,45 @@
              <property name="text">
               <string>Language buttons:</string>
              </property>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="windowControlsLabel">
+             <property name="text">
+              <string>Control buttons:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="windowControlsComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Icon only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text only</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text beside icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Text under icon</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Follow system style</string>
+              </property>
+             </item>
             </widget>
            </item>
            <item row="0" column="2">
@@ -539,6 +577,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Default</string>
@@ -582,6 +623,9 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Path to the icon or icon name from theme&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
             </widget>
            </item>
           </layout>
@@ -612,6 +656,9 @@
           <layout class="QVBoxLayout" name="translationBoxLayout">
            <item>
             <widget class="QCheckBox" name="sourceTranslitCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Enable source transliteration</string>
              </property>
@@ -619,6 +666,9 @@
            </item>
            <item>
             <widget class="QCheckBox" name="translationTranslitCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Enable translation transliteration</string>
              </property>
@@ -626,6 +676,9 @@
            </item>
            <item>
             <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Enable source transcription</string>
              </property>
@@ -633,6 +686,9 @@
            </item>
            <item>
             <widget class="QCheckBox" name="translationOptionsCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Enable translation options</string>
              </property>
@@ -640,6 +696,9 @@
            </item>
            <item>
             <widget class="QCheckBox" name="examplesCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>Enable examples</string>
              </property>
@@ -651,7 +710,7 @@
         <item>
          <widget class="QGroupBox" name="languageDetectionGroupBox">
           <property name="title">
-           <string>Automatic language detection</string>
+           <string>Automatic translation language detection</string>
           </property>
           <layout class="QGridLayout" name="languageDetectionLayout">
            <item row="1" column="0">
@@ -662,10 +721,18 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="primaryLanguageComboBox"/>
+            <widget class="QComboBox" name="primaryLanguageComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="secondaryLanguageComboBox"/>
+            <widget class="QComboBox" name="secondaryLanguageComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The language into which the text will be translated if it is in the primary language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item row="0" column="0">
             <widget class="QLabel" name="primaryLanguageLabel">
@@ -728,6 +795,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string notr="true">Google</string>
@@ -778,6 +848,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Default</string>
@@ -806,6 +879,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Default</string>
@@ -822,6 +898,9 @@
            </item>
            <item row="3" column="1">
             <widget class="QLineEdit" name="testSpeechEdit">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>This is an example of speech synthesis.</string>
              </property>
@@ -833,7 +912,7 @@
            <item row="3" column="2">
             <widget class="QToolButton" name="testSpeechButton">
              <property name="toolTip">
-              <string>Test</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Test speech synthesis&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Test</string>
@@ -882,6 +961,9 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="echoMode">
               <enum>QLineEdit::Password</enum>
              </property>
@@ -891,6 +973,9 @@
             <widget class="QLineEdit" name="proxyUsernameEdit">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -908,6 +993,9 @@
             <widget class="QSpinBox" name="proxyPortSpinbox">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="minimum">
               <number>1</number>
@@ -934,6 +1022,9 @@
             <widget class="QCheckBox" name="proxyAuthCheckBox">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Authentication</string>
@@ -975,6 +1066,9 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string/>
              </property>
@@ -987,6 +1081,9 @@
                <horstretch>0</horstretch>
                <verstretch>0</verstretch>
               </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <item>
               <property name="text">
@@ -1257,7 +1354,7 @@
            </sizepolicy>
           </property>
           <property name="toolTip">
-           <string>Reset all to default</string>
+           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
           </property>
           <property name="text">
            <string>Reset all</string>
@@ -1281,12 +1378,16 @@
             </widget>
            </item>
            <item>
-            <widget class="QKeySequenceEdit" name="shortcutSequenceEdit"/>
+            <widget class="QKeySequenceEdit" name="shortcutSequenceEdit">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Key sequence of the selected shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QToolButton" name="acceptShortcutButton">
              <property name="toolTip">
-              <string>Accept</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Accept</string>
@@ -1300,7 +1401,7 @@
            <item>
             <widget class="QToolButton" name="clearShortcutButton">
              <property name="toolTip">
-              <string>Clear</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Clear</string>
