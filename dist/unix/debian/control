@@ -7,5 +7,5 @@ Homepage: https://github.com/Shatur95/Crow
 
 Package: crow-translate
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}, gstreamer1.0-fluendo-mp3, qtgstreamer-plugins-qt5, gstreamer1.0-plugins-good, gstreamer1.0-alsa, gstreamer1.0-pulseaudio, libqt5multimedia5-plugins
+Depends: ${shlibs:Depends}, ${misc:Depends}, qtgstreamer-plugins-qt5, gstreamer1.0-plugins-good, gstreamer1.0-alsa, gstreamer1.0-pulseaudio, libqt5multimedia5-plugins
 Description:  A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API and much more
