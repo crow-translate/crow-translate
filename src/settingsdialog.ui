@@ -181,6 +181,15 @@
              </item>
              <item>
               <property name="text">
+               <string>Português (Brasil)</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/flags/pt.svg</normaloff>:/icons/flags/pt.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string notr="true">Русский</string>
               </property>
               <property name="icon">
