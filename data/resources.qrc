@@ -127,5 +127,6 @@
         <file>icons/flags/apc.svg</file>
         <file>icons/engines/bing.svg</file>
         <file>translations/crow_zh_CN.qm</file>
+        <file>translations/crow_pt_BR.qm</file>
     </qresource>
 </RCC>
