@@ -128,5 +128,6 @@
         <file>icons/engines/bing.svg</file>
         <file>translations/crow_zh_CN.qm</file>
         <file>translations/crow_pt_BR.qm</file>
+        <file>translations/crow_uk.qm</file>
     </qresource>
 </RCC>
