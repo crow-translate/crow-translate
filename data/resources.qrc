@@ -129,5 +129,6 @@
         <file>translations/crow_zh_CN.qm</file>
         <file>translations/crow_pt_BR.qm</file>
         <file>translations/crow_uk.qm</file>
+        <file>translations/crow_tr.qm</file>
     </qresource>
 </RCC>
