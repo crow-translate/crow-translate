@@ -208,6 +208,15 @@
              </item>
              <item>
               <property name="text">
+               <string>Türk</string>
+              </property>
+              <property name="icon">
+               <iconset resource="../data/resources.qrc">
+                <normaloff>:/icons/flags/tr.svg</normaloff>:/icons/flags/tr.svg</iconset>
+              </property>
+             </item>
+             <item>
+              <property name="text">
                <string notr="true">简体中文 (中国)</string>
               </property>
               <property name="icon">

@@ -74,6 +74,7 @@ TRANSLATIONS += \
     data/translations/crow_ru.ts \
     data/translations/crow_pt_BR.ts \
     data/translations/crow_uk.ts \
+    data/translations/crow_tr.ts \
     data/translations/crow_zh_CN.ts
 
 # Compile translations
