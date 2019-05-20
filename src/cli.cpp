@@ -28,16 +28,16 @@ void Cli::parseArguments(QCoreApplication &app)
     parser.addPositionalArgument("text", "Text to translate. By default, the translation will be done to the system language.");
     parser.addHelpOption();
     parser.addVersionOption();
-    parser.addOption(QCommandLineOption({"c", "codes"}, "Show all language codes."));
-    parser.addOption(QCommandLineOption({"a", "audio-only"}, "Print text only for speaking when using --speak-translation or --speak-source."));
-    parser.addOption(QCommandLineOption({"s", "source"}, "Specify the source language (by default, engine will try to determine the language on its own).", "code", "auto"));
-    parser.addOption(QCommandLineOption({"t", "translation"}, " 	Specify the translation language(s), joined by '+' (by default, the system language is used).", "code", "auto"));
-    parser.addOption(QCommandLineOption({"l", "locale"}, "Specify the translator language (by default, the system language is used).", "code", "auto"));
-    parser.addOption(QCommandLineOption({"e", "engine"}, "Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default.", "engine", "google"));
-    parser.addOption(QCommandLineOption({"p", "speak-translation"}, "Speak the translation."));
-    parser.addOption(QCommandLineOption({"u", "speak-source"}, "Speak the source."));
-    parser.addOption(QCommandLineOption({"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."));
-    parser.addOption(QCommandLineOption({"i", "stdin"}, "Add stdin data to source text."));
+    parser.addOption({{"c", "codes"}, "Show all language codes."});
+    parser.addOption({{"a", "audio-only"}, "Print text only for speaking when using --speak-translation or --speak-source."});
+    parser.addOption({{"s", "source"}, "Specify the source language (by default, engine will try to determine the language on its own).", "code", "auto"});
+    parser.addOption({{"t", "translation"}, " 	Specify the translation language(s), joined by '+' (by default, the system language is used).", "code", "auto"});
+    parser.addOption({{"l", "locale"}, "Specify the translator language (by default, the system language is used).", "code", "auto"});
+    parser.addOption({{"e", "engine"}, "Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default.", "engine", "google"});
+    parser.addOption({{"p", "speak-translation"}, "Speak the translation."});
+    parser.addOption({{"u", "speak-source"}, "Speak the source."});
+    parser.addOption({{"f", "file"}, "Read source text from files. Arguments will be interpreted as file paths."});
+    parser.addOption({{"i", "stdin"}, "Add stdin data to source text."});
     parser.process(app);
 
     // Only show language codes
