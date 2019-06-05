@@ -43,7 +43,6 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <sub><b>Screenshots</b>: OS: <a href="https://www.microsoft.com/en-us/software-download/windows10">Windows 10</a> | Theme: <a href="https://www.deviantart.com/sagorpirbd/art/Windows-8-Themes-for-Win10-Final-556761647">Windows 8</a> | Wallpaper: Default Windows 10 flower</sub>
 </p>
 
-
 ## Features
 
 -   Translate and speak text in any application that supports text selection
