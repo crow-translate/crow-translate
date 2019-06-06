@@ -1230,7 +1230,7 @@
            </item>
            <item>
             <property name="text">
-             <string>Stop speaking selected text</string>
+             <string>Stop text speaking</string>
             </property>
             <property name="icon">
              <iconset theme="media-playback-stop">
@@ -1315,18 +1315,6 @@
               <string/>
              </property>
             </item>
-            <item>
-             <property name="text">
-              <string>Stop text speaking</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-stop">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
            </item>
            <item>
             <property name="text">
@@ -1344,18 +1332,6 @@
              </property>
              <property name="icon">
               <iconset theme="media-playback-start">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Stop text speaking</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-stop">
                <normaloff>.</normaloff>.</iconset>
              </property>
              <property name="text">

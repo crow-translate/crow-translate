@@ -156,13 +156,6 @@
         <property name="toolTip">
          <string>Play / pause source text speaking</string>
         </property>
-        <property name="text">
-         <string>Play</string>
-        </property>
-        <property name="icon">
-         <iconset theme="media-playback-start">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
        </widget>
       </item>
       <item>
@@ -172,13 +165,6 @@
         </property>
         <property name="toolTip">
          <string>Stop source text speaking</string>
-        </property>
-        <property name="text">
-         <string>Stop</string>
-        </property>
-        <property name="icon">
-         <iconset theme="media-playback-stop">
-          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
@@ -276,13 +262,6 @@
         <property name="toolTip">
          <string>Play / pause translation speaking</string>
         </property>
-        <property name="text">
-         <string>Play</string>
-        </property>
-        <property name="icon">
-         <iconset theme="media-playback-start">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
        </widget>
       </item>
       <item>
@@ -292,13 +271,6 @@
         </property>
         <property name="toolTip">
          <string>Stop translation speaking</string>
-        </property>
-        <property name="text">
-         <string>Stop</string>
-        </property>
-        <property name="icon">
-         <iconset theme="media-playback-stop">
-          <normaloff>.</normaloff>.</iconset>
         </property>
        </widget>
       </item>
