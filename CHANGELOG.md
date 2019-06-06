@@ -12,10 +12,12 @@ All notable changes to this project will be documented in this file. This projec
 -   Fix date check for leap years.
 -   Add simplified Chinese support.
 -   Rework CLI interface.
--   Monor performance improvements.
 -   Do not translate automatically if the translation button is pressed faster.
 -   Remove 300ms delay for automatic translation delay when changing source text.
 -   Cancel previous request if new was requested.
+-   Use source / translation fields to control selection speaking.
+-   Use one shortcut to stop all text playback.
+-   Minor performance improvements.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 

@@ -174,7 +174,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.translateSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.playSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.playTranslatedSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.stopSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.stopSpeakingHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.showMainWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, settings.copyTranslatedSelectionHotkey());
 
@@ -182,26 +182,22 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.translateHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.closeWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, settings.playSourceHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setText(1, settings.stopSourceHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, settings.playTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.stopTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setText(1, settings.copyTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.copyTranslationHotkey());
 
     // Save default shortcuts
     ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateSelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, settings.defaultPlaySelectionHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, settings.defaultPlayTranslatedSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, settings.defaultStopSelectionHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, settings.defaultStopSpeakingHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, settings.defaultShowMainWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, settings.defaultCopyTranslatedSelectionHotkey());
 
     ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, settings.defaultCloseWindowHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setData(1, Qt::UserRole, settings.defaultPlaySourceHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->setData(1, Qt::UserRole, settings.defaultStopSourceHotkey());
     ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, settings.defaultStopTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
+    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
 
     // Check current date
     const QDate date = QDate::currentDate();
@@ -266,7 +262,7 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setTranslateSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
     settings.setPlaySelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
     settings.setPlayTranslatedSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
-    settings.setStopSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
+    settings.setStopSpeakingHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
     settings.setShowMainWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
     settings.setCopyTranslatedSelectionHotkeyHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->text(1));
 
@@ -274,10 +270,8 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setTranslateHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
     settings.setCloseWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->text(1));
     settings.setPlaySourceHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->text(1));
-    settings.setStopSourceHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(1)->text(1));
     settings.setPlayTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
-    settings.setStopTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
-    settings.setCopyTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(2)->text(1));
+    settings.setCopyTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)

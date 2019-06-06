@@ -23,42 +23,58 @@
 #include "appsettings.h"
 #include "langbuttongroup.h"
 #include "singleapplication.h"
+#include "mainwindow.h"
+#include "playerbuttons.h"
 
 #include <QScreen>
+#include <QMediaPlaylist>
 #include <QShortcut>
 #include <QCloseEvent>
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
 
-PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, int engineIndex, QWidget *parent) :
+PopupWindow::PopupWindow(MainWindow *parent) :
     QWidget(parent, Qt::Window | Qt::FramelessWindowHint),
     ui(new Ui::PopupWindow)
 {
     ui->setupUi(this);
-    this->setAttribute(Qt::WA_DeleteOnClose);
+    setAttribute(Qt::WA_DeleteOnClose);
+    connect(parent, &MainWindow::translationTextChanged, ui->translationEdit, &QTextEdit::setHtml);
+    ui->engineComboBox->setCurrentIndex(parent->engineCombobox()->currentIndex());
 
     // Window settings
     const AppSettings settings;
     setWindowOpacity(settings.popupOpacity());
     resize(settings.popupWidth(), settings.popupHeight());
-    ui->engineComboBox->setCurrentIndex(engineIndex);
 
-    // Translation button group
-    m_sourceButtonGroup = new LangButtonGroup(LangButtonGroup::Source, this);
-    m_sourceButtonGroup->addButton(ui->autoSourceButton);
-    m_sourceButtonGroup->addButton(ui->firstSourceButton);
-    m_sourceButtonGroup->addButton(ui->secondSourceButton);
-    m_sourceButtonGroup->addButton(ui->thirdSourceButton);
-    m_sourceButtonGroup->loadLanguages(sourceGroup);
+    // Player buttons
+    m_sourcePlayerButtons = new PlayerButtons(ui->playSourceButton, ui->stopSourceButton, this);
+    m_translationPlayerButtons = new PlayerButtons(ui->playTranslationButton, ui->stopTranslationButton, this);
+    m_sourcePlayerButtons->setMediaPlayer(parent->sourcePlayerButtons()->mediaPlayer());
+    m_translationPlayerButtons->setMediaPlayer(parent->translationPlayerButtons()->mediaPlayer());
+    connect(m_sourcePlayerButtons, &PlayerButtons::playerDataRequested, parent->sourcePlayerButtons(), &PlayerButtons::playerDataRequested);
+    connect(m_translationPlayerButtons, &PlayerButtons::playerDataRequested, parent->translationPlayerButtons(), &PlayerButtons::playerDataRequested);
 
     // Source button group
-    m_translationButtonGroup = new LangButtonGroup(LangButtonGroup::Translation, this);
-    m_translationButtonGroup->addButton(ui->autoTranslationButton);
-    m_translationButtonGroup->addButton(ui->firstTranslationButton);
-    m_translationButtonGroup->addButton(ui->secondTranslationButton);
-    m_translationButtonGroup->addButton(ui->thirdTranslationButton);
-    m_translationButtonGroup->loadLanguages(translationGroup);
+    m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);
+    m_sourceLangButtons->addButton(ui->autoSourceButton);
+    m_sourceLangButtons->addButton(ui->firstSourceButton);
+    m_sourceLangButtons->addButton(ui->secondSourceButton);
+    m_sourceLangButtons->addButton(ui->thirdSourceButton);
+    m_sourceLangButtons->loadLanguages(parent->sourceLangButtons());
+    connect(parent->sourceLangButtons(), &LangButtonGroup::buttonChecked, m_sourceLangButtons, &LangButtonGroup::checkButton);
+    connect(parent->sourceLangButtons(), &LangButtonGroup::languageChanged, m_sourceLangButtons,  &LangButtonGroup::setLanguage);
+
+    // Translation button group
+    m_translationLangButtons = new LangButtonGroup(LangButtonGroup::Translation, this);
+    m_translationLangButtons->addButton(ui->autoTranslationButton);
+    m_translationLangButtons->addButton(ui->firstTranslationButton);
+    m_translationLangButtons->addButton(ui->secondTranslationButton);
+    m_translationLangButtons->addButton(ui->thirdTranslationButton);
+    m_translationLangButtons->loadLanguages(parent->translationLangButtons());
+    connect(parent->translationLangButtons(), &LangButtonGroup::buttonChecked, m_translationLangButtons, &LangButtonGroup::checkButton);
+    connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons,  &LangButtonGroup::setLanguage);
 
     // Language buttons style
     Qt::ToolButtonStyle langsStyle = settings.popupLanguagesStyle();
@@ -86,81 +102,24 @@ PopupWindow::PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translat
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
+
+    // Connect popup window events
+    connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->engineComboBox, &QComboBox::setCurrentIndex);
+    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, parent->sourceLangButtons(), &LangButtonGroup::checkButton);
+    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, parent->translationLangButtons(), &LangButtonGroup::checkButton);
+    connect(ui->addSourceLangButton, &QToolButton::clicked, parent->addSourceLangButton(), &QToolButton::click);
+    connect(ui->addTranslationLangButton, &QToolButton::clicked, parent->addTranslationLangButton(), &QToolButton::click);
+    connect(ui->swapButton, &QToolButton::clicked, parent->swapButton(), &QToolButton::click);
+    connect(ui->copySourceButton, &QToolButton::clicked, parent->copySourceButton(), &QToolButton::click);
+    connect(ui->copyTranslationButton, &QToolButton::clicked, parent->copyTranslationButton(), &QToolButton::click);
+    connect(ui->copyAllTranslationButton, &QToolButton::clicked, parent->copyAllTranslationButton(), &QToolButton::click);
 }
 
 PopupWindow::~PopupWindow()
 {
+    m_sourcePlayerButtons->pause();
+    m_translationPlayerButtons->pause();
     delete ui;
-}
-
-QTextEdit *PopupWindow::translationEdit()
-{
-    return ui->translationEdit;
-}
-
-QToolButton *PopupWindow::swapButton()
-{
-    return ui->swapButton;
-}
-
-QComboBox *PopupWindow::engineCombobox()
-{
-    return ui->engineComboBox;
-}
-
-QToolButton *PopupWindow::addSourceLangButton()
-{
-    return ui->addSourceLangButton;
-}
-
-QToolButton *PopupWindow::playSourceButton()
-{
-    return ui->playSourceButton;
-}
-
-QToolButton *PopupWindow::stopSourceButton()
-{
-    return ui->stopSourceButton;
-}
-
-QToolButton *PopupWindow::copySourceButton()
-{
-    return ui->copySourceButton;
-}
-
-QToolButton *PopupWindow::addTranslationLangButton()
-{
-    return ui->addTranslationLangButton;
-}
-
-QToolButton *PopupWindow::playTranslationButton()
-{
-    return ui->playTranslationButton;
-}
-
-QToolButton *PopupWindow::stopTranslationButton()
-{
-    return ui->stopTranslationButton;
-}
-
-QToolButton *PopupWindow::copyTranslationButton()
-{
-    return ui->copyTranslationButton;
-}
-
-QToolButton *PopupWindow::copyAllTranslationButton()
-{
-    return ui->copyAllTranslationButton;
-}
-
-LangButtonGroup *PopupWindow::sourceButtons()
-{
-    return m_sourceButtonGroup;
-}
-
-LangButtonGroup *PopupWindow::translationButtons()
-{
-    return m_translationButtonGroup;
 }
 
 // Move popup to cursor and prevent appearing outside the screen

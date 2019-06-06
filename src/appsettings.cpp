@@ -445,12 +445,12 @@ void AppSettings::setPlayTranslatedSelectionHotkey(const QString &hotkey)
     setValue("Hotkeys/PlayTranslatedSelection", hotkey);
 }
 
-QString AppSettings::stopSelectionHotkey() const
+QString AppSettings::stopSpeakingHotkey() const
 {
-    return value("Hotkeys/StopSelection", defaultStopSelectionHotkey()).toString();
+    return value("Hotkeys/StopSelection", defaultStopSpeakingHotkey()).toString();
 }
 
-void AppSettings::setStopSelectionHotkey(const QString &hotkey)
+void AppSettings::setStopSpeakingHotkey(const QString &hotkey)
 {
     setValue("Hotkeys/StopSelection", hotkey);
 }
@@ -505,16 +505,6 @@ void AppSettings::setPlaySourceHotkey(const QString &hotkey)
     setValue("Hotkeys/PlaySource", hotkey);
 }
 
-QString AppSettings::stopSourceHotkey() const
-{
-    return value("Hotkeys/StopSource", defaultStopSourceHotkey()).toString();
-}
-
-void AppSettings::setStopSourceHotkey(const QString &hotkey)
-{
-    setValue("Hotkeys/StopSource", hotkey);
-}
-
 QString AppSettings::playTranslationHotkey() const
 {
     return value("Hotkeys/PlayTranslation", defaultPlayTranslationHotkey()).toString();
@@ -523,16 +513,6 @@ QString AppSettings::playTranslationHotkey() const
 void AppSettings::setPlayTranslationHotkey(const QString &hotkey)
 {
     setValue("Hotkeys/PlayTranslation", hotkey);
-}
-
-QString AppSettings::stopTranslationHotkey() const
-{
-    return value("Hotkeys/StopTranslation", defaultStopTranslationHotkey()).toString();
-}
-
-void AppSettings::setStopTranslationHotkey(const QString &hotkey)
-{
-    setValue("Hotkeys/StopTranslation", hotkey);
 }
 
 QString AppSettings::copyTranslationHotkey() const

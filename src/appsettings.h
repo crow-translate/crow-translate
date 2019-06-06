@@ -174,9 +174,9 @@ public:
     static constexpr const char *defaultPlayTranslatedSelectionHotkey()
     { return "Ctrl+Alt+F"; }
 
-    QString stopSelectionHotkey() const;
-    void setStopSelectionHotkey(const QString &hotkey);
-    static constexpr const char *defaultStopSelectionHotkey()
+    QString stopSpeakingHotkey() const;
+    void setStopSpeakingHotkey(const QString &hotkey);
+    static constexpr const char *defaultStopSpeakingHotkey()
     { return "Ctrl+Alt+G"; }
 
     QString showMainWindowHotkey() const;
@@ -205,20 +205,10 @@ public:
     static constexpr const char *defaultPlaySourceHotkey()
     { return "Ctrl+S"; }
 
-    QString stopSourceHotkey() const;
-    void setStopSourceHotkey(const QString &hotkey);
-    static constexpr const char *defaultStopSourceHotkey()
-    { return "Ctrl+G"; }
-
     QString playTranslationHotkey() const;
     void setPlayTranslationHotkey(const QString &hotkey);
     static constexpr const char *defaultPlayTranslationHotkey()
     { return "Ctrl+Shift+S"; }
-
-    QString stopTranslationHotkey() const;
-    void setStopTranslationHotkey(const QString &hotkey);
-    static constexpr const char *defaultStopTranslationHotkey()
-    { return "Ctrl+Shift+G"; }
 
     QString copyTranslationHotkey() const;
     void setCopyTranslationHotkey(const QString &hotkey);

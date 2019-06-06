@@ -28,6 +28,8 @@ class QTextEdit;
 class QToolButton;
 class QComboBox;
 class QShortcut;
+class MainWindow;
+class PlayerButtons;
 
 namespace Ui {
 class PopupWindow;
@@ -38,26 +40,8 @@ class PopupWindow : public QWidget
     Q_OBJECT
 
 public:
-    explicit PopupWindow(LangButtonGroup *sourceGroup, LangButtonGroup *translationGroup, int engineIndex, QWidget *parent = nullptr);
+    explicit PopupWindow(MainWindow *parent = nullptr);
     ~PopupWindow() override;
-
-    QTextEdit *translationEdit();
-    QToolButton *swapButton();
-    QComboBox *engineCombobox();
-
-    QToolButton *addSourceLangButton();
-    QToolButton *playSourceButton();
-    QToolButton *stopSourceButton();
-    QToolButton *copySourceButton();
-
-    QToolButton *addTranslationLangButton();
-    QToolButton *playTranslationButton();
-    QToolButton *stopTranslationButton();
-    QToolButton *copyTranslationButton();
-    QToolButton *copyAllTranslationButton();
-
-    LangButtonGroup *sourceButtons();
-    LangButtonGroup *translationButtons();
 
 private:
     void showEvent(QShowEvent *event) override;
@@ -65,8 +49,10 @@ private:
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;
-    LangButtonGroup *m_sourceButtonGroup;
-    LangButtonGroup *m_translationButtonGroup;
+    LangButtonGroup *m_sourceLangButtons;
+    LangButtonGroup *m_translationLangButtons;
+    PlayerButtons *m_sourcePlayerButtons;
+    PlayerButtons *m_translationPlayerButtons;
 };
 
 #endif // POPUPWINDOW_H

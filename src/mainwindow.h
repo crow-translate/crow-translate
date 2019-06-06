@@ -28,11 +28,15 @@
 
 class TrayIcon;
 class LangButtonGroup;
+class PlayerButtons;
 class AppSettings;
 class QHotkey;
 class QShortcut;
 class QTimer;
 class QMenu;
+class QComboBox;
+class QTextEdit;
+class QToolButton;
 
 namespace Ui {
 class MainWindow;
@@ -48,12 +52,21 @@ public:
 
     void activate();
 
+    QComboBox *engineCombobox();
+    QTextEdit *translationEdit();
+    QToolButton *addSourceLangButton();
+    QToolButton *addTranslationLangButton();
+    QToolButton *swapButton();
+    QToolButton *copySourceButton();
+    QToolButton *copyTranslationButton();
+    QToolButton *copyAllTranslationButton();
+    LangButtonGroup *sourceLangButtons();
+    LangButtonGroup *translationLangButtons();
+    PlayerButtons *sourcePlayerButtons();
+    PlayerButtons *translationPlayerButtons();
+
 signals:
     void translationTextChanged(const QString &text);
-    void playSourceButtonIconChanged(QIcon icon);
-    void stopSourceButtonEnabled(bool enabled);
-    void playTranslationButtonIconChanged(QIcon icon);
-    void stopTranslationButtonEnabled(bool enabled);
 
 private slots:
     // UI
@@ -62,11 +75,6 @@ private slots:
     void on_settingsButton_clicked();
     void on_autoTranslateCheckBox_toggled(bool checked);
     void on_engineComboBox_currentIndexChanged(int);
-
-    void on_playSourceButton_clicked();
-    void on_playTranslationButton_clicked();
-    void on_stopSourceButton_clicked();
-    void on_stopTranslationButton_clicked();
 
     void on_copySourceButton_clicked();
     void on_copyTranslationButton_clicked();
@@ -84,11 +92,6 @@ private slots:
     // Language buttons
     void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
-
-    // Player icons
-    void changeSourcePlayerState(QMediaPlayer::State state);
-    void changeTranslationPlayerState(QMediaPlayer::State state);
-    void changeSelectionPlayerState(QMediaPlayer::State state);
 
     // Autotranslate timer
     void startTranslateTimer();
@@ -108,7 +111,7 @@ private:
 
     // Helper functions
     void loadSettings(const AppSettings &settings);
-    void play(QMediaPlayer *player, QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
+    void setPlayingText(QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
 
     Ui::MainWindow *ui;
@@ -116,23 +119,19 @@ private:
     QOnlineTranslator *m_translator;
     QOnlineTranslator::Language m_uiLang;
 
-    QMediaPlayer *m_sourcePlayer;
-    QMediaPlayer *m_translationPlayer;
-    QMediaPlayer *m_selectionPlayer;
-    QMediaPlaylist *m_sourcePlaylist;
-    QMediaPlaylist *m_translationPlaylist;
-    QMediaPlaylist *m_selectionPlaylist;
+    PlayerButtons *m_sourcePlayerButtons;
+    PlayerButtons *m_translationPlayerButtons;
 
     QShortcut *m_closeWindowsShortcut;
     QHotkey *m_translateSelectionHotkey;
     QHotkey *m_playSelectionHotkey;
     QHotkey *m_playTranslatedSelectionHotkey;
-    QHotkey *m_stopSelectionHotkey;
+    QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
 
-    LangButtonGroup *m_sourceButtons;
-    LangButtonGroup *m_translationButtons;
+    LangButtonGroup *m_sourceLangButtons;
+    LangButtonGroup *m_translationLangButtons;
 
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
