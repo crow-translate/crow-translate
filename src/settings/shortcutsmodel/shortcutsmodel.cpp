@@ -181,7 +181,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(this);
-    windowShortcuts->setDescription("Main window");
+    windowShortcuts->setDescription(tr("Main window"));
 
     auto *translate = new ShortcutItem(windowShortcuts);
     translate->setDescription(tr("Translate"));
@@ -197,7 +197,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 
     // Source text shortcuts
     auto *sourceText = new ShortcutItem(windowShortcuts);
-    sourceText->setDescription("Source text");
+    sourceText->setDescription(tr("Source text"));
 
     auto *speakSource = new ShortcutItem(sourceText);
     speakSource->setDescription(tr("Play / pause text speaking"));
@@ -207,7 +207,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 
     // Translation text shortcuts
     auto *translationText = new ShortcutItem(windowShortcuts);
-    translationText->setDescription("Translation");
+    translationText->setDescription(tr("Translation"));
 
     auto *speakTranslation = new ShortcutItem(translationText);
     speakTranslation->setDescription(tr("Play / pause text speaking"));
@@ -216,8 +216,8 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     speakTranslation->setDefaultShortcut(AppSettings::defaultSpeakTranslationHotkey());
 
     auto *copyTranslation = new ShortcutItem(translationText);
-    copyTranslation->setDescription(tr("Play / pause text speaking"));
-    copyTranslation->setIconName("media-playback-start");
+    copyTranslation->setDescription(tr("Copy to clipboard"));
+    copyTranslation->setIconName("edit-copy");
     copyTranslation->setShortcut(settings.copyTranslationHotkey());
     copyTranslation->setDefaultShortcut(AppSettings::defaultCopyTranslationHotkey());
 
