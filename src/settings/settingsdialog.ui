@@ -181,7 +181,7 @@
              </item>
              <item>
               <property name="text">
-               <string>Português (Brasil)</string>
+               <string notr="true">Português (Brasil)</string>
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
@@ -208,7 +208,7 @@
              </item>
              <item>
               <property name="text">
-               <string>Türk</string>
+               <string notr="true">Türk</string>
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
@@ -1453,6 +1453,7 @@
    <extends>QTreeView</extends>
    <header>src/settings/shortcutsmodel/shortcutsview.h</header>
    <slots>
+    <signal>currentItemChanged(ShortcutItem*)</signal>
     <signal>currentShortcutChanged(ShortcutItem*)</signal>
    </slots>
   </customwidget>

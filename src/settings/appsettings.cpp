@@ -128,7 +128,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
             constexpr char desktopFileName[] = "/usr/share/applications/crow-translate.desktop";
 
             if (!QFile::copy(desktopFileName, autorunFile.fileName()))
-                qCritical() << tr("Unable to create autorun file from ") + desktopFileName;
+                qCritical() << tr("Unable to create autorun file from %1").arg(desktopFileName);
         }
     } else {
         // Remove autorun file
