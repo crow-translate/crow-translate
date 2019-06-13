@@ -21,13 +21,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "popupwindow.h"
-#include "settingsdialog.h"
 #include "addlangdialog.h"
 #include "langbuttongroup.h"
 #include "playerbuttons.h"
-#include "appsettings.h"
 #include "qhotkey.h"
 #include "singleapplication.h"
+#include "settings/settingsdialog.h"
+#include "settings/appsettings.h"
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
 
@@ -695,16 +695,16 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // Global shortcuts
     m_translateSelectionHotkey->setShortcut(settings.translateSelectionHotkey(), true);
-    m_playSelectionHotkey->setShortcut(settings.playSelectionHotkey(), true);
+    m_playSelectionHotkey->setShortcut(settings.speakSelectionHotkey(), true);
     m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingHotkey(), true);
-    m_playTranslatedSelectionHotkey->setShortcut(settings.playTranslatedSelectionHotkey(), true);
+    m_playTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionHotkey(), true);
     m_showMainWindowHotkey->setShortcut(settings.showMainWindowHotkey(), true);
     m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionHotkey(), true);
 
     // Window shortcuts
     ui->translateButton->setShortcut(settings.translateHotkey());
-    ui->playSourceButton->setShortcut(settings.playSourceHotkey());
-    ui->playTranslationButton->setShortcut(settings.playTranslationHotkey());
+    ui->playSourceButton->setShortcut(settings.speakSourceHotkey());
+    ui->playTranslationButton->setShortcut(settings.speakTranslationHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
 }

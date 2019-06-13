@@ -22,6 +22,8 @@
 #include "ui_settingsdialog.h"
 #include "appsettings.h"
 #include "singleapplication.h"
+#include "shortcutsmodel/shortcutsmodel.h"
+#include "shortcutsmodel/shortcutitem.h"
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
 #endif
@@ -40,8 +42,6 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 {
     ui->setupUi(this);
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
-    ui->shortcutsTreeWidget->expandAll();
-    ui->shortcutsTreeWidget->header()->setSectionResizeMode(QHeaderView::ResizeToContents);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
     ui->versionLabel->setText(SingleApplication::applicationVersion());
 
@@ -124,87 +124,14 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     static_cast<QVBoxLayout*>(ui->generalGroupBox->layout())->insertLayout(2, m_checkForUpdatesLayout);
 #endif
 
-    // General settings
-    const AppSettings settings;
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
-    ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
-#if defined(Q_OS_WIN)
-    m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
-#endif
-    ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
-    ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
-    ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
-
-    // Interface settings
-    ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
-    ui->popupWidthSpinBox->setValue(settings.popupWidth());
-    ui->popupHeightSpinBox->setValue(settings.popupHeight());
-    ui->popupLanguagesComboBox->setCurrentIndex(settings.popupLanguagesStyle());
-    ui->popupControlsComboBox->setCurrentIndex(settings.popupControlsStyle());
-
-    ui->windowLanguagesComboBox->setCurrentIndex(settings.windowLanguagesStyle());
-    ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
-
-    ui->trayIconComboBox->setCurrentIndex(settings.trayIconType());
-    ui->customTrayIconEdit->setText(settings.customIconPath());
-
-    // Translation settings
-    ui->sourceTranslitCheckBox->setChecked(settings.isSourceTranslitEnabled());
-    ui->translationTranslitCheckBox->setChecked(settings.isTranslationTranslitEnabled());
-    ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());
-    ui->translationOptionsCheckBox->setChecked(settings.isTranslationOptionsEnabled());
-    ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
-
-    // Speech synthesis settings
-    yandexVoice = settings.yandexVoice();
-    bingVoice = settings.bingVoice();
-    yandexEmotion = settings.yandexEmotion();
-
-    // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
-    ui->proxyHostEdit->setText(settings.proxyHost());
-    ui->proxyPortSpinbox->setValue(settings.proxyPort());
-    ui->proxyAuthCheckBox->setChecked(settings.isProxyAuthEnabled());
-    ui->proxyUsernameEdit->setText(settings.proxyUsername());
-    ui->proxyPasswordEdit->setText(settings.proxyPassword());
-
-    // Global shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setText(1, settings.translateSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setText(1, settings.playSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setText(1, settings.playTranslatedSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setText(1, settings.stopSpeakingHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setText(1, settings.showMainWindowHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setText(1, settings.copyTranslatedSelectionHotkey());
-
-    // Window shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setText(1, settings.translateHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setText(1, settings.closeWindowHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setText(1, settings.playSourceHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setText(1, settings.playTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setText(1, settings.copyTranslationHotkey());
-
-    // Save default shortcuts
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->setData(1, Qt::UserRole, settings.defaultPlaySelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->setData(1, Qt::UserRole, settings.defaultPlayTranslatedSelectionHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->setData(1, Qt::UserRole, settings.defaultStopSpeakingHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->setData(1, Qt::UserRole, settings.defaultShowMainWindowHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->setData(1, Qt::UserRole, settings.defaultCopyTranslatedSelectionHotkey());
-
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->setData(1, Qt::UserRole, settings.defaultTranslateHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->setData(1, Qt::UserRole, settings.defaultCloseWindowHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->setData(1, Qt::UserRole, settings.defaultPlaySourceHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->setData(1, Qt::UserRole, settings.defaultPlayTranslationHotkey());
-    ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->setData(1, Qt::UserRole, settings.defaultCopyTranslationHotkey());
-
     // Check current date
     const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31)
             || (date.month() == 1 && date.day() == 1)) {
         ui->testSpeechEdit->setText(tr("Happy New Year!"));
     }
+
+    loadSettings();
 }
 
 SettingsDialog::~SettingsDialog()
@@ -258,20 +185,8 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setProxyUsername(ui->proxyUsernameEdit->text());
     settings.setProxyPassword(ui->proxyPasswordEdit->text());
 
-    // Global shortcuts
-    settings.setTranslateSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(0)->text(1));
-    settings.setPlaySelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(1)->text(1));
-    settings.setPlayTranslatedSelectionHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(2)->text(1));
-    settings.setStopSpeakingHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(3)->text(1));
-    settings.setShowMainWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(4)->text(1));
-    settings.setCopyTranslatedSelectionHotkeyHotkey(ui->shortcutsTreeWidget->topLevelItem(0)->child(5)->text(1));
-
-    // Window shortcuts
-    settings.setTranslateHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(0)->text(1));
-    settings.setCloseWindowHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(1)->text(1));
-    settings.setPlaySourceHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(2)->child(0)->text(1));
-    settings.setPlayTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(0)->text(1));
-    settings.setCopyTranslationHotkey(ui->shortcutsTreeWidget->topLevelItem(1)->child(3)->child(1)->text(1));
+    // Shortcuts
+    ui->shortcutsTreeView->model()->saveShortcuts(settings);
 }
 
 void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
@@ -459,22 +374,20 @@ void SettingsDialog::on_testSpeechButton_clicked()
     m_player->play();
 }
 
-void SettingsDialog::on_shortcutsTreeWidget_itemSelectionChanged()
+void SettingsDialog::on_shortcutsTreeView_currentItemChanged(ShortcutItem *item)
 {
-    if (ui->shortcutsTreeWidget->currentItem()->childCount() == 0) {
+    if (item->childCount() == 0) {
         ui->shortcutGroupBox->setEnabled(true);
-        ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
+        ui->shortcutSequenceEdit->setKeySequence(item->shortcut());
     } else {
         ui->shortcutGroupBox->setEnabled(false);
         ui->shortcutSequenceEdit->clear();
     }
-
-    ui->acceptShortcutButton->setEnabled(false);
 }
 
 void SettingsDialog::on_shortcutSequenceEdit_editingFinished()
 {
-    if (ui->shortcutsTreeWidget->currentItem()->text(1) != ui->shortcutSequenceEdit->keySequence().toString())
+    if (ui->shortcutsTreeView->currentItem()->shortcut() != ui->shortcutSequenceEdit->keySequence())
         ui->acceptShortcutButton->setEnabled(true);
     else
         ui->acceptShortcutButton->setEnabled(false);
@@ -482,7 +395,7 @@ void SettingsDialog::on_shortcutSequenceEdit_editingFinished()
 
 void SettingsDialog::on_acceptShortcutButton_clicked()
 {
-    ui->shortcutsTreeWidget->currentItem()->setText(1, ui->shortcutSequenceEdit->keySequence().toString());
+    ui->shortcutsTreeView->currentItem()->setShortcut(ui->shortcutSequenceEdit->keySequence());
     ui->acceptShortcutButton->setEnabled(false);
 }
 
@@ -494,19 +407,14 @@ void SettingsDialog::on_clearShortcutButton_clicked()
 
 void SettingsDialog::on_resetShortcutButton_clicked()
 {
-    ui->shortcutsTreeWidget->currentItem()->setText(1, ui->shortcutsTreeWidget->currentItem()->data(1, Qt::UserRole).toString());
-    ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeWidget->currentItem()->text(1));
+    ui->shortcutsTreeView->currentItem()->resetShortcut();
+    ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeView->currentItem()->shortcut());
     ui->acceptShortcutButton->setEnabled(false);
 }
 
 void SettingsDialog::on_resetAllShortcutsButton_clicked()
 {
-    QTreeWidgetItemIterator it(ui->shortcutsTreeWidget, QTreeWidgetItemIterator::NoChildren);
-    while (*it) {
-        QTreeWidgetItem *item = *it;
-        item->setText(1, item->data(1, Qt::UserRole).toString());
-        ++it;
-    }
+    ui->shortcutsTreeView->model()->resetAllShortcuts();
 }
 
 #if defined(Q_OS_WIN)
@@ -592,4 +500,56 @@ void SettingsDialog::restoreDefaults()
 
     // Shortcuts
     on_resetAllShortcutsButton_clicked();
+}
+
+void SettingsDialog::loadSettings()
+{
+    // General settings
+    const AppSettings settings;
+    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
+    ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
+#if defined(Q_OS_WIN)
+    m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
+#endif
+    ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
+    ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
+    ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
+
+    // Interface settings
+    ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
+    ui->popupWidthSpinBox->setValue(settings.popupWidth());
+    ui->popupHeightSpinBox->setValue(settings.popupHeight());
+    ui->popupLanguagesComboBox->setCurrentIndex(settings.popupLanguagesStyle());
+    ui->popupControlsComboBox->setCurrentIndex(settings.popupControlsStyle());
+
+    ui->windowLanguagesComboBox->setCurrentIndex(settings.windowLanguagesStyle());
+    ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
+
+    ui->trayIconComboBox->setCurrentIndex(settings.trayIconType());
+    ui->customTrayIconEdit->setText(settings.customIconPath());
+
+    // Translation settings
+    ui->sourceTranslitCheckBox->setChecked(settings.isSourceTranslitEnabled());
+    ui->translationTranslitCheckBox->setChecked(settings.isTranslationTranslitEnabled());
+    ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());
+    ui->translationOptionsCheckBox->setChecked(settings.isTranslationOptionsEnabled());
+    ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
+
+    // Speech synthesis settings
+    yandexVoice = settings.yandexVoice();
+    bingVoice = settings.bingVoice();
+    yandexEmotion = settings.yandexEmotion();
+
+    // Connection settings
+    ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
+    ui->proxyHostEdit->setText(settings.proxyHost());
+    ui->proxyPortSpinbox->setValue(settings.proxyPort());
+    ui->proxyAuthCheckBox->setChecked(settings.isProxyAuthEnabled());
+    ui->proxyUsernameEdit->setText(settings.proxyUsername());
+    ui->proxyPasswordEdit->setText(settings.proxyPassword());
+
+    // Shortcuts
+    ui->shortcutsTreeView->model()->loadShortcuts(settings);
 }

@@ -27,6 +27,7 @@
 
 class QMediaPlayer;
 class QMediaPlaylist;
+class ShortcutItem;
 #ifdef Q_OS_WIN
 class QHBoxLayout;
 class QComboBox;
@@ -60,7 +61,7 @@ private slots:
     void on_emotionComboBox_currentIndexChanged(int index);
     void on_testSpeechButton_clicked();
 
-    void on_shortcutsTreeWidget_itemSelectionChanged();
+    void on_shortcutsTreeView_currentItemChanged(ShortcutItem *item);
     void on_shortcutSequenceEdit_editingFinished();
     void on_acceptShortcutButton_clicked();
     void on_clearShortcutButton_clicked();
@@ -73,6 +74,8 @@ private slots:
     void restoreDefaults();
 
 private:
+    void loadSettings();
+
     Ui::SettingsDialog *ui;
 
     // Test voice

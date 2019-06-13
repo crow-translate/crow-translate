@@ -19,7 +19,7 @@
  */
 
 #include "langbuttongroup.h"
-#include "appsettings.h"
+#include "settings/appsettings.h"
 
 #include <QAbstractButton>
 

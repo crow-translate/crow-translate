@@ -19,9 +19,9 @@
  */
 
 #include "mainwindow.h"
-#include "appsettings.h"
 #include "cli.h"
 #include "singleapplication.h"
+#include "settings/appsettings.h"
 
 int launchGui(int argc, char *argv[]);
 int launchCli(int argc, char *argv[]);

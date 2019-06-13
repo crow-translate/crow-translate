@@ -8,6 +8,7 @@ TARGET = crow
 TEMPLATE = app
 VERSION = 2.1.0
 QT += core gui widgets dbus
+INCLUDEPATH = src
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Hennadii Chernyshchyk
@@ -29,27 +30,34 @@ SOURCES += \
     src/main.cpp \
     src/cli.cpp \
     src/playerbuttons.cpp \
-    src/settingsdialog.cpp \
+    src/settings/settingsdialog.cpp \
+    src/settings/appsettings.cpp \
+    src/settings/shortcutsmodel/shortcutitem.cpp \
+    src/settings/shortcutsmodel/shortcutsmodel.cpp \
     src/mainwindow.cpp \
     src/popupwindow.cpp \
-    src/appsettings.cpp \
     src/langbuttongroup.cpp \
     src/addlangdialog.cpp \
+    src/settings/shortcutsmodel/shortcutsview.cpp \
     src/trayicon.cpp
 
 HEADERS += \
     src/cli.h \
     src/playerbuttons.h \
-    src/settingsdialog.h \
+    src/settings/settingsdialog.h \
+    src/settings/appsettings.h \
+    src/settings/shortcutsmodel/shortcutitem.h \
+    src/settings/shortcutsmodel/shortcutsmodel.h \
+#    src/settings/shortcutsmodel/shortcutsview.h \
     src/mainwindow.h \
     src/popupwindow.h \
-    src/appsettings.h \
     src/langbuttongroup.h \
     src/addlangdialog.h \
+    src/settings/shortcutsmodel/shortcutsview.h \
     src/trayicon.h
 
 FORMS += \
-    src/settingsdialog.ui \
+    src/settings/settingsdialog.ui \
     src/mainwindow.ui \
     src/popupwindow.ui \
     src/addlangdialog.ui

@@ -27,6 +27,7 @@
 #include <QTextStream>
 #include <QLibraryInfo>
 #include <QMetaEnum>
+#include <QKeySequence>
 #if defined(Q_OS_WIN)
 #include <QDir>
 #endif
@@ -415,114 +416,169 @@ void AppSettings::setProxyPassword(const QString &password)
     setValue("Connection/ProxyPassword", password);
 }
 
-QString AppSettings::translateSelectionHotkey() const
+QKeySequence AppSettings::translateSelectionHotkey() const
 {
-    return value("Hotkeys/TranslateSelection", defaultTranslateSelectionHotkey()).toString();
+    return value("Hotkeys/TranslateSelection", defaultTranslateSelectionHotkey()).value<QKeySequence>();
 }
 
-void AppSettings::setTranslateSelectionHotkey(const QString &hotkey)
+void AppSettings::setTranslateSelectionHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/TranslateSelection", hotkey);
 }
 
-QString AppSettings::playSelectionHotkey() const
+QKeySequence AppSettings::defaultTranslateSelectionHotkey()
 {
-    return value("Hotkeys/PlaySelection", defaultPlaySelectionHotkey()).toString();
+    return QKeySequence("Ctrl+Alt+E");
 }
 
-void AppSettings::setPlaySelectionHotkey(const QString &hotkey)
+QKeySequence AppSettings::speakSelectionHotkey() const
+{
+    return value("Hotkeys/PlaySelection", defaultSpeakSelectionHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setSpeakSelectionHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/PlaySelection", hotkey);
 }
 
-QString AppSettings::playTranslatedSelectionHotkey() const
+QKeySequence AppSettings::defaultSpeakSelectionHotkey()
 {
-    return value("Hotkeys/PlayTranslatedSelection", defaultPlayTranslatedSelectionHotkey()).toString();
+    return QKeySequence("Ctrl+Alt+S");
 }
 
-void AppSettings::setPlayTranslatedSelectionHotkey(const QString &hotkey)
+QKeySequence AppSettings::speakTranslatedSelectionHotkey() const
+{
+    return value("Hotkeys/PlayTranslatedSelection", defaultSpeakTranslatedSelectionHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setSpeakTranslatedSelectionHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/PlayTranslatedSelection", hotkey);
 }
 
-QString AppSettings::stopSpeakingHotkey() const
+QKeySequence AppSettings::defaultSpeakTranslatedSelectionHotkey()
 {
-    return value("Hotkeys/StopSelection", defaultStopSpeakingHotkey()).toString();
+    return QKeySequence("Ctrl+Alt+F");
 }
 
-void AppSettings::setStopSpeakingHotkey(const QString &hotkey)
+QKeySequence AppSettings::stopSpeakingHotkey() const
+{
+    return value("Hotkeys/StopSelection", defaultStopSpeakingHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setStopSpeakingHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/StopSelection", hotkey);
 }
 
-QString AppSettings::showMainWindowHotkey() const
+QKeySequence AppSettings::defaultStopSpeakingHotkey()
 {
-    return value("Hotkeys/ShowMainWindow", defaultShowMainWindowHotkey()).toString();
+    return QKeySequence("Ctrl+Alt+G");
 }
 
-void AppSettings::setShowMainWindowHotkey(const QString &hotkey)
+QKeySequence AppSettings::showMainWindowHotkey() const
+{
+    return value("Hotkeys/ShowMainWindow", defaultShowMainWindowHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setShowMainWindowHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/ShowMainWindow", hotkey);
 }
 
-QString AppSettings::copyTranslatedSelectionHotkey() const
+QKeySequence AppSettings::defaultShowMainWindowHotkey()
+{
+    return QKeySequence("Ctrl+Alt+C");
+}
+
+QKeySequence AppSettings::copyTranslatedSelectionHotkey() const
 {
     return value("Hotkeys/CopyTranslatedSelection", defaultCopyTranslatedSelectionHotkey()).toString();
 }
 
-void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey)
+void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/CopyTranslatedSelection", hotkey);
 }
 
-QString AppSettings::translateHotkey() const
+QKeySequence AppSettings::defaultCopyTranslatedSelectionHotkey()
 {
-    return value("Hotkeys/Translate", defaultTranslateHotkey()).toString();
+    return QKeySequence();
 }
 
-void AppSettings::setTranslateHotkey(const QString &hotkey)
+QKeySequence AppSettings::translateHotkey() const
+{
+    return value("Hotkeys/Translate", defaultTranslateHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setTranslateHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/Translate", hotkey);
 }
 
-QString AppSettings::closeWindowHotkey() const
+QKeySequence AppSettings::defaultTranslateHotkey()
 {
-    return value("Hotkeys/CloseWindow", defaultCloseWindowHotkey()).toString();
+    return QKeySequence("Ctrl+Return");
 }
 
-void AppSettings::setCloseWindowHotkey(const QString &hotkey)
+QKeySequence AppSettings::closeWindowHotkey() const
+{
+    return value("Hotkeys/CloseWindow", defaultCloseWindowHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setCloseWindowHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/CloseWindow", hotkey);
 }
 
-QString AppSettings::playSourceHotkey() const
+QKeySequence AppSettings::defaultCloseWindowHotkey()
 {
-    return value("Hotkeys/PlaySource", defaultPlaySourceHotkey()).toString();
+    return QKeySequence("Ctrl+Q");
 }
 
-void AppSettings::setPlaySourceHotkey(const QString &hotkey)
+QKeySequence AppSettings::speakSourceHotkey() const
+{
+    return value("Hotkeys/PlaySource", defaultSpeakSourceHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setSpeakSourceHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/PlaySource", hotkey);
 }
 
-QString AppSettings::playTranslationHotkey() const
+QKeySequence AppSettings::defaultSpeakSourceHotkey()
 {
-    return value("Hotkeys/PlayTranslation", defaultPlayTranslationHotkey()).toString();
+    return QKeySequence("Ctrl+S");
 }
 
-void AppSettings::setPlayTranslationHotkey(const QString &hotkey)
+QKeySequence AppSettings::speakTranslationHotkey() const
+{
+    return value("Hotkeys/PlayTranslation", defaultSpeakTranslationHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setSpeakTranslationHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/PlayTranslation", hotkey);
 }
 
-QString AppSettings::copyTranslationHotkey() const
+QKeySequence AppSettings::defaultSpeakTranslationHotkey()
 {
-    return value("Hotkeys/CopyTranslation", defaultCopyTranslationHotkey()).toString();
+    return QKeySequence("Ctrl+Shift+S");
 }
 
-void AppSettings::setCopyTranslationHotkey(const QString &hotkey)
+QKeySequence AppSettings::copyTranslationHotkey() const
+{
+    return value("Hotkeys/CopyTranslation", defaultCopyTranslationHotkey()).value<QKeySequence>();
+}
+
+void AppSettings::setCopyTranslationHotkey(const QKeySequence &hotkey)
 {
     setValue("Hotkeys/CopyTranslation", hotkey);
+}
+
+QKeySequence AppSettings::defaultCopyTranslationHotkey()
+{
+    return QKeySequence("Ctrl+Shift+C");
 }
 
 QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup::GroupType group, int id) const

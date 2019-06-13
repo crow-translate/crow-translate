@@ -175,7 +175,7 @@
                <string notr="true">English</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/en.svg</normaloff>:/icons/flags/en.svg</iconset>
               </property>
              </item>
@@ -184,7 +184,7 @@
                <string>Português (Brasil)</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/pt.svg</normaloff>:/icons/flags/pt.svg</iconset>
               </property>
              </item>
@@ -193,7 +193,7 @@
                <string notr="true">Русский</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/ru.svg</normaloff>:/icons/flags/ru.svg</iconset>
               </property>
              </item>
@@ -202,7 +202,7 @@
                <string notr="true">Українська</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/uk.svg</normaloff>:/icons/flags/uk.svg</iconset>
               </property>
              </item>
@@ -211,7 +211,7 @@
                <string>Türk</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/tr.svg</normaloff>:/icons/flags/tr.svg</iconset>
               </property>
              </item>
@@ -220,7 +220,7 @@
                <string notr="true">简体中文 (中国)</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/flags/zh-CN.svg</normaloff>:/icons/flags/zh-CN.svg</iconset>
               </property>
              </item>
@@ -836,7 +836,7 @@
                <string notr="true">Google</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
               </property>
              </item>
@@ -845,7 +845,7 @@
                <string notr="true">Yandex</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
               </property>
              </item>
@@ -854,7 +854,7 @@
                <string notr="true">Bing</string>
               </property>
               <property name="icon">
-               <iconset resource="../data/resources.qrc">
+               <iconset resource="../../data/resources.qrc">
                 <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
               </property>
              </item>
@@ -1171,188 +1171,7 @@
       <widget class="QWidget" name="shortcutsPage">
        <layout class="QVBoxLayout" name="shortcutsLayout">
         <item>
-         <widget class="QTreeWidget" name="shortcutsTreeWidget">
-          <property name="rootIsDecorated">
-           <bool>false</bool>
-          </property>
-          <column>
-           <property name="text">
-            <string>Description</string>
-           </property>
-          </column>
-          <column>
-           <property name="text">
-            <string>Shortcut</string>
-           </property>
-          </column>
-          <item>
-           <property name="text">
-            <string>Global</string>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <item>
-            <property name="text">
-             <string>Translate selected text</string>
-            </property>
-            <property name="icon">
-             <iconset theme="preferences-desktop-locale">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Speak selected text</string>
-            </property>
-            <property name="icon">
-             <iconset theme="media-playback-start">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Speak translation of selected text</string>
-            </property>
-            <property name="icon">
-             <iconset theme="media-playback-start">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Stop text speaking</string>
-            </property>
-            <property name="icon">
-             <iconset theme="media-playback-stop">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Show main window</string>
-            </property>
-            <property name="icon">
-             <iconset theme="window">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Translate selected text and copy to clipboard</string>
-            </property>
-            <property name="icon">
-             <iconset theme="edit-copy">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Main window</string>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <property name="font">
-            <font>
-             <weight>75</weight>
-             <bold>true</bold>
-            </font>
-           </property>
-           <item>
-            <property name="text">
-             <string>Translate</string>
-            </property>
-            <property name="icon">
-             <iconset theme="go-next">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Close window</string>
-            </property>
-            <property name="icon">
-             <iconset theme="application-exit">
-              <normaloff>.</normaloff>.</iconset>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Source text</string>
-            </property>
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>Play / pause text speaking</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-start">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
-           </item>
-           <item>
-            <property name="text">
-             <string>Translation</string>
-            </property>
-            <property name="font">
-             <font>
-              <weight>75</weight>
-              <bold>true</bold>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>Play / pause text speaking</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-start">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Copy to clipboard</string>
-             </property>
-             <property name="icon">
-              <iconset theme="edit-copy">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </item>
-           </item>
-          </item>
-         </widget>
+         <widget class="ShortcutsView" name="shortcutsTreeView"/>
         </item>
         <item>
          <widget class="QPushButton" name="resetAllShortcutsButton">
@@ -1628,8 +1447,18 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>ShortcutsView</class>
+   <extends>QTreeView</extends>
+   <header>src/settings/shortcutsmodel/shortcutsview.h</header>
+   <slots>
+    <signal>currentShortcutChanged(ShortcutItem*)</signal>
+   </slots>
+  </customwidget>
+ </customwidgets>
  <resources>
-  <include location="../data/resources.qrc"/>
+  <include location="../../data/resources.qrc"/>
  </resources>
  <connections>
   <connection>
