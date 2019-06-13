@@ -159,61 +159,50 @@ public:
     void setProxyPassword(const QString &password);
 
     // Global shortcuts
-    QString translateSelectionHotkey() const;
-    void setTranslateSelectionHotkey(const QString &hotkey);
-    static constexpr const char *defaultTranslateSelectionHotkey()
-    { return "Ctrl+Alt+E"; }
+    QKeySequence translateSelectionHotkey() const;
+    void setTranslateSelectionHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultTranslateSelectionHotkey();
 
-    QString playSelectionHotkey() const;
-    void setPlaySelectionHotkey(const QString &hotkey);
-    static constexpr const char *defaultPlaySelectionHotkey()
-    { return "Ctrl+Alt+S"; }
+    QKeySequence speakSelectionHotkey() const;
+    void setSpeakSelectionHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultSpeakSelectionHotkey();
 
-    QString playTranslatedSelectionHotkey() const;
-    void setPlayTranslatedSelectionHotkey(const QString &hotkey);
-    static constexpr const char *defaultPlayTranslatedSelectionHotkey()
-    { return "Ctrl+Alt+F"; }
+    QKeySequence speakTranslatedSelectionHotkey() const;
+    void setSpeakTranslatedSelectionHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultSpeakTranslatedSelectionHotkey();
 
-    QString stopSpeakingHotkey() const;
-    void setStopSpeakingHotkey(const QString &hotkey);
-    static constexpr const char *defaultStopSpeakingHotkey()
-    { return "Ctrl+Alt+G"; }
+    QKeySequence stopSpeakingHotkey() const;
+    void setStopSpeakingHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultStopSpeakingHotkey();
 
-    QString showMainWindowHotkey() const;
-    void setShowMainWindowHotkey(const QString &hotkey);
-    static constexpr const char *defaultShowMainWindowHotkey()
-    { return "Ctrl+Alt+C"; }
+    QKeySequence showMainWindowHotkey() const;
+    void setShowMainWindowHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultShowMainWindowHotkey();
 
-    QString copyTranslatedSelectionHotkey() const;
-    void setCopyTranslatedSelectionHotkeyHotkey(const QString &hotkey);
-    static constexpr const char *defaultCopyTranslatedSelectionHotkey()
-    { return ""; }
+    QKeySequence copyTranslatedSelectionHotkey() const;
+    void setCopyTranslatedSelectionHotkeyHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultCopyTranslatedSelectionHotkey();
 
     // Window shortcuts
-    QString translateHotkey() const;
-    void setTranslateHotkey(const QString &hotkey);
-    static constexpr const char *defaultTranslateHotkey()
-    { return "Ctrl+Return"; }
+    QKeySequence translateHotkey() const;
+    void setTranslateHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultTranslateHotkey();
 
-    QString closeWindowHotkey() const;
-    void setCloseWindowHotkey(const QString &hotkey);
-    static constexpr const char *defaultCloseWindowHotkey()
-    { return "Ctrl+Q"; }
+    QKeySequence closeWindowHotkey() const;
+    void setCloseWindowHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultCloseWindowHotkey();
 
-    QString playSourceHotkey() const;
-    void setPlaySourceHotkey(const QString &hotkey);
-    static constexpr const char *defaultPlaySourceHotkey()
-    { return "Ctrl+S"; }
+    QKeySequence speakSourceHotkey() const;
+    void setSpeakSourceHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultSpeakSourceHotkey();
 
-    QString playTranslationHotkey() const;
-    void setPlayTranslationHotkey(const QString &hotkey);
-    static constexpr const char *defaultPlayTranslationHotkey()
-    { return "Ctrl+Shift+S"; }
+    QKeySequence speakTranslationHotkey() const;
+    void setSpeakTranslationHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultSpeakTranslationHotkey();
 
-    QString copyTranslationHotkey() const;
-    void setCopyTranslationHotkey(const QString &hotkey);
-    static constexpr const char *defaultCopyTranslationHotkey()
-    { return "Ctrl+Shift+C"; }
+    QKeySequence copyTranslationHotkey() const;
+    void setCopyTranslationHotkey(const QKeySequence &hotkey);
+    static QKeySequence defaultCopyTranslationHotkey();
 
     // Buttons
     QOnlineTranslator::Language buttonLanguage(LangButtonGroup::GroupType group, int id) const;

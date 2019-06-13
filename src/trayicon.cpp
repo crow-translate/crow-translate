@@ -1,7 +1,7 @@
 #include "trayicon.h"
-#include "appsettings.h"
 #include "singleapplication.h"
 #include "mainwindow.h"
+#include "settings/appsettings.h"
 
 #include <QDBusInterface>
 #include <QFileInfo>

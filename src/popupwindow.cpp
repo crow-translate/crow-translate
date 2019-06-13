@@ -20,11 +20,11 @@
 
 #include "popupwindow.h"
 #include "ui_popupwindow.h"
-#include "appsettings.h"
 #include "langbuttongroup.h"
 #include "singleapplication.h"
 #include "mainwindow.h"
 #include "playerbuttons.h"
+#include "settings/appsettings.h"
 
 #include <QScreen>
 #include <QMediaPlaylist>
@@ -97,8 +97,8 @@ PopupWindow::PopupWindow(MainWindow *parent) :
 
     // Shortcuts
     m_closeWindowsShortcut = new QShortcut(this);
-    ui->playSourceButton->setShortcut(settings.playSourceHotkey());
-    ui->playTranslationButton->setShortcut(settings.playTranslationHotkey());
+    ui->playSourceButton->setShortcut(settings.speakSourceHotkey());
+    ui->playTranslationButton->setShortcut(settings.speakTranslationHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
