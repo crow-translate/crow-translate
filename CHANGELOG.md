@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.1.0...HEAD)
 
+**Added**
+
+-   Windows: Text speaking indication in the taskbar.
+
 **Changed**
 
 -   Sort languages in comboboxes alphabetically.

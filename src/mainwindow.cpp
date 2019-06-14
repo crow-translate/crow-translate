@@ -28,15 +28,11 @@
 #include "singleapplication.h"
 #include "settings/settingsdialog.h"
 #include "settings/appsettings.h"
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 #include "updaterwindow.h"
 #include "qgittag.h"
-
-#include <QMimeData>
-#include <QThread>
-#include <QDate>
-#include <Windows.h>
 #endif
+
 #include <QClipboard>
 #include <QShortcut>
 #include <QNetworkProxy>
@@ -44,6 +40,15 @@
 #include <QTimer>
 #include <QMenu>
 #include <QMediaPlaylist>
+#ifdef Q_OS_WIN
+#include <QMimeData>
+#include <QThread>
+#include <QDate>
+#include <QWinTaskbarButton>
+#include <QWinTaskbarProgress>
+
+#include <Windows.h>
+#endif
 
 constexpr int autotranslateDelay = 500; // Automatic translation delay when changing source text
 
@@ -139,6 +144,17 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings.mainWindowGeometry());
 
 #if defined(Q_OS_WIN)
+    // Taskbar button
+    m_taskbarButton = new QWinTaskbarButton(this);
+    connect(m_sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbarButton->progress(), &QWinTaskbarProgress::setValue);
+    connect(m_sourcePlayerButtons, &PlayerButtons::played, m_taskbarButton->progress(), &QWinTaskbarProgress::resume);
+    connect(m_sourcePlayerButtons, &PlayerButtons::stopped, m_taskbarButton->progress(), &QWinTaskbarProgress::reset);
+    connect(m_sourcePlayerButtons, &PlayerButtons::paused, m_taskbarButton->progress(), &QWinTaskbarProgress::pause);
+    connect(m_translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbarButton->progress(), &QWinTaskbarProgress::setValue);
+    connect(m_translationPlayerButtons, &PlayerButtons::played, m_taskbarButton->progress(), &QWinTaskbarProgress::resume);
+    connect(m_translationPlayerButtons, &PlayerButtons::stopped, m_taskbarButton->progress(), &QWinTaskbarProgress::reset);
+    connect(m_translationPlayerButtons, &PlayerButtons::paused, m_taskbarButton->progress(), &QWinTaskbarProgress::pause);
+
     // Check date for updates
     const AppSettings::Interval updateInterval = settings.checkForUpdatesInterval();
     QDate checkDate = settings.lastUpdateCheckDate();
@@ -601,6 +617,18 @@ void MainWindow::checkForUpdates()
     delete release;
     AppSettings settings;
     settings.setLastUpdateCheckDate(QDate::currentDate());
+}
+#endif
+
+#ifdef Q_OS_WIN
+void MainWindow::showEvent(QShowEvent *event)
+{
+    if (m_taskbarButton->window() == nullptr) {
+        m_taskbarButton->setWindow(windowHandle());
+        m_taskbarButton->progress()->show();
+    }
+
+    event->accept();
 }
 #endif
 

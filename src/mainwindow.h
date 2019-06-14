@@ -37,6 +37,9 @@ class QMenu;
 class QComboBox;
 class QTextEdit;
 class QToolButton;
+#ifdef Q_OS_WIN
+class QWinTaskbarButton;
+#endif
 
 namespace Ui {
 class MainWindow;
@@ -103,6 +106,9 @@ private slots:
 #endif
 
 private:
+#ifdef Q_OS_WIN
+    void showEvent(QShowEvent *event) override;
+#endif
     void changeEvent(QEvent *event) override;
 
     // Translation
@@ -136,6 +142,9 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTimer *m_translateTimer;
+#ifdef Q_OS_WIN
+    QWinTaskbarButton *m_taskbarButton;
+#endif
 };
 
 #endif // MAINWINDOW_H

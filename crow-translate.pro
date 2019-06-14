@@ -66,6 +66,8 @@ RESOURCES += \
     data/resources.qrc
 
 win32 {
+QT += winextras
+
 SOURCES += \
     src/updaterwindow.cpp
 

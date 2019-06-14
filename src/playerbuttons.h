@@ -25,6 +25,7 @@
 #include <QMediaPlayer>
 
 class QAbstractButton;
+class QWinTaskbarProgress;
 
 class PlayerButtons : public QObject
 {
@@ -44,15 +45,20 @@ public:
 
 signals:
     void playerDataRequested(QMediaPlaylist *playist);
+    void stopped();
+    void paused();
+    void played();
+    void positionChanged(int percent);
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);
     void processPlayPausePressed();
+    void processPositionChanged(qint64 position);
 
 private:
     static QMediaPlayer *currentlyPlaying;
 
-    QMediaPlayer *m_mediaPlayer;
+    QMediaPlayer *m_mediaPlayer = nullptr;
 
     QAbstractButton *m_playPauseButton = nullptr;
     QAbstractButton *m_stopButton = nullptr;
