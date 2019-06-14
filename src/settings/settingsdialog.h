@@ -29,7 +29,6 @@ class QMediaPlayer;
 class QMediaPlaylist;
 class ShortcutItem;
 #ifdef Q_OS_WIN
-class QHBoxLayout;
 class QComboBox;
 class QPushButton;
 class QLabel;
@@ -87,14 +86,8 @@ private:
     QOnlineTts::Voice bingVoice;
     QOnlineTts::Emotion yandexEmotion;
 
-#if defined(Q_OS_WIN)
-    // Icon theme info
-    QLabel *m_papirusTitleLabel;
-    QLabel *m_papirusLabel;
-    QLabel *m_checkForUpdatesLabel;
-
-    // Check for updates
-    QHBoxLayout *m_checkForUpdatesLayout;
+#ifdef Q_OS_WIN
+    // Check for updates box stuff
     QComboBox *m_checkForUpdatesComboBox;
     QPushButton *m_checkForUpdatesButton;
     QLabel *m_checkForUpdatesStatusLabel;

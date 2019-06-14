@@ -90,39 +90,44 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
 #if defined(Q_OS_WIN)
     // Add information about icons
-    m_papirusTitleLabel = new QLabel(this);
-    m_papirusTitleLabel->setText(tr("Interface icons:"));
-    ui->aboutGroupBox->layout()->addWidget(m_papirusTitleLabel);
+    auto *papirusTitleLabel = new QLabel(this);
+    papirusTitleLabel->setText(tr("Interface icons:"));
+    ui->aboutGroupBox->layout()->addWidget(papirusTitleLabel);
 
-    m_papirusLabel = new QLabel(this);
-    m_papirusLabel->setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
-    m_papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    m_papirusLabel->setOpenExternalLinks(true);
-    ui->aboutGroupBox->layout()->addWidget(m_papirusLabel);
-
+    auto *papirusLabel = new QLabel(this);
+    papirusLabel->setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
+    papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    papirusLabel->setOpenExternalLinks(true);
+    ui->aboutGroupBox->layout()->addWidget(papirusLabel);
 
     // Add updater options
-    m_checkForUpdatesLabel = new QLabel(this);
-    m_checkForUpdatesLabel->setText(tr("Check for updates:"));
+    QGroupBox *updatesGroupBox = new QGroupBox(tr("Updates"));
+    qobject_cast<QVBoxLayout *>(ui->generalPage->layout())->insertWidget(1, updatesGroupBox);
 
-    m_checkForUpdatesComboBox = new QComboBox(this);
+    QHBoxLayout *updatesLayout = new QHBoxLayout;
+    updatesGroupBox->setLayout(updatesLayout);
+
+    auto *checkForUpdatesLabel = new QLabel;
+    checkForUpdatesLabel->setText(tr("Check for updates:"));
+    updatesLayout->addWidget(checkForUpdatesLabel);
+
+    m_checkForUpdatesComboBox = new QComboBox;
     m_checkForUpdatesComboBox->addItem(tr("Every day"));
     m_checkForUpdatesComboBox->addItem(tr("Every week"));
     m_checkForUpdatesComboBox->addItem(tr("Every month"));
     m_checkForUpdatesComboBox->addItem(tr("Never"));
+    updatesLayout->addWidget(m_checkForUpdatesComboBox);
 
-    m_checkForUpdatesButton = new QPushButton(this);
+    m_checkForUpdatesButton = new QPushButton;
     m_checkForUpdatesButton->setText(tr("Check now"));
     m_checkForUpdatesButton->setToolTip(tr("Check for updates now"));
     connect(m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
+    updatesLayout->addWidget(m_checkForUpdatesButton);
 
-    m_checkForUpdatesLayout = new QHBoxLayout(this);
-    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesLabel);
-    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesComboBox);
-    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesButton);
-    m_checkForUpdatesLayout->addWidget(m_checkForUpdatesStatusLabel);
-    m_checkForUpdatesLayout->addStretch();
-    static_cast<QVBoxLayout*>(ui->generalGroupBox->layout())->insertLayout(2, m_checkForUpdatesLayout);
+    m_checkForUpdatesStatusLabel = new QLabel;
+    updatesLayout->addWidget(m_checkForUpdatesStatusLabel);
+
+    updatesLayout->addStretch();
 #endif
 
     // Check current date
