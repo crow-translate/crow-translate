@@ -30,9 +30,11 @@
 #include "settings/appsettings.h"
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
+#include "qgittag.h"
 
 #include <QMimeData>
 #include <QThread>
+#include <QDate>
 #include <Windows.h>
 #endif
 #include <QClipboard>
@@ -156,7 +158,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     if (QDate::currentDate() >= checkDate) {
         auto *release = new QGitTag(this);
-        connect(release, &QGitTag::requestFinished, this, &MainWindow::checkForUpdates);
+        connect(release, &QGitTag::finished, this, &MainWindow::checkForUpdates);
         release->get("Shatur95", "crow-translate");
     }
 #endif
@@ -771,7 +773,7 @@ QString MainWindow::selectedText()
         originalClipboard = SingleApplication::clipboard()->text();
 
     // Wait until the hot key is pressed
-    while (GetAsyncKeyState(static_cast<int>(m_translateSelectionHotkey.currentNativeShortcut().key))
+    while (GetAsyncKeyState(static_cast<int>(m_translateSelectionHotkey->currentNativeShortcut().key))
            || GetAsyncKeyState(VK_CONTROL)
            || GetAsyncKeyState(VK_MENU)
            || GetAsyncKeyState(VK_SHIFT)) {

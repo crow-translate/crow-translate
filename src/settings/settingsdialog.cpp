@@ -26,6 +26,7 @@
 #include "shortcutsmodel/shortcutitem.h"
 #if defined(Q_OS_WIN)
 #include "updaterwindow.h"
+#include "qgittag.h"
 #endif
 
 #include <QNetworkProxy>
@@ -426,7 +427,7 @@ void SettingsDialog::checkForUpdates()
     // Get update information
     auto *release = new QGitTag(this);
     QEventLoop loop;
-    connect(release, &QGitTag::requestFinished, &loop, &QEventLoop::quit);
+    connect(release, &QGitTag::finished, &loop, &QEventLoop::quit);
     release->get("Shatur95", "crow-translate");
     loop.exec();
 
