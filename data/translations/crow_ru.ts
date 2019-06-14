@@ -1232,7 +1232,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1123"/>
         <source>Use system settings</source>
-        <translation>Использовать настойки системы</translation>
+        <translation>Использовать настройки системы</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1073"/>
