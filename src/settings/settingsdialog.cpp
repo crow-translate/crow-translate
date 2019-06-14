@@ -24,7 +24,7 @@
 #include "singleapplication.h"
 #include "shortcutsmodel/shortcutsmodel.h"
 #include "shortcutsmodel/shortcutitem.h"
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 #include "updaterwindow.h"
 #include "qgittag.h"
 #endif
@@ -88,7 +88,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     // Add information about icons
     auto *papirusTitleLabel = new QLabel(this);
     papirusTitleLabel->setText(tr("Interface icons:"));
@@ -154,7 +154,7 @@ void SettingsDialog::on_SettingsDialog_accepted()
     settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
 
@@ -423,7 +423,7 @@ void SettingsDialog::on_resetAllShortcutsButton_clicked()
     ui->shortcutsTreeView->model()->resetAllShortcuts();
 }
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 void SettingsDialog::checkForUpdates()
 {
     m_checkForUpdatesButton->setEnabled(false);
@@ -467,7 +467,7 @@ void SettingsDialog::restoreDefaults()
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
     ui->autostartCheckBox->setChecked(false);
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::Month);
 #endif
 
@@ -514,7 +514,7 @@ void SettingsDialog::loadSettings()
     const AppSettings settings;
     ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
 #endif
     ui->trayCheckBox->setChecked(settings.isTrayIconVisible());

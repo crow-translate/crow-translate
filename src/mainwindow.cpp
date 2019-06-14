@@ -143,7 +143,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
     restoreGeometry(settings.mainWindowGeometry());
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     // Taskbar button
     m_taskbarButton = new QWinTaskbarButton(this);
     connect(m_sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbarButton->progress(), &QWinTaskbarProgress::setValue);
@@ -599,7 +599,7 @@ void MainWindow::showAppRunningMessage()
     message->show();
 }
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 void MainWindow::checkForUpdates()
 {
     auto *release = qobject_cast<QGitTag *>(sender());
@@ -790,9 +790,9 @@ void MainWindow::setPlayingText(QMediaPlaylist *playlist, const QString &text, Q
 QString MainWindow::selectedText()
 {
     QString selectedText;
-#if defined(Q_OS_LINUX)
+#ifdef Q_OS_LINUX
     selectedText = SingleApplication::clipboard()->text(QClipboard::Selection);
-#elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
+#elif Q_OS_WIN // Send Ctrl + C to get selected text
     // Save original clipboard data
     QVariant originalClipboard;
     if (SingleApplication::clipboard()->mimeData()->hasImage())

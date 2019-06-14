@@ -67,7 +67,7 @@ private slots:
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     void checkForUpdates();
 #endif
     void restoreDefaults();

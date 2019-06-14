@@ -28,12 +28,12 @@
 #include <QLibraryInfo>
 #include <QMetaEnum>
 #include <QKeySequence>
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 #include <QDir>
 #endif
 
 QTranslator AppSettings::m_appTranslator;
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
 QTranslator AppSettings::m_qtTranslator;
 #endif
 
@@ -46,7 +46,7 @@ void AppSettings::setupLocale()
 {
     loadLocale(locale());
     SingleApplication::installTranslator(&m_appTranslator);
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     SingleApplication::installTranslator(&m_qtTranslator);
 #endif
 }
@@ -72,7 +72,7 @@ void AppSettings::loadLocale(QLocale::Language lang)
         QLocale::setDefault(QLocale(lang));
 
     m_appTranslator.load(QLocale(), "crow", "_", ":/translations");
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     m_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 #endif
 }
@@ -109,9 +109,9 @@ void AppSettings::setStartMinimized(bool minimized)
 
 bool AppSettings::isAutostartEnabled() const
 {
-#if defined(Q_OS_LINUX)
+#ifdef Q_OS_LINUX
     return QFileInfo::exists(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
-#elif defined(Q_OS_WIN)
+#elif Q_OS_WIN
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     return autostartSettings.contains("Crow Translate");
 #endif
@@ -119,7 +119,7 @@ bool AppSettings::isAutostartEnabled() const
 
 void AppSettings::setAutostartEnabled(bool enabled)
 {
-#if defined(Q_OS_LINUX)
+#ifdef Q_OS_LINUX
     QFile autorunFile(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation) + "/autostart/crow-translate.desktop");
 
     if (enabled) {
@@ -135,7 +135,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
         if(autorunFile.exists())
             autorunFile.remove();
     }
-#elif defined(Q_OS_WIN)
+#elif Q_OS_WIN
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (enabled)
         autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));

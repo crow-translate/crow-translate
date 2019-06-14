@@ -42,7 +42,7 @@ int launchGui(int argc, char *argv[])
 {
     SingleApplication app(argc, argv);
 
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     QIcon::setThemeName("Papirus");
 #endif
 

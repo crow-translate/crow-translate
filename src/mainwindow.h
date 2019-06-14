@@ -101,7 +101,7 @@ private slots:
 
     // Other
     void showAppRunningMessage();
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     void checkForUpdates();
 #endif
 

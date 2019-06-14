@@ -223,7 +223,7 @@ public:
 
 private:
     static QTranslator m_appTranslator;
-#if defined(Q_OS_WIN)
+#ifdef Q_OS_WIN
     static QTranslator m_qtTranslator; // Qt library translations
 #endif
 };
