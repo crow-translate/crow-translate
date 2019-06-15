@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1506,7 +1504,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Güncellemeler</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="111"/>
