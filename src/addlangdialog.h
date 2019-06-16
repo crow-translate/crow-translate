@@ -32,10 +32,11 @@ class AddLangDialog;
 class AddLangDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AddLangDialog)
 
 public:
     explicit AddLangDialog(QWidget *parent = nullptr);
-    ~AddLangDialog();
+    ~AddLangDialog() override;
 
     QOnlineTranslator::Language language() const;
 

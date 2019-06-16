@@ -38,6 +38,7 @@ class PopupWindow;
 class PopupWindow : public QWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PopupWindow)
 
 public:
     explicit PopupWindow(MainWindow *parent = nullptr);

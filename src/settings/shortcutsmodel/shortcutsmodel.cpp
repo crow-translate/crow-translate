@@ -91,7 +91,7 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
     if (!parent.isValid()) {
         childItem = m_rootItems.value(row);
     } else {
-        ShortcutItem *parentItem = static_cast<ShortcutItem *>(parent.internalPointer());
+        auto *parentItem = static_cast<ShortcutItem *>(parent.internalPointer());
         childItem = parentItem->child(row);
     }
 
@@ -106,7 +106,7 @@ QModelIndex ShortcutsModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return QModelIndex();
 
-    ShortcutItem *childItem = static_cast<ShortcutItem *>(index.internalPointer());
+    auto *childItem = static_cast<ShortcutItem *>(index.internalPointer());
     ShortcutItem *parentItem = childItem->parentItem();
 
     if (parentItem == nullptr)

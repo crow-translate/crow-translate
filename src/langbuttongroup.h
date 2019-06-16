@@ -30,6 +30,7 @@ class AppSettings;
 class LangButtonGroup : public QButtonGroup
 {
     Q_OBJECT
+    Q_DISABLE_COPY(LangButtonGroup)
 
 public:
     enum GroupType {

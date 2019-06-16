@@ -41,10 +41,11 @@ class SettingsDialog;
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
+    Q_DISABLE_COPY(SettingsDialog)
 
 public:
     explicit SettingsDialog(QWidget *parent = nullptr);
-    ~SettingsDialog();
+    ~SettingsDialog() override;
 
 private slots:
     // UI
@@ -82,9 +83,9 @@ private:
     QMediaPlaylist *m_playlist;
 
     // Engine voice settings
-    QOnlineTts::Voice yandexVoice;
-    QOnlineTts::Voice bingVoice;
-    QOnlineTts::Emotion yandexEmotion;
+    QOnlineTts::Voice m_yandexVoice;
+    QOnlineTts::Voice m_bingVoice;
+    QOnlineTts::Emotion m_yandexEmotion;
 
 #ifdef Q_OS_WIN
     // Check for updates box stuff

@@ -34,6 +34,7 @@
 class AppSettings : public QSettings
 {
     Q_OBJECT
+    Q_DISABLE_COPY(AppSettings)
 
 public:
     enum WindowMode {

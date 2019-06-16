@@ -35,6 +35,7 @@ class UpdaterWindow;
 class UpdaterWindow : public QWidget
 {
     Q_OBJECT
+    Q_DISABLE_COPY(UpdaterWindow)
 
 public:
     explicit UpdaterWindow(QGitTag *release, int installer, QWidget *parent = nullptr);

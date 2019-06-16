@@ -9,6 +9,7 @@ class MainWindow;
 class TrayIcon : public QSystemTrayIcon
 {
     Q_OBJECT
+    Q_DISABLE_COPY(TrayIcon)
 
 public:
     enum IconType {

@@ -30,6 +30,7 @@ class QWinTaskbarProgress;
 class PlayerButtons : public QObject
 {
     Q_OBJECT
+    Q_DISABLE_COPY(PlayerButtons)
 
 public:
     PlayerButtons(QAbstractButton *playPauseButton, QAbstractButton *stopButton, QObject *parent = nullptr);
