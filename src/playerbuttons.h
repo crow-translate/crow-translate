@@ -45,7 +45,7 @@ public:
     void stop();
 
 signals:
-    void playerDataRequested(QMediaPlaylist *playist);
+    void playerMediaRequested();
     void stopped();
     void paused();
     void played();

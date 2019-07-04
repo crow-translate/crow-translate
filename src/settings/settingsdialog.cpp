@@ -47,9 +47,11 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->versionLabel->setText(SingleApplication::applicationVersion());
 
     // Test voice
+    m_translator = new QOnlineTranslator(this);
     m_player = new QMediaPlayer(this);
     m_playlist = new QMediaPlaylist(this);
     m_player->setPlaylist(m_playlist);
+    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::playText);
 
     // Set item data in comboboxes
     ui->languageComboBox->setItemData(0, QLocale::AnyLanguage);
@@ -345,39 +347,7 @@ void SettingsDialog::on_testSpeechButton_clicked()
     }
 
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
-    QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
-    switch (engine) {
-    case QOnlineTranslator::Yandex:
-        voice = m_yandexVoice;
-        emotion = m_yandexEmotion;
-        break;
-    case QOnlineTranslator::Bing:
-        voice = m_bingVoice;
-        break;
-    default:
-        break;
-    }
-
-    QOnlineTranslator translator;
-    translator.detectLanguage(ui->testSpeechEdit->text(), engine);
-    if (translator.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), translator.errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    QOnlineTts tts;
-    tts.generateUrls(ui->testSpeechEdit->text(), engine, translator.sourceLanguage(), voice, emotion);
-    QList<QMediaContent> media = tts.media();
-    if (tts.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    m_playlist->addMedia(media);
-    m_player->play();
+    m_translator->detectLanguage(ui->testSpeechEdit->text(), engine);
 }
 
 void SettingsDialog::on_shortcutsTreeView_currentItemChanged(ShortcutItem *item)
@@ -421,6 +391,42 @@ void SettingsDialog::on_resetShortcutButton_clicked()
 void SettingsDialog::on_resetAllShortcutsButton_clicked()
 {
     ui->shortcutsTreeView->model()->resetAllShortcuts();
+}
+
+void SettingsDialog::playText()
+{
+    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+    QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
+    QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
+    switch (engine) {
+    case QOnlineTranslator::Yandex:
+        voice = m_yandexVoice;
+        emotion = m_yandexEmotion;
+        break;
+    case QOnlineTranslator::Bing:
+        voice = m_bingVoice;
+        break;
+    default:
+        break;
+    }
+
+    if (m_translator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), m_translator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    QOnlineTts tts;
+    tts.generateUrls(ui->testSpeechEdit->text(), engine, m_translator->sourceLanguage(), voice, emotion);
+    QList<QMediaContent> media = tts.media();
+    if (tts.error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    m_playlist->addMedia(media);
+    m_player->play();
 }
 
 #ifdef Q_OS_WIN

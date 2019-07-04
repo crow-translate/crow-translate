@@ -28,6 +28,7 @@
 #include "singleapplication.h"
 #include "settings/settingsdialog.h"
 #include "settings/appsettings.h"
+#include "transitions/conditiontransition.h"
 #ifdef Q_OS_WIN
 #include "updaterwindow.h"
 #include "qgittag.h"
@@ -40,6 +41,8 @@
 #include <QTimer>
 #include <QMenu>
 #include <QMediaPlaylist>
+#include <QStateMachine>
+#include <QFinalState>
 #ifdef Q_OS_WIN
 #include <QMimeData>
 #include <QThread>
@@ -50,8 +53,6 @@
 #include <Windows.h>
 #endif
 
-constexpr int autotranslateDelay = 500; // Automatic translation delay when changing source text
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -61,21 +62,12 @@ MainWindow::MainWindow(QWidget *parent) :
     // Show a message that the application is already running
     connect(qobject_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
-    // Translator
-    m_translator = new QOnlineTranslator(this);
-
     // Text speaking
     m_sourcePlayerButtons = new PlayerButtons(ui->playSourceButton, ui->stopSourceButton, this);
     m_translationPlayerButtons = new PlayerButtons(ui->playTranslationButton, ui->stopTranslationButton, this);
     m_sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
     m_translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(ui->sourceEdit, &QPlainTextEdit::textChanged, m_sourcePlayerButtons, &PlayerButtons::stop);
-    connect(m_sourcePlayerButtons, &PlayerButtons::playerDataRequested, [&](QMediaPlaylist *playlist) {
-       setPlayingText(playlist, ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage());
-    });
-    connect(m_translationPlayerButtons, &PlayerButtons::playerDataRequested, [&](QMediaPlaylist *playlist) {
-       setPlayingText(playlist, m_translator->translation(), m_translationLangButtons->checkedLanguage());
-    });
+    connect(ui->sourceEdit, &SourceTextEdit::textChanged, m_sourcePlayerButtons, &PlayerButtons::stop);
 
     // Shortcuts
     m_translateSelectionHotkey = new QHotkey(this);
@@ -85,11 +77,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_showMainWindowHotkey = new QHotkey(this);
     m_copyTranslatedSelectionHotkey = new QHotkey(this);
     m_closeWindowsShortcut = new QShortcut(this);
-    connect(m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelectedText);
-    connect(m_playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
-    connect(m_playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
     connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
-    connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, m_sourcePlayerButtons, &PlayerButtons::stop);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, m_translationPlayerButtons, &PlayerButtons::stop);
@@ -102,6 +90,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sourceLangButtons->addButton(ui->secondSourceButton);
     m_sourceLangButtons->addButton(ui->thirdSourceButton);
     m_sourceLangButtons->loadLanguages(settings);
+    connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // Translation button group
     m_translationLangButtons = new LangButtonGroup(LangButtonGroup::Translation, this);
@@ -127,14 +116,6 @@ MainWindow::MainWindow(QWidget *parent) :
     m_trayIcon = new TrayIcon(this);
     m_trayIcon->setContextMenu(m_trayMenu);
 
-    // Timer for automatic translation
-    m_translateTimer = new QTimer(this);
-    m_translateTimer->setSingleShot(true);
-    connect(m_translateTimer, &QTimer::timeout, this, &MainWindow::on_translateButton_clicked);
-
-    // Get UI language for translation
-    m_uiLang = QOnlineTranslator::language(settings.locale());
-
     // Load app settings
     loadSettings(settings);
 
@@ -142,6 +123,12 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
     restoreGeometry(settings.mainWindowGeometry());
+
+    // State machine to handle translator signals async
+    m_translator = new QOnlineTranslator(this);
+    m_stateMachine = new QStateMachine(this);
+    buildStateMachine();
+    m_stateMachine->start();
 
 #ifdef Q_OS_WIN
     // Taskbar button
@@ -259,9 +246,9 @@ PlayerButtons *MainWindow::translationPlayerButtons()
     return m_translationPlayerButtons;
 }
 
-void MainWindow::on_translateButton_clicked()
+void MainWindow::requestTranslation()
 {
-    m_translateTimer->stop();
+    m_translationPlayerButtons->stop(); // Stop translation speaking
 
     if (ui->sourceEdit->toPlainText().isEmpty()) {
         ui->translationEdit->clear();
@@ -269,66 +256,33 @@ void MainWindow::on_translateButton_clicked()
         return;
     }
 
-    // Disable the translation button to prevent re-pressing
-    ui->translateButton->setEnabled(false);
+    const QOnlineTranslator::Language sourceLang = sourceLanguage();
+    const QOnlineTranslator::Language translationLang = translationLanguage(AppSettings(), sourceLang);
 
-    // Stop translation speaking
-    m_translationPlayerButtons->stop();
+    m_translator->translate(ui->sourceEdit->toPlainText(), engine(), translationLang, sourceLang);
+}
 
-    // Source Language
-    QOnlineTranslator::Language sourceLang;
-    if (ui->autoSourceButton->isChecked())
-        sourceLang = QOnlineTranslator::Auto;
-    else
-        sourceLang = m_sourceLangButtons->checkedLanguage();
-
-    // Translation language
+// Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
+void MainWindow::requestRetranslation()
+{
     const AppSettings settings;
-    QOnlineTranslator::Language translationLang;
-    if (ui->autoTranslationButton->isChecked()) {
-        // Use primary target language from settings
-        translationLang = settings.primaryLanguage();
-        if (translationLang == QOnlineTranslator::Auto)
-            translationLang = m_uiLang;
-        if (translationLang == sourceLang) {
-            // If primary language is equal to source language, than use secondary language
-            translationLang = settings.secondaryLanguage();
-            if (translationLang == QOnlineTranslator::Auto)
-                translationLang = m_uiLang;
-        }
-    } else {
-        translationLang = m_translationLangButtons->checkedLanguage();
-    }
+    const QOnlineTranslator::Language translationLang = translationLanguage(settings, m_translator->sourceLanguage());
+    m_translator->translate(ui->sourceEdit->toPlainText(), engine(), translationLang, m_translator->sourceLanguage());
+}
 
-    // Get translation
-    if (!translate(translationLang, sourceLang))
+void MainWindow::parseTranslation()
+{
+    // Check for error
+    if (m_translator->error()) {
+        ui->translationEdit->setHtml(m_translator->errorString());
+        m_sourceLangButtons->setLanguage(0, QOnlineTranslator::Auto);
+        emit translationTextChanged(m_translator->errorString());
         return;
-
-    // Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
-    if (ui->autoTranslationButton->isChecked() && m_translator->sourceLanguage() == m_translator->translationLanguage()) {
-        QOnlineTranslator::Language primaryLanguage = settings.primaryLanguage();
-        QOnlineTranslator::Language secondaryLanguage = settings.secondaryLanguage();
-        if (primaryLanguage == QOnlineTranslator::Auto)
-            primaryLanguage = m_uiLang;
-        if (secondaryLanguage == QOnlineTranslator::Auto)
-            secondaryLanguage = m_uiLang;
-
-        // Select primary or secondary language
-        if (translationLang == primaryLanguage)
-            translationLang = secondaryLanguage;
-        else
-            translationLang = primaryLanguage;
-
-        // Get translation
-        if (!translate(translationLang, sourceLang))
-            return;
     }
 
     // Display languages on "Auto" buttons.
-    if (ui->autoSourceButton->isChecked()) {
+    if (ui->autoSourceButton->isChecked())
         m_sourceLangButtons->setLanguage(0, m_translator->sourceLanguage());
-        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-    }
 
     if (ui->autoTranslationButton->isChecked())
         m_translationLangButtons->setLanguage(0, m_translator->translationLanguage());
@@ -408,7 +362,73 @@ void MainWindow::on_translateButton_clicked()
 
     ui->translationEdit->moveCursor(QTextCursor::Start);
     emit translationTextChanged(ui->translationEdit->toHtml());
-    ui->translateButton->setEnabled(true);
+}
+
+void MainWindow::requestSourceLanguage()
+{
+    m_translator->detectLanguage(ui->sourceEdit->toPlainText(), static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()));
+}
+
+void MainWindow::parseSourceLanguage()
+{
+    if (m_translator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    m_sourceLangButtons->setLanguage(0, m_translator->sourceLanguage());
+}
+
+void MainWindow::speakSource()
+{
+    speakText(m_sourcePlayerButtons, ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage());
+}
+
+void MainWindow::speakTranslation()
+{
+    speakText(m_translationPlayerButtons, m_translator->translation(), m_translationLangButtons->checkedLanguage());
+}
+
+void MainWindow::showTranslationWindow()
+{
+    // Prevent pressing the translation hotkey again
+    m_translateSelectionHotkey->blockSignals(true);
+
+    const AppSettings settings;
+    if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
+        auto *popup = new PopupWindow(this);
+        popup->show();
+        popup->activateWindow();
+
+        // Restore the keyboard shortcut
+        connect(popup, &PopupWindow::destroyed, [&] {
+            m_translateSelectionHotkey->blockSignals(false);
+        });
+    } else {
+        activate();
+
+        // Restore the keyboard shortcut
+        m_translateSelectionHotkey->blockSignals(false);
+    }
+}
+
+void MainWindow::setSelectionAsSource()
+{
+    ui->sourceEdit->blockSignals(true);
+    ui->sourceEdit->setPlainText(selectedText());
+    ui->sourceEdit->blockSignals(false);
+}
+
+void MainWindow::copyTranslationToClipboard()
+{
+    if (m_translator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), m_translator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
+    SingleApplication::clipboard()->setText(m_translator->translation());
 }
 
 void MainWindow::on_swapButton_clicked()
@@ -442,20 +462,16 @@ void MainWindow::on_settingsButton_clicked()
     }
 }
 
-void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
-{
-    if (checked) {
-        connect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
-        on_translateButton_clicked();
-    } else {
-        disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::startTranslateTimer);
-    }
-}
-
 void MainWindow::on_engineComboBox_currentIndexChanged(int)
 {
     if (ui->autoTranslateCheckBox->isChecked())
-        on_translateButton_clicked();
+        ui->sourceEdit->sourceChanged();
+}
+
+void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
+{
+    ui->sourceEdit->enableSourceChangedSignal(checked);
+    emit ui->sourceEdit->endDelay();
 }
 
 void MainWindow::on_copySourceButton_clicked()
@@ -482,80 +498,6 @@ void MainWindow::on_copyAllTranslationButton_clicked()
         qInfo() << tr("Text field is empty");
 }
 
-void MainWindow::translateSelectedText()
-{
-    // Prevent pressing the translation hotkey again
-    m_translateSelectionHotkey->blockSignals(true);
-
-    const AppSettings settings;
-    if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
-        // Show popup
-        auto *popup = new PopupWindow(this);
-
-        // Send selected text to source field and translate it
-        if (ui->autoTranslateCheckBox->isChecked()) {
-            // Block signals and translate text without delay
-            ui->sourceEdit->blockSignals(true);
-            ui->sourceEdit->setPlainText(selectedText());
-            ui->sourceEdit->blockSignals(false);
-        } else {
-            ui->sourceEdit->setPlainText(selectedText());
-        }
-
-        on_translateButton_clicked();
-        popup->show();
-        popup->activateWindow();
-
-        // Restore the keyboard shortcut
-        connect(popup, &PopupWindow::destroyed, [this] {
-            m_translateSelectionHotkey->blockSignals(false);
-        });
-    } else {
-        // Send selected text to source field and translate it
-        if (ui->autoTranslateCheckBox->isChecked()) {
-            ui->sourceEdit->blockSignals(true);
-            ui->sourceEdit->setPlainText(selectedText());
-            ui->sourceEdit->blockSignals(false);
-        } else {
-            ui->sourceEdit->setPlainText(selectedText());
-        }
-
-        on_translateButton_clicked();
-        activate();
-
-        // Restore the keyboard shortcut
-        m_translateSelectionHotkey->blockSignals(false);
-    }
-}
-
-void MainWindow::copyTranslatedSelection()
-{
-    ui->sourceEdit->setPlainText(selectedText());
-
-    on_translateButton_clicked();
-
-    if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), m_translator->errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    SingleApplication::clipboard()->setText(m_translator->translation());
-}
-
-void MainWindow::playSelection()
-{
-    ui->sourceEdit->setPlainText(selectedText());
-    m_sourcePlayerButtons->play();
-}
-
-void MainWindow::playTranslatedSelection()
-{
-    ui->sourceEdit->setPlainText(selectedText());
-    on_translateButton_clicked();
-    m_translationPlayerButtons->play();
-}
-
 void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
 {
     /* If the target and source languages are the same (and they are not autodetect buttons),
@@ -575,20 +517,14 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGr
         return;
     }
 
-    // Translate the text automatically if "Automatically translate" is checked or if a pop-up window is open
-    if (ui->autoTranslateCheckBox->isChecked() || isHidden())
-        on_translateButton_clicked();
+    // Always translate the text automatically in pop-up window
+    if (isHidden())
+        emit ui->sourceEdit->endDelay();
 }
 
 void MainWindow::resetAutoSourceButtonText()
 {
-    disconnect(ui->sourceEdit, &QPlainTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
     m_sourceLangButtons->setLanguage(0, QOnlineTranslator::Auto);
-}
-
-void MainWindow::startTranslateTimer()
-{
-    m_translateTimer->start(autotranslateDelay);
 }
 
 void MainWindow::showAppRunningMessage()
@@ -642,7 +578,6 @@ void MainWindow::changeEvent(QEvent *event)
         const QLocale::Language lang = settings.locale();
         if (lang == QLocale::AnyLanguage)
             settings.loadLocale(lang); // Reload language if application use system language
-        m_uiLang = QOnlineTranslator::language(lang);
         break;
     }
     case QEvent::LanguageChange:
@@ -661,22 +596,174 @@ void MainWindow::changeEvent(QEvent *event)
     }
 }
 
-// Translate text in window
-bool MainWindow::translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang)
+void MainWindow::buildStateMachine()
 {
-    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    m_translator->translate(ui->sourceEdit->toPlainText(), engine, translationLang, sourceLang, m_uiLang);
+    m_stateMachine->setGlobalRestorePolicy(QStateMachine::RestoreProperties);
 
-    // Check for error
-    if (m_translator->error()) {
-        ui->translationEdit->setHtml(m_translator->errorString());
-        ui->translateButton->setEnabled(true);
-        m_sourceLangButtons->setLanguage(0, QOnlineTranslator::Auto);
-        emit translationTextChanged(m_translator->errorString());
-        return false;
-    }
+    auto *idleState = new QState(m_stateMachine);
+    auto *translationState = new QState(m_stateMachine);
+    auto *translateSelectionState = new QState(m_stateMachine);
+    auto *speakSourceState = new QState(m_stateMachine);
+    auto *speakTranslationState = new QState(m_stateMachine);
+    auto *speakSelectionState = new QState(m_stateMachine);
+    auto *speakTranslatedSelectionState = new QState(m_stateMachine);
+    auto *copyTranslatedSelectionState = new QState(m_stateMachine);
+    m_stateMachine->setInitialState(idleState);
 
-    return true;
+    buildTranslationState(translationState);
+    buildTranslateSelectionState(translateSelectionState);
+    buildSpeakSourceState(speakSourceState);
+    buildSpeakTranslationState(speakTranslationState);
+    buildSpeakSelectionState(speakSelectionState);
+    buildSpeakTranslatedSelectionState(speakTranslatedSelectionState);
+    buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
+
+    idleState->addTransition(ui->translateButton, &QToolButton::clicked, translationState);
+    idleState->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
+    idleState->addTransition(m_translateSelectionHotkey, &QHotkey::activated, translateSelectionState);
+    idleState->addTransition(m_sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
+    idleState->addTransition(m_translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
+    idleState->addTransition(m_playSelectionHotkey, &QHotkey::activated, speakSelectionState);
+    idleState->addTransition(m_playTranslatedSelectionHotkey, &QHotkey::activated, speakTranslatedSelectionState);
+    idleState->addTransition(m_copyTranslatedSelectionHotkey, &QHotkey::activated, copyTranslatedSelectionState);
+
+    translationState->addTransition(translationState, &QState::finished, idleState);
+    speakSourceState->addTransition(speakSourceState, &QState::finished, idleState);
+    speakTranslationState->addTransition(speakTranslationState, &QState::finished, idleState);
+    translateSelectionState->addTransition(translateSelectionState, &QState::finished, idleState);
+    speakSelectionState->addTransition(speakSelectionState, &QState::finished, idleState);
+    speakTranslatedSelectionState->addTransition(speakTranslatedSelectionState, &QState::finished, idleState);
+}
+
+void MainWindow::buildTranslationState(QState *state)
+{
+    state->assignProperty(ui->translateButton, "enabled", false);
+
+    auto *requestState = new QState(state);
+    auto *checkLanguagesState = new QState(state);
+    auto *requestInOtherLanguageState = new QState(state);
+    auto *parseState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(requestState);
+
+    connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
+    connect(requestInOtherLanguageState, &QState::entered, this, &MainWindow::requestRetranslation);
+    connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
+
+    auto *otherLanguageTransition = new ConditionTransition([&] {
+        return !m_translator->error()
+                && ui->autoTranslationButton->isChecked()
+                && m_translator->sourceLanguage() == m_translator->translationLanguage();
+    });
+    checkLanguagesState->addTransition(otherLanguageTransition);
+    otherLanguageTransition->setTargetState(requestInOtherLanguageState);
+
+    requestState->addTransition(m_translator, &QOnlineTranslator::finished, checkLanguagesState);
+    checkLanguagesState->addTransition(parseState);
+    requestInOtherLanguageState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
+    parseState->addTransition(finalState);
+}
+
+void MainWindow::buildSpeakSourceState(QState *state)
+{
+    auto *initialState = new QState(state);
+    auto *requestLanguageState = new QState(state);
+    auto *parseLanguageState = new QState(state);
+    auto *speakTextState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(initialState);
+
+    connect(requestLanguageState, &QState::entered, this, &MainWindow::requestSourceLanguage);
+    connect(parseLanguageState, &QState::entered, this, &MainWindow::parseSourceLanguage);
+    connect(speakTextState, &QState::entered, this, &MainWindow::speakSource);
+
+    auto *languageDetectedTransition = new ConditionTransition([&] {
+        return m_sourceLangButtons->checkedLanguage() == QOnlineTranslator::Auto;
+    });
+    initialState->addTransition(languageDetectedTransition);
+    languageDetectedTransition->setTargetState(requestLanguageState);
+
+    initialState->addTransition(speakTextState);
+    requestLanguageState->addTransition(m_translator, &QOnlineTranslator::finished, parseLanguageState);
+    parseLanguageState->addTransition(m_translator, qOverload<QOnlineTranslator::TranslationError>(&QOnlineTranslator::error), finalState);
+    parseLanguageState->addTransition(speakTextState);
+    speakTextState->addTransition(finalState);
+}
+
+void MainWindow::buildTranslateSelectionState(QState *state)
+{
+    auto *setSelectionAsSourceState = new QState(state);
+    auto *showWindowState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(setSelectionAsSourceState);
+
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildTranslationState(translationState);
+
+    setSelectionAsSourceState->addTransition(showWindowState);
+    showWindowState->addTransition(translationState);
+    translationState->addTransition(translationState, &QState::finished, finalState);
+}
+
+void MainWindow::buildSpeakTranslationState(QState *state)
+{
+    auto *speakTextState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(speakTextState);
+
+    connect(speakTextState, &QState::entered, this, &MainWindow::speakTranslation);
+
+    speakTextState->addTransition(finalState);
+}
+
+void MainWindow::buildSpeakSelectionState(QState *state)
+{
+    auto *setSelectionAsSourceState = new QState(state);
+    auto *speakSourceState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(setSelectionAsSourceState);
+
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    buildSpeakSourceState(speakSourceState);
+
+    setSelectionAsSourceState->addTransition(speakSourceState);
+    speakSourceState->addTransition(speakSourceState, &QState::finished, finalState);
+}
+
+void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
+{
+    auto *setSelectionAsSourceState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *speakTranslationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(setSelectionAsSourceState);
+
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    buildSpeakTranslationState(speakTranslationState);
+    buildTranslationState(translationState);
+
+    setSelectionAsSourceState->addTransition(translationState);
+    translationState->addTransition(translationState, &QState::finished, speakTranslationState);
+    speakTranslationState->addTransition(speakTranslationState, &QState::finished, finalState);
+}
+
+void MainWindow::buildCopyTranslatedSelectionState(QState *state)
+{
+    auto *getSelectionAsSourceState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *copyTranslationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(getSelectionAsSourceState);
+
+    connect(getSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
+    buildTranslationState(translationState);
+
+    getSelectionAsSourceState->addTransition(translationState);
+    translationState->addTransition(translationState, &QState::finished, copyTranslationState);
+    copyTranslationState->addTransition(finalState);
 }
 
 void MainWindow::loadSettings(const AppSettings &settings)
@@ -740,7 +827,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
 }
 
 // Use playlist to split long queries due Google limit
-void MainWindow::setPlayingText(QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang)
+void MainWindow::speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang)
 {
     if (text.isEmpty()) {
         QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
@@ -748,7 +835,7 @@ void MainWindow::setPlayingText(QMediaPlaylist *playlist, const QString &text, Q
         return;
     }
 
-    playlist->clear();
+    playerButtons->playlist()->clear();
     const AppSettings settings;
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
     QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
@@ -765,16 +852,6 @@ void MainWindow::setPlayingText(QMediaPlaylist *playlist, const QString &text, Q
         break;
     }
 
-    if (lang == QOnlineTranslator::Auto) {
-        m_translator->detectLanguage(text, engine);
-        if (m_translator->error()) {
-            QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator->errorString());
-            errorMessage.exec();
-            return;
-        }
-        lang = m_translator->sourceLanguage();
-    }
-
     QOnlineTts tts;
     tts.generateUrls(text, engine, lang, voice, emotion);
     const QList<QMediaContent> media = tts.media();
@@ -784,7 +861,8 @@ void MainWindow::setPlayingText(QMediaPlaylist *playlist, const QString &text, Q
         return;
     }
 
-    playlist->addMedia(media);
+    playerButtons->playlist()->addMedia(media);
+    playerButtons->play();
 }
 
 QString MainWindow::selectedText()
@@ -867,6 +945,35 @@ QString MainWindow::selectedText()
         SingleApplication::clipboard()->setText(originalClipboard.toString());
 #endif
     return selectedText;
+}
+
+QOnlineTranslator::Engine MainWindow::engine()
+{
+    return static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
+}
+
+QOnlineTranslator::Language MainWindow::sourceLanguage()
+{
+    if (ui->autoSourceButton->isChecked())
+        return QOnlineTranslator::Auto;
+
+    return m_sourceLangButtons->checkedLanguage();
+}
+
+QOnlineTranslator::Language MainWindow::translationLanguage(const AppSettings &settings, QOnlineTranslator:: Language sourceLang)
+{
+    if (!ui->autoTranslationButton->isChecked())
+        return m_translationLangButtons->checkedLanguage();
+
+    // Use selected primary or secondary language from settings
+    QOnlineTranslator::Language translationLang = settings.primaryLanguage();
+    if (translationLang == QOnlineTranslator::Auto)
+        translationLang = QOnlineTranslator::language(QLocale());
+
+    if (translationLang != sourceLang)
+        return translationLang;
+
+    return settings.secondaryLanguage();
 }
 
 void MainWindow::on_addSourceLangButton_clicked()

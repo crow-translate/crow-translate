@@ -53,8 +53,8 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     m_translationPlayerButtons = new PlayerButtons(ui->playTranslationButton, ui->stopTranslationButton, this);
     m_sourcePlayerButtons->setMediaPlayer(parent->sourcePlayerButtons()->mediaPlayer());
     m_translationPlayerButtons->setMediaPlayer(parent->translationPlayerButtons()->mediaPlayer());
-    connect(m_sourcePlayerButtons, &PlayerButtons::playerDataRequested, parent->sourcePlayerButtons(), &PlayerButtons::playerDataRequested);
-    connect(m_translationPlayerButtons, &PlayerButtons::playerDataRequested, parent->translationPlayerButtons(), &PlayerButtons::playerDataRequested);
+    connect(m_sourcePlayerButtons, &PlayerButtons::playerMediaRequested, parent->sourcePlayerButtons(), &PlayerButtons::playerMediaRequested);
+    connect(m_translationPlayerButtons, &PlayerButtons::playerMediaRequested, parent->translationPlayerButtons(), &PlayerButtons::playerMediaRequested);
 
     // Source button group
     m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);

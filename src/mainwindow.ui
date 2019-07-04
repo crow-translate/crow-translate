@@ -205,7 +205,7 @@
      </layout>
     </item>
     <item row="5" column="1">
-     <widget class="QPlainTextEdit" name="sourceEdit">
+     <widget class="SourceTextEdit" name="sourceEdit">
       <property name="placeholderText">
        <string>Source</string>
       </property>
@@ -363,6 +363,13 @@
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
+ <customwidgets>
+  <customwidget>
+   <class>SourceTextEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>sourcetextedit.h</header>
+  </customwidget>
+ </customwidgets>
  <tabstops>
   <tabstop>sourceEdit</tabstop>
   <tabstop>firstSourceButton</tabstop>

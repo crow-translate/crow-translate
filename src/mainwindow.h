@@ -32,7 +32,6 @@ class PlayerButtons;
 class AppSettings;
 class QHotkey;
 class QShortcut;
-class QTimer;
 class QMenu;
 class QComboBox;
 class QTextEdit;
@@ -73,12 +72,26 @@ signals:
     void translationTextChanged(const QString &text);
 
 private slots:
+    // State machine's slots
+    void requestTranslation();
+    void requestRetranslation();
+    void parseTranslation();
+
+    void requestSourceLanguage();
+    void parseSourceLanguage();
+
+    void speakSource();
+    void speakTranslation();
+
+    void showTranslationWindow();
+    void setSelectionAsSource();
+    void copyTranslationToClipboard();
+
     // UI
-    void on_translateButton_clicked();
     void on_swapButton_clicked();
     void on_settingsButton_clicked();
-    void on_autoTranslateCheckBox_toggled(bool checked);
     void on_engineComboBox_currentIndexChanged(int);
+    void on_autoTranslateCheckBox_toggled(bool checked);
 
     void on_copySourceButton_clicked();
     void on_copyTranslationButton_clicked();
@@ -87,18 +100,9 @@ private slots:
     void on_addSourceLangButton_clicked();
     void on_addTranslationLangButton_clicked();
 
-    // Shortcuts
-    void translateSelectedText();
-    void copyTranslatedSelection();
-    void playSelection();
-    void playTranslatedSelection();
-
     // Language buttons
     void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
-
-    // Autotranslate timer
-    void startTranslateTimer();
 
     // Other
     void showAppRunningMessage();
@@ -112,19 +116,30 @@ private:
 #endif
     void changeEvent(QEvent *event) override;
 
-    // Translation
-    bool translate(QOnlineTranslator::Language translationLang, QOnlineTranslator::Language sourceLang);
-    bool translateOutside(const QString &text, QOnlineTranslator::Language translationLang);
+    void buildStateMachine();
+    void buildTranslationState(QState *state);
+    void buildAutoTranslationState(QState *state);
+    void buildSpeakSourceState(QState *state);
+    void buildTranslateSelectionState(QState *state);
+    void buildSpeakTranslationState(QState *state);
+    void buildSpeakSelectionState(QState *state);
+    void buildSpeakTranslatedSelectionState(QState *state);
+    void buildCopyTranslatedSelectionState(QState *state);
 
     // Helper functions
     void loadSettings(const AppSettings &settings);
-    void setPlayingText(QMediaPlaylist *playlist, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
+    void speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
+
+    QOnlineTranslator::Engine engine();
+    QOnlineTranslator::Language sourceLanguage();
+    QOnlineTranslator::Language translationLanguage(const AppSettings &settings, QOnlineTranslator::Language sourceLang);
 
     Ui::MainWindow *ui;
 
+    QStateMachine *m_stateMachine;
+
     QOnlineTranslator *m_translator;
-    QOnlineTranslator::Language m_uiLang;
 
     PlayerButtons *m_sourcePlayerButtons;
     PlayerButtons *m_translationPlayerButtons;
@@ -142,7 +157,6 @@ private:
 
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
-    QTimer *m_translateTimer;
 #ifdef Q_OS_WIN
     QWinTaskbarButton *m_taskbarButton;
 #endif

@@ -25,6 +25,7 @@
 
 #include <QDialog>
 
+class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;
 class ShortcutItem;
@@ -68,6 +69,8 @@ private slots:
     void on_resetShortcutButton_clicked();
     void on_resetAllShortcutsButton_clicked();
 
+    void playText();
+
 #ifdef Q_OS_WIN
     void checkForUpdates();
 #endif
@@ -79,6 +82,7 @@ private:
     Ui::SettingsDialog *ui;
 
     // Test voice
+    QOnlineTranslator *m_translator;
     QMediaPlayer *m_player;
     QMediaPlaylist *m_playlist;
 

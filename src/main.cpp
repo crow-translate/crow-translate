@@ -61,6 +61,6 @@ int launchCli(int argc, char *argv[])
     QCoreApplication app(argc, argv);
 
     Cli cli;
-    cli.parseArguments(app);
-    return cli.exec();
+    cli.process(app);
+    return QCoreApplication::exec();
 }

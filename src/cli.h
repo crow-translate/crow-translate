@@ -1,3 +1,23 @@
+/*
+ *  Copyright © 2018-2019 Hennadii Chernyshchyk <genaloner@gmail.com>
+ *
+ *  This file is part of Crow Translate.
+ *
+ *  Crow Translate is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation; either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a get of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
 #ifndef CLI_H
 #define CLI_H
 
@@ -8,49 +28,62 @@
 
 class QCoreApplication;
 class QMediaPlayer;
-class QMediaPlaylist;
-class QEventLoop;
+class QStateMachine;
 
 class Cli : public QObject
 {
     Q_OBJECT
 
 public:
-    enum Mode {
-        PrintLangCodes,
-        AudioOnly,
-        Translation
-    };
-
     explicit Cli(QObject *parent = nullptr);
 
-    void parseArguments(QCoreApplication &app);
-    int exec();
+    void process(const QCoreApplication &app);
+
+private slots:
+    void printLangCodes();
+
+    void requestTranslation();
+    void printTranslation();
+
+    void requestLanguage();
+    void parseLanguage();
+
+    void speakSource();
+    void speakTranslation();
+
+    void printSpeakingSourceText();
+    void printSpeakingTranslation();
 
 private:
-    // Modes
-    int printLangCodes();
-    int audioOnly();
-    int translation();
+    // Main state machines
+    void buildShowCodesStateMachine();
+    void buildAudioOnlyStateMachine();
+    void buildTranslationStateMachine();
+
+    // Nested states
+    void buildSpeakSourceState(QState *parent);
+    void buildSpeakTranslationsState(QState *parent);
 
     // Helper functions
-    bool speak(const QString &text, QOnlineTranslator::Engine engine, QOnlineTranslator::Language language);
+    void error(const QString &error);
+    void speak(const QString &text, QOnlineTranslator::Language lang);
+
     static QByteArray readFilesFromStdin();
     static QByteArray readFilesFromArguments(const QStringList &arguments);
 
     QMediaPlayer *m_player;
-    QMediaPlaylist *m_playlist;
-    QEventLoop *m_waitUntilPlayedLoop;
     QOnlineTranslator *m_translator;
+    QStateMachine *m_stateMachine;
 
     QString m_sourceText;
-    Mode m_mode = Translation;
+    QVector<QOnlineTranslator::Language> m_translationLangs;
     QOnlineTranslator::Engine m_engine = QOnlineTranslator::Google;
     QOnlineTranslator::Language m_sourceLang = QOnlineTranslator::NoLanguage;
     QOnlineTranslator::Language m_uiLang = QOnlineTranslator::NoLanguage;
-    QVector<QOnlineTranslator::Language> m_translationLangs;
     bool m_speakSource = false;
     bool m_speakTranslation = false;
+
+    bool m_sourcePrinted = false;
 };
 
 #endif // CLI_H

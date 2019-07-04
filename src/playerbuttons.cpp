@@ -70,7 +70,6 @@ QMediaPlaylist *PlayerButtons::playlist()
 
 void PlayerButtons::play()
 {
-    emit playerDataRequested(m_mediaPlayer->playlist());
     m_mediaPlayer->play();
 }
 
@@ -118,7 +117,7 @@ void PlayerButtons::processPlayPausePressed()
 {
     switch (m_mediaPlayer->state()) {
     case QMediaPlayer::StoppedState:
-        play();
+        emit playerMediaRequested();
         break;
     case QMediaPlayer::PlayingState:
         m_mediaPlayer->pause();

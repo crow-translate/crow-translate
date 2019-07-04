@@ -31,6 +31,8 @@ SOURCES += \
     src/main.cpp \
     src/cli.cpp \
     src/playerbuttons.cpp \
+    src/sourcetextedit.cpp \
+    src/transitions/playerstoppedtransition.cpp \
     src/settings/settingsdialog.cpp \
     src/settings/appsettings.cpp \
     src/settings/shortcutsmodel/shortcutitem.cpp \
@@ -45,6 +47,9 @@ SOURCES += \
 HEADERS += \
     src/cli.h \
     src/playerbuttons.h \
+    src/sourcetextedit.h \
+    src/transitions/conditiontransition.h \
+    src/transitions/playerstoppedtransition.h \
     src/settings/settingsdialog.h \
     src/settings/appsettings.h \
     src/settings/shortcutsmodel/shortcutitem.h \
