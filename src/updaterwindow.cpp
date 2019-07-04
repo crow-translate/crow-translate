@@ -75,7 +75,7 @@ UpdaterWindow::~UpdaterWindow()
     delete ui;
 }
 
-void UpdaterWindow::on_downloadButton_clicked()
+void UpdaterWindow::download()
 {
     ui->downloadButton->setEnabled(false);
     ui->updateStatusLabel->setText("");
@@ -132,18 +132,18 @@ void UpdaterWindow::on_downloadButton_clicked()
     delete m_reply;
 }
 
-void UpdaterWindow::on_installButton_clicked()
+void UpdaterWindow::install()
 {
     QProcess::startDetached(m_downloadPath);
     SingleApplication::exit();
 }
 
-void UpdaterWindow::on_updateLaterButton_clicked()
+void UpdaterWindow::updateLater()
 {
     this->close();
 }
 
-void UpdaterWindow::on_cancelDownloadButton_clicked()
+void UpdaterWindow::cancel()
 {
     m_reply->abort();
     ui->downloadBar->setVisible(false);

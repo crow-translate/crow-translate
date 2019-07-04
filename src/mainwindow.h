@@ -88,19 +88,18 @@ private slots:
     void copyTranslationToClipboard();
 
     // UI
-    void on_swapButton_clicked();
-    void on_settingsButton_clicked();
-    void on_engineComboBox_currentIndexChanged(int);
-    void on_autoTranslateCheckBox_toggled(bool checked);
+    void swapLanguages();
+    void openSettings();
+    void setAutoTranslateEnabled(bool enabled);
+    void processEngineChanged();
 
-    void on_copySourceButton_clicked();
-    void on_copyTranslationButton_clicked();
-    void on_copyAllTranslationButton_clicked();
+    void copySourceText();
+    void copyTranslation();
+    void copyAllTranslationInfo();
 
-    void on_addSourceLangButton_clicked();
-    void on_addTranslationLangButton_clicked();
+    void addSourceLanguage();
+    void addTranslationLanguage();
 
-    // Language buttons
     void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
 

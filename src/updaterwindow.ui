@@ -110,5 +110,76 @@
   </layout>
  </widget>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>installButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UpdaterWindow</receiver>
+   <slot>install()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>138</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>downloadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UpdaterWindow</receiver>
+   <slot>download()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>48</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>updateLaterButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UpdaterWindow</receiver>
+   <slot>updateLater()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>445</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cancelDownloadButton</sender>
+   <signal>clicked()</signal>
+   <receiver>UpdaterWindow</receiver>
+   <slot>cancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>450</x>
+     <y>333</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>249</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>install()</slot>
+  <slot>cancel()</slot>
+  <slot>updateLater()</slot>
+  <slot>download()</slot>
+ </slots>
 </ui>

@@ -51,7 +51,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     m_player = new QMediaPlayer(this);
     m_playlist = new QMediaPlaylist(this);
     m_player->setPlaylist(m_playlist);
-    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::playText);
+    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 
     // Set item data in comboboxes
     ui->languageComboBox->setItemData(0, QLocale::AnyLanguage);
@@ -147,7 +147,7 @@ SettingsDialog::~SettingsDialog()
     delete ui;
 }
 
-void SettingsDialog::on_SettingsDialog_accepted()
+void SettingsDialog::accept()
 {
     // General settings
     AppSettings settings;
@@ -197,9 +197,9 @@ void SettingsDialog::on_SettingsDialog_accepted()
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
 }
 
-void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
+void SettingsDialog::processProxyTypeChanged(int type)
 {
-    if (index == QNetworkProxy::HttpProxy || index == QNetworkProxy::Socks5Proxy) {
+    if (type == QNetworkProxy::HttpProxy || type == QNetworkProxy::Socks5Proxy) {
         ui->proxyHostEdit->setEnabled(true);
         ui->proxyHostLabel->setEnabled(true);
         ui->proxyPortLabel->setEnabled(true);
@@ -217,9 +217,9 @@ void SettingsDialog::on_proxyTypeComboBox_currentIndexChanged(int index)
 }
 
 // Disable (enable) "Custom icon path" option
-void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
+void SettingsDialog::processTrayIconTypeChanged(int type)
 {
-    if (index == TrayIcon::CustomIcon) {
+    if (type == TrayIcon::CustomIcon) {
         ui->customTrayIconLabel->setEnabled(true);
         ui->customTrayIconEdit->setEnabled(true);
         ui->customTrayIconButton->setEnabled(true);
@@ -230,7 +230,7 @@ void SettingsDialog::on_trayIconComboBox_currentIndexChanged(int index)
     }
 }
 
-void SettingsDialog::on_customTrayIconButton_clicked()
+void SettingsDialog::chooseCustomTrayIcon()
 {
     const QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf("/"));
     const QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
@@ -238,19 +238,19 @@ void SettingsDialog::on_customTrayIconButton_clicked()
         ui->customTrayIconEdit->setText(file);
 }
 
-void SettingsDialog::on_customTrayIconEdit_textChanged(const QString &iconPath)
+void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
 {
     ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
 }
 
 // Disable unsupported voice settings for engines.
-void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
+void SettingsDialog::showAvailableEngineOptions(int engine)
 {
     // Avoid index changed signal
     ui->voiceComboBox->blockSignals(true);
     ui->emotionComboBox->blockSignals(true);
 
-    switch (index) {
+    switch (engine) {
     case QOnlineTranslator::Google:
         ui->voiceLabel->setEnabled(false);
         ui->voiceComboBox->setEnabled(false);
@@ -315,27 +315,27 @@ void SettingsDialog::on_engineComboBox_currentIndexChanged(int index)
 }
 
 // Save current engine voice settings
-void SettingsDialog::on_voiceComboBox_currentIndexChanged(int index)
+void SettingsDialog::saveEngineVoice(int engine)
 {
     switch (ui->engineComboBox->currentIndex()) {
     case QOnlineTranslator::Yandex:
-        m_yandexVoice = ui->voiceComboBox->itemData(index).value<QOnlineTts::Voice>();
+        m_yandexVoice = ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>();
         break;
     case QOnlineTranslator::Bing:
-        m_bingVoice = ui->voiceComboBox->itemData(index).value<QOnlineTts::Voice>();
+        m_bingVoice = ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>();
         break;
     }
 }
 
 // Save current engine emotion settings
-void SettingsDialog::on_emotionComboBox_currentIndexChanged(int index)
+void SettingsDialog::saveEngineEmotion(int engine)
 {
     if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
-        m_yandexEmotion = ui->emotionComboBox->itemData(index).value<QOnlineTts::Emotion>();
+        m_yandexEmotion = ui->emotionComboBox->itemData(engine).value<QOnlineTts::Emotion>();
 }
 
 // Play test text
-void SettingsDialog::on_testSpeechButton_clicked()
+void SettingsDialog::detectTextLanguage()
 {
     // Clear previous playlist (this will stop playback)
     m_playlist->clear();
@@ -350,50 +350,7 @@ void SettingsDialog::on_testSpeechButton_clicked()
     m_translator->detectLanguage(ui->testSpeechEdit->text(), engine);
 }
 
-void SettingsDialog::on_shortcutsTreeView_currentItemChanged(ShortcutItem *item)
-{
-    if (item->childCount() == 0) {
-        ui->shortcutGroupBox->setEnabled(true);
-        ui->shortcutSequenceEdit->setKeySequence(item->shortcut());
-    } else {
-        ui->shortcutGroupBox->setEnabled(false);
-        ui->shortcutSequenceEdit->clear();
-    }
-}
-
-void SettingsDialog::on_shortcutSequenceEdit_editingFinished()
-{
-    if (ui->shortcutsTreeView->currentItem()->shortcut() != ui->shortcutSequenceEdit->keySequence())
-        ui->acceptShortcutButton->setEnabled(true);
-    else
-        ui->acceptShortcutButton->setEnabled(false);
-}
-
-void SettingsDialog::on_acceptShortcutButton_clicked()
-{
-    ui->shortcutsTreeView->currentItem()->setShortcut(ui->shortcutSequenceEdit->keySequence());
-    ui->acceptShortcutButton->setEnabled(false);
-}
-
-void SettingsDialog::on_clearShortcutButton_clicked()
-{
-    ui->shortcutSequenceEdit->clear();
-    ui->acceptShortcutButton->setEnabled(true);
-}
-
-void SettingsDialog::on_resetShortcutButton_clicked()
-{
-    ui->shortcutsTreeView->currentItem()->resetShortcut();
-    ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeView->currentItem()->shortcut());
-    ui->acceptShortcutButton->setEnabled(false);
-}
-
-void SettingsDialog::on_resetAllShortcutsButton_clicked()
-{
-    ui->shortcutsTreeView->model()->resetAllShortcuts();
-}
-
-void SettingsDialog::playText()
+void SettingsDialog::speakTestText()
 {
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
     QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
@@ -427,6 +384,49 @@ void SettingsDialog::playText()
 
     m_playlist->addMedia(media);
     m_player->play();
+}
+
+void SettingsDialog::loadShortcut(ShortcutItem *item)
+{
+    if (item->childCount() == 0) {
+        ui->shortcutGroupBox->setEnabled(true);
+        ui->shortcutSequenceEdit->setKeySequence(item->shortcut());
+    } else {
+        ui->shortcutGroupBox->setEnabled(false);
+        ui->shortcutSequenceEdit->clear();
+    }
+}
+
+void SettingsDialog::updateAcceptButton()
+{
+    if (ui->shortcutsTreeView->currentItem()->shortcut() != ui->shortcutSequenceEdit->keySequence())
+        ui->acceptShortcutButton->setEnabled(true);
+    else
+        ui->acceptShortcutButton->setEnabled(false);
+}
+
+void SettingsDialog::acceptCurrentShortcut()
+{
+    ui->shortcutsTreeView->currentItem()->setShortcut(ui->shortcutSequenceEdit->keySequence());
+    ui->acceptShortcutButton->setEnabled(false);
+}
+
+void SettingsDialog::clearCurrentShortcut()
+{
+    ui->shortcutSequenceEdit->clear();
+    ui->acceptShortcutButton->setEnabled(true);
+}
+
+void SettingsDialog::resetCurrentShortcut()
+{
+    ui->shortcutsTreeView->currentItem()->resetShortcut();
+    ui->shortcutSequenceEdit->setKeySequence(ui->shortcutsTreeView->currentItem()->shortcut());
+    ui->acceptShortcutButton->setEnabled(false);
+}
+
+void SettingsDialog::resetAllShortcuts()
+{
+    ui->shortcutsTreeView->model()->resetAllShortcuts();
 }
 
 #ifdef Q_OS_WIN
@@ -511,7 +511,7 @@ void SettingsDialog::restoreDefaults()
     ui->proxyPasswordEdit->setText("");
 
     // Shortcuts
-    on_resetAllShortcutsButton_clicked();
+    resetAllShortcuts();
 }
 
 void SettingsDialog::loadSettings()

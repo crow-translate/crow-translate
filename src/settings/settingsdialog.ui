@@ -1454,7 +1454,6 @@
    <header>src/settings/shortcutsmodel/shortcutsview.h</header>
    <slots>
     <signal>currentItemChanged(ShortcutItem*)</signal>
-    <signal>currentShortcutChanged(ShortcutItem*)</signal>
    </slots>
   </customwidget>
  </customwidgets>
@@ -1718,5 +1717,245 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>proxyTypeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>processProxyTypeChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>trayIconComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>processTrayIconTypeChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>57</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customTrayIconButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>chooseCustomTrayIcon()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>customTrayIconEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>setCustomTrayIconPreview(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>engineComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>showAvailableEngineOptions(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>45</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>voiceComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>saveEngineVoice(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>42</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>emotionComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>saveEngineEmotion(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>testSpeechButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>detectTextLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>282</x>
+     <y>35</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>resetAllShortcutsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>resetAllShortcuts()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>254</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>resetShortcutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>resetCurrentShortcut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>288</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>acceptShortcutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>257</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>clearShortcutButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>clearCurrentShortcut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>272</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>shortcutSequenceEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>updateAcceptButton()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>241</x>
+     <y>61</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>shortcutsTreeView</sender>
+   <signal>currentItemChanged(ShortcutItem*)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>loadShortcut(ShortcutItem*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>500</x>
+     <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>processProxyTypeChanged(int)</slot>
+  <slot>processTrayIconTypeChanged(int)</slot>
+  <slot>chooseCustomTrayIcon()</slot>
+  <slot>setCustomTrayIconPreview(QString)</slot>
+  <slot>showAvailableEngineOptions(int)</slot>
+  <slot>saveEngineEmotion(int)</slot>
+  <slot>saveEngineVoice(int)</slot>
+  <slot>detectTextLanguage()</slot>
+  <slot>resetAllShortcuts()</slot>
+  <slot>resetCurrentShortcut()</slot>
+  <slot>clearCurrentShortcut()</slot>
+  <slot>acceptCurrentShortcut()</slot>
+  <slot>updateAcceptButton()</slot>
+  <slot>loadShortcut(ShortcutItem*)</slot>
+ </slots>
 </ui>

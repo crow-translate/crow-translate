@@ -48,28 +48,28 @@ public:
     explicit SettingsDialog(QWidget *parent = nullptr);
     ~SettingsDialog() override;
 
+public slots:
+    void accept() override;
+
 private slots:
-    // UI
-    void on_SettingsDialog_accepted();
-    void on_proxyTypeComboBox_currentIndexChanged(int index);
+    void processProxyTypeChanged(int type);
+    void processTrayIconTypeChanged(int type);
 
-    void on_trayIconComboBox_currentIndexChanged(int index);
-    void on_customTrayIconButton_clicked();
-    void on_customTrayIconEdit_textChanged(const QString &iconPath);
+    void chooseCustomTrayIcon();
+    void setCustomTrayIconPreview(const QString &iconPath);
 
-    void on_engineComboBox_currentIndexChanged(int index);
-    void on_voiceComboBox_currentIndexChanged(int index);
-    void on_emotionComboBox_currentIndexChanged(int index);
-    void on_testSpeechButton_clicked();
+    void showAvailableEngineOptions(int engine);
+    void saveEngineVoice(int engine);
+    void saveEngineEmotion(int engine);
+    void detectTextLanguage();
+    void speakTestText();
 
-    void on_shortcutsTreeView_currentItemChanged(ShortcutItem *item);
-    void on_shortcutSequenceEdit_editingFinished();
-    void on_acceptShortcutButton_clicked();
-    void on_clearShortcutButton_clicked();
-    void on_resetShortcutButton_clicked();
-    void on_resetAllShortcutsButton_clicked();
-
-    void playText();
+    void loadShortcut(ShortcutItem *item);
+    void updateAcceptButton();
+    void acceptCurrentShortcut();
+    void clearCurrentShortcut();
+    void resetCurrentShortcut();
+    void resetAllShortcuts();
 
 #ifdef Q_OS_WIN
     void checkForUpdates();

@@ -393,5 +393,161 @@
  <resources>
   <include location="../data/resources.qrc"/>
  </resources>
- <connections/>
+ <connections>
+  <connection>
+   <sender>swapButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>swapLanguages()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>settingsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>openSettings()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>626</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>engineComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>processEngineChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>403</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copySourceButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>copySourceText()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>98</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>autoTranslateCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setAutoTranslateEnabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>205</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copyTranslationButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>copyTranslation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>550</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>copyAllTranslationButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>copyAllTranslationInfo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>588</x>
+     <y>276</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addSourceLangButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>addSourceLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>22</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>addTranslationLangButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>addTranslationLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>626</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>swapLanguages()</slot>
+  <slot>openSettings()</slot>
+  <slot>processEngineChanged()</slot>
+  <slot>setAutoTranslateEnabled(bool)</slot>
+  <slot>copySourceText()</slot>
+  <slot>copyTranslation()</slot>
+  <slot>copyAllTranslationInfo()</slot>
+  <slot>addSourceLanguage()</slot>
+  <slot>addTranslationLanguage()</slot>
+ </slots>
 </ui>

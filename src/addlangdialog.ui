@@ -94,5 +94,24 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>searchEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>filterLanguages(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>169</x>
+     <y>21</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>169</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>filterLanguages(QString)</slot>
+ </slots>
 </ui>

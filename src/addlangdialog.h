@@ -40,9 +40,11 @@ public:
 
     QOnlineTranslator::Language language() const;
 
+public slots:
+    void accept() override;
+
 private slots:
-    void on_AddLangDialog_accepted();
-    void on_searchEdit_textChanged(const QString &text);
+    void filterLanguages(const QString &text);
 
 private:
     Ui::AddLangDialog *ui;

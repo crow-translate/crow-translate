@@ -111,7 +111,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // System tray icon
     m_trayMenu = new QMenu(this);
     m_trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
-    m_trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::on_settingsButton_clicked);
+    m_trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::openSettings);
     m_trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
     m_trayIcon = new TrayIcon(this);
     m_trayIcon->setContextMenu(m_trayMenu);
@@ -431,7 +431,7 @@ void MainWindow::copyTranslationToClipboard()
     SingleApplication::clipboard()->setText(m_translator->translation());
 }
 
-void MainWindow::on_swapButton_clicked()
+void MainWindow::swapLanguages()
 {
     const QOnlineTranslator::Language sourceLang = m_sourceLangButtons->checkedLanguage();
     const QOnlineTranslator::Language translationLang = m_translationLangButtons->checkedLanguage();
@@ -453,7 +453,7 @@ void MainWindow::on_swapButton_clicked()
     ui->sourceEdit->moveCursor(QTextCursor::End);
 }
 
-void MainWindow::on_settingsButton_clicked()
+void MainWindow::openSettings()
 {
     SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted) {
@@ -462,40 +462,48 @@ void MainWindow::on_settingsButton_clicked()
     }
 }
 
-void MainWindow::on_engineComboBox_currentIndexChanged(int)
+void MainWindow::setAutoTranslateEnabled(bool enabled)
+{
+    ui->sourceEdit->enableSourceChangedSignal(enabled);
+    emit ui->sourceEdit->endDelay();
+}
+
+void MainWindow::processEngineChanged()
 {
     if (ui->autoTranslateCheckBox->isChecked())
         ui->sourceEdit->sourceChanged();
 }
 
-void MainWindow::on_autoTranslateCheckBox_toggled(bool checked)
-{
-    ui->sourceEdit->enableSourceChangedSignal(checked);
-    emit ui->sourceEdit->endDelay();
-}
-
-void MainWindow::on_copySourceButton_clicked()
+void MainWindow::copySourceText()
 {
     if (!ui->sourceEdit->toPlainText().isEmpty())
-        SingleApplication::clipboard()->setText(m_translator->source());
-    else
-        qInfo() << tr("Text field is empty");
+        SingleApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
 }
 
-void MainWindow::on_copyTranslationButton_clicked()
+void MainWindow::copyTranslation()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
         SingleApplication::clipboard()->setText(m_translator->translation());
-    else
-        qInfo() << tr("Text field is empty");
 }
 
-void MainWindow::on_copyAllTranslationButton_clicked()
+void MainWindow::copyAllTranslationInfo()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
         SingleApplication::clipboard()->setText(ui->translationEdit->toPlainText());
-    else
-        qInfo() << tr("Text field is empty");
+}
+
+void MainWindow::addSourceLanguage()
+{
+    AddLangDialog langDialog(this);
+    if (langDialog.exec() == QDialog::Accepted)
+        m_sourceLangButtons->insertLanguage(langDialog.language());
+}
+
+void MainWindow::addTranslationLanguage()
+{
+    AddLangDialog langDialog(this);
+    if (langDialog.exec() == QDialog::Accepted)
+        m_translationLangButtons->insertLanguage(langDialog.language());
 }
 
 void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
@@ -974,18 +982,4 @@ QOnlineTranslator::Language MainWindow::translationLanguage(const AppSettings &s
         return translationLang;
 
     return settings.secondaryLanguage();
-}
-
-void MainWindow::on_addSourceLangButton_clicked()
-{
-    AddLangDialog langDialog(this);
-    if (langDialog.exec() == QDialog::Accepted)
-        m_sourceLangButtons->insertLanguage(langDialog.language());
-}
-
-void MainWindow::on_addTranslationLangButton_clicked()
-{
-    AddLangDialog langDialog(this);
-    if (langDialog.exec() == QDialog::Accepted)
-        m_translationLangButtons->insertLanguage(langDialog.language());
 }
