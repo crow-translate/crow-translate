@@ -127,6 +127,8 @@ private:
     void buildSpeakTranslatedSelectionState(QState *state);
     void buildCopyTranslatedSelectionState(QState *state);
 
+    void setupRequestStateButtons(QState *state);
+
     // Helper functions
     void loadSettings(const AppSettings &settings);
     void speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
