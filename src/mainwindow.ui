@@ -149,7 +149,35 @@
       </item>
      </layout>
     </item>
-    <item row="6" column="1">
+    <item row="4" column="3">
+     <widget class="QToolButton" name="swapButton">
+      <property name="toolTip">
+       <string>Swap languages</string>
+      </property>
+      <property name="icon">
+       <iconset theme="object-flip-horizontal">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QToolButton" name="translateButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Translate</string>
+      </property>
+      <property name="icon">
+       <iconset theme="go-next">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="7" column="1">
      <layout class="QHBoxLayout" name="buttomSourceLayout">
       <item>
        <widget class="QToolButton" name="playSourceButton">
@@ -204,14 +232,7 @@
       </item>
      </layout>
     </item>
-    <item row="5" column="1">
-     <widget class="SourceTextEdit" name="sourceEdit">
-      <property name="placeholderText">
-       <string>Source</string>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="4">
+    <item row="7" column="4">
      <layout class="QHBoxLayout" name="buttomTranslationLayout">
       <item>
        <spacer name="buttomTranslationSpacer">
@@ -318,35 +339,24 @@
       </item>
      </layout>
     </item>
-    <item row="4" column="3">
-     <widget class="QToolButton" name="swapButton">
-      <property name="toolTip">
-       <string>Swap languages</string>
+    <item row="6" column="3">
+     <widget class="QToolButton" name="abortButton">
+      <property name="enabled">
+       <bool>false</bool>
       </property>
       <property name="icon">
-       <iconset theme="object-flip-horizontal">
-        <normaloff>.</normaloff>.</iconset>
+       <iconset theme="dialog-cancel"/>
       </property>
      </widget>
     </item>
-    <item row="5" column="3">
-     <widget class="QToolButton" name="translateButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Translate</string>
-      </property>
-      <property name="icon">
-       <iconset theme="go-next">
-        <normaloff>.</normaloff>.</iconset>
+    <item row="5" column="1" rowspan="2">
+     <widget class="SourceTextEdit" name="sourceEdit">
+      <property name="placeholderText">
+       <string>Source</string>
       </property>
      </widget>
     </item>
-    <item row="5" column="4">
+    <item row="5" column="4" rowspan="2">
      <widget class="QTextEdit" name="translationEdit">
       <property name="styleSheet">
        <string notr="true"/>
@@ -538,6 +548,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>abortButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>abortTranslation()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>221</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>149</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>swapLanguages()</slot>
@@ -549,5 +575,6 @@
   <slot>copyAllTranslationInfo()</slot>
   <slot>addSourceLanguage()</slot>
   <slot>addTranslationLanguage()</slot>
+  <slot>abortTranslation()</slot>
  </slots>
 </ui>

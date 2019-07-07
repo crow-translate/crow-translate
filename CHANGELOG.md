@@ -8,19 +8,20 @@ All notable changes to this project will be documented in this file. This projec
 
 **Added**
 
+-   Abort button.
+-   Simplified Chinese localization.
 -   Windows: Text speaking indication in the taskbar.
 
 **Changed**
 
+-   Cancel previous request automatically if new was requested.
+-   Remove 300ms delay for automatic translation delay when changing source text.
 -   Sort languages in comboboxes alphabetically.
 -   Fix date check for leap years.
--   Add simplified Chinese support.
 -   Rework CLI interface.
--   Do not translate automatically if the translation button is pressed faster.
--   Remove 300ms delay for automatic translation delay when changing source text.
--   Cancel previous request if new was requested.
 -   Use source / translation fields to control selection speaking.
 -   Use one shortcut to stop all text playback.
+-   Fix double translation if the translation button is pressed faster.
 -   Minor performance improvements.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)

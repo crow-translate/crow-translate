@@ -76,6 +76,7 @@ private slots:
     void requestTranslation();
     void requestRetranslation();
     void parseTranslation();
+    void clearTranslation();
 
     void requestSourceLanguage();
     void parseSourceLanguage();
@@ -88,6 +89,7 @@ private slots:
     void copyTranslationToClipboard();
 
     // UI
+    void abortTranslation();
     void swapLanguages();
     void openSettings();
     void setAutoTranslateEnabled(bool enabled);
