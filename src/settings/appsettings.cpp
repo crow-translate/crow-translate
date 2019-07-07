@@ -326,34 +326,61 @@ void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
     setValue("Translation/SecondaryLanguage", lang);
 }
 
-QOnlineTts::Voice AppSettings::yandexVoice() const
+QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
-    return value("Translation/YandexVoice", QOnlineTts::Zahar).value<QOnlineTts::Voice>();
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        return QOnlineTts::DefaultVoice;
+    case QOnlineTranslator::Yandex:
+        return value("Translation/YandexVoice", QOnlineTts::Zahar).value<QOnlineTts::Voice>();
+    case QOnlineTranslator::Bing:
+        return value("Translation/BingVoice", QOnlineTts::Female).value<QOnlineTts::Voice>();
+    }
+
+    qFatal("Unknown engine");
 }
 
-void AppSettings::setYandexVoice(QOnlineTts::Voice voice)
+void AppSettings::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice)
 {
-    setValue("Translation/YandexVoice", voice);
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        qFatal("Google does not have voice settings");
+    case QOnlineTranslator::Yandex:
+        setValue("Translation/YandexVoice", voice);
+        return;
+    case QOnlineTranslator::Bing:
+        setValue("Translation/BingVoice", voice);
+        return;
+    }
+
+    qFatal("Unknown engine");
 }
 
-QOnlineTts::Voice AppSettings::bingVoice() const
+QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
 {
-    return value("Translation/BingVoice", QOnlineTts::Female).value<QOnlineTts::Voice>();
+    switch (engine) {
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::Google:
+        return QOnlineTts::DefaultEmotion;
+    case QOnlineTranslator::Yandex:
+        return value("Translation/YandexEmotion", QOnlineTts::Neutral).value<QOnlineTts::Emotion>();
+    }
+
+    qFatal("Unknown engine");
 }
 
-void AppSettings::setBingVoice(QOnlineTts::Voice voice)
+void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion)
 {
-    setValue("Translation/BingVoice", voice);
-}
+    switch (engine) {
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::Google:
+        qFatal("Bing and Google does not have voice emotion settings");
+    case QOnlineTranslator::Yandex:
+        setValue("Translation/YandexEmotion", emotion);
+        return;
+    }
 
-QOnlineTts::Emotion AppSettings::yandexEmotion() const
-{
-    return value("Translation/YandexEmotion", QOnlineTts::Neutral).value<QOnlineTts::Emotion>();
-}
-
-void AppSettings::setYandexEmotion(QOnlineTts::Emotion emotion)
-{
-    setValue("Translation/YandexEmotion", emotion);
+    qFatal("Unknown engine");
 }
 
 QNetworkProxy::ProxyType AppSettings::proxyType() const

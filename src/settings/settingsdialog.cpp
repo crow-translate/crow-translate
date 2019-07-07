@@ -181,9 +181,9 @@ void SettingsDialog::accept()
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
 
     // Speech synthesis settings
-    settings.setYandexVoice(m_yandexVoice);
-    settings.setBingVoice(m_bingVoice);
-    settings.setYandexEmotion(m_yandexEmotion);
+    settings.setVoice(QOnlineTranslator::Yandex, m_yandexVoice);
+    settings.setVoice(QOnlineTranslator::Bing, m_bingVoice);
+    settings.setEmotion(QOnlineTranslator::Yandex, m_yandexEmotion);
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -352,6 +352,12 @@ void SettingsDialog::detectTextLanguage()
 
 void SettingsDialog::speakTestText()
 {
+    if (m_translator->error()) {
+        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), m_translator->errorString());
+        errorMessage.exec();
+        return;
+    }
+
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
     QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
     QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
@@ -365,12 +371,6 @@ void SettingsDialog::speakTestText()
         break;
     default:
         break;
-    }
-
-    if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), m_translator->errorString());
-        errorMessage.exec();
-        return;
     }
 
     QOnlineTts tts;
@@ -550,9 +550,9 @@ void SettingsDialog::loadSettings()
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
 
     // Speech synthesis settings
-    m_yandexVoice = settings.yandexVoice();
-    m_bingVoice = settings.bingVoice();
-    m_yandexEmotion = settings.yandexEmotion();
+    m_yandexVoice = settings.voice(QOnlineTranslator::Yandex);
+    m_bingVoice = settings.voice(QOnlineTranslator::Bing);
+    m_yandexEmotion = settings.emotion(QOnlineTranslator::Yandex);
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());

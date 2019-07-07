@@ -130,9 +130,9 @@ private:
     void speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     QString selectedText();
 
-    QOnlineTranslator::Engine engine();
-    QOnlineTranslator::Language sourceLanguage();
-    QOnlineTranslator::Language translationLanguage(const AppSettings &settings, QOnlineTranslator::Language sourceLang);
+    QOnlineTranslator::Engine currentEngine();
+    QOnlineTranslator::Language currentSourceLang();
+    QOnlineTranslator::Language currentTranslationLang(QOnlineTranslator::Language sourceLang);
 
     Ui::MainWindow *ui;
 

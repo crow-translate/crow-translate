@@ -131,14 +131,11 @@ public:
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
     // Speech synthesis settings
-    QOnlineTts::Voice yandexVoice() const;
-    void setYandexVoice(QOnlineTts::Voice voice);
+    QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
+    void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);
 
-    QOnlineTts::Voice bingVoice() const;
-    void setBingVoice(QOnlineTts::Voice voice);
-
-    QOnlineTts::Emotion yandexEmotion() const;
-    void setYandexEmotion(QOnlineTts::Emotion emotion);
+    QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
+    void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
 
     // Connection settings
     QNetworkProxy::ProxyType proxyType() const;

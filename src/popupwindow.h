@@ -24,9 +24,6 @@
 #include <QWidget>
 
 class LangButtonGroup;
-class QTextEdit;
-class QToolButton;
-class QComboBox;
 class QShortcut;
 class MainWindow;
 class PlayerButtons;
