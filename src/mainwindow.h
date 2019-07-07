@@ -140,10 +140,6 @@ private:
 
     Ui::MainWindow *ui;
 
-    QStateMachine *m_stateMachine;
-
-    QOnlineTranslator *m_translator;
-
     PlayerButtons *m_sourcePlayerButtons;
     PlayerButtons *m_translationPlayerButtons;
 
@@ -158,6 +154,8 @@ private:
     LangButtonGroup *m_sourceLangButtons;
     LangButtonGroup *m_translationLangButtons;
 
+    QStateMachine *m_stateMachine;
+    QOnlineTranslator *m_translator;
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
 #ifdef Q_OS_WIN

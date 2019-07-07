@@ -23,7 +23,6 @@
 
 #include <QStandardPaths>
 #include <QFileInfo>
-#include <QDebug>
 #include <QTextStream>
 #include <QLibraryInfo>
 #include <QMetaEnum>
