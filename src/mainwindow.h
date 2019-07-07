@@ -93,7 +93,7 @@ private slots:
     void swapLanguages();
     void openSettings();
     void setAutoTranslateEnabled(bool enabled);
-    void processEngineChanged();
+    void markSourceAsUpdated();
 
     void copySourceText();
     void copyTranslation();
@@ -102,7 +102,6 @@ private slots:
     void addSourceLanguage();
     void addTranslationLanguage();
 
-    void checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id);
     void resetAutoSourceButtonText();
 
     // Other
@@ -132,6 +131,7 @@ private:
     // Helper functions
     void loadSettings(const AppSettings &settings);
     void speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
+    void checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup);
     QString selectedText();
 
     QOnlineTranslator::Engine currentEngine();

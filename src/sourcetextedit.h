@@ -34,7 +34,6 @@ public:
     SourceTextEdit(QWidget *parent = nullptr);
 
     void enableSourceChangedSignal(bool enable);
-    void endDelay();
 
 signals:
     void sourceChanged();

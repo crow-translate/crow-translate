@@ -100,11 +100,11 @@ MainWindow::MainWindow(QWidget *parent) :
     m_translationLangButtons->loadLanguages(settings);
 
     // Toggle language logic
-    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        checkLanguageButton(m_translationLangButtons, m_sourceLangButtons, id);
+    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, [&](int checkedId) {
+        checkLanguageButton(m_translationLangButtons, checkedId, m_sourceLangButtons);
     });
-    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, [&](int id) {
-        checkLanguageButton(m_sourceLangButtons, m_translationLangButtons, id);
+    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, [&](int checkedId) {
+        checkLanguageButton(m_sourceLangButtons, checkedId, m_translationLangButtons);
     });
 
     // System tray icon
@@ -464,13 +464,14 @@ void MainWindow::openSettings()
 void MainWindow::setAutoTranslateEnabled(bool enabled)
 {
     ui->sourceEdit->enableSourceChangedSignal(enabled);
-    emit ui->sourceEdit->endDelay();
+    emit ui->sourceEdit->sourceChanged();
 }
 
-void MainWindow::processEngineChanged()
+void MainWindow::markSourceAsUpdated()
 {
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->endDelay();
+    // Always translate the text automatically in pop-up window (isHidden() = true)
+    if (isHidden() || ui->autoTranslateCheckBox->isChecked())
+        emit ui->sourceEdit->sourceChanged();
 }
 
 void MainWindow::copySourceText()
@@ -503,30 +504,6 @@ void MainWindow::addTranslationLanguage()
     AddLangDialog langDialog(this);
     if (langDialog.exec() == QDialog::Accepted)
         m_translationLangButtons->insertLanguage(langDialog.language());
-}
-
-void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, LangButtonGroup *anotherGroup, int id)
-{
-    /* If the target and source languages are the same (and they are not autodetect buttons),
-     * then insert previous checked language from just checked language group to another group */
-    if (checkedGroup->language(id) == anotherGroup->checkedLanguage() && anotherGroup->checkedId() != 0 && id != 0)
-        anotherGroup->insertLanguage(checkedGroup->previousCheckedLanguage());
-
-    // Check if selected language is supported by engine
-    if (!QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()),
-                                                 checkedGroup->language(id))) {
-        for (int i = 0; i < ui->engineComboBox->count(); ++i) {
-            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedGroup->language(id))) {
-                ui->engineComboBox->setCurrentIndex(i); // Check first supported language
-                break;
-            }
-        }
-        return;
-    }
-
-    // Always translate the text automatically in pop-up window
-    if (isHidden())
-        emit ui->sourceEdit->endDelay();
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -907,6 +884,30 @@ void MainWindow::speakText(PlayerButtons *playerButtons, const QString &text, QO
 
     playerButtons->playlist()->addMedia(media);
     playerButtons->play();
+}
+
+void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup)
+{
+    /* If the target and source languages are the same (and they are not autodetect buttons),
+     * then insert previous checked language from just checked language group to another group */
+    const QOnlineTranslator::Language checkedLang = checkedGroup->language(checkedId);
+    if (checkedLang == anotherGroup->checkedLanguage() && anotherGroup->checkedId() != 0 && checkedId != 0) {
+        anotherGroup->insertLanguage(checkedGroup->previousCheckedLanguage());
+        return;
+    }
+
+    // Check if selected language is supported by engine
+    if (!QOnlineTranslator::isSupportTranslation(currentEngine(), checkedLang)) {
+        for (int i = 0; i < ui->engineComboBox->count(); ++i) {
+            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedLang)) {
+                ui->engineComboBox->setCurrentIndex(i); // Check first supported language
+                break;
+            }
+        }
+        return;
+    }
+
+    markSourceAsUpdated();
 }
 
 QString MainWindow::selectedText()

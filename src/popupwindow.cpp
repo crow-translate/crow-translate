@@ -104,7 +104,7 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 
     // Connect popup window events
-    connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->engineComboBox, &QComboBox::setCurrentIndex);
+    connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), parent->engineCombobox(), &QComboBox::setCurrentIndex);
     connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, parent->sourceLangButtons(), &LangButtonGroup::checkButton);
     connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, parent->translationLangButtons(), &LangButtonGroup::checkButton);
     connect(ui->addSourceLangButton, &QToolButton::clicked, parent->addSourceLangButton(), &QToolButton::click);

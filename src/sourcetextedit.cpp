@@ -30,6 +30,7 @@ SourceTextEdit::SourceTextEdit(QWidget *parent) :
     m_textEditedTimer = new QTimer(this);
     m_textEditedTimer->setSingleShot(true);
     connect(m_textEditedTimer, &QTimer::timeout, this, &SourceTextEdit::sourceChanged);
+    connect(this, &SourceTextEdit::sourceChanged, m_textEditedTimer, &QTimer::stop);
 }
 
 void SourceTextEdit::enableSourceChangedSignal(bool enable)
@@ -38,12 +39,6 @@ void SourceTextEdit::enableSourceChangedSignal(bool enable)
         connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
     else
         disconnect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
-}
-
-void SourceTextEdit::endDelay()
-{
-    m_textEditedTimer->stop();
-    emit sourceChanged();
 }
 
 void SourceTextEdit::startTimerDelay()

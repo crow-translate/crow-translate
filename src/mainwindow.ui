@@ -440,7 +440,7 @@
    <sender>engineComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>MainWindow</receiver>
-   <slot>processEngineChanged()</slot>
+   <slot>markSourceAsUpdated()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>403</x>
@@ -568,7 +568,7 @@
  <slots>
   <slot>swapLanguages()</slot>
   <slot>openSettings()</slot>
-  <slot>processEngineChanged()</slot>
+  <slot>markSourceAsUpdated()</slot>
   <slot>setAutoTranslateEnabled(bool)</slot>
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
