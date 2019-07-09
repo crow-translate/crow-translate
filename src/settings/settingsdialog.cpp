@@ -486,7 +486,7 @@ void SettingsDialog::restoreDefaults()
     ui->windowLanguagesComboBox->setCurrentIndex(2);
     ui->windowControlsComboBox->setCurrentIndex(0);
     ui->trayIconComboBox->setCurrentIndex(TrayIcon::DefaultIcon);
-    ui->customTrayIconEdit->setText("");
+    ui->customTrayIconEdit->clear();
 
     // Translation settings
     ui->sourceTranslitCheckBox->setChecked(true);
@@ -504,11 +504,11 @@ void SettingsDialog::restoreDefaults()
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(0);
-    ui->proxyHostEdit->setText("");
+    ui->proxyHostEdit->clear();
     ui->proxyPortSpinbox->setValue(8080);
     ui->proxyAuthCheckBox->setChecked(false);
-    ui->proxyUsernameEdit->setText("");
-    ui->proxyPasswordEdit->setText("");
+    ui->proxyUsernameEdit->clear();
+    ui->proxyPasswordEdit->clear();
 
     // Shortcuts
     resetAllShortcuts();

@@ -78,7 +78,7 @@ UpdaterWindow::~UpdaterWindow()
 void UpdaterWindow::download()
 {
     ui->downloadButton->setEnabled(false);
-    ui->updateStatusLabel->setText("");
+    ui->updateStatusLabel->clear();
 
     // Send request
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
