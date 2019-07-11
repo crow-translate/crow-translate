@@ -45,11 +45,12 @@
 #ifdef Q_OS_WIN
 #include <QMimeData>
 #include <QThread>
+#include <QTimer>
 #include <QDate>
 #include <QWinTaskbarButton>
 #include <QWinTaskbarProgress>
 
-#include <Windows.h>
+#include <windows.h>
 #endif
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -913,9 +914,9 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, int checkedI
 QString MainWindow::selectedText()
 {
     QString selectedText;
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX)
     selectedText = SingleApplication::clipboard()->text(QClipboard::Selection);
-#elif Q_OS_WIN // Send Ctrl + C to get selected text
+#elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
     // Save original clipboard data
     QVariant originalClipboard;
     if (SingleApplication::clipboard()->mimeData()->hasImage())
