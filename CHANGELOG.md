@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file. This projec
 -   Use one shortcut to stop all text playback.
 -   Fix double translation if the translation button is pressed faster.
 -   Minor performance improvements.
+-   Windows: Update Papirus icon theme.
 
 ## [2.1.0](https://github.com/crow-translate/crow-translate/tree/2.1.0) (2018-12-08)
 
