@@ -149,6 +149,8 @@ SettingsDialog::~SettingsDialog()
 
 void SettingsDialog::accept()
 {
+    QDialog::accept();
+
     // General settings
     AppSettings settings;
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));

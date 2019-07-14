@@ -69,6 +69,7 @@ void AddLangDialog::filterLanguages(const QString &text)
 
 void AddLangDialog::accept()
 {
+    QDialog::accept();
     m_lang = ui->langListWidget->currentItem()->data(Qt::UserRole).value<QOnlineTranslator::Language>();
 }
 
