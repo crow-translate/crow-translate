@@ -19,23 +19,25 @@
  */
 
 #include "playerbuttons.h"
+#include "ui_playerbuttons.h"
 
-#include <QAbstractButton>
 #include <QMediaPlaylist>
 
 QMediaPlayer *PlayerButtons::currentlyPlaying = nullptr;
 
-PlayerButtons::PlayerButtons(QAbstractButton *playPauseButton, QAbstractButton *stopButton, QObject *parent) :
-    QObject(parent)
+PlayerButtons::PlayerButtons(QWidget *parent) :
+    QWidget(parent),
+    ui(new Ui::PlayerButtons)
 {
-    m_playPauseButton = playPauseButton;
-    m_playPauseButton->setText("Play");
-    connect(m_playPauseButton, &QAbstractButton::clicked, this, &PlayerButtons::processPlayPausePressed);
+    ui->setupUi(this);
 
-    m_stopButton = stopButton;
-    m_stopButton->setIcon(QIcon::fromTheme("media-playback-stop"));
-    m_stopButton->setText("Stop");
-    connect(m_stopButton, &QAbstractButton::clicked, this, &PlayerButtons::stop);
+    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &PlayerButtons::processPlayPausePressed);
+    connect(ui->stopButton, &QAbstractButton::clicked, this, &PlayerButtons::stop);
+}
+
+PlayerButtons::~PlayerButtons()
+{
+    delete ui;
 }
 
 QMediaPlayer *PlayerButtons::mediaPlayer() const
@@ -82,6 +84,22 @@ void PlayerButtons::stop()
     m_mediaPlayer->stop();
 }
 
+void PlayerButtons::setPlayPauseShortcut(const QKeySequence &shortcut)
+{
+    ui->playPauseButton->setShortcut(shortcut);
+}
+
+QKeySequence PlayerButtons::playPauseShortcut()
+{
+    return ui->playPauseButton->shortcut();
+}
+
+void PlayerButtons::setButtonsStyle(Qt::ToolButtonStyle style)
+{
+    ui->playPauseButton->setToolButtonStyle(style);
+    ui->stopButton->setToolButtonStyle(style);
+}
+
 void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
 {
     switch (state) {
@@ -89,22 +107,22 @@ void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
         if (currentlyPlaying == m_mediaPlayer)
             currentlyPlaying = nullptr;
 
-        m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
-        m_stopButton->setEnabled(false);
+        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        ui->stopButton->setEnabled(false);
         break;
     case QMediaPlayer::PlayingState:
         if (currentlyPlaying != nullptr)
             currentlyPlaying->pause();
         currentlyPlaying = m_mediaPlayer;
 
-        m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
-        m_stopButton->setEnabled(true);
+        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+        ui->stopButton->setEnabled(true);
         break;
     case QMediaPlayer::PausedState:
         if (currentlyPlaying == m_mediaPlayer)
             currentlyPlaying = nullptr;
 
-        m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
         break;
     }
 }

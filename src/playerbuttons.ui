@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>PlayerButtons</class>
+ <widget class="QWidget" name="PlayerButtons">
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QHBoxLayout" name="buttonsLayout">
+   <property name="spacing">
+    <number>6</number>
+   </property>
+   <property name="leftMargin">
+    <number>0</number>
+   </property>
+   <property name="topMargin">
+    <number>0</number>
+   </property>
+   <property name="rightMargin">
+    <number>0</number>
+   </property>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item>
+    <widget class="QToolButton" name="playPauseButton">
+     <property name="toolTip">
+      <string>Play / pause source text speaking</string>
+     </property>
+     <property name="text">
+      <string>Play</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QToolButton" name="stopButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="toolTip">
+      <string>Stop source text speaking</string>
+     </property>
+     <property name="text">
+      <string>Pause</string>
+     </property>
+     <property name="icon">
+      <iconset theme="media-playback-stop"/>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

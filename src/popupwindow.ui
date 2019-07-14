@@ -177,21 +177,7 @@
    <item>
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
-      <widget class="QToolButton" name="playSourceButton">
-       <property name="toolTip">
-        <string>Play / pause source text speaking</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="stopSourceButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Stop source text speaking</string>
-       </property>
-      </widget>
+      <widget class="PlayerButtons" name="sourcePlayerButtons" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="copySourceButton">
@@ -252,21 +238,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QToolButton" name="playTranslationButton">
-       <property name="toolTip">
-        <string>Play / pause translation speaking</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="stopTranslationButton">
-       <property name="enabled">
-        <bool>false</bool>
-       </property>
-       <property name="toolTip">
-        <string>Stop translation speaking</string>
-       </property>
-      </widget>
+      <widget class="PlayerButtons" name="translationPlayerButtons" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="copyAllTranslationButton">
@@ -300,6 +272,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>PlayerButtons</class>
+   <extends>QWidget</extends>
+   <header>src/playerbuttons.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="../data/resources.qrc"/>
  </resources>

@@ -63,6 +63,7 @@ HEADERS += \
     src/trayicon.h
 
 FORMS += \
+    src/playerbuttons.ui \
     src/settings/settingsdialog.ui \
     src/mainwindow.ui \
     src/popupwindow.ui \

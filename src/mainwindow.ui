@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>300</height>
+    <height>285</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -180,21 +180,7 @@
     <item row="7" column="1">
      <layout class="QHBoxLayout" name="buttomSourceLayout">
       <item>
-       <widget class="QToolButton" name="playSourceButton">
-        <property name="toolTip">
-         <string>Play / pause source text speaking</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="stopSourceButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>Stop source text speaking</string>
-        </property>
-       </widget>
+       <widget class="PlayerButtons" name="sourcePlayerButtons" native="true"/>
       </item>
       <item>
        <widget class="QToolButton" name="copySourceButton">
@@ -279,21 +265,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QToolButton" name="playTranslationButton">
-        <property name="toolTip">
-         <string>Play / pause translation speaking</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="stopTranslationButton">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-        <property name="toolTip">
-         <string>Stop translation speaking</string>
-        </property>
-       </widget>
+       <widget class="PlayerButtons" name="translationPlayerButtons" native="true"/>
       </item>
       <item>
        <widget class="QToolButton" name="copyTranslationButton">
@@ -345,7 +317,8 @@
        <bool>false</bool>
       </property>
       <property name="icon">
-       <iconset theme="dialog-cancel"/>
+       <iconset theme="dialog-cancel">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
@@ -379,6 +352,12 @@
    <extends>QPlainTextEdit</extends>
    <header>sourcetextedit.h</header>
   </customwidget>
+  <customwidget>
+   <class>PlayerButtons</class>
+   <extends>QWidget</extends>
+   <header>src/playerbuttons.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>sourceEdit</tabstop>
@@ -391,11 +370,7 @@
   <tabstop>thirdTranslationButton</tabstop>
   <tabstop>translateButton</tabstop>
   <tabstop>translationEdit</tabstop>
-  <tabstop>playSourceButton</tabstop>
-  <tabstop>stopSourceButton</tabstop>
   <tabstop>copySourceButton</tabstop>
-  <tabstop>playTranslationButton</tabstop>
-  <tabstop>stopTranslationButton</tabstop>
   <tabstop>copyTranslationButton</tabstop>
   <tabstop>copyAllTranslationButton</tabstop>
   <tabstop>settingsButton</tabstop>

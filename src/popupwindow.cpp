@@ -49,12 +49,10 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     resize(settings.popupWidth(), settings.popupHeight());
 
     // Player buttons
-    m_sourcePlayerButtons = new PlayerButtons(ui->playSourceButton, ui->stopSourceButton, this);
-    m_translationPlayerButtons = new PlayerButtons(ui->playTranslationButton, ui->stopTranslationButton, this);
-    m_sourcePlayerButtons->setMediaPlayer(parent->sourcePlayerButtons()->mediaPlayer());
-    m_translationPlayerButtons->setMediaPlayer(parent->translationPlayerButtons()->mediaPlayer());
-    connect(m_sourcePlayerButtons, &PlayerButtons::playerMediaRequested, parent->sourcePlayerButtons(), &PlayerButtons::playerMediaRequested);
-    connect(m_translationPlayerButtons, &PlayerButtons::playerMediaRequested, parent->translationPlayerButtons(), &PlayerButtons::playerMediaRequested);
+    ui->sourcePlayerButtons->setMediaPlayer(parent->sourcePlayerButtons()->mediaPlayer());
+    ui->translationPlayerButtons->setMediaPlayer(parent->translationPlayerButtons()->mediaPlayer());
+    connect(ui->sourcePlayerButtons, &PlayerButtons::playerMediaRequested, parent->sourcePlayerButtons(), &PlayerButtons::playerMediaRequested);
+    connect(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, parent->translationPlayerButtons(), &PlayerButtons::playerMediaRequested);
 
     // Source button group
     m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);
@@ -87,21 +85,20 @@ PopupWindow::PopupWindow(MainWindow *parent) :
 
     // Control buttons style
     Qt::ToolButtonStyle controlsStyle = settings.popupLanguagesStyle();
-    ui->playSourceButton->setToolButtonStyle(controlsStyle);
-    ui->stopSourceButton->setToolButtonStyle(controlsStyle);
+    ui->sourcePlayerButtons->setButtonsStyle(controlsStyle);
+    ui->translationPlayerButtons->setButtonsStyle(controlsStyle);
     ui->copySourceButton->setToolButtonStyle(controlsStyle);
-    ui->playTranslationButton->setToolButtonStyle(controlsStyle);
-    ui->stopTranslationButton->setToolButtonStyle(controlsStyle);
     ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
     ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
 
     // Shortcuts
     m_closeWindowsShortcut = new QShortcut(this);
-    ui->playSourceButton->setShortcut(settings.speakSourceHotkey());
-    ui->playTranslationButton->setShortcut(settings.speakTranslationHotkey());
-    ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
+
+    ui->copyTranslationButton->setShortcut(parent->copyTranslationButton()->shortcut());
+    ui->sourcePlayerButtons->setPlayPauseShortcut(parent->sourcePlayerButtons()->playPauseShortcut());
+    ui->translationPlayerButtons->setPlayPauseShortcut(parent->translationPlayerButtons()->playPauseShortcut());
 
     // Connect popup window events
     connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), parent->engineCombobox(), &QComboBox::setCurrentIndex);
@@ -117,8 +114,8 @@ PopupWindow::PopupWindow(MainWindow *parent) :
 
 PopupWindow::~PopupWindow()
 {
-    m_sourcePlayerButtons->pause();
-    m_translationPlayerButtons->pause();
+    ui->sourcePlayerButtons->pause();
+    ui->translationPlayerButtons->pause();
     delete ui;
 }
 

@@ -62,21 +62,19 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(qobject_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Text speaking
-    m_sourcePlayerButtons = new PlayerButtons(ui->playSourceButton, ui->stopSourceButton, this);
-    m_translationPlayerButtons = new PlayerButtons(ui->playTranslationButton, ui->stopTranslationButton, this);
-    m_sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
-    m_translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(ui->sourceEdit, &SourceTextEdit::textChanged, m_sourcePlayerButtons, &PlayerButtons::stop);
+    ui->sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
+    ui->translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
+    connect(ui->sourceEdit, &SourceTextEdit::textChanged, ui->sourcePlayerButtons, &PlayerButtons::stop);
 
     // Taskbar progress for text speaking
     m_taskbar = new QTaskbarControl(this);
 #if defined(Q_OS_LINUX)
     m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, "crow-translate.desktop");
 #endif
-    connect(m_sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
-    connect(m_translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
-    connect(m_sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
-    connect(m_translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
+    connect(ui->sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(ui->translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(ui->sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
+    connect(ui->translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
 
     // Shortcuts
     m_translateSelectionHotkey = new QHotkey(this);
@@ -88,8 +86,8 @@ MainWindow::MainWindow(QWidget *parent) :
     m_closeWindowsShortcut = new QShortcut(this);
     connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
-    connect(m_stopSpeakingHotkey, &QHotkey::activated, m_sourcePlayerButtons, &PlayerButtons::stop);
-    connect(m_stopSpeakingHotkey, &QHotkey::activated, m_translationPlayerButtons, &PlayerButtons::stop);
+    connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->sourcePlayerButtons, &PlayerButtons::stop);
+    connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->translationPlayerButtons, &PlayerButtons::stop);
 
     // Source button group
     const AppSettings settings;
@@ -236,12 +234,12 @@ LangButtonGroup *MainWindow::translationLangButtons()
 
 PlayerButtons *MainWindow::sourcePlayerButtons()
 {
-    return m_sourcePlayerButtons;
+    return ui->sourcePlayerButtons;
 }
 
 PlayerButtons *MainWindow::translationPlayerButtons()
 {
-    return m_translationPlayerButtons;
+    return ui->translationPlayerButtons;
 }
 
 void MainWindow::requestTranslation()
@@ -377,12 +375,12 @@ void MainWindow::parseSourceLanguage()
 
 void MainWindow::speakSource()
 {
-    speakText(m_sourcePlayerButtons, ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage());
+    speakText(ui->sourcePlayerButtons, ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage());
 }
 
 void MainWindow::speakTranslation()
 {
-    speakText(m_translationPlayerButtons, m_translator->translation(), m_translationLangButtons->checkedLanguage());
+    speakText(ui->translationPlayerButtons, m_translator->translation(), m_translationLangButtons->checkedLanguage());
 }
 
 void MainWindow::showTranslationWindow()
@@ -617,8 +615,8 @@ void MainWindow::buildStateMachine()
         state->addTransition(ui->translateButton, &QToolButton::clicked, translationState);
         state->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
         state->addTransition(m_translateSelectionHotkey, &QHotkey::activated, translateSelectionState);
-        state->addTransition(m_sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
-        state->addTransition(m_translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
+        state->addTransition(ui->sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
+        state->addTransition(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
         state->addTransition(m_playSelectionHotkey, &QHotkey::activated, speakSelectionState);
         state->addTransition(m_playTranslatedSelectionHotkey, &QHotkey::activated, speakTranslatedSelectionState);
         state->addTransition(m_copyTranslatedSelectionHotkey, &QHotkey::activated, copyTranslatedSelectionState);
@@ -645,7 +643,7 @@ void MainWindow::buildTranslationState(QState *state)
     state->setInitialState(initialState);
 
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
-    connect(requestState, &QState::entered, m_translationPlayerButtons, &PlayerButtons::stop); // Stop translation speaking
+    connect(requestState, &QState::entered, ui->translationPlayerButtons, &PlayerButtons::stop); // Stop translation speaking
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
     connect(requestInOtherLanguageState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
@@ -843,11 +841,9 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // Control buttons style
     const Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
-    ui->playSourceButton->setToolButtonStyle(controlsStyle);
-    ui->stopSourceButton->setToolButtonStyle(controlsStyle);
+    ui->sourcePlayerButtons->setButtonsStyle(controlsStyle);
+    ui->translationPlayerButtons->setButtonsStyle(controlsStyle);
     ui->copySourceButton->setToolButtonStyle(controlsStyle);
-    ui->playTranslationButton->setToolButtonStyle(controlsStyle);
-    ui->stopTranslationButton->setToolButtonStyle(controlsStyle);
     ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
     ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
     ui->settingsButton->setToolButtonStyle(controlsStyle);
@@ -861,9 +857,9 @@ void MainWindow::loadSettings(const AppSettings &settings)
     m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionHotkey(), true);
 
     // Window shortcuts
+    ui->sourcePlayerButtons->setPlayPauseShortcut(settings.speakSourceHotkey());
+    ui->translationPlayerButtons->setPlayPauseShortcut(settings.speakTranslationHotkey());
     ui->translateButton->setShortcut(settings.translateHotkey());
-    ui->playSourceButton->setShortcut(settings.speakSourceHotkey());
-    ui->playTranslationButton->setShortcut(settings.speakTranslationHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
 }

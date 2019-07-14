@@ -26,7 +26,6 @@
 class LangButtonGroup;
 class QShortcut;
 class MainWindow;
-class PlayerButtons;
 
 namespace Ui {
 class PopupWindow;
@@ -49,8 +48,6 @@ private:
     QShortcut *m_closeWindowsShortcut;
     LangButtonGroup *m_sourceLangButtons;
     LangButtonGroup *m_translationLangButtons;
-    PlayerButtons *m_sourcePlayerButtons;
-    PlayerButtons *m_translationPlayerButtons;
 };
 
 #endif // POPUPWINDOW_H

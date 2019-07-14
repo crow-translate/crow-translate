@@ -21,27 +21,34 @@
 #ifndef PLAYERBUTTONS_H
 #define PLAYERBUTTONS_H
 
-#include <QObject>
+#include <QWidget>
 #include <QMediaPlayer>
 
-class QAbstractButton;
+namespace Ui {
+class PlayerButtons;
+}
 
-class PlayerButtons : public QObject
+class PlayerButtons : public QWidget
 {
     Q_OBJECT
     Q_DISABLE_COPY(PlayerButtons)
 
 public:
-    PlayerButtons(QAbstractButton *playPauseButton, QAbstractButton *stopButton, QObject *parent = nullptr);
+    explicit PlayerButtons(QWidget *parent = nullptr);
+    ~PlayerButtons();
 
     QMediaPlayer *mediaPlayer() const;
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
-
     QMediaPlaylist *playlist();
 
     void play();
     void pause();
     void stop();
+
+    void setPlayPauseShortcut(const QKeySequence &shortcut);
+    QKeySequence playPauseShortcut();
+
+    void setButtonsStyle(Qt::ToolButtonStyle style);
 
 signals:
     void playerMediaRequested();
@@ -54,12 +61,10 @@ private slots:
     void processPositionChanged(qint64 position);
 
 private:
-    static QMediaPlayer *currentlyPlaying;
-
+    Ui::PlayerButtons *ui;
     QMediaPlayer *m_mediaPlayer = nullptr;
 
-    QAbstractButton *m_playPauseButton = nullptr;
-    QAbstractButton *m_stopButton = nullptr;
+    static QMediaPlayer *currentlyPlaying;
 };
 
 #endif // PLAYERBUTTONS_H

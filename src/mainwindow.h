@@ -136,9 +136,6 @@ private:
 
     Ui::MainWindow *ui;
 
-    PlayerButtons *m_sourcePlayerButtons;
-    PlayerButtons *m_translationPlayerButtons;
-
     QShortcut *m_closeWindowsShortcut;
     QHotkey *m_translateSelectionHotkey;
     QHotkey *m_playSelectionHotkey;
