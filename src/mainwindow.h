@@ -31,14 +31,12 @@ class LangButtonGroup;
 class PlayerButtons;
 class AppSettings;
 class QHotkey;
+class QTaskbarControl;
 class QShortcut;
 class QMenu;
 class QComboBox;
 class QTextEdit;
 class QToolButton;
-#ifdef Q_OS_WIN
-class QWinTaskbarButton;
-#endif
 
 namespace Ui {
 class MainWindow;
@@ -103,6 +101,7 @@ private slots:
     void addTranslationLanguage();
 
     void resetAutoSourceButtonText();
+    void setTaskbarState(QMediaPlayer::State state);
 
     // Other
     void showAppRunningMessage();
@@ -111,9 +110,6 @@ private slots:
 #endif
 
 private:
-#ifdef Q_OS_WIN
-    void showEvent(QShowEvent *event) override;
-#endif
     void changeEvent(QEvent *event) override;
 
     void buildStateMachine();
@@ -158,9 +154,7 @@ private:
     QOnlineTranslator *m_translator;
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
-#ifdef Q_OS_WIN
-    QWinTaskbarButton *m_taskbarButton;
-#endif
+    QTaskbarControl *m_taskbar;
 };
 
 #endif // MAINWINDOW_H

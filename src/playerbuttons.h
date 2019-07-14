@@ -25,7 +25,6 @@
 #include <QMediaPlayer>
 
 class QAbstractButton;
-class QWinTaskbarProgress;
 
 class PlayerButtons : public QObject
 {
@@ -46,10 +45,8 @@ public:
 
 signals:
     void playerMediaRequested();
-    void stopped();
-    void paused();
-    void played();
-    void positionChanged(int percent);
+    void stateChanged(QMediaPlayer::State state);
+    void positionChanged(double progress);
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);

@@ -10,7 +10,7 @@ All notable changes to this project will be documented in this file. This projec
 
 -   Abort button.
 -   Simplified Chinese localization.
--   Windows: Text speaking indication in the taskbar.
+-   Text speaking indication in the taskbar.
 
 **Changed**
 

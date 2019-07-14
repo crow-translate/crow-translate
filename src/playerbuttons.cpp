@@ -22,9 +22,6 @@
 
 #include <QAbstractButton>
 #include <QMediaPlaylist>
-#ifdef Q_OS_WIN
-#include <QWinTaskbarProgress>
-#endif
 
 QMediaPlayer *PlayerButtons::currentlyPlaying = nullptr;
 
@@ -50,6 +47,7 @@ void PlayerButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
 {
     if (m_mediaPlayer != nullptr) {
         disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::loadPlayerState);
+        disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::stateChanged);
         disconnect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &PlayerButtons::processPositionChanged);
     }
 
@@ -57,8 +55,9 @@ void PlayerButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
     if (m_mediaPlayer->playlist() == nullptr)
         m_mediaPlayer->setPlaylist(new QMediaPlaylist);
 
-    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::loadPlayerState);
     connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &PlayerButtons::processPositionChanged);
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::loadPlayerState);
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::stateChanged);
 
     loadPlayerState(m_mediaPlayer->state());
 }
@@ -92,7 +91,6 @@ void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
 
         m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
         m_stopButton->setEnabled(false);
-        emit stopped();
         break;
     case QMediaPlayer::PlayingState:
         if (currentlyPlaying != nullptr)
@@ -101,14 +99,12 @@ void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
 
         m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
         m_stopButton->setEnabled(true);
-        emit played();
         break;
     case QMediaPlayer::PausedState:
         if (currentlyPlaying == m_mediaPlayer)
             currentlyPlaying = nullptr;
 
         m_playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
-        emit paused();
         break;
     }
 }
@@ -131,5 +127,5 @@ void PlayerButtons::processPlayPausePressed()
 void PlayerButtons::processPositionChanged(qint64 position)
 {
     if (m_mediaPlayer->duration() != 0)
-        emit positionChanged(static_cast<int>(position * 100 / m_mediaPlayer->duration()));
+        emit positionChanged(static_cast<double>(position) / m_mediaPlayer->duration());
 }

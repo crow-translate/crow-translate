@@ -25,6 +25,7 @@
 #include "langbuttongroup.h"
 #include "playerbuttons.h"
 #include "qhotkey.h"
+#include "qtaskbarcontrol.h"
 #include "singleapplication.h"
 #include "settings/settingsdialog.h"
 #include "settings/appsettings.h"
@@ -47,8 +48,6 @@
 #include <QThread>
 #include <QTimer>
 #include <QDate>
-#include <QWinTaskbarButton>
-#include <QWinTaskbarProgress>
 
 #include <windows.h>
 #endif
@@ -68,6 +67,16 @@ MainWindow::MainWindow(QWidget *parent) :
     m_sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
     m_translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, m_sourcePlayerButtons, &PlayerButtons::stop);
+
+    // Taskbar progress for text speaking
+    m_taskbar = new QTaskbarControl(this);
+#if defined(Q_OS_LINUX)
+    m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, "crow-translate.desktop");
+#endif
+    connect(m_sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(m_translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(m_sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
+    connect(m_translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
 
     // Shortcuts
     m_translateSelectionHotkey = new QHotkey(this);
@@ -131,17 +140,6 @@ MainWindow::MainWindow(QWidget *parent) :
     restoreGeometry(settings.mainWindowGeometry());
 
 #ifdef Q_OS_WIN
-    // Taskbar button
-    m_taskbarButton = new QWinTaskbarButton(this);
-    connect(m_sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbarButton->progress(), &QWinTaskbarProgress::setValue);
-    connect(m_sourcePlayerButtons, &PlayerButtons::played, m_taskbarButton->progress(), &QWinTaskbarProgress::resume);
-    connect(m_sourcePlayerButtons, &PlayerButtons::stopped, m_taskbarButton->progress(), &QWinTaskbarProgress::reset);
-    connect(m_sourcePlayerButtons, &PlayerButtons::paused, m_taskbarButton->progress(), &QWinTaskbarProgress::pause);
-    connect(m_translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbarButton->progress(), &QWinTaskbarProgress::setValue);
-    connect(m_translationPlayerButtons, &PlayerButtons::played, m_taskbarButton->progress(), &QWinTaskbarProgress::resume);
-    connect(m_translationPlayerButtons, &PlayerButtons::stopped, m_taskbarButton->progress(), &QWinTaskbarProgress::reset);
-    connect(m_translationPlayerButtons, &PlayerButtons::paused, m_taskbarButton->progress(), &QWinTaskbarProgress::pause);
-
     // Check date for updates
     const AppSettings::Interval updateInterval = settings.checkForUpdatesInterval();
     QDate checkDate = settings.lastUpdateCheckDate();
@@ -512,6 +510,29 @@ void MainWindow::resetAutoSourceButtonText()
     m_sourceLangButtons->setLanguage(0, QOnlineTranslator::Auto);
 }
 
+void MainWindow::setTaskbarState(QMediaPlayer::State state)
+{
+    switch (state) {
+    case QMediaPlayer::PlayingState:
+        m_taskbar->setProgressVisible(true);
+#if defined(Q_OS_WIN)
+        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Running);
+#endif
+        break;
+    case QMediaPlayer::PausedState:
+#if defined(Q_OS_WIN)
+        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Paused);
+#endif
+        break;
+    case QMediaPlayer::StoppedState:
+        m_taskbar->setProgressVisible(false);
+#if defined(Q_OS_WIN)
+        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Stopped);
+#endif
+        break;
+    }
+}
+
 void MainWindow::showAppRunningMessage()
 {
     auto *message = new QMessageBox(QMessageBox::Information, SingleApplication::applicationName(), tr("The application is already running"));
@@ -538,18 +559,6 @@ void MainWindow::checkForUpdates()
     delete release;
     AppSettings settings;
     settings.setLastUpdateCheckDate(QDate::currentDate());
-}
-#endif
-
-#ifdef Q_OS_WIN
-void MainWindow::showEvent(QShowEvent *event)
-{
-    if (m_taskbarButton->window() == nullptr) {
-        m_taskbarButton->setWindow(windowHandle());
-        m_taskbarButton->progress()->show();
-    }
-
-    event->accept();
 }
 #endif
 
