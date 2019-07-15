@@ -21,6 +21,8 @@
 #ifndef PLAYERBUTTONS_H
 #define PLAYERBUTTONS_H
 
+#include "qonlinetranslator.h"
+
 #include <QWidget>
 #include <QMediaPlayer>
 
@@ -40,6 +42,8 @@ public:
     QMediaPlayer *mediaPlayer() const;
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
     QMediaPlaylist *playlist();
+
+    void setText(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
 
     void play();
     void pause();

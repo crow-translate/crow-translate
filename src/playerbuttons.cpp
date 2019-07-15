@@ -20,8 +20,10 @@
 
 #include "playerbuttons.h"
 #include "ui_playerbuttons.h"
+#include "settings/appsettings.h"
 
 #include <QMediaPlaylist>
+#include <QMessageBox>
 
 QMediaPlayer *PlayerButtons::currentlyPlaying = nullptr;
 
@@ -67,6 +69,30 @@ void PlayerButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
 QMediaPlaylist *PlayerButtons::playlist()
 {
     return m_mediaPlayer->playlist();
+}
+
+void PlayerButtons::setText(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
+{
+    if (text.isEmpty()) {
+        QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
+        return;
+    }
+
+    const AppSettings settings;
+    const QOnlineTts::Voice voice = settings.voice(engine);
+    const QOnlineTts::Emotion emotion = settings.emotion(engine);
+
+    QOnlineTts onlineTts;
+    onlineTts.generateUrls(text, engine, language, voice, emotion);
+    if (onlineTts.error()) {
+        QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
+        return;
+    }
+
+    // Use playlist to split long queries due engines limit
+    const QList<QMediaContent> media = onlineTts.media();
+    playlist()->clear();
+    playlist()->addMedia(media);
 }
 
 void PlayerButtons::play()

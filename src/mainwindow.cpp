@@ -375,12 +375,14 @@ void MainWindow::parseSourceLanguage()
 
 void MainWindow::speakSource()
 {
-    speakText(ui->sourcePlayerButtons, ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage());
+    ui->sourcePlayerButtons->setText(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
+    ui->sourcePlayerButtons->play();
 }
 
 void MainWindow::speakTranslation()
 {
-    speakText(ui->translationPlayerButtons, m_translator->translation(), m_translationLangButtons->checkedLanguage());
+    ui->translationPlayerButtons->setText(m_translator->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
+    ui->translationPlayerButtons->play();
 }
 
 void MainWindow::showTranslationWindow()
@@ -862,34 +864,6 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->translateButton->setShortcut(settings.translateHotkey());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
-}
-
-// Use playlist to split long queries due Google limit
-void MainWindow::speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang)
-{
-    if (text.isEmpty()) {
-        QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
-        errorMessage.exec();
-        return;
-    }
-
-    playerButtons->playlist()->clear();
-    const AppSettings settings;
-    const QOnlineTranslator::Engine engine = currentEngine();
-    const QOnlineTts::Voice voice = settings.voice(engine);
-    const QOnlineTts::Emotion emotion = settings.emotion(engine);
-
-    QOnlineTts tts;
-    tts.generateUrls(text, engine, lang, voice, emotion);
-    const QList<QMediaContent> media = tts.media();
-    if (tts.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    playerButtons->playlist()->addMedia(media);
-    playerButtons->play();
 }
 
 void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup)

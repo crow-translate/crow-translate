@@ -126,7 +126,6 @@ private:
 
     // Helper functions
     void loadSettings(const AppSettings &settings);
-    void speakText(PlayerButtons *playerButtons, const QString &text, QOnlineTranslator::Language lang = QOnlineTranslator::Auto);
     void checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup);
     QString selectedText();
 
