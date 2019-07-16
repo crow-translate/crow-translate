@@ -325,6 +325,19 @@ void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
     setValue("Translation/SecondaryLanguage", lang);
 }
 
+// Selected primary or secondary language depends on sourceLang
+QOnlineTranslator::Language AppSettings::preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const
+{
+    QOnlineTranslator::Language translationLang = primaryLanguage();
+    if (translationLang == QOnlineTranslator::Auto)
+        translationLang = QOnlineTranslator::language(QLocale());
+
+    if (translationLang != sourceLang)
+        return translationLang;
+
+    return secondaryLanguage();
+}
+
 QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {

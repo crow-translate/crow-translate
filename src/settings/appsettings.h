@@ -130,6 +130,8 @@ public:
     QOnlineTranslator::Language secondaryLanguage() const;
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
 
+    QOnlineTranslator::Language preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const;
+
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
     void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);

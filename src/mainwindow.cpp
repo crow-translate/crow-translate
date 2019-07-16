@@ -243,16 +243,20 @@ PlayerButtons *MainWindow::translationPlayerButtons()
 
 void MainWindow::requestTranslation()
 {
-    const QOnlineTranslator::Language sourceLang = currentSourceLang();
-    const QOnlineTranslator::Language translationLang = currentTranslationLang(sourceLang);
+    QOnlineTranslator::Language translationLang;
+    if (m_translationLangButtons->checkedId() == 0)
+        translationLang = AppSettings().preferredTranslationLanguage(m_sourceLangButtons->checkedLanguage());
+    else
+        translationLang = m_translationLangButtons->checkedLanguage();
 
-    m_translator->translate(ui->sourceEdit->toPlainText(), currentEngine(), translationLang, sourceLang);
+    m_translator->translate(ui->sourceEdit->toPlainText(), currentEngine(), translationLang, m_sourceLangButtons->checkedLanguage());
 }
 
-// Re-translate to a secondary or a primary language if the autodetected source language and the source language are the same
+// Re-translate to a secondary or a primary language if the autodetected source language and the translation language are the same
 void MainWindow::requestRetranslation()
 {
-    const QOnlineTranslator::Language translationLang = currentTranslationLang(m_translator->sourceLanguage());
+    const QOnlineTranslator::Language translationLang = AppSettings().preferredTranslationLanguage(m_translator->sourceLanguage());
+
     m_translator->translate(ui->sourceEdit->toPlainText(), currentEngine(), translationLang, m_translator->sourceLanguage());
 }
 
@@ -972,29 +976,4 @@ QString MainWindow::selectedText()
 QOnlineTranslator::Engine MainWindow::currentEngine()
 {
     return static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-}
-
-QOnlineTranslator::Language MainWindow::currentSourceLang()
-{
-    if (ui->autoSourceButton->isChecked())
-        return QOnlineTranslator::Auto;
-
-    return m_sourceLangButtons->checkedLanguage();
-}
-
-QOnlineTranslator::Language MainWindow::currentTranslationLang(QOnlineTranslator::Language sourceLang)
-{
-    if (!ui->autoTranslationButton->isChecked())
-        return m_translationLangButtons->checkedLanguage();
-
-    // Use selected primary or secondary language from settings
-    const AppSettings settings;
-    QOnlineTranslator::Language translationLang = settings.primaryLanguage();
-    if (translationLang == QOnlineTranslator::Auto)
-        translationLang = QOnlineTranslator::language(QLocale());
-
-    if (translationLang != sourceLang)
-        return translationLang;
-
-    return settings.secondaryLanguage();
 }

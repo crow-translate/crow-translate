@@ -130,8 +130,6 @@ private:
     QString selectedText();
 
     QOnlineTranslator::Engine currentEngine();
-    QOnlineTranslator::Language currentSourceLang();
-    QOnlineTranslator::Language currentTranslationLang(QOnlineTranslator::Language sourceLang);
 
     Ui::MainWindow *ui;
 
