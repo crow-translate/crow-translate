@@ -64,7 +64,6 @@ MainWindow::MainWindow(QWidget *parent) :
     // Text speaking
     ui->sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
     ui->translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(ui->sourceEdit, &SourceTextEdit::textChanged, ui->sourcePlayerButtons, &PlayerButtons::stop);
 
     // Taskbar progress for text speaking
     m_taskbar = new QTaskbarControl(this);
