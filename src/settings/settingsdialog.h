@@ -83,8 +83,6 @@ private:
 
     // Test voice
     QOnlineTranslator *m_translator;
-    QMediaPlayer *m_player;
-    QMediaPlaylist *m_playlist;
 
     // Engine voice settings
     QOnlineTts::Voice m_yandexVoice;

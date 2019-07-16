@@ -48,9 +48,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
 
     // Test voice
     m_translator = new QOnlineTranslator(this);
-    m_player = new QMediaPlayer(this);
-    m_playlist = new QMediaPlaylist(this);
-    m_player->setPlaylist(m_playlist);
+    ui->playerButtons->setMediaPlayer(new QMediaPlayer);
     connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 
     // Set item data in comboboxes
@@ -336,15 +334,11 @@ void SettingsDialog::saveEngineEmotion(int engine)
         m_yandexEmotion = ui->emotionComboBox->itemData(engine).value<QOnlineTts::Emotion>();
 }
 
-// Play test text
+// To play test text
 void SettingsDialog::detectTextLanguage()
 {
-    // Clear previous playlist (this will stop playback)
-    m_playlist->clear();
-
     if (ui->testSpeechEdit->text().isEmpty()) {
-        QMessageBox errorMessage(QMessageBox::Information, tr("Nothing to play"), tr("Playback text is empty"));
-        errorMessage.exec();
+        QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
         return;
     }
 
@@ -355,37 +349,13 @@ void SettingsDialog::detectTextLanguage()
 void SettingsDialog::speakTestText()
 {
     if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to detect language"), m_translator->errorString());
-        errorMessage.exec();
+        QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
         return;
     }
 
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    QOnlineTts::Voice voice = QOnlineTts::DefaultVoice;
-    QOnlineTts::Emotion emotion = QOnlineTts::DefaultEmotion;
-    switch (engine) {
-    case QOnlineTranslator::Yandex:
-        voice = m_yandexVoice;
-        emotion = m_yandexEmotion;
-        break;
-    case QOnlineTranslator::Bing:
-        voice = m_bingVoice;
-        break;
-    default:
-        break;
-    }
-
-    QOnlineTts tts;
-    tts.generateUrls(ui->testSpeechEdit->text(), engine, m_translator->sourceLanguage(), voice, emotion);
-    QList<QMediaContent> media = tts.media();
-    if (tts.error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), tts.errorString());
-        errorMessage.exec();
-        return;
-    }
-
-    m_playlist->addMedia(media);
-    m_player->play();
+    ui->playerButtons->setText(ui->testSpeechEdit->text(), m_translator->sourceLanguage(), engine);
+    ui->playerButtons->play();
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)

@@ -813,10 +813,61 @@
            <string>Speech synthesis</string>
           </property>
           <layout class="QGridLayout" name="speechBoxLayout">
+           <item row="2" column="0">
+            <widget class="QLabel" name="emotionLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Emotional connotation:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="2">
+            <widget class="PlayerButtons" name="playerButtons" native="true"/>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="voiceLabel">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="text">
+              <string>Voice:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="1">
+            <widget class="QComboBox" name="emotionComboBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>Default</string>
+              </property>
+             </item>
+            </widget>
+           </item>
            <item row="0" column="0">
             <widget class="QLabel" name="engineLabel">
              <property name="text">
               <string>Engine:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="label">
+             <property name="text">
+              <string>Speech test:</string>
              </property>
             </widget>
            </item>
@@ -860,16 +911,6 @@
              </item>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="voiceLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Voice:</string>
-             </property>
-            </widget>
-           </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="voiceComboBox">
              <property name="enabled">
@@ -891,44 +932,6 @@
              </item>
             </widget>
            </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="emotionLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Emotional connotation:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="emotionComboBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Default</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="label">
-             <property name="text">
-              <string>Speech test:</string>
-             </property>
-            </widget>
-           </item>
            <item row="3" column="1">
             <widget class="QLineEdit" name="testSpeechEdit">
              <property name="toolTip">
@@ -939,20 +942,6 @@
              </property>
              <property name="placeholderText">
               <string>Test voice</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="QToolButton" name="testSpeechButton">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Test speech synthesis&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Test</string>
-             </property>
-             <property name="icon">
-              <iconset theme="media-playback-start">
-               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -1451,9 +1440,18 @@
   <customwidget>
    <class>ShortcutsView</class>
    <extends>QTreeView</extends>
-   <header>src/settings/shortcutsmodel/shortcutsview.h</header>
+   <header>settings/shortcutsmodel/shortcutsview.h</header>
    <slots>
     <signal>currentItemChanged(ShortcutItem*)</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
+   <class>PlayerButtons</class>
+   <extends>QWidget</extends>
+   <header>playerbuttons.h</header>
+   <container>1</container>
+   <slots>
+    <signal>playerMediaRequested()</signal>
    </slots>
   </customwidget>
  </customwidgets>
@@ -1830,22 +1828,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>testSpeechButton</sender>
-   <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>detectTextLanguage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>282</x>
-     <y>35</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>275</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>resetAllShortcutsButton</sender>
    <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
@@ -1934,6 +1916,22 @@
     <hint type="sourcelabel">
      <x>500</x>
      <y>195</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>275</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>playerButtons</sender>
+   <signal>playerMediaRequested()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>detectTextLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>736</x>
+     <y>175</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
