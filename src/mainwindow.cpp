@@ -365,8 +365,7 @@ void MainWindow::requestSourceLanguage()
 void MainWindow::parseSourceLanguage()
 {
     if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to play text"), m_translator->errorString());
-        errorMessage.exec();
+        QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
         return;
     }
 
@@ -416,8 +415,7 @@ void MainWindow::setSelectionAsSource()
 void MainWindow::copyTranslationToClipboard()
 {
     if (m_translator->error()) {
-        QMessageBox errorMessage(QMessageBox::Critical, tr("Unable to translate text"), m_translator->errorString());
-        errorMessage.exec();
+        QMessageBox::critical(this, tr("Unable to translate text"), m_translator->errorString());
         return;
     }
 
@@ -985,7 +983,7 @@ QOnlineTranslator::Language MainWindow::currentSourceLang()
     return m_sourceLangButtons->checkedLanguage();
 }
 
-QOnlineTranslator::Language MainWindow::currentTranslationLang(QOnlineTranslator:: Language sourceLang)
+QOnlineTranslator::Language MainWindow::currentTranslationLang(QOnlineTranslator::Language sourceLang)
 {
     if (!ui->autoTranslationButton->isChecked())
         return m_translationLangButtons->checkedLanguage();
