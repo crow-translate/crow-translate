@@ -32,7 +32,6 @@ SOURCES += \
     src/main.cpp \
     src/cli.cpp \
     src/playerbuttons.cpp \
-    src/sourcetextedit.cpp \
     src/transitions/playerstoppedtransition.cpp \
     src/settings/settingsdialog.cpp \
     src/settings/appsettings.cpp \
@@ -43,12 +42,13 @@ SOURCES += \
     src/popupwindow.cpp \
     src/langbuttongroup.cpp \
     src/addlangdialog.cpp \
+    src/sourcetextedit.cpp \
+    src/translationedit.cpp \
     src/trayicon.cpp
 
 HEADERS += \
     src/cli.h \
     src/playerbuttons.h \
-    src/sourcetextedit.h \
     src/transitions/conditiontransition.h \
     src/transitions/playerstoppedtransition.h \
     src/settings/settingsdialog.h \
@@ -60,6 +60,8 @@ HEADERS += \
     src/popupwindow.h \
     src/langbuttongroup.h \
     src/addlangdialog.h \
+    src/sourcetextedit.h \
+    src/translationedit.h \
     src/trayicon.h
 
 FORMS += \

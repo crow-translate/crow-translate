@@ -186,7 +186,7 @@ QComboBox *MainWindow::engineCombobox()
     return ui->engineComboBox;
 }
 
-QTextEdit *MainWindow::translationEdit()
+TranslationEdit *MainWindow::translationEdit()
 {
     return ui->translationEdit;
 }
@@ -262,15 +262,13 @@ void MainWindow::requestRetranslation()
 
 void MainWindow::parseTranslation()
 {
-    // Check for error
-    if (m_translator->error()) {
-        ui->translationEdit->setHtml(m_translator->errorString());
-        m_sourceLangButtons->setLanguage(0, QOnlineTranslator::Auto);
-        emit translationTextChanged(m_translator->errorString());
+    if (!ui->translationEdit->parseTranslationData(m_translator)) {
+        // Reset language on translation "Auto" button
+        m_translationLangButtons->setLanguage(0, QOnlineTranslator::Auto);
         return;
     }
 
-    // Display languages on "Auto" buttons.
+    // Display languages on "Auto" buttons
     if (ui->autoSourceButton->isChecked())
         m_sourceLangButtons->setLanguage(0, m_translator->sourceLanguage());
 
@@ -278,80 +276,6 @@ void MainWindow::parseTranslation()
         m_translationLangButtons->setLanguage(0, m_translator->translationLanguage());
     else
         m_translationLangButtons->setLanguage(0, QOnlineTranslator::Auto);
-
-    // Translation
-    ui->translationEdit->setHtml(m_translator->translation().toHtmlEscaped().replace("\n", "<br>"));
-
-    // Translit
-    if (!m_translator->translationTranslit().isEmpty())
-        ui->translationEdit->append("<font color=\"grey\"><i>/" + m_translator->translationTranslit().replace("\n", "/<br>/") + "/</i></font>");
-    if (!m_translator->sourceTranslit().isEmpty())
-        ui->translationEdit->append("<font color=\"grey\"><i><b>(" + m_translator->sourceTranslit().replace("\n", "/<br>/") + ")</b></i></font>");
-
-    // Transcription
-    if (!m_translator->sourceTranscription().isEmpty())
-        ui->translationEdit->append("<font color=\"grey\">[" + m_translator->sourceTranscription() + "]</font>");
-
-    ui->translationEdit->append(""); // Add new line before translation options
-
-    // Translation options
-    if (!m_translator->translationOptions().isEmpty()) {
-        ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator->source() + "</i> – " + tr("translation options:") + "</font>");
-
-        // Print words for each type of speech
-        foreach (const QOption &option, m_translator->translationOptions()) {
-            ui->translationEdit->append("<b>" + option.typeOfSpeech() + "</b>");
-            QTextBlockFormat indent;
-            indent.setTextIndent(20);
-            ui->translationEdit->textCursor().setBlockFormat(indent);
-
-            for (int i = 0; i <  option.count(); ++i) {
-                // Show word gender
-                QString wordLine;
-                if (!option.gender(i).isEmpty())
-                    wordLine.append("<i>" + option.gender(i) + "</i> ");
-
-                // Show Word
-                wordLine.append(option.word(i));
-
-                // Show word meaning
-                if (!option.translations(i).isEmpty()) {
-                    wordLine.append(": ");
-                    wordLine.append("<font color=\"grey\"><i>");
-                    wordLine.append(option.translations(i));
-                    wordLine.append("</i></font>");
-                }
-
-                // Add generated line to edit
-                ui->translationEdit->append(wordLine);
-            }
-
-            indent.setTextIndent(0);
-            ui->translationEdit->textCursor().setBlockFormat(indent);
-            ui->translationEdit->append(""); // Add a new line before the next type of speech
-        }
-    }
-
-    // Examples
-    if (!m_translator->examples().isEmpty()) {
-        ui->translationEdit->append("<font color=\"grey\"><i>" + m_translator->source() + "</i> – " + tr("examples:") + "</font>");
-        foreach (const QExample &example, m_translator->examples()) {
-            ui->translationEdit->append("<b>" + example.typeOfSpeech() + "</b>");
-            QTextBlockFormat indent;
-            indent.setTextIndent(20);
-            ui->translationEdit->textCursor().setBlockFormat(indent);
-            for (int i = 0; i < example.count(); ++i) {
-                ui->translationEdit->append(example.description(i));
-                ui->translationEdit->append("<font color=\"grey\"><i>" + example.example(i) + "</i></font>");
-                ui->translationEdit->append("");
-            }
-            indent.setTextIndent(0);
-            ui->translationEdit->textCursor().setBlockFormat(indent);
-        }
-    }
-
-    ui->translationEdit->moveCursor(QTextCursor::Start);
-    emit translationTextChanged(ui->translationEdit->toHtml());
 }
 
 void MainWindow::clearTranslation()
@@ -383,7 +307,7 @@ void MainWindow::speakSource()
 
 void MainWindow::speakTranslation()
 {
-    ui->translationPlayerButtons->setText(m_translator->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
+    ui->translationPlayerButtons->setText(ui->translationEdit->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
     ui->translationPlayerButtons->play();
 }
 
@@ -422,7 +346,7 @@ void MainWindow::copyTranslationToClipboard()
         return;
     }
 
-    SingleApplication::clipboard()->setText(m_translator->translation());
+    SingleApplication::clipboard()->setText(ui->translationEdit->translation());
 }
 
 void MainWindow::abortTranslation()
@@ -448,7 +372,7 @@ void MainWindow::swapLanguages()
         m_translationLangButtons->insertLanguage(sourceLang);
 
     // Copy translation to source text
-    ui->sourceEdit->setPlainText(m_translator->translation());
+    ui->sourceEdit->setPlainText(ui->translationEdit->translation());
     ui->sourceEdit->moveCursor(QTextCursor::End);
 }
 
@@ -483,7 +407,7 @@ void MainWindow::copySourceText()
 void MainWindow::copyTranslation()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        SingleApplication::clipboard()->setText(m_translator->translation());
+        SingleApplication::clipboard()->setText(ui->translationEdit->translation());
 }
 
 void MainWindow::copyAllTranslationInfo()

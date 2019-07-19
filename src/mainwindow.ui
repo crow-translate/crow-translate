@@ -330,7 +330,7 @@
      </widget>
     </item>
     <item row="5" column="4" rowspan="2">
-     <widget class="QTextEdit" name="translationEdit">
+     <widget class="TranslationEdit" name="translationEdit">
       <property name="styleSheet">
        <string notr="true"/>
       </property>
@@ -355,8 +355,13 @@
   <customwidget>
    <class>PlayerButtons</class>
    <extends>QWidget</extends>
-   <header>src/playerbuttons.h</header>
+   <header>playerbuttons.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>TranslationEdit</class>
+   <extends>QTextEdit</extends>
+   <header>translationedit.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

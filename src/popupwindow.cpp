@@ -21,6 +21,7 @@
 #include "popupwindow.h"
 #include "ui_popupwindow.h"
 #include "langbuttongroup.h"
+#include "translationedit.h"
 #include "singleapplication.h"
 #include "mainwindow.h"
 #include "playerbuttons.h"
@@ -40,7 +41,7 @@ PopupWindow::PopupWindow(MainWindow *parent) :
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-    connect(parent, &MainWindow::translationTextChanged, ui->translationEdit, &QTextEdit::setHtml);
+    connect(parent->translationEdit(), &TranslationEdit::translationDataParsed, ui->translationEdit, &QTextEdit::setHtml);
     ui->engineComboBox->setCurrentIndex(parent->engineCombobox()->currentIndex());
 
     // Window settings

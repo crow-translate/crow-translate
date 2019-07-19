@@ -35,7 +35,7 @@ class QTaskbarControl;
 class QShortcut;
 class QMenu;
 class QComboBox;
-class QTextEdit;
+class TranslationEdit;
 class QToolButton;
 
 namespace Ui {
@@ -54,20 +54,17 @@ public:
     void activate();
 
     QComboBox *engineCombobox();
-    QTextEdit *translationEdit();
     QToolButton *addSourceLangButton();
     QToolButton *addTranslationLangButton();
     QToolButton *swapButton();
     QToolButton *copySourceButton();
     QToolButton *copyTranslationButton();
     QToolButton *copyAllTranslationButton();
+    TranslationEdit *translationEdit();
     LangButtonGroup *sourceLangButtons();
     LangButtonGroup *translationLangButtons();
     PlayerButtons *sourcePlayerButtons();
     PlayerButtons *translationPlayerButtons();
-
-signals:
-    void translationTextChanged(const QString &text);
 
 private slots:
     // State machine's slots
