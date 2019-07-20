@@ -130,13 +130,13 @@ void PopupWindow::showEvent(QShowEvent *event)
     const QSize availableSize = SingleApplication::desktop()->screenGeometry(position).size();
 #endif
 
-    if (availableSize.width() - position.x() - this->geometry().width() < 0) {
-        position.rx()-= this->frameGeometry().width();
+    if (availableSize.width() - position.x() - geometry().width() < 0) {
+        position.rx()-= frameGeometry().width();
         if (position.x() < 0)
             position.rx() = 0;
     }
-    if (availableSize.height() - position.y() - this->geometry().height() < 0) {
-        position.ry()-= this->frameGeometry().height();
+    if (availableSize.height() - position.y() - geometry().height() < 0) {
+        position.ry()-= frameGeometry().height();
         if (position.y() < 0)
             position.ry() = 0;
     }

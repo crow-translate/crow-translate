@@ -37,7 +37,7 @@ class PlayerButtons : public QWidget
 
 public:
     explicit PlayerButtons(QWidget *parent = nullptr);
-    ~PlayerButtons();
+    ~PlayerButtons() override;
 
     QMediaPlayer *mediaPlayer() const;
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
