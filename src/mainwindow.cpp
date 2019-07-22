@@ -859,7 +859,7 @@ QString MainWindow::selectedText()
     copyText[3].type = INPUT_KEYBOARD;
 
     // Send key sequence to system
-    SendInput(4, copyText, sizeof(INPUT));
+    SendInput(std::size(copyText), copyText, sizeof(INPUT));
 
     // Wait for clipboard changes
     QEventLoop loop;
