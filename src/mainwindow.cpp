@@ -828,14 +828,22 @@ QString MainWindow::selectedText()
     else
         originalClipboard = SingleApplication::clipboard()->text();
 
-    // Wait until the hot key is pressed
-    while (GetAsyncKeyState(static_cast<int>(m_translateSelectionHotkey->currentNativeShortcut().key))
-           || GetAsyncKeyState(VK_CONTROL)
-           || GetAsyncKeyState(VK_MENU)
-           || GetAsyncKeyState(VK_SHIFT)) {
-    }
+    // Wait until the hot key is unpressed
+    QVector<int> nativeKeyCodes;
+    nativeKeyCodes.append(static_cast<int>(m_translateSelectionHotkey->currentNativeShortcut().key));
+    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::ShiftModifier))
+        nativeKeyCodes.append(VK_SHIFT);
+    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::ControlModifier))
+        nativeKeyCodes.append(VK_CONTROL);
+    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::MetaModifier))
+        nativeKeyCodes.append({VK_LWIN, VK_RWIN});
+    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::AltModifier))
+        nativeKeyCodes.append(VK_MENU);
+    while(std::any_of(nativeKeyCodes.begin(), nativeKeyCodes.end(), [](int keyCode) {
+            return GetAsyncKeyState(keyCode);
+    }));
 
-    // Generate key sequence
+    // Generate Ctrl + C input
     INPUT copyText[4];
 
     // Set the press of the "Ctrl" key
