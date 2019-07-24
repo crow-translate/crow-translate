@@ -1863,7 +1863,7 @@
    <sender>acceptShortcutButton</sender>
    <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>accept()</slot>
+   <slot>acceptCurrentShortcut()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>257</x>
