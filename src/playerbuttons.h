@@ -43,7 +43,7 @@ public:
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
     QMediaPlaylist *playlist();
 
-    void setText(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
+    void play(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
 
     void play();
     void pause();

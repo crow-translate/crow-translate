@@ -301,14 +301,12 @@ void MainWindow::parseSourceLanguage()
 
 void MainWindow::speakSource()
 {
-    ui->sourcePlayerButtons->setText(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
-    ui->sourcePlayerButtons->play();
+    ui->sourcePlayerButtons->play(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
 }
 
 void MainWindow::speakTranslation()
 {
-    ui->translationPlayerButtons->setText(ui->translationEdit->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
-    ui->translationPlayerButtons->play();
+    ui->translationPlayerButtons->play(ui->translationEdit->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
 }
 
 void MainWindow::showTranslationWindow()
