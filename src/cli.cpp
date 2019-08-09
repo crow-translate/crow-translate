@@ -186,15 +186,14 @@ void Cli::printTranslation()
     // Translation options
     if (!m_translator->translationOptions().isEmpty()) {
         out << m_translator->source() << " - translation options:" << endl;
-        foreach (const QOption &option, m_translator->translationOptions()) {
-            out << option.typeOfSpeech() << endl;
-            for (int i = 0; i < option.count(); ++i) {
+        for (const QString &typeOfSpeech : m_translator->translationOptions().keys()) {
+            out << typeOfSpeech << endl;
+            for (const QOption &option : m_translator->translationOptions().value(typeOfSpeech)) {
                 out << '\t';
-                if (!option.gender(i).isEmpty())
-                    out << option.gender(i) << ' ';
-                out << option.word(i) << ": ";
-
-                out << option.translations(i) << endl;
+                if (!option.gender().isEmpty())
+                    out << option.gender() << ' ';
+                out << option.word() << ": ";
+                out << option.translations().join(", ") << endl;
             }
             out << endl;
         }
@@ -203,11 +202,11 @@ void Cli::printTranslation()
     // Examples
     if (!m_translator->examples().isEmpty()) {
         out << m_translator->source() << " - examples:" << endl;
-        foreach (const QExample &example, m_translator->examples()) {
-            out << example.typeOfSpeech() << endl;
-            for (int i = 0; i < example.count(); ++ i) {
-                out << '\t' << example.description(i) << endl;
-                out << '\t' << example.example(i) << endl;
+        for (const QString &typeOfSpeech : m_translator->examples().keys()) {
+            out << typeOfSpeech << endl;
+            for (const QExample &example : m_translator->examples().value(typeOfSpeech)) {
+                out << '\t' << example.description() << endl;
+                out << '\t' << example.example() << endl;
             }
         }
     }

@@ -182,7 +182,6 @@ void SettingsDialog::accept()
 
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, m_yandexVoice);
-    settings.setVoice(QOnlineTranslator::Bing, m_bingVoice);
     settings.setEmotion(QOnlineTranslator::Yandex, m_yandexEmotion);
 
     // Connection settings
@@ -244,69 +243,37 @@ void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
 }
 
 // Disable unsupported voice settings for engines.
-void SettingsDialog::showAvailableEngineOptions(int engine)
+void SettingsDialog::showAvailableTtsOptions(int engine)
 {
     // Avoid index changed signal
     ui->voiceComboBox->blockSignals(true);
     ui->emotionComboBox->blockSignals(true);
 
     switch (engine) {
+    case QOnlineTranslator::Bing:
+        setSpeechTestEnabled(false);
+        setVoiceOptions({});
+        setEmotionOptions({});
+        break;
     case QOnlineTranslator::Google:
-        ui->voiceLabel->setEnabled(false);
-        ui->voiceComboBox->setEnabled(false);
-        ui->emotionLabel->setEnabled(false);
-        ui->emotionComboBox->setEnabled(false);
-
-        // Google has no voice settings
-        ui->voiceComboBox->clear();
-        ui->voiceComboBox->addItem(tr("Default"));
-
-        // Google has no emotion settings
-        if (ui->emotionComboBox->count() != 1) {
-            ui->emotionComboBox->clear();
-            ui->emotionComboBox->addItem(tr("Default"));
-        }
+        setSpeechTestEnabled(true);
+        setVoiceOptions({});
+        setEmotionOptions({});
         break;
     case QOnlineTranslator::Yandex:
-        ui->voiceLabel->setEnabled(true);
-        ui->voiceComboBox->setEnabled(true);
-        ui->emotionLabel->setEnabled(true);
-        ui->emotionComboBox->setEnabled(true);
+        setSpeechTestEnabled(true);
+        setVoiceOptions({{tr("Zahar"), QOnlineTts::Zahar},
+                         {tr("Ermil"), QOnlineTts::Ermil},
+                         {tr("Jane"), QOnlineTts::Jane},
+                         {tr("Oksana"), QOnlineTts::Oksana},
+                         {tr("Alyss"), QOnlineTts::Alyss},
+                         {tr("Omazh"), QOnlineTts::Omazh}});
+        setEmotionOptions({{tr("Neutral"), QOnlineTts::Neutral},
+                           {tr("Good"), QOnlineTts::Good},
+                           {tr("Evil"), QOnlineTts::Evil}});
 
-        // Add Yandex voices
-        ui->voiceComboBox->clear();
-        ui->voiceComboBox->addItem(tr("Zahar"), QOnlineTts::Zahar);
-        ui->voiceComboBox->addItem(tr("Ermil"), QOnlineTts::Ermil);
-        ui->voiceComboBox->addItem(tr("Jane"), QOnlineTts::Jane);
-        ui->voiceComboBox->addItem(tr("Oksana"), QOnlineTts::Oksana);
-        ui->voiceComboBox->addItem(tr("Alyss"), QOnlineTts::Alyss);
-        ui->voiceComboBox->addItem(tr("Omazh"), QOnlineTts::Omazh);
-        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(m_yandexVoice));
-
-        // Add Yandex emotion options
-        ui->emotionComboBox->clear();
-        ui->emotionComboBox->addItem(tr("Neutral"), QOnlineTts::Neutral);
-        ui->emotionComboBox->addItem(tr("Good"), QOnlineTts::Good);
-        ui->emotionComboBox->addItem(tr("Evil"), QOnlineTts::Evil);
         ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(m_yandexEmotion));
-        break;
-    case QOnlineTranslator::Bing:
-        ui->voiceLabel->setEnabled(true);
-        ui->voiceComboBox->setEnabled(true);
-        ui->emotionLabel->setEnabled(false);
-        ui->emotionComboBox->setEnabled(false);
-
-        // Add Bing voices
-        ui->voiceComboBox->clear();
-        ui->voiceComboBox->addItem(tr("Female"), QOnlineTts::Female);
-        ui->voiceComboBox->addItem(tr("Male"), QOnlineTts::Male);
-        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(m_bingVoice));
-
-        // Bing has no emotion settings
-        if (ui->emotionComboBox->count() != 1) {
-            ui->emotionComboBox->clear();
-            ui->emotionComboBox->addItem(tr("Default"));
-        }
+        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(m_yandexVoice));
         break;
     }
 
@@ -317,14 +284,8 @@ void SettingsDialog::showAvailableEngineOptions(int engine)
 // Save current engine voice settings
 void SettingsDialog::saveEngineVoice(int engine)
 {
-    switch (ui->engineComboBox->currentIndex()) {
-    case QOnlineTranslator::Yandex:
+    if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
         m_yandexVoice = ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>();
-        break;
-    case QOnlineTranslator::Bing:
-        m_bingVoice = ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>();
-        break;
-    }
 }
 
 // Save current engine emotion settings
@@ -471,7 +432,6 @@ void SettingsDialog::restoreDefaults()
 
     // Speech synthesis settings
     m_yandexVoice = QOnlineTts::Zahar;
-    m_bingVoice = QOnlineTts::Female;
     m_yandexEmotion = QOnlineTts::Neutral;
 
     // Connection settings
@@ -523,7 +483,6 @@ void SettingsDialog::loadSettings()
 
     // Speech synthesis settings
     m_yandexVoice = settings.voice(QOnlineTranslator::Yandex);
-    m_bingVoice = settings.voice(QOnlineTranslator::Bing);
     m_yandexEmotion = settings.emotion(QOnlineTranslator::Yandex);
 
     // Connection settings
@@ -536,4 +495,47 @@ void SettingsDialog::loadSettings()
 
     // Shortcuts
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
+}
+
+void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)
+{
+    ui->voiceComboBox->clear();
+
+    if (voices.isEmpty()) {
+        // Disable voice settings
+        ui->voiceLabel->setEnabled(false);
+        ui->voiceComboBox->setEnabled(false);
+        ui->voiceComboBox->addItem(tr("Default"));
+        return;
+    }
+
+    ui->voiceLabel->setEnabled(true);
+    ui->voiceComboBox->setEnabled(true);
+    for (const QString &name : voices.keys())
+        ui->voiceComboBox->addItem(name, voices.value(name));
+}
+
+void SettingsDialog::setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions)
+{
+    ui->emotionComboBox->clear();
+
+    if (emotions.isEmpty()) {
+        // Disable emotion settings
+        ui->emotionLabel->setEnabled(false);
+        ui->emotionComboBox->setEnabled(false);
+        ui->emotionComboBox->addItem(tr("Default"));
+        return;
+    }
+
+    ui->emotionLabel->setEnabled(true);
+    ui->emotionComboBox->setEnabled(true);
+    for (const QString &name : emotions.keys())
+        ui->emotionComboBox->addItem(name, emotions.value(name));
+}
+
+void SettingsDialog::setSpeechTestEnabled(bool enabled)
+{
+    ui->testSpeechEdit->setEnabled(enabled);
+    ui->playerButtons->setEnabled(enabled);
+    ui->testSpeechLabel->setEnabled(enabled);
 }

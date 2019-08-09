@@ -36,26 +36,26 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
         append("<font color=\"grey\"><i>" + translator->source() + "</i> – " + tr("translation options:") + "</font>");
 
         // Print words for each type of speech
-        foreach (const QOption &option, translator->translationOptions()) {
-            append("<b>" + option.typeOfSpeech() + "</b>");
+        for (const QString &typeOfSpeech : translator->translationOptions().keys()) {
+            append("<b>" + typeOfSpeech + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
 
-            for (int i = 0; i <  option.count(); ++i) {
+            for (const QOption &option : translator->translationOptions().value(typeOfSpeech)) {
                 // Show word gender
                 QString wordLine;
-                if (!option.gender(i).isEmpty())
-                    wordLine.append("<i>" + option.gender(i) + "</i> ");
+                if (!option.gender().isEmpty())
+                    wordLine.append("<i>" + option.gender() + "</i> ");
 
                 // Show Word
-                wordLine.append(option.word(i));
+                wordLine.append(option.word());
 
                 // Show word meaning
-                if (!option.translations(i).isEmpty()) {
+                if (!option.translations().isEmpty()) {
                     wordLine.append(": ");
                     wordLine.append("<font color=\"grey\"><i>");
-                    wordLine.append(option.translations(i));
+                    wordLine.append(option.translations().join(", "));
                     wordLine.append("</i></font>");
                 }
 
@@ -72,14 +72,14 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     // Examples
     if (!translator->examples().isEmpty()) {
         append("<font color=\"grey\"><i>" + translator->source() + "</i> – " + tr("examples:") + "</font>");
-        foreach (const QExample &example, translator->examples()) {
-            append("<b>" + example.typeOfSpeech() + "</b>");
+        for (const QString &typeOfSpeech : translator->examples().keys()) {
+            append("<b>" + typeOfSpeech + "</b>");
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
-            for (int i = 0; i < example.count(); ++i) {
-                append(example.description(i));
-                append("<font color=\"grey\"><i>" + example.example(i) + "</i></font>");
+            for (const QExample &example : translator->examples().value(typeOfSpeech)) {
+                append(example.description());
+                append("<font color=\"grey\"><i>" + example.example() + "</i></font>");
                 append("");
             }
             indent.setTextIndent(0);

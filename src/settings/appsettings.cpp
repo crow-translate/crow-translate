@@ -342,11 +342,10 @@ QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::Google:
-        return QOnlineTts::DefaultVoice;
+    case QOnlineTranslator::Bing:
+        return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return value("Translation/YandexVoice", QOnlineTts::Zahar).value<QOnlineTts::Voice>();
-    case QOnlineTranslator::Bing:
-        return value("Translation/BingVoice", QOnlineTts::Female).value<QOnlineTts::Voice>();
     }
 
     qFatal("Unknown engine");
@@ -356,12 +355,10 @@ void AppSettings::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice v
 {
     switch (engine) {
     case QOnlineTranslator::Google:
-        qFatal("Google does not have voice settings");
+    case QOnlineTranslator::Bing:
+        qFatal("Currently only Yandex have voice settings");
     case QOnlineTranslator::Yandex:
         setValue("Translation/YandexVoice", voice);
-        return;
-    case QOnlineTranslator::Bing:
-        setValue("Translation/BingVoice", voice);
         return;
     }
 
@@ -373,7 +370,7 @@ QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
     switch (engine) {
     case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
-        return QOnlineTts::DefaultEmotion;
+        return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return value("Translation/YandexEmotion", QOnlineTts::Neutral).value<QOnlineTts::Emotion>();
     }
@@ -386,7 +383,7 @@ void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emoti
     switch (engine) {
     case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
-        qFatal("Bing and Google does not have voice emotion settings");
+        qFatal("Currently only Yandex have emotion settings");
     case QOnlineTranslator::Yandex:
         setValue("Translation/YandexEmotion", emotion);
         return;

@@ -865,7 +865,7 @@
             </widget>
            </item>
            <item row="3" column="0">
-            <widget class="QLabel" name="label">
+            <widget class="QLabel" name="testSpeechLabel">
              <property name="text">
               <string>Speech test:</string>
              </property>
@@ -1783,7 +1783,7 @@
    <sender>engineComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>showAvailableEngineOptions(int)</slot>
+   <slot>showAvailableTtsOptions(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -1945,7 +1945,7 @@
   <slot>processTrayIconTypeChanged(int)</slot>
   <slot>chooseCustomTrayIcon()</slot>
   <slot>setCustomTrayIconPreview(QString)</slot>
-  <slot>showAvailableEngineOptions(int)</slot>
+  <slot>showAvailableTtsOptions(int)</slot>
   <slot>saveEngineEmotion(int)</slot>
   <slot>saveEngineVoice(int)</slot>
   <slot>detectTextLanguage()</slot>

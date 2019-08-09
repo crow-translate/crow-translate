@@ -58,7 +58,7 @@ private slots:
     void chooseCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
 
-    void showAvailableEngineOptions(int engine);
+    void showAvailableTtsOptions(int engine);
     void saveEngineVoice(int engine);
     void saveEngineEmotion(int engine);
     void detectTextLanguage();
@@ -78,6 +78,9 @@ private slots:
 
 private:
     void loadSettings();
+    void setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices);
+    void setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions);
+    void setSpeechTestEnabled(bool enabled);
 
     Ui::SettingsDialog *ui;
 
@@ -86,7 +89,6 @@ private:
 
     // Engine voice settings
     QOnlineTts::Voice m_yandexVoice;
-    QOnlineTts::Voice m_bingVoice;
     QOnlineTts::Emotion m_yandexEmotion;
 
 #ifdef Q_OS_WIN
