@@ -90,7 +90,7 @@ void Cli::process(const QCoreApplication &app)
     // Translation languages
     m_sourceLang = QOnlineTranslator::language(parser.value("source"));
     m_uiLang = QOnlineTranslator::language(parser.value("locale"));
-    foreach (const QString &language, parser.value("translation").split('+'))
+    for (const QString &language : parser.value("translation").split('+'))
         m_translationLangs << QOnlineTranslator::language(language);
 
     // Source text
@@ -290,7 +290,7 @@ void Cli::buildTranslationStateMachine()
     auto *nextTranslationState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(nextTranslationState);
 
-    foreach (QOnlineTranslator::Language lang, m_translationLangs) {
+    for (QOnlineTranslator::Language lang : qAsConst(m_translationLangs)) {
         auto *requestTranslationState = nextTranslationState;
         auto *parseDataState = new QState(m_stateMachine);
         auto *speakSourceText = new QState(m_stateMachine);
@@ -370,7 +370,7 @@ void Cli::buildSpeakTranslationsState(QState *parent)
     auto *nextSpeakTranslationState = new QState(parent);
     parent->setInitialState(nextSpeakTranslationState);
 
-    foreach (QOnlineTranslator::Language language, m_translationLangs) {
+    for (QOnlineTranslator::Language language : qAsConst(m_translationLangs)) {
         auto *requestTranslationState = nextSpeakTranslationState;
         auto *printTextState = new QState(parent);
         auto *speakTextState = new QState(parent);
@@ -419,7 +419,7 @@ QByteArray Cli::readFilesFromStdin()
 {
     QString stdinText = QTextStream(stdin).readAll();
     QByteArray filesData;
-    foreach (const QString &filePath, stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
+    for (const QString &filePath : stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
         QFile file(filePath);
         if (!file.exists()) {
             qCritical() << "Error: File does not exist: " << file.fileName() << endl;
@@ -440,7 +440,7 @@ QByteArray Cli::readFilesFromStdin()
 QByteArray Cli::readFilesFromArguments(const QStringList &arguments)
 {
     QByteArray filesData;
-    foreach (const QString &filePath, arguments) {
+    for (const QString &filePath : arguments) {
         QFile file(filePath);
         if (!file.exists()) {
             qCritical() << "Error: File does not exist: " << file.fileName() << endl;

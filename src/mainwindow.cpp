@@ -536,7 +536,7 @@ void MainWindow::buildStateMachine()
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
 
     // Add transitions between all states
-    foreach (QState *state, m_stateMachine->findChildren<QState *>()) {
+    for (QState *state : m_stateMachine->findChildren<QState *>()) {
         state->addTransition(ui->translateButton, &QToolButton::clicked, translationState);
         state->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
         state->addTransition(m_translateSelectionHotkey, &QHotkey::activated, translateSelectionState);
