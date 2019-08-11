@@ -168,8 +168,8 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     stopSpeaking->setDefaultShortcut(AppSettings::defaultStopSpeakingHotkey());
 
     auto *showMainWindow = new ShortcutItem(globalShortcuts);
-    showMainWindow->setDescription(tr("Stop text speaking"));
-    showMainWindow->setIconName("media-playback-stop");
+    showMainWindow->setDescription(tr("Show main window"));
+    showMainWindow->setIconName("window");
     showMainWindow->setShortcut(settings.showMainWindowHotkey());
     showMainWindow->setDefaultShortcut(AppSettings::defaultShowMainWindowHotkey());
 
