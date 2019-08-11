@@ -64,7 +64,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
-        const QIcon langIcon(":/icons/flags/" + QOnlineTranslator::languageCode(lang) + ".svg");
+        const QIcon langIcon = LangButtonGroup::countryIcon(lang);
 
         ui->primaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
         ui->secondaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);

@@ -56,6 +56,8 @@ public:
     GroupType type() const;
     void setType(const GroupType &type);
 
+    static QIcon countryIcon(QOnlineTranslator::Language lang);
+
 signals:
     void buttonChecked(int id);
     void languageChanged(int id, QOnlineTranslator::Language lang);

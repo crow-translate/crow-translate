@@ -176,7 +176,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
-                <normaloff>:/icons/flags/en.svg</normaloff>:/icons/flags/en.svg</iconset>
+                <normaloff>:/icons/flags/gb.svg</normaloff>:/icons/flags/gb.svg</iconset>
               </property>
              </item>
              <item>
@@ -203,7 +203,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
-                <normaloff>:/icons/flags/uk.svg</normaloff>:/icons/flags/uk.svg</iconset>
+                <normaloff>:/icons/flags/ua.svg</normaloff>:/icons/flags/ua.svg</iconset>
               </property>
              </item>
              <item>
@@ -221,7 +221,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
-                <normaloff>:/icons/flags/zh-CN.svg</normaloff>:/icons/flags/zh-CN.svg</iconset>
+                <normaloff>:/icons/flags/cn.svg</normaloff>:/icons/flags/cn.svg</iconset>
               </property>
              </item>
             </widget>

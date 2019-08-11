@@ -20,6 +20,7 @@
 
 #include "addlangdialog.h"
 #include "ui_addlangdialog.h"
+#include "langbuttongroup.h"
 
 #include <QPushButton>
 
@@ -35,7 +36,7 @@ AddLangDialog::AddLangDialog(QWidget *parent) :
 
         auto *item = new QListWidgetItem();
         item->setText(QOnlineTranslator::languageString(lang));
-        item->setIcon(QIcon(":/icons/flags/" + QOnlineTranslator::languageCode(lang) + ".svg"));
+        item->setIcon(LangButtonGroup::countryIcon(lang));
         item->setData(Qt::UserRole, lang);
         ui->langListWidget->addItem(item);
     }
