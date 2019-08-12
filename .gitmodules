@@ -1,18 +1,18 @@
-[submodule "src/qgittag"]
-	path = src/qgittag
-	url = git@github.com:crow-translate/QGitTag.git
 [submodule "src/third-party/qhotkey"]
 	path = src/third-party/qhotkey
 	url = https://github.com/Skycoder42/QHotkey.git
 [submodule "src/third-party/singleapplication"]
 	path = src/third-party/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
-[submodule "src/qonlinetranslator"]
-	path = src/qonlinetranslator
-	url = git@github.com:crow-translate/QOnlineTranslator.git
 [submodule "src/third-party/pvs-studio"]
 	path = src/third-party/pvs-studio
 	url = https://github.com/viva64/pvs-studio-qmake-examples.git
 [submodule "src/third-party/qtaskbarcontrol"]
 	path = src/third-party/qtaskbarcontrol
 	url = https://github.com/Skycoder42/QTaskbarControl.git
+[submodule "src/qonlinetranslator"]
+	path = src/qonlinetranslator
+	url = https://github.com/crow-translate/QOnlineTranslator.git
+[submodule "src/qgittag"]
+	path = src/qgittag
+	url = https://github.com/crow-translate/QGitTag.git
