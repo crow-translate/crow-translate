@@ -76,11 +76,10 @@ QString TrayIcon::trayIconName(TrayIcon::IconType type)
 
 void TrayIcon::processTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
-    auto *mainWindow = qobject_cast<MainWindow *>(parent());
-
     if (reason != QSystemTrayIcon::Trigger)
         return;
 
+    auto *mainWindow = qobject_cast<MainWindow *>(parent());
     if (!mainWindow->isVisible())
         mainWindow->activate();
     else
