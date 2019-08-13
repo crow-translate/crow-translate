@@ -70,7 +70,8 @@ TRANSLATIONS += \
     data/translations/crow_ru.ts
 
 # Compile translations
-system(lrelease crow-translate.pro)
+qtPrepareTool(LRELEASE, lrelease)
+system($$LRELEASE crow-translate.pro) | error("Failed to run lrelease")
 
 # For make install
 unix {
