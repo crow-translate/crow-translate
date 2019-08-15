@@ -28,6 +28,7 @@
 #include <QProcess>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
+#include <QDir>
 
 UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     QWidget(parent, Qt::Dialog),
@@ -48,7 +49,7 @@ UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
 
     // Get download information
     m_downloadUrl = release->assets().at(installer).url();
-    m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + "/" + release->assets().at(installer).name();
+    m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + QDir::separator() + release->assets().at(installer).name();
 
     // Show release data
     ui->versionsLabel->setText("<b>"

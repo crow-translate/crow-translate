@@ -231,7 +231,7 @@ void SettingsDialog::processTrayIconTypeChanged(int type)
 
 void SettingsDialog::chooseCustomTrayIcon()
 {
-    const QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf("/"));
+    const QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf(QDir::separator()));
     const QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
     if (!file.isEmpty())
         ui->customTrayIconEdit->setText(file);
