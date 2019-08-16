@@ -42,20 +42,20 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
 
-            for (const QOption &option : translator->translationOptions().value(typeOfSpeech)) {
+            for (const QOnlineTranslator::QOption &option : translator->translationOptions().value(typeOfSpeech)) {
                 // Show word gender
                 QString wordLine;
-                if (!option.gender().isEmpty())
-                    wordLine.append("<i>" + option.gender() + "</i> ");
+                if (!option.gender.isEmpty())
+                    wordLine.append("<i>" + option.gender + "</i> ");
 
                 // Show Word
-                wordLine.append(option.word());
+                wordLine.append(option.word);
 
                 // Show word meaning
-                if (!option.translations().isEmpty()) {
+                if (!option.translations.isEmpty()) {
                     wordLine.append(": ");
                     wordLine.append("<font color=\"grey\"><i>");
-                    wordLine.append(option.translations().join(", "));
+                    wordLine.append(option.translations.join(", "));
                     wordLine.append("</i></font>");
                 }
 
@@ -77,9 +77,9 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
-            for (const QExample &example : translator->examples().value(typeOfSpeech)) {
-                append(example.description());
-                append("<font color=\"grey\"><i>" + example.example() + "</i></font>");
+            for (const QOnlineTranslator::QExample &example : translator->examples().value(typeOfSpeech)) {
+                append(example.description);
+                append("<font color=\"grey\"><i>" + example.example + "</i></font>");
                 append("");
             }
             indent.setTextIndent(0);

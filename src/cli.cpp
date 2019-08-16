@@ -188,12 +188,12 @@ void Cli::printTranslation()
         out << m_translator->source() << " - translation options:" << endl;
         for (const QString &typeOfSpeech : m_translator->translationOptions().keys()) {
             out << typeOfSpeech << endl;
-            for (const QOption &option : m_translator->translationOptions().value(typeOfSpeech)) {
+            for (const QOnlineTranslator::QOption &option : m_translator->translationOptions().value(typeOfSpeech)) {
                 out << '\t';
-                if (!option.gender().isEmpty())
-                    out << option.gender() << ' ';
-                out << option.word() << ": ";
-                out << option.translations().join(", ") << endl;
+                if (!option.gender.isEmpty())
+                    out << option.gender << ' ';
+                out << option.word << ": ";
+                out << option.translations.join(", ") << endl;
             }
             out << endl;
         }
@@ -204,9 +204,9 @@ void Cli::printTranslation()
         out << m_translator->source() << " - examples:" << endl;
         for (const QString &typeOfSpeech : m_translator->examples().keys()) {
             out << typeOfSpeech << endl;
-            for (const QExample &example : m_translator->examples().value(typeOfSpeech)) {
-                out << '\t' << example.description() << endl;
-                out << '\t' << example.example() << endl;
+            for (const QOnlineTranslator::QExample &example : m_translator->examples().value(typeOfSpeech)) {
+                out << '\t' << example.description << endl;
+                out << '\t' << example.example << endl;
             }
         }
     }
