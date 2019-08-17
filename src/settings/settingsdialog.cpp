@@ -510,8 +510,8 @@ void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voi
 
     ui->voiceLabel->setEnabled(true);
     ui->voiceComboBox->setEnabled(true);
-    for (const QString &name : voices.keys())
-        ui->voiceComboBox->addItem(name, voices.value(name));
+    for (auto it = voices.cbegin(); it != voices.cend(); ++it)
+        ui->voiceComboBox->addItem(it.key(), it.value());
 }
 
 void SettingsDialog::setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions)
@@ -528,8 +528,8 @@ void SettingsDialog::setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> 
 
     ui->emotionLabel->setEnabled(true);
     ui->emotionComboBox->setEnabled(true);
-    for (const QString &name : emotions.keys())
-        ui->emotionComboBox->addItem(name, emotions.value(name));
+    for (auto it = emotions.cbegin(); it != emotions.cend(); ++it)
+        ui->emotionComboBox->addItem(it.key(), it.value());
 }
 
 void SettingsDialog::setSpeechTestEnabled(bool enabled)

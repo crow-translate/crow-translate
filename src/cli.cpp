@@ -186,14 +186,14 @@ void Cli::printTranslation()
     // Translation options
     if (!m_translator->translationOptions().isEmpty()) {
         out << m_translator->source() << " - translation options:" << endl;
-        for (const QString &typeOfSpeech : m_translator->translationOptions().keys()) {
-            out << typeOfSpeech << endl;
-            for (const QOnlineTranslator::QOption &option : m_translator->translationOptions().value(typeOfSpeech)) {
+        for (auto it = m_translator->translationOptions().cbegin(); it != m_translator->translationOptions().cend(); ++it) {
+            out << it.key() << endl;
+            for (const auto &[gender, word, translations] : it.value()) {
                 out << '\t';
-                if (!option.gender.isEmpty())
-                    out << option.gender << ' ';
-                out << option.word << ": ";
-                out << option.translations.join(", ") << endl;
+                if (!gender.isEmpty())
+                    out << gender << ' ';
+                out << word << ": ";
+                out << translations.join(", ") << endl;
             }
             out << endl;
         }
@@ -202,11 +202,11 @@ void Cli::printTranslation()
     // Examples
     if (!m_translator->examples().isEmpty()) {
         out << m_translator->source() << " - examples:" << endl;
-        for (const QString &typeOfSpeech : m_translator->examples().keys()) {
-            out << typeOfSpeech << endl;
-            for (const QOnlineTranslator::QExample &example : m_translator->examples().value(typeOfSpeech)) {
-                out << '\t' << example.description << endl;
-                out << '\t' << example.example << endl;
+        for (auto it = m_translator->examples().cbegin(); it != m_translator->examples().cend(); ++it) {
+            out << it.key() << endl;
+            for (const auto &[description, example] : it.value()) {
+                out << '\t' << description << endl;
+                out << '\t' << example << endl;
             }
         }
     }
