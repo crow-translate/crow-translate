@@ -23,11 +23,11 @@
 
 #include "qonlinetranslator.h"
 
-#include <QButtonGroup>
-
+class QButtonGroup;
+class QAbstractButton;
 class AppSettings;
 
-class LangButtonGroup : public QButtonGroup
+class LangButtonGroup : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(LangButtonGroup)
@@ -41,20 +41,19 @@ public:
 
     explicit LangButtonGroup(GroupType type, QObject *parent = nullptr);
 
+    void loadLanguages(const LangButtonGroup *group);
     void loadLanguages(const AppSettings &settings);
     void saveLanguages(AppSettings &settings);
 
     void addButton(QAbstractButton *button);
-    void loadLanguages(const LangButtonGroup *group);
-    void insertLanguage(QOnlineTranslator::Language lang);
-    void retranslate();
+    void addLanguage(QOnlineTranslator::Language lang);
 
     QOnlineTranslator::Language checkedLanguage() const;
     QOnlineTranslator::Language previousCheckedLanguage() const;
     QOnlineTranslator::Language language(int id) const;
 
-    GroupType type() const;
-    void setType(const GroupType &type);
+    bool isAutoButtonChecked();
+    void retranslate();
 
     static QIcon countryIcon(QOnlineTranslator::Language lang);
 
@@ -70,6 +69,7 @@ private slots:
     void processButtonToggled(int id, bool checked);
 
 private:
+    QButtonGroup *m_group;
     GroupType m_type;
     int m_previousCheckedId = 0;
 };
