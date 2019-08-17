@@ -367,6 +367,11 @@ QIcon LangButtonGroup::countryIcon(QOnlineTranslator::Language lang)
     }
 }
 
+void LangButtonGroup::checkAutoButton()
+{
+    checkButton(0);
+}
+
 void LangButtonGroup::checkButton(int id)
 {
     m_group->button(id)->setChecked(true);

@@ -62,6 +62,7 @@ signals:
     void languageChanged(int id, QOnlineTranslator::Language lang);
 
 public slots:
+    void checkAutoButton();
     void checkButton(int id);
     void setLanguage(int id, QOnlineTranslator::Language lang);
 

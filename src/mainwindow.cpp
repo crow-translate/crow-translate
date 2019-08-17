@@ -359,13 +359,13 @@ void MainWindow::swapLanguages()
 
     // Insert current translation language to source buttons
     if (m_translationLangButtons->isAutoButtonChecked())
-        m_sourceLangButtons->checkButton(0); // Select "Auto" button
+        m_sourceLangButtons->checkAutoButton();
     else
         m_sourceLangButtons->addLanguage(translationLang);
 
     // Insert current source language to translation buttons
     if (m_sourceLangButtons->isAutoButtonChecked())
-        m_translationLangButtons->checkButton(0); // Select "Auto" button
+        m_translationLangButtons->checkAutoButton();
     else
         m_translationLangButtons->addLanguage(sourceLang);
 
