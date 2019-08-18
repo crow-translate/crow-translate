@@ -60,6 +60,9 @@ int launchCli(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
+    AppSettings settings;
+    settings.setupLocale();
+
     Cli cli;
     cli.process(app);
     return QCoreApplication::exec();

@@ -2,8 +2,13 @@
 <ui version="4.0">
  <class>PlayerButtons</class>
  <widget class="QWidget" name="PlayerButtons">
-  <property name="windowTitle">
-   <string>Form</string>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>86</width>
+    <height>34</height>
+   </rect>
   </property>
   <layout class="QHBoxLayout" name="buttonsLayout">
    <property name="spacing">
@@ -43,7 +48,8 @@
       <string>Pause</string>
      </property>
      <property name="icon">
-      <iconset theme="media-playback-stop"/>
+      <iconset theme="media-playback-stop">
+       <normaloff>.</normaloff>.</iconset>
      </property>
     </widget>
    </item>

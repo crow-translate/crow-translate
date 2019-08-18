@@ -223,9 +223,7 @@ public:
 
 private:
     static QTranslator m_appTranslator;
-#ifdef Q_OS_WIN
     static QTranslator m_qtTranslator; // Qt library translations
-#endif
 };
 
 #endif // APPSETTINGS_H

@@ -32,9 +32,7 @@
 #endif
 
 QTranslator AppSettings::m_appTranslator;
-#ifdef Q_OS_WIN
 QTranslator AppSettings::m_qtTranslator;
-#endif
 
 AppSettings::AppSettings(QObject *parent) :
     QSettings(parent)
@@ -45,9 +43,7 @@ void AppSettings::setupLocale()
 {
     loadLocale(locale());
     SingleApplication::installTranslator(&m_appTranslator);
-#ifdef Q_OS_WIN
     SingleApplication::installTranslator(&m_qtTranslator);
-#endif
 }
 
 QLocale::Language AppSettings::locale() const
@@ -71,9 +67,7 @@ void AppSettings::loadLocale(QLocale::Language lang)
         QLocale::setDefault(QLocale(lang));
 
     m_appTranslator.load(QLocale(), "crow", "_", ":/translations");
-#ifdef Q_OS_WIN
     m_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
-#endif
 }
 
 AppSettings::WindowMode AppSettings::windowMode() const

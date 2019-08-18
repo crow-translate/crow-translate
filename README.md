@@ -88,10 +88,10 @@ The program also has a console interface.
 | -------------------------- | ---------------------------------------------------------------------------------------------- |
 | `-h, --help`               | Display help                                                                                   |
 | `-v, --version`            | Display version information                                                                    |
-| `-c, --codes`              | Show all language codes                                                                        |
+| `-c, --codes`              | Display language codes                                                                         |
 | `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`              |
 | `-s, --source <code>`      | Specify the source language (by default, engine will try to determine the language on its own) |
-| `-t, --translation <code>` | Specify the translation language(s), joined by '+' (by default, the system language is used)   |
+| `-t, --translation <code>` | Specify the translation language(s), splitted by '+' (by default, the system language is used) |
 | `-l, --locale <code>`      | Specify the translator language (by default, the system language is used)                      |
 | `-e, --engine <engine>`    | Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default        |
 | `-p, --speak-translation`  | Speak the translation                                                                          |
