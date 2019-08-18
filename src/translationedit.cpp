@@ -42,7 +42,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
 
-            for (const auto &[gender, word, translations] : it.value()) {
+            for (const auto &[word, gender, translations] : it.value()) {
                 // Show word gender
                 QString wordLine;
                 if (!gender.isEmpty())
@@ -77,7 +77,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
-            for (const auto &[description, example]: it.value()) {
+            for (const auto &[example, description]: it.value()) {
                 append(description);
                 append("<font color=\"grey\"><i>" + example + "</i></font>");
                 append("");

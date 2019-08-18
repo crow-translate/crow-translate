@@ -195,7 +195,7 @@ void Cli::printTranslation()
         out << tr("%1 - translation options:").arg(m_translator->source()) << '\n';
         for (auto it = m_translator->translationOptions().cbegin(); it != m_translator->translationOptions().cend(); ++it) {
             out << it.key() << '\n';
-            for (const auto &[gender, word, translations] : it.value()) {
+            for (const auto &[word, gender, translations] : it.value()) {
                 out << '\t';
                 if (!gender.isEmpty())
                     out << gender << ' ';
@@ -211,7 +211,7 @@ void Cli::printTranslation()
         out << tr("%1 - examples:").arg(m_translator->source()) << '\n';
         for (auto it = m_translator->examples().cbegin(); it != m_translator->examples().cend(); ++it) {
             out << it.key() << '\n';
-            for (const auto &[description, example] : it.value()) {
+            for (const auto &[example, description] : it.value()) {
                 out << '\t' << description << '\n';
                 out << '\t' << example << '\n';
             }
