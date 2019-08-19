@@ -48,7 +48,7 @@ class MainWindow : public QMainWindow
     Q_DISABLE_COPY(MainWindow)
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(const AppSettings &settings, QWidget *parent = nullptr);
     ~MainWindow() override;
 
     void activate();

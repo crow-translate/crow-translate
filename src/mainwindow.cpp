@@ -52,7 +52,7 @@
 #include <windows.h>
 #endif
 
-MainWindow::MainWindow(QWidget *parent) :
+MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
@@ -89,7 +89,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->translationPlayerButtons, &PlayerButtons::stop);
 
     // Source button group
-    const AppSettings settings;
     m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);
     m_sourceLangButtons->addButton(ui->autoSourceButton);
     m_sourceLangButtons->addButton(ui->firstSourceButton);
@@ -135,6 +134,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
     restoreGeometry(settings.mainWindowGeometry());
+    if (!settings.isStartMinimized())
+        show();
 
 #ifdef Q_OS_WIN
     // Check date for updates

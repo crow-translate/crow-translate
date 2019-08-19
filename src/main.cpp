@@ -49,9 +49,7 @@ int launchGui(int argc, char *argv[])
     AppSettings settings;
     settings.setupLocale();
 
-    MainWindow window;
-    if (!settings.isStartMinimized())
-        window.show();
+    MainWindow window(settings);
 
     return SingleApplication::exec();
 }
@@ -65,5 +63,6 @@ int launchCli(int argc, char *argv[])
 
     Cli cli;
     cli.process(app);
+
     return QCoreApplication::exec();
 }
