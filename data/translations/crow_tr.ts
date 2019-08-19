@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -27,114 +25,114 @@
     <message>
         <location filename="../../src/cli.cpp" line="50"/>
         <source>Display all language codes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm dil kodlarını göster.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="51"/>
         <source>Specify the source language (by default, engine will try to determine the language on its own).</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynak dili belirtin (varsayılan olarak, motor dili kendi başına belirlemeye çalışacaktır).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="52"/>
         <source>Specify the translation language(s), splitted by &apos;+&apos; (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>&apos;+&apos; İle bölünmüş çeviri dillerini belirtin (varsayılan olarak sistem dili kullanılır).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="53"/>
         <source>Specify the translator language (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>Çeviri dilini belirtin (varsayılan olarak, sistem dili kullanılır).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="54"/>
         <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos; or &apos;bing&apos;), Google is used by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çeviri motorunu (&apos;google&apos;, &apos;yandex&apos; veya &apos;bing&apos;) belirtin, Google varsayılan olarak kullanılır.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="55"/>
         <source>Speak the translation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çeviriyi konuştur.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="56"/>
         <source>Speak the source.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynağı konuştur.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="57"/>
         <source>Print text only for speaking when using --%1 or --%2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yalnızca -%1 veya - %2 kullanılırken konuşmak için metin yazdırın.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="58"/>
         <source>Read source text from files. Arguments will be interpreted as file paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynak metinleri dosyalardan okuyun. Argümanlar dosya yolu olarak yorumlanacaktır.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="59"/>
         <source>Add stdin data to source text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynak metne stdin verisi ekleyin.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="62"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Google, Yandex ve Bing kullanarak metinleri çevirip konuşmanıza izin veren basit ve hafif bir tercüman.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="63"/>
         <source>Text to translate. By default, the translation will be done to the system language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çevrilecek metin. Varsayılan olarak, çeviri sistem diline yapılacaktır.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="93"/>
         <source>Error: Unknown engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: Bilinmeyen motor</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="124"/>
         <source>Error: There is no text for translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: Çeviri için metin yok</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="407"/>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="432"/>
         <location filename="../../src/cli.cpp" line="453"/>
         <source>Error: File does not exist: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: Dosya mevcut değil: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="437"/>
         <location filename="../../src/cli.cpp" line="458"/>
         <source>Error: Unable to open file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: Dosya açılamıyor: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="195"/>
         <source>%1 - translation options:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - çeviri seçenekleri:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="131"/>
         <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: --%1 için --%2 ve/yada --%3 seçeneklerini belirtmelisiniz</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="211"/>
         <source>%1 - examples:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - örnekler:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="241"/>
         <source>Source text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynak metin:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="249"/>
         <source>Translation into %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Çeviri içine %1:</translation>
     </message>
 </context>
 <context>
@@ -230,7 +228,7 @@
     <message>
         <location filename="../../src/mainwindow.cpp" line="295"/>
         <source>Unable to detect language</source>
-        <translation type="unfinished">Dil tespit edilemiyor</translation>
+        <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="343"/>
@@ -248,37 +246,37 @@
     <message>
         <location filename="../../src/playerbuttons.ui" line="32"/>
         <source>Play / pause source text speaking</source>
-        <translation type="unfinished">Kaynak metin konuşmasını Oynat/Duraklat</translation>
+        <translation>Kaynak metin konuşmasını oynat/duraklat</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="35"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Oynat</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="45"/>
         <source>Stop source text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynak çeviri konuşmasını durdur</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="48"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Duraklat</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="77"/>
         <source>No text specified</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin belirtilmedi</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="77"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished">Oynatım metni boş</translation>
+        <translation>Oynatım metni boş</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="88"/>
         <source>Unable to generate URLs for TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>TTS için URL oluşturulamıyor</translation>
     </message>
 </context>
 <context>
@@ -955,7 +953,7 @@
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1017"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1149"/>
         <source>Error: Unable to parse autodetected language</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata: Otomatik algılanan dil ayrıştırılamadı</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="961"/>
@@ -968,7 +966,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="109"/>
         <source>%1 engine does not support TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 motor TTS&apos;yi desteklemiyor</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="178"/>
@@ -1710,7 +1708,7 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="171"/>
         <source>Show main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Ana pencereyi göster</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="177"/>
@@ -1759,12 +1757,12 @@
     <message>
         <location filename="../../src/translationedit.cpp" line="36"/>
         <source>translation options:</source>
-        <translation type="unfinished">çeviri seçenekleri:</translation>
+        <translation>çeviri seçenekleri:</translation>
     </message>
     <message>
         <location filename="../../src/translationedit.cpp" line="74"/>
         <source>examples:</source>
-        <translation type="unfinished">örnekler:</translation>
+        <translation>örnekler:</translation>
     </message>
 </context>
 <context>
