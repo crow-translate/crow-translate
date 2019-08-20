@@ -121,7 +121,7 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     m_checkForUpdatesButton = new QPushButton;
     m_checkForUpdatesButton->setText(tr("Check now"));
     m_checkForUpdatesButton->setToolTip(tr("Check for updates now"));
-    connect(m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::checkForUpdates);
+    connect(m_checkForUpdatesButton, &QPushButton::clicked, this, &SettingsDialog::downloadUpdatesInfo);
     updatesLayout->addWidget(m_checkForUpdatesButton);
 
     m_checkForUpdatesStatusLabel = new QLabel;
@@ -362,37 +362,41 @@ void SettingsDialog::resetAllShortcuts()
 }
 
 #ifdef Q_OS_WIN
-void SettingsDialog::checkForUpdates()
+void SettingsDialog::downloadUpdatesInfo()
 {
     m_checkForUpdatesButton->setEnabled(false);
     m_checkForUpdatesStatusLabel->setText(tr("Checking for updates..."));
 
     // Get update information
     auto *release = new QGitTag(this);
-    QEventLoop loop;
-    connect(release, &QGitTag::finished, &loop, &QEventLoop::quit);
-    release->get("Shatur95", "crow-translate");
-    loop.exec();
+    connect(release, &QGitTag::finished, this, &SettingsDialog::checkForUpdates);
+    release->get("crow-translate", "crow-translate");
+}
+
+void SettingsDialog::checkForUpdates()
+{
+    auto *release = qobject_cast<QGitTag *>(sender());
+    release->deleteLater();
+    m_checkForUpdatesButton->setEnabled(true);
 
     if (release->error()) {
-        m_checkForUpdatesStatusLabel->setText("<font color=\"red\">" + release->body() + "</font>");
-        delete release;
-    } else {
-        const int installer = release->assetId(".exe");
-        if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
-            m_checkForUpdatesStatusLabel->setText("<font color=\"green\">" + tr("Update available!") + "</font>");
-            auto *updaterWindow = new UpdaterWindow(release, installer, this);
-            updaterWindow->show();
-        } else {
-            m_checkForUpdatesStatusLabel->setText("<font color=\"grey\">" + tr("No updates available.") + "</font>");
-            delete release;
-        }
-
-        AppSettings settings;
-        settings.setLastUpdateCheckDate(QDate::currentDate());
+        m_checkForUpdatesStatusLabel->setStyleSheet("color: red");
+        m_checkForUpdatesStatusLabel->setText(release->errorName());
+        return;
     }
 
-    m_checkForUpdatesButton->setEnabled(true);
+    if (const int installer = release->assetId(".exe"); SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
+        m_checkForUpdatesStatusLabel->setStyleSheet("color: green");
+        m_checkForUpdatesStatusLabel->setText(tr("Update available!"));
+        auto *updaterWindow = new UpdaterWindow(release, installer, this);
+        updaterWindow->show();
+    } else {
+        m_checkForUpdatesStatusLabel->setStyleSheet("");
+        m_checkForUpdatesStatusLabel->setText(tr("No updates available."));
+    }
+
+    AppSettings settings;
+    settings.setLastUpdateCheckDate(QDate::currentDate());
 }
 #endif
 
