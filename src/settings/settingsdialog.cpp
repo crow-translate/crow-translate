@@ -381,7 +381,7 @@ void SettingsDialog::checkForUpdates()
 
     if (release->error()) {
         m_checkForUpdatesStatusLabel->setStyleSheet("color: red");
-        m_checkForUpdatesStatusLabel->setText(release->errorName());
+        m_checkForUpdatesStatusLabel->setText(release->errorString());
         return;
     }
 
