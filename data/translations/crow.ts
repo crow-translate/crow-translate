@@ -1776,74 +1776,74 @@
     </message>
 </context>
 <context>
-    <name>UpdaterWindow</name>
+    <name>UpdaterDialog</name>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="24"/>
+        <location filename="../../src/updaterdialog.ui" line="24"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="51"/>
+        <location filename="../../src/updaterdialog.ui" line="51"/>
         <source>Cancel download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="54"/>
+        <location filename="../../src/updaterdialog.ui" line="54"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="65"/>
+        <location filename="../../src/updaterdialog.ui" line="65"/>
         <source>Download the installer to the Downloads folder</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="68"/>
+        <location filename="../../src/updaterdialog.ui" line="68"/>
         <source>Download</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="78"/>
+        <location filename="../../src/updaterdialog.ui" line="78"/>
         <source>Exit the program and run the installer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="81"/>
+        <location filename="../../src/updaterdialog.ui" line="81"/>
         <source>Install</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="101"/>
+        <location filename="../../src/updaterdialog.ui" line="101"/>
         <source>Close this window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.ui" line="104"/>
+        <location filename="../../src/updaterdialog.ui" line="104"/>
         <source>Update later</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="56"/>
+        <location filename="../../src/updaterdialog.cpp" line="56"/>
         <source>Current version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="60"/>
+        <location filename="../../src/updaterdialog.cpp" line="60"/>
         <source>Latest version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="65"/>
+        <location filename="../../src/updaterdialog.cpp" line="65"/>
         <source>Changelog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="120"/>
+        <location filename="../../src/updaterdialog.cpp" line="120"/>
         <source>Downloading is complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterwindow.cpp" line="125"/>
+        <location filename="../../src/updaterdialog.cpp" line="125"/>
         <source>Unable to write file</source>
         <translation type="unfinished"></translation>
     </message>

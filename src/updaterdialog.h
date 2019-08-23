@@ -18,10 +18,10 @@
  *
  */
 
-#ifndef UPDATERWINDOW_H
-#define UPDATERWINDOW_H
+#ifndef UPDATERDIALOG_H
+#define UPDATERDIALOG_H
 
-#include <QWidget>
+#include <QDialog>
 #include <QUrl>
 
 class QGitTag;
@@ -29,26 +29,29 @@ class QNetworkAccessManager;
 class QNetworkReply;
 
 namespace Ui {
-class UpdaterWindow;
+class UpdaterDialog;
 }
 
-class UpdaterWindow : public QWidget
+class UpdaterDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(UpdaterWindow)
+    Q_DISABLE_COPY(UpdaterDialog)
 
 public:
-    explicit UpdaterWindow(QGitTag *release, int installer, QWidget *parent = nullptr);
-    ~UpdaterWindow();
+    explicit UpdaterDialog(QGitTag *release, int installer, QWidget *parent = nullptr);
+    ~UpdaterDialog();
 
 private slots:
     void download();
+    void cancelDownload();
     void install();
-    void updateLater();
-    void cancel();
+
+    void parseReply();
 
 private:
-    Ui::UpdaterWindow *ui;
+    void setStatus(const QString &errorString, bool success);
+
+    Ui::UpdaterDialog *ui;
     QNetworkAccessManager *m_network;
     QNetworkReply *m_reply;
 
@@ -56,4 +59,4 @@ private:
     QString m_downloadPath;
 };
 
-#endif // UPDATERWINDOW_H
+#endif // UPDATERDIALOG_H

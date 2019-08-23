@@ -31,7 +31,7 @@
 #include "settings/appsettings.h"
 #include "transitions/conditiontransition.h"
 #ifdef Q_OS_WIN
-#include "updaterwindow.h"
+#include "updaterdialog.h"
 #include "qgittag.h"
 #endif
 
@@ -476,8 +476,9 @@ void MainWindow::checkForUpdates()
 
     const int installer = release->assetId(".exe");
     if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
-        auto *updater = new UpdaterWindow(release, installer, this);
-        updater->show();
+        auto *updater = new UpdaterDialog(release, installer, this);
+        updater->setAttribute(Qt::WA_DeleteOnClose);
+        updater->open();
     }
 
     delete release;

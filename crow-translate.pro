@@ -76,13 +76,13 @@ RESOURCES += \
 
 win32 {
     SOURCES += \
-        src/updaterwindow.cpp
+        src/updaterdialog.cpp
 
     HEADERS += \
-        src/updaterwindow.h
+        src/updaterdialog.h
 
     FORMS += \
-        src/updaterwindow.ui
+        src/updaterdialog.ui
 
     RESOURCES += \
         data/windows-icons.qrc

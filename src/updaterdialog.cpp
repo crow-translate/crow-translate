@@ -18,8 +18,8 @@
  *
  */
 
-#include "updaterwindow.h"
-#include "ui_updaterwindow.h"
+#include "updaterdialog.h"
+#include "ui_updaterdialog.h"
 #include "qgittag.h"
 #include "singleapplication.h"
 
@@ -30,13 +30,11 @@
 #include <QNetworkReply>
 #include <QDir>
 
-UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
-    QWidget(parent, Qt::Dialog),
-    ui(new Ui::UpdaterWindow)
+UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent) :
+    QDialog(parent),
+    ui(new Ui::UpdaterDialog)
 {
     ui->setupUi(this);
-    setWindowModality(Qt::WindowModal);
-    setAttribute(Qt::WA_DeleteOnClose);
 
     m_network = new QNetworkAccessManager(this);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
@@ -71,15 +69,17 @@ UpdaterWindow::UpdaterWindow(QGitTag *release, int installer, QWidget *parent) :
     ui->changelogTextEdit->setText(changelog);
 }
 
-UpdaterWindow::~UpdaterWindow()
+UpdaterDialog::~UpdaterDialog()
 {
     delete ui;
 }
 
-void UpdaterWindow::download()
+void UpdaterDialog::download()
 {
     ui->downloadButton->setEnabled(false);
     ui->updateStatusLabel->clear();
+    ui->downloadBar->setVisible(true);
+    ui->cancelDownloadButton->setVisible(true);
 
     // Send request
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
@@ -90,64 +90,58 @@ void UpdaterWindow::download()
     m_reply = m_network->get(request);
 #endif
 
+    connect(m_reply, &QNetworkReply::finished, this, &UpdaterDialog::parseReply);
     connect(m_reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
-        if (bytesTotal != 0) // May be 0 if network disabled
+        if (bytesTotal != 0) // May be 0 on error
             ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
     });
-
-    // Show download progress ui
-    ui->downloadBar->setVisible(true);
-    ui->cancelDownloadButton->setVisible(true);
-
-    // Wait until download ends
-    QEventLoop loop;
-    connect(m_reply, &QNetworkReply::finished, &loop, &QEventLoop::quit);
-    loop.exec();
-
-    if (m_reply->error()) {
-        // Show error
-        ui->updateStatusLabel->setText(m_reply->errorString());
-        ui->downloadBar->setVisible(false);
-        ui->downloadBar->setValue(0);
-        ui->cancelDownloadButton->setVisible(false);
-        ui->downloadButton->setEnabled(true);
-    } else {
-        QFile installer(m_downloadPath);
-        if (installer.open(QFile::WriteOnly)) {
-            // Save file
-            installer.write(m_reply->readAll());
-            installer.close();
-            ui->updateStatusLabel->setText(tr("Downloading is complete"));
-            ui->cancelDownloadButton->setEnabled(false);
-            ui->installButton->setEnabled(true);
-        } else {
-            // Show error
-            ui->updateStatusLabel->setText(tr("Unable to write file"));
-            ui->downloadBar->setVisible(false);
-            ui->downloadBar->setValue(0);
-            ui->cancelDownloadButton->setVisible(false);
-            ui->downloadButton->setEnabled(true);
-        }
-    }
-
-    delete m_reply;
 }
 
-void UpdaterWindow::install()
-{
-    QProcess::startDetached(m_downloadPath);
-    SingleApplication::exit();
-}
-
-void UpdaterWindow::updateLater()
-{
-    this->close();
-}
-
-void UpdaterWindow::cancel()
+void UpdaterDialog::cancelDownload()
 {
     m_reply->abort();
     ui->downloadBar->setVisible(false);
     ui->downloadBar->setValue(0);
     ui->cancelDownloadButton->setVisible(false);
+}
+
+void UpdaterDialog::install()
+{
+    QProcess::startDetached(m_downloadPath);
+    SingleApplication::exit();
+}
+
+void UpdaterDialog::parseReply()
+{
+    m_reply->deleteLater();
+
+    if (m_reply->error()) {
+        setStatus(m_reply->errorString(), false);
+        return;
+    }
+
+    QFile installer(m_downloadPath);
+    if (!installer.open(QFile::WriteOnly)) {
+        setStatus(tr("Unable to write file"), false);
+        return;
+    }
+
+    // Save file
+    installer.write(m_reply->readAll());
+    setStatus(tr("Downloading is complete"), true);
+}
+
+void UpdaterDialog::setStatus(const QString &errorString, bool success)
+{
+    ui->updateStatusLabel->setText(errorString);
+
+    if (success) {
+        ui->cancelDownloadButton->setEnabled(false);
+        ui->installButton->setEnabled(true);
+    } else {
+        ui->downloadBar->setVisible(false);
+        ui->downloadBar->reset();
+        ui->cancelDownloadButton->setVisible(false);
+        ui->downloadButton->setEnabled(true);
+    }
 }

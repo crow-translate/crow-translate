@@ -25,7 +25,7 @@
 #include "shortcutsmodel/shortcutsmodel.h"
 #include "shortcutsmodel/shortcutitem.h"
 #ifdef Q_OS_WIN
-#include "updaterwindow.h"
+#include "updaterdialog.h"
 #include "qgittag.h"
 #endif
 
@@ -388,8 +388,9 @@ void SettingsDialog::checkForUpdates()
     if (const int installer = release->assetId(".exe"); SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
         m_checkForUpdatesStatusLabel->setStyleSheet("color: green");
         m_checkForUpdatesStatusLabel->setText(tr("Update available!"));
-        auto *updaterWindow = new UpdaterWindow(release, installer, this);
-        updaterWindow->show();
+        auto *updaterDialog = new UpdaterDialog(release, installer, this);
+        updaterDialog->setAttribute(Qt::WA_DeleteOnClose);
+        updaterDialog->open();
     } else {
         m_checkForUpdatesStatusLabel->setStyleSheet("");
         m_checkForUpdatesStatusLabel->setText(tr("No updates available."));
