@@ -43,6 +43,11 @@ void SourceTextEdit::enableSourceChangedSignal(bool enable)
     }
 }
 
+void SourceTextEdit::stopChangedTimer()
+{
+    m_textEditedTimer->stop();
+}
+
 void SourceTextEdit::startTimerDelay()
 {
     m_textEditedTimer->start(delay);

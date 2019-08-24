@@ -351,6 +351,9 @@
    <class>SourceTextEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>sourcetextedit.h</header>
+   <slots>
+    <slot>stopChangedTimer()</slot>
+   </slots>
   </customwidget>
   <customwidget>
    <class>PlayerButtons</class>
@@ -541,6 +544,22 @@
     <hint type="destinationlabel">
      <x>324</x>
      <y>149</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>translateButton</sender>
+   <signal>clicked()</signal>
+   <receiver>sourceEdit</receiver>
+   <slot>stopChangedTimer()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>324</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>154</x>
+     <y>141</y>
     </hint>
    </hints>
   </connection>

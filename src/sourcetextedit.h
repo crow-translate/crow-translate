@@ -35,6 +35,9 @@ public:
 
     void enableSourceChangedSignal(bool enable);
 
+public slots:
+    void stopChangedTimer();
+
 signals:
     void sourceChanged();
 
