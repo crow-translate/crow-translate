@@ -111,7 +111,6 @@ private:
 
     void buildStateMachine();
     void buildTranslationState(QState *state);
-    void buildAutoTranslationState(QState *state);
     void buildSpeakSourceState(QState *state);
     void buildTranslateSelectionState(QState *state);
     void buildSpeakTranslationState(QState *state);

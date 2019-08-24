@@ -315,9 +315,8 @@ void Cli::buildTranslationStateMachine()
         if (m_speakSource) {
             connect(speakSourceText, &QState::entered, this, &Cli::speakSource);
 
-            auto *speakSourceTransition = new PlayerStoppedTransition(m_player);
+            auto *speakSourceTransition = new PlayerStoppedTransition(m_player, speakSourceText);
             speakSourceTransition->setTargetState(speakTranslation);
-            speakSourceText->addTransition(speakSourceTransition);
         } else {
             speakSourceText->addTransition(speakTranslation);
         }
@@ -325,9 +324,8 @@ void Cli::buildTranslationStateMachine()
         if (m_speakTranslation) {
             connect(speakTranslation, &QState::entered, this, &Cli::speakTranslation);
 
-            auto *speakTranslationTransition = new PlayerStoppedTransition(m_player);
+            auto *speakTranslationTransition = new PlayerStoppedTransition(m_player, speakTranslation);
             speakTranslationTransition->setTargetState(nextTranslationState);
-            speakTranslation->addTransition(speakTranslationTransition);
         } else {
             speakTranslation->addTransition(nextTranslationState);
         }
@@ -351,8 +349,7 @@ void Cli::buildSpeakSourceState(QState *parent)
     printTextState->addTransition(detectLanguageState);
     detectLanguageState->addTransition(detectLanguageState, &QState::finished, speakTextState);
 
-    auto *speakTextTransition = new PlayerStoppedTransition(m_player);
-    speakTextState->addTransition(speakTextTransition);
+    auto *speakTextTransition = new PlayerStoppedTransition(m_player, speakTextState);
     speakTextTransition->setTargetState(new QFinalState(parent));
 
     // Setup detect language state
@@ -392,8 +389,7 @@ void Cli::buildSpeakTranslationsState(QState *parent)
         requestTranslationState->addTransition(m_translator, &QOnlineTranslator::finished, printTextState);
         printTextState->addTransition(speakTextState);
 
-        auto *speakTextTransition = new PlayerStoppedTransition(m_player);
-        speakTextState->addTransition(speakTextTransition);
+        auto *speakTextTransition = new PlayerStoppedTransition(m_player, speakTextState);
         speakTextTransition->setTargetState(nextSpeakTranslationState);
     }
 

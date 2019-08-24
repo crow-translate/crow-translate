@@ -32,6 +32,7 @@ SOURCES += \
     src/main.cpp \
     src/cli.cpp \
     src/playerbuttons.cpp \
+    src/transitions/languagedetectedtransition.cpp \
     src/transitions/playerstoppedtransition.cpp \
     src/settings/settingsdialog.cpp \
     src/settings/appsettings.cpp \
@@ -43,13 +44,17 @@ SOURCES += \
     src/langbuttongroup.cpp \
     src/addlangdialog.cpp \
     src/sourcetextedit.cpp \
+    src/transitions/retranslationtransition.cpp \
+    src/transitions/textemptytransition.cpp \
+    src/transitions/translatorabortedtransition.cpp \
+    src/transitions/translatorerrortransition.cpp \
     src/translationedit.cpp \
     src/trayicon.cpp
 
 HEADERS += \
     src/cli.h \
     src/playerbuttons.h \
-    src/transitions/conditiontransition.h \
+    src/transitions/languagedetectedtransition.h \
     src/transitions/playerstoppedtransition.h \
     src/settings/settingsdialog.h \
     src/settings/appsettings.h \
@@ -61,6 +66,10 @@ HEADERS += \
     src/langbuttongroup.h \
     src/addlangdialog.h \
     src/sourcetextedit.h \
+    src/transitions/retranslationtransition.h \
+    src/transitions/textemptytransition.h \
+    src/transitions/translatorabortedtransition.h \
+    src/transitions/translatorerrortransition.h \
     src/translationedit.h \
     src/trayicon.h
 
