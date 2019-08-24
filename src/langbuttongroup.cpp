@@ -36,7 +36,7 @@ LangButtonGroup::LangButtonGroup(GroupType type, QObject *parent) :
 
 void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
 {
-    Q_ASSERT(group->m_group->buttons().size() != m_group->buttons().size());
+    Q_ASSERT(group->m_group->buttons().size() == m_group->buttons().size());
 
     // Copy all languages from buttons
     for (int i = 0; i < m_group->buttons().size(); ++i)
