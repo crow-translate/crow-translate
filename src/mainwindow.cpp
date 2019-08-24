@@ -335,7 +335,10 @@ void MainWindow::showTranslationWindow()
 
 void MainWindow::setSelectionAsSource()
 {
+    ui->sourceEdit->enableSourceChangedSignal(false);
     ui->sourceEdit->setPlainText(selectedText());
+    if (ui->autoTranslateCheckBox->isChecked())
+        ui->sourceEdit->enableSourceChangedSignal(true);
 }
 
 void MainWindow::copyTranslationToClipboard()
