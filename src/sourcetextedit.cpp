@@ -35,10 +35,12 @@ SourceTextEdit::SourceTextEdit(QWidget *parent) :
 
 void SourceTextEdit::enableSourceChangedSignal(bool enable)
 {
-    if (enable)
+    if (enable) {
         connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
-    else
+    } else {
+        m_textEditedTimer->stop();
         disconnect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
+    }
 }
 
 void SourceTextEdit::startTimerDelay()

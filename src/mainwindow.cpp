@@ -387,7 +387,8 @@ void MainWindow::openSettings()
 void MainWindow::setAutoTranslateEnabled(bool enabled)
 {
     ui->sourceEdit->enableSourceChangedSignal(enabled);
-    emit ui->sourceEdit->sourceChanged();
+    if (enabled)
+        emit ui->sourceEdit->sourceChanged();
 }
 
 void MainWindow::markSourceAsUpdated()
