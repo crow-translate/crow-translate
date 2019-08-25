@@ -129,8 +129,13 @@ public:
 
     QOnlineTranslator::Language secondaryLanguage() const;
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
-
     QOnlineTranslator::Language preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const;
+
+    bool isForceSourceAutodetect() const;
+    void setForceSourceAutodetect(bool force);
+
+    bool isForceTranslationAutodetect() const;
+    void setForceTranslationAutodetect(bool force);
 
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;

@@ -83,6 +83,9 @@ private slots:
     void setSelectionAsSource();
     void copyTranslationToClipboard();
 
+    void forceSourceAutodetect();
+    void forceAutodetect();
+
     // UI
     void abortTranslation();
     void swapLanguages();

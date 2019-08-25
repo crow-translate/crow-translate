@@ -332,6 +332,26 @@ QOnlineTranslator::Language AppSettings::preferredTranslationLanguage(QOnlineTra
     return secondaryLanguage();
 }
 
+bool AppSettings::isForceSourceAutodetect() const
+{
+    return value("Translation/ForceSourceAutodetect", true).toBool();
+}
+
+void AppSettings::setForceSourceAutodetect(bool force)
+{
+    setValue("Translation/ForceSourceAutodetect", force);
+}
+
+bool AppSettings::isForceTranslationAutodetect() const
+{
+    return value("Translation/ForceTranslationAutodetect", true).toBool();
+}
+
+void AppSettings::setForceTranslationAutodetect(bool force)
+{
+    setValue("Translation/ForceTranslationAutodetect", force);
+}
+
 QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {

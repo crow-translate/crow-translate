@@ -52,13 +52,13 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 
     // Set item data in comboboxes
-    ui->languageComboBox->setItemData(0, QLocale::AnyLanguage);
-    ui->languageComboBox->setItemData(1, QLocale::English);
-    ui->languageComboBox->setItemData(2, QLocale::Portuguese);
-    ui->languageComboBox->setItemData(3, QLocale::Russian);
-    ui->languageComboBox->setItemData(4, QLocale::Ukrainian);
-    ui->languageComboBox->setItemData(5, QLocale::Turkish);
-    ui->languageComboBox->setItemData(6, QLocale::Chinese);
+    ui->localeComboBox->setItemData(0, QLocale::AnyLanguage);
+    ui->localeComboBox->setItemData(1, QLocale::English);
+    ui->localeComboBox->setItemData(2, QLocale::Portuguese);
+    ui->localeComboBox->setItemData(3, QLocale::Russian);
+    ui->localeComboBox->setItemData(4, QLocale::Ukrainian);
+    ui->localeComboBox->setItemData(5, QLocale::Turkish);
+    ui->localeComboBox->setItemData(6, QLocale::Chinese);
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
@@ -152,7 +152,7 @@ void SettingsDialog::accept()
     // General settings
     AppSettings settings;
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
-    settings.setLocale(ui->languageComboBox->currentData().value<QLocale::Language>());
+    settings.setLocale(ui->localeComboBox->currentData().value<QLocale::Language>());
     settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
@@ -179,6 +179,8 @@ void SettingsDialog::accept()
     settings.setExamplesEnabled(ui->examplesCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
+    settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
+    settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, m_yandexVoice);
@@ -405,7 +407,7 @@ void SettingsDialog::checkForUpdates()
 void SettingsDialog::restoreDefaults()
 {
     // General settings
-    ui->languageComboBox->setCurrentIndex(0);
+    ui->localeComboBox->setCurrentIndex(0);
     ui->windowModeComboBox->setCurrentIndex(AppSettings::PopupWindow);
     ui->trayCheckBox->setChecked(true);
     ui->startMinimizedCheckBox->setChecked(false);
@@ -433,6 +435,8 @@ void SettingsDialog::restoreDefaults()
     ui->examplesCheckBox->setChecked(true);
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
+    ui->forceSourceAutoCheckBox->setChecked(true);
+    ui->forceTranslationAutoCheckBox->setChecked(true);
 
     // Speech synthesis settings
     m_yandexVoice = QOnlineTts::Zahar;
@@ -454,7 +458,7 @@ void SettingsDialog::loadSettings()
 {
     // General settings
     const AppSettings settings;
-    ui->languageComboBox->setCurrentIndex(ui->languageComboBox->findData(settings.locale()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
 #ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
@@ -484,6 +488,8 @@ void SettingsDialog::loadSettings()
     ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
+    ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
+    ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
     // Speech synthesis settings
     m_yandexVoice = settings.voice(QOnlineTranslator::Yandex);

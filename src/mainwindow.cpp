@@ -360,6 +360,34 @@ void MainWindow::copyTranslationToClipboard()
     SingleApplication::clipboard()->setText(ui->translationEdit->translation());
 }
 
+void MainWindow::forceSourceAutodetect()
+{
+    const AppSettings settings;
+    if (settings.isForceSourceAutodetect()) {
+        ui->sourceEdit->setListenForChanges(false);
+
+        m_sourceLangButtons->checkAutoButton();
+
+        if (ui->autoTranslateCheckBox->isChecked())
+            ui->sourceEdit->setListenForChanges(true);
+    }
+}
+
+void MainWindow::forceAutodetect()
+{
+    const AppSettings settings;
+    ui->sourceEdit->setListenForChanges(false);
+
+    if (settings.isForceTranslationAutodetect())
+        m_translationLangButtons->checkAutoButton();
+
+    if (settings.isForceSourceAutodetect())
+        m_sourceLangButtons->checkAutoButton();
+
+    if (ui->autoTranslateCheckBox->isChecked())
+        ui->sourceEdit->setListenForChanges(true);
+}
+
 void MainWindow::abortTranslation()
 {
     m_translator->abort();
@@ -664,6 +692,7 @@ void MainWindow::buildSpeakSelectionState(QState *state)
     state->setInitialState(setSelectionAsSourceState);
 
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
     buildSpeakSourceState(speakSourceState);
 
     setSelectionAsSourceState->addTransition(speakSourceState);
@@ -679,6 +708,7 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
     state->setInitialState(setSelectionAsSourceState);
 
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     buildSpeakTranslationState(speakTranslationState);
     buildTranslationState(translationState);
 
@@ -689,17 +719,18 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
 
 void MainWindow::buildCopyTranslatedSelectionState(QState *state)
 {
-    auto *getSelectionAsSourceState = new QState(state);
+    auto *setSelectionAsSourceState = new QState(state);
     auto *translationState = new QState(state);
     auto *copyTranslationState = new QState(state);
     auto *finalState = new QFinalState(state);
-    state->setInitialState(getSelectionAsSourceState);
+    state->setInitialState(setSelectionAsSourceState);
 
-    connect(getSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
     buildTranslationState(translationState);
 
-    getSelectionAsSourceState->addTransition(translationState);
+    setSelectionAsSourceState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
     copyTranslationState->addTransition(finalState);
 }

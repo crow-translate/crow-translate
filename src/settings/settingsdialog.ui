@@ -124,7 +124,7 @@
           </property>
           <layout class="QGridLayout" name="generalBoxLayout">
            <item row="0" column="0">
-            <widget class="QLabel" name="languageLabel">
+            <widget class="QLabel" name="localeLabel">
              <property name="sizePolicy">
               <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
                <horstretch>0</horstretch>
@@ -161,7 +161,7 @@
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="languageComboBox">
+            <widget class="QComboBox" name="localeComboBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -743,13 +743,33 @@
         <item>
          <widget class="QGroupBox" name="languageDetectionGroupBox">
           <property name="title">
-           <string>Automatic translation language detection</string>
+           <string>Automatic language detection</string>
           </property>
           <layout class="QGridLayout" name="languageDetectionLayout">
+           <item row="0" column="2">
+            <spacer name="languageDetectionSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="primaryLanguageLabel">
+             <property name="text">
+              <string>Primary translation language:</string>
+             </property>
+            </widget>
+           </item>
            <item row="1" column="0">
             <widget class="QLabel" name="secondaryLanguageLabel">
              <property name="text">
-              <string>Secondary language:</string>
+              <string>Secondary translation language:</string>
              </property>
             </widget>
            </item>
@@ -767,25 +787,19 @@
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="primaryLanguageLabel">
+           <item row="2" column="0" colspan="3">
+            <widget class="QCheckBox" name="forceSourceAutoCheckBox">
              <property name="text">
-              <string>Primary language:</string>
+              <string>Force detection of source language when used without window</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
-            <spacer name="languageDetectionSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+           <item row="3" column="0" colspan="3">
+            <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
+             <property name="text">
+              <string>Force detection of translation language when used without window</string>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
           </layout>
          </widget>
