@@ -183,8 +183,8 @@ void SettingsDialog::accept()
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
     // Speech synthesis settings
-    settings.setVoice(QOnlineTranslator::Yandex, m_yandexVoice);
-    settings.setEmotion(QOnlineTranslator::Yandex, m_yandexEmotion);
+    settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
+    settings.setEmotion(QOnlineTranslator::Yandex, ui->playerButtons->emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -274,8 +274,11 @@ void SettingsDialog::showAvailableTtsOptions(int engine)
                            {tr("Good"), QOnlineTts::Good},
                            {tr("Evil"), QOnlineTts::Evil}});
 
-        ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(m_yandexEmotion));
-        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(m_yandexVoice));
+        const QOnlineTts::Voice voice = ui->playerButtons->voice(QOnlineTranslator::Yandex);
+        const QOnlineTts::Emotion emotion = ui->playerButtons->emotion(QOnlineTranslator::Yandex);
+
+        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(voice));
+        ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(emotion));
         break;
     }
 
@@ -286,15 +289,13 @@ void SettingsDialog::showAvailableTtsOptions(int engine)
 // Save current engine voice settings
 void SettingsDialog::saveEngineVoice(int engine)
 {
-    if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
-        m_yandexVoice = ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>();
+    ui->playerButtons->setVoice(static_cast<QOnlineTranslator::Engine>(engine), ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>());
 }
 
 // Save current engine emotion settings
 void SettingsDialog::saveEngineEmotion(int engine)
 {
-    if (ui->engineComboBox->currentIndex() == QOnlineTranslator::Yandex)
-        m_yandexEmotion = ui->emotionComboBox->itemData(engine).value<QOnlineTts::Emotion>();
+    ui->playerButtons->setEmotion(static_cast<QOnlineTranslator::Engine>(engine), ui->emotionComboBox->itemData(engine).value<QOnlineTts::Emotion>());
 }
 
 // To play test text
@@ -439,8 +440,8 @@ void SettingsDialog::restoreDefaults()
     ui->forceTranslationAutoCheckBox->setChecked(true);
 
     // Speech synthesis settings
-    m_yandexVoice = QOnlineTts::Zahar;
-    m_yandexEmotion = QOnlineTts::Neutral;
+    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, QOnlineTts::Zahar);
+    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, QOnlineTts::Neutral);
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(0);
@@ -492,8 +493,8 @@ void SettingsDialog::loadSettings()
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
     // Speech synthesis settings
-    m_yandexVoice = settings.voice(QOnlineTranslator::Yandex);
-    m_yandexEmotion = settings.emotion(QOnlineTranslator::Yandex);
+    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());

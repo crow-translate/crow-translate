@@ -88,10 +88,6 @@ private:
     // Test voice
     QOnlineTranslator *m_translator;
 
-    // Engine voice settings
-    QOnlineTts::Voice m_yandexVoice;
-    QOnlineTts::Emotion m_yandexEmotion;
-
 #ifdef Q_OS_WIN
     // Check for updates box stuff
     QComboBox *m_checkForUpdatesComboBox;

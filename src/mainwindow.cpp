@@ -765,6 +765,10 @@ void MainWindow::loadSettings(const AppSettings &settings)
     }
     QNetworkProxy::setApplicationProxy(proxy);
 
+    // TTS
+    ui->sourcePlayerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->sourcePlayerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+
     // Language buttons style
     const Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
     ui->firstSourceButton->setToolButtonStyle(languagesStyle);

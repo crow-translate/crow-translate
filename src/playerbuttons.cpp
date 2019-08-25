@@ -78,12 +78,8 @@ void PlayerButtons::play(const QString &text, QOnlineTranslator::Language langua
         return;
     }
 
-    const AppSettings settings;
-    const QOnlineTts::Voice voice = settings.voice(engine);
-    const QOnlineTts::Emotion emotion = settings.emotion(engine);
-
     QOnlineTts onlineTts;
-    onlineTts.generateUrls(text, engine, language, voice, emotion);
+    onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
     if (onlineTts.error()) {
         QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
         return;
@@ -116,9 +112,51 @@ void PlayerButtons::setPlayPauseShortcut(const QKeySequence &shortcut)
     ui->playPauseButton->setShortcut(shortcut);
 }
 
-QKeySequence PlayerButtons::playPauseShortcut()
+QKeySequence PlayerButtons::playPauseShortcut() const
 {
     return ui->playPauseButton->shortcut();
+}
+
+QOnlineTts::Voice PlayerButtons::voice(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::Yandex:
+        return m_yandexVoice;
+    default:
+        return QOnlineTts::NoVoice;
+    }
+}
+
+void PlayerButtons::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice)
+{
+    switch (engine) {
+    case QOnlineTranslator::Yandex:
+        m_yandexVoice = voice;
+        break;
+    default:
+        break;
+    }
+}
+
+QOnlineTts::Emotion PlayerButtons::emotion(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::Yandex:
+        return m_yandexEmotion;
+    default:
+        return QOnlineTts::NoEmotion;
+    }
+}
+
+void PlayerButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion)
+{
+    switch (engine) {
+    case QOnlineTranslator::Yandex:
+        m_yandexEmotion = emotion;
+        break;
+    default:
+        break;
+    }
 }
 
 void PlayerButtons::setButtonsStyle(Qt::ToolButtonStyle style)

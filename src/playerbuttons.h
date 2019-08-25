@@ -22,9 +22,12 @@
 #define PLAYERBUTTONS_H
 
 #include "qonlinetranslator.h"
+#include "qonlinetts.h"
 
 #include <QWidget>
 #include <QMediaPlayer>
+
+class AppSettings;
 
 namespace Ui {
 class PlayerButtons;
@@ -50,8 +53,13 @@ public:
     void stop();
 
     void setPlayPauseShortcut(const QKeySequence &shortcut);
-    QKeySequence playPauseShortcut();
+    QKeySequence playPauseShortcut() const;
 
+    QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
+    void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);
+
+    QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
+    void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
     void setButtonsStyle(Qt::ToolButtonStyle style);
 
 signals:
@@ -67,6 +75,8 @@ private slots:
 private:
     Ui::PlayerButtons *ui;
     QMediaPlayer *m_mediaPlayer = nullptr;
+    QOnlineTts::Voice m_yandexVoice = QOnlineTts::NoVoice;
+    QOnlineTts::Emotion m_yandexEmotion = QOnlineTts::NoEmotion;
 
     static QMediaPlayer *currentlyPlaying;
 };
