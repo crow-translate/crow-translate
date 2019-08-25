@@ -33,9 +33,11 @@ class SourceTextEdit : public QPlainTextEdit
 public:
     SourceTextEdit(QWidget *parent = nullptr);
 
-    void enableSourceChangedSignal(bool enable);
+    void setListenForChanges(bool listen);
+    bool isListenForChanges() const;
 
 public slots:
+    void markSourceAsChanged();
     void stopChangedTimer();
 
 signals:
@@ -46,6 +48,7 @@ private slots:
 
 private:
     QTimer *m_textEditedTimer;
+    bool m_listenForChanges = false;
 };
 
 #endif // SOURCETEXTEDIT_H

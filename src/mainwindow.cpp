@@ -325,9 +325,14 @@ void MainWindow::showTranslationWindow()
         popup->show();
         popup->activateWindow();
 
+        if (!ui->autoTranslateCheckBox->isChecked())
+            ui->sourceEdit->setListenForChanges(true);
+
         // Restore the keyboard shortcut
         connect(popup, &PopupWindow::destroyed, [&] {
             m_translateSelectionHotkey->blockSignals(false);
+            if (!ui->autoTranslateCheckBox->isChecked())
+                ui->sourceEdit->setListenForChanges(false);
         });
     } else {
         activate();
@@ -339,10 +344,10 @@ void MainWindow::showTranslationWindow()
 
 void MainWindow::setSelectionAsSource()
 {
-    ui->sourceEdit->enableSourceChangedSignal(false);
+    ui->sourceEdit->setListenForChanges(false);
     ui->sourceEdit->setPlainText(selectedText());
     if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->enableSourceChangedSignal(true);
+        ui->sourceEdit->setListenForChanges(true);
 }
 
 void MainWindow::copyTranslationToClipboard()
@@ -393,16 +398,9 @@ void MainWindow::openSettings()
 
 void MainWindow::setAutoTranslateEnabled(bool enabled)
 {
-    ui->sourceEdit->enableSourceChangedSignal(enabled);
+    ui->sourceEdit->setListenForChanges(enabled);
     if (enabled)
-        emit ui->sourceEdit->sourceChanged();
-}
-
-void MainWindow::markSourceAsUpdated()
-{
-    // Always translate the text automatically in pop-up window (isHidden() = true)
-    if (isHidden() || ui->autoTranslateCheckBox->isChecked())
-        emit ui->sourceEdit->sourceChanged();
+        ui->sourceEdit->markSourceAsChanged();
 }
 
 void MainWindow::copySourceText()
@@ -791,7 +789,7 @@ void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, int checkedI
         return;
     }
 
-    markSourceAsUpdated();
+    ui->sourceEdit->markSourceAsChanged();
 }
 
 QString MainWindow::selectedText()

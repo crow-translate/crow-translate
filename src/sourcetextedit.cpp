@@ -29,17 +29,35 @@ SourceTextEdit::SourceTextEdit(QWidget *parent) :
 {
     m_textEditedTimer = new QTimer(this);
     m_textEditedTimer->setSingleShot(true);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
+    m_textEditedTimer->callOnTimeout(this, &SourceTextEdit::sourceChanged);
+#elif
     connect(m_textEditedTimer, &QTimer::timeout, this, &SourceTextEdit::sourceChanged);
-    connect(this, &SourceTextEdit::sourceChanged, m_textEditedTimer, &QTimer::stop);
+#endif
 }
 
-void SourceTextEdit::enableSourceChangedSignal(bool enable)
+void SourceTextEdit::setListenForChanges(bool listen)
 {
-    if (enable) {
+    m_listenForChanges = listen;
+
+    if (m_listenForChanges) {
         connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
     } else {
         m_textEditedTimer->stop();
         disconnect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
+    }
+}
+
+bool SourceTextEdit::isListenForChanges() const
+{
+    return m_listenForChanges;
+}
+
+void SourceTextEdit::markSourceAsChanged()
+{
+    if (m_listenForChanges) {
+        m_textEditedTimer->stop();
+        emit sourceChanged();
     }
 }
 

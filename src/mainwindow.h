@@ -88,7 +88,6 @@ private slots:
     void swapLanguages();
     void openSettings();
     void setAutoTranslateEnabled(bool enabled);
-    void markSourceAsUpdated();
 
     void copySourceText();
     void copyTranslation();

@@ -353,6 +353,7 @@
    <header>sourcetextedit.h</header>
    <slots>
     <slot>stopChangedTimer()</slot>
+    <slot>markSourceAsChanged()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -422,16 +423,16 @@
   <connection>
    <sender>engineComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>markSourceAsUpdated()</slot>
+   <receiver>sourceEdit</receiver>
+   <slot>markSourceAsChanged()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>403</x>
      <y>276</y>
     </hint>
     <hint type="destinationlabel">
-     <x>324</x>
-     <y>149</y>
+     <x>158</x>
+     <y>134</y>
     </hint>
    </hints>
   </connection>
