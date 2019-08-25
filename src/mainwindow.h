@@ -124,7 +124,7 @@ private:
 
     // Helper functions
     void loadSettings(const AppSettings &settings);
-    void checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup);
+    void checkLanguageButton(int checkedId);
     QString selectedText();
 
     QOnlineTranslator::Engine currentEngine();

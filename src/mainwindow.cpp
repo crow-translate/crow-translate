@@ -99,6 +99,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     m_sourceLangButtons->addButton(ui->secondSourceButton);
     m_sourceLangButtons->addButton(ui->thirdSourceButton);
     m_sourceLangButtons->loadLanguages(settings);
+    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // Translation button group
@@ -108,14 +109,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     m_translationLangButtons->addButton(ui->secondTranslationButton);
     m_translationLangButtons->addButton(ui->thirdTranslationButton);
     m_translationLangButtons->loadLanguages(settings);
-
-    // Toggle language logic
-    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, [&](int checkedId) {
-        checkLanguageButton(m_translationLangButtons, checkedId, m_sourceLangButtons);
-    });
-    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, [&](int checkedId) {
-        checkLanguageButton(m_sourceLangButtons, checkedId, m_translationLangButtons);
-    });
+    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
 
     // System tray icon
     m_trayMenu = new QMenu(this);
@@ -395,20 +389,29 @@ void MainWindow::abortTranslation()
 
 void MainWindow::swapLanguages()
 {
+    // Temporary disable toggle logic
+    disconnect(m_translationLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
+    disconnect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
+
+    // Backup source buttons properties
     const QOnlineTranslator::Language sourceLang = m_sourceLangButtons->checkedLanguage();
-    const QOnlineTranslator::Language translationLang = m_translationLangButtons->checkedLanguage();
+    const bool isSourceAutoButtonChecked = m_sourceLangButtons->isAutoButtonChecked();
 
     // Insert current translation language to source buttons
     if (m_translationLangButtons->isAutoButtonChecked())
         m_sourceLangButtons->checkAutoButton();
     else
-        m_sourceLangButtons->addLanguage(translationLang);
+        m_sourceLangButtons->addLanguage(m_translationLangButtons->checkedLanguage());
 
     // Insert current source language to translation buttons
-    if (m_sourceLangButtons->isAutoButtonChecked())
+    if (isSourceAutoButtonChecked)
         m_translationLangButtons->checkAutoButton();
     else
         m_translationLangButtons->addLanguage(sourceLang);
+
+    // Re-enable toggle logic
+    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
+    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
 
     // Copy translation to source text
     ui->sourceEdit->setPlainText(ui->translationEdit->translation());
@@ -803,12 +806,23 @@ void MainWindow::loadSettings(const AppSettings &settings)
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
 }
 
-void MainWindow::checkLanguageButton(LangButtonGroup *checkedGroup, int checkedId, LangButtonGroup *anotherGroup)
+// Toggle language logic
+void MainWindow::checkLanguageButton(int checkedId)
 {
+    LangButtonGroup *checkedGroup;
+    LangButtonGroup *anotherGroup;
+    if (sender() == m_sourceLangButtons) {
+        checkedGroup = m_sourceLangButtons;
+        anotherGroup = m_translationLangButtons;
+    } else {
+        checkedGroup = m_translationLangButtons;
+        anotherGroup = m_sourceLangButtons;
+    }
+
     /* If the target and source languages are the same (and they are not autodetect buttons),
      * then insert previous checked language from just checked language group to another group */
     const QOnlineTranslator::Language checkedLang = checkedGroup->language(checkedId);
-    if (checkedLang == anotherGroup->checkedLanguage() && !anotherGroup->isAutoButtonChecked() && checkedId != 0) {
+    if (checkedId != 0 && checkedLang == anotherGroup->checkedLanguage() && !anotherGroup->isAutoButtonChecked()) {
         anotherGroup->addLanguage(checkedGroup->previousCheckedLanguage());
         return;
     }
