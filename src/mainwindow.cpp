@@ -477,19 +477,17 @@ void MainWindow::showAppRunningMessage()
 void MainWindow::checkForUpdates()
 {
     auto *release = qobject_cast<QGitTag *>(sender());
-    if (release->error()) {
-        delete release;
+    release->deleteLater();
+    if (release->error())
         return;
-    }
 
     const int installer = release->assetId(".exe");
-    if (SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
+    if (installer != -1 && SingleApplication::applicationVersion() < release->tagName()) {
         auto *updater = new UpdaterDialog(release, installer, this);
         updater->setAttribute(Qt::WA_DeleteOnClose);
         updater->open();
     }
 
-    delete release;
     AppSettings settings;
     settings.setLastUpdateCheckDate(QDate::currentDate());
 }
@@ -582,7 +580,6 @@ void MainWindow::buildTranslationState(QState *state)
     connect(requestInOtherLanguageState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
     connect(clearTranslationState, &QState::entered, this, &MainWindow::clearTranslation);
-
     setupRequestStateButtons(requestState);
     setupRequestStateButtons(abortPreviousState);
 
