@@ -609,11 +609,11 @@ void MainWindow::buildTranslationState(QState *state)
     setupRequestStateButtons(requestState);
     setupRequestStateButtons(abortPreviousState);
 
-    auto *translationRunningTransition = new TranslatorAbortedTransition(m_translator, abortPreviousState);
-    translationRunningTransition->setTargetState(requestState);
-
     auto *noTextTransition = new TextEmptyTransition(ui->sourceEdit, abortPreviousState);
     noTextTransition->setTargetState(clearTranslationState);
+
+    auto *translationRunningTransition = new TranslatorAbortedTransition(m_translator, abortPreviousState);
+    translationRunningTransition->setTargetState(requestState);
 
     auto *otherLanguageTransition = new RetranslationTransition(m_translator, m_translationLangButtons, checkLanguagesState);
     otherLanguageTransition->setTargetState(requestInOtherLanguageState);
