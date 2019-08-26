@@ -205,8 +205,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="304"/>
-        <location filename="../../src/mainwindow.cpp" line="123"/>
-        <location filename="../../src/mainwindow.cpp" line="542"/>
+        <location filename="../../src/mainwindow.cpp" line="117"/>
+        <location filename="../../src/mainwindow.cpp" line="545"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -216,29 +216,29 @@
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="122"/>
-        <location filename="../../src/mainwindow.cpp" line="541"/>
+        <location filename="../../src/mainwindow.cpp" line="116"/>
+        <location filename="../../src/mainwindow.cpp" line="544"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="124"/>
-        <location filename="../../src/mainwindow.cpp" line="543"/>
+        <location filename="../../src/mainwindow.cpp" line="118"/>
+        <location filename="../../src/mainwindow.cpp" line="546"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="300"/>
+        <location filename="../../src/mainwindow.cpp" line="294"/>
         <source>Unable to detect language</source>
         <translation>Не удается определить язык</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="356"/>
+        <location filename="../../src/mainwindow.cpp" line="350"/>
         <source>Unable to translate text</source>
         <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="496"/>
+        <location filename="../../src/mainwindow.cpp" line="499"/>
         <source>The application is already running</source>
         <translation>Приложение уже запущено</translation>
     </message>
@@ -276,7 +276,7 @@
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/playerbuttons.cpp" line="88"/>
+        <location filename="../../src/playerbuttons.cpp" line="84"/>
         <source>Unable to generate URLs for TTS</source>
         <translation>Не удалось создать URL-ы для TTS</translation>
     </message>
@@ -974,23 +974,33 @@
 <context>
     <name>QOnlineTts</name>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="109"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="45"/>
+        <source>Selected engine %1 does not support voice settings</source>
+        <translation>Выбранный движок %1 не поддерживает настройки голоса</translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="50"/>
+        <source>Selected engine %1 does not support emotion settings</source>
+        <translation>Выбранный движок %1 не поддерживает настройки эмоций</translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
         <source>%1 engine does not support TTS</source>
         <translation>Движок %1 не поддерживает TTS</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="178"/>
-        <source>Selected language %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
+        <source>Selected language %1 is not supported by %2</source>
         <translation>Выбранный язык %1 не поддерживается для: %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="189"/>
-        <source>Selected voice %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
+        <source>Selected voice %1 is not supported by %2</source>
         <translation>Выбранный голос %1 не поддерживается для: %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="200"/>
-        <source>Selected emotion %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
+        <source>Selected emotion %1 is not supported by %2</source>
         <translation>Выбранная эмоция %1 не поддерживается для: %2</translation>
     </message>
 </context>
@@ -1268,8 +1278,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="618"/>
         <location filename="../../src/settings/settingsdialog.ui" line="869"/>
         <location filename="../../src/settings/settingsdialog.ui" line="944"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="518"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="536"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="519"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="537"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -1659,32 +1669,32 @@
         <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="305"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="305"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="315"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="316"/>
         <source>Unable to detect language</source>
         <translation>Невозможно определить язык</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="370"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="371"/>
         <source>Checking for updates...</source>
         <translation>Проверка обновлений...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="392"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="393"/>
         <source>Update available!</source>
         <translation>Доступно обновление!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="398"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="399"/>
         <source>No updates available.</source>
         <translation>Нет доступных обновлений.</translation>
     </message>

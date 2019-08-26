@@ -195,8 +195,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="304"/>
-        <location filename="../../src/mainwindow.cpp" line="123"/>
-        <location filename="../../src/mainwindow.cpp" line="542"/>
+        <location filename="../../src/mainwindow.cpp" line="117"/>
+        <location filename="../../src/mainwindow.cpp" line="545"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -216,29 +216,29 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="122"/>
-        <location filename="../../src/mainwindow.cpp" line="541"/>
+        <location filename="../../src/mainwindow.cpp" line="116"/>
+        <location filename="../../src/mainwindow.cpp" line="544"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="124"/>
-        <location filename="../../src/mainwindow.cpp" line="543"/>
+        <location filename="../../src/mainwindow.cpp" line="118"/>
+        <location filename="../../src/mainwindow.cpp" line="546"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="300"/>
+        <location filename="../../src/mainwindow.cpp" line="294"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="356"/>
+        <location filename="../../src/mainwindow.cpp" line="350"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="496"/>
+        <location filename="../../src/mainwindow.cpp" line="499"/>
         <source>The application is already running</source>
         <translation type="unfinished"></translation>
     </message>
@@ -276,7 +276,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/playerbuttons.cpp" line="88"/>
+        <location filename="../../src/playerbuttons.cpp" line="84"/>
         <source>Unable to generate URLs for TTS</source>
         <translation type="unfinished"></translation>
     </message>
@@ -974,23 +974,33 @@
 <context>
     <name>QOnlineTts</name>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="109"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="45"/>
+        <source>Selected engine %1 does not support voice settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="50"/>
+        <source>Selected engine %1 does not support emotion settings</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
         <source>%1 engine does not support TTS</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="178"/>
-        <source>Selected language %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
+        <source>Selected language %1 is not supported by %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="189"/>
-        <source>Selected voice %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
+        <source>Selected voice %1 is not supported by %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="200"/>
-        <source>Selected emotion %1 is not supported by: %2</source>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
+        <source>Selected emotion %1 is not supported by %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1207,8 +1217,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="618"/>
         <location filename="../../src/settings/settingsdialog.ui" line="869"/>
         <location filename="../../src/settings/settingsdialog.ui" line="944"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="518"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="536"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="519"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="537"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1658,32 +1668,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="305"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="305"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="315"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="316"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="370"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="371"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="392"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="393"/>
         <source>Update available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="398"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="399"/>
         <source>No updates available.</source>
         <translation type="unfinished"></translation>
     </message>
