@@ -166,7 +166,7 @@ MainWindow::~MainWindow()
     AppSettings settings;
     settings.setMainWindowGeometry(saveGeometry());
     settings.setAutoTranslateEnabled(ui->autoTranslateCheckBox->isChecked());
-    settings.setCurrentEngine(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()));
+    settings.setCurrentEngine(currentEngine());
 
     m_sourceLangButtons->saveLanguages(settings);
     m_translationLangButtons->saveLanguages(settings);
@@ -285,7 +285,7 @@ void MainWindow::clearTranslation()
 
 void MainWindow::requestSourceLanguage()
 {
-    m_translator->detectLanguage(ui->sourceEdit->toPlainText(), static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()));
+    m_translator->detectLanguage(ui->sourceEdit->toPlainText(), currentEngine());
 }
 
 void MainWindow::parseSourceLanguage()
