@@ -156,7 +156,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     if (QDate::currentDate() >= checkDate) {
         auto *release = new QGitTag(this);
         connect(release, &QGitTag::finished, this, &MainWindow::checkForUpdates);
-        release->get("Shatur95", "crow-translate");
+        release->get("crow-translate", "crow-translate");
     }
 #endif
 }
