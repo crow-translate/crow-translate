@@ -33,8 +33,6 @@
 #include <QFileDialog>
 #include <QScreen>
 #include <QMessageBox>
-#include <QMediaPlayer>
-#include <QMediaPlaylist>
 #include <QDate>
 
 SettingsDialog::SettingsDialog(QWidget *parent) :
