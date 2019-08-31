@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased](https://github.com/crow-translate/crow-translate/tree/HEAD)
 
-[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.1.0...HEAD)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.0...HEAD)
+
+_No unreleased changes yet_
+
+## [2.2.0](https://github.com/crow-translate/crow-translate/tree/2.2.0) (2019-08-31)
+
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.1.0...2.2.0)
 
 **Added**
 
@@ -14,8 +20,8 @@ All notable changes to this project will be documented in this file. This projec
 
 **Changed**
 
--   Cancel previous request automatically if new was requested.
--   Remove 300ms delay for automatic translation delay when changing source text.
+-   Cancel previous request automatically if a new one was requested.
+-   Remove 300ms delay for automatic translation when changing source text.
 -   Sort languages in comboboxes alphabetically.
 -   Fix date check for leap years.
 -   Rework CLI interface.

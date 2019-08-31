@@ -15,7 +15,7 @@
   ;App information and out file
   Name "Crow Translate"
   BrandingText "Crow Translate"
-  !define VERSION "2.1.0"
+  !define VERSION "2.2.0"
   OutFile "crow-translate-${VERSION}-win64.exe"
   
   ;Properly display all languages
@@ -196,7 +196,7 @@ Section "Install"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Publisher" "Hennadii Chernyshchyk"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "DisplayVersion" "${VERSION}"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "URLInfoAbout" "https://github.com/Shatur95/Crow-Translate"
-  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "EstimatedSize" "56832"
+  WriteRegDWORD HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "EstimatedSize" "66387"
   WriteRegStr HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\Crow Translate" "Comments" "Simple and lightweight translator"
 
 SectionEnd

@@ -1,13 +1,20 @@
-crow-translate (2.1.0~git-1) buster; urgency=low
+crow-translate (2.2.0~git-1) buster; urgency=low
 
-  * Add Bing support
-  * Select the first supported engine if the selected language is not supported by the current one
-  * Do not request / analyze parts of the translation that are not displayed
-  * Show a message if the application is already running
-  * Fix main window activation on some window systems
-  * Windows: Update changelog parser
+  * Add abort button.
+  * Add simplified Chinese localization.
+  * Add text speaking indication in the taskbar.
+  * Cancel previous request automatically if new was requested.
+  * Remove 300ms delay for automatic translation delay when changing source text.
+  * Sort languages in comboboxes alphabetically.
+  * Fix date check for leap years.
+  * Rework CLI interface.
+  * Use source / translation fields to control selection speaking.
+  * Use one shortcut to stop all text playback.
+  * Fix double translation if the translation button is pressed faster.
+  * Minor performance improvements.
+  * Windows: Update Papirus icon theme.
  
- -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 27 Oct 2018 00:00:00 +0000
+ -- Hennadii Chernyshchyk <genaloner@gmail.com>  Tue, 27 Aug 2019 00:00:00 +0000
 
 crow-translate (2.0.1~git-1) buster; urgency=low
 
