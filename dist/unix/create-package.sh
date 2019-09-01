@@ -30,7 +30,7 @@ case $ID in
 			echo "Package devsripts REQUIRED for building:"
 			sudo apt install devscripts qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools
 			
-			[ "$?" -eq 1 ] && echo "You can still install it by yourself." && exit 0
+			[ "$?" -ne 0 ] && echo "You can still install it by yourself." && exit 0
 		fi
 		
 		cd ../..
