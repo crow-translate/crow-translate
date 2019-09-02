@@ -177,8 +177,8 @@ void MainWindow::activate()
 {
     show();
     activateWindow();
-    ui->sourceEdit->setFocus();
     raise();
+    ui->sourceEdit->setFocus();
 }
 
 QComboBox *MainWindow::engineCombobox()
