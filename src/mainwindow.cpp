@@ -175,9 +175,10 @@ MainWindow::~MainWindow()
 
 void MainWindow::activate()
 {
+    ui->sourceEdit->setFocus();
+
     show();
     activateWindow();
-    ui->sourceEdit->setFocus();
     raise();
 }
 
