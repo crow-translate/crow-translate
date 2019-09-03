@@ -28,7 +28,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Dock: <a href="https://github.com/psifidotos/Latte-Dock">Latte Dock</a> | Wallpaper: <a href="https://alpha.wallhaven.cc/wallpaper/288991">Wallhaven</a></sub>
+  <sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Wallpaper: <a href="https://dynamicwallpaper.club/wallpaper/nrv0me8vd1">Catalina</a></sub>
 </p>
 
 ### Windows
@@ -40,7 +40,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
-  <sub><b>Screenshots</b>: OS: <a href="https://www.microsoft.com/en-us/software-download/windows10">Windows 10</a> | Theme: <a href="https://www.deviantart.com/sagorpirbd/art/Windows-8-Themes-for-Win10-Final-556761647">Windows 8</a> | Wallpaper: Default Windows 10 flower</sub>
+  <sub><b>Screenshots</b>: OS: <a href="https://www.microsoft.com/en-us/software-download/windows10">Windows 10</a> | Theme: default | Wallpaper: <a href="https://wallpaperscraft.com/wallpaper/needles_spruce_branch_blur_114943">WallpapersCraft</a></sub>
 </p>
 
 ## Features
