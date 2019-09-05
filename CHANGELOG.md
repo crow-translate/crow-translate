@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.0...HEAD)
 
-_No unreleased changes yet_
+**Changed**
+
+-   Focus input field when showing the main window.
 
 ## [2.2.0](https://github.com/crow-translate/crow-translate/tree/2.2.0) (2019-08-31)
 
