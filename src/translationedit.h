@@ -35,9 +35,11 @@ public:
 
     bool parseTranslationData(QOnlineTranslator *translator);
     QString translation() const;
+    void clearTranslation();
 
 signals:
     void translationDataParsed(const QString &text);
+    void translationEmpty(bool empty);
 
 private:
     QString m_translation;

@@ -180,7 +180,11 @@
     <item row="7" column="1">
      <layout class="QHBoxLayout" name="buttomSourceLayout">
       <item>
-       <widget class="PlayerButtons" name="sourcePlayerButtons" native="true"/>
+       <widget class="PlayerButtons" name="sourcePlayerButtons" native="true">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QToolButton" name="copySourceButton">
@@ -265,7 +269,11 @@
        </widget>
       </item>
       <item>
-       <widget class="PlayerButtons" name="translationPlayerButtons" native="true"/>
+       <widget class="PlayerButtons" name="translationPlayerButtons" native="true">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QToolButton" name="copyTranslationButton">
@@ -352,6 +360,7 @@
    <extends>QPlainTextEdit</extends>
    <header>sourcetextedit.h</header>
    <slots>
+    <signal>sourceEmpty(bool)</signal>
     <slot>stopChangedTimer()</slot>
     <slot>markSourceAsChanged()</slot>
    </slots>
@@ -366,6 +375,9 @@
    <class>TranslationEdit</class>
    <extends>QTextEdit</extends>
    <header>translationedit.h</header>
+   <slots>
+    <signal>translationEmpty(bool)</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <tabstops>
@@ -561,6 +573,38 @@
     <hint type="destinationlabel">
      <x>154</x>
      <y>141</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sourceEdit</sender>
+   <signal>sourceEmpty(bool)</signal>
+   <receiver>sourcePlayerButtons</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>154</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>6</x>
+     <y>261</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>translationEdit</sender>
+   <signal>translationEmpty(bool)</signal>
+   <receiver>translationPlayerButtons</receiver>
+   <slot>setDisabled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>495</x>
+     <y>141</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>528</x>
+     <y>261</y>
     </hint>
    </hints>
   </connection>

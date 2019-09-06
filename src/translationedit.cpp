@@ -29,13 +29,17 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 {
     // Check for error
     if (translator->error()) {
-        m_translation.clear();
+        if (!m_translation.isEmpty()) {
+            m_translation.clear();
+            emit translationEmpty(true);
+        }
         setHtml(translator->errorString());
         emit translationDataParsed(translator->errorString());
         return false;
     }
 
     // Translation
+    const bool translationWasEmpty = m_translation.isEmpty();
     m_translation = translator->translation();
     setHtml(m_translation.toHtmlEscaped().replace("\n", "<br>"));
 
@@ -109,10 +113,21 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     moveCursor(QTextCursor::Start);
     emit translationDataParsed(toHtml());
+    if (translationWasEmpty)
+        emit translationEmpty(false);
     return true;
 }
 
 QString TranslationEdit::translation() const
 {
     return m_translation;
+}
+
+void TranslationEdit::clearTranslation()
+{
+    if (!m_translation.isEmpty()) {
+        m_translation.clear();
+        emit translationEmpty(true);
+    }
+    clear();
 }

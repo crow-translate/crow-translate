@@ -34,6 +34,7 @@ SourceTextEdit::SourceTextEdit(QWidget *parent) :
 #else
     connect(m_textEditedTimer, &QTimer::timeout, this, &SourceTextEdit::sourceChanged);
 #endif
+    connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::checkSourceEmptyChanged);
 }
 
 void SourceTextEdit::setListenForChanges(bool listen)
@@ -69,4 +70,12 @@ void SourceTextEdit::stopChangedTimer()
 void SourceTextEdit::startTimerDelay()
 {
     m_textEditedTimer->start(delay);
+}
+
+void SourceTextEdit::checkSourceEmptyChanged()
+{
+    if (toPlainText().isEmpty() != m_sourceEmpty) {
+        m_sourceEmpty = toPlainText().isEmpty();
+        emit sourceEmpty(m_sourceEmpty);
+    }
 }

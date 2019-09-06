@@ -281,7 +281,7 @@ void MainWindow::parseTranslation()
 
 void MainWindow::clearTranslation()
 {
-    ui->translationEdit->clear();
+    ui->translationEdit->clearTranslation();
     m_translationLangButtons->setLanguage(0, QOnlineTranslator::Auto);
 }
 

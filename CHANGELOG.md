@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 **Changed**
 
 -   Focus input field when showing the main window.
+-   Disable player buttons if no text to speak.
 
 ## [2.2.0](https://github.com/crow-translate/crow-translate/tree/2.2.0) (2019-08-31)
 

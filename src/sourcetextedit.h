@@ -42,13 +42,16 @@ public slots:
 
 signals:
     void sourceChanged();
+    void sourceEmpty(bool empty);
 
 private slots:
     void startTimerDelay();
+    void checkSourceEmptyChanged();
 
 private:
     QTimer *m_textEditedTimer;
     bool m_listenForChanges = false;
+    bool m_sourceEmpty = true;
 };
 
 #endif // SOURCETEXTEDIT_H

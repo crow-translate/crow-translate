@@ -73,11 +73,6 @@ QMediaPlaylist *PlayerButtons::playlist()
 
 void PlayerButtons::play(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
 {
-    if (text.isEmpty()) {
-        QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
-        return;
-    }
-
     QOnlineTts onlineTts;
     onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
     if (onlineTts.error()) {
