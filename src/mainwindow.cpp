@@ -307,7 +307,7 @@ void MainWindow::speakSource()
 
 void MainWindow::speakTranslation()
 {
-    ui->translationPlayerButtons->play(ui->translationEdit->translation(), m_translationLangButtons->checkedLanguage(), currentEngine());
+    ui->translationPlayerButtons->play(ui->translationEdit->translation(), ui->translationEdit->translationLanguage(), currentEngine());
 }
 
 void MainWindow::showTranslationWindow()

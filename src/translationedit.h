@@ -35,6 +35,7 @@ public:
 
     bool parseTranslationData(QOnlineTranslator *translator);
     QString translation() const;
+    QOnlineTranslator::Language translationLanguage();
     void clearTranslation();
 
 signals:
@@ -43,6 +44,7 @@ signals:
 
 private:
     QString m_translation;
+    QOnlineTranslator::Language m_language = QOnlineTranslator::NoLanguage;
 };
 
 #endif // TRANSLATIONEDIT_H
