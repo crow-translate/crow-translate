@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased](https://github.com/crow-translate/crow-translate/tree/HEAD)
 
-[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.0...HEAD)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.1...HEAD)
+
+_No unreleased changes yet_
+
+## [2.2.1](https://github.com/crow-translate/crow-translate/tree/2.2.1) (2019-09-11)
+
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.0...2.2.1)
 
 **Changed**
 

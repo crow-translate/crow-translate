@@ -6,7 +6,7 @@
 
 TARGET = crow
 TEMPLATE = app
-VERSION = 2.2.0
+VERSION = 2.2.1
 INCLUDEPATH = src
 QT += core gui widgets dbus
 win32:QT += winextras

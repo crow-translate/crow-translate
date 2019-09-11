@@ -1,3 +1,11 @@
+crow-translate (2.2.1~git-1) buster; urgency=low
+
+  * Focus input field when showing the main window.
+  * Disable player buttons if no text to speak.
+  * Always speak translation on its language.
+
+ -- Hennadii Chernyshchyk <genaloner@gmail.com>  Tue, 11 Sep 2019 00:00:00 +0000
+
 crow-translate (2.2.0~git-1) buster; urgency=low
 
   * Add abort button.
