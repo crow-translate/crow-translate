@@ -250,7 +250,7 @@
             </widget>
            </item>
            <item row="2" column="0" colspan="3">
-            <widget class="QCheckBox" name="trayCheckBox">
+            <widget class="QCheckBox" name="showTrayIconCheckBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
@@ -1698,7 +1698,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>trayCheckBox</sender>
+   <sender>showTrayIconCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>startMinimizedCheckBox</receiver>
    <slot>setEnabled(bool)</slot>
@@ -1714,7 +1714,7 @@
    </hints>
   </connection>
   <connection>
-   <sender>trayCheckBox</sender>
+   <sender>showTrayIconCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>startMinimizedCheckBox</receiver>
    <slot>setChecked(bool)</slot>

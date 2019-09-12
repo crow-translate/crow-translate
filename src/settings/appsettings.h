@@ -59,22 +59,28 @@ public:
     QLocale::Language locale() const;
     void setLocale(QLocale::Language lang);
     void loadLocale(QLocale::Language lang);
+    static QLocale::Language defaultLocale();
 
     WindowMode windowMode() const;
     void setWindowMode(WindowMode mode);
+    static WindowMode defaultWindowMode();
 
-    bool isTrayIconVisible() const;
-    void setTrayIconVisible(bool visible);
+    bool isShowTrayIcon() const;
+    void setShowTrayIcon(bool visible);
+    static bool defaultShowTrayIcon();
 
     bool isStartMinimized() const;
     void setStartMinimized(bool minimized);
+    static bool defaultStartMinimized();
 
     bool isAutostartEnabled() const;
     void setAutostartEnabled(bool enabled);
+    static bool defaultAutostartEnabled();
 
 #ifdef Q_OS_WIN
     Interval checkForUpdatesInterval() const;
     void setCheckForUpdatesInterval(Interval interval);
+    static Interval defaultCheckForUpdatesInterval();
 
     QDate lastUpdateCheckDate() const;
     void setLastUpdateCheckDate(const QDate &date);
@@ -83,85 +89,112 @@ public:
     // Interface settings
     double popupOpacity() const;
     void setPopupOpacity(double opacity);
+    static double defaultPopupOpacity();
 
     int popupHeight() const;
     void setPopupHeight(int height);
+    static int defaultPopupHeight();
 
     int popupWidth() const;
     void setPopupWidth(int width);
+    static int defaultPopupWidth();
 
     Qt::ToolButtonStyle popupLanguagesStyle() const;
     void setPopupLanguagesStyle(Qt::ToolButtonStyle style);
+    static Qt::ToolButtonStyle defaultPopupLanguagesStyle();
 
     Qt::ToolButtonStyle popupControlsStyle() const;
     void setPopupControlsStyle(Qt::ToolButtonStyle style);
+    static Qt::ToolButtonStyle defaultPopupControlsStyle();
 
     Qt::ToolButtonStyle windowLanguagesStyle() const;
     void setWindowLanguagesStyle(Qt::ToolButtonStyle style);
+    static Qt::ToolButtonStyle defaultWindowLanguagesStyle();
 
     Qt::ToolButtonStyle windowControlsStyle() const;
     void setWindowControlsStyle(Qt::ToolButtonStyle style);
+    static Qt::ToolButtonStyle defaultWindowControlsStyle();
 
     TrayIcon::IconType trayIconType() const;
     void setTrayIconType(TrayIcon::IconType icon);
+    static TrayIcon::IconType defaultTrayIconType();
 
     QString customIconPath() const;
     void setCustomIconPath(const QString &path);
+    static QString defaultCustomIconPath();
 
     // Translation settings
     bool isSourceTranslitEnabled() const;
     void setSourceTranslitEnabled(bool enable);
+    static bool defaultSourceTranslitEnabled();
 
     bool isTranslationTranslitEnabled() const;
     void setTranslationTranslitEnabled(bool enable);
+    static bool defaultTranslationTranslitEnabled();
 
     bool isSourceTranscriptionEnabled() const;
     void setSourceTranscriptionEnabled(bool enable);
+    static bool defaultSourceTranscriptionEnabled();
 
     bool isTranslationOptionsEnabled() const;
     void setTranslationOptionsEnabled(bool enable);
+    static bool defaultTranslationOptionsEnabled();
 
     bool isExamplesEnabled() const;
     void setExamplesEnabled(bool enable);
+    static bool defaultExamplesEnabled();
 
     QOnlineTranslator::Language primaryLanguage() const;
     void setPrimaryLanguage(QOnlineTranslator::Language lang);
+    static QOnlineTranslator::Language defaultPrimaryLanguage();
 
     QOnlineTranslator::Language secondaryLanguage() const;
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
+    static QOnlineTranslator::Language defaultSecondaryLanguage();
+
     QOnlineTranslator::Language preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const;
 
     bool isForceSourceAutodetect() const;
     void setForceSourceAutodetect(bool force);
+    static bool defaultForceSourceAutodetect();
 
     bool isForceTranslationAutodetect() const;
     void setForceTranslationAutodetect(bool force);
+    static bool defaultForceTranslationAutodetect();
 
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
     void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);
+    static QOnlineTts::Voice defaultVoice(QOnlineTranslator::Engine engine);
 
     QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
+    static QOnlineTts::Emotion defaultEmotion(QOnlineTranslator::Engine engine);
 
     // Connection settings
     QNetworkProxy::ProxyType proxyType() const;
     void setProxyType(QNetworkProxy::ProxyType type);
+    static QNetworkProxy::ProxyType defaultProxyType();
 
     QString proxyHost() const;
     void setProxyHost(const QString &hostName);
+    static QString defaultProxyHost();
 
     quint16 proxyPort() const;
     void setProxyPort(quint16 port);
+    static quint16 defaultProxyPort();
 
     bool isProxyAuthEnabled() const;
     void setProxyAuthEnabled(bool enabled);
+    static bool defaultProxyAuthEnabled();
 
     QString proxyUsername() const;
     void setProxyUsername(const QString &username);
+    static QString defaultProxyUsername();
 
     QString proxyPassword() const;
     void setProxyPassword(const QString &password);
+    static QString defaultProxyPassword();
 
     // Global shortcuts
     QKeySequence translateSelectionHotkey() const;

@@ -151,7 +151,7 @@ void SettingsDialog::accept()
     AppSettings settings;
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setLocale(ui->localeComboBox->currentData().value<QLocale::Language>());
-    settings.setTrayIconVisible(ui->trayCheckBox->isChecked());
+    settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #ifdef Q_OS_WIN
@@ -406,48 +406,48 @@ void SettingsDialog::checkForUpdates()
 void SettingsDialog::restoreDefaults()
 {
     // General settings
-    ui->localeComboBox->setCurrentIndex(0);
-    ui->windowModeComboBox->setCurrentIndex(AppSettings::PopupWindow);
-    ui->trayCheckBox->setChecked(true);
-    ui->startMinimizedCheckBox->setChecked(false);
-    ui->autostartCheckBox->setChecked(false);
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLocale()));
+    ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
+    ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
+    ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
+    ui->autostartCheckBox->setChecked(AppSettings::defaultAutostartEnabled());
 #ifdef Q_OS_WIN
-    m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::Month);
+    m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::defaultCheckForUpdatesInterval());
 #endif
 
     // Interface settings
-    ui->popupOpacitySlider->setValue(80);
-    ui->popupWidthSpinBox->setValue(350);
-    ui->popupHeightSpinBox->setValue(300);
-    ui->popupLanguagesComboBox->setCurrentIndex(0);
-    ui->popupControlsComboBox->setCurrentIndex(0);
-    ui->windowLanguagesComboBox->setCurrentIndex(2);
-    ui->windowControlsComboBox->setCurrentIndex(0);
-    ui->trayIconComboBox->setCurrentIndex(TrayIcon::DefaultIcon);
-    ui->customTrayIconEdit->clear();
+    ui->popupOpacitySlider->setValue(static_cast<int>(AppSettings::defaultPopupOpacity() * 100));
+    ui->popupWidthSpinBox->setValue(AppSettings::defaultPopupWidth());
+    ui->popupHeightSpinBox->setValue(AppSettings::defaultPopupHeight());
+    ui->popupLanguagesComboBox->setCurrentIndex(AppSettings::defaultPopupLanguagesStyle());
+    ui->popupControlsComboBox->setCurrentIndex(AppSettings::defaultPopupControlsStyle());
+    ui->windowLanguagesComboBox->setCurrentIndex(AppSettings::defaultWindowLanguagesStyle());
+    ui->windowControlsComboBox->setCurrentIndex(AppSettings::defaultWindowControlsStyle());
+    ui->trayIconComboBox->setCurrentIndex(AppSettings::defaultTrayIconType());
+    ui->customTrayIconEdit->setText(AppSettings::defaultCustomIconPath());
 
     // Translation settings
-    ui->sourceTranslitCheckBox->setChecked(true);
-    ui->translationTranslitCheckBox->setChecked(true);
-    ui->sourceTranscriptionCheckBox->setChecked(true);
-    ui->translationOptionsCheckBox->setChecked(true);
-    ui->examplesCheckBox->setChecked(true);
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(QOnlineTranslator::Auto));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(QOnlineTranslator::English));
-    ui->forceSourceAutoCheckBox->setChecked(true);
-    ui->forceTranslationAutoCheckBox->setChecked(true);
+    ui->sourceTranslitCheckBox->setChecked(AppSettings::defaultSourceTranslitEnabled());
+    ui->translationTranslitCheckBox->setChecked(AppSettings::defaultTranslationTranslitEnabled());
+    ui->sourceTranscriptionCheckBox->setChecked(AppSettings::defaultSourceTranscriptionEnabled());
+    ui->translationOptionsCheckBox->setChecked(AppSettings::defaultTranslationOptionsEnabled());
+    ui->examplesCheckBox->setChecked(AppSettings::defaultExamplesEnabled());
+    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(AppSettings::defaultPrimaryLanguage()));
+    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(AppSettings::defaultSecondaryLanguage()));
+    ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
+    ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
     // Speech synthesis settings
-    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, QOnlineTts::Zahar);
-    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, QOnlineTts::Neutral);
+    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
+    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
 
     // Connection settings
-    ui->proxyTypeComboBox->setCurrentIndex(0);
-    ui->proxyHostEdit->clear();
-    ui->proxyPortSpinbox->setValue(8080);
-    ui->proxyAuthCheckBox->setChecked(false);
-    ui->proxyUsernameEdit->clear();
-    ui->proxyPasswordEdit->clear();
+    ui->proxyTypeComboBox->setCurrentIndex(AppSettings::defaultProxyType());
+    ui->proxyHostEdit->setText(AppSettings::defaultProxyHost());
+    ui->proxyPortSpinbox->setValue(AppSettings::defaultProxyPort());
+    ui->proxyAuthCheckBox->setChecked(AppSettings::defaultProxyAuthEnabled());
+    ui->proxyUsernameEdit->setText(AppSettings::defaultProxyUsername());
+    ui->proxyPasswordEdit->setText(AppSettings::defaultProxyPassword());
 
     // Shortcuts
     resetAllShortcuts();
@@ -462,7 +462,7 @@ void SettingsDialog::loadSettings()
 #ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
 #endif
-    ui->trayCheckBox->setChecked(settings.isTrayIconVisible());
+    ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
     ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
 

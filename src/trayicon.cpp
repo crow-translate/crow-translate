@@ -50,7 +50,7 @@ void TrayIcon::loadSettings(const AppSettings &settings)
     }
     setIcon(icon);
 
-    const bool trayIconVisible = settings.isTrayIconVisible();
+    const bool trayIconVisible = settings.isShowTrayIcon();
     setVisible(trayIconVisible);
     SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 }
