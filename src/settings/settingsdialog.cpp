@@ -285,15 +285,15 @@ void SettingsDialog::showAvailableTtsOptions(int engine)
 }
 
 // Save current engine voice settings
-void SettingsDialog::saveEngineVoice(int engine)
+void SettingsDialog::saveEngineVoice(int voice)
 {
-    ui->playerButtons->setVoice(static_cast<QOnlineTranslator::Engine>(engine), ui->voiceComboBox->itemData(engine).value<QOnlineTts::Voice>());
+    ui->playerButtons->setVoice(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->voiceComboBox->itemData(voice).value<QOnlineTts::Voice>());
 }
 
 // Save current engine emotion settings
-void SettingsDialog::saveEngineEmotion(int engine)
+void SettingsDialog::saveEngineEmotion(int emotion)
 {
-    ui->playerButtons->setEmotion(static_cast<QOnlineTranslator::Engine>(engine), ui->emotionComboBox->itemData(engine).value<QOnlineTts::Emotion>());
+    ui->playerButtons->setEmotion(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->emotionComboBox->itemData(emotion).value<QOnlineTts::Emotion>());
 }
 
 // To play test text

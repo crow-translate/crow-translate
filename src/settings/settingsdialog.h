@@ -59,8 +59,8 @@ private slots:
     void setCustomTrayIconPreview(const QString &iconPath);
 
     void showAvailableTtsOptions(int engine);
-    void saveEngineVoice(int engine);
-    void saveEngineEmotion(int engine);
+    void saveEngineVoice(int voice);
+    void saveEngineEmotion(int emotion);
     void detectTextLanguage();
     void speakTestText();
 

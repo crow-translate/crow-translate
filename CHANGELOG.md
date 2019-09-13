@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.1...HEAD)
 
-_No unreleased changes yet_
+**Changed**
+
+-   Fix voice and emotion settings.
 
 ## [2.2.1](https://github.com/crow-translate/crow-translate/tree/2.2.1) (2019-09-11)
 
