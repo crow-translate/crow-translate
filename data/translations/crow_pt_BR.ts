@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="pt_BR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="pt_BR" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -27,114 +25,114 @@
     <message>
         <location filename="../../src/cli.cpp" line="50"/>
         <source>Display all language codes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostra todos os códigos de idioma.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="51"/>
         <source>Specify the source language (by default, engine will try to determine the language on its own).</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica o idioma de origem (por padrão, o mecanismo tentará determinar o idioma por conta própria).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="52"/>
         <source>Specify the translation language(s), splitted by &apos;+&apos; (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica o(s) idioma(s) de tradução, separados por &apos;+&apos; (por padrão, o idioma do sistema é usado).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="53"/>
         <source>Specify the translator language (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>Especifica o idioma de tradução (por padrão, o idioma do sistema é usado).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="54"/>
         <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos; or &apos;bing&apos;), Google is used by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Especificar o mecanismo de tradução (&apos;google&apos;, &apos;yandex&apos; ou &apos;bing&apos;), Google é usado por padrão.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="55"/>
         <source>Speak the translation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fala a tradução.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="56"/>
         <source>Speak the source.</source>
-        <translation type="unfinished"></translation>
+        <translation>Fala o texto original.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="57"/>
         <source>Print text only for speaking when using --%1 or --%2.</source>
-        <translation type="unfinished"></translation>
+        <translation>Imprimir texto somente para fala ao usar --%1 ou --%2</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="58"/>
         <source>Read source text from files. Arguments will be interpreted as file paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lê o texto original em arquivos. Argumentos serão interpretados como caminhos de arquivo.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="59"/>
         <source>Add stdin data to source text.</source>
-        <translation type="unfinished"></translation>
+        <translation>Adiciona dados do stdin para o texto de origem.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="62"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
-        <translation type="unfinished"></translation>
+        <translation>Um tradutor simples e leve que permite traduzir e reproduzir texto usando o Google, Yandex e Bing.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="63"/>
         <source>Text to translate. By default, the translation will be done to the system language.</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto para traduzir. Por padrão, a tradução será feita no idioma do sistema.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="93"/>
         <source>Error: Unknown engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Mecanismo desconhecido</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="124"/>
         <source>Error: There is no text for translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Não há texto para tradução</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="403"/>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="428"/>
         <location filename="../../src/cli.cpp" line="449"/>
         <source>Error: File does not exist: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Arquivo não existe: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="433"/>
         <location filename="../../src/cli.cpp" line="454"/>
         <source>Error: Unable to open file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Não foi possível abrir o arquivo: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="195"/>
         <source>%1 - translation options:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - opções de tradução:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="131"/>
         <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Para --%1, você deve especificar as opções --%2 e/ou --%3</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="211"/>
         <source>%1 - examples:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - exemplos:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="241"/>
         <source>Source text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Texto original:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="249"/>
         <source>Translation into %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tradução para %1:</translation>
     </message>
 </context>
 <context>
@@ -230,7 +228,7 @@
     <message>
         <location filename="../../src/mainwindow.cpp" line="294"/>
         <source>Unable to detect language</source>
-        <translation type="unfinished">Não foi possível detectar o idioma</translation>
+        <translation>Não foi possível detectar o idioma</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="350"/>
@@ -248,37 +246,37 @@
     <message>
         <location filename="../../src/playerbuttons.ui" line="32"/>
         <source>Play / pause source text speaking</source>
-        <translation type="unfinished">Reproduzir / pausar a pronúncia original</translation>
+        <translation>Reproduzir / pausar a pronúncia original</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="35"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Reproduzir</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="45"/>
         <source>Stop source text speaking</source>
-        <translation type="unfinished">Parar a pronúncia original</translation>
+        <translation>Parar a pronúncia original</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.ui" line="48"/>
         <source>Pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Pausar</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="77"/>
         <source>No text specified</source>
-        <translation type="unfinished"></translation>
+        <translation>Nenhum texto especificado</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="77"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished">O texto para reprodução está vazio</translation>
+        <translation>O texto para reprodução está vazio</translation>
     </message>
     <message>
         <location filename="../../src/playerbuttons.cpp" line="84"/>
         <source>Unable to generate URLs for TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>Não foi possível gerar URLs para TTS</translation>
     </message>
 </context>
 <context>
@@ -321,7 +319,7 @@
     <message>
         <location filename="../../src/qgittag/src/qgittag.cpp" line="147"/>
         <source>Release number %1 is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>O número da versão %1 está ausente</translation>
     </message>
 </context>
 <context>
@@ -963,7 +961,7 @@
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1017"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1149"/>
         <source>Error: Unable to parse autodetected language</source>
-        <translation type="unfinished"></translation>
+        <translation>Erro: Não foi possível interpretar o idioma detectado automaticamente</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="961"/>
@@ -976,32 +974,32 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="45"/>
         <source>Selected engine %1 does not support voice settings</source>
-        <translation type="unfinished"></translation>
+        <translation>O mecanismo selecionado %1 não suporta configurações de voz</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="50"/>
         <source>Selected engine %1 does not support emotion settings</source>
-        <translation type="unfinished"></translation>
+        <translation>O mecanismo selecionado %1 não suporta configurações de emoção</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
         <source>%1 engine does not support TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>O mecanismo %1 não suporta TTS</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
         <source>Selected language %1 is not supported by %2</source>
-        <translation type="unfinished"></translation>
+        <translation>O idioma selecionado %1 não é suportado por %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
         <source>Selected voice %1 is not supported by %2</source>
-        <translation type="unfinished"></translation>
+        <translation>A voz selecionada %1 não é suportada por %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
         <source>Selected emotion %1 is not supported by %2</source>
-        <translation type="unfinished"></translation>
+        <translation>A emoção selecionada %1 não é suportada por %2</translation>
     </message>
 </context>
 <context>
@@ -1325,17 +1323,17 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="746"/>
         <source>Automatic language detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Detecção automática de idioma</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="765"/>
         <source>Primary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma de tradução principal:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="772"/>
         <source>Secondary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idioma de tradução secundário:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="786"/>
@@ -1460,12 +1458,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="793"/>
         <source>Force detection of source language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar a detecção do idioma de origem quando usado sem janela</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="800"/>
         <source>Force detection of translation language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation>Forçar a detecção do idioma de tradução quando usado sem janela</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="877"/>
@@ -1615,7 +1613,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Atualizações</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="111"/>
@@ -1738,7 +1736,7 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="171"/>
         <source>Show main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Exibir janela principal</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="177"/>
@@ -1787,12 +1785,12 @@
     <message>
         <location filename="../../src/translationedit.cpp" line="36"/>
         <source>translation options:</source>
-        <translation type="unfinished">opções de tradução:</translation>
+        <translation>opções de tradução:</translation>
     </message>
     <message>
         <location filename="../../src/translationedit.cpp" line="74"/>
         <source>examples:</source>
-        <translation type="unfinished">exemplos:</translation>
+        <translation>exemplos:</translation>
     </message>
 </context>
 <context>
