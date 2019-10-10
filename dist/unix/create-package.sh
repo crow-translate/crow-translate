@@ -12,7 +12,7 @@ cleanDir()
 
 case $ID in
     "arch" | "parabola" | "manjarolinux" )
-        cd archlinux
+        cd pacman
     
         makepkg
         rm -r pkg
@@ -21,16 +21,15 @@ case $ID in
         cleanDir
     
         echo -e "\x1b[1;32mNow you can install Crow Translate by running the following commands:\x1b[0m"
-        echo -e "\x1b[1;37mcd archlinux\x1b[0m"
+        echo -e "\x1b[1;37mcd pacman\x1b[0m"
         echo -e "\x1b[1;37msudo pacman -U crow-git-*.pkg.tar.xz\x1b[0m"
-    ;;
-    
+        ;;
     "ubuntu" | "linuxmint" | "elementary" | "debian" | "devuan" )
         echo "Installing dependencies..."
         sudo apt install devscripts qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools
         
         cd ../..
-        cp -r dist/unix/debian .
+        cp -r dist/unix/apt debian
         VER=$(awk 'NR==1 {print $2}' debian/changelog | sed 's/-[1-9]//g;s/[()]//g')
         tar czfv ../crow-translate_$VER.orig.tar.gz .github *
         debuild -i -us -uc
@@ -41,12 +40,10 @@ case $ID in
         echo -e "\x1b[1;37mcd ../../..\x1b[0m"
         echo -e "\x1b[1;37msudo dpkg -i crow-translate_$VER-1_amd64.deb\x1b[0m"
         echo -e "\x1b[1;37msudo apt install -f\x1b[0m"
-    ;;
-    
+        ;;
     "fedora" )
-    echo -e "\x1b[1;31mSorry, package generation for your distribution temporally unsupported\x1b[0m"
-    ;;
-    
+        echo -e "\x1b[1;31mSorry, package generation for your distribution temporally unsupported\x1b[0m"
+        ;;
     *)
         echo -e "\x1b[1;37mCan't determine your distribution. The project will be compiled and installed in the \"install\" folder.\x1b[0m"
         
