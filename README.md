@@ -141,6 +141,14 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 To install a stable version, go to the [releases](https://github.com/Shatur95/CrowTranslate/releases) page. The instructions below will help you install Crow Translate with the latest commits.
 
+### Pacman-based (Arch Linux, Manjaro, Chakra etc.)
+
+You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and speak text using the Google, Yandex and Bing translate API") from AUR.
+
+### RPM-based (Fedora, RHEL, CentOS etc.)
+
+You can install it from the [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate).
+
 ### Automatic script
 
 You can use the automatic script that builds **Crow Translate** and creates a package for your distribution:
@@ -152,16 +160,12 @@ cd dist/unix
 
 Than you can install it as usual. The script will tell you where the package will be after the making. Currently, only **Arch Linux**, **Debian** and their derivatives are supported.
 
-### Arch Linux and derivatives
-
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and speak text using the Google, Yandex and Bing translate API") from AUR.
-
 ### Manual building
 
 You can build **Crow Translate** by using the following commands:
 
 ```bash
-qmake
+qmake # Or qmake-qt5 in some distributions
 make
 make clean
 ```
