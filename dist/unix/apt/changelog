@@ -1,4 +1,11 @@
-crow-translate (2.2.1~git-1) buster; urgency=low
+crow-translate (2.2.2-1) buster; urgency=low
+
+  * Add clear button.
+  * Fix voice and emotion settings.
+
+ -- Hennadii Chernyshchyk <genaloner@gmail.com>  Fri, 11 Oct 2019 00:00:00 +0000
+
+crow-translate (2.2.1-1) buster; urgency=low
 
   * Focus input field when showing the main window.
   * Disable player buttons if no text to speak.
@@ -6,7 +13,7 @@ crow-translate (2.2.1~git-1) buster; urgency=low
 
  -- Hennadii Chernyshchyk <genaloner@gmail.com>  Wed, 11 Sep 2019 00:00:00 +0000
 
-crow-translate (2.2.0~git-1) buster; urgency=low
+crow-translate (2.2.0-1) buster; urgency=low
 
   * Add abort button.
   * Add simplified Chinese localization.
@@ -24,7 +31,7 @@ crow-translate (2.2.0~git-1) buster; urgency=low
  
  -- Hennadii Chernyshchyk <genaloner@gmail.com>  Tue, 27 Aug 2019 00:00:00 +0000
 
-crow-translate (2.0.1~git-1) buster; urgency=low
+crow-translate (2.0.1-1) buster; urgency=low
 
   * Make pop-up window active explicity for some window systems
   * Use different channels to display messages
@@ -38,7 +45,7 @@ crow-translate (2.0.1~git-1) buster; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 27 Oct 2018 00:00:00 +0000
 
-crow-translate (2.0.0~git-1) stretch; urgency=low
+crow-translate (2.0.0-1) stretch; urgency=low
 
   * Add Yandex support
   * Add speech synthesis settings
@@ -58,7 +65,7 @@ crow-translate (2.0.0~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 18 Oct 2018 00:00:00 +0000
 
-crow-translate (1.0.3~git-1) stretch; urgency=low
+crow-translate (1.0.3-1) stretch; urgency=low
 
   * Add a button to remove shortcuts in settings
   * Improve appearance of shortcuts settings
@@ -69,7 +76,7 @@ crow-translate (1.0.3~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 5 Aug 2018 00:00:00 +0000
 
-crow-translate (1.0.2~git-1) stretch; urgency=low
+crow-translate (1.0.2-1) stretch; urgency=low
 
   * Add global shortcut to play translation of seleted text
   * Minor optimizations
@@ -80,7 +87,7 @@ crow-translate (1.0.2~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Thu, 4 Jul 2018 00:00:00 +0000
 
-crow-translate (1.0.1~git-1) stretch; urgency=low
+crow-translate (1.0.1-1) stretch; urgency=low
 
   * Add button style settings for pop-up window
   * Improve the prevention of a pop-up window outside the screen
@@ -89,7 +96,7 @@ crow-translate (1.0.1~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Wen, 3 Jul 2018 00:00:00 +0000
 
-crow-translate (1.0.0~git-1) stretch; urgency=low
+crow-translate (1.0.0-1) stretch; urgency=low
 
   * Add word gender support for translation options
   * Add definition support
@@ -108,7 +115,7 @@ crow-translate (1.0.0~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 2 Jul 2018 00:00:00 +0000
   
-crow-translate (0.9.9~git-1) stretch; urgency=low
+crow-translate (0.9.9-1) stretch; urgency=low
 
   * Add ability to stop and pause the text
   * Add menu item "Translation" in the settings
@@ -126,7 +133,7 @@ crow-translate (0.9.9~git-1) stretch; urgency=low
   
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Tue, 5 Jun 2018 00:00:00 +0000
   
-crow-translate (0.9.8~git-1) stretch; urgency=low
+crow-translate (0.9.8-1) stretch; urgency=low
 
   * Add proxy settings
   * Add button and shortcut to copy only translation
@@ -145,7 +152,7 @@ crow-translate (0.9.8~git-1) stretch; urgency=low
 
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Sun, 20 May 2018 00:00:00 +0000
 
-crow-translate (0.9.7~git-1) stretch; urgency=low
+crow-translate (0.9.7-1) stretch; urgency=low
 
   * Add the selection of the previous language if the source language and the target language are the same
   * Add displaying detected languages on the language auto-detection buttons
@@ -160,7 +167,7 @@ crow-translate (0.9.7~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Mon, 23 Apr 2018 00:00:00 +0000
 
-crow-translate (0.9.6~git-1) stretch; urgency=low
+crow-translate (0.9.6-1) stretch; urgency=low
 
   * Add icons to tray context menu
   * Add close window shortcut
@@ -172,7 +179,7 @@ crow-translate (0.9.6~git-1) stretch; urgency=low
  
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Thu, 5 Apr 2018 00:00:00 +0000
 
-crow-translate (0.9.5~git-1) stretch; urgency=low
+crow-translate (0.9.5-1) stretch; urgency=low
 
   * Add Display options for translation and transcriptions with formatting
   * Minor optimizations
@@ -183,7 +190,7 @@ crow-translate (0.9.5~git-1) stretch; urgency=low
 
  -- Volk_Milit (aka Ja'Virr-Dar) <javirrdar@gmail.com>  Mon, 26 Mar 2018 11:11:09 +0008
 
-crow-translate (0.9~git-1) stretch; urgency=low
+crow-translate (0.9-1) stretch; urgency=low
 
   * Initial release
 

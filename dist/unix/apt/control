@@ -2,7 +2,7 @@ Source: crow-translate
 Maintainer: Hennadii Chernyshchyk <genaloner@gmail.com>
 Section: utils
 Priority: optional
-Standards-Version: 2.2.1
+Standards-Version: 2.2.2
 Build-Depends: debhelper (>= 8), qt5-default, qt5-qmake, libqt5x11extras5-dev, qttools5-dev-tools, qtmultimedia5-dev, qtbase5-dev, qtbase5-dev-tools
 Homepage: https://github.com/Shatur95/Crow
 
