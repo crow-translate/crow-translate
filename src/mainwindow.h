@@ -87,6 +87,7 @@ private slots:
     void forceAutodetect();
 
     // UI
+    void clearText();
     void abortTranslation();
     void swapLanguages();
     void openSettings();

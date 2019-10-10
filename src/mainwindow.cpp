@@ -384,6 +384,17 @@ void MainWindow::forceAutodetect()
         ui->sourceEdit->setListenForChanges(true);
 }
 
+void MainWindow::clearText()
+{
+    // Clear source text without tracking for changes
+    ui->sourceEdit->setListenForChanges(false);
+    ui->sourceEdit->clear();
+    if (ui->autoTranslateCheckBox->isChecked())
+        ui->sourceEdit->setListenForChanges(true);
+
+    clearTranslation();
+}
+
 void MainWindow::abortTranslation()
 {
     m_translator->abort();
