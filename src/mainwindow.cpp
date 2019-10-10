@@ -754,6 +754,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state)
 void MainWindow::setupRequestStateButtons(QState *state)
 {
     state->assignProperty(ui->translateButton, "enabled", false);
+    state->assignProperty(ui->clearButton, "enabled", false);
     state->assignProperty(ui->abortButton, "enabled", true);
 }
 
