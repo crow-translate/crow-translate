@@ -32,7 +32,7 @@
         <location filename="../../src/langbuttongroup.cpp" line="176"/>
         <location filename="../../src/langbuttongroup.cpp" line="178"/>
         <source>Auto</source>
-        <translation type="unfinished"></translation>
+        <translation>Auto</translation>
     </message>
     <message>
         <location filename="../../src/langbuttongroup.cpp" line="64"/>
@@ -62,7 +62,7 @@
         <location filename="../../src/mainwindow.ui" line="177"/>
         <location filename="../../src/mainwindow.ui" line="297"/>
         <source>Stop</source>
-        <translation>Zatrzynaj</translation>
+        <translation>Zatrzymaj</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="188"/>
@@ -199,65 +199,65 @@
         <location filename="../../src/popupwindow.ui" line="93"/>
         <location filename="../../src/popupwindow.ui" line="96"/>
         <source>Swap languages</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamiana języków</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="182"/>
         <source>Play / pause source text</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj / zatrzymaj słuchanie tekstu  źródłowego</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="185"/>
         <location filename="../../src/popupwindow.ui" line="274"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="199"/>
         <source>Stop source playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj słuchanie tekstu źródłowego</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="202"/>
         <location filename="../../src/popupwindow.ui" line="291"/>
         <source>Stop</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="213"/>
         <source>Copy source text to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj tekst źródłowy do schowka</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="216"/>
         <location filename="../../src/popupwindow.ui" line="319"/>
         <source>Copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="271"/>
         <source>Play / pause translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj / zatrzymaj słuchanie tłumaczenia</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="288"/>
         <source>Stop translation playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj słuchanie tłumaczenia</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="302"/>
         <source>Copy all translation data to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj wszystkie dane tłumaczenia do schowka</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="305"/>
         <source>Copy all</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj wszystko</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="316"/>
         <source>Copy translation to the clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj tłumaczenie do schowka</translation>
     </message>
 </context>
 <context>
@@ -265,7 +265,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="685"/>
         <source>Automatically detect</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczna detekcja</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="687"/>
@@ -915,12 +915,12 @@
         <location filename="../../src/settingsdialog.ui" line="55"/>
         <location filename="../../src/settingsdialog.ui" line="123"/>
         <source>General</source>
-        <translation type="unfinished">Ogólne</translation>
+        <translation>Ogólne</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="64"/>
         <source>Interface</source>
-        <translation type="unfinished">Wygląd</translation>
+        <translation>Wygląd</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="73"/>
@@ -933,12 +933,12 @@
         <location filename="../../src/settingsdialog.ui" line="82"/>
         <location filename="../../src/settingsdialog.ui" line="812"/>
         <source>Speech synthesis</source>
-        <translation type="unfinished">Synteza mowy</translation>
+        <translation>Synteza mowy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="91"/>
         <source>Connection</source>
-        <translation type="unfinished">Połączenie</translation>
+        <translation>Połączenie</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="100"/>
@@ -948,37 +948,37 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="109"/>
         <source>About</source>
-        <translation type="unfinished">O programie</translation>
+        <translation>O programie</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="131"/>
         <source>Translation mode of the selected text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sposób pokazywania tłumaczeń zaznaczonego tekstu:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="139"/>
         <location filename="../../src/settingsdialog.ui" line="268"/>
         <source>Pop-up window</source>
-        <translation type="unfinished"></translation>
+        <translation>Okno pop-up</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="144"/>
         <location filename="../../src/settingsdialog.ui" line="452"/>
         <location filename="../../src/settingsdialog.ui" line="1276"/>
         <source>Main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Główne okno</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="175"/>
         <source>Language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Język:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="183"/>
         <location filename="../../src/settingsdialog.cpp" line="56"/>
         <location filename="../../src/settingsdialog.cpp" line="57"/>
         <source>&lt;System language&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;Ustawienia systemowe&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="224"/>
@@ -993,17 +993,17 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="241"/>
         <source>Launch at startup</source>
-        <translation type="unfinished"></translation>
+        <translation>Uruchom przy starcie</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="276"/>
         <source>Opacity:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przeźroczystość:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="310"/>
         <source>Height:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wysokość:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="331"/>
@@ -1014,7 +1014,7 @@
         <location filename="../../src/settingsdialog.ui" line="345"/>
         <location filename="../../src/settingsdialog.ui" line="460"/>
         <source>Language buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przyciski języków:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="353"/>
@@ -1022,7 +1022,7 @@
         <location filename="../../src/settingsdialog.ui" line="468"/>
         <location filename="../../src/settingsdialog.ui" line="521"/>
         <source>Icon only</source>
-        <translation type="unfinished"></translation>
+        <translation>Tylko ikony</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="358"/>
@@ -1038,7 +1038,7 @@
         <location filename="../../src/settingsdialog.ui" line="478"/>
         <location filename="../../src/settingsdialog.ui" line="531"/>
         <source>Text beside icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst za ikoną</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="368"/>
@@ -1054,13 +1054,13 @@
         <location filename="../../src/settingsdialog.ui" line="488"/>
         <location filename="../../src/settingsdialog.ui" line="541"/>
         <source>Follow system style</source>
-        <translation type="unfinished"></translation>
+        <translation>Styl systemowy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="398"/>
         <location filename="../../src/settingsdialog.ui" line="513"/>
         <source>Control buttons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Przyciski sterujące:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="567"/>
@@ -1070,7 +1070,7 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="575"/>
         <source>Icon:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikona:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="583"/>
@@ -1080,47 +1080,47 @@
         <location filename="../../src/settingsdialog.cpp" line="380"/>
         <location filename="../../src/settingsdialog.cpp" line="421"/>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Domyślna</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="592"/>
         <source>Monochrome (dark theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monochrome (ciemny motyw)</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="601"/>
         <source>Monochrome (light theme)</source>
-        <translation type="unfinished"></translation>
+        <translation>Monochrome (jasny motyw)</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="610"/>
         <source>Custom</source>
-        <translation type="unfinished"></translation>
+        <translation>Własna</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="642"/>
         <source>Custom:</source>
-        <translation type="unfinished"></translation>
+        <translation>Własna:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="732"/>
         <source>Automatic language detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Automatyczna detekcja języka</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="740"/>
         <source>Primary language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Główny język:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="767"/>
         <source>Secondary language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dodatkowy język:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="820"/>
         <source>Select engine to configure:</source>
-        <translation type="unfinished"></translation>
+        <translation>Wybierz silnik do skonfigurowania:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="391"/>
@@ -1155,22 +1155,22 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="917"/>
         <source>Emotional connotation:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zabarwienie emocjonalne:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="401"/>
         <source>Neutral</source>
-        <translation type="unfinished"></translation>
+        <translation>Neutralne</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="402"/>
         <source>Good</source>
-        <translation type="unfinished"></translation>
+        <translation>Dobre</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="403"/>
         <source>Evil</source>
-        <translation type="unfinished"></translation>
+        <translation>Złe</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="694"/>
@@ -1205,22 +1205,22 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="953"/>
         <source>This is an example of speech synthesis.</source>
-        <translation type="unfinished"></translation>
+        <translation>W Strzebrzeszynie chrząszcz brzmi w trzcinie.</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="956"/>
         <source>Test voice</source>
-        <translation type="unfinished"></translation>
+        <translation>Test głosu</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="963"/>
         <source>Play</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="996"/>
         <source>Proxy server</source>
-        <translation type="unfinished"></translation>
+        <translation>Serwer proxy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1004"/>
@@ -1235,27 +1235,27 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1022"/>
         <source>Don&apos;t use a proxy</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie używaj proxy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1055"/>
         <source>Host:</source>
-        <translation type="unfinished"></translation>
+        <translation>Host:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1075"/>
         <source>Port:</source>
-        <translation type="unfinished"></translation>
+        <translation>Port:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1103"/>
         <source>Info: the proxy works only for text translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Info: proxy używane tylko do tłumaczenia tekstu</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1113"/>
         <source>Authentication</source>
-        <translation type="unfinished"></translation>
+        <translation>Autentykacja</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1125"/>
@@ -1265,17 +1265,17 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1142"/>
         <source>Password:</source>
-        <translation type="unfinished"></translation>
+        <translation>Hasło:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1164"/>
         <source>Info: the password is saved unencrypted</source>
-        <translation type="unfinished"></translation>
+        <translation>Info: hasło jest zapisywany czystym tekstem</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1195"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>Opis</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1200"/>
@@ -1286,27 +1286,27 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1205"/>
         <source>Global</source>
-        <translation type="unfinished"></translation>
+        <translation>Globalne</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1218"/>
         <source>Translate selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Przetłumacz zaznaczony tekst</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1230"/>
         <source>Play selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Odsłuchaj zaznaczony tekst</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1239"/>
         <source>Play translation of selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Odsłuchaj tłumaczenie zaznaczonego tekstu</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1248"/>
         <source>Stop playing selected text</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj odsłuch zaznaczonego tekstu</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1257"/>
@@ -1316,7 +1316,7 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1266"/>
         <source>Translate selected text and copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Tłumacz zaznaczony tekst i skopij do schowka</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1295"/>
@@ -1326,34 +1326,34 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1304"/>
         <source>Close window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij okno</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1313"/>
         <source>Source text</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst źródłowy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1323"/>
         <location filename="../../src/settingsdialog.ui" line="1358"/>
         <source>Play / pause</source>
-        <translation type="unfinished"></translation>
+        <translation>Słuchaj / zatrzymaj</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1335"/>
         <location filename="../../src/settingsdialog.ui" line="1370"/>
         <source>Stop playback</source>
-        <translation type="unfinished"></translation>
+        <translation>Zatrzymaj</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1382"/>
         <source>Copy to clipboard</source>
-        <translation type="unfinished"></translation>
+        <translation>Kopiuj do schowka</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1401"/>
         <source>Reset all to default</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetuj wszystko do ustawień domyślnych</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1404"/>
@@ -1363,24 +1363,24 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1435"/>
         <source>Key sequence:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kombinacja klawiszy:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1445"/>
         <location filename="../../src/settingsdialog.ui" line="1448"/>
         <source>Accept</source>
-        <translation type="unfinished"></translation>
+        <translation>Akceptuj</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1459"/>
         <location filename="../../src/settingsdialog.ui" line="1462"/>
         <source>Clear</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyczyść</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1473"/>
         <source>Reset to default</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetuj do domyślnych</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1476"/>
@@ -1400,72 +1400,72 @@
     <message>
         <location filename="../../src/settingsdialog.ui" line="1595"/>
         <source>Country:</source>
-        <translation type="unfinished"></translation>
+        <translation>Kraj:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1602"/>
         <source>License:</source>
-        <translation type="unfinished"></translation>
+        <translation>Licencja:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1609"/>
         <source>Flag icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikony flag:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1616"/>
         <source>Autor:</source>
-        <translation type="unfinished"></translation>
+        <translation>Autor:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.ui" line="1674"/>
         <source>Reset settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Resetuj ustawienia</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="82"/>
         <source>Interface icons:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ikony interfejsu:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="92"/>
         <source>Check for updates:</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzaj aktualizacje:</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="94"/>
         <source>Every day</source>
-        <translation type="unfinished"></translation>
+        <translation>Codziennie</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="95"/>
         <source>Every week</source>
-        <translation type="unfinished"></translation>
+        <translation>Co tydzień</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="96"/>
         <source>Every month</source>
-        <translation type="unfinished"></translation>
+        <translation>Co miesiąc</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="97"/>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Nigdy</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="99"/>
         <source>Check now</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź teraz</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="100"/>
         <source>Check for updates now</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdź teraz dostępność aktualizacji</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="193"/>
         <source>Happy New Year!</source>
-        <translation type="unfinished"></translation>
+        <translation>Szczęśliwego Nowego Roku!</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="354"/>
@@ -1475,27 +1475,27 @@
     <message>
         <location filename="../../src/settingsdialog.cpp" line="354"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
-        <translation type="unfinished"></translation>
+        <translation>Obrazki (*.png *.ico *.svg *.jpg);;Wszystkie pliki()</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="414"/>
         <source>Female</source>
-        <translation type="unfinished"></translation>
+        <translation>Kobieta</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="415"/>
         <source>Male</source>
-        <translation type="unfinished"></translation>
+        <translation>Mężczyzna</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="457"/>
         <source>Nothing to play</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie ma nic do odsłuchania</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="457"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished"></translation>
+        <translation>Tekst do odsłuchania jest pusty</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="480"/>
@@ -1505,7 +1505,7 @@
     <message>
         <location filename="../../src/settingsdialog.cpp" line="542"/>
         <source>Checking for updates...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sprawdzam dostepność aktualizacji...</translation>
     </message>
     <message>
         <location filename="../../src/settingsdialog.cpp" line="557"/>
@@ -1515,7 +1515,7 @@
     <message>
         <location filename="../../src/settingsdialog.cpp" line="561"/>
         <source>No updates available.</source>
-        <translation type="unfinished"></translation>
+        <translation>Brak dostępnych aktualizacji.</translation>
     </message>
 </context>
 <context>
@@ -1523,72 +1523,72 @@
     <message>
         <location filename="../../src/updaterwindow.ui" line="24"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dostępna jest nowa wersja Crow Translate! Aktualizacje najcześciej dodają funkcjonalności oraz zwiększają stabilność aplikacji.&lt;br/&gt;Możesz również pobrać nowe wydanie ręcznie, za pomocą &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;linku&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="51"/>
         <source>Cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>Anuluj pobieranie</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="54"/>
         <source>Cancel</source>
-        <translation type="unfinished">Anuluj</translation>
+        <translation>Anuluj</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="65"/>
         <source>Download the installer to the Downloads folder</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz instalator do katalogu pobierania</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="68"/>
         <source>Download</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobierz</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="78"/>
         <source>Exit the program and run the installer</source>
-        <translation type="unfinished"></translation>
+        <translation>Wyjdź z programu i uruchom instalator</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="81"/>
         <source>Install</source>
-        <translation type="unfinished"></translation>
+        <translation>Instaluj</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="101"/>
         <source>Close this window</source>
-        <translation type="unfinished"></translation>
+        <translation>Zamknij to okno</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.ui" line="104"/>
         <source>Update later</source>
-        <translation type="unfinished"></translation>
+        <translation>Aktualizuj później</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.cpp" line="51"/>
         <source>Current version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Zainstalowana wersja:</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.cpp" line="55"/>
         <source>Latest version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Dostepna wersja:</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.cpp" line="60"/>
         <source>Changelog:</source>
-        <translation type="unfinished"></translation>
+        <translation>Lista zmian:</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.cpp" line="115"/>
         <source>Downloading is complete</source>
-        <translation type="unfinished"></translation>
+        <translation>Pobieranie zakończone</translation>
     </message>
     <message>
         <location filename="../../src/updaterwindow.cpp" line="120"/>
         <source>Unable to write file</source>
-        <translation type="unfinished"></translation>
+        <translation>Nie można zapisać pliku</translation>
     </message>
 </context>
 </TS>
