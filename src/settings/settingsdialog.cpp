@@ -52,11 +52,12 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     // Set item data in comboboxes
     ui->localeComboBox->setItemData(0, QLocale::AnyLanguage);
     ui->localeComboBox->setItemData(1, QLocale::English);
-    ui->localeComboBox->setItemData(2, QLocale::Portuguese);
-    ui->localeComboBox->setItemData(3, QLocale::Russian);
-    ui->localeComboBox->setItemData(4, QLocale::Ukrainian);
-    ui->localeComboBox->setItemData(5, QLocale::Turkish);
-    ui->localeComboBox->setItemData(6, QLocale::Chinese);
+    ui->localeComboBox->setItemData(2, QLocale::Polish);
+    ui->localeComboBox->setItemData(3, QLocale::Portuguese);
+    ui->localeComboBox->setItemData(4, QLocale::Russian);
+    ui->localeComboBox->setItemData(5, QLocale::Ukrainian);
+    ui->localeComboBox->setItemData(6, QLocale::Turkish);
+    ui->localeComboBox->setItemData(7, QLocale::Chinese);
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
