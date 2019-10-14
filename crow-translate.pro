@@ -133,6 +133,8 @@ unix {
     icon64.files = dist/unix/generic/hicolor/64x64/apps/crow-translate.png
     icon72.path = /usr/share/icons/hicolor/72x72/apps/
     icon72.files = dist/unix/generic/hicolor/72x72/apps/crow-translate.png
+    icon96.path = /usr/share/icons/hicolor/96x96/apps/
+    icon96.files = dist/unix/generic/hicolor/96x96/apps/crow-translate.png
     icon128.path = /usr/share/icons/hicolor/128x128/apps/
     icon128.files = dist/unix/generic/hicolor/128x128/apps/crow-translate.png
     icon192.path = /usr/share/icons/hicolor/192x192/apps/
@@ -159,6 +161,8 @@ unix {
     statusIcons64.files = dist/unix/generic/hicolor/64x64/status/*
     statusIcons72.path = /usr/share/icons/hicolor/72x72/status/
     statusIcons72.files = dist/unix/generic/hicolor/72x72/status/*
+    statusIcons96.path = /usr/share/icons/hicolor/96x96/status/
+    statusIcons96.files = dist/unix/generic/hicolor/96x96/status/*
     statusIcons128.path = /usr/share/icons/hicolor/128x128/status/
     statusIcons128.files = dist/unix/generic/hicolor/128x128/status/*
     statusIcons192.path = /usr/share/icons/hicolor/192x192/status/
@@ -179,6 +183,7 @@ unix {
         icon48 \
         icon64 \
         icon72 \
+        icon96 \
         icon128 \
         icon192 \
         icon256 \
@@ -191,6 +196,7 @@ unix {
         statusIcons48 \
         statusIcons64 \
         statusIcons72 \
+        statusIcons96 \
         statusIcons128 \
         statusIcons192 \
         statusIcons256 \
