@@ -27,6 +27,7 @@
 class QGitTag;
 class QNetworkAccessManager;
 class QNetworkReply;
+class QFile;
 
 namespace Ui {
 class UpdaterDialog;
@@ -46,7 +47,8 @@ private slots:
     void cancelDownload();
     void install();
 
-    void parseReply();
+    void showDownloadStatus();
+    void saveDownloadedData();
 
 private:
     void setStatus(const QString &errorString, bool success);
@@ -54,6 +56,7 @@ private:
     Ui::UpdaterDialog *ui;
     QNetworkAccessManager *m_network;
     QNetworkReply *m_reply;
+    QFile *m_installerFile;
 
     QUrl m_downloadUrl;
     QString m_downloadPath;

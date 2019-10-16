@@ -36,6 +36,7 @@ UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent) :
 {
     ui->setupUi(this);
 
+    m_installerFile = new QFile(this);
     m_network = new QNetworkAccessManager(this);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
     m_network->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
@@ -81,6 +82,13 @@ void UpdaterDialog::download()
     ui->downloadBar->setVisible(true);
     ui->cancelDownloadButton->setVisible(true);
 
+    // Prepere downloading file
+    m_installerFile->setFileName(m_downloadPath);
+    if (!m_installerFile->open(QFile::WriteOnly)) {
+        setStatus(tr("Unable to write file"), false);
+        return;
+    }
+
     // Send request
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
     m_reply = m_network->get(QNetworkRequest(m_downloadUrl));
@@ -90,7 +98,8 @@ void UpdaterDialog::download()
     m_reply = m_network->get(request);
 #endif
 
-    connect(m_reply, &QNetworkReply::finished, this, &UpdaterDialog::parseReply);
+    connect(m_reply, &QNetworkReply::readyRead, this, &UpdaterDialog::saveDownloadedData);
+    connect(m_reply, &QNetworkReply::finished, this, &UpdaterDialog::showDownloadStatus);
     connect(m_reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
         if (bytesTotal != 0) // May be 0 on error
             ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
@@ -111,24 +120,21 @@ void UpdaterDialog::install()
     SingleApplication::exit();
 }
 
-void UpdaterDialog::parseReply()
+void UpdaterDialog::showDownloadStatus()
 {
+    m_installerFile->close();
     m_reply->deleteLater();
-
     if (m_reply->error()) {
         setStatus(m_reply->errorString(), false);
         return;
     }
 
-    QFile installer(m_downloadPath);
-    if (!installer.open(QFile::WriteOnly)) {
-        setStatus(tr("Unable to write file"), false);
-        return;
-    }
-
-    // Save file
-    installer.write(m_reply->readAll());
     setStatus(tr("Downloading is complete"), true);
+}
+
+void UpdaterDialog::saveDownloadedData()
+{
+    m_installerFile->write(m_reply->readAll());
 }
 
 void UpdaterDialog::setStatus(const QString &errorString, bool success)
