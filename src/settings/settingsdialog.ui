@@ -194,7 +194,7 @@
               </property>
               <property name="icon">
                <iconset resource="../../data/resources.qrc">
-                <normaloff>:/icons/flags/pt.svg</normaloff>:/icons/flags/pt.svg</iconset>
+                <normaloff>:/icons/flags/br.svg</normaloff>:/icons/flags/br.svg</iconset>
               </property>
              </item>
              <item>
