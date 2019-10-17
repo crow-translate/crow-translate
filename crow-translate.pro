@@ -142,7 +142,7 @@ unix {
     icon256.path = /usr/share/icons/hicolor/256x256/apps/
     icon256.files = dist/unix/generic/hicolor/256x256/apps/crow-translate.png
     iconScalable.path = /usr/share/icons/hicolor/scalable/apps/
-    iconScalable.files = dist/unix/generic/hicolor/scalable/apps/crow-translate.png
+    iconScalable.files = dist/unix/generic/hicolor/scalable/apps/crow-translate.svg
 
     # Status icons
     statusIcons16.path = /usr/share/icons/hicolor/16x16/status/
