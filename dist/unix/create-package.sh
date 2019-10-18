@@ -26,7 +26,7 @@ case $ID in
         ;;
     "ubuntu" | "linuxmint" | "elementary" | "debian" | "devuan" )
         echo "Installing dependencies..."
-        sudo apt install devscripts qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools
+        sudo apt install debhelper devscripts qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools
         
         cd ../..
         cp -r dist/unix/apt debian
