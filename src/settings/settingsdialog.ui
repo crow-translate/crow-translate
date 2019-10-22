@@ -1312,7 +1312,7 @@
            <item row="8" column="1">
             <widget class="QLabel" name="mailLabel">
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:sledgehammer999@qbittorrent.org&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
