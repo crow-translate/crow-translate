@@ -22,7 +22,7 @@
   Unicode true
 
   ;Default installation folder
-  InstallDir "$PROGRAMFILES\Crow Translate"
+  InstallDir "$PROGRAMFILES64\Crow Translate"
   
   ;Get installation folder from registry if available
   InstallDirRegKey HKCU "Software\Crow\Crow Translate" ""
