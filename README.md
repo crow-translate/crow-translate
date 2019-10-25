@@ -115,6 +115,7 @@ This project uses the following third-party libraries:
 
 -   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
 -   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
+-   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - Сreate a taskbar/launcher progress and more, for all desktop platforms.
 -   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
 
 Therefore, if you want to clone this project, you need to use the `--recursive` option: 
