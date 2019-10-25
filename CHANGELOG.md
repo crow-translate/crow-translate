@@ -6,7 +6,16 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.2...HEAD)
 
-_No unreleased changes yet_
+**Added**
+
+-   Polish localization.
+
+**Changed**
+
+-   Fix wrong names in errors.
+-   Fix email address link in the About section.
+-   Use Brazil flag instead of Portugal.
+-   Windows: Save application installer to disk by blocks.
 
 ## [2.2.2](https://github.com/crow-translate/crow-translate/tree/2.2.2) (2019-10-11)
 
