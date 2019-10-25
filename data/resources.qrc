@@ -102,5 +102,6 @@
         <file>icons/flags/lt.svg</file>
         <file>translations/crow_pl.qm</file>
         <file>icons/flags/br.svg</file>
+        <file>translations/crow_fr_FR.qm</file>
     </qresource>
 </RCC>

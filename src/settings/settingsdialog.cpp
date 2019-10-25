@@ -50,14 +50,15 @@ SettingsDialog::SettingsDialog(QWidget *parent) :
     connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 
     // Set item data in comboboxes
-    ui->localeComboBox->setItemData(0, QLocale::AnyLanguage);
-    ui->localeComboBox->setItemData(1, QLocale::English);
-    ui->localeComboBox->setItemData(2, QLocale::Polish);
-    ui->localeComboBox->setItemData(3, QLocale::Portuguese);
-    ui->localeComboBox->setItemData(4, QLocale::Russian);
-    ui->localeComboBox->setItemData(5, QLocale::Ukrainian);
-    ui->localeComboBox->setItemData(6, QLocale::Turkish);
-    ui->localeComboBox->setItemData(7, QLocale::Chinese);
+    ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), QStringLiteral("English"), QLocale::English);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português (Brasil)"), QLocale::Portuguese);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türk"), QLocale::Turkish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), QStringLiteral("Русский"), QLocale::Russian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), QStringLiteral("Українська"), QLocale::Ukrainian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("简体中文 (中国)"), QLocale::Chinese);
 
     ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
