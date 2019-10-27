@@ -9,10 +9,8 @@ jobs:
     - name: Clone repo
       uses: actions/checkout@v1
       with:
-        fetch-depth: 1
-
-    - name: Init submodules
-      run: git submodule update --init --recursive
+        submodules: recursive
+        fetch-depth: 5
 
     - name: Build
       uses: docker://shatur95/crow-translate:ubuntu-18.04
@@ -29,10 +27,8 @@ jobs:
     - name: Clone repo
       uses: actions/checkout@v1
       with:
-        fetch-depth: 1
-
-    - name: Init submodules
-      run: git submodule update --init --recursive
+        submodules: recursive
+        fetch-depth: 5
 
     - name: Build
       run: |
