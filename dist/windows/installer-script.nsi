@@ -28,7 +28,7 @@
   InstallDirRegKey HKCU "Software\Crow\Crow Translate" ""
 
   ;Request application privileges
-  RequestExecutionLevel user
+  RequestExecutionLevel admin
   
   ;Set compressor
   SetCompressor /SOLID lzma
