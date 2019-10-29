@@ -1,7 +1,15 @@
 name: Main
-
-on: [push]
-
+on: 
+  push:
+    paths-ignore:
+    - 'dist/**'
+    - '*.md'
+    - '.gitignore'
+  pull_request:
+    paths-ignore:
+    - 'dist/**'
+    - '*.md'
+    - '.gitignore'
 jobs:
   Linux:
     runs-on: ubuntu-18.04
