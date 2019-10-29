@@ -1,10 +1,10 @@
 # ![Crow Translate logo](./dist/unix/generic/hicolor/72x72/apps/crow-translate.png) Crow Translate
 
-[![GitHub (pre-)release](https://img.shields.io/github/release/Shatur95/CrowTranslate/all.svg)](https://github.com/Shatur95/CrowTranslate/releases)
-[![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/Shatur95/crow-translate/dashboard)
+[![GitHub (pre-)release](https://img.shields.io/github/release/crow-translate/crow-translate/all.svg)](https://github.com/crow-translate/crow-translate/releases)
+[![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
-You may also be interested in my library [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project. 
+You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project. 
 
 ## Content
 
@@ -113,7 +113,7 @@ The program also has a console interface.
 
 This project uses the following third-party libraries:
 
--   [QOnlineTranslator](https://github.com/Shatur95/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
+-   [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
 -   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
 -   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - Сreate a taskbar/launcher progress and more, for all desktop platforms.
 -   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
@@ -121,13 +121,13 @@ This project uses the following third-party libraries:
 Therefore, if you want to clone this project, you need to use the `--recursive` option: 
 
 ```bash
-git clone --recursive git@github.com:Shatur95/CrowTranslate.git
+git clone --recursive git@github.com:crow-translate/crow-translate.git
 ```
 
 or you can initialize these modules later:
 
 ```bash
-git clone git@github.com:Shatur95/CrowTranslate.git
+git clone git@github.com:crow-translate/crow-translate.git
 git submodule init
 git submodule update
 ```
@@ -140,7 +140,7 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 ## Installation
 
-To install a stable version, go to the [releases](https://github.com/Shatur95/CrowTranslate/releases) page. The instructions below will help you install Crow Translate with the latest commits.
+To install a stable version, go to the [releases](https://github.com/crow-translate/crow-translate/releases) page. The instructions below will help you install Crow Translate with the latest commits.
 
 ### Pacman-based (Arch Linux, Manjaro, Chakra etc.)
 
