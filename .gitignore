@@ -4,9 +4,6 @@
 # Qt Creator project settings
 *.user*
 
-# Compiled translations
-*.qm
-
 # NSIS release
 dist/windows/release
 dist/windows/crow-translate-*.exe

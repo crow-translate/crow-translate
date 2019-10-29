@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>translations/crow_ru.qm</file>
         <file>icons/flags/th.svg</file>
         <file>icons/flags/tr.svg</file>
         <file>icons/flags/es.svg</file>
@@ -44,10 +43,6 @@
         <file>icons/flags/tlh.svg</file>
         <file>icons/flags/to.svg</file>
         <file>icons/engines/bing.svg</file>
-        <file>translations/crow_zh_CN.qm</file>
-        <file>translations/crow_pt_BR.qm</file>
-        <file>translations/crow_uk.qm</file>
-        <file>translations/crow_tr.qm</file>
         <file>icons/flags/ad.svg</file>
         <file>icons/flags/al.svg</file>
         <file>icons/flags/aw.svg</file>
@@ -100,8 +95,6 @@
         <file>icons/flags/zw.svg</file>
         <file>icons/flags/ru.svg</file>
         <file>icons/flags/lt.svg</file>
-        <file>translations/crow_pl.qm</file>
         <file>icons/flags/br.svg</file>
-        <file>translations/crow_fr_FR.qm</file>
     </qresource>
 </RCC>

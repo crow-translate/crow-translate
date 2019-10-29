@@ -9,6 +9,7 @@ TEMPLATE = app
 VERSION = 2.2.2
 INCLUDEPATH = src
 QT += core gui widgets dbus
+CONFIG += lrelease embed_translations
 
 # Windows specific stuff
 QMAKE_TARGET_COMPANY = Hennadii Chernyshchyk
@@ -105,9 +106,6 @@ TRANSLATIONS += \
     data/translations/crow_tr.ts \
     data/translations/crow_uk.ts \
     data/translations/crow_zh_CN.ts
-
-# Compile translations
-system(lrelease crow-translate.pro) | error("Failed to run lrelease")
 
 # Make install
 unix {

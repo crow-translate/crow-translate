@@ -66,7 +66,7 @@ void AppSettings::loadLocale(QLocale::Language lang)
     else
         QLocale::setDefault(QLocale(lang));
 
-    m_appTranslator.load(QLocale(), "crow", "_", ":/translations");
+    m_appTranslator.load(QLocale(), "crow", "_", ":/i18n");
     m_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
