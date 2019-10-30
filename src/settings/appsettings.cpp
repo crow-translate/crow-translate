@@ -39,7 +39,7 @@ AppSettings::AppSettings(QObject *parent) :
 {
 }
 
-void AppSettings::setupLocale()
+void AppSettings::setupLocale() const
 {
     loadLocale(locale());
     SingleApplication::installTranslator(&m_appTranslator);
@@ -59,7 +59,7 @@ void AppSettings::setLocale(QLocale::Language lang)
     }
 }
 
-void AppSettings::loadLocale(QLocale::Language lang)
+void AppSettings::loadLocale(QLocale::Language lang) const
 {
     if (lang == QLocale::AnyLanguage)
         QLocale::setDefault(QLocale::system());

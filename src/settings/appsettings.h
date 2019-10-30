@@ -55,10 +55,10 @@ public:
     AppSettings(QObject *parent = nullptr);
 
     // General settings
-    void setupLocale();
+    void setupLocale() const;
     QLocale::Language locale() const;
     void setLocale(QLocale::Language lang);
-    void loadLocale(QLocale::Language lang);
+    void loadLocale(QLocale::Language lang) const;
     static QLocale::Language defaultLocale();
 
     WindowMode windowMode() const;

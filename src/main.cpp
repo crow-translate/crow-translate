@@ -46,7 +46,7 @@ int launchGui(int argc, char *argv[])
     QIcon::setThemeName("Papirus");
 #endif
 
-    AppSettings settings;
+    const AppSettings settings;
     settings.setupLocale();
 
     MainWindow window(settings);
@@ -58,7 +58,7 @@ int launchCli(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    AppSettings settings;
+    const AppSettings settings;
     settings.setupLocale();
 
     Cli cli;
