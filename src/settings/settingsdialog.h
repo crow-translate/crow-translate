@@ -29,6 +29,9 @@ class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;
 class ShortcutItem;
+#ifndef DISABLE_PORTABLE
+class QCheckBox;
+#endif
 #ifdef Q_OS_WIN
 class QComboBox;
 class QPushButton;
@@ -87,6 +90,10 @@ private:
 
     // Test voice
     QOnlineTranslator *m_translator;
+
+#ifndef DISABLE_PORTABLE
+    QCheckBox *m_portableCheckbox;
+#endif
 
 #ifdef Q_OS_WIN
     // Check for updates box stuff

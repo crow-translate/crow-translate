@@ -26,12 +26,13 @@
 #include "langbuttongroup.h"
 #include "trayicon.h"
 
-#include <QSettings>
 #include <QLocale>
 #include <QNetworkProxy>
 #include <QTranslator>
 
-class AppSettings : public QSettings
+class QSettings;
+
+class AppSettings : public QObject
 {
     Q_OBJECT
     Q_DISABLE_COPY(AppSettings)
@@ -76,6 +77,12 @@ public:
     bool isAutostartEnabled() const;
     void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
+
+#ifndef DISABLE_PORTABLE
+    bool isPortableModeEnabled() const;
+    static void setPortableModeEnabled(bool enabled);
+    static QString portableConfigName();
+#endif
 
 #ifdef Q_OS_WIN
     Interval checkForUpdatesInterval() const;
@@ -260,8 +267,13 @@ public:
     void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
 
 private:
+    QSettings *m_settings;
+
     static QTranslator m_appTranslator;
     static QTranslator m_qtTranslator; // Qt library translations
+#ifndef DISABLE_PORTABLE
+    const static QString s_portableConfigName;
+#endif
 };
 
 #endif // APPSETTINGS_H

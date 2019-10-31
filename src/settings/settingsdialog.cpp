@@ -35,14 +35,22 @@
 #include <QMessageBox>
 #include <QDate>
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::SettingsDialog)
+SettingsDialog::SettingsDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::SettingsDialog)
+#ifndef DISABLE_PORTABLE
+    , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
+#endif
 {
     ui->setupUi(this);
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
     ui->versionLabel->setText(SingleApplication::applicationVersion());
+
+#ifndef DISABLE_PORTABLE
+    m_portableCheckbox->setToolTip(tr("Use %1 from the application folder to store settings").arg(AppSettings::portableConfigName()));
+    ui->generalGroupBox->layout()->addWidget(m_portableCheckbox);
+#endif
 
     // Test voice
     m_translator = new QOnlineTranslator(this);
@@ -148,6 +156,11 @@ SettingsDialog::~SettingsDialog()
 void SettingsDialog::accept()
 {
     QDialog::accept();
+
+    // Set settings location first
+#ifndef DISABLE_PORTABLE
+    AppSettings::setPortableModeEnabled(m_portableCheckbox->isChecked());
+#endif
 
     // General settings
     AppSettings settings;
@@ -461,12 +474,15 @@ void SettingsDialog::loadSettings()
     const AppSettings settings;
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
-#ifdef Q_OS_WIN
-    m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
-#endif
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
     ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
+#ifndef DISABLE_PORTABLE
+    m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
+#endif
+#ifdef Q_OS_WIN
+    m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
+#endif
 
     // Interface settings
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
