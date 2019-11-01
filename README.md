@@ -173,6 +173,12 @@ make clean
 
 You will then get a binary named `crow`.
 
+### Build parameters
+
+-	`DISABLE_PORTABLE` - By default, if you create the file `settings.ini` in the app folder and Crow will store the configuration in it. You can also open settings and enable "Portable mode" - the application will create this file automatically. This option disables this functionality (may be useful for Linux distributions).
+
+Build parameters are passed at the qmake stage: `qmake "DEFINES += DISABLE_PORTABLE"`.
+
 ## Localization
 
 To help with localization you can use [Transifex](https://www.transifex.com/crow-translate/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, make a request on the Transifex page or copy `data/translations/crow.ts` to `data/translations/crow_<ISO 639-1 language code>.ts`, translate it and send a pull request.
