@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -321,7 +319,7 @@
     <message>
         <location filename="../../src/qgittag/src/qgittag.cpp" line="147"/>
         <source>Release number %1 is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 sürüm numarası eksik</translation>
     </message>
 </context>
 <context>
@@ -976,12 +974,12 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="45"/>
         <source>Selected engine %1 does not support voice settings</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 seçili motor ses ayarlarını desteklemiyor</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="50"/>
         <source>Selected engine %1 does not support emotion settings</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 seçili motoru, duygu ayarlarını desteklemiyor</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
@@ -991,17 +989,17 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
         <source>Selected language %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 seçili dil %2 için desteklenmiyor</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
         <source>Selected voice %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 seçili ses %2 için desteklenmiyor</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
         <source>Selected emotion %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 seçili duygu %2 için desteklenmiyor</translation>
     </message>
 </context>
 <context>
@@ -1325,17 +1323,17 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="687"/>
         <source>Automatic language detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Otomatik dil algılama</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="706"/>
         <source>Primary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Birincil çeviri dili:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="713"/>
         <source>Secondary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>İkincil çeviri dili:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="727"/>
@@ -1460,12 +1458,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="734"/>
         <source>Force detection of source language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation>Pencere olmadan kullanıldığında kaynak dilin algılanmasını zorla</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="741"/>
         <source>Force detection of translation language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation>Penceresiz kullanıldığında çeviri dilinin algılanmasını zorla</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="818"/>
@@ -1610,12 +1608,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="42"/>
         <source>Portable mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Taşınabilir kip</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="51"/>
         <source>Use %1 from the application folder to store settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayarları saklamak için uygulama klasöründen %1 kullan</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="102"/>
