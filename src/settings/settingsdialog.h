@@ -29,7 +29,7 @@ class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;
 class ShortcutItem;
-#ifndef DISABLE_PORTABLE
+#ifdef PORTABLE_MODE
 class QCheckBox;
 #endif
 #ifdef Q_OS_WIN
@@ -91,7 +91,7 @@ private:
     // Test voice
     QOnlineTranslator *m_translator;
 
-#ifndef DISABLE_PORTABLE
+#ifdef PORTABLE_MODE
     QCheckBox *m_portableCheckbox;
 #endif
 
