@@ -21,9 +21,9 @@
 #include "languagedetectedtransition.h"
 #include "langbuttongroup.h"
 
-LanguageDetectedTransition::LanguageDetectedTransition(LangButtonGroup *group, QState *sourceState) :
-    QAbstractTransition(sourceState),
-    m_group(group)
+LanguageDetectedTransition::LanguageDetectedTransition(LangButtonGroup *group, QState *sourceState)
+    : QAbstractTransition(sourceState)
+    , m_group(group)
 {
 }
 

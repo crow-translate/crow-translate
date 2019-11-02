@@ -78,7 +78,7 @@ private:
     QOnlineTts::Voice m_yandexVoice = QOnlineTts::NoVoice;
     QOnlineTts::Emotion m_yandexEmotion = QOnlineTts::NoEmotion;
 
-    static QMediaPlayer *currentlyPlaying;
+    static QMediaPlayer *s_currentlyPlaying;
 };
 
 #endif // PLAYERBUTTONS_H

@@ -28,8 +28,8 @@
 
 #include <QLocale>
 #include <QNetworkProxy>
-#include <QTranslator>
 
+class QTranslator;
 class QSettings;
 
 class AppSettings : public QObject
@@ -269,10 +269,10 @@ public:
 private:
     QSettings *m_settings;
 
-    static QTranslator m_appTranslator;
-    static QTranslator m_qtTranslator; // Qt library translations
+    static QTranslator s_appTranslator;
+    static QTranslator s_qtTranslator; // Qt library translations
 #ifdef PORTABLE_MODE
-    const static QString s_portableConfigName;
+    static const QString s_portableConfigName;
 #endif
 };
 

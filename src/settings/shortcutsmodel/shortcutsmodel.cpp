@@ -27,8 +27,8 @@
 #include <QMetaEnum>
 #include <QFont>
 
-ShortcutsModel::ShortcutsModel(QObject *parent) :
-    QAbstractItemModel(parent)
+ShortcutsModel::ShortcutsModel(QObject *parent)
+    : QAbstractItemModel(parent)
 {
 }
 

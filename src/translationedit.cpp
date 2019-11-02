@@ -20,8 +20,8 @@
 
 #include "translationedit.h"
 
-TranslationEdit::TranslationEdit(QWidget *parent) :
-    QTextEdit(parent)
+TranslationEdit::TranslationEdit(QWidget *parent)
+    : QTextEdit(parent)
 {
 }
 

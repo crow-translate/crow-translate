@@ -23,8 +23,8 @@
 
 #include <QHeaderView>
 
-ShortcutsView::ShortcutsView(QWidget *parent) :
-    QTreeView(parent)
+ShortcutsView::ShortcutsView(QWidget *parent)
+    : QTreeView(parent)
 {
     setModel(new ShortcutsModel(this));
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);

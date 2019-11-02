@@ -28,6 +28,7 @@
 #include <QMetaEnum>
 #include <QKeySequence>
 #include <QSettings>
+#include <QTranslator>
 #ifdef Q_OS_WIN
 #include <QDir>
 #endif
@@ -36,8 +37,8 @@
 const QString AppSettings::s_portableConfigName = QStringLiteral("settings.ini");
 #endif
 
-QTranslator AppSettings::m_appTranslator;
-QTranslator AppSettings::m_qtTranslator;
+QTranslator AppSettings::s_appTranslator;
+QTranslator AppSettings::s_qtTranslator;
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
@@ -54,8 +55,8 @@ AppSettings::AppSettings(QObject *parent)
 void AppSettings::setupLocale() const
 {
     loadLocale(locale());
-    SingleApplication::installTranslator(&m_appTranslator);
-    SingleApplication::installTranslator(&m_qtTranslator);
+    SingleApplication::installTranslator(&s_appTranslator);
+    SingleApplication::installTranslator(&s_qtTranslator);
 }
 
 QLocale::Language AppSettings::locale() const
@@ -78,8 +79,8 @@ void AppSettings::loadLocale(QLocale::Language lang) const
     else
         QLocale::setDefault(QLocale(lang));
 
-    m_appTranslator.load(QLocale(), "crow", "_", ":/i18n");
-    m_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    s_appTranslator.load(QLocale(), "crow", "_", ":/i18n");
+    s_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
 QLocale::Language AppSettings::defaultLocale()
@@ -150,7 +151,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
     if (enabled) {
         // Create autorun file
         if (!autorunFile.exists()) {
-            constexpr char desktopFileName[] = "/usr/share/applications/crow-translate.desktop";
+            const QString desktopFileName = QStringLiteral("/usr/share/applications/crow-translate.desktop");
 
             if (!QFile::copy(desktopFileName, autorunFile.fileName()))
                 qCritical() << tr("Unable to create autorun file from %1").arg(desktopFileName);

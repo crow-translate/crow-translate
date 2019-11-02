@@ -22,12 +22,10 @@
 
 #include <QTimer>
 
-constexpr int delay = 500;
-
-SourceTextEdit::SourceTextEdit(QWidget *parent) :
-    QPlainTextEdit(parent)
+SourceTextEdit::SourceTextEdit(QWidget *parent)
+    : QPlainTextEdit(parent)
+    , m_textEditedTimer(new QTimer(this))
 {
-    m_textEditedTimer = new QTimer(this);
     m_textEditedTimer->setSingleShot(true);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
     m_textEditedTimer->callOnTimeout(this, &SourceTextEdit::sourceChanged);
@@ -69,7 +67,7 @@ void SourceTextEdit::stopChangedTimer()
 
 void SourceTextEdit::startTimerDelay()
 {
-    m_textEditedTimer->start(delay);
+    m_textEditedTimer->start(s_delay);
 }
 
 void SourceTextEdit::checkSourceEmptyChanged()

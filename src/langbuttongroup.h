@@ -70,9 +70,11 @@ private slots:
     void processButtonToggled(int id, bool checked);
 
 private:
-    QButtonGroup *m_group;
     GroupType m_type;
     int m_previousCheckedId = 0;
+    QButtonGroup *m_group;
+
+    static constexpr char s_languageProperty[] = "Language";
 };
 
 #endif // LANGBUTTONGROUP_H

@@ -38,6 +38,7 @@
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
+    , m_translator(new QOnlineTranslator(this))
 #ifdef PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
@@ -53,7 +54,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 #endif
 
     // Test voice
-    m_translator = new QOnlineTranslator(this);
     ui->playerButtons->setMediaPlayer(new QMediaPlayer);
     connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 

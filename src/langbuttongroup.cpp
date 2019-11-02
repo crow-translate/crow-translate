@@ -24,13 +24,11 @@
 #include <QAbstractButton>
 #include <QButtonGroup>
 
-constexpr char languageProperty[] = "Language";
-
-LangButtonGroup::LangButtonGroup(GroupType type, QObject *parent) :
-    QObject(parent),
-    m_type(type)
+LangButtonGroup::LangButtonGroup(GroupType type, QObject *parent)
+    : QObject(parent)
+    , m_type(type)
+    , m_group(new QButtonGroup(this))
 {
-    m_group = new QButtonGroup(this);
     connect(m_group, qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &LangButtonGroup::processButtonToggled);
 }
 
@@ -70,7 +68,7 @@ void LangButtonGroup::addButton(QAbstractButton *button)
     if (buttonId == 0) {
        button->setText(tr("Auto"));
        button->setToolTip(tr("Auto"));
-       button->setProperty(languageProperty, QOnlineTranslator::Auto); // Save language id in property
+       button->setProperty(s_languageProperty, QOnlineTranslator::Auto); // Save language id in property
     }
 }
 
@@ -105,17 +103,17 @@ void LangButtonGroup::addLanguage(QOnlineTranslator::Language lang)
 
 QOnlineTranslator::Language LangButtonGroup::checkedLanguage() const
 {
-    return m_group->checkedButton()->property(languageProperty).value<QOnlineTranslator::Language>();
+    return m_group->checkedButton()->property(s_languageProperty).value<QOnlineTranslator::Language>();
 }
 
 QOnlineTranslator::Language LangButtonGroup::previousCheckedLanguage() const
 {
-    return m_group->button(m_previousCheckedId)->property(languageProperty).value<QOnlineTranslator::Language>();
+    return m_group->button(m_previousCheckedId)->property(s_languageProperty).value<QOnlineTranslator::Language>();
 }
 
 QOnlineTranslator::Language LangButtonGroup::language(int id) const
 {
-    return m_group->button(id)->property(languageProperty).value<QOnlineTranslator::Language>();
+    return m_group->button(id)->property(s_languageProperty).value<QOnlineTranslator::Language>();
 }
 
 bool LangButtonGroup::isAutoButtonChecked()
@@ -382,7 +380,7 @@ void LangButtonGroup::setLanguage(int id, QOnlineTranslator::Language lang)
     if (lang == language(id))
         return;
 
-    m_group->button(id)->setProperty(languageProperty, lang); // Save language id in property
+    m_group->button(id)->setProperty(s_languageProperty, lang); // Save language id in property
 
     if (lang != QOnlineTranslator::NoLanguage) {
         const QString languageName = QOnlineTranslator::languageString(lang);

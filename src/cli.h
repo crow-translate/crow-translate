@@ -84,6 +84,8 @@ private:
     bool m_speakTranslation = false;
 
     bool m_sourcePrinted = false;
+
+    static constexpr char s_langProperty[] = "Language";
 };
 
 #endif // CLI_H

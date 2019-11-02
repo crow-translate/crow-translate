@@ -25,11 +25,11 @@
 #include <QMediaPlaylist>
 #include <QMessageBox>
 
-QMediaPlayer *PlayerButtons::currentlyPlaying = nullptr;
+QMediaPlayer *PlayerButtons::s_currentlyPlaying = nullptr;
 
-PlayerButtons::PlayerButtons(QWidget *parent) :
-    QWidget(parent),
-    ui(new Ui::PlayerButtons)
+PlayerButtons::PlayerButtons(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::PlayerButtons)
 {
     ui->setupUi(this);
 
@@ -169,23 +169,23 @@ void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
 {
     switch (state) {
     case QMediaPlayer::StoppedState:
-        if (currentlyPlaying == m_mediaPlayer)
-            currentlyPlaying = nullptr;
+        if (s_currentlyPlaying == m_mediaPlayer)
+            s_currentlyPlaying = nullptr;
 
         ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
         ui->stopButton->setEnabled(false);
         break;
     case QMediaPlayer::PlayingState:
-        if (currentlyPlaying != nullptr)
-            currentlyPlaying->pause();
-        currentlyPlaying = m_mediaPlayer;
+        if (s_currentlyPlaying != nullptr)
+            s_currentlyPlaying->pause();
+        s_currentlyPlaying = m_mediaPlayer;
 
         ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
         ui->stopButton->setEnabled(true);
         break;
     case QMediaPlayer::PausedState:
-        if (currentlyPlaying == m_mediaPlayer)
-            currentlyPlaying = nullptr;
+        if (s_currentlyPlaying == m_mediaPlayer)
+            s_currentlyPlaying = nullptr;
 
         ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
         break;

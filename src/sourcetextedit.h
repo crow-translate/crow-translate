@@ -52,6 +52,8 @@ private:
     QTimer *m_textEditedTimer;
     bool m_listenForChanges = false;
     bool m_sourceEmpty = true;
+
+    static constexpr int s_delay = 500;
 };
 
 #endif // SOURCETEXTEDIT_H

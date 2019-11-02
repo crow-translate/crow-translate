@@ -23,8 +23,8 @@
 #include "shortcutitem.h"
 #include "shortcutsmodel.h"
 
-ShortcutItem::ShortcutItem(ShortcutsModel *parent) :
-    m_parentModel(parent)
+ShortcutItem::ShortcutItem(ShortcutsModel *parent)
+    : m_parentModel(parent)
 {
     m_parentItem = nullptr;
     parent->m_rootItems.append(this);

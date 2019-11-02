@@ -35,9 +35,12 @@
 #include <QDesktopWidget>
 #endif
 
-PopupWindow::PopupWindow(MainWindow *parent) :
-    QWidget(parent, Qt::Window | Qt::FramelessWindowHint),
-    ui(new Ui::PopupWindow)
+PopupWindow::PopupWindow(MainWindow *parent)
+    : QWidget(parent, Qt::Window | Qt::FramelessWindowHint)
+    , ui(new Ui::PopupWindow)
+    , m_closeWindowsShortcut(new QShortcut(this))
+    , m_sourceLangButtons(new LangButtonGroup(LangButtonGroup::Source, this))
+    , m_translationLangButtons(new LangButtonGroup(LangButtonGroup::Translation, this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -56,7 +59,6 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     connect(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, parent->translationPlayerButtons(), &PlayerButtons::playerMediaRequested);
 
     // Source button group
-    m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);
     m_sourceLangButtons->addButton(ui->autoSourceButton);
     m_sourceLangButtons->addButton(ui->firstSourceButton);
     m_sourceLangButtons->addButton(ui->secondSourceButton);
@@ -66,7 +68,6 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     connect(parent->sourceLangButtons(), &LangButtonGroup::languageChanged, m_sourceLangButtons,  &LangButtonGroup::setLanguage);
 
     // Translation button group
-    m_translationLangButtons = new LangButtonGroup(LangButtonGroup::Translation, this);
     m_translationLangButtons->addButton(ui->autoTranslationButton);
     m_translationLangButtons->addButton(ui->firstTranslationButton);
     m_translationLangButtons->addButton(ui->secondTranslationButton);
@@ -93,7 +94,6 @@ PopupWindow::PopupWindow(MainWindow *parent) :
     ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
 
     // Shortcuts
-    m_closeWindowsShortcut = new QShortcut(this);
     m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 

@@ -21,9 +21,9 @@
 #include "translatorerrortransition.h"
 #include "qonlinetranslator.h"
 
-TranslatorErrorTransition::TranslatorErrorTransition(QOnlineTranslator *translator, QState *sourceState) :
-    QAbstractTransition(sourceState),
-    m_translator(translator)
+TranslatorErrorTransition::TranslatorErrorTransition(QOnlineTranslator *translator, QState *sourceState)
+    : QAbstractTransition(sourceState)
+    , m_translator(translator)
 {
 }
 

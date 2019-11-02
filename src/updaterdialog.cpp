@@ -30,14 +30,14 @@
 #include <QNetworkReply>
 #include <QDir>
 
-UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::UpdaterDialog)
+UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::UpdaterDialog)
+    , m_network(new QNetworkAccessManager(this))
+    , m_installerFile(new QFile(this))
 {
     ui->setupUi(this);
 
-    m_installerFile = new QFile(this);
-    m_network = new QNetworkAccessManager(this);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 9, 0)
     m_network->setRedirectPolicy(QNetworkRequest::NoLessSafeRedirectPolicy);
 #endif

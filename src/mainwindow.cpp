@@ -56,9 +56,23 @@
 #include <windows.h>
 #endif
 
-MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
+MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
+    : QMainWindow(parent)
+    , ui(new Ui::MainWindow)
+    , m_closeWindowsShortcut(new QShortcut(this))
+    , m_translateSelectionHotkey(new QHotkey(this))
+    , m_playSelectionHotkey(new QHotkey(this))
+    , m_playTranslatedSelectionHotkey(new QHotkey(this))
+    , m_stopSpeakingHotkey(new QHotkey(this))
+    , m_showMainWindowHotkey(new QHotkey(this))
+    , m_copyTranslatedSelectionHotkey(new QHotkey(this))
+    , m_sourceLangButtons(new LangButtonGroup(LangButtonGroup::Source, this))
+    , m_translationLangButtons(new LangButtonGroup(LangButtonGroup::Translation, this))
+    , m_stateMachine(new QStateMachine(this))
+    , m_translator(new QOnlineTranslator(this))
+    , m_trayMenu(new QMenu(this))
+    , m_trayIcon(new TrayIcon(this))
+    , m_taskbar(new QTaskbarControl(this))
 {
     ui->setupUi(this);
 
@@ -70,7 +84,6 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     ui->translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
 
     // Taskbar progress for text speaking
-    m_taskbar = new QTaskbarControl(this);
 #if defined(Q_OS_LINUX)
     m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, "crow-translate.desktop");
 #endif
@@ -80,20 +93,12 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     connect(ui->translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
 
     // Shortcuts
-    m_translateSelectionHotkey = new QHotkey(this);
-    m_playSelectionHotkey = new QHotkey(this);
-    m_playTranslatedSelectionHotkey = new QHotkey(this);
-    m_stopSpeakingHotkey = new QHotkey(this);
-    m_showMainWindowHotkey = new QHotkey(this);
-    m_copyTranslatedSelectionHotkey = new QHotkey(this);
-    m_closeWindowsShortcut = new QShortcut(this);
     connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->sourcePlayerButtons, &PlayerButtons::stop);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->translationPlayerButtons, &PlayerButtons::stop);
 
     // Source button group
-    m_sourceLangButtons = new LangButtonGroup(LangButtonGroup::Source, this);
     m_sourceLangButtons->addButton(ui->autoSourceButton);
     m_sourceLangButtons->addButton(ui->firstSourceButton);
     m_sourceLangButtons->addButton(ui->secondSourceButton);
@@ -103,7 +108,6 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // Translation button group
-    m_translationLangButtons = new LangButtonGroup(LangButtonGroup::Translation, this);
     m_translationLangButtons->addButton(ui->autoTranslationButton);
     m_translationLangButtons->addButton(ui->firstTranslationButton);
     m_translationLangButtons->addButton(ui->secondTranslationButton);
@@ -112,16 +116,12 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent) :
     connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
 
     // System tray icon
-    m_trayMenu = new QMenu(this);
     m_trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
     m_trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::openSettings);
     m_trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
-    m_trayIcon = new TrayIcon(this);
     m_trayIcon->setContextMenu(m_trayMenu);
 
     // State machine to handle translator signals async
-    m_translator = new QOnlineTranslator(this);
-    m_stateMachine = new QStateMachine(this);
     buildStateMachine();
     m_stateMachine->start();
 

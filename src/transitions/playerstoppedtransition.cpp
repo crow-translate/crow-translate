@@ -23,8 +23,8 @@
 #include <QMediaPlayer>
 #include <QStateMachine>
 
-PlayerStoppedTransition::PlayerStoppedTransition(QMediaPlayer *player, QState *sourceState) :
-    QSignalTransition(player, &QMediaPlayer::stateChanged, sourceState)
+PlayerStoppedTransition::PlayerStoppedTransition(QMediaPlayer *player, QState *sourceState)
+    : QSignalTransition(player, &QMediaPlayer::stateChanged, sourceState)
 {
 }
 

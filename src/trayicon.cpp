@@ -26,8 +26,8 @@
 #include <QDBusInterface>
 #include <QFileInfo>
 
-TrayIcon::TrayIcon(MainWindow *parent) :
-    QSystemTrayIcon(parent)
+TrayIcon::TrayIcon(MainWindow *parent)
+    : QSystemTrayIcon(parent)
 {
     connect(this, &TrayIcon::activated, this, &TrayIcon::processTrayActivated);
 }

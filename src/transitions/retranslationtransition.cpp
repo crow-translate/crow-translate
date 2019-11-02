@@ -23,10 +23,10 @@
 #include "qonlinetranslator.h"
 #include "langbuttongroup.h"
 
-RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LangButtonGroup *group, QState *sourceState) :
-    QAbstractTransition(sourceState),
-    m_translator(translator),
-    m_group(group)
+RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LangButtonGroup *group, QState *sourceState)
+    : QAbstractTransition(sourceState)
+    , m_translator(translator)
+    , m_group(group)
 {
 }
 

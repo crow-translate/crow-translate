@@ -24,9 +24,9 @@
 
 #include <QPushButton>
 
-AddLangDialog::AddLangDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddLangDialog)
+AddLangDialog::AddLangDialog(QWidget *parent)
+    : QDialog(parent)
+    , ui(new Ui::AddLangDialog)
 {
     ui->setupUi(this);
 
@@ -34,7 +34,7 @@ AddLangDialog::AddLangDialog(QWidget *parent) :
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
 
-        auto *item = new QListWidgetItem();
+        auto *item = new QListWidgetItem;
         item->setText(QOnlineTranslator::languageString(lang));
         item->setIcon(LangButtonGroup::countryIcon(lang));
         item->setData(Qt::UserRole, lang);

@@ -31,15 +31,13 @@
 #include <QStateMachine>
 #include <QFinalState>
 
-constexpr char langProperty[] = "Language";
-
-Cli::Cli(QObject *parent) :
-    QObject(parent)
+Cli::Cli(QObject *parent)
+    : QObject(parent)
+    , m_player(new QMediaPlayer(this))
+    , m_translator(new QOnlineTranslator(this))
+    , m_stateMachine(new QStateMachine(this))
 {
-    m_translator = new QOnlineTranslator(this);
-    m_player = new QMediaPlayer(this);
     m_player->setPlaylist(new QMediaPlaylist);
-    m_stateMachine = new QStateMachine(this);
 
     connect(m_stateMachine, &QStateMachine::finished, QCoreApplication::instance(), &QCoreApplication::quit);
     connect(m_stateMachine, &QStateMachine::stopped, QCoreApplication::instance(), &QCoreApplication::quit);
@@ -153,7 +151,7 @@ void Cli::printLangCodes()
 void Cli::requestTranslation()
 {
     auto *state = qobject_cast<QState *>(sender());
-    auto translationLang = state->property(langProperty).value<QOnlineTranslator::Language>();
+    auto translationLang = state->property(s_langProperty).value<QOnlineTranslator::Language>();
 
     m_translator->translate(m_sourceText, m_engine, translationLang, m_sourceLang, m_uiLang);
 }
@@ -307,7 +305,7 @@ void Cli::buildTranslationStateMachine()
         connect(requestTranslationState, &QState::entered, this, &Cli::requestTranslation);
         connect(parseDataState, &QState::entered, this, &Cli::printTranslation);
 
-        requestTranslationState->setProperty(langProperty, lang);
+        requestTranslationState->setProperty(s_langProperty, lang);
 
         requestTranslationState->addTransition(m_translator, &QOnlineTranslator::finished, parseDataState);
         parseDataState->addTransition(speakSourceText);
@@ -384,7 +382,7 @@ void Cli::buildSpeakTranslationsState(QState *parent)
         connect(printTextState, &QState::entered, this, &Cli::printSpeakingTranslation);
         connect(speakTextState, &QState::entered, this, &Cli::speakTranslation);
 
-        requestTranslationState->setProperty(langProperty, language);
+        requestTranslationState->setProperty(s_langProperty, language);
 
         requestTranslationState->addTransition(m_translator, &QOnlineTranslator::finished, printTextState);
         printTextState->addTransition(speakTextState);
