@@ -175,7 +175,7 @@ You will then get a binary named `crow`.
 
 ### Build parameters
 
--	`PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
+-   `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
 
 Build parameters are passed at the qmake stage: `qmake "DEFINES += PORTABLE_MODE"`.
 
