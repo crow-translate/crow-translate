@@ -1,3 +1,15 @@
+crow-translate (2.2.3-1) buster bionic disco; urgency=low
+
+  * Add Polish localization.
+  * Add French localization.
+  * Add portable mode.
+  * Fix wrong names in errors.
+  * Fix email address link in the About section.
+  * Use Brazil flag instead of Portugal.
+  * Windows: Save application installer to disk by blocks.
+
+ -- Hennadii Chernyshchyk <genaloner@gmail.com>  Mon, 04 Nov 2019 00:00:00 +0000
+
 crow-translate (2.2.2-1) buster bionic disco; urgency=low
 
   * Add clear button.

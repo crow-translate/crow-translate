@@ -28,7 +28,7 @@ int launchCli(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion("2.2.2");
+    QCoreApplication::setApplicationVersion("2.2.3");
     QCoreApplication::setApplicationName("Crow Translate");
     QCoreApplication::setOrganizationName("crow");
 
