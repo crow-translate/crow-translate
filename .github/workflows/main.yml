@@ -3,16 +3,19 @@ on:
   push:
     paths-ignore:
     - 'dist/**'
+    - '.github/workflows/release.yml'
     - '*.md'
     - '.gitignore'
   pull_request:
     paths-ignore:
     - 'dist/**'
+    - '.github/workflows/release.yml'
     - '*.md'
     - '.gitignore'
 jobs:
   Linux:
     runs-on: ubuntu-18.04
+    container: shatur95/crow-translate:ubuntu-18.04
     steps:
     - name: Clone repo
       uses: actions/checkout@v1
@@ -21,9 +24,9 @@ jobs:
         fetch-depth: 5
 
     - name: Build
-      uses: docker://shatur95/crow-translate:ubuntu-18.04
-      with:
-        args: -c "qmake && make"
+      run: |
+        qmake
+        make
   Windows:
     runs-on: windows-latest
     steps:
@@ -31,6 +34,9 @@ jobs:
       uses: jurplel/install-qt-action@v1
       with:
         arch: win64_mingw73
+
+    - name: Enable Git symlinks
+      run: git config --global core.symlinks true
 
     - name: Clone repo
       uses: actions/checkout@v1

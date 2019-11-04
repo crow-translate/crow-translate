@@ -30,15 +30,15 @@ case $ID in
         
         cd ../..
         cp -r dist/unix/apt/debian debian
-        VER=$(awk 'NR==1 {print $2}' debian/changelog | sed 's/-[1-9]//g;s/[()]//g')
-        tar czfv ../crow-translate_$VER.orig.tar.gz .github *
+        ver=$(awk 'NR==1 {print $2}' debian/changelog | sed 's/[()]//g')
+        tar czfv ../crow-translate_{$ver%-*}.orig.tar.gz .github *
         debuild -i -us -uc
         rm -r debian
         cleanDir
         
         echo -e "\x1b[1;32mNow you can install Crow Translate by running the following commands:\x1b[0m"
         echo -e "\x1b[1;37mcd ../../..\x1b[0m"
-        echo -e "\x1b[1;37msudo dpkg -i crow-translate_$VER-1_amd64.deb\x1b[0m"
+        echo -e "\x1b[1;37msudo dpkg -i crow-translate_{$ver}_amd64.deb\x1b[0m"
         echo -e "\x1b[1;37msudo apt install -f\x1b[0m"
         ;;
     "fedora" )

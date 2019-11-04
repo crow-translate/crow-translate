@@ -1,4 +1,4 @@
-crow-translate (2.2.2-1) buster; urgency=low
+crow-translate (2.2.2-1) buster bionic disco; urgency=low
 
   * Add clear button.
   * Fix voice and emotion settings.
