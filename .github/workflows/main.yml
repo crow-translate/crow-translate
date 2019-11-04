@@ -1,6 +1,8 @@
 name: Main
 on: 
   push:
+    branches-ignore:
+    - 'releases/**'
     paths-ignore:
     - 'dist/**'
     - '.github/workflows/release.yml'
