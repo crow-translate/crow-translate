@@ -29,7 +29,7 @@ case $ID in
         sudo apt install debhelper devscripts qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools
         
         cd ../..
-        cp -r dist/unix/apt debian
+        cp -r dist/unix/apt/debian debian
         VER=$(awk 'NR==1 {print $2}' debian/changelog | sed 's/-[1-9]//g;s/[()]//g')
         tar czfv ../crow-translate_$VER.orig.tar.gz .github *
         debuild -i -us -uc
