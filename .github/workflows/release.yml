@@ -45,7 +45,7 @@ jobs:
 
     - name: Build
       run: |
-        qmake
+        qmake "DEFINES += PORTABLE_MODE"
         make
 
     - name: Bundle libraries
