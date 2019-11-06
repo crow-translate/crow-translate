@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.3...HEAD)
 
-_No unreleased changes yet_
+**Changed**
+
+-   Fix crash on Wayland (still no support for hotkeys and selection).
 
 ## [2.2.3](https://github.com/crow-translate/crow-translate/tree/2.2.3) (2019-11-04)
 
