@@ -47,7 +47,7 @@ int launchGui(int argc, char *argv[])
 #endif
 
     const AppSettings settings;
-    settings.setupLocale();
+    settings.setupLocalization();
 
     MainWindow window(settings);
 
@@ -59,7 +59,7 @@ int launchCli(int argc, char *argv[])
     QCoreApplication app(argc, argv);
 
     const AppSettings settings;
-    settings.setupLocale();
+    settings.setupLocalization();
 
     Cli cli;
     cli.process(app);

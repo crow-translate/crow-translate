@@ -52,27 +52,27 @@ AppSettings::AppSettings(QObject *parent)
 }
 #endif
 
-void AppSettings::setupLocale() const
+void AppSettings::setupLocalization() const
 {
-    loadLocale(locale());
+    applyLanguage(language());
     SingleApplication::installTranslator(&s_appTranslator);
     SingleApplication::installTranslator(&s_qtTranslator);
 }
 
-QLocale::Language AppSettings::locale() const
+QLocale::Language AppSettings::language() const
 {
-    return m_settings->value("Locale", defaultLocale()).value<QLocale::Language>();
+    return m_settings->value("Language", defaultLanguage()).value<QLocale::Language>();
 }
 
-void AppSettings::setLocale(QLocale::Language lang)
+void AppSettings::setLanguage(QLocale::Language lang)
 {
-    if (lang != locale()) {
-         m_settings->setValue("Locale", lang);
-        loadLocale(lang);
+    if (lang != language()) {
+        m_settings->setValue("Locale", lang);
+        applyLanguage(lang);
     }
 }
 
-void AppSettings::loadLocale(QLocale::Language lang) const
+void AppSettings::applyLanguage(QLocale::Language lang)
 {
     if (lang == QLocale::AnyLanguage)
         QLocale::setDefault(QLocale::system());
@@ -83,7 +83,7 @@ void AppSettings::loadLocale(QLocale::Language lang) const
     s_qtTranslator.load(QLocale(), "qt", "_", QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
-QLocale::Language AppSettings::defaultLocale()
+QLocale::Language AppSettings::defaultLanguage()
 {
     return QLocale::AnyLanguage;
 }

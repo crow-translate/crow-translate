@@ -165,7 +165,7 @@ void SettingsDialog::accept()
     // General settings
     AppSettings settings;
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
-    settings.setLocale(ui->localeComboBox->currentData().value<QLocale::Language>());
+    settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
@@ -421,7 +421,7 @@ void SettingsDialog::checkForUpdates()
 void SettingsDialog::restoreDefaults()
 {
     // General settings
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLocale()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLanguage()));
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
@@ -472,7 +472,7 @@ void SettingsDialog::loadSettings()
 {
     // General settings
     const AppSettings settings;
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
