@@ -133,12 +133,14 @@ private:
     Ui::MainWindow *ui;
 
     QShortcut *m_closeWindowsShortcut;
+#ifdef GLOBAL_SHORTCUTS
     QHotkey *m_translateSelectionHotkey;
     QHotkey *m_playSelectionHotkey;
     QHotkey *m_playTranslatedSelectionHotkey;
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
+#endif
 
     LangButtonGroup *m_sourceLangButtons;
     LangButtonGroup *m_translationLangButtons;

@@ -176,6 +176,7 @@ You will then get a binary named `crow`.
 ### Build parameters
 
 -   `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
+-   `GLOBAL_SHORTCUTS` - Enable global shortcuts registering (works only for X11 and Windows). The shortcuts will be available in settings.
 
 Build parameters are passed at the qmake stage: `qmake "DEFINES += PORTABLE_MODE"`.
 

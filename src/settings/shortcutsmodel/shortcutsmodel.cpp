@@ -139,6 +139,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     qDeleteAll(m_rootItems);
     m_rootItems.clear();
 
+#ifdef GLOBAL_SHORTCUTS
     // Global shortcuts
     auto *globalShortcuts = new ShortcutItem(this);
     globalShortcuts->setDescription(tr("Global"));
@@ -178,6 +179,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     copyTranslatedSelection->setIconName("edit-copy");
     copyTranslatedSelection->setShortcut(settings.copyTranslatedSelectionHotkey());
     copyTranslatedSelection->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionHotkey());
+#endif
 
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(this);

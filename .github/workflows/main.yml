@@ -27,7 +27,7 @@ jobs:
 
     - name: Build
       run: |
-        qmake
+        qmake "DEFINES += PORTABLE_MODE GLOBAL_SHORTCUTS"
         make
   Windows:
     runs-on: windows-latest
@@ -48,5 +48,5 @@ jobs:
 
     - name: Build
       run: |
-        qmake
+        qmake "DEFINES += PORTABLE_MODE GLOBAL_SHORTCUTS"
         make
