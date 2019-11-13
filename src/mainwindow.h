@@ -133,7 +133,7 @@ private:
     Ui::MainWindow *ui;
 
     QShortcut *m_closeWindowsShortcut;
-#ifdef GLOBAL_SHORTCUTS
+#ifndef DISABLE_GLOBAL_SHORTCUTS
     QHotkey *m_translateSelectionHotkey;
     QHotkey *m_playSelectionHotkey;
     QHotkey *m_playTranslatedSelectionHotkey;

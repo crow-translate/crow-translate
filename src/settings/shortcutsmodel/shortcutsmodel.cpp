@@ -139,7 +139,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     qDeleteAll(m_rootItems);
     m_rootItems.clear();
 
-#ifdef GLOBAL_SHORTCUTS
+#ifndef DISABLE_GLOBAL_SHORTCUTS
     // Global shortcuts
     auto *globalShortcuts = new ShortcutItem(this);
     globalShortcuts->setDescription(tr("Global"));

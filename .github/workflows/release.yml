@@ -45,7 +45,7 @@ jobs:
 
     - name: Build
       run: |
-        qmake "DEFINES += PORTABLE_MODE GLOBAL_SHORTCUTS"
+        qmake "DEFINES += PORTABLE_MODE"
         make
 
     - name: Bundle libraries
