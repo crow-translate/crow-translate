@@ -51,8 +51,6 @@ public:
     explicit MainWindow(const AppSettings &settings, QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    void activate();
-
     QComboBox *engineCombobox();
     QToolButton *addSourceLangButton();
     QToolButton *addTranslationLangButton();
@@ -65,6 +63,9 @@ public:
     LangButtonGroup *translationLangButtons();
     PlayerButtons *sourcePlayerButtons();
     PlayerButtons *translationPlayerButtons();
+
+public slots:
+    void activate();
 
 private slots:
     // State machine's slots

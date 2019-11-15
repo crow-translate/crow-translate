@@ -179,15 +179,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::activate()
-{
-    ui->sourceEdit->setFocus();
-
-    show();
-    activateWindow();
-    raise();
-}
-
 QComboBox *MainWindow::engineCombobox()
 {
     return ui->engineComboBox;
@@ -246,6 +237,15 @@ PlayerButtons *MainWindow::sourcePlayerButtons()
 PlayerButtons *MainWindow::translationPlayerButtons()
 {
     return ui->translationPlayerButtons;
+}
+
+void MainWindow::activate()
+{
+    ui->sourceEdit->setFocus();
+
+    show();
+    activateWindow();
+    raise();
 }
 
 void MainWindow::requestTranslation()
