@@ -682,6 +682,21 @@ QString AppSettings::defaultProxyPassword()
     return {};
 }
 
+bool AppSettings::isGlobalShortuctsEnabled() const
+{
+    return m_settings->value("Hotkeys/GlobalShortcutsEnabled", defaultGlobalShortcutsEnabled()).toBool();
+}
+
+void AppSettings::setGlobalShortcutsEnabled(bool enabled)
+{
+    m_settings->setValue("Hotkeys/GlobalShortcutsEnabled", enabled);
+}
+
+bool AppSettings::defaultGlobalShortcutsEnabled()
+{
+    return true;
+}
+
 QKeySequence AppSettings::translateSelectionHotkey() const
 {
     return m_settings->value("Hotkeys/TranslateSelection", defaultTranslateSelectionHotkey()).value<QKeySequence>();

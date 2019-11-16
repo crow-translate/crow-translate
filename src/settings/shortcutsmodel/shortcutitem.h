@@ -23,7 +23,6 @@
 
 #include <QIcon>
 #include <QKeySequence>
-#include <QTreeWidgetItem>
 
 class ShortcutsModel;
 
@@ -31,11 +30,12 @@ class ShortcutItem
 {
     Q_DISABLE_COPY(ShortcutItem)
 
-    friend class ShortcutsModel;
-
 public:
+    explicit ShortcutItem(const QString &description, ShortcutsModel *model = nullptr);
+    ShortcutItem(const QString &description, const QString &iconName, const QKeySequence &defaultShortcut, ShortcutsModel *model = nullptr);
     ~ShortcutItem();
 
+    void addChild(ShortcutItem *child);
     ShortcutItem *child(int row);
     int childCount() const;
     int row() const;
@@ -43,28 +43,26 @@ public:
 
     QString description() const;
     QIcon icon() const;
-    QKeySequence shortcut() const;
     QKeySequence defaultShortcut() const;
 
+    QKeySequence shortcut() const;
     void setShortcut(const QKeySequence &shortcut);
     void resetShortcut();
+    void resetAllShortucts();
+
+    bool isEnabled() const;
+    void setEnabled(bool enabled);
 
 private:
-    explicit ShortcutItem(ShortcutsModel *parent = nullptr);
-    explicit ShortcutItem(ShortcutItem *parent = nullptr);
-
-    void setDescription(const QString &description);
-    void setIconName(const QString &iconName);
-    void setDefaultShortcut(const QKeySequence &defaultShortcut);
-
     QString m_description;
     QIcon m_icon;
     QKeySequence m_shortcut;
     QKeySequence m_defaultShortcut;
+    bool m_enabled = true;
 
     QVector<ShortcutItem *> m_childItems;
-    ShortcutItem *m_parentItem;
-    ShortcutsModel *m_parentModel;
+    ShortcutItem *m_parentItem = nullptr;
+    ShortcutsModel *m_model;
 };
 
 #endif // SHORTCUTITEM_H

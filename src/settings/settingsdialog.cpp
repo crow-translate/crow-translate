@@ -45,6 +45,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 {
     ui->setupUi(this);
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
+    connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
     ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
     ui->versionLabel->setText(SingleApplication::applicationVersion());
 
@@ -209,6 +210,7 @@ void SettingsDialog::accept()
 
     // Shortcuts
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
+    settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
 }
 
 void SettingsDialog::processProxyTypeChanged(int type)
@@ -466,6 +468,7 @@ void SettingsDialog::restoreDefaults()
 
     // Shortcuts
     resetAllShortcuts();
+    ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
 }
 
 void SettingsDialog::loadSettings()
@@ -522,6 +525,7 @@ void SettingsDialog::loadSettings()
 
     // Shortcuts
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
+    ui->globalShortcutsCheckBox->setChecked(settings.isGlobalShortuctsEnabled());
 }
 
 void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)

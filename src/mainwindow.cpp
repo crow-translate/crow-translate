@@ -24,6 +24,7 @@
 #include "addlangdialog.h"
 #include "langbuttongroup.h"
 #include "playerbuttons.h"
+#include "qhotkey.h"
 #include "qtaskbarcontrol.h"
 #include "singleapplication.h"
 #include "settings/settingsdialog.h"
@@ -33,9 +34,6 @@
 #include "transitions/textemptytransition.h"
 #include "transitions/languagedetectedtransition.h"
 #include "transitions/retranslationtransition.h"
-#ifndef DISABLE_GLOBAL_SHORTCUTS
-#include "qhotkey.h"
-#endif
 #ifdef Q_OS_WIN
 #include "updaterdialog.h"
 #include "qgittag.h"
@@ -62,14 +60,12 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_closeWindowsShortcut(new QShortcut(this))
-#ifndef DISABLE_GLOBAL_SHORTCUTS
     , m_translateSelectionHotkey(new QHotkey(this))
     , m_playSelectionHotkey(new QHotkey(this))
     , m_playTranslatedSelectionHotkey(new QHotkey(this))
     , m_stopSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
-#endif
     , m_sourceLangButtons(new LangButtonGroup(LangButtonGroup::Source, this))
     , m_translationLangButtons(new LangButtonGroup(LangButtonGroup::Translation, this))
     , m_stateMachine(new QStateMachine(this))
@@ -98,11 +94,9 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
 
     // Shortcuts
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
-#ifndef DISABLE_GLOBAL_SHORTCUTS
     connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->sourcePlayerButtons, &PlayerButtons::stop);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->translationPlayerButtons, &PlayerButtons::stop);
-#endif
 
     // Source button group
     m_sourceLangButtons->addButton(ui->autoSourceButton);
@@ -318,10 +312,8 @@ void MainWindow::speakTranslation()
 
 void MainWindow::showTranslationWindow()
 {
-#ifndef DISABLE_GLOBAL_SHORTCUTS
     // Prevent pressing the translation hotkey again
     m_translateSelectionHotkey->blockSignals(true);
-#endif
 
     const AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
@@ -335,9 +327,7 @@ void MainWindow::showTranslationWindow()
 
         connect(popup, &PopupWindow::destroyed, [&] {
             // Restore the keyboard shortcut
-#ifndef DISABLE_GLOBAL_SHORTCUTS
             m_translateSelectionHotkey->blockSignals(false);
-#endif
             // Undo force listening for changes
             if (!ui->autoTranslateCheckBox->isChecked())
                 ui->sourceEdit->setListenForChanges(false);
@@ -345,10 +335,8 @@ void MainWindow::showTranslationWindow()
     } else {
         activate();
 
-#ifndef DISABLE_GLOBAL_SHORTCUTS
         // Restore the keyboard shortcut
         m_translateSelectionHotkey->blockSignals(false);
-#endif
     }
 }
 
@@ -605,12 +593,10 @@ void MainWindow::buildStateMachine()
         state->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
         state->addTransition(ui->sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
         state->addTransition(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
-#ifndef DISABLE_GLOBAL_SHORTCUTS
         state->addTransition(m_translateSelectionHotkey, &QHotkey::activated, translateSelectionState);
         state->addTransition(m_playSelectionHotkey, &QHotkey::activated, speakSelectionState);
         state->addTransition(m_playTranslatedSelectionHotkey, &QHotkey::activated, speakTranslatedSelectionState);
         state->addTransition(m_copyTranslatedSelectionHotkey, &QHotkey::activated, copyTranslatedSelectionState);
-#endif
     }
 
     translationState->addTransition(translationState, &QState::finished, idleState);
@@ -820,15 +806,22 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
     ui->settingsButton->setToolButtonStyle(controlsStyle);
 
-#ifndef DISABLE_GLOBAL_SHORTCUTS
     // Global shortcuts
-    m_translateSelectionHotkey->setShortcut(settings.translateSelectionHotkey(), true);
-    m_playSelectionHotkey->setShortcut(settings.speakSelectionHotkey(), true);
-    m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingHotkey(), true);
-    m_playTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionHotkey(), true);
-    m_showMainWindowHotkey->setShortcut(settings.showMainWindowHotkey(), true);
-    m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionHotkey(), true);
-#endif
+    if (settings.isGlobalShortuctsEnabled()) {
+        m_translateSelectionHotkey->setShortcut(settings.translateSelectionHotkey(), true);
+        m_playSelectionHotkey->setShortcut(settings.speakSelectionHotkey(), true);
+        m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingHotkey(), true);
+        m_playTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionHotkey(), true);
+        m_showMainWindowHotkey->setShortcut(settings.showMainWindowHotkey(), true);
+        m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionHotkey(), true);
+    } else {
+        m_translateSelectionHotkey->setRegistered(false);
+        m_playSelectionHotkey->setRegistered(false);
+        m_stopSpeakingHotkey->setRegistered(false);
+        m_playTranslatedSelectionHotkey->setRegistered(false);
+        m_showMainWindowHotkey->setRegistered(false);
+        m_copyTranslatedSelectionHotkey->setRegistered(false);
+    }
 
     // Window shortcuts
     ui->sourcePlayerButtons->setPlayPauseShortcut(settings.speakSourceHotkey());

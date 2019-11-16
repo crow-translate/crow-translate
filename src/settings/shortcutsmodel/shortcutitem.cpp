@@ -18,23 +18,21 @@
  *
  */
 
-#include <QStringList>
-
 #include "shortcutitem.h"
 #include "shortcutsmodel.h"
 
-ShortcutItem::ShortcutItem(ShortcutsModel *parent)
-    : m_parentModel(parent)
+ShortcutItem::ShortcutItem(const QString &description, ShortcutsModel *model)
+    : m_description(description)
+    , m_model(model)
 {
-    m_parentItem = nullptr;
-    parent->m_rootItems.append(this);
 }
 
-ShortcutItem::ShortcutItem(ShortcutItem *parent) :
-    m_parentItem(parent),
-    m_parentModel(parent->m_parentModel)
+ShortcutItem::ShortcutItem(const QString &description, const QString &iconName, const QKeySequence &defaultShortcut, ShortcutsModel *model)
+    : m_description(description)
+    , m_icon(QIcon::fromTheme(iconName))
+    , m_defaultShortcut(defaultShortcut)
+    , m_model(model)
 {
-    m_parentItem->m_childItems.append(this);
 }
 
 ShortcutItem::~ShortcutItem()
@@ -42,9 +40,16 @@ ShortcutItem::~ShortcutItem()
     qDeleteAll(m_childItems);
 }
 
+void ShortcutItem::addChild(ShortcutItem *child)
+{
+    m_childItems.append(child);
+    child->m_parentItem = this;
+    child->m_model = m_model;
+}
+
 ShortcutItem *ShortcutItem::child(int row)
 {
-    return m_childItems.value(row);
+    return m_childItems[row];
 }
 
 int ShortcutItem::childCount() const
@@ -91,7 +96,7 @@ void ShortcutItem::setShortcut(const QKeySequence &shortcut)
         return;
 
     m_shortcut = shortcut;
-    m_parentModel->updateShortcutText(this);
+    m_model->updateShortcut(this);
 }
 
 void ShortcutItem::resetShortcut()
@@ -99,17 +104,22 @@ void ShortcutItem::resetShortcut()
     setShortcut(m_defaultShortcut);
 }
 
-void ShortcutItem::setIconName(const QString &iconName)
+void ShortcutItem::resetAllShortucts()
 {
-    m_icon = QIcon::fromTheme(iconName);
+    m_shortcut = m_defaultShortcut;
+    for (ShortcutItem *item : m_childItems)
+        item->resetAllShortucts();
 }
 
-void ShortcutItem::setDefaultShortcut(const QKeySequence &defaultShortcut)
+bool ShortcutItem::isEnabled() const
 {
-    m_defaultShortcut = defaultShortcut;
+    return m_enabled;
 }
 
-void ShortcutItem::setDescription(const QString &description)
+void ShortcutItem::setEnabled(bool enabled)
 {
-    m_description = description;
+    m_enabled = enabled;
+    m_model->updateShortcut(this);
+    for (ShortcutItem *item : m_childItems)
+        item->setEnabled(enabled);
 }

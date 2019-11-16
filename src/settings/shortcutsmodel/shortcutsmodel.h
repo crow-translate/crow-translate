@@ -22,7 +22,6 @@
 #define SHORTCUTSMODEL_H
 
 #include <QAbstractItemModel>
-#include <QVariant>
 
 class ShortcutItem;
 class AppSettings;
@@ -32,14 +31,12 @@ class ShortcutsModel : public QAbstractItemModel
     Q_OBJECT
     Q_DISABLE_COPY(ShortcutsModel)
 
-    friend class ShortcutItem;
-
 public:
-    enum Columns {
+    enum Column {
         DescriptionColumn,
         ShortcutColumn
     };
-    Q_ENUM(Columns)
+    Q_ENUM(Column)
 
     explicit ShortcutsModel(QObject *parent = nullptr);
     ~ShortcutsModel() override;
@@ -50,14 +47,18 @@ public:
     QModelIndex parent(const QModelIndex &index) const override;
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
     int columnCount(const QModelIndex &) const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
 
     void loadShortcuts(const AppSettings &settings);
     void saveShortcuts(AppSettings &settings) const;
     void resetAllShortcuts();
 
+    void updateShortcut(ShortcutItem *item);
+
+public slots:
+    void setGlobalShortuctsEnabled(bool enabled);
+
 private:
-    void resetAllShortcuts(ShortcutItem *parent);
-    void updateShortcutText(ShortcutItem *item);
     QModelIndex index(ShortcutItem *item, int column) const;
 
     QVector<ShortcutItem *> m_rootItems;

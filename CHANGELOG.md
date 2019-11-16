@@ -6,6 +6,10 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.2.3...HEAD)
 
+**Added**
+
+-   The ability to disable imbedded global shortcuts.
+
 **Changed**
 
 -   Fix crash on Wayland (still no support for hotkeys and selection).

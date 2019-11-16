@@ -204,6 +204,10 @@ public:
     static QString defaultProxyPassword();
 
     // Global shortcuts
+    bool isGlobalShortuctsEnabled() const;
+    void setGlobalShortcutsEnabled(bool enabled);
+    static bool defaultGlobalShortcutsEnabled();
+
     QKeySequence translateSelectionHotkey() const;
     void setTranslateSelectionHotkey(const QKeySequence &hotkey);
     static QKeySequence defaultTranslateSelectionHotkey();
