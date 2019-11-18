@@ -21,18 +21,26 @@
 #include "shortcutitem.h"
 #include "shortcutsmodel.h"
 
-ShortcutItem::ShortcutItem(const QString &description, ShortcutsModel *model)
-    : m_description(description)
-    , m_model(model)
+ShortcutItem::ShortcutItem(ShortcutsModel *model)
+    : m_model(model)
 {
 }
 
-ShortcutItem::ShortcutItem(const QString &description, const QString &iconName, const QKeySequence &defaultShortcut, ShortcutsModel *model)
+ShortcutItem::ShortcutItem(const QString &description, ShortcutItem *parent)
+    : m_description(description)
+    , m_parentItem(parent)
+    , m_model(parent->m_model)
+{
+    m_parentItem->m_childItems.append(this);
+}
+
+ShortcutItem::ShortcutItem(const QString &description, const QString &iconName, ShortcutItem *parent)
     : m_description(description)
     , m_icon(QIcon::fromTheme(iconName))
-    , m_defaultShortcut(defaultShortcut)
-    , m_model(model)
+    , m_parentItem(parent)
+    , m_model(parent->m_model)
 {
+    m_parentItem->m_childItems.append(this);
 }
 
 ShortcutItem::~ShortcutItem()
@@ -40,16 +48,9 @@ ShortcutItem::~ShortcutItem()
     qDeleteAll(m_childItems);
 }
 
-void ShortcutItem::addChild(ShortcutItem *child)
-{
-    m_childItems.append(child);
-    child->m_parentItem = this;
-    child->m_model = m_model;
-}
-
 ShortcutItem *ShortcutItem::child(int row)
 {
-    return m_childItems[row];
+    return m_childItems.value(row);
 }
 
 int ShortcutItem::childCount() const
@@ -88,6 +89,11 @@ QKeySequence ShortcutItem::shortcut() const
 QKeySequence ShortcutItem::defaultShortcut() const
 {
     return m_defaultShortcut;
+}
+
+void ShortcutItem::setDefaultShortcut(const QKeySequence &shortcut)
+{
+    m_defaultShortcut = shortcut;
 }
 
 void ShortcutItem::setShortcut(const QKeySequence &shortcut)

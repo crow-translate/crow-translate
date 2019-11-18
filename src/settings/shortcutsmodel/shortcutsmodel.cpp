@@ -27,41 +27,57 @@
 
 ShortcutsModel::ShortcutsModel(QObject *parent)
     : QAbstractItemModel(parent)
+    , m_rootItem(new ShortcutItem(this))
 {
     // Global shortcuts
-    auto *globalShortcuts = new ShortcutItem(tr("Global"), this);
-    m_rootItems.append(globalShortcuts);
+    auto *globalShortcuts = new ShortcutItem(tr("Global"), m_rootItem);
 
-    globalShortcuts->addChild(new ShortcutItem(tr("Translate selected text"), "preferences-desktop-locale", AppSettings::defaultTranslateSelectionHotkey()));
-    globalShortcuts->addChild(new ShortcutItem(tr("Speak selected text"), "media-playback-start", AppSettings::defaultSpeakSelectionHotkey()));
-    globalShortcuts->addChild(new ShortcutItem(tr("Speak translation of selected text"), "media-playback-start", AppSettings::defaultSpeakTranslatedSelectionHotkey()));
-    globalShortcuts->addChild(new ShortcutItem(tr("Stop text speaking"), "media-playback-stop", AppSettings::defaultStopSpeakingHotkey()));
-    globalShortcuts->addChild(new ShortcutItem(tr("Show main window"), "window", AppSettings::defaultShowMainWindowHotkey()));
-    globalShortcuts->addChild(new ShortcutItem(tr("Translate selected text and copy to clipboard"), "edit-copy", AppSettings::defaultCopyTranslatedSelectionHotkey()));
+    auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), "preferences-desktop-locale", globalShortcuts);
+    translateSelectionShortcut->setDefaultShortcut(AppSettings::defaultTranslateSelectionHotkey());
+
+    auto *speakSelection = new ShortcutItem(tr("Speak selected text"), "media-playback-start", globalShortcuts);
+    speakSelection->setDefaultShortcut(AppSettings::defaultSpeakSelectionHotkey());
+
+    auto *speakTranslatedSelectionShortcut = new ShortcutItem(tr("Speak translation of selected text"), "media-playback-start", globalShortcuts);
+    speakTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslatedSelectionHotkey());
+
+    auto *stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), "media-playback-stop", globalShortcuts);
+    stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingHotkey());
+
+    auto *showMainWindowShortcut = new ShortcutItem(tr("Show main window"), "window", globalShortcuts);
+    showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowHotkey());
+
+    auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), "edit-copy", globalShortcuts);
+    copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionHotkey());
 
     // Window shortcuts
-    auto *windowShortcuts = new ShortcutItem(tr("Main window"), this);
-    m_rootItems.append(windowShortcuts);
+    auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
 
-    windowShortcuts->addChild(new ShortcutItem(tr("Translate"), "go-next", AppSettings::defaultTranslateHotkey()));
-    windowShortcuts->addChild(new ShortcutItem(tr("Close window"), "application-exit", AppSettings::defaultCloseWindowHotkey()));
+    auto *translateShortcut = new ShortcutItem(tr("Translate"), "go-next", windowShortcuts);
+    translateShortcut->setDefaultShortcut(AppSettings::defaultTranslateHotkey());
+
+    auto *closeWindowShortcut = new ShortcutItem(tr("Close window"), "application-exit", windowShortcuts);
+    closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowHotkey());
 
     // Source text shortcuts
-    auto *sourceText = new ShortcutItem(tr("Source text"));
-    windowShortcuts->addChild(sourceText);
-    sourceText->addChild(new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", AppSettings::defaultSpeakSourceHotkey()));
+    auto *sourceText = new ShortcutItem(tr("Source text"), windowShortcuts);
+
+    auto *speakSourceShortcut = new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", sourceText);
+    speakSourceShortcut->setDefaultShortcut(AppSettings::defaultSpeakSourceHotkey());
 
     // Translation text shortcuts
-    auto *translationText = new ShortcutItem(tr("Translation"));
-    windowShortcuts->addChild(translationText);
+    auto *translationText = new ShortcutItem(tr("Translation"), windowShortcuts);
 
-    translationText->addChild(new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", AppSettings::defaultSpeakTranslationHotkey()));
-    translationText->addChild(new ShortcutItem(tr("Copy to clipboard"), "edit-copy", AppSettings::defaultCopyTranslationHotkey()));
+    auto *speakTranslationShortcut = new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", translationText);
+    speakTranslationShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslationHotkey());
+
+    auto *copyTranslationShortcut = new ShortcutItem(tr("Copy to clipboard"), "edit-copy", translationText);
+    copyTranslationShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslationHotkey());
 }
 
 ShortcutsModel::~ShortcutsModel()
 {
-    qDeleteAll(m_rootItems);
+    delete m_rootItem;
 }
 
 QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
@@ -114,15 +130,10 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
     if (!hasIndex(row, column, parent))
         return QModelIndex();
 
-    ShortcutItem *childItem;
-    if (!parent.isValid()) {
-        childItem = m_rootItems.value(row);
-    } else {
-        auto *parentItem = static_cast<ShortcutItem *>(parent.internalPointer());
-        childItem = parentItem->child(row);
-    }
+    ShortcutItem *parentItem = parent.isValid() ? static_cast<ShortcutItem *>(parent.internalPointer()) : m_rootItem;
 
-    if (childItem == nullptr)
+    ShortcutItem *childItem = parentItem->child(row);
+    if (!childItem)
         return QModelIndex();
 
     return createIndex(row, column, childItem);
@@ -133,10 +144,10 @@ QModelIndex ShortcutsModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return QModelIndex();
 
-    auto *childItem = static_cast<ShortcutItem *>(index.internalPointer());
-    ShortcutItem *parentItem = childItem->parentItem();
+    auto *item = static_cast<ShortcutItem *>(index.internalPointer());
+    ShortcutItem *parentItem = item->parentItem();
 
-    if (parentItem == nullptr)
+    if (parentItem == m_rootItem)
         return QModelIndex();
 
     return createIndex(parentItem->row(), 0, parentItem);
@@ -144,15 +155,10 @@ QModelIndex ShortcutsModel::parent(const QModelIndex &index) const
 
 int ShortcutsModel::rowCount(const QModelIndex &parent) const
 {
-    ShortcutItem *parentItem;
-    if (parent.column() > 0)
-        return 0;
-
     if (!parent.isValid())
-        return m_rootItems.size();
+        return m_rootItem->childCount();
 
-    parentItem = static_cast<ShortcutItem *>(parent.internalPointer());
-    return parentItem->childCount();
+    return static_cast<ShortcutItem *>(parent.internalPointer())->childCount();
 }
 
 int ShortcutsModel::columnCount(const QModelIndex &) const
@@ -165,8 +171,8 @@ Qt::ItemFlags ShortcutsModel::flags(const QModelIndex &index) const
     if (!index.isValid())
         return Qt::NoItemFlags;
 
-    auto *item = static_cast<const ShortcutItem *>(index.internalPointer());
     Qt::ItemFlags itemFlags = QAbstractItemModel::flags(index);
+    auto *item = static_cast<const ShortcutItem *>(index.internalPointer());
     itemFlags.setFlag(Qt::ItemIsEnabled, item->isEnabled());
 
     return itemFlags;
@@ -175,56 +181,55 @@ Qt::ItemFlags ShortcutsModel::flags(const QModelIndex &index) const
 void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 {
     // Global shortcuts
-    m_rootItems.at(0)->child(0)->setShortcut(settings.translateSelectionHotkey());
-    m_rootItems.at(0)->child(1)->setShortcut(settings.speakSelectionHotkey());
-    m_rootItems.at(0)->child(2)->setShortcut(settings.speakTranslatedSelectionHotkey());
-    m_rootItems.at(0)->child(3)->setShortcut(settings.stopSpeakingHotkey());
-    m_rootItems.at(0)->child(4)->setShortcut(settings.showMainWindowHotkey());
-    m_rootItems.at(0)->child(5)->setShortcut(settings.copyTranslatedSelectionHotkey());
+    m_rootItem->child(0)->child(0)->setShortcut(settings.translateSelectionHotkey());
+    m_rootItem->child(0)->child(1)->setShortcut(settings.speakSelectionHotkey());
+    m_rootItem->child(0)->child(2)->setShortcut(settings.speakTranslatedSelectionHotkey());
+    m_rootItem->child(0)->child(3)->setShortcut(settings.stopSpeakingHotkey());
+    m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowHotkey());
+    m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionHotkey());
 
     // Window shortcuts
-    m_rootItems.at(1)->child(0)->setShortcut(settings.translateHotkey());
-    m_rootItems.at(1)->child(1)->setShortcut(settings.closeWindowHotkey());
+    m_rootItem->child(1)->child(0)->setShortcut(settings.translateHotkey());
+    m_rootItem->child(1)->child(1)->setShortcut(settings.closeWindowHotkey());
 
     // Source text shortcuts
-    m_rootItems.at(1)->child(2)->child(0)->setShortcut(settings.speakSourceHotkey());
+    m_rootItem->child(1)->child(2)->child(0)->setShortcut(settings.speakSourceHotkey());
 
     // Translation text shortcuts
-    m_rootItems.at(1)->child(3)->child(0)->setShortcut(settings.speakTranslationHotkey());
-    m_rootItems.at(1)->child(3)->child(1)->setShortcut(settings.copyTranslationHotkey());
+    m_rootItem->child(1)->child(3)->child(0)->setShortcut(settings.speakTranslationHotkey());
+    m_rootItem->child(1)->child(3)->child(1)->setShortcut(settings.copyTranslationHotkey());
 }
 
 void ShortcutsModel::saveShortcuts(AppSettings &settings) const
 {
     // Global shortcuts
-    settings.setTranslateSelectionHotkey(m_rootItems.at(0)->child(0)->shortcut());
-    settings.setSpeakSelectionHotkey(m_rootItems.at(0)->child(1)->shortcut());
-    settings.setSpeakTranslatedSelectionHotkey(m_rootItems.at(0)->child(2)->shortcut());
-    settings.setStopSpeakingHotkey(m_rootItems.at(0)->child(3)->shortcut());
-    settings.setShowMainWindowHotkey(m_rootItems.at(0)->child(4)->shortcut());
-    settings.setCopyTranslatedSelectionHotkeyHotkey(m_rootItems.at(0)->child(5)->shortcut());
+    settings.setTranslateSelectionHotkey(m_rootItem->child(0)->child(0)->shortcut());
+    settings.setSpeakSelectionHotkey(m_rootItem->child(0)->child(1)->shortcut());
+    settings.setSpeakTranslatedSelectionHotkey(m_rootItem->child(0)->child(2)->shortcut());
+    settings.setStopSpeakingHotkey(m_rootItem->child(0)->child(3)->shortcut());
+    settings.setShowMainWindowHotkey(m_rootItem->child(0)->child(4)->shortcut());
+    settings.setCopyTranslatedSelectionHotkeyHotkey(m_rootItem->child(0)->child(5)->shortcut());
 
     // Window shortcuts
-    settings.setTranslateHotkey(m_rootItems.at(1)->child(0)->shortcut());
-    settings.setCloseWindowHotkey(m_rootItems.at(1)->child(1)->shortcut());
+    settings.setTranslateHotkey(m_rootItem->child(1)->child(0)->shortcut());
+    settings.setCloseWindowHotkey(m_rootItem->child(1)->child(1)->shortcut());
 
     // Source text shortcuts
-    settings.setSpeakSourceHotkey(m_rootItems.at(1)->child(2)->child(0)->shortcut());
+    settings.setSpeakSourceHotkey(m_rootItem->child(1)->child(2)->child(0)->shortcut());
 
     // Translation text shortcuts
-    settings.setSpeakTranslationHotkey(m_rootItems.at(1)->child(3)->child(0)->shortcut());
-    settings.setCopyTranslationHotkey(m_rootItems.at(1)->child(3)->child(1)->shortcut());
+    settings.setSpeakTranslationHotkey(m_rootItem->child(1)->child(3)->child(0)->shortcut());
+    settings.setCopyTranslationHotkey(m_rootItem->child(1)->child(3)->child(1)->shortcut());
 }
 
 void ShortcutsModel::resetAllShortcuts()
 {
-    for (ShortcutItem *item : m_rootItems)
-        item->resetAllShortucts();
+    m_rootItem->resetAllShortucts();
 }
 
 void ShortcutsModel::setGlobalShortuctsEnabled(bool enabled)
 {
-    m_rootItems.at(0)->setEnabled(enabled);
+    m_rootItem->child(0)->setEnabled(enabled);
 }
 
 void ShortcutsModel::updateShortcut(ShortcutItem *item)
@@ -235,7 +240,7 @@ void ShortcutsModel::updateShortcut(ShortcutItem *item)
 
 QModelIndex ShortcutsModel::index(ShortcutItem *item, int column) const
 {
-    if (item == nullptr)
+    if (item == m_rootItem)
         return QModelIndex();
 
     return index(item->row(), column, index(item->parentItem(), column));

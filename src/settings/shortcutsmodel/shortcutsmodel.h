@@ -61,7 +61,7 @@ public slots:
 private:
     QModelIndex index(ShortcutItem *item, int column) const;
 
-    QVector<ShortcutItem *> m_rootItems;
+    ShortcutItem *m_rootItem;
 };
 
 #endif // SHORTCUTSMODEL_H

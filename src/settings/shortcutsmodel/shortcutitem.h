@@ -31,11 +31,11 @@ class ShortcutItem
     Q_DISABLE_COPY(ShortcutItem)
 
 public:
-    explicit ShortcutItem(const QString &description, ShortcutsModel *model = nullptr);
-    ShortcutItem(const QString &description, const QString &iconName, const QKeySequence &defaultShortcut, ShortcutsModel *model = nullptr);
+    explicit ShortcutItem(ShortcutsModel *model);
+    ShortcutItem(const QString &description, ShortcutItem *parent);
+    ShortcutItem(const QString &description, const QString &iconName, ShortcutItem *parent);
     ~ShortcutItem();
 
-    void addChild(ShortcutItem *child);
     ShortcutItem *child(int row);
     int childCount() const;
     int row() const;
@@ -43,7 +43,9 @@ public:
 
     QString description() const;
     QIcon icon() const;
+
     QKeySequence defaultShortcut() const;
+    void setDefaultShortcut(const QKeySequence &shortcut);
 
     QKeySequence shortcut() const;
     void setShortcut(const QKeySequence &shortcut);
