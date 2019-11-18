@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -991,17 +989,17 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
         <source>Selected language %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Langue sélectionnée %1 n&apos;est pas supporté pour %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
         <source>Selected voice %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Voix sélectionnée %1 n&apos;est pas supporté pour %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
         <source>Selected emotion %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Émotion sélectionnée %1 n&apos;est pas supporté pour %2</translation>
     </message>
 </context>
 <context>
@@ -1610,12 +1608,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="42"/>
         <source>Portable mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Mode portable</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="51"/>
         <source>Use %1 from the application folder to store settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Utiliser %1 depuis le dossier du logiciel pour stocker les paramètres</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="102"/>
