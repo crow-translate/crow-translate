@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1525,12 +1523,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genel kısayolları sisteme kaydet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
         <source>Enable global shortcucts</source>
-        <translation type="unfinished"></translation>
+        <translation>Genel kısayolları etkinleştir</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1155"/>
