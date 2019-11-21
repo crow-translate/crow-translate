@@ -1,8 +1,9 @@
 # Directory settings for Plasma
 *.directory
 
-# Qt Creator project settings
+# Qt Creator files
 *.user*
+*.autosave
 
 # NSIS release
 dist/windows/release
