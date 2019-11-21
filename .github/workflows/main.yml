@@ -5,14 +5,16 @@ on:
     - 'releases/**'
     paths-ignore:
     - 'dist/**'
-    - '.github/workflows/release.yml'
+    - 'data/translations/**'
     - '*.md'
+    - '.github/workflows/release.yml'
     - '.gitignore'
   pull_request:
     paths-ignore:
     - 'dist/**'
-    - '.github/workflows/release.yml'
+    - 'data/translations/**'
     - '*.md'
+    - '.github/workflows/release.yml'
     - '.gitignore'
 jobs:
   Linux:
