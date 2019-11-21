@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="156"/>
+        <location filename="../../src/settings/appsettings.cpp" line="157"/>
         <source>Unable to create autorun file from %1</source>
         <translation>Не удалось создать файл автозапуска из %1</translation>
     </message>
@@ -25,114 +25,114 @@
 <context>
     <name>Cli</name>
     <message>
-        <location filename="../../src/cli.cpp" line="50"/>
+        <location filename="../../src/cli.cpp" line="48"/>
         <source>Display all language codes.</source>
         <translation>Показать все языковые коды.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="51"/>
+        <location filename="../../src/cli.cpp" line="49"/>
         <source>Specify the source language (by default, engine will try to determine the language on its own).</source>
         <translation>Укажите исходный язык (по умолчанию движок попытается определить язык самостоятельно).</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="52"/>
+        <location filename="../../src/cli.cpp" line="50"/>
         <source>Specify the translation language(s), splitted by &apos;+&apos; (by default, the system language is used).</source>
         <translation>Укажите язык(и) перевода, разделенные &apos;+&apos; (по умолчанию используется системный язык).</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="53"/>
+        <location filename="../../src/cli.cpp" line="51"/>
         <source>Specify the translator language (by default, the system language is used).</source>
         <translation>Укажите язык переводчика (по умолчанию используется системный язык).</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="54"/>
+        <location filename="../../src/cli.cpp" line="52"/>
         <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos; or &apos;bing&apos;), Google is used by default.</source>
         <translation>Укажите движок переводчика (&apos;google&apos;, &apos;yandex&apos; или &apos;bing&apos;), Google используется по умолчанию.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="55"/>
+        <location filename="../../src/cli.cpp" line="53"/>
         <source>Speak the translation.</source>
         <translation>Озвучить перевод.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="56"/>
+        <location filename="../../src/cli.cpp" line="54"/>
         <source>Speak the source.</source>
         <translation>Озвучить исходный текст.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="57"/>
+        <location filename="../../src/cli.cpp" line="55"/>
         <source>Print text only for speaking when using --%1 or --%2.</source>
         <translation>Печатать текст только для озвучивания при использовании --%1 или --%2.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="58"/>
+        <location filename="../../src/cli.cpp" line="56"/>
         <source>Read source text from files. Arguments will be interpreted as file paths.</source>
         <translation>Считать исходный текст из файлов. Аргументы будут интерпретироваться как пути к файлам.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="59"/>
+        <location filename="../../src/cli.cpp" line="57"/>
         <source>Add stdin data to source text.</source>
         <translation>Добавить данные стандартного ввода в исходный текст.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="62"/>
+        <location filename="../../src/cli.cpp" line="60"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
         <translation>Простой и легковесный переводчик, который позволяет переводить и озвучивать текст с помощью Google, Yandex и Bing.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="63"/>
+        <location filename="../../src/cli.cpp" line="61"/>
         <source>Text to translate. By default, the translation will be done to the system language.</source>
         <translation>Текст для перевода. По умолчанию перевод будет выполнен на язык системы.</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="93"/>
+        <location filename="../../src/cli.cpp" line="91"/>
         <source>Error: Unknown engine</source>
         <translation>Ошибка: Неизвестный движок</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="124"/>
+        <location filename="../../src/cli.cpp" line="122"/>
         <source>Error: There is no text for translation</source>
         <translation>Ошибка: Нет текста для перевода</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="403"/>
+        <location filename="../../src/cli.cpp" line="401"/>
         <source>Error: %1</source>
         <translation>Ошибка: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="428"/>
-        <location filename="../../src/cli.cpp" line="449"/>
+        <location filename="../../src/cli.cpp" line="426"/>
+        <location filename="../../src/cli.cpp" line="447"/>
         <source>Error: File does not exist: %1</source>
         <translation>Ошибка: Файл не существует: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="433"/>
-        <location filename="../../src/cli.cpp" line="454"/>
+        <location filename="../../src/cli.cpp" line="431"/>
+        <location filename="../../src/cli.cpp" line="452"/>
         <source>Error: Unable to open file: %1</source>
         <translation>Ошибка: Невозможно открыть файл: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="195"/>
+        <location filename="../../src/cli.cpp" line="193"/>
         <source>%1 - translation options:</source>
         <translation>%1 - варианты перевода:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="131"/>
+        <location filename="../../src/cli.cpp" line="129"/>
         <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
         <translation>Ошибка: Для --%1 необходимо указать --%2 и/или --%3 параметры</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="211"/>
+        <location filename="../../src/cli.cpp" line="209"/>
         <source>%1 - examples:</source>
         <translation>%1 - примеры:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="241"/>
+        <location filename="../../src/cli.cpp" line="239"/>
         <source>Source text:</source>
         <translation>Исходный текст:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="249"/>
+        <location filename="../../src/cli.cpp" line="247"/>
         <source>Translation into %1:</source>
         <translation>Перевод на %1:</translation>
     </message>
@@ -140,12 +140,12 @@
 <context>
     <name>LangButtonGroup</name>
     <message>
-        <location filename="../../src/langbuttongroup.cpp" line="71"/>
-        <location filename="../../src/langbuttongroup.cpp" line="72"/>
+        <location filename="../../src/langbuttongroup.cpp" line="69"/>
+        <location filename="../../src/langbuttongroup.cpp" line="70"/>
+        <location filename="../../src/langbuttongroup.cpp" line="139"/>
         <location filename="../../src/langbuttongroup.cpp" line="141"/>
-        <location filename="../../src/langbuttongroup.cpp" line="143"/>
+        <location filename="../../src/langbuttongroup.cpp" line="395"/>
         <location filename="../../src/langbuttongroup.cpp" line="397"/>
-        <location filename="../../src/langbuttongroup.cpp" line="399"/>
         <source>Auto</source>
         <translation>Авто</translation>
     </message>
@@ -205,8 +205,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="127"/>
-        <location filename="../../src/mainwindow.cpp" line="117"/>
-        <location filename="../../src/mainwindow.cpp" line="558"/>
+        <location filename="../../src/mainwindow.cpp" line="120"/>
+        <location filename="../../src/mainwindow.cpp" line="560"/>
         <source>Settings</source>
         <translation>Настройки</translation>
     </message>
@@ -216,14 +216,14 @@
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="116"/>
-        <location filename="../../src/mainwindow.cpp" line="557"/>
+        <location filename="../../src/mainwindow.cpp" line="119"/>
+        <location filename="../../src/mainwindow.cpp" line="559"/>
         <source>Show window</source>
         <translation>Показать окно</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="118"/>
-        <location filename="../../src/mainwindow.cpp" line="559"/>
+        <location filename="../../src/mainwindow.cpp" line="121"/>
+        <location filename="../../src/mainwindow.cpp" line="561"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
@@ -233,12 +233,12 @@
         <translation>Не удается определить язык</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="352"/>
+        <location filename="../../src/mainwindow.cpp" line="354"/>
         <source>Unable to translate text</source>
         <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="512"/>
+        <location filename="../../src/mainwindow.cpp" line="514"/>
         <source>The application is already running</source>
         <translation>Приложение уже запущено</translation>
     </message>
@@ -327,646 +327,646 @@
 <context>
     <name>QOnlineTranslator</name>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="219"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="327"/>
         <source>Automatically detect</source>
         <translation>Автоматически определить</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="221"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="329"/>
         <source>Afrikaans</source>
         <translation>Африкаанс</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="225"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="333"/>
         <source>Amharic</source>
         <translation>Амхарский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="227"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="335"/>
         <source>Arabic</source>
         <translation>Арабский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="237"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="345"/>
         <source>Belarusian</source>
         <translation>Белорусский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="243"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="351"/>
         <source>Bulgarian</source>
         <translation>Болгарский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="239"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="347"/>
         <source>Bengali</source>
         <translation>Бенгальский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="241"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="349"/>
         <source>Bosnian</source>
         <translation>Боснийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="245"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="353"/>
         <source>Catalan</source>
         <translation>Каталонский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="249"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="357"/>
         <source>Cebuano</source>
         <translation>Себуанский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="255"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="363"/>
         <source>Corsican</source>
         <translation>Корсиканский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="259"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="367"/>
         <source>Czech</source>
         <translation>Чешский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="423"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="531"/>
         <source>Tagalog</source>
         <translation>Тагальский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="451"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="559"/>
         <source>Welsh</source>
         <translation>Валлийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="261"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="369"/>
         <source>Danish</source>
         <translation>Датский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="285"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="393"/>
         <source>German</source>
         <translation>Немецкий</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="287"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="395"/>
         <source>Greek</source>
         <translation>Греческий</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="265"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="373"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="267"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="375"/>
         <source>Esperanto</source>
         <translation>Эсперанто</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="415"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="523"/>
         <source>Spanish</source>
         <translation>Испанский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="269"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="377"/>
         <source>Estonian</source>
         <translation>Эстонский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="233"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="341"/>
         <source>Basque</source>
         <translation>Баскский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="379"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="487"/>
         <source>Persian</source>
         <translation>Персидский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="275"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="383"/>
         <source>Finnish</source>
         <translation>Финский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="277"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="385"/>
         <source>French</source>
         <translation>Французский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="279"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="387"/>
         <source>Frisian</source>
         <translation>Фризский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="313"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="421"/>
         <source>Irish</source>
         <translation>Ирландский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="395"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="503"/>
         <source>Scots Gaelic</source>
         <translation>Шотландский (гэльский)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="281"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="389"/>
         <source>Galician</source>
         <translation>Галисийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="289"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="397"/>
         <source>Gujarati</source>
         <translation>Гуджарати</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="293"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="401"/>
         <source>Hausa</source>
         <translation>Хауса</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="295"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="403"/>
         <source>Hawaiian</source>
         <translation>Гавайский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="297"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="405"/>
         <source>Hebrew</source>
         <translation>Иврит</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="301"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="409"/>
         <source>Hindi</source>
         <translation>Хинди</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="303"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="411"/>
         <source>Hmong</source>
         <translation>Хмонг</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="257"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="365"/>
         <source>Croatian</source>
         <translation>Хорватский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="291"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="399"/>
         <source>Haitian Creole</source>
         <translation>Гаитянский креольский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="305"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="413"/>
         <source>Hungarian</source>
         <translation>Венгерский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="229"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="337"/>
         <source>Armenian</source>
         <translation>Армянский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="311"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="419"/>
         <source>Indonesian</source>
         <translation>Индонезийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="309"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="417"/>
         <source>Igbo</source>
         <translation>Игбо</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="307"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="415"/>
         <source>Icelandic</source>
         <translation>Исландский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="315"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="423"/>
         <source>Italian</source>
         <translation>Итальянский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="317"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="425"/>
         <source>Japanese</source>
         <translation>Японский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="319"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="427"/>
         <source>Javanese</source>
         <translation>Яванский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="283"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="391"/>
         <source>Georgian</source>
         <translation>Грузинский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="231"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="339"/>
         <source>Azeerbaijani</source>
         <translation>Азербайджанский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="235"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="343"/>
         <source>Bashkir</source>
         <translation>Башкирский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="251"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="359"/>
         <source>Chinese (Simplified)</source>
         <translation>Китайский (упрощенный)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="253"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="361"/>
         <source>Chinese (Traditional)</source>
         <translation>Китайский (традиционный)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="299"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="407"/>
         <source>Hill Mari</source>
         <translation>Горномарийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="323"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="431"/>
         <source>Kazakh</source>
         <translation>Казахский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="325"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="433"/>
         <source>Khmer</source>
         <translation>Кхмерский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="321"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="429"/>
         <source>Kannada</source>
         <translation>Каннада</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="331"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="439"/>
         <source>Korean</source>
         <translation>Корейский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="333"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="441"/>
         <source>Kurdish</source>
         <translation>Курдский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="335"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="443"/>
         <source>Kyrgyz</source>
         <translation>Кыргызский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="339"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="447"/>
         <source>Latin</source>
         <translation>Латинский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="347"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="455"/>
         <source>Luxembourgish</source>
         <translation>Люксембургский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="337"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="445"/>
         <source>Lao</source>
         <translation>Лаосский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="345"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="453"/>
         <source>Lithuanian</source>
         <translation>Литовский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="341"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="449"/>
         <source>Latvian</source>
         <translation>Латышский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="351"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="459"/>
         <source>Malagasy</source>
         <translation>Малагасийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="359"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="467"/>
         <source>Maori</source>
         <translation>Маори</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="349"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="457"/>
         <source>Macedonian</source>
         <translation>Македонский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="355"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="463"/>
         <source>Malayalam</source>
         <translation>Малаялам</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="365"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="473"/>
         <source>Mongolian</source>
         <translation>Монгольский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="361"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="469"/>
         <source>Marathi</source>
         <translation>Маратхи</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="353"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="461"/>
         <source>Malay</source>
         <translation>Малайский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="357"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="465"/>
         <source>Maltese</source>
         <translation>Мальтийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="363"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="471"/>
         <source>Mari</source>
         <translation>Марийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="367"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="475"/>
         <source>Myanmar</source>
         <translation>Мьянма</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="369"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="477"/>
         <source>Nepali</source>
         <translation>Непальский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="263"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="371"/>
         <source>Dutch</source>
         <translation>Голландский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="371"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="479"/>
         <source>Norwegian</source>
         <translation>Норвежский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="385"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="493"/>
         <source>Punjabi</source>
         <translation>Пенджаби</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="381"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="489"/>
         <source>Polish</source>
         <translation>Польский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="81"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="189"/>
         <source>Selected source language %1 is not supported for %2</source>
         <translation>Выбранный язык исходного текста %1 не поддрживается для %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="87"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="195"/>
         <source>Selected translation language %1 is not supported for %2</source>
         <translation>Выбранный язык перевода %1 не поддерживается для %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="93"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="201"/>
         <source>Selected ui language %1 is not supported for %2</source>
         <translation>Выбранный язык информации о переводе %1 не поддерживается для %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="247"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="355"/>
         <source>Cantonese</source>
         <translation>Кантонский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="271"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="379"/>
         <source>Fijian</source>
         <translation>Фиджийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="273"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="381"/>
         <source>Filipino</source>
         <translation>Филиппинский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="327"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="435"/>
         <source>Klingon</source>
         <translation>Клингонский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="329"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="437"/>
         <source>Klingon (PlqaD)</source>
         <translation>Клингонский (PlqaD)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="343"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="451"/>
         <source>Levantine Arabic</source>
         <translation>Левантийский арабский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="377"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="485"/>
         <source>Pashto</source>
         <translation>Пушту</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="383"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="491"/>
         <source>Portuguese</source>
         <translation>Португальский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="387"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="495"/>
         <source>Queretaro Otomi</source>
         <translation>Керетарский диалект отоми</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="389"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="497"/>
         <source>Romanian</source>
         <translation>Румынский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="391"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="499"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="397"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="505"/>
         <source>Serbian (Cyrillic)</source>
         <translation>Сербский (кириллица)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="399"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="507"/>
         <source>Serbian (Latin)</source>
         <translation>Сербский (латиница)</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="405"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="513"/>
         <source>Sindhi</source>
         <translation>Синдхи</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="407"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="515"/>
         <source>Sinhala</source>
         <translation>Сингальский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="409"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="517"/>
         <source>Slovak</source>
         <translation>Словацкий</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="411"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="519"/>
         <source>Slovenian</source>
         <translation>Словенский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="848"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="857"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="947"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="956"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="965"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1055"/>
         <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
         <translation>Ошибка: системы движка обнаружили подозрительный трафик из вашей компьютерной сети. Повторите попытку позже.</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="393"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="501"/>
         <source>Samoan</source>
         <translation>Самоанский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="403"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="511"/>
         <source>Shona</source>
         <translation>Шона</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="413"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="521"/>
         <source>Somali</source>
         <translation>Сомалийский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="223"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="331"/>
         <source>Albanian</source>
         <translation>Албанский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="401"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="509"/>
         <source>Sesotho</source>
         <translation>Сесото</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="417"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="525"/>
         <source>Sundanese</source>
         <translation>Сундейский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="421"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="529"/>
         <source>Swedish</source>
         <translation>Шведский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="419"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="527"/>
         <source>Swahili</source>
         <translation>Суахили</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="373"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="481"/>
         <source>Chichewa</source>
         <translation>Чева</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="375"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="483"/>
         <source>Papiamento</source>
         <translation>Папьяменто</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="429"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="537"/>
         <source>Tamil</source>
         <translation>Тамильский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="433"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="541"/>
         <source>Telugu</source>
         <translation>Телугу</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="427"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="535"/>
         <source>Tajik</source>
         <translation>Таджикский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="435"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="543"/>
         <source>Thai</source>
         <translation>Тайский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="439"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="547"/>
         <source>Turkish</source>
         <translation>Турецкий</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="443"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="551"/>
         <source>Ukrainian</source>
         <translation>Украинский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="431"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="539"/>
         <source>Tatar</source>
         <translation>Татарский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="425"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="533"/>
         <source>Tahitian</source>
         <translation>Таитянский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="437"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="545"/>
         <source>Tongan</source>
         <translation>Тонганский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="441"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="549"/>
         <source>Udmurt</source>
         <translation>Удмуртский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="445"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="553"/>
         <source>Urdu</source>
         <translation>Урду</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="447"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="555"/>
         <source>Uzbek</source>
         <translation>Узбекский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="449"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="557"/>
         <source>Vietnamese</source>
         <translation>Вьетнамский</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="453"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="561"/>
         <source>Xhosa</source>
         <translation>Кхоса</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="455"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="563"/>
         <source>Yiddish</source>
         <translation>Идиш</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="457"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="565"/>
         <source>Yoruba</source>
         <translation>Йоруба</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="459"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="567"/>
         <source>Yucatec Maya</source>
         <translation>Юкатекский майя</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="461"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="569"/>
         <source>Zulu</source>
         <translation>Зулу</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="869"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1017"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1149"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="977"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1125"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1257"/>
         <source>Error: Unable to parse autodetected language</source>
         <translation>Ошибка: Не удается разобрать автоопределенный язык</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="961"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1069"/>
         <source>Error: Unable to parse Yandex SID.</source>
         <translation>Ошибка: Не удалось разобрать Yandex SID.</translation>
     </message>
@@ -974,32 +974,32 @@
 <context>
     <name>QOnlineTts</name>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="45"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="54"/>
         <source>Selected engine %1 does not support voice settings</source>
         <translation>Выбранный движок %1 не поддерживает настройки голоса</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="50"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="59"/>
         <source>Selected engine %1 does not support emotion settings</source>
         <translation>Выбранный движок %1 не поддерживает настройки эмоций</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="128"/>
         <source>%1 engine does not support TTS</source>
         <translation>Движок %1 не поддерживает TTS</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="188"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="197"/>
         <source>Selected language %1 is not supported for %2</source>
         <translation>Выбранный язык %1 не поддерживается для %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="202"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="211"/>
         <source>Selected voice %1 is not supported for %2</source>
         <translation>Выбранный голос %1 не поддерживается для %2</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="225"/>
         <source>Selected emotion %1 is not supported for %2</source>
         <translation>Выбранная эмоция %1 не поддерживается для %2</translation>
     </message>
@@ -1097,32 +1097,32 @@
         <translation>Пользовательский:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="280"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
         <source>Zahar</source>
         <translation>Захар</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="281"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
         <source>Ermil</source>
         <translation>Эрмиль</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
         <source>Jane</source>
         <translation>Джейн</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
         <source>Oksana</source>
         <translation>Оксана</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
         <source>Alyss</source>
         <translation>Алиса</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
         <source>Omazh</source>
         <translation>Омаж</translation>
     </message>
@@ -1132,17 +1132,17 @@
         <translation>Эмоциональный окрас:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
         <source>Neutral</source>
         <translation>Нейтральный</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
         <source>Good</source>
         <translation>Добрый</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Evil</source>
         <translation>Злой</translation>
     </message>
@@ -1157,42 +1157,42 @@
         <translation>Проверка голоса</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1132"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1145"/>
         <source>Reset all</source>
         <translation>Сбросить всё</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1148"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1161"/>
         <source>Key sequence:</source>
         <translation>Комбинация клавиш:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1162"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1175"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Принять комбинацию клавиш&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1165"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1178"/>
         <source>Accept</source>
         <translation>Принять</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1176"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1189"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Очистить комбинацию клавиш&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1179"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1192"/>
         <source>Clear</source>
         <translation>Очистить</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1193"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1206"/>
         <source>Reset</source>
         <translation>Сбросить</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1294"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1307"/>
         <source>Flag icons:</source>
         <translation>Значки флагов:</translation>
     </message>
@@ -1239,9 +1239,9 @@
         <translation>Язык:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="61"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="71"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="62"/>
         <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="73"/>
         <source>&lt;System language&gt;</source>
         <translation>&lt;Язык системы&gt;</translation>
     </message>
@@ -1278,8 +1278,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="559"/>
         <location filename="../../src/settings/settingsdialog.ui" line="810"/>
         <location filename="../../src/settings/settingsdialog.ui" line="885"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="535"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="553"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="539"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="557"/>
         <source>Default</source>
         <translation>По умолчанию</translation>
     </message>
@@ -1389,22 +1389,22 @@
         <translation>Информация: пароль хранится в незашифрованном виде</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1142"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сбросить все комбинации клавиш на по умолчанию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1155"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1168"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Комбинация клавиш для выбранного действия&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1190"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1203"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Сбросить комбинацию клавиш по умолчанию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1260"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1273"/>
         <source>License:</source>
         <translation>Лицензия:</translation>
     </message>
@@ -1579,7 +1579,17 @@
         <translation>Не использовать прокси</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1142"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1123"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Регистрировать глобальные комбинации клавиш в системе&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
+        <source>Enable global shortcucts</source>
+        <translation>Включить глобальные комбинации клавиш</translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="1155"/>
         <source>Shortcut</source>
         <translation>Комбинация</translation>
     </message>
@@ -1589,122 +1599,122 @@
         <translation>О программе</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1344"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1357"/>
         <source>Ukraine</source>
         <translation>Украина</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1337"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1350"/>
         <source>Country:</source>
         <translation>Страна:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1280"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1293"/>
         <source>Autor:</source>
         <translation>Автор:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1233"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1246"/>
         <source>Version:</source>
         <translation>Версия:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="102"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
         <source>Interface icons:</source>
         <translation>Значки интерфейса:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
         <source>Check for updates:</source>
         <translation>Проверять обновления:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
         <source>Check now</source>
         <translation>Проверить сейчас</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="132"/>
         <source>Check for updates now</source>
         <translation>Проверить обновления сейчас</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="123"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
         <source>Every day</source>
         <translation>Каждый день</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="42"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="43"/>
         <source>Portable mode</source>
         <translation>Портативный режим</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="51"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="53"/>
         <source>Use %1 from the application folder to store settings</source>
         <translation>Использовать %1 из папки приложения для сохранения настроек</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="112"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="113"/>
         <source>Updates</source>
         <translation>Обновления</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
         <source>Every week</source>
         <translation>Каждую неделю</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
         <source>Every month</source>
         <translation>Каждый месяц</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
         <source>Never</source>
         <translation>Никогда</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
         <source>Happy New Year!</source>
         <translation>С Новым Годом!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="250"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Select icon</source>
         <translation>Выберите значок</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="250"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="318"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Nothing to play</source>
         <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="318"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="329"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
         <source>Unable to detect language</source>
         <translation>Невозможно определить язык</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="384"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
         <source>Checking for updates...</source>
         <translation>Проверка обновлений...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="406"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
         <source>Update available!</source>
         <translation>Доступно обновление!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="412"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="414"/>
         <source>No updates available.</source>
         <translation>Нет доступных обновлений.</translation>
     </message>
@@ -1712,83 +1722,83 @@
 <context>
     <name>ShortcutsModel</name>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="76"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="119"/>
         <source>Description</source>
         <translation>Описание</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="78"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="121"/>
         <source>Shortcut</source>
         <translation>Комбинация</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="144"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="33"/>
         <source>Global</source>
         <translation>Глобальные</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="147"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="35"/>
         <source>Translate selected text</source>
         <translation>Перевести выделенный текст</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="153"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="38"/>
         <source>Speak selected text</source>
         <translation>Озвучить выделенный текст</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="159"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="41"/>
         <source>Speak translation of selected text</source>
         <translation>Озвучить перевод выделенного текста</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="165"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="44"/>
         <source>Stop text speaking</source>
         <translation>Остановить озвучивание текста</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="171"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="47"/>
         <source>Show main window</source>
         <translation>Показать главное окно</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="177"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="50"/>
         <source>Translate selected text and copy to clipboard</source>
         <translation>Перевести выделенный текст и скопировать в буфер обмена</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="184"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
         <source>Main window</source>
         <translation>Главное окно</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="187"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="56"/>
         <source>Translate</source>
         <translation>Перевести</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="193"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="59"/>
         <source>Close window</source>
         <translation>Закрыть окно</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="200"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
         <source>Source text</source>
         <translation>Исходный текст</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="203"/>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="213"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
         <source>Play / pause text speaking</source>
         <translation>Воспроизвести / приостановить озвучивание текста</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="210"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
         <source>Translation</source>
         <translation>Перевод</translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="219"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="74"/>
         <source>Copy to clipboard</source>
         <translation>Скопировать в буфер обмена</translation>
     </message>
@@ -1801,7 +1811,7 @@
         <translation>варианты перевода:</translation>
     </message>
     <message>
-        <location filename="../../src/translationedit.cpp" line="98"/>
+        <location filename="../../src/translationedit.cpp" line="94"/>
         <source>examples:</source>
         <translation>примеры:</translation>
     </message>
