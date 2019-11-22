@@ -13,6 +13,7 @@ All notable changes to this project will be documented in this file. This projec
 **Changed**
 
 -   Fix crash on Wayland (still no support for hotkeys and selection).
+-   Use a simpler and more compatible way to show notifications.
 
 ## [2.2.3](https://github.com/crow-translate/crow-translate/tree/2.2.3) (2019-11-04)
 

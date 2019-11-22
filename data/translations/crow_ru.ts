@@ -1819,9 +1819,14 @@
 <context>
     <name>TrayIcon</name>
     <message>
-        <location filename="../../src/trayicon.cpp" line="45"/>
-        <source>The specified icon &apos;%1&apos; for the Crow Translate is invalid. The default icon will be used.</source>
-        <translation>Выбранный значок &apos;%1&apos; для Crow Translate недействителен. Будет использован значок по умолчанию.</translation>
+        <location filename="../../src/trayicon.cpp" line="42"/>
+        <source>Invalid tray icon</source>
+        <translation>Недействительный значок для трея</translation>
+    </message>
+    <message>
+        <location filename="../../src/trayicon.cpp" line="42"/>
+        <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
+        <translation>Указанный значок &apos;%1&apos; недействителен. Будет использован значок по умолчанию.</translation>
     </message>
 </context>
 <context>

@@ -23,7 +23,6 @@
 #include "mainwindow.h"
 #include "settings/appsettings.h"
 
-#include <QDBusInterface>
 #include <QFileInfo>
 
 TrayIcon::TrayIcon(MainWindow *parent)
@@ -35,39 +34,21 @@ TrayIcon::TrayIcon(MainWindow *parent)
 void TrayIcon::loadSettings(const AppSettings &settings)
 {
     const IconType iconType = settings.trayIconType();
-
-    QIcon icon;
     if (iconType == CustomIcon) {
         const QString customIconName = settings.customIconPath();
-        icon = customTrayIcon(customIconName);
-        if (icon.isNull()) {
+        setIcon(customTrayIcon(customIconName));
+        if (icon().isNull()) {
             const QString defaultIconName = trayIconName(DefaultIcon);
-            showNotification(tr("The specified icon '%1' for the Crow Translate is invalid. The default icon will be used.").arg(customIconName), defaultIconName);
-            icon = QIcon::fromTheme(defaultIconName);
+            showMessage(tr("Invalid tray icon"), tr("The specified icon '%1' is invalid. The default icon will be used.").arg(customIconName));
+            setIcon(QIcon::fromTheme(defaultIconName));
         }
     } else {
-        icon = QIcon::fromTheme(trayIconName(iconType));
+        setIcon(QIcon::fromTheme(trayIconName(iconType)));
     }
-    setIcon(icon);
 
     const bool trayIconVisible = settings.isShowTrayIcon();
     setVisible(trayIconVisible);
     SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
-}
-
-void TrayIcon::showNotification(const QString &message, const QString &iconName, int interval)
-{
-    QDBusInterface notify("org.freedesktop.Notifications", "/org/freedesktop/Notifications", "org.freedesktop.Notifications");
-    QVariantList notifyArguments;
-    notifyArguments << SingleApplication::applicationName(); // Set program name
-    notifyArguments << QVariant(QVariant::UInt);
-    notifyArguments << iconName; // Icon
-    notifyArguments << SingleApplication::applicationName(); // Title
-    notifyArguments << message; // Body
-    notifyArguments << QStringList();
-    notifyArguments << QVariantMap();
-    notifyArguments << interval; // Show interval
-    notify.callWithArgumentList(QDBus::AutoDetect, "Notify", notifyArguments);
 }
 
 QIcon TrayIcon::customTrayIcon(const QString &customName)

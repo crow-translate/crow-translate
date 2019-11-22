@@ -43,7 +43,6 @@ public:
     TrayIcon(MainWindow *parent = nullptr);
 
     void loadSettings(const AppSettings &settings);
-    void showNotification(const QString &message, const QString &iconName, int interval = 10000);
 
     static QIcon customTrayIcon(const QString &customName);
     static QString trayIconName(IconType type);
