@@ -511,10 +511,13 @@ void MainWindow::setTaskbarState(QMediaPlayer::State state)
 
 void MainWindow::showAppRunningMessage()
 {
-    auto *message = new QMessageBox(QMessageBox::Information, SingleApplication::applicationName(), tr("The application is already running"));
-    message->setAttribute(Qt::WA_DeleteOnClose); // Need to allocate on heap to avoid crash!
+    auto *message = new QMessageBox(this);
+    message->setIcon(QMessageBox::Information);
+    message->setText(tr("The application is already running"));
+    message->setAttribute(Qt::WA_DeleteOnClose);
+
     activate();
-    message->show();
+    message->open();
 }
 
 #ifdef Q_OS_WIN
