@@ -1818,12 +1818,12 @@
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>Invalid tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçersiz tepsi simgesi</translation>
     </message>
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>Belirtilen simge &apos;%1&apos; geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
 </context>
 <context>
