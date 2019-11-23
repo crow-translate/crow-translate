@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1525,12 +1523,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1123"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enregistrer les raccourcis globaux dans le système&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
         <source>Enable global shortcucts</source>
-        <translation type="unfinished"></translation>
+        <translation>Activer les raccourcis globaux</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1155"/>
@@ -1820,12 +1818,12 @@
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>Invalid tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Icône de la barre d&apos;état invalide</translation>
     </message>
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation>L&apos;icône spécifiée &apos;%1&apos; est invalide. L&apos;icône par défaut sera utilisé.</translation>
     </message>
 </context>
 <context>
