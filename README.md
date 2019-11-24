@@ -107,16 +107,14 @@ The program also has a console interface.
 
 Currently available only for [global shortcuts](#global).
 
-```
-io.crow_translate.CrowTranslate
-└── /io/crow_translate/CrowTranslate/MainWindow
-    ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection()
-    ├── method void io.crow_translate.CrowTranslate.MainWindow.open()
-    ├── method void io.crow_translate.CrowTranslate.MainWindow.playSelection()
-    ├── method void io.crow_translate.CrowTranslate.MainWindow.playTranslatedSelection()
-    ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking()
-    └── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
-```
+    io.crow_translate.CrowTranslate
+    └── /io/crow_translate/CrowTranslate/MainWindow
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.open()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.playSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.playTranslatedSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking()
+        └── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
 
 For example, you can show main window using `dbus-send`:
 
