@@ -45,6 +45,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "io.crow_translate.CrowTranslate.MainWindow")
     Q_DISABLE_COPY(MainWindow)
 
 public:
@@ -65,7 +66,18 @@ public:
     PlayerButtons *translationPlayerButtons();
 
 public slots:
-    void activate();
+    Q_SCRIPTABLE void translateSelection();
+    Q_SCRIPTABLE void playSelection();
+    Q_SCRIPTABLE void playTranslatedSelection();
+    Q_SCRIPTABLE void stopSpeaking();
+    Q_SCRIPTABLE void open();
+    Q_SCRIPTABLE void copyTranslatedSelection();
+
+signals:
+    void translateSelectionRequested();
+    void playSelectionRequested();
+    void playTranslatedSelectionRequested();
+    void copyTranslatedSelectionRequested();
 
 private slots:
     // State machine's slots
@@ -133,13 +145,13 @@ private:
 
     Ui::MainWindow *ui;
 
-    QShortcut *m_closeWindowsShortcut;
     QHotkey *m_translateSelectionHotkey;
     QHotkey *m_playSelectionHotkey;
     QHotkey *m_playTranslatedSelectionHotkey;
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
+    QShortcut *m_closeWindowsShortcut;
 
     LangButtonGroup *m_sourceLangButtons;
     LangButtonGroup *m_translationLangButtons;

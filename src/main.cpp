@@ -23,6 +23,11 @@
 #include "singleapplication.h"
 #include "settings/appsettings.h"
 
+#ifdef Q_OS_UNIX
+#include <QDBusConnection>
+#include <QDBusError>
+#endif
+
 int launchGui(int argc, char *argv[]);
 int launchCli(int argc, char *argv[]);
 
@@ -50,6 +55,17 @@ int launchGui(int argc, char *argv[])
     settings.setupLocalization();
 
     MainWindow window(settings);
+
+#ifdef Q_OS_UNIX
+    if (QDBusConnection::sessionBus().isConnected()) {
+        if (QDBusConnection::sessionBus().registerService(QStringLiteral("io.crow_translate.CrowTranslate"))) {
+            if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/MainWindow"), &window, QDBusConnection::ExportScriptableSlots))
+                qWarning() << SingleApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(window.metaObject()->className());
+        } else {
+            qWarning() << QDBusConnection::sessionBus().lastError().message();
+        }
+    }
+#endif
 
     return SingleApplication::exec();
 }

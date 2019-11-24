@@ -82,7 +82,7 @@ void TrayIcon::processTrayActivated(QSystemTrayIcon::ActivationReason reason)
 
     auto *mainWindow = qobject_cast<MainWindow *>(parent());
     if (!mainWindow->isVisible())
-        mainWindow->activate();
+        mainWindow->open();
     else
         mainWindow->hide();
 }

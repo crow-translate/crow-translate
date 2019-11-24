@@ -59,13 +59,13 @@
 MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
-    , m_closeWindowsShortcut(new QShortcut(this))
     , m_translateSelectionHotkey(new QHotkey(this))
     , m_playSelectionHotkey(new QHotkey(this))
     , m_playTranslatedSelectionHotkey(new QHotkey(this))
     , m_stopSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
+    , m_closeWindowsShortcut(new QShortcut(this))
     , m_sourceLangButtons(new LangButtonGroup(LangButtonGroup::Source, this))
     , m_translationLangButtons(new LangButtonGroup(LangButtonGroup::Translation, this))
     , m_stateMachine(new QStateMachine(this))
@@ -94,9 +94,12 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
 
     // Shortcuts
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
-    connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::activate);
-    connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->sourcePlayerButtons, &PlayerButtons::stop);
-    connect(m_stopSpeakingHotkey, &QHotkey::activated, ui->translationPlayerButtons, &PlayerButtons::stop);
+    connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::open);
+    connect(m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelection);
+    connect(m_playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
+    connect(m_playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
+    connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
+    connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
 
     // Source button group
     m_sourceLangButtons->addButton(ui->autoSourceButton);
@@ -233,13 +236,39 @@ PlayerButtons *MainWindow::translationPlayerButtons()
     return ui->translationPlayerButtons;
 }
 
-void MainWindow::activate()
+void MainWindow::open()
 {
     ui->sourceEdit->setFocus();
 
     show();
     activateWindow();
     raise();
+}
+
+void MainWindow::translateSelection()
+{
+    emit translateSelectionRequested();
+}
+
+void MainWindow::playSelection()
+{
+    emit playSelectionRequested();
+}
+
+void MainWindow::playTranslatedSelection()
+{
+    emit playTranslatedSelectionRequested();
+}
+
+void MainWindow::stopSpeaking()
+{
+    ui->sourcePlayerButtons->stop();
+    ui->translationPlayerButtons->stop();
+}
+
+void MainWindow::copyTranslatedSelection()
+{
+    emit copyTranslatedSelectionRequested();
 }
 
 void MainWindow::requestTranslation()
@@ -333,7 +362,7 @@ void MainWindow::showTranslationWindow()
                 ui->sourceEdit->setListenForChanges(false);
         });
     } else {
-        activate();
+        open();
 
         // Restore the keyboard shortcut
         m_translateSelectionHotkey->blockSignals(false);
@@ -516,7 +545,7 @@ void MainWindow::showAppRunningMessage()
     message->setText(tr("The application is already running"));
     message->setAttribute(Qt::WA_DeleteOnClose);
 
-    activate();
+    open();
     message->open();
 }
 
@@ -596,10 +625,11 @@ void MainWindow::buildStateMachine()
         state->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
         state->addTransition(ui->sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
         state->addTransition(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
-        state->addTransition(m_translateSelectionHotkey, &QHotkey::activated, translateSelectionState);
-        state->addTransition(m_playSelectionHotkey, &QHotkey::activated, speakSelectionState);
-        state->addTransition(m_playTranslatedSelectionHotkey, &QHotkey::activated, speakTranslatedSelectionState);
-        state->addTransition(m_copyTranslatedSelectionHotkey, &QHotkey::activated, copyTranslatedSelectionState);
+
+        state->addTransition(this, &MainWindow::translateSelectionRequested, translateSelectionState);
+        state->addTransition(this, &MainWindow::playSelectionRequested, speakSelectionState);
+        state->addTransition(this, &MainWindow::playTranslatedSelectionRequested, speakTranslatedSelectionState);
+        state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
     }
 
     translationState->addTransition(translationState, &QState::finished, idleState);

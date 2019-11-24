@@ -12,6 +12,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 -   [Features](#features)
 -   [Default keyboard shortcuts](#default-keyboard-shortcuts)
 -   [CLI commands](#cli-commands)
+-   [D-Bus API](#d-bus-api)
 -   [Dependencies](#dependencies)
 -   [Third-party](#third-party)
 -   [Installation](#installation)
@@ -50,6 +51,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 -   Low memory consumption (~20MB)
 -   Highly customizable shortcuts
 -   Command-line interface with rich options
+-   D-Bus API
 -   Available for Linux and Windows
 
 ## Default keyboard shortcuts
@@ -100,6 +102,35 @@ The program also has a console interface.
 | `-i, --stdin`              | Add stdin data to source text                                                                  |
 
 **Note:** If you do not pass startup arguments to the program, the GUI starts.
+
+## D-Bus API
+
+Currently available only for [global shortcuts](#global).
+
+```
+io.crow_translate.CrowTranslate
+└── /io/crow_translate/CrowTranslate/MainWindow
+    ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection()
+    ├── method void io.crow_translate.CrowTranslate.MainWindow.open()
+    ├── method void io.crow_translate.CrowTranslate.MainWindow.playSelection()
+    ├── method void io.crow_translate.CrowTranslate.MainWindow.playTranslatedSelection()
+    ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking()
+    └── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
+```
+
+For example, you can show main window using `dbus-send`:
+
+```bash
+dbus-send --type=method_call --dest=io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow io.crow_translate.CrowTranslate.MainWindow.open
+```
+
+Or via `qdbus`:
+
+```bash
+qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow io.crow_translate.CrowTranslate.MainWindow.open
+# or shorter
+qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow open
+```
 
 ## Dependencies
 

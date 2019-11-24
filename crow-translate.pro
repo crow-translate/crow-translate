@@ -8,7 +8,7 @@ TARGET = crow
 TEMPLATE = app
 VERSION = 2.2.3
 INCLUDEPATH = src
-QT += core gui widgets dbus
+QT += core gui widgets
 CONFIG += lrelease embed_translations
 
 # Windows specific stuff
@@ -29,21 +29,21 @@ DEFINES += \
     QT_DEPRECATED_WARNINGS
 
 SOURCES += \
-    src/main.cpp \
+    src/addlangdialog.cpp \
     src/cli.cpp \
+    src/langbuttongroup.cpp \
+    src/main.cpp \
+    src/mainwindow.cpp \
     src/playerbuttons.cpp \
-    src/transitions/languagedetectedtransition.cpp \
-    src/transitions/playerstoppedtransition.cpp \
-    src/settings/settingsdialog.cpp \
+    src/popupwindow.cpp \
     src/settings/appsettings.cpp \
+    src/settings/settingsdialog.cpp \
     src/settings/shortcutsmodel/shortcutitem.cpp \
     src/settings/shortcutsmodel/shortcutsmodel.cpp \
     src/settings/shortcutsmodel/shortcutsview.cpp \
-    src/mainwindow.cpp \
-    src/popupwindow.cpp \
-    src/langbuttongroup.cpp \
-    src/addlangdialog.cpp \
     src/sourcetextedit.cpp \
+    src/transitions/languagedetectedtransition.cpp \
+    src/transitions/playerstoppedtransition.cpp \
     src/transitions/retranslationtransition.cpp \
     src/transitions/textemptytransition.cpp \
     src/transitions/translatorabortedtransition.cpp \
@@ -52,20 +52,20 @@ SOURCES += \
     src/trayicon.cpp
 
 HEADERS += \
+    src/addlangdialog.h \
     src/cli.h \
+    src/langbuttongroup.h \
+    src/mainwindow.h \
     src/playerbuttons.h \
-    src/transitions/languagedetectedtransition.h \
-    src/transitions/playerstoppedtransition.h \
-    src/settings/settingsdialog.h \
+    src/popupwindow.h \
     src/settings/appsettings.h \
+    src/settings/settingsdialog.h \
     src/settings/shortcutsmodel/shortcutitem.h \
     src/settings/shortcutsmodel/shortcutsmodel.h \
     src/settings/shortcutsmodel/shortcutsview.h \
-    src/mainwindow.h \
-    src/popupwindow.h \
-    src/langbuttongroup.h \
-    src/addlangdialog.h \
     src/sourcetextedit.h \
+    src/transitions/languagedetectedtransition.h \
+    src/transitions/playerstoppedtransition.h \
     src/transitions/retranslationtransition.h \
     src/transitions/textemptytransition.h \
     src/transitions/translatorabortedtransition.h \
@@ -74,14 +74,24 @@ HEADERS += \
     src/trayicon.h
 
 FORMS += \
-    src/playerbuttons.ui \
-    src/settings/settingsdialog.ui \
+    src/addlangdialog.ui \
     src/mainwindow.ui \
+    src/playerbuttons.ui \
     src/popupwindow.ui \
-    src/addlangdialog.ui
+    src/settings/settingsdialog.ui
 
 RESOURCES += \
     data/resources.qrc
+
+TRANSLATIONS += \
+    data/translations/crow.ts \
+    data/translations/crow_fr_FR.ts \
+    data/translations/crow_pl.ts \
+    data/translations/crow_pt_BR.ts \
+    data/translations/crow_ru.ts \
+    data/translations/crow_tr.ts \
+    data/translations/crow_uk.ts \
+    data/translations/crow_zh_CN.ts
 
 win32 {
     SOURCES += \
@@ -97,18 +107,10 @@ win32 {
         data/windows-icons.qrc
 }
 
-TRANSLATIONS += \
-    data/translations/crow.ts \
-    data/translations/crow_fr_FR.ts \
-    data/translations/crow_pl.ts \
-    data/translations/crow_pt_BR.ts \
-    data/translations/crow_ru.ts \
-    data/translations/crow_tr.ts \
-    data/translations/crow_uk.ts \
-    data/translations/crow_zh_CN.ts
-
 # Make install
 unix {
+   CONFIG += dbus
+
     target.path = /usr/bin
 
     desktop.path = /usr/share/applications
