@@ -114,7 +114,7 @@ unix {
     target.path = /usr/bin
 
     desktop.path = /usr/share/applications
-    desktop.files = dist/unix/generic/crow-translate.desktop
+    desktop.files = dist/unix/generic/io.crow_translate.CrowTranslate.desktop
 
     # App icons
     icon16.path = /usr/share/icons/hicolor/16x16/apps/
