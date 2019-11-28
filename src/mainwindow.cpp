@@ -85,7 +85,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
 
     // Taskbar progress for text speaking
 #if defined(Q_OS_LINUX)
-    m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, "crow-translate.desktop");
+    m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, SingleApplication::desktopFileName());
 #endif
     connect(ui->sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
     connect(ui->translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);

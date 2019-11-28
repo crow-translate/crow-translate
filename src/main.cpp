@@ -47,7 +47,9 @@ int launchGui(int argc, char *argv[])
 {
     SingleApplication app(argc, argv);
 
-#ifdef Q_OS_WIN
+#if defined(Q_OS_LINUX)
+    QGuiApplication::setDesktopFileName("io.crow_translate.CrowTranslate.desktop");
+#elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
 #endif
 
@@ -56,7 +58,7 @@ int launchGui(int argc, char *argv[])
 
     MainWindow window(settings);
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
     if (QDBusConnection::sessionBus().isConnected()) {
         if (QDBusConnection::sessionBus().registerService(QStringLiteral("io.crow_translate.CrowTranslate"))) {
             if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/MainWindow"), &window, QDBusConnection::ExportScriptableSlots))
