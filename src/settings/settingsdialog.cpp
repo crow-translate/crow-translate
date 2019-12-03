@@ -84,10 +84,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->secondaryLanguageComboBox->model()->sort(0);
 
     // Set maximum and minimum values for the size of the popup window
-    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
-    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
-    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
-    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
+    ui->popupWidthSlider->setMaximum(SingleApplication::primaryScreen()->availableGeometry().width());
+    ui->popupWidthSpinBox->setMaximum(SingleApplication::primaryScreen()->availableGeometry().width());
+    ui->popupHeightSlider->setMaximum(SingleApplication::primaryScreen()->availableGeometry().height());
+    ui->popupHeightSpinBox->setMaximum(SingleApplication::primaryScreen()->availableGeometry().height());
     ui->popupWidthSlider->setMinimum(200);
     ui->popupWidthSpinBox->setMinimum(200);
     ui->popupHeightSlider->setMinimum(200);

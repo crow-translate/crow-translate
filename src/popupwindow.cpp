@@ -125,7 +125,7 @@ void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    const QSize availableSize = QGuiApplication::screenAt(position)->availableSize();
+    const QSize availableSize = SingleApplication::screenAt(position)->availableSize();
 #else
     const QSize availableSize = SingleApplication::desktop()->screenGeometry(position).size();
 #endif

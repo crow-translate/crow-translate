@@ -166,7 +166,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (enabled)
-        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
+        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(SingleApplication::applicationFilePath()));
     else
         autostartSettings.remove("Crow Translate");
 #endif

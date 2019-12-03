@@ -48,7 +48,7 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 #if defined(Q_OS_LINUX)
-    QGuiApplication::setDesktopFileName("io.crow_translate.CrowTranslate.desktop");
+    SingleApplication::setDesktopFileName("io.crow_translate.CrowTranslate.desktop");
 #elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
 #endif
