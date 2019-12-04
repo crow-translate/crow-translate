@@ -54,6 +54,7 @@ public:
     void resetAllShortcuts();
 
     void updateShortcut(ShortcutItem *item);
+    void updateItem(ShortcutItem *item);
 
 public slots:
     void setGlobalShortuctsEnabled(bool enabled);

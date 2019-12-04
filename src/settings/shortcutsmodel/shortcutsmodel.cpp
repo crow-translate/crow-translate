@@ -238,6 +238,13 @@ void ShortcutsModel::updateShortcut(ShortcutItem *item)
     emit dataChanged(modelIndex, modelIndex, {Qt::DisplayRole});
 }
 
+void ShortcutsModel::updateItem(ShortcutItem *item)
+{
+    const QModelIndex modelIndexLeft = index(item, ShortcutColumn);
+    const QModelIndex modelIndexRight = index(item, DescriptionColumn);
+    emit dataChanged(modelIndexLeft, modelIndexRight, {Qt::DisplayRole});
+}
+
 QModelIndex ShortcutsModel::index(ShortcutItem *item, int column) const
 {
     if (item == m_rootItem)

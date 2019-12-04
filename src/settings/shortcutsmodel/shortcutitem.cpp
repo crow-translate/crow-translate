@@ -125,7 +125,7 @@ bool ShortcutItem::isEnabled() const
 void ShortcutItem::setEnabled(bool enabled)
 {
     m_enabled = enabled;
-    m_model->updateShortcut(this);
+    m_model->updateItem(this);
     for (ShortcutItem *item : m_childItems)
         item->setEnabled(enabled);
 }
