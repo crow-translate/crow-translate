@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. This projec
 
 -   The ability to disable embedded global shortcuts.
 -   D-Bus API
+-   KDE shortcuts support
 
 **Changed**
 

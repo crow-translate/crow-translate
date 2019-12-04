@@ -1,4 +1,40 @@
+[Desktop Action TranslateSelectedText]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelectedText
+Name=Translate selected text
+Name[ru_RU]=Перевести выделенный текст
+X-KDE-Shortcuts=Ctrl+Alt+E
+
+[Desktop Action PlaySelection]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow playSelection
+Name=Speak selected text
+Name[ru_RU]=Озвучить выделенный текст
+X-KDE-Shortcuts=Ctrl+Alt+S
+
+[Desktop Action PlayTranslatedSelection]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow playTranslatedSelection
+Name=Speak translation of selected text
+Name[ru_RU]=Озвучить перевод выделенного текста
+X-KDE-Shortcuts=Ctrl+Alt+F
+
+[Desktop Action StopSpeaking]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow stopSpeaking
+Name=Stop text speaking
+Name[ru_RU]=Остановить озвучивание текста
+X-KDE-Shortcuts=Ctrl+Alt+G
+
+[Desktop Action Open]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow open
+Name=Show main window
+Name[ru_RU]=Показать главное окно
+X-KDE-Shortcuts=Ctrl+Alt+C
+
+[Desktop Action СopyTranslatedSelection]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow copyTranslatedSelection
+Name=Translate selected text and copy to clipboard
+Name[ru_RU]=Перевести выделенный текст и скопировать в буфер обмена
+
 [Desktop Entry]
+Actions=TranslateSelectedText;PlaySelection;PlayTranslatedSelection;StopSpeaking;Open;СopyTranslatedSelection;
 Name=Crow Translate
 GenericName=Translator
 GenericName[ru]=Переводчик
