@@ -84,8 +84,8 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     ui->translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
 
     // Taskbar progress for text speaking
-#if defined(Q_OS_LINUX)
-    m_taskbar->setAttribute(QTaskbarControl::LinuxDesktopFile, SingleApplication::desktopFileName());
+#if defined(Q_OS_WIN)
+    m_taskbar->setWidget(this);
 #endif
     connect(ui->sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
     connect(ui->translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
@@ -521,18 +521,18 @@ void MainWindow::setTaskbarState(QMediaPlayer::State state)
     case QMediaPlayer::PlayingState:
         m_taskbar->setProgressVisible(true);
 #if defined(Q_OS_WIN)
-        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Running);
+        m_taskbar->setWindowsProgressState(QTaskbarControl::Running);
 #endif
         break;
     case QMediaPlayer::PausedState:
 #if defined(Q_OS_WIN)
-        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Paused);
+        m_taskbar->setWindowsProgressState(QTaskbarControl::Paused);
 #endif
         break;
     case QMediaPlayer::StoppedState:
         m_taskbar->setProgressVisible(false);
 #if defined(Q_OS_WIN)
-        m_taskbar->setAttribute(QTaskbarControl::WindowsProgressState, QTaskbarControl::Stopped);
+        m_taskbar->setWindowsProgressState(QTaskbarControl::Stopped);
 #endif
         break;
     }
