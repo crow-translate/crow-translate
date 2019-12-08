@@ -23,7 +23,7 @@
 #include "popupwindow.h"
 #include "addlangdialog.h"
 #include "langbuttongroup.h"
-#include "playerbuttons.h"
+#include "speakbuttons.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
 #include "singleapplication.h"
@@ -60,8 +60,8 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_translateSelectionHotkey(new QHotkey(this))
-    , m_playSelectionHotkey(new QHotkey(this))
-    , m_playTranslatedSelectionHotkey(new QHotkey(this))
+    , m_speakSelectionHotkey(new QHotkey(this))
+    , m_speakTranslatedSelectionHotkey(new QHotkey(this))
     , m_stopSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
@@ -80,24 +80,24 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(qobject_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Text speaking
-    ui->sourcePlayerButtons->setMediaPlayer(new QMediaPlayer);
-    ui->translationPlayerButtons->setMediaPlayer(new QMediaPlayer);
+    ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
+    ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
 
     // Taskbar progress for text speaking
 #if defined(Q_OS_WIN)
     m_taskbar->setWidget(this);
 #endif
-    connect(ui->sourcePlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
-    connect(ui->translationPlayerButtons, &PlayerButtons::stateChanged, this, &MainWindow::setTaskbarState);
-    connect(ui->sourcePlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
-    connect(ui->translationPlayerButtons, &PlayerButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
+    connect(ui->sourceSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(ui->translationSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
+    connect(ui->sourceSpeakButtons, &SpeakButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
+    connect(ui->translationSpeakButtons, &SpeakButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
 
     // Shortcuts
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &MainWindow::close);
     connect(m_showMainWindowHotkey, &QHotkey::activated, this, &MainWindow::open);
     connect(m_translateSelectionHotkey, &QHotkey::activated, this, &MainWindow::translateSelection);
-    connect(m_playSelectionHotkey, &QHotkey::activated, this, &MainWindow::playSelection);
-    connect(m_playTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::playTranslatedSelection);
+    connect(m_speakSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakSelection);
+    connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
 
@@ -226,14 +226,14 @@ LangButtonGroup *MainWindow::translationLangButtons()
     return m_translationLangButtons;
 }
 
-PlayerButtons *MainWindow::sourcePlayerButtons()
+SpeakButtons *MainWindow::sourceSpeakButtons()
 {
-    return ui->sourcePlayerButtons;
+    return ui->sourceSpeakButtons;
 }
 
-PlayerButtons *MainWindow::translationPlayerButtons()
+SpeakButtons *MainWindow::translationSpeakButtons()
 {
-    return ui->translationPlayerButtons;
+    return ui->translationSpeakButtons;
 }
 
 void MainWindow::open()
@@ -250,20 +250,20 @@ void MainWindow::translateSelection()
     emit translateSelectionRequested();
 }
 
-void MainWindow::playSelection()
+void MainWindow::speakSelection()
 {
-    emit playSelectionRequested();
+    emit speakSelectionRequested();
 }
 
-void MainWindow::playTranslatedSelection()
+void MainWindow::speakTranslatedSelection()
 {
-    emit playTranslatedSelectionRequested();
+    emit speakTranslatedSelectionRequested();
 }
 
 void MainWindow::stopSpeaking()
 {
-    ui->sourcePlayerButtons->stop();
-    ui->translationPlayerButtons->stop();
+    ui->sourceSpeakButtons->stopSpeaking();
+    ui->translationSpeakButtons->stopSpeaking();
 }
 
 void MainWindow::copyTranslatedSelection()
@@ -331,12 +331,12 @@ void MainWindow::parseSourceLanguage()
 
 void MainWindow::speakSource()
 {
-    ui->sourcePlayerButtons->play(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
+    ui->sourceSpeakButtons->speak(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
 }
 
 void MainWindow::speakTranslation()
 {
-    ui->translationPlayerButtons->play(ui->translationEdit->translation(), ui->translationEdit->translationLanguage(), currentEngine());
+    ui->translationSpeakButtons->speak(ui->translationEdit->translation(), ui->translationEdit->translationLanguage(), currentEngine());
 }
 
 void MainWindow::showTranslationWindow()
@@ -352,14 +352,14 @@ void MainWindow::showTranslationWindow()
 
         // Force listening for changes in source field
         if (!ui->autoTranslateCheckBox->isChecked())
-            ui->sourceEdit->setListenForChanges(true);
+            ui->sourceEdit->setRequestTranlationOnEdit(true);
 
         connect(popup, &PopupWindow::destroyed, [&] {
             // Restore the keyboard shortcut
             m_translateSelectionHotkey->blockSignals(false);
             // Undo force listening for changes
             if (!ui->autoTranslateCheckBox->isChecked())
-                ui->sourceEdit->setListenForChanges(false);
+                ui->sourceEdit->setRequestTranlationOnEdit(false);
         });
     } else {
         open();
@@ -371,10 +371,10 @@ void MainWindow::showTranslationWindow()
 
 void MainWindow::setSelectionAsSource()
 {
-    ui->sourceEdit->setListenForChanges(false);
+    ui->sourceEdit->setRequestTranlationOnEdit(false);
     ui->sourceEdit->setPlainText(selectedText());
     if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setListenForChanges(true);
+        ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
 void MainWindow::copyTranslationToClipboard()
@@ -391,19 +391,19 @@ void MainWindow::forceSourceAutodetect()
 {
     const AppSettings settings;
     if (settings.isForceSourceAutodetect()) {
-        ui->sourceEdit->setListenForChanges(false);
+        ui->sourceEdit->setRequestTranlationOnEdit(false);
 
         m_sourceLangButtons->checkAutoButton();
 
         if (ui->autoTranslateCheckBox->isChecked())
-            ui->sourceEdit->setListenForChanges(true);
+            ui->sourceEdit->setRequestTranlationOnEdit(true);
     }
 }
 
 void MainWindow::forceAutodetect()
 {
     const AppSettings settings;
-    ui->sourceEdit->setListenForChanges(false);
+    ui->sourceEdit->setRequestTranlationOnEdit(false);
 
     if (settings.isForceTranslationAutodetect())
         m_translationLangButtons->checkAutoButton();
@@ -412,16 +412,16 @@ void MainWindow::forceAutodetect()
         m_sourceLangButtons->checkAutoButton();
 
     if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setListenForChanges(true);
+        ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
 void MainWindow::clearText()
 {
     // Clear source text without tracking for changes
-    ui->sourceEdit->setListenForChanges(false);
+    ui->sourceEdit->setRequestTranlationOnEdit(false);
     ui->sourceEdit->clear();
     if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setListenForChanges(true);
+        ui->sourceEdit->setRequestTranlationOnEdit(true);
 
     clearTranslation();
 }
@@ -473,7 +473,7 @@ void MainWindow::openSettings()
 
 void MainWindow::setAutoTranslateEnabled(bool enabled)
 {
-    ui->sourceEdit->setListenForChanges(enabled);
+    ui->sourceEdit->setRequestTranlationOnEdit(enabled);
     if (enabled)
         ui->sourceEdit->markSourceAsChanged();
 }
@@ -622,13 +622,13 @@ void MainWindow::buildStateMachine()
     // Add transitions between all states
     for (QState *state : m_stateMachine->findChildren<QState *>()) {
         state->addTransition(ui->translateButton, &QToolButton::clicked, translationState);
-        state->addTransition(ui->sourceEdit, &SourceTextEdit::sourceChanged, translationState);
-        state->addTransition(ui->sourcePlayerButtons, &PlayerButtons::playerMediaRequested, speakSourceState);
-        state->addTransition(ui->translationPlayerButtons, &PlayerButtons::playerMediaRequested, speakTranslationState);
+        state->addTransition(ui->sourceEdit, &SourceTextEdit::translationRequested, translationState);
+        state->addTransition(ui->sourceSpeakButtons, &SpeakButtons::playerMediaRequested, speakSourceState);
+        state->addTransition(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, speakTranslationState);
 
         state->addTransition(this, &MainWindow::translateSelectionRequested, translateSelectionState);
-        state->addTransition(this, &MainWindow::playSelectionRequested, speakSelectionState);
-        state->addTransition(this, &MainWindow::playTranslatedSelectionRequested, speakTranslatedSelectionState);
+        state->addTransition(this, &MainWindow::speakSelectionRequested, speakSelectionState);
+        state->addTransition(this, &MainWindow::speakTranslatedSelectionRequested, speakTranslatedSelectionState);
         state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
     }
 
@@ -652,7 +652,7 @@ void MainWindow::buildTranslationState(QState *state)
     state->setInitialState(abortPreviousState);
 
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
-    connect(abortPreviousState, &QState::entered, ui->translationPlayerButtons, &PlayerButtons::stop); // Stop translation speaking
+    connect(abortPreviousState, &QState::entered, ui->translationSpeakButtons, &SpeakButtons::stopSpeaking); // Stop translation speaking
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
     connect(requestInOtherLanguageState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
@@ -818,8 +818,8 @@ void MainWindow::loadSettings(const AppSettings &settings)
     QNetworkProxy::setApplicationProxy(proxy);
 
     // TTS
-    ui->sourcePlayerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
-    ui->sourcePlayerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+    ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Language buttons style
     const Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
@@ -832,8 +832,8 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // Control buttons style
     const Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
-    ui->sourcePlayerButtons->setButtonsStyle(controlsStyle);
-    ui->translationPlayerButtons->setButtonsStyle(controlsStyle);
+    ui->sourceSpeakButtons->setButtonsStyle(controlsStyle);
+    ui->translationSpeakButtons->setButtonsStyle(controlsStyle);
     ui->copySourceButton->setToolButtonStyle(controlsStyle);
     ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
     ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
@@ -841,27 +841,27 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // Global shortcuts
     if (settings.isGlobalShortuctsEnabled()) {
-        m_translateSelectionHotkey->setShortcut(settings.translateSelectionHotkey(), true);
-        m_playSelectionHotkey->setShortcut(settings.speakSelectionHotkey(), true);
-        m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingHotkey(), true);
-        m_playTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionHotkey(), true);
-        m_showMainWindowHotkey->setShortcut(settings.showMainWindowHotkey(), true);
-        m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionHotkey(), true);
+        m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);
+        m_speakSelectionHotkey->setShortcut(settings.speakSelectionShortcut(), true);
+        m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingShortcut(), true);
+        m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
+        m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
+        m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
     } else {
         m_translateSelectionHotkey->setRegistered(false);
-        m_playSelectionHotkey->setRegistered(false);
+        m_speakSelectionHotkey->setRegistered(false);
         m_stopSpeakingHotkey->setRegistered(false);
-        m_playTranslatedSelectionHotkey->setRegistered(false);
+        m_speakTranslatedSelectionHotkey->setRegistered(false);
         m_showMainWindowHotkey->setRegistered(false);
         m_copyTranslatedSelectionHotkey->setRegistered(false);
     }
 
     // Window shortcuts
-    ui->sourcePlayerButtons->setPlayPauseShortcut(settings.speakSourceHotkey());
-    ui->translationPlayerButtons->setPlayPauseShortcut(settings.speakTranslationHotkey());
-    ui->translateButton->setShortcut(settings.translateHotkey());
-    ui->copyTranslationButton->setShortcut(settings.copyTranslationHotkey());
-    m_closeWindowsShortcut->setKey(settings.closeWindowHotkey());
+    ui->sourceSpeakButtons->setSpeakShortcut(settings.speakSourceShortcut());
+    ui->translationSpeakButtons->setSpeakShortcut(settings.speakTranslationShortcut());
+    ui->translateButton->setShortcut(settings.translateShortcut());
+    ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
+    m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
 }
 
 // Toggle language logic

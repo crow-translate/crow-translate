@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -15,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="157"/>
+        <location filename="../../src/settings/appsettings.cpp" line="159"/>
         <source>Unable to create autorun file from %1</source>
         <translation>Otomatik çalıştırma dosyası oluşturulamıyor %1</translation>
     </message>
@@ -136,6 +138,14 @@
     </message>
 </context>
 <context>
+    <name>D-Bus</name>
+    <message>
+        <location filename="../../src/main.cpp" line="65"/>
+        <source>Unable to register D-Bus object for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LangButtonGroup</name>
     <message>
         <location filename="../../src/langbuttongroup.cpp" line="69"/>
@@ -193,8 +203,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="127"/>
-        <location filename="../../src/mainwindow.cpp" line="120"/>
-        <location filename="../../src/mainwindow.cpp" line="560"/>
+        <location filename="../../src/mainwindow.cpp" line="123"/>
+        <location filename="../../src/mainwindow.cpp" line="592"/>
         <source>Settings</source>
         <translation>Ayarlar</translation>
     </message>
@@ -204,7 +214,7 @@
         <translation>Dilleri değiştir</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="355"/>
+        <location filename="../../src/mainwindow.ui" line="356"/>
         <source>Translate</source>
         <translation>Çevir</translation>
     </message>
@@ -214,69 +224,31 @@
         <translation>Çeviri</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="119"/>
-        <location filename="../../src/mainwindow.cpp" line="559"/>
+        <location filename="../../src/mainwindow.cpp" line="122"/>
+        <location filename="../../src/mainwindow.cpp" line="591"/>
         <source>Show window</source>
         <translation>Pencereyi göster</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="121"/>
-        <location filename="../../src/mainwindow.cpp" line="561"/>
+        <location filename="../../src/mainwindow.cpp" line="124"/>
+        <location filename="../../src/mainwindow.cpp" line="593"/>
         <source>Exit</source>
         <translation>Çıkış</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="296"/>
+        <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>Unable to detect language</source>
         <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="354"/>
+        <location filename="../../src/mainwindow.cpp" line="383"/>
         <source>Unable to translate text</source>
         <translation>Metin çevrilemiyor</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="514"/>
+        <location filename="../../src/mainwindow.cpp" line="545"/>
         <source>The application is already running</source>
         <translation>Uygulama zaten çalışıyor</translation>
-    </message>
-</context>
-<context>
-    <name>PlayerButtons</name>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="32"/>
-        <source>Play / pause source text speaking</source>
-        <translation>Kaynak metin konuşmasını oynat/duraklat</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="35"/>
-        <source>Play</source>
-        <translation>Oynat</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="45"/>
-        <source>Stop source text speaking</source>
-        <translation>Kaynak çeviri konuşmasını durdur</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="48"/>
-        <source>Pause</source>
-        <translation>Duraklat</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="77"/>
-        <source>No text specified</source>
-        <translation>Metin belirtilmedi</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="77"/>
-        <source>Playback text is empty</source>
-        <translation>Oynatım metni boş</translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="84"/>
-        <source>Unable to generate URLs for TTS</source>
-        <translation>TTS için URL oluşturulamıyor</translation>
     </message>
 </context>
 <context>
@@ -1785,9 +1757,13 @@
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
+        <source>Speak / pause text speaking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
-        <source>Play / pause text speaking</source>
-        <translation>Metin konuşmasını Oynat/Duraklat</translation>
+        <source>Speak / pause speaking</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
@@ -1798,6 +1774,44 @@
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="74"/>
         <source>Copy to clipboard</source>
         <translation>Panoya kopyala</translation>
+    </message>
+</context>
+<context>
+    <name>SpeakButtons</name>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="32"/>
+        <source>Speak / pause text speaking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="35"/>
+        <source>Play</source>
+        <translation type="unfinished">Oynat</translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="45"/>
+        <source>Stop text speaking</source>
+        <translation type="unfinished">Metin konuşmasını durdur</translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="48"/>
+        <source>Pause</source>
+        <translation type="unfinished">Duraklat</translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <source>No text specified</source>
+        <translation type="unfinished">Metin belirtilmedi</translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <source>Playback text is empty</source>
+        <translation type="unfinished">Oynatım metni boş</translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="84"/>
+        <source>Unable to generate URLs for TTS</source>
+        <translation type="unfinished">TTS için URL oluşturulamıyor</translation>
     </message>
 </context>
 <context>

@@ -177,7 +177,7 @@
    <item>
     <layout class="QHBoxLayout" name="buttomLayout">
      <item>
-      <widget class="PlayerButtons" name="sourcePlayerButtons" native="true"/>
+      <widget class="SpeakButtons" name="sourceSpeakButtons" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="copySourceButton">
@@ -238,7 +238,7 @@
       </widget>
      </item>
      <item>
-      <widget class="PlayerButtons" name="translationPlayerButtons" native="true"/>
+      <widget class="SpeakButtons" name="translationSpeakButtons" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="copyAllTranslationButton">
@@ -274,10 +274,13 @@
  </widget>
  <customwidgets>
   <customwidget>
-   <class>PlayerButtons</class>
+   <class>SpeakButtons</class>
    <extends>QWidget</extends>
-   <header>src/playerbuttons.h</header>
+   <header>speakbuttons.h</header>
    <container>1</container>
+   <slots>
+    <signal>playerMediaRequested()</signal>
+   </slots>
   </customwidget>
  </customwidgets>
  <resources>

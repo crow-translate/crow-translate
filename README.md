@@ -74,9 +74,9 @@ You can change them in the settings. Some key sequences may not be available due
 | ------------------------------------------------- | --------------------------------- |
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                         |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window                      |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Play / pause source text speaking |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Speak source / pause speaking     |
 | <kbd>Ctrl</kbd> + <kbd>G</kbd>                    | Stop source text speaking         |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Play / pause translation speaking |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Speak source / pause speaking     |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>D</kbd> | Stop translation speaking         |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copy translation to clipboard     |
 
@@ -111,8 +111,8 @@ Currently available only for [global shortcuts](#global).
     └── /io/crow_translate/CrowTranslate/MainWindow
         ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection()
         ├── method void io.crow_translate.CrowTranslate.MainWindow.open()
-        ├── method void io.crow_translate.CrowTranslate.MainWindow.playSelection()
-        ├── method void io.crow_translate.CrowTranslate.MainWindow.playTranslatedSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.speakSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.speakTranslatedSelection()
         ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking()
         └── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
 

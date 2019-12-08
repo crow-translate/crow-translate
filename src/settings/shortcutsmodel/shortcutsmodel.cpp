@@ -33,46 +33,46 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     auto *globalShortcuts = new ShortcutItem(tr("Global"), m_rootItem);
 
     auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), "preferences-desktop-locale", globalShortcuts);
-    translateSelectionShortcut->setDefaultShortcut(AppSettings::defaultTranslateSelectionHotkey());
+    translateSelectionShortcut->setDefaultShortcut(AppSettings::defaultTranslateSelectionShortcut());
 
     auto *speakSelection = new ShortcutItem(tr("Speak selected text"), "media-playback-start", globalShortcuts);
-    speakSelection->setDefaultShortcut(AppSettings::defaultSpeakSelectionHotkey());
+    speakSelection->setDefaultShortcut(AppSettings::defaultSpeakSelectionShortcut());
 
     auto *speakTranslatedSelectionShortcut = new ShortcutItem(tr("Speak translation of selected text"), "media-playback-start", globalShortcuts);
-    speakTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslatedSelectionHotkey());
+    speakTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslatedSelectionShortcut());
 
     auto *stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), "media-playback-stop", globalShortcuts);
-    stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingHotkey());
+    stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingShortcut());
 
     auto *showMainWindowShortcut = new ShortcutItem(tr("Show main window"), "window", globalShortcuts);
-    showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowHotkey());
+    showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowShortcut());
 
     auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), "edit-copy", globalShortcuts);
-    copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionHotkey());
+    copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
 
     auto *translateShortcut = new ShortcutItem(tr("Translate"), "go-next", windowShortcuts);
-    translateShortcut->setDefaultShortcut(AppSettings::defaultTranslateHotkey());
+    translateShortcut->setDefaultShortcut(AppSettings::defaultTranslateShortcut());
 
     auto *closeWindowShortcut = new ShortcutItem(tr("Close window"), "application-exit", windowShortcuts);
-    closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowHotkey());
+    closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowShortcut());
 
     // Source text shortcuts
     auto *sourceText = new ShortcutItem(tr("Source text"), windowShortcuts);
 
-    auto *speakSourceShortcut = new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", sourceText);
-    speakSourceShortcut->setDefaultShortcut(AppSettings::defaultSpeakSourceHotkey());
+    auto *speakSourceShortcut = new ShortcutItem(tr("Speak / pause text speaking"), "media-playback-start", sourceText);
+    speakSourceShortcut->setDefaultShortcut(AppSettings::defaultSpeakSourceShortcut());
 
     // Translation text shortcuts
     auto *translationText = new ShortcutItem(tr("Translation"), windowShortcuts);
 
-    auto *speakTranslationShortcut = new ShortcutItem(tr("Play / pause text speaking"), "media-playback-start", translationText);
-    speakTranslationShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslationHotkey());
+    auto *speakTranslationShortcut = new ShortcutItem(tr("Speak / pause speaking"), "media-playback-start", translationText);
+    speakTranslationShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslationShortcut());
 
     auto *copyTranslationShortcut = new ShortcutItem(tr("Copy to clipboard"), "edit-copy", translationText);
-    copyTranslationShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslationHotkey());
+    copyTranslationShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslationShortcut());
 }
 
 ShortcutsModel::~ShortcutsModel()
@@ -181,45 +181,45 @@ Qt::ItemFlags ShortcutsModel::flags(const QModelIndex &index) const
 void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 {
     // Global shortcuts
-    m_rootItem->child(0)->child(0)->setShortcut(settings.translateSelectionHotkey());
-    m_rootItem->child(0)->child(1)->setShortcut(settings.speakSelectionHotkey());
-    m_rootItem->child(0)->child(2)->setShortcut(settings.speakTranslatedSelectionHotkey());
-    m_rootItem->child(0)->child(3)->setShortcut(settings.stopSpeakingHotkey());
-    m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowHotkey());
-    m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionHotkey());
+    m_rootItem->child(0)->child(0)->setShortcut(settings.translateSelectionShortcut());
+    m_rootItem->child(0)->child(1)->setShortcut(settings.speakSelectionShortcut());
+    m_rootItem->child(0)->child(2)->setShortcut(settings.speakTranslatedSelectionShortcut());
+    m_rootItem->child(0)->child(3)->setShortcut(settings.stopSpeakingShortcut());
+    m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowShortcut());
+    m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionShortcut());
 
     // Window shortcuts
-    m_rootItem->child(1)->child(0)->setShortcut(settings.translateHotkey());
-    m_rootItem->child(1)->child(1)->setShortcut(settings.closeWindowHotkey());
+    m_rootItem->child(1)->child(0)->setShortcut(settings.translateShortcut());
+    m_rootItem->child(1)->child(1)->setShortcut(settings.closeWindowShortcut());
 
     // Source text shortcuts
-    m_rootItem->child(1)->child(2)->child(0)->setShortcut(settings.speakSourceHotkey());
+    m_rootItem->child(1)->child(2)->child(0)->setShortcut(settings.speakSourceShortcut());
 
     // Translation text shortcuts
-    m_rootItem->child(1)->child(3)->child(0)->setShortcut(settings.speakTranslationHotkey());
-    m_rootItem->child(1)->child(3)->child(1)->setShortcut(settings.copyTranslationHotkey());
+    m_rootItem->child(1)->child(3)->child(0)->setShortcut(settings.speakTranslationShortcut());
+    m_rootItem->child(1)->child(3)->child(1)->setShortcut(settings.copyTranslationShortcut());
 }
 
 void ShortcutsModel::saveShortcuts(AppSettings &settings) const
 {
     // Global shortcuts
-    settings.setTranslateSelectionHotkey(m_rootItem->child(0)->child(0)->shortcut());
-    settings.setSpeakSelectionHotkey(m_rootItem->child(0)->child(1)->shortcut());
-    settings.setSpeakTranslatedSelectionHotkey(m_rootItem->child(0)->child(2)->shortcut());
-    settings.setStopSpeakingHotkey(m_rootItem->child(0)->child(3)->shortcut());
-    settings.setShowMainWindowHotkey(m_rootItem->child(0)->child(4)->shortcut());
-    settings.setCopyTranslatedSelectionHotkeyHotkey(m_rootItem->child(0)->child(5)->shortcut());
+    settings.setTranslateSelectionShortcut(m_rootItem->child(0)->child(0)->shortcut());
+    settings.setSpeakSelectionShortcut(m_rootItem->child(0)->child(1)->shortcut());
+    settings.setSpeakTranslatedSelectionShortcut(m_rootItem->child(0)->child(2)->shortcut());
+    settings.setStopSpeakingShortcut(m_rootItem->child(0)->child(3)->shortcut());
+    settings.setShowMainWindowShortcut(m_rootItem->child(0)->child(4)->shortcut());
+    settings.setCopyTranslatedSelectionShortcut(m_rootItem->child(0)->child(5)->shortcut());
 
     // Window shortcuts
-    settings.setTranslateHotkey(m_rootItem->child(1)->child(0)->shortcut());
-    settings.setCloseWindowHotkey(m_rootItem->child(1)->child(1)->shortcut());
+    settings.setTranslateShortcut(m_rootItem->child(1)->child(0)->shortcut());
+    settings.setCloseWindowShortcut(m_rootItem->child(1)->child(1)->shortcut());
 
     // Source text shortcuts
-    settings.setSpeakSourceHotkey(m_rootItem->child(1)->child(2)->child(0)->shortcut());
+    settings.setSpeakSourceShortcut(m_rootItem->child(1)->child(2)->child(0)->shortcut());
 
     // Translation text shortcuts
-    settings.setSpeakTranslationHotkey(m_rootItem->child(1)->child(3)->child(0)->shortcut());
-    settings.setCopyTranslationHotkey(m_rootItem->child(1)->child(3)->child(1)->shortcut());
+    settings.setSpeakTranslationShortcut(m_rootItem->child(1)->child(3)->child(0)->shortcut());
+    settings.setCopyTranslationShortcut(m_rootItem->child(1)->child(3)->child(1)->shortcut());
 }
 
 void ShortcutsModel::resetAllShortcuts()

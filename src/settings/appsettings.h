@@ -208,50 +208,50 @@ public:
     void setGlobalShortcutsEnabled(bool enabled);
     static bool defaultGlobalShortcutsEnabled();
 
-    QKeySequence translateSelectionHotkey() const;
-    void setTranslateSelectionHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultTranslateSelectionHotkey();
+    QKeySequence translateSelectionShortcut() const;
+    void setTranslateSelectionShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultTranslateSelectionShortcut();
 
-    QKeySequence speakSelectionHotkey() const;
-    void setSpeakSelectionHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultSpeakSelectionHotkey();
+    QKeySequence speakSelectionShortcut() const;
+    void setSpeakSelectionShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSpeakSelectionShortcut();
 
-    QKeySequence speakTranslatedSelectionHotkey() const;
-    void setSpeakTranslatedSelectionHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultSpeakTranslatedSelectionHotkey();
+    QKeySequence speakTranslatedSelectionShortcut() const;
+    void setSpeakTranslatedSelectionShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSpeakTranslatedSelectionShortcut();
 
-    QKeySequence stopSpeakingHotkey() const;
-    void setStopSpeakingHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultStopSpeakingHotkey();
+    QKeySequence stopSpeakingShortcut() const;
+    void setStopSpeakingShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultStopSpeakingShortcut();
 
-    QKeySequence showMainWindowHotkey() const;
-    void setShowMainWindowHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultShowMainWindowHotkey();
+    QKeySequence showMainWindowShortcut() const;
+    void setShowMainWindowShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultShowMainWindowShortcut();
 
-    QKeySequence copyTranslatedSelectionHotkey() const;
-    void setCopyTranslatedSelectionHotkeyHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultCopyTranslatedSelectionHotkey();
+    QKeySequence copyTranslatedSelectionShortcut() const;
+    void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultCopyTranslatedSelectionShortcut();
 
     // Window shortcuts
-    QKeySequence translateHotkey() const;
-    void setTranslateHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultTranslateHotkey();
+    QKeySequence translateShortcut() const;
+    void setTranslateShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultTranslateShortcut();
 
-    QKeySequence closeWindowHotkey() const;
-    void setCloseWindowHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultCloseWindowHotkey();
+    QKeySequence closeWindowShortcut() const;
+    void setCloseWindowShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultCloseWindowShortcut();
 
-    QKeySequence speakSourceHotkey() const;
-    void setSpeakSourceHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultSpeakSourceHotkey();
+    QKeySequence speakSourceShortcut() const;
+    void setSpeakSourceShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSpeakSourceShortcut();
 
-    QKeySequence speakTranslationHotkey() const;
-    void setSpeakTranslationHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultSpeakTranslationHotkey();
+    QKeySequence speakTranslationShortcut() const;
+    void setSpeakTranslationShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSpeakTranslationShortcut();
 
-    QKeySequence copyTranslationHotkey() const;
-    void setCopyTranslationHotkey(const QKeySequence &hotkey);
-    static QKeySequence defaultCopyTranslationHotkey();
+    QKeySequence copyTranslationShortcut() const;
+    void setCopyTranslationShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultCopyTranslationShortcut();
 
     // Buttons
     QOnlineTranslator::Language buttonLanguage(LangButtonGroup::GroupType group, int id) const;

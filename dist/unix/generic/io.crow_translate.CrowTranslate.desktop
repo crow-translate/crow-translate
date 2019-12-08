@@ -4,14 +4,14 @@ Name=Translate selected text
 Name[ru_RU]=Перевести выделенный текст
 X-KDE-Shortcuts=Ctrl+Alt+E
 
-[Desktop Action PlaySelection]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow playSelection
+[Desktop Action SpeakSelection]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakSelection
 Name=Speak selected text
 Name[ru_RU]=Озвучить выделенный текст
 X-KDE-Shortcuts=Ctrl+Alt+S
 
-[Desktop Action PlayTranslatedSelection]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow playTranslatedSelection
+[Desktop Action SpeakTranslatedSelection]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakTranslatedSelection
 Name=Speak translation of selected text
 Name[ru_RU]=Озвучить перевод выделенного текста
 X-KDE-Shortcuts=Ctrl+Alt+F
@@ -34,7 +34,7 @@ Name=Translate selected text and copy to clipboard
 Name[ru_RU]=Перевести выделенный текст и скопировать в буфер обмена
 
 [Desktop Entry]
-Actions=TranslateSelectedText;PlaySelection;PlayTranslatedSelection;StopSpeaking;Open;СopyTranslatedSelection;
+Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;СopyTranslatedSelection;
 Name=Crow Translate
 GenericName=Translator
 GenericName[ru]=Переводчик

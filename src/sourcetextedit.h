@@ -33,15 +33,14 @@ class SourceTextEdit : public QPlainTextEdit
 public:
     SourceTextEdit(QWidget *parent = nullptr);
 
-    void setListenForChanges(bool listen);
-    bool isListenForChanges() const;
+    void setRequestTranlationOnEdit(bool listen);
 
 public slots:
     void markSourceAsChanged();
     void stopChangedTimer();
 
 signals:
-    void sourceChanged();
+    void translationRequested();
     void sourceEmpty(bool empty);
 
 private slots:
@@ -50,7 +49,7 @@ private slots:
 
 private:
     QTimer *m_textEditedTimer;
-    bool m_listenForChanges = false;
+    bool m_requestTranslationOnEdit = false;
     bool m_sourceEmpty = true;
 
     static constexpr int s_delay = 500;

@@ -34,7 +34,6 @@ SOURCES += \
     src/langbuttongroup.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
-    src/playerbuttons.cpp \
     src/popupwindow.cpp \
     src/settings/appsettings.cpp \
     src/settings/settingsdialog.cpp \
@@ -42,6 +41,7 @@ SOURCES += \
     src/settings/shortcutsmodel/shortcutsmodel.cpp \
     src/settings/shortcutsmodel/shortcutsview.cpp \
     src/sourcetextedit.cpp \
+    src/speakbuttons.cpp \
     src/transitions/languagedetectedtransition.cpp \
     src/transitions/playerstoppedtransition.cpp \
     src/transitions/retranslationtransition.cpp \
@@ -56,7 +56,6 @@ HEADERS += \
     src/cli.h \
     src/langbuttongroup.h \
     src/mainwindow.h \
-    src/playerbuttons.h \
     src/popupwindow.h \
     src/settings/appsettings.h \
     src/settings/settingsdialog.h \
@@ -64,6 +63,7 @@ HEADERS += \
     src/settings/shortcutsmodel/shortcutsmodel.h \
     src/settings/shortcutsmodel/shortcutsview.h \
     src/sourcetextedit.h \
+    src/speakbuttons.h \
     src/transitions/languagedetectedtransition.h \
     src/transitions/playerstoppedtransition.h \
     src/transitions/retranslationtransition.h \
@@ -76,7 +76,7 @@ HEADERS += \
 FORMS += \
     src/addlangdialog.ui \
     src/mainwindow.ui \
-    src/playerbuttons.ui \
+    src/speakbuttons.ui \
     src/popupwindow.ui \
     src/settings/settingsdialog.ui
 

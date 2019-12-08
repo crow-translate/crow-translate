@@ -84,7 +84,7 @@
        </widget>
       </item>
       <item>
-       <widget class="PlayerButtons" name="translationPlayerButtons" native="true">
+       <widget class="SpeakButtons" name="translationSpeakButtons" native="true">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -202,7 +202,7 @@
     <item row="10" column="1">
      <layout class="QHBoxLayout" name="buttomSourceLayout">
       <item>
-       <widget class="PlayerButtons" name="sourcePlayerButtons" native="true">
+       <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
         <property name="enabled">
          <bool>false</bool>
         </property>
@@ -339,7 +339,8 @@
        <string/>
       </property>
       <property name="icon">
-       <iconset theme="edit-clear"/>
+       <iconset theme="edit-clear">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
@@ -376,10 +377,13 @@
    </slots>
   </customwidget>
   <customwidget>
-   <class>PlayerButtons</class>
+   <class>SpeakButtons</class>
    <extends>QWidget</extends>
-   <header>playerbuttons.h</header>
+   <header>speakbuttons.h</header>
    <container>1</container>
+   <slots>
+    <signal>playerMediaRequested()</signal>
+   </slots>
   </customwidget>
   <customwidget>
    <class>TranslationEdit</class>
@@ -588,7 +592,7 @@
   <connection>
    <sender>sourceEdit</sender>
    <signal>sourceEmpty(bool)</signal>
-   <receiver>sourcePlayerButtons</receiver>
+   <receiver>sourceSpeakButtons</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -604,7 +608,7 @@
   <connection>
    <sender>translationEdit</sender>
    <signal>translationEmpty(bool)</signal>
-   <receiver>translationPlayerButtons</receiver>
+   <receiver>translationSpeakButtons</receiver>
    <slot>setDisabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">

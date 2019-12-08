@@ -18,60 +18,60 @@
  *
  */
 
-#include "playerbuttons.h"
-#include "ui_playerbuttons.h"
+#include "speakbuttons.h"
+#include "ui_speakbuttons.h"
 #include "settings/appsettings.h"
 
 #include <QMediaPlaylist>
 #include <QMessageBox>
 
-QMediaPlayer *PlayerButtons::s_currentlyPlaying = nullptr;
+QMediaPlayer *SpeakButtons::s_currentlyPlaying = nullptr;
 
-PlayerButtons::PlayerButtons(QWidget *parent)
+SpeakButtons::SpeakButtons(QWidget *parent)
     : QWidget(parent)
-    , ui(new Ui::PlayerButtons)
+    , ui(new Ui::SpeakButtons)
 {
     ui->setupUi(this);
 
-    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &PlayerButtons::processPlayPausePressed);
-    connect(ui->stopButton, &QAbstractButton::clicked, this, &PlayerButtons::stop);
+    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &SpeakButtons::processSpeakPressed);
+    connect(ui->stopButton, &QAbstractButton::clicked, this, &SpeakButtons::stopSpeaking);
 }
 
-PlayerButtons::~PlayerButtons()
+SpeakButtons::~SpeakButtons()
 {
     delete ui;
 }
 
-QMediaPlayer *PlayerButtons::mediaPlayer() const
+QMediaPlayer *SpeakButtons::mediaPlayer() const
 {
     return m_mediaPlayer;
 }
 
-void PlayerButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
+void SpeakButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
 {
     if (m_mediaPlayer != nullptr) {
-        disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::loadPlayerState);
-        disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::stateChanged);
-        disconnect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &PlayerButtons::processPositionChanged);
+        disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::loadPlayerState);
+        disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::stateChanged);
+        disconnect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::processPositionChanged);
     }
 
     m_mediaPlayer = mediaPlayer;
     if (m_mediaPlayer->playlist() == nullptr)
         m_mediaPlayer->setPlaylist(new QMediaPlaylist);
 
-    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &PlayerButtons::processPositionChanged);
-    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::loadPlayerState);
-    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &PlayerButtons::stateChanged);
+    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::processPositionChanged);
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::loadPlayerState);
+    connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::stateChanged);
 
     loadPlayerState(m_mediaPlayer->state());
 }
 
-QMediaPlaylist *PlayerButtons::playlist()
+QMediaPlaylist *SpeakButtons::playlist()
 {
     return m_mediaPlayer->playlist();
 }
 
-void PlayerButtons::play(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
+void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
 {
     if (text.isEmpty()) {
         QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
@@ -89,35 +89,35 @@ void PlayerButtons::play(const QString &text, QOnlineTranslator::Language langua
     const QList<QMediaContent> media = onlineTts.media();
     playlist()->clear();
     playlist()->addMedia(media);
-    play();
+    speak();
 }
 
-void PlayerButtons::play()
+void SpeakButtons::speak()
 {
     m_mediaPlayer->play();
 }
 
-void PlayerButtons::pause()
+void SpeakButtons::pauseSpeaking()
 {
     m_mediaPlayer->pause();
 }
 
-void PlayerButtons::stop()
+void SpeakButtons::stopSpeaking()
 {
     m_mediaPlayer->stop();
 }
 
-void PlayerButtons::setPlayPauseShortcut(const QKeySequence &shortcut)
+void SpeakButtons::setSpeakShortcut(const QKeySequence &shortcut)
 {
     ui->playPauseButton->setShortcut(shortcut);
 }
 
-QKeySequence PlayerButtons::playPauseShortcut() const
+QKeySequence SpeakButtons::speakShortcut() const
 {
     return ui->playPauseButton->shortcut();
 }
 
-QOnlineTts::Voice PlayerButtons::voice(QOnlineTranslator::Engine engine) const
+QOnlineTts::Voice SpeakButtons::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
@@ -127,7 +127,7 @@ QOnlineTts::Voice PlayerButtons::voice(QOnlineTranslator::Engine engine) const
     }
 }
 
-void PlayerButtons::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice)
+void SpeakButtons::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice)
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
@@ -138,7 +138,7 @@ void PlayerButtons::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice
     }
 }
 
-QOnlineTts::Emotion PlayerButtons::emotion(QOnlineTranslator::Engine engine) const
+QOnlineTts::Emotion SpeakButtons::emotion(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
@@ -148,7 +148,7 @@ QOnlineTts::Emotion PlayerButtons::emotion(QOnlineTranslator::Engine engine) con
     }
 }
 
-void PlayerButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion)
+void SpeakButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion)
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
@@ -159,13 +159,13 @@ void PlayerButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emo
     }
 }
 
-void PlayerButtons::setButtonsStyle(Qt::ToolButtonStyle style)
+void SpeakButtons::setButtonsStyle(Qt::ToolButtonStyle style)
 {
     ui->playPauseButton->setToolButtonStyle(style);
     ui->stopButton->setToolButtonStyle(style);
 }
 
-void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
+void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
 {
     switch (state) {
     case QMediaPlayer::StoppedState:
@@ -192,7 +192,7 @@ void PlayerButtons::loadPlayerState(QMediaPlayer::State state)
     }
 }
 
-void PlayerButtons::processPlayPausePressed()
+void SpeakButtons::processSpeakPressed()
 {
     switch (m_mediaPlayer->state()) {
     case QMediaPlayer::StoppedState:
@@ -207,7 +207,7 @@ void PlayerButtons::processPlayPausePressed()
     }
 }
 
-void PlayerButtons::processPositionChanged(qint64 position)
+void SpeakButtons::processPositionChanged(qint64 position)
 {
     if (m_mediaPlayer->duration() != 0)
         emit positionChanged(static_cast<double>(position) / m_mediaPlayer->duration());

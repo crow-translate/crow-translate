@@ -686,12 +686,12 @@ QString AppSettings::defaultProxyPassword()
 
 bool AppSettings::isGlobalShortuctsEnabled() const
 {
-    return m_settings->value("Hotkeys/GlobalShortcutsEnabled", defaultGlobalShortcutsEnabled()).toBool();
+    return m_settings->value("Shortcuts/GlobalShortcutsEnabled", defaultGlobalShortcutsEnabled()).toBool();
 }
 
 void AppSettings::setGlobalShortcutsEnabled(bool enabled)
 {
-    m_settings->setValue("Hotkeys/GlobalShortcutsEnabled", enabled);
+    m_settings->setValue("Shortcuts/GlobalShortcutsEnabled", enabled);
 }
 
 bool AppSettings::defaultGlobalShortcutsEnabled()
@@ -699,167 +699,167 @@ bool AppSettings::defaultGlobalShortcutsEnabled()
     return true;
 }
 
-QKeySequence AppSettings::translateSelectionHotkey() const
+QKeySequence AppSettings::translateSelectionShortcut() const
 {
-    return m_settings->value("Hotkeys/TranslateSelection", defaultTranslateSelectionHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/TranslateSelection", defaultTranslateSelectionShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setTranslateSelectionHotkey(const QKeySequence &hotkey)
+void AppSettings::setTranslateSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/TranslateSelection", hotkey);
+     m_settings->setValue("Shortcuts/TranslateSelection", shortcut);
 }
 
-QKeySequence AppSettings::defaultTranslateSelectionHotkey()
+QKeySequence AppSettings::defaultTranslateSelectionShortcut()
 {
     return QKeySequence("Ctrl+Alt+E");
 }
 
-QKeySequence AppSettings::speakSelectionHotkey() const
+QKeySequence AppSettings::speakSelectionShortcut() const
 {
-    return m_settings->value("Hotkeys/PlaySelection", defaultSpeakSelectionHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/SpeakSelection", defaultSpeakSelectionShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setSpeakSelectionHotkey(const QKeySequence &hotkey)
+void AppSettings::setSpeakSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/PlaySelection", hotkey);
+     m_settings->setValue("Shortcuts/SpeakSelection", shortcut);
 }
 
-QKeySequence AppSettings::defaultSpeakSelectionHotkey()
+QKeySequence AppSettings::defaultSpeakSelectionShortcut()
 {
     return QKeySequence("Ctrl+Alt+S");
 }
 
-QKeySequence AppSettings::speakTranslatedSelectionHotkey() const
+QKeySequence AppSettings::speakTranslatedSelectionShortcut() const
 {
-    return m_settings->value("Hotkeys/PlayTranslatedSelection", defaultSpeakTranslatedSelectionHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/SpeakTranslatedSelection", defaultSpeakTranslatedSelectionShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setSpeakTranslatedSelectionHotkey(const QKeySequence &hotkey)
+void AppSettings::setSpeakTranslatedSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/PlayTranslatedSelection", hotkey);
+     m_settings->setValue("Shortcuts/SpeakTranslatedSelection", shortcut);
 }
 
-QKeySequence AppSettings::defaultSpeakTranslatedSelectionHotkey()
+QKeySequence AppSettings::defaultSpeakTranslatedSelectionShortcut()
 {
     return QKeySequence("Ctrl+Alt+F");
 }
 
-QKeySequence AppSettings::stopSpeakingHotkey() const
+QKeySequence AppSettings::stopSpeakingShortcut() const
 {
-    return m_settings->value("Hotkeys/StopSelection", defaultStopSpeakingHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/StopSelection", defaultStopSpeakingShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setStopSpeakingHotkey(const QKeySequence &hotkey)
+void AppSettings::setStopSpeakingShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/StopSelection", hotkey);
+     m_settings->setValue("Shortcuts/StopSelection", shortcut);
 }
 
-QKeySequence AppSettings::defaultStopSpeakingHotkey()
+QKeySequence AppSettings::defaultStopSpeakingShortcut()
 {
     return QKeySequence("Ctrl+Alt+G");
 }
 
-QKeySequence AppSettings::showMainWindowHotkey() const
+QKeySequence AppSettings::showMainWindowShortcut() const
 {
-    return m_settings->value("Hotkeys/ShowMainWindow", defaultShowMainWindowHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/ShowMainWindow", defaultShowMainWindowShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setShowMainWindowHotkey(const QKeySequence &hotkey)
+void AppSettings::setShowMainWindowShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/ShowMainWindow", hotkey);
+     m_settings->setValue("Shortcuts/ShowMainWindow", shortcut);
 }
 
-QKeySequence AppSettings::defaultShowMainWindowHotkey()
+QKeySequence AppSettings::defaultShowMainWindowShortcut()
 {
     return QKeySequence("Ctrl+Alt+C");
 }
 
-QKeySequence AppSettings::copyTranslatedSelectionHotkey() const
+QKeySequence AppSettings::copyTranslatedSelectionShortcut() const
 {
-    return m_settings->value("Hotkeys/CopyTranslatedSelection", defaultCopyTranslatedSelectionHotkey()).toString();
+    return m_settings->value("Shortcuts/CopyTranslatedSelection", defaultCopyTranslatedSelectionShortcut()).toString();
 }
 
-void AppSettings::setCopyTranslatedSelectionHotkeyHotkey(const QKeySequence &hotkey)
+void AppSettings::setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/CopyTranslatedSelection", hotkey);
+     m_settings->setValue("Shortcuts/CopyTranslatedSelection", shortcut);
 }
 
-QKeySequence AppSettings::defaultCopyTranslatedSelectionHotkey()
+QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
     return QKeySequence();
 }
 
-QKeySequence AppSettings::translateHotkey() const
+QKeySequence AppSettings::translateShortcut() const
 {
-    return m_settings->value("Hotkeys/Translate", defaultTranslateHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/Translate", defaultTranslateShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setTranslateHotkey(const QKeySequence &hotkey)
+void AppSettings::setTranslateShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/Translate", hotkey);
+     m_settings->setValue("Shortcuts/Translate", shortcut);
 }
 
-QKeySequence AppSettings::defaultTranslateHotkey()
+QKeySequence AppSettings::defaultTranslateShortcut()
 {
     return QKeySequence("Ctrl+Return");
 }
 
-QKeySequence AppSettings::closeWindowHotkey() const
+QKeySequence AppSettings::closeWindowShortcut() const
 {
-    return m_settings->value("Hotkeys/CloseWindow", defaultCloseWindowHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/CloseWindow", defaultCloseWindowShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setCloseWindowHotkey(const QKeySequence &hotkey)
+void AppSettings::setCloseWindowShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/CloseWindow", hotkey);
+     m_settings->setValue("Shortcuts/CloseWindow", shortcut);
 }
 
-QKeySequence AppSettings::defaultCloseWindowHotkey()
+QKeySequence AppSettings::defaultCloseWindowShortcut()
 {
     return QKeySequence("Ctrl+Q");
 }
 
-QKeySequence AppSettings::speakSourceHotkey() const
+QKeySequence AppSettings::speakSourceShortcut() const
 {
-    return m_settings->value("Hotkeys/PlaySource", defaultSpeakSourceHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/SpeakSource", defaultSpeakSourceShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setSpeakSourceHotkey(const QKeySequence &hotkey)
+void AppSettings::setSpeakSourceShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/PlaySource", hotkey);
+     m_settings->setValue("Shortcuts/SpeakSource", shortcut);
 }
 
-QKeySequence AppSettings::defaultSpeakSourceHotkey()
+QKeySequence AppSettings::defaultSpeakSourceShortcut()
 {
     return QKeySequence("Ctrl+S");
 }
 
-QKeySequence AppSettings::speakTranslationHotkey() const
+QKeySequence AppSettings::speakTranslationShortcut() const
 {
-    return m_settings->value("Hotkeys/PlayTranslation", defaultSpeakTranslationHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/SpeakTranslation", defaultSpeakTranslationShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setSpeakTranslationHotkey(const QKeySequence &hotkey)
+void AppSettings::setSpeakTranslationShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/PlayTranslation", hotkey);
+     m_settings->setValue("Shortcuts/SpeakTranslation", shortcut);
 }
 
-QKeySequence AppSettings::defaultSpeakTranslationHotkey()
+QKeySequence AppSettings::defaultSpeakTranslationShortcut()
 {
     return QKeySequence("Ctrl+Shift+S");
 }
 
-QKeySequence AppSettings::copyTranslationHotkey() const
+QKeySequence AppSettings::copyTranslationShortcut() const
 {
-    return m_settings->value("Hotkeys/CopyTranslation", defaultCopyTranslationHotkey()).value<QKeySequence>();
+    return m_settings->value("Shortcuts/CopyTranslation", defaultCopyTranslationShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setCopyTranslationHotkey(const QKeySequence &hotkey)
+void AppSettings::setCopyTranslationShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue("Hotkeys/CopyTranslation", hotkey);
+     m_settings->setValue("Shortcuts/CopyTranslation", shortcut);
 }
 
-QKeySequence AppSettings::defaultCopyTranslationHotkey()
+QKeySequence AppSettings::defaultCopyTranslationShortcut()
 {
     return QKeySequence("Ctrl+Shift+C");
 }

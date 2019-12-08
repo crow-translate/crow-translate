@@ -333,7 +333,7 @@ void SettingsDialog::speakTestText()
     }
 
     const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    ui->playerButtons->play(ui->testSpeechEdit->text(), m_translator->sourceLanguage(), engine);
+    ui->playerButtons->speak(ui->testSpeechEdit->text(), m_translator->sourceLanguage(), engine);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)

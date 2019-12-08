@@ -28,7 +28,7 @@
 
 class TrayIcon;
 class LangButtonGroup;
-class PlayerButtons;
+class SpeakButtons;
 class AppSettings;
 class QHotkey;
 class QTaskbarControl;
@@ -62,21 +62,21 @@ public:
     TranslationEdit *translationEdit();
     LangButtonGroup *sourceLangButtons();
     LangButtonGroup *translationLangButtons();
-    PlayerButtons *sourcePlayerButtons();
-    PlayerButtons *translationPlayerButtons();
+    SpeakButtons *sourceSpeakButtons();
+    SpeakButtons *translationSpeakButtons();
 
 public slots:
     Q_SCRIPTABLE void translateSelection();
-    Q_SCRIPTABLE void playSelection();
-    Q_SCRIPTABLE void playTranslatedSelection();
+    Q_SCRIPTABLE void speakSelection();
+    Q_SCRIPTABLE void speakTranslatedSelection();
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
 
 signals:
     void translateSelectionRequested();
-    void playSelectionRequested();
-    void playTranslatedSelectionRequested();
+    void speakSelectionRequested();
+    void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
 
 private slots:
@@ -146,8 +146,8 @@ private:
     Ui::MainWindow *ui;
 
     QHotkey *m_translateSelectionHotkey;
-    QHotkey *m_playSelectionHotkey;
-    QHotkey *m_playTranslatedSelectionHotkey;
+    QHotkey *m_speakSelectionHotkey;
+    QHotkey *m_speakTranslatedSelectionHotkey;
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;

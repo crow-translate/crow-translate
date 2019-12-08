@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="157"/>
+        <location filename="../../src/settings/appsettings.cpp" line="159"/>
         <source>Unable to create autorun file from %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -138,6 +138,14 @@
     </message>
 </context>
 <context>
+    <name>D-Bus</name>
+    <message>
+        <location filename="../../src/main.cpp" line="65"/>
+        <source>Unable to register D-Bus object for %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>LangButtonGroup</name>
     <message>
         <location filename="../../src/langbuttongroup.cpp" line="69"/>
@@ -195,8 +203,8 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="127"/>
-        <location filename="../../src/mainwindow.cpp" line="120"/>
-        <location filename="../../src/mainwindow.cpp" line="560"/>
+        <location filename="../../src/mainwindow.cpp" line="123"/>
+        <location filename="../../src/mainwindow.cpp" line="592"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -206,7 +214,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="355"/>
+        <location filename="../../src/mainwindow.ui" line="356"/>
         <source>Translate</source>
         <translation type="unfinished"></translation>
     </message>
@@ -216,68 +224,30 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="119"/>
-        <location filename="../../src/mainwindow.cpp" line="559"/>
+        <location filename="../../src/mainwindow.cpp" line="122"/>
+        <location filename="../../src/mainwindow.cpp" line="591"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="121"/>
-        <location filename="../../src/mainwindow.cpp" line="561"/>
+        <location filename="../../src/mainwindow.cpp" line="124"/>
+        <location filename="../../src/mainwindow.cpp" line="593"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="296"/>
+        <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="354"/>
+        <location filename="../../src/mainwindow.cpp" line="383"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="514"/>
+        <location filename="../../src/mainwindow.cpp" line="545"/>
         <source>The application is already running</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
-    <name>PlayerButtons</name>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="32"/>
-        <source>Play / pause source text speaking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="35"/>
-        <source>Play</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="45"/>
-        <source>Stop source text speaking</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.ui" line="48"/>
-        <source>Pause</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="77"/>
-        <source>No text specified</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="77"/>
-        <source>Playback text is empty</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/playerbuttons.cpp" line="84"/>
-        <source>Unable to generate URLs for TTS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1787,8 +1757,12 @@
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
+        <source>Speak / pause text speaking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
-        <source>Play / pause text speaking</source>
+        <source>Speak / pause speaking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1799,6 +1773,44 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="74"/>
         <source>Copy to clipboard</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>SpeakButtons</name>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="32"/>
+        <source>Speak / pause text speaking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="35"/>
+        <source>Play</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="45"/>
+        <source>Stop text speaking</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.ui" line="48"/>
+        <source>Pause</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <source>No text specified</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <source>Playback text is empty</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/speakbuttons.cpp" line="84"/>
+        <source>Unable to generate URLs for TTS</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

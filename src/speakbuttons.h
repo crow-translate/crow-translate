@@ -30,30 +30,30 @@
 class AppSettings;
 
 namespace Ui {
-class PlayerButtons;
+class SpeakButtons;
 }
 
-class PlayerButtons : public QWidget
+class SpeakButtons : public QWidget
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PlayerButtons)
+    Q_DISABLE_COPY(SpeakButtons)
 
 public:
-    explicit PlayerButtons(QWidget *parent = nullptr);
-    ~PlayerButtons() override;
+    explicit SpeakButtons(QWidget *parent = nullptr);
+    ~SpeakButtons() override;
 
     QMediaPlayer *mediaPlayer() const;
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
     QMediaPlaylist *playlist();
 
-    void play(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
+    void speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
 
-    void play();
-    void pause();
-    void stop();
+    void speak();
+    void pauseSpeaking();
+    void stopSpeaking();
 
-    void setPlayPauseShortcut(const QKeySequence &shortcut);
-    QKeySequence playPauseShortcut() const;
+    void setSpeakShortcut(const QKeySequence &shortcut);
+    QKeySequence speakShortcut() const;
 
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
     void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);
@@ -69,11 +69,11 @@ signals:
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);
-    void processPlayPausePressed();
+    void processSpeakPressed();
     void processPositionChanged(qint64 position);
 
 private:
-    Ui::PlayerButtons *ui;
+    Ui::SpeakButtons *ui;
     QMediaPlayer *m_mediaPlayer = nullptr;
     QOnlineTts::Voice m_yandexVoice = QOnlineTts::NoVoice;
     QOnlineTts::Emotion m_yandexEmotion = QOnlineTts::NoEmotion;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>PlayerButtons</class>
- <widget class="QWidget" name="PlayerButtons">
+ <class>SpeakButtons</class>
+ <widget class="QWidget" name="SpeakButtons">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -29,7 +29,7 @@
    <item>
     <widget class="QToolButton" name="playPauseButton">
      <property name="toolTip">
-      <string>Play / pause source text speaking</string>
+      <string>Speak / pause text speaking</string>
      </property>
      <property name="text">
       <string>Play</string>
@@ -42,7 +42,7 @@
       <bool>false</bool>
      </property>
      <property name="toolTip">
-      <string>Stop source text speaking</string>
+      <string>Stop text speaking</string>
      </property>
      <property name="text">
       <string>Pause</string>
