@@ -1,5 +1,5 @@
 [Desktop Action TranslateSelectedText]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelectedText
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
 Name=Translate selected text
 Name[ru_RU]=Перевести выделенный текст
 X-KDE-Shortcuts=Ctrl+Alt+E
