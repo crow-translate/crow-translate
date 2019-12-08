@@ -107,9 +107,8 @@ win32 {
         data/windows-icons.qrc
 }
 
-# Make install
 unix {
-   CONFIG += dbus
+    CONFIG += dbus
 
     target.path = /usr/bin
 
@@ -173,7 +172,8 @@ unix {
     statusIconsScalable.files = dist/unix/generic/hicolor/scalable/status/*
 
 
-    INSTALLS += target \
+    INSTALLS += \
+        target \
         desktop \
         icon16 \
         icon22 \
