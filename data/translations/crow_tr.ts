@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -142,7 +140,7 @@
     <message>
         <location filename="../../src/main.cpp" line="65"/>
         <source>Unable to register D-Bus object for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 için D-Bus nesnesi kaydedilemiyor</translation>
     </message>
 </context>
 <context>
@@ -1758,12 +1756,12 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Konuşma / metin konuşmasını duraklat</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
         <source>Speak / pause speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Konuşma / konuşmayı duraklat</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
@@ -1781,37 +1779,37 @@
     <message>
         <location filename="../../src/speakbuttons.ui" line="32"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Konuşma / metin konuşmasını duraklat</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.ui" line="35"/>
         <source>Play</source>
-        <translation type="unfinished">Oynat</translation>
+        <translation>Oynat</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.ui" line="45"/>
         <source>Stop text speaking</source>
-        <translation type="unfinished">Metin konuşmasını durdur</translation>
+        <translation>Metin konuşmasını durdur</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.ui" line="48"/>
         <source>Pause</source>
-        <translation type="unfinished">Duraklat</translation>
+        <translation>Duraklat</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="77"/>
         <source>No text specified</source>
-        <translation type="unfinished">Metin belirtilmedi</translation>
+        <translation>Metin belirtilmedi</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="77"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished">Oynatım metni boş</translation>
+        <translation>Oynatım metni boş</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="84"/>
         <source>Unable to generate URLs for TTS</source>
-        <translation type="unfinished">TTS için URL oluşturulamıyor</translation>
+        <translation>TTS için URL oluşturulamıyor</translation>
     </message>
 </context>
 <context>
