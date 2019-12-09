@@ -76,23 +76,6 @@ PopupWindow::PopupWindow(MainWindow *parent)
     connect(parent->translationLangButtons(), &LangButtonGroup::buttonChecked, m_translationLangButtons, &LangButtonGroup::checkButton);
     connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons,  &LangButtonGroup::setLanguage);
 
-    // Language buttons style
-    Qt::ToolButtonStyle langsStyle = settings.popupLanguagesStyle();
-    ui->firstSourceButton->setToolButtonStyle(langsStyle);
-    ui->secondSourceButton->setToolButtonStyle(langsStyle);
-    ui->thirdSourceButton->setToolButtonStyle(langsStyle);
-    ui->firstTranslationButton->setToolButtonStyle(langsStyle);
-    ui->secondTranslationButton->setToolButtonStyle(langsStyle);
-    ui->thirdTranslationButton->setToolButtonStyle(langsStyle);
-
-    // Control buttons style
-    Qt::ToolButtonStyle controlsStyle = settings.popupLanguagesStyle();
-    ui->sourceSpeakButtons->setButtonsStyle(controlsStyle);
-    ui->translationSpeakButtons->setButtonsStyle(controlsStyle);
-    ui->copySourceButton->setToolButtonStyle(controlsStyle);
-    ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
-    ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
-
     // Shortcuts
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);

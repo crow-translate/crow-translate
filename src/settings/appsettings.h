@@ -106,22 +106,6 @@ public:
     void setPopupWidth(int width);
     static int defaultPopupWidth();
 
-    Qt::ToolButtonStyle popupLanguagesStyle() const;
-    void setPopupLanguagesStyle(Qt::ToolButtonStyle style);
-    static Qt::ToolButtonStyle defaultPopupLanguagesStyle();
-
-    Qt::ToolButtonStyle popupControlsStyle() const;
-    void setPopupControlsStyle(Qt::ToolButtonStyle style);
-    static Qt::ToolButtonStyle defaultPopupControlsStyle();
-
-    Qt::ToolButtonStyle windowLanguagesStyle() const;
-    void setWindowLanguagesStyle(Qt::ToolButtonStyle style);
-    static Qt::ToolButtonStyle defaultWindowLanguagesStyle();
-
-    Qt::ToolButtonStyle windowControlsStyle() const;
-    void setWindowControlsStyle(Qt::ToolButtonStyle style);
-    static Qt::ToolButtonStyle defaultWindowControlsStyle();
-
     TrayIcon::IconType trayIconType() const;
     void setTrayIconType(TrayIcon::IconType icon);
     static TrayIcon::IconType defaultTrayIconType();

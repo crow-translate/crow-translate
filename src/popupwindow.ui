@@ -25,6 +25,9 @@
      </property>
      <item>
       <widget class="QToolButton" name="addSourceLangButton">
+       <property name="toolTip">
+        <string>Add language</string>
+       </property>
        <property name="icon">
         <iconset theme="list-add">
          <normaloff>.</normaloff>.</iconset>
@@ -92,9 +95,6 @@
        <property name="toolTip">
         <string>Swap languages</string>
        </property>
-       <property name="text">
-        <string>Swap languages</string>
-       </property>
        <property name="icon">
         <iconset theme="object-flip-horizontal">
          <normaloff>.</normaloff>.</iconset>
@@ -159,6 +159,9 @@
      </item>
      <item>
       <widget class="QToolButton" name="addTranslationLangButton">
+       <property name="toolTip">
+        <string>Add language</string>
+       </property>
        <property name="icon">
         <iconset theme="list-add">
          <normaloff>.</normaloff>.</iconset>
@@ -183,9 +186,6 @@
       <widget class="QToolButton" name="copySourceButton">
        <property name="toolTip">
         <string>Copy source text to the clipboard</string>
-       </property>
-       <property name="text">
-        <string>Copy</string>
        </property>
        <property name="icon">
         <iconset theme="edit-copy">
@@ -245,9 +245,6 @@
        <property name="toolTip">
         <string>Copy all translation data to the clipboard</string>
        </property>
-       <property name="text">
-        <string>Copy all</string>
-       </property>
        <property name="icon">
         <iconset theme="document-export">
          <normaloff>.</normaloff>.</iconset>
@@ -258,9 +255,6 @@
       <widget class="QToolButton" name="copyTranslationButton">
        <property name="toolTip">
         <string>Copy translation to the clipboard</string>
-       </property>
-       <property name="text">
-        <string>Copy</string>
        </property>
        <property name="icon">
         <iconset theme="edit-copy">

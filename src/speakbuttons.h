@@ -60,7 +60,6 @@ public:
 
     QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
-    void setButtonsStyle(Qt::ToolButtonStyle style);
 
 signals:
     void playerMediaRequested();

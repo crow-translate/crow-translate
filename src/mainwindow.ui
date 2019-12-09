@@ -95,9 +95,6 @@
         <property name="toolTip">
          <string>Copy translation to the clipboard</string>
         </property>
-        <property name="text">
-         <string>Copy</string>
-        </property>
         <property name="icon">
          <iconset theme="edit-copy">
           <normaloff>.</normaloff>.</iconset>
@@ -109,9 +106,6 @@
         <property name="toolTip">
          <string>Copy all translation data to the clipboard</string>
         </property>
-        <property name="text">
-         <string>Copy all</string>
-        </property>
         <property name="icon">
          <iconset theme="document-export">
           <normaloff>.</normaloff>.</iconset>
@@ -122,9 +116,6 @@
        <widget class="QToolButton" name="settingsButton">
         <property name="toolTip">
          <string>Application settings</string>
-        </property>
-        <property name="text">
-         <string>Settings</string>
         </property>
         <property name="icon">
          <iconset theme="dialog-object-properties">
@@ -160,6 +151,9 @@
         <property name="autoRepeat">
          <bool>false</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
@@ -167,12 +161,18 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="thirdTranslationButton">
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -187,10 +187,16 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="addTranslationLangButton">
+        <property name="toolTip">
+         <string>Add language</string>
+        </property>
         <property name="icon">
          <iconset theme="list-add">
           <normaloff>.</normaloff>.</iconset>
@@ -212,9 +218,6 @@
        <widget class="QToolButton" name="copySourceButton">
         <property name="toolTip">
          <string>Copy source text to the clipboard</string>
-        </property>
-        <property name="text">
-         <string>Copy</string>
         </property>
         <property name="icon">
          <iconset theme="edit-copy">
@@ -264,6 +267,9 @@
       </property>
       <item>
        <widget class="QToolButton" name="addSourceLangButton">
+        <property name="toolTip">
+         <string>Add language</string>
+        </property>
         <property name="icon">
          <iconset theme="list-add">
           <normaloff>.</normaloff>.</iconset>
@@ -281,6 +287,9 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
@@ -288,12 +297,18 @@
         <property name="checkable">
          <bool>true</bool>
         </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
+        </property>
        </widget>
       </item>
       <item>
        <widget class="QToolButton" name="secondSourceButton">
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -304,6 +319,9 @@
         </property>
         <property name="checkable">
          <bool>true</bool>
+        </property>
+        <property name="toolButtonStyle">
+         <enum>Qt::ToolButtonTextBesideIcon</enum>
         </property>
        </widget>
       </item>
@@ -327,6 +345,9 @@
       <property name="enabled">
        <bool>false</bool>
       </property>
+      <property name="toolTip">
+       <string>Cancel</string>
+      </property>
       <property name="icon">
        <iconset theme="dialog-cancel">
         <normaloff>.</normaloff>.</iconset>
@@ -335,8 +356,8 @@
     </item>
     <item row="5" column="3">
      <widget class="QToolButton" name="clearButton">
-      <property name="text">
-       <string/>
+      <property name="toolTip">
+       <string>Clear</string>
       </property>
       <property name="icon">
        <iconset theme="edit-clear">
@@ -367,6 +388,15 @@
  <layoutdefault spacing="6" margin="11"/>
  <customwidgets>
   <customwidget>
+   <class>SpeakButtons</class>
+   <extends>QWidget</extends>
+   <header>speakbuttons.h</header>
+   <container>1</container>
+   <slots>
+    <signal>playerMediaRequested()</signal>
+   </slots>
+  </customwidget>
+  <customwidget>
    <class>SourceTextEdit</class>
    <extends>QPlainTextEdit</extends>
    <header>sourcetextedit.h</header>
@@ -374,15 +404,6 @@
     <signal>sourceEmpty(bool)</signal>
     <slot>stopChangedTimer()</slot>
     <slot>markSourceAsChanged()</slot>
-   </slots>
-  </customwidget>
-  <customwidget>
-   <class>SpeakButtons</class>
-   <extends>QWidget</extends>
-   <header>speakbuttons.h</header>
-   <container>1</container>
-   <slots>
-    <signal>playerMediaRequested()</signal>
    </slots>
   </customwidget>
   <customwidget>

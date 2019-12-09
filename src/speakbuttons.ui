@@ -2,14 +2,6 @@
 <ui version="4.0">
  <class>SpeakButtons</class>
  <widget class="QWidget" name="SpeakButtons">
-  <property name="geometry">
-   <rect>
-    <x>0</x>
-    <y>0</y>
-    <width>86</width>
-    <height>34</height>
-   </rect>
-  </property>
   <layout class="QHBoxLayout" name="buttonsLayout">
    <property name="spacing">
     <number>6</number>
@@ -31,9 +23,6 @@
      <property name="toolTip">
       <string>Speak / pause text speaking</string>
      </property>
-     <property name="text">
-      <string>Play</string>
-     </property>
     </widget>
    </item>
    <item>
@@ -43,9 +32,6 @@
      </property>
      <property name="toolTip">
       <string>Stop text speaking</string>
-     </property>
-     <property name="text">
-      <string>Pause</string>
      </property>
      <property name="icon">
       <iconset theme="media-playback-stop">

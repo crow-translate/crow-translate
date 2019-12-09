@@ -159,12 +159,6 @@ void SpeakButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emot
     }
 }
 
-void SpeakButtons::setButtonsStyle(Qt::ToolButtonStyle style)
-{
-    ui->playPauseButton->setToolButtonStyle(style);
-    ui->stopButton->setToolButtonStyle(style);
-}
-
 void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
 {
     switch (state) {

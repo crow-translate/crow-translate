@@ -239,20 +239,20 @@
            <string>Pop-up window</string>
           </property>
           <layout class="QGridLayout" name="popupBoxLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="popupOpacityLabel">
+           <item row="1" column="0">
+            <widget class="QLabel" name="popupHeightLabel">
              <property name="text">
-              <string>Opacity:</string>
+              <string>Height:</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="popupOpacitySlider">
-             <property name="maximum">
-              <number>100</number>
+           <item row="1" column="2">
+            <widget class="QSpinBox" name="popupHeightSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
+             <property name="suffix">
+              <string notr="true"> px</string>
              </property>
             </widget>
            </item>
@@ -266,30 +266,6 @@
              </property>
              <property name="maximum">
               <number>100</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="popupHeightLabel">
-             <property name="text">
-              <string>Height:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSlider" name="popupHeightSlider">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QSpinBox" name="popupHeightSpinBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string notr="true"> px</string>
              </property>
             </widget>
            </item>
@@ -307,6 +283,16 @@
              </property>
             </widget>
            </item>
+           <item row="0" column="1">
+            <widget class="QSlider" name="popupOpacitySlider">
+             <property name="maximum">
+              <number>100</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
            <item row="2" column="2">
             <widget class="QSpinBox" name="popupWidthSpinBox">
              <property name="toolTip">
@@ -317,195 +303,19 @@
              </property>
             </widget>
            </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="popupLanguagesLabel">
-             <property name="text">
-              <string>Language buttons:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QComboBox" name="popupLanguagesComboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Icon only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text beside icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text under icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Follow system style</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="4" column="0">
-            <widget class="QLabel" name="popupControlsLabel">
-             <property name="text">
-              <string>Control buttons:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="1">
-            <widget class="QComboBox" name="popupControlsComboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Icon only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text beside icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text under icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Follow system style</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="windowInterfaceGroupBox">
-          <property name="title">
-           <string>Main window</string>
-          </property>
-          <layout class="QGridLayout" name="windowInterfaceBoxLayout">
-           <item row="0" column="1">
-            <widget class="QComboBox" name="windowLanguagesComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Icon only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text beside icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text under icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Follow system style</string>
-              </property>
-             </item>
-            </widget>
-           </item>
            <item row="0" column="0">
-            <widget class="QLabel" name="windowLanguagesLabel">
+            <widget class="QLabel" name="popupOpacityLabel">
              <property name="text">
-              <string>Language buttons:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="windowControlsLabel">
-             <property name="text">
-              <string>Control buttons:</string>
+              <string>Opacity:</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="windowControlsComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icon style&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Icon only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text only</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text beside icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Text under icon</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Follow system style</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="windowInterfaceSpacer">
+            <widget class="QSlider" name="popupHeightSlider">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
+            </widget>
            </item>
           </layout>
          </widget>

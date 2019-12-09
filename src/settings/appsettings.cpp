@@ -276,66 +276,6 @@ int AppSettings::defaultPopupWidth()
     return 350;
 }
 
-Qt::ToolButtonStyle AppSettings::popupLanguagesStyle() const
-{
-    return m_settings->value("PopupLanguagesStyle", defaultPopupLanguagesStyle()).value<Qt::ToolButtonStyle>();
-}
-
-void AppSettings::setPopupLanguagesStyle(Qt::ToolButtonStyle style)
-{
-     m_settings->setValue("PopupLanguagesStyle", style);
-}
-
-Qt::ToolButtonStyle AppSettings::defaultPopupLanguagesStyle()
-{
-    return Qt::ToolButtonIconOnly;
-}
-
-Qt::ToolButtonStyle AppSettings::popupControlsStyle() const
-{
-    return m_settings->value("PopupControlsStyle", defaultPopupControlsStyle()).value<Qt::ToolButtonStyle>();
-}
-
-void AppSettings::setPopupControlsStyle(Qt::ToolButtonStyle style)
-{
-     m_settings->setValue("PopupControlsStyle", style);
-}
-
-Qt::ToolButtonStyle AppSettings::defaultPopupControlsStyle()
-{
-    return Qt::ToolButtonIconOnly;
-}
-
-Qt::ToolButtonStyle AppSettings::windowLanguagesStyle() const
-{
-    return m_settings->value("WindowLanguagesStyle", defaultWindowLanguagesStyle()).value<Qt::ToolButtonStyle>();
-}
-
-void AppSettings::setWindowLanguagesStyle(Qt::ToolButtonStyle style)
-{
-     m_settings->setValue("WindowLanguagesStyle", style);
-}
-
-Qt::ToolButtonStyle AppSettings::defaultWindowLanguagesStyle()
-{
-    return Qt::ToolButtonTextBesideIcon;
-}
-
-Qt::ToolButtonStyle AppSettings::windowControlsStyle() const
-{
-    return m_settings->value("WindowControlsStyle", defaultWindowControlsStyle()).value<Qt::ToolButtonStyle>();
-}
-
-void AppSettings::setWindowControlsStyle(Qt::ToolButtonStyle style)
-{
-     m_settings->setValue("WindowControlsStyle", style);
-}
-
-Qt::ToolButtonStyle AppSettings::defaultWindowControlsStyle()
-{
-    return Qt::ToolButtonIconOnly;
-}
-
 TrayIcon::IconType AppSettings::trayIconType() const
 {
     return m_settings->value("TrayIconName", defaultTrayIconType()).value<TrayIcon::IconType>();

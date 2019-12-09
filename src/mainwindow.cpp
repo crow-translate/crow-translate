@@ -821,24 +821,6 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
     ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
-    // Language buttons style
-    const Qt::ToolButtonStyle languagesStyle = settings.windowLanguagesStyle();
-    ui->firstSourceButton->setToolButtonStyle(languagesStyle);
-    ui->secondSourceButton->setToolButtonStyle(languagesStyle);
-    ui->thirdSourceButton->setToolButtonStyle(languagesStyle);
-    ui->firstTranslationButton->setToolButtonStyle(languagesStyle);
-    ui->secondTranslationButton->setToolButtonStyle(languagesStyle);
-    ui->thirdTranslationButton->setToolButtonStyle(languagesStyle);
-
-    // Control buttons style
-    const Qt::ToolButtonStyle controlsStyle = settings.windowControlsStyle();
-    ui->sourceSpeakButtons->setButtonsStyle(controlsStyle);
-    ui->translationSpeakButtons->setButtonsStyle(controlsStyle);
-    ui->copySourceButton->setToolButtonStyle(controlsStyle);
-    ui->copyTranslationButton->setToolButtonStyle(controlsStyle);
-    ui->copyAllTranslationButton->setToolButtonStyle(controlsStyle);
-    ui->settingsButton->setToolButtonStyle(controlsStyle);
-
     // Global shortcuts
     if (settings.isGlobalShortuctsEnabled()) {
         m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);

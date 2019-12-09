@@ -9,13 +9,17 @@ All notable changes to this project will be documented in this file. This projec
 **Added**
 
 -   The ability to disable embedded global shortcuts.
--   D-Bus API
--   KDE shortcuts support
+-   D-Bus API.
+-   KDE shortcuts support.
 
 **Changed**
 
 -   Fix crash on Wayland (still no support for hotkeys and selection).
 -   Use a simpler and more compatible way to show notifications.
+
+**Removed**
+
+-   The ability to specify buttons style as useless.
 
 ## [2.2.3](https://github.com/crow-translate/crow-translate/tree/2.2.3) (2019-11-04)
 
@@ -256,6 +260,9 @@ All notable changes to this project will be documented in this file. This projec
 -   Fix automatic translation in the main window after inserting a new language.
 -   Linux: Change icon names for better compatibility.
 -   Windows: Improve icon look.
+
+**Removed**
+
 -   "Automatic detection" removed from the context menu of languages ​​as useless.
 
 ## [0.9.7](https://github.com/crow-translate/crow-translate/tree/0.9.7) (2018-04-23)

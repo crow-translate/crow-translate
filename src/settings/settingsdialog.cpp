@@ -178,10 +178,6 @@ void SettingsDialog::accept()
     settings.setPopupOpacity(static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
-    settings.setPopupLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->popupLanguagesComboBox->currentIndex()));
-    settings.setPopupControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->popupControlsComboBox->currentIndex()));
-    settings.setWindowLanguagesStyle(static_cast<Qt::ToolButtonStyle>(ui->windowLanguagesComboBox->currentIndex()));
-    settings.setWindowControlsStyle(static_cast<Qt::ToolButtonStyle>(ui->windowControlsComboBox->currentIndex()));
     settings.setTrayIconType(static_cast<TrayIcon::IconType>(ui->trayIconComboBox->currentIndex()));
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
@@ -436,10 +432,6 @@ void SettingsDialog::restoreDefaults()
     ui->popupOpacitySlider->setValue(static_cast<int>(AppSettings::defaultPopupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(AppSettings::defaultPopupWidth());
     ui->popupHeightSpinBox->setValue(AppSettings::defaultPopupHeight());
-    ui->popupLanguagesComboBox->setCurrentIndex(AppSettings::defaultPopupLanguagesStyle());
-    ui->popupControlsComboBox->setCurrentIndex(AppSettings::defaultPopupControlsStyle());
-    ui->windowLanguagesComboBox->setCurrentIndex(AppSettings::defaultWindowLanguagesStyle());
-    ui->windowControlsComboBox->setCurrentIndex(AppSettings::defaultWindowControlsStyle());
     ui->trayIconComboBox->setCurrentIndex(AppSettings::defaultTrayIconType());
     ui->customTrayIconEdit->setText(AppSettings::defaultCustomIconPath());
 
@@ -491,11 +483,6 @@ void SettingsDialog::loadSettings()
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
-    ui->popupLanguagesComboBox->setCurrentIndex(settings.popupLanguagesStyle());
-    ui->popupControlsComboBox->setCurrentIndex(settings.popupControlsStyle());
-
-    ui->windowLanguagesComboBox->setCurrentIndex(settings.windowLanguagesStyle());
-    ui->windowControlsComboBox->setCurrentIndex(settings.windowControlsStyle());
 
     ui->trayIconComboBox->setCurrentIndex(settings.trayIconType());
     ui->customTrayIconEdit->setText(settings.customIconPath());
