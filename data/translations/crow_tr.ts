@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -205,17 +203,17 @@
         <location filename="../../src/mainwindow.ui" line="198"/>
         <location filename="../../src/mainwindow.ui" line="271"/>
         <source>Add language</source>
-        <translation type="unfinished">Dil ekle</translation>
+        <translation>Dil ekle</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="349"/>
         <source>Cancel</source>
-        <translation type="unfinished">İptal</translation>
+        <translation>İptal</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="360"/>
         <source>Clear</source>
-        <translation type="unfinished">Temizle</translation>
+        <translation>Temizle</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="377"/>
@@ -261,7 +259,7 @@
         <location filename="../../src/popupwindow.ui" line="29"/>
         <location filename="../../src/popupwindow.ui" line="163"/>
         <source>Add language</source>
-        <translation type="unfinished">Dil ekle</translation>
+        <translation>Dil ekle</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="96"/>
