@@ -34,6 +34,8 @@ public:
     SourceTextEdit(QWidget *parent = nullptr);
 
     void setRequestTranlationOnEdit(bool listen);
+    void setSimplifySource(bool enabled);
+    QString toSourceText();
 
 public slots:
     void markSourceAsChanged();
@@ -51,6 +53,7 @@ private:
     QTimer *m_textEditedTimer;
     bool m_requestTranslationOnEdit = false;
     bool m_sourceEmpty = true;
+    bool m_simplifySource = false;
 
     static constexpr int s_delay = 500;
 };

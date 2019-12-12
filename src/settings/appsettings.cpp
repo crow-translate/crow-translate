@@ -381,6 +381,21 @@ bool AppSettings::defaultExamplesEnabled()
     return true;
 }
 
+bool AppSettings::isSimplifySource() const
+{
+    return m_settings->value("Translation/SimplifySource", defaultSimplifySource()).toBool();
+}
+
+void AppSettings::setSimplifySource(bool simplify)
+{
+    m_settings->setValue("Translation/SimplifySource", simplify);
+}
+
+bool AppSettings::defaultSimplifySource()
+{
+    return false;
+}
+
 QOnlineTranslator::Language AppSettings::primaryLanguage() const
 {
     return m_settings->value("Translation/PrimaryLanguage", defaultPrimaryLanguage()).value<QOnlineTranslator::Language>();

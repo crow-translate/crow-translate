@@ -187,6 +187,7 @@ void SettingsDialog::accept()
     settings.setSourceTranscriptionEnabled(ui->sourceTranscriptionCheckBox->isChecked());
     settings.setTranslationOptionsEnabled(ui->translationOptionsCheckBox->isChecked());
     settings.setExamplesEnabled(ui->examplesCheckBox->isChecked());
+    settings.setSimplifySource(ui->sourceSimplificationCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
@@ -441,6 +442,7 @@ void SettingsDialog::restoreDefaults()
     ui->sourceTranscriptionCheckBox->setChecked(AppSettings::defaultSourceTranscriptionEnabled());
     ui->translationOptionsCheckBox->setChecked(AppSettings::defaultTranslationOptionsEnabled());
     ui->examplesCheckBox->setChecked(AppSettings::defaultExamplesEnabled());
+    ui->sourceSimplificationCheckBox->setChecked(AppSettings::defaultSimplifySource());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(AppSettings::defaultPrimaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(AppSettings::defaultSecondaryLanguage()));
     ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
@@ -493,6 +495,7 @@ void SettingsDialog::loadSettings()
     ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());
     ui->translationOptionsCheckBox->setChecked(settings.isTranslationOptionsEnabled());
     ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
+    ui->sourceSimplificationCheckBox->setChecked(settings.isSimplifySource());
     ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
     ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());

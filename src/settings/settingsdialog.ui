@@ -488,6 +488,16 @@
              </property>
             </widget>
            </item>
+           <item>
+            <widget class="QCheckBox" name="sourceSimplificationCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters '\t', '\n', '\v', '\f', '\r', and ' ') with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Simplify source</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>

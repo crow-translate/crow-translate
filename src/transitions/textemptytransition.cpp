@@ -29,7 +29,7 @@ TextEmptyTransition::TextEmptyTransition(SourceTextEdit *edit, QState *sourceSta
 
 bool TextEmptyTransition::eventTest(QEvent *)
 {
-    return m_edit->toPlainText().isEmpty();
+    return m_edit->toSourceText().isEmpty();
 }
 
 void TextEmptyTransition::onTransition(QEvent *)

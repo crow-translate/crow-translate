@@ -135,6 +135,10 @@ public:
     void setExamplesEnabled(bool enable);
     static bool defaultExamplesEnabled();
 
+    bool isSimplifySource() const;
+    void setSimplifySource(bool simplify);
+    static bool defaultSimplifySource();
+
     QOnlineTranslator::Language primaryLanguage() const;
     void setPrimaryLanguage(QOnlineTranslator::Language lang);
     static QOnlineTranslator::Language defaultPrimaryLanguage();

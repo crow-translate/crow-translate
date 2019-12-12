@@ -47,6 +47,16 @@ void SourceTextEdit::setRequestTranlationOnEdit(bool listen)
     }
 }
 
+void SourceTextEdit::setSimplifySource(bool enabled)
+{
+    m_simplifySource = enabled;
+}
+
+QString SourceTextEdit::toSourceText()
+{
+    return m_simplifySource ? toPlainText().simplified() : toPlainText().trimmed();
+}
+
 void SourceTextEdit::markSourceAsChanged()
 {
     if (m_requestTranslationOnEdit) {

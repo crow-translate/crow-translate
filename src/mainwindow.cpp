@@ -279,7 +279,7 @@ void MainWindow::requestTranslation()
     else
         translationLang = m_translationLangButtons->checkedLanguage();
 
-    m_translator->translate(ui->sourceEdit->toPlainText(), currentEngine(), translationLang, m_sourceLangButtons->checkedLanguage());
+    m_translator->translate(ui->sourceEdit->toSourceText(), currentEngine(), translationLang, m_sourceLangButtons->checkedLanguage());
 }
 
 // Re-translate to a secondary or a primary language if the autodetected source language and the translation language are the same
@@ -287,7 +287,7 @@ void MainWindow::requestRetranslation()
 {
     const QOnlineTranslator::Language translationLang = AppSettings().preferredTranslationLanguage(m_translator->sourceLanguage());
 
-    m_translator->translate(ui->sourceEdit->toPlainText(), currentEngine(), translationLang, m_translator->sourceLanguage());
+    m_translator->translate(ui->sourceEdit->toSourceText(), currentEngine(), translationLang, m_translator->sourceLanguage());
 }
 
 void MainWindow::parseTranslation()
@@ -316,7 +316,7 @@ void MainWindow::clearTranslation()
 
 void MainWindow::requestSourceLanguage()
 {
-    m_translator->detectLanguage(ui->sourceEdit->toPlainText(), currentEngine());
+    m_translator->detectLanguage(ui->sourceEdit->toSourceText(), currentEngine());
 }
 
 void MainWindow::parseSourceLanguage()
@@ -331,7 +331,7 @@ void MainWindow::parseSourceLanguage()
 
 void MainWindow::speakSource()
 {
-    ui->sourceSpeakButtons->speak(ui->sourceEdit->toPlainText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
+    ui->sourceSpeakButtons->speak(ui->sourceEdit->toSourceText(), m_sourceLangButtons->checkedLanguage(), currentEngine());
 }
 
 void MainWindow::speakTranslation()
@@ -803,6 +803,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
     m_translator->setSourceTranscriptionEnabled(settings.isSourceTranscriptionEnabled());
     m_translator->setTranslationOptionsEnabled(settings.isTranslationOptionsEnabled());
     m_translator->setExamplesEnabled(settings.isExamplesEnabled());
+    ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
     // Connection
     QNetworkProxy proxy;
