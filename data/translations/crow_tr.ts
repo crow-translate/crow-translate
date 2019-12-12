@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1362,12 +1360,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="494"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Beyaz boşlukların her bir dizisini değiştirin (bu, &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos; ve &apos;&apos; ASCII karakterlerini içerir), sorgularda tek bir boşlukla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="497"/>
         <source>Simplify source</source>
-        <translation type="unfinished"></translation>
+        <translation>Kaynağı basitleştir</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="540"/>
