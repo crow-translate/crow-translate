@@ -58,6 +58,8 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 You can change them in the settings. Some key sequences may not be available due to OS limitations.
 
+Wayland does not support global shortcuts registration, but you can use [D-Bus](#d-bus-api) to bind actions in the system settings. For desktop environments that support [additional applications actions](https://specifications.freedesktop.org/desktop-entry-spec/desktop-entry-spec-latest.html#extra-actions) (KDE, for example) you will see them predefined in the system shortcut settings. You can also use them for X11 sessions, but you need to disable global shortcuts registration in the application settings to avoid conflicts.
+
 ### Global
 
 | Key                                             | Description                        |
