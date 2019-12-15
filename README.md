@@ -16,11 +16,12 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 -   [Dependencies](#dependencies)
 -   [Third-party](#third-party)
 -   [Installation](#installation)
+-   [Building](#building)
 -   [Localization](#localization)
 
 ## Screenshots
 
-### Linux
+### Linux KDE
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/main.png" alt="Main screenshot"/>
@@ -32,7 +33,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
   <sub><b>Screenshots</b>: OS: <a href="https://www.archlinux.org">Arch Linux</a> | Desktop environment: <a href="https://www.kde.org/plasma-desktop">Plasma</a> | Theme: Breeze | Icons: <a href="https://github.com/PapirusDevelopmentTeam/papirus-icon-theme">Papirus</a> | Wallpaper: <a href="https://dynamicwallpaper.club/wallpaper/nrv0me8vd1">Catalina</a></sub>
 </p>
 
-### Windows
+### Windows 10
 
 <p align="center">
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/main.png" alt="Main screenshot"/>
@@ -169,15 +170,25 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 ## Installation
 
-To install a stable version, go to the [releases](https://github.com/crow-translate/crow-translate/releases) page. The instructions below will help you install Crow Translate with the latest commits.
+### Windows
 
-### Pacman-based (Arch Linux, Manjaro, Chakra etc.)
+The latest version installer is available on the [releases](https://github.com/crow-translate/crow-translate/releases) page.
 
-You can install [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git "A simple and lightweight translator that allows to translate and speak text using the Google, Yandex and Bing translate API") from AUR.
+You can also install `crow-translate` from [scoop](https://scoop.sh).
 
-### RPM-based (Fedora, RHEL, CentOS etc.)
+### Pacman-based Linux (Arch Linux, Manjaro, Chakra etc.)
+
+You can install [crow-translate](https://aur.archlinux.org/packages/crow-translate) or [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git) from AUR.
+
+### APT-based Linux (Debian, Ubuntu, Mint etc.)
+
+The latest version package is available on the [releases](https://github.com/crow-translate/crow-translate/releases) page.
+
+### RPM-based Linux (Fedora, RHEL, CentOS etc.)
 
 You can install it from the [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate).
+
+## Building
 
 ### Automatic script
 
