@@ -71,42 +71,6 @@ QMediaPlaylist *SpeakButtons::playlist()
     return m_mediaPlayer->playlist();
 }
 
-void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
-{
-    if (text.isEmpty()) {
-        QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
-        return;
-    }
-
-    QOnlineTts onlineTts;
-    onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
-    if (onlineTts.error()) {
-        QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
-        return;
-    }
-
-    // Use playlist to split long queries due engines limit
-    const QList<QMediaContent> media = onlineTts.media();
-    playlist()->clear();
-    playlist()->addMedia(media);
-    speak();
-}
-
-void SpeakButtons::speak()
-{
-    m_mediaPlayer->play();
-}
-
-void SpeakButtons::pauseSpeaking()
-{
-    m_mediaPlayer->pause();
-}
-
-void SpeakButtons::stopSpeaking()
-{
-    m_mediaPlayer->stop();
-}
-
 void SpeakButtons::setSpeakShortcut(const QKeySequence &shortcut)
 {
     ui->playPauseButton->setShortcut(shortcut);
@@ -157,6 +121,37 @@ void SpeakButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emot
     default:
         break;
     }
+}
+
+void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
+{
+    if (text.isEmpty()) {
+        QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
+        return;
+    }
+
+    QOnlineTts onlineTts;
+    onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
+    if (onlineTts.error()) {
+        QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
+        return;
+    }
+
+    // Use playlist to split long queries due engines limit
+    const QList<QMediaContent> media = onlineTts.media();
+    playlist()->clear();
+    playlist()->addMedia(media);
+    m_mediaPlayer->play();
+}
+
+void SpeakButtons::pauseSpeaking()
+{
+    m_mediaPlayer->pause();
+}
+
+void SpeakButtons::stopSpeaking()
+{
+    m_mediaPlayer->stop();
 }
 
 void SpeakButtons::loadPlayerState(QMediaPlayer::State state)

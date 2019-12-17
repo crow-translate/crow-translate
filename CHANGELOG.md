@@ -17,6 +17,7 @@ All notable changes to this project will be documented in this file. This projec
 
 -   Fix crash on Wayland (still no support for hotkeys and selection).
 -   Use a simpler and more compatible way to show notifications.
+-   Stop speaking source text on change.
 -   Google: Fix parsing several sentences in some cases.
 -   Google: Fix disabling examples.
 

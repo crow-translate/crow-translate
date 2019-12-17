@@ -394,6 +394,7 @@
    <container>1</container>
    <slots>
     <signal>playerMediaRequested()</signal>
+    <slot>stopSpeaking()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -655,6 +656,22 @@
     <hint type="destinationlabel">
      <x>324</x>
      <y>142</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>sourceEdit</sender>
+   <signal>textChanged()</signal>
+   <receiver>sourceSpeakButtons</receiver>
+   <slot>stopSpeaking()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>158</x>
+     <y>134</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>9</x>
+     <y>256</y>
     </hint>
    </hints>
   </connection>

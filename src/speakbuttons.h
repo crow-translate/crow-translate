@@ -46,12 +46,6 @@ public:
     void setMediaPlayer(QMediaPlayer *mediaPlayer);
     QMediaPlaylist *playlist();
 
-    void speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
-
-    void speak();
-    void pauseSpeaking();
-    void stopSpeaking();
-
     void setSpeakShortcut(const QKeySequence &shortcut);
     QKeySequence speakShortcut() const;
 
@@ -60,6 +54,12 @@ public:
 
     QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
+
+    void speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine);
+    void pauseSpeaking();
+
+public slots:
+    void stopSpeaking();
 
 signals:
     void playerMediaRequested();
