@@ -172,21 +172,23 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 ### Windows
 
-The latest version installer is available on the [releases](https://github.com/crow-translate/crow-translate/releases) page.
+You can download the installer or archive from the [releases](https://github.com/crow-translate/crow-translate/releases/latest) page.
 
 You can also install `crow-translate` from [scoop](https://scoop.sh).
 
-### Pacman-based Linux (Arch Linux, Manjaro, Chakra etc.)
+### Linux
+
+#### Pacman-based (Arch Linux, Manjaro, Chakra etc.)
 
 You can install [crow-translate](https://aur.archlinux.org/packages/crow-translate) or [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git) from AUR.
 
-### APT-based Linux (Debian, Ubuntu, Mint etc.)
+#### APT-based (Debian, Ubuntu, Mint etc.)
 
-The latest version package is available on the [releases](https://github.com/crow-translate/crow-translate/releases) page.
+The package is available on the [releases](https://github.com/crow-translate/crow-translate/releases/latest) page.
 
-### RPM-based Linux (Fedora, RHEL, CentOS etc.)
+#### RPM-based (Fedora, RHEL, CentOS etc.)
 
-You can install it from the [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate).
+You can install the package from the [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate).
 
 ## Building
 
