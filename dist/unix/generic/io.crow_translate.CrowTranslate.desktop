@@ -1,3 +1,19 @@
+[Desktop Entry]
+Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;CopyTranslatedSelection;
+Name=Crow Translate
+GenericName=Translator
+GenericName[ru]=Переводчик
+Comment=A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API and much more
+Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а так же многое другое
+Keywords=google;yandex;text-to-speech;
+Keywords[ru]=google;yandex;текст в речь;
+Exec=crow
+Icon=crow-translate
+Terminal=false
+StartupNotify=false
+Type=Application
+Categories=Office;Network;Qt
+
 [Desktop Action TranslateSelectedText]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
 Name=Translate selected text
@@ -28,24 +44,7 @@ Name=Show main window
 Name[ru_RU]=Показать главное окно
 X-KDE-Shortcuts=Ctrl+Alt+C
 
-[Desktop Action СopyTranslatedSelection]
+[Desktop Action CopyTranslatedSelection]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow copyTranslatedSelection
 Name=Translate selected text and copy to clipboard
 Name[ru_RU]=Перевести выделенный текст и скопировать в буфер обмена
-
-[Desktop Entry]
-Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;СopyTranslatedSelection;
-Name=Crow Translate
-GenericName=Translator
-GenericName[ru]=Переводчик
-Comment=A simple and lightweight translator that allows to translate and speak the selected text using the Google Translate API and much more
-Comment[ru]=Простой и легковесный переводчик, который позволяет переводить и озвучивать выделенный текст с помощью Google Translate API, а так же многое другое
-Keywords=google;yandex;text-to-speech;
-Keywords[ru]=google;yandex;текст в речь;
-Exec=crow
-Icon=crow-translate
-Terminal=false
-StartupNotify=false
-Type=Application
-Categories=Office;Network;Qt
-
