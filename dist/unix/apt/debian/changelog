@@ -1,3 +1,18 @@
+crow-translate (2.3.0-1) buster bionic disco; urgency=low
+
+  * Add the ability to disable embedded global shortcuts.
+  * Add D-Bus API.
+  * Add KDE shortcuts support.
+  * Add the ability to simplify source text in query.
+  * Fix crash on Wayland (still no support for hotkeys and selection).
+  * Use a simpler and more compatible way to show notifications.
+  * Stop speaking source text on change.
+  * Google: Fix parsing several sentences in some cases.
+  * Google: Fix disabling examples.
+  * The ability to specify buttons style as useless.
+
+ -- Hennadii Chernyshchyk <genaloner@gmail.com>  Sat, 21 Dec 2019 00:00:00 +0000
+
 crow-translate (2.2.3-1) buster bionic disco; urgency=low
 
   * Add Polish localization.

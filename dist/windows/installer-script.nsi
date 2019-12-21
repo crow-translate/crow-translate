@@ -15,7 +15,7 @@
   ;App information and out file
   Name "Crow Translate"
   BrandingText "Crow Translate"
-  !define VERSION "2.2.3"
+  !define VERSION "2.3.0"
   OutFile "crow-translate-${VERSION}-win64.exe"
   
   ;Properly display all languages

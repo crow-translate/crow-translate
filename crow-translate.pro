@@ -6,7 +6,7 @@
 
 TARGET = crow
 TEMPLATE = app
-VERSION = 2.2.3
+VERSION = 2.3.0
 INCLUDEPATH = src
 QT += core gui widgets
 CONFIG += lrelease embed_translations
