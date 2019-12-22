@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.0...HEAD)
 
-_No unreleased changes yet_
+**Changed**
+
+-   Fix disabling transliteration.
 
 ## [2.3.0](https://github.com/crow-translate/crow-translate/tree/2.3.0) (2019-12-21)
 
