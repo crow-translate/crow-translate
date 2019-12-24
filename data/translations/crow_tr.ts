@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -147,7 +145,7 @@
     <message>
         <location filename="../../src/main.cpp" line="68"/>
         <source>D-Bus service %1 is already registered by another application</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 D-Bus hizmeti başka bir uygulama tarafından zaten kayıtlı</translation>
     </message>
 </context>
 <context>
