@@ -23,7 +23,7 @@
 #include "singleapplication.h"
 #include "settings/appsettings.h"
 
-#ifdef Q_OS_UNIX
+#ifdef Q_OS_LINUX
 #include <QDBusConnection>
 #include <QDBusError>
 #endif
@@ -36,7 +36,6 @@ int main(int argc, char *argv[])
     QCoreApplication::setApplicationVersion(QStringLiteral("2.3.0"));
     QCoreApplication::setApplicationName(QStringLiteral("Crow Translate"));
     QCoreApplication::setOrganizationName(QStringLiteral("crow"));
-    QCoreApplication::setOrganizationDomain(QStringLiteral("io.crow_translate.CrowTranslate"));
 
     if (argc == 1)
         return launchGui(argc, argv); // Launch GUI if there are no arguments
@@ -49,6 +48,7 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 #if defined(Q_OS_LINUX)
+    SingleApplication::setOrganizationDomain(QStringLiteral("io.crow_translate.CrowTranslate"));
     SingleApplication::setDesktopFileName(SingleApplication::organizationDomain() + ".desktop");
 #elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
