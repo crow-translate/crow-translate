@@ -140,9 +140,14 @@
 <context>
     <name>D-Bus</name>
     <message>
-        <location filename="../../src/main.cpp" line="65"/>
+        <location filename="../../src/main.cpp" line="66"/>
         <source>Unable to register D-Bus object for %1</source>
         <translation>Не удалось зарегистрировать объект D-Bus для %1</translation>
+    </message>
+    <message>
+        <location filename="../../src/main.cpp" line="68"/>
+        <source>D-Bus service %1 is already registered by another application</source>
+        <translation>Сервис D-Bus %1 уже зарегистрирован другим приложением</translation>
     </message>
 </context>
 <context>
@@ -782,7 +787,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="956"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="965"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1055"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1046"/>
         <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
         <translation>Ошибка: системы движка обнаружили подозрительный трафик из вашей компьютерной сети. Повторите попытку позже.</translation>
     </message>
@@ -928,13 +933,13 @@
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="977"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1125"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1257"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1116"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1248"/>
         <source>Error: Unable to parse autodetected language</source>
         <translation>Ошибка: Не удается разобрать автоопределенный язык</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1069"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1060"/>
         <source>Error: Unable to parse Yandex SID.</source>
         <translation>Ошибка: Не удалось разобрать Yandex SID.</translation>
     </message>
@@ -1737,17 +1742,17 @@
         <translation>Остановить озвучивание текста</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>No text specified</source>
         <translation>Текст не указан</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>Playback text is empty</source>
         <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="84"/>
+        <location filename="../../src/speakbuttons.cpp" line="136"/>
         <source>Unable to generate URLs for TTS</source>
         <translation>Не удалось создать URL-ы для TTS</translation>
     </message>
@@ -1841,12 +1846,12 @@
         <translation>Список изменений:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="132"/>
+        <location filename="../../src/updaterdialog.cpp" line="133"/>
         <source>Downloading is complete</source>
         <translation>Загрузка завершена</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="88"/>
+        <location filename="../../src/updaterdialog.cpp" line="89"/>
         <source>Unable to write file</source>
         <translation>Не удалось записать файл</translation>
     </message>

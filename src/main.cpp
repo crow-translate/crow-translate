@@ -33,9 +33,10 @@ int launchCli(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion("2.3.0");
-    QCoreApplication::setApplicationName("Crow Translate");
-    QCoreApplication::setOrganizationName("crow");
+    QCoreApplication::setApplicationVersion(QStringLiteral("2.3.0"));
+    QCoreApplication::setApplicationName(QStringLiteral("Crow Translate"));
+    QCoreApplication::setOrganizationName(QStringLiteral("crow"));
+    QCoreApplication::setOrganizationDomain(QStringLiteral("io.crow_translate.CrowTranslate"));
 
     if (argc == 1)
         return launchGui(argc, argv); // Launch GUI if there are no arguments
@@ -48,7 +49,7 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 #if defined(Q_OS_LINUX)
-    SingleApplication::setDesktopFileName("io.crow_translate.CrowTranslate.desktop");
+    SingleApplication::setDesktopFileName(SingleApplication::organizationDomain() + ".desktop");
 #elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
 #endif
@@ -60,11 +61,11 @@ int launchGui(int argc, char *argv[])
 
 #ifdef Q_OS_LINUX
     if (QDBusConnection::sessionBus().isConnected()) {
-        if (QDBusConnection::sessionBus().registerService(QStringLiteral("io.crow_translate.CrowTranslate"))) {
+        if (QDBusConnection::sessionBus().registerService(SingleApplication::organizationDomain())) {
             if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/MainWindow"), &window, QDBusConnection::ExportScriptableSlots))
                 qWarning() << SingleApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(window.metaObject()->className());
         } else {
-            qWarning() << QDBusConnection::sessionBus().lastError().message();
+            qWarning() << SingleApplication::translate("D-Bus", "D-Bus service %1 is already registered by another application").arg(SingleApplication::organizationDomain());
         }
     }
 #endif

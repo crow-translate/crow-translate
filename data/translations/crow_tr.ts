@@ -1,4 +1,6 @@
-<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE TS>
+<TS version="2.1" language="tr">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -138,9 +140,14 @@
 <context>
     <name>D-Bus</name>
     <message>
-        <location filename="../../src/main.cpp" line="65"/>
+        <location filename="../../src/main.cpp" line="66"/>
         <source>Unable to register D-Bus object for %1</source>
         <translation>%1 için D-Bus nesnesi kaydedilemiyor</translation>
+    </message>
+    <message>
+        <location filename="../../src/main.cpp" line="68"/>
+        <source>D-Bus service %1 is already registered by another application</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -920,19 +927,19 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="956"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="965"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1055"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1046"/>
         <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
         <translation>Hata: Çekirdek sistemleri, bilgisayar ağınızdan şüpheli trafik algıladı. Lütfen isteği daha sonra tekrar deneyin.</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="977"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1125"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1257"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1116"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1248"/>
         <source>Error: Unable to parse autodetected language</source>
         <translation>Hata: Otomatik algılanan dil ayrıştırılamadı</translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1069"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1060"/>
         <source>Error: Unable to parse Yandex SID.</source>
         <translation>Hata: Yandex SID ayrıştırılamıyor.</translation>
     </message>
@@ -1734,17 +1741,17 @@
         <translation>Metin konuşmasını durdur</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>No text specified</source>
         <translation>Metin belirtilmedi</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="77"/>
+        <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>Playback text is empty</source>
         <translation>Oynatım metni boş</translation>
     </message>
     <message>
-        <location filename="../../src/speakbuttons.cpp" line="84"/>
+        <location filename="../../src/speakbuttons.cpp" line="136"/>
         <source>Unable to generate URLs for TTS</source>
         <translation>TTS için URL oluşturulamıyor</translation>
     </message>
@@ -1838,12 +1845,12 @@
         <translation>Değişiklikler:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="132"/>
+        <location filename="../../src/updaterdialog.cpp" line="133"/>
         <source>Downloading is complete</source>
         <translation>İndirme tamamlandı</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="88"/>
+        <location filename="../../src/updaterdialog.cpp" line="89"/>
         <source>Unable to write file</source>
         <translation>Dosya yazılamıyor</translation>
     </message>
