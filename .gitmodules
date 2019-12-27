@@ -4,9 +4,6 @@
 [submodule "src/third-party/singleapplication"]
 	path = src/third-party/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
-[submodule "src/third-party/pvs-studio"]
-	path = src/third-party/pvs-studio
-	url = https://github.com/viva64/pvs-studio-qmake-examples.git
 [submodule "src/third-party/qtaskbarcontrol"]
 	path = src/third-party/qtaskbarcontrol
 	url = https://github.com/Skycoder42/QTaskbarControl.git
