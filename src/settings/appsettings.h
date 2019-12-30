@@ -263,9 +263,6 @@ private:
 
     static QTranslator s_appTranslator;
     static QTranslator s_qtTranslator; // Qt library translations
-#ifdef Q_OS_LINUX
-    static const QString s_autostartFileName;
-#endif
 #ifdef PORTABLE_MODE
     static const QString s_portableConfigName;
 #endif

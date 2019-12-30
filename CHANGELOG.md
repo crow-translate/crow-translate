@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. This projec
 **Changed**
 
 -   Fix disabling transliteration.
+-   Linux: Fix launch at startup.
 
 ## [2.3.0](https://github.com/crow-translate/crow-translate/tree/2.3.0) (2019-12-21)
 
