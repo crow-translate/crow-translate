@@ -48,9 +48,8 @@ PopupWindow::PopupWindow(MainWindow *parent)
     ui->engineComboBox->setCurrentIndex(parent->engineCombobox()->currentIndex());
 
     // Window settings
-    const AppSettings settings;
-    setWindowOpacity(settings.popupOpacity());
-    resize(settings.popupWidth(), settings.popupHeight());
+    setWindowOpacity(parent->popupOpacity());
+    resize(parent->popupSize());
 
     // Player buttons
     ui->sourceSpeakButtons->setMediaPlayer(parent->sourceSpeakButtons()->mediaPlayer());
@@ -77,7 +76,7 @@ PopupWindow::PopupWindow(MainWindow *parent)
     connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons,  &LangButtonGroup::setLanguage);
 
     // Shortcuts
-    m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
+    m_closeWindowsShortcut->setKey(parent->closeWindowShortcut()->key());
     connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
 
     ui->copyTranslationButton->setShortcut(parent->copyTranslationButton()->shortcut());

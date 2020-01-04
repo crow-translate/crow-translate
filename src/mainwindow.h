@@ -64,6 +64,9 @@ public:
     LangButtonGroup *translationLangButtons();
     SpeakButtons *sourceSpeakButtons();
     SpeakButtons *translationSpeakButtons();
+    QShortcut *closeWindowShortcut();
+    QSize popupSize();
+    double popupOpacity();
 
 public slots:
     Q_SCRIPTABLE void translateSelection();
@@ -161,6 +164,9 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
+
+    QSize m_popupSize;
+    double m_popupOpacity;
 };
 
 #endif // MAINWINDOW_H

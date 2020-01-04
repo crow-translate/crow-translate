@@ -236,6 +236,21 @@ SpeakButtons *MainWindow::translationSpeakButtons()
     return ui->translationSpeakButtons;
 }
 
+QShortcut *MainWindow::closeWindowShortcut()
+{
+    return m_closeWindowsShortcut;
+}
+
+QSize MainWindow::popupSize()
+{
+    return m_popupSize;
+}
+
+double MainWindow::popupOpacity()
+{
+    return m_popupOpacity;
+}
+
 void MainWindow::open()
 {
     ui->sourceEdit->setFocus();
@@ -795,7 +810,10 @@ void MainWindow::setupRequestStateButtons(QState *state)
 
 void MainWindow::loadSettings(const AppSettings &settings)
 {
+    // Interface
     m_trayIcon->loadSettings(settings);
+    m_popupSize = {settings.popupWidth(), settings.popupHeight()};
+    m_popupOpacity = settings.popupOpacity();
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
