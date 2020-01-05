@@ -25,9 +25,9 @@ If applicable, add screenshots to help explain your problem.
 
 **Environment**
 
--   Crow Translate version: (e.g. 2.3.0)
 -   OS: (e.g. Arch Linux, Ubuntu, Windows)
 -   Desktop environment: (only for Linux, e.g. KDE, Gnome)
+-   Crow Translate version: (e.g. 2.3.0)
 
 **Additional context**
 Add any other context about the problem here.
