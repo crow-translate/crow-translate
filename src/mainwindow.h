@@ -52,21 +52,21 @@ public:
     explicit MainWindow(const AppSettings &settings, QWidget *parent = nullptr);
     ~MainWindow() override;
 
-    QComboBox *engineCombobox();
-    QToolButton *addSourceLangButton();
-    QToolButton *addTranslationLangButton();
-    QToolButton *swapButton();
-    QToolButton *copySourceButton();
-    QToolButton *copyTranslationButton();
-    QToolButton *copyAllTranslationButton();
-    TranslationEdit *translationEdit();
-    LangButtonGroup *sourceLangButtons();
-    LangButtonGroup *translationLangButtons();
-    SpeakButtons *sourceSpeakButtons();
-    SpeakButtons *translationSpeakButtons();
-    QShortcut *closeWindowShortcut();
-    QSize popupSize();
-    double popupOpacity();
+    const QComboBox *engineCombobox() const;
+    const QToolButton *addSourceLangButton() const;
+    const QToolButton *addTranslationLangButton() const;
+    const QToolButton *swapButton() const;
+    const QToolButton *copySourceButton() const;
+    const QToolButton *copyTranslationButton() const;
+    const QToolButton *copyAllTranslationButton() const;
+    const TranslationEdit *translationEdit() const;
+    const LangButtonGroup *sourceLangButtons() const;
+    const LangButtonGroup *translationLangButtons() const;
+    const SpeakButtons *sourceSpeakButtons() const;
+    const SpeakButtons *translationSpeakButtons() const;
+    const QShortcut *closeWindowShortcut() const;
+    QSize popupSize() const;
+    double popupOpacity() const;
 
 public slots:
     Q_SCRIPTABLE void translateSelection();

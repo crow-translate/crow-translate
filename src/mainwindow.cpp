@@ -176,77 +176,77 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QComboBox *MainWindow::engineCombobox()
+const QComboBox *MainWindow::engineCombobox() const
 {
     return ui->engineComboBox;
 }
 
-TranslationEdit *MainWindow::translationEdit()
+const TranslationEdit *MainWindow::translationEdit() const
 {
     return ui->translationEdit;
 }
 
-QToolButton *MainWindow::addSourceLangButton()
+const QToolButton *MainWindow::addSourceLangButton() const
 {
     return ui->addSourceLangButton;
 }
 
-QToolButton *MainWindow::addTranslationLangButton()
+const QToolButton *MainWindow::addTranslationLangButton() const
 {
     return ui->addTranslationLangButton;
 }
 
-QToolButton *MainWindow::swapButton()
+const QToolButton *MainWindow::swapButton() const
 {
     return ui->swapButton;
 }
 
-QToolButton *MainWindow::copySourceButton()
+const QToolButton *MainWindow::copySourceButton() const
 {
     return ui->copySourceButton;
 }
 
-QToolButton *MainWindow::copyTranslationButton()
+const QToolButton *MainWindow::copyTranslationButton() const
 {
     return ui->copyTranslationButton;
 }
 
-QToolButton *MainWindow::copyAllTranslationButton()
+const QToolButton *MainWindow::copyAllTranslationButton() const
 {
     return ui->copyAllTranslationButton;
 }
 
-LangButtonGroup *MainWindow::sourceLangButtons()
+const LangButtonGroup *MainWindow::sourceLangButtons() const
 {
     return m_sourceLangButtons;
 }
 
-LangButtonGroup *MainWindow::translationLangButtons()
+const LangButtonGroup *MainWindow::translationLangButtons() const
 {
     return m_translationLangButtons;
 }
 
-SpeakButtons *MainWindow::sourceSpeakButtons()
+const SpeakButtons *MainWindow::sourceSpeakButtons() const
 {
     return ui->sourceSpeakButtons;
 }
 
-SpeakButtons *MainWindow::translationSpeakButtons()
+const SpeakButtons *MainWindow::translationSpeakButtons() const
 {
     return ui->translationSpeakButtons;
 }
 
-QShortcut *MainWindow::closeWindowShortcut()
+const QShortcut *MainWindow::closeWindowShortcut() const
 {
     return m_closeWindowsShortcut;
 }
 
-QSize MainWindow::popupSize()
+QSize MainWindow::popupSize() const
 {
     return m_popupSize;
 }
 
-double MainWindow::popupOpacity()
+double MainWindow::popupOpacity() const
 {
     return m_popupOpacity;
 }
