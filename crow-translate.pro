@@ -86,6 +86,7 @@ RESOURCES += \
 TRANSLATIONS += \
     data/translations/crow.ts \
     data/translations/crow_fr_FR.ts \
+    data/translations/crow_ms_MY.ts \
     data/translations/crow_pl.ts \
     data/translations/crow_pt_BR.ts \
     data/translations/crow_ru.ts \
