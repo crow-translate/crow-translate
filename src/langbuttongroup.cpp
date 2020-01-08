@@ -275,7 +275,7 @@ QIcon LangButtonGroup::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Malagasy:
         return QIcon(":/icons/flags/mg.svg");
     case QOnlineTranslator::Malay:
-        return QIcon(":/icons/flags/mg.svg");
+        return QIcon(":/icons/flags/my.svg");
     case QOnlineTranslator::Maltese:
         return QIcon(":/icons/flags/mt.svg");
     case QOnlineTranslator::Maori:

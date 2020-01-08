@@ -60,6 +60,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), QStringLiteral("Bahasa Melayu"), QLocale::Malay);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), QStringLiteral("English"), QLocale::English);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
