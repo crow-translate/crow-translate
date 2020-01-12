@@ -35,6 +35,7 @@ SOURCES += \
     src/main.cpp \
     src/mainwindow.cpp \
     src/popupwindow.cpp \
+    src/selection.cpp \
     src/settings/appsettings.cpp \
     src/settings/settingsdialog.cpp \
     src/settings/shortcutsmodel/shortcutitem.cpp \
@@ -57,6 +58,7 @@ HEADERS += \
     src/langbuttongroup.h \
     src/mainwindow.h \
     src/popupwindow.h \
+    src/selection.h \
     src/settings/appsettings.h \
     src/settings/settingsdialog.h \
     src/settings/shortcutsmodel/shortcutitem.h \

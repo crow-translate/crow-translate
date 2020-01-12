@@ -24,6 +24,7 @@
 #include "addlangdialog.h"
 #include "langbuttongroup.h"
 #include "speakbuttons.h"
+#include "selection.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
 #include "singleapplication.h"
@@ -47,14 +48,6 @@
 #include <QMediaPlaylist>
 #include <QStateMachine>
 #include <QFinalState>
-#ifdef Q_OS_WIN
-#include <QMimeData>
-#include <QThread>
-#include <QTimer>
-#include <QDate>
-
-#include <windows.h>
-#endif
 
 MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
@@ -77,7 +70,10 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     ui->setupUi(this);
 
     // Show a message that the application is already running
-    connect(qobject_cast<SingleApplication*>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+    connect(qobject_cast<SingleApplication *>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+
+    // Selection requests
+    connect(Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText, Qt::DirectConnection);
 
     // Text speaking
     ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
@@ -384,14 +380,6 @@ void MainWindow::showTranslationWindow()
     }
 }
 
-void MainWindow::setSelectionAsSource()
-{
-    ui->sourceEdit->setRequestTranlationOnEdit(false);
-    ui->sourceEdit->setPlainText(selectedText());
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setRequestTranlationOnEdit(true);
-}
-
 void MainWindow::copyTranslationToClipboard()
 {
     if (m_translator->error()) {
@@ -564,6 +552,14 @@ void MainWindow::showAppRunningMessage()
     message->open();
 }
 
+void MainWindow::setSourceText(const QString &text)
+{
+    ui->sourceEdit->setRequestTranlationOnEdit(false);
+    ui->sourceEdit->setPlainText(text);
+    if (ui->autoTranslateCheckBox->isChecked())
+        ui->sourceEdit->setRequestTranlationOnEdit(true);
+}
+
 #ifdef Q_OS_WIN
 void MainWindow::checkForUpdates()
 {
@@ -730,11 +726,11 @@ void MainWindow::buildTranslateSelectionState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(showWindowState);
+    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, showWindowState);
     showWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
@@ -757,11 +753,11 @@ void MainWindow::buildSpeakSelectionState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
     buildSpeakSourceState(speakSourceState);
 
-    setSelectionAsSourceState->addTransition(speakSourceState);
+    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, speakSourceState);
     speakSourceState->addTransition(speakSourceState, &QState::finished, finalState);
 }
 
@@ -773,12 +769,12 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     buildSpeakTranslationState(speakTranslationState);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(translationState);
+    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
     translationState->addTransition(translationState, &QState::finished, speakTranslationState);
     speakTranslationState->addTransition(speakTranslationState, &QState::finished, finalState);
 }
@@ -791,12 +787,12 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::setSelectionAsSource);
+    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(translationState);
+    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
     copyTranslationState->addTransition(finalState);
 }
@@ -898,96 +894,6 @@ void MainWindow::checkLanguageButton(int checkedId)
     }
 
     ui->sourceEdit->markSourceAsChanged();
-}
-
-QString MainWindow::selectedText()
-{
-    QString selectedText;
-#if defined(Q_OS_LINUX)
-    selectedText = SingleApplication::clipboard()->text(QClipboard::Selection);
-#elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
-    // Save original clipboard data
-    QVariant originalClipboard;
-    if (SingleApplication::clipboard()->mimeData()->hasImage())
-        originalClipboard = SingleApplication::clipboard()->image();
-    else
-        originalClipboard = SingleApplication::clipboard()->text();
-
-    // Wait until the hot key is unpressed
-    QVector<int> nativeKeyCodes;
-    nativeKeyCodes.append(static_cast<int>(m_translateSelectionHotkey->currentNativeShortcut().key));
-    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::ShiftModifier))
-        nativeKeyCodes.append(VK_SHIFT);
-    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::ControlModifier))
-        nativeKeyCodes.append(VK_CONTROL);
-    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::MetaModifier))
-        nativeKeyCodes.append({VK_LWIN, VK_RWIN});
-    if (m_translateSelectionHotkey->modifiers().testFlag(Qt::AltModifier))
-        nativeKeyCodes.append(VK_MENU);
-    while(std::any_of(nativeKeyCodes.begin(), nativeKeyCodes.end(), [](int keyCode) {
-            return GetAsyncKeyState(keyCode);
-    }));
-
-    // Generate Ctrl + C input
-    INPUT copyText[4];
-
-    // Set the press of the "Ctrl" key
-    copyText[0].ki.wVk = VK_CONTROL;
-    copyText[0].ki.dwFlags = 0; // 0 for key press
-    copyText[0].type = INPUT_KEYBOARD;
-
-    // Set the press of the "C" key
-    copyText[1].ki.wVk = 'C';
-    copyText[1].ki.dwFlags = 0;
-    copyText[1].type = INPUT_KEYBOARD;
-
-    // Set the release of the "C" key
-    copyText[2].ki.wVk = 'C';
-    copyText[2].ki.dwFlags = KEYEVENTF_KEYUP;
-    copyText[2].type = INPUT_KEYBOARD;
-
-    // Set the release of the "Ctrl" key
-    copyText[3].ki.wVk = VK_CONTROL;
-    copyText[3].ki.dwFlags = KEYEVENTF_KEYUP;
-    copyText[3].type = INPUT_KEYBOARD;
-
-    // Send key sequence to system
-    SendInput(std::size(copyText), copyText, sizeof(INPUT));
-
-    // Wait for clipboard changes
-    QEventLoop loop;
-    loop.connect(SingleApplication::clipboard(), &QClipboard::changed, &loop, &QEventLoop::quit);
-
-    // Set the timer to exit the loop if no text is selected for a second
-    QTimer timer;
-    timer.setSingleShot(true);
-    timer.setInterval(1000);
-    loop.connect(&timer, &QTimer::timeout, &loop, &QEventLoop::quit);
-
-    // Start waiting
-    timer.start();
-    loop.exec();
-
-    // Check if timer is out
-    if (!timer.isActive())
-        return SingleApplication::clipboard()->text(); // No text selected, just return the clipboard
-    else
-        timer.stop();
-
-    // Workaround for the case where the clipboard has changed but not yet available
-    if (SingleApplication::clipboard()->text().isEmpty())
-        QThread::msleep(1);
-
-    // Get clipboard data
-    selectedText = SingleApplication::clipboard()->text();
-
-    // Restore original clipboard
-    if (originalClipboard.type() == QVariant::Image)
-        SingleApplication::clipboard()->setImage(originalClipboard.value<QImage>());
-    else
-        SingleApplication::clipboard()->setText(originalClipboard.toString());
-#endif
-    return selectedText;
 }
 
 QOnlineTranslator::Engine MainWindow::currentEngine()

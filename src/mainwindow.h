@@ -96,7 +96,6 @@ private slots:
     void speakTranslation();
 
     void showTranslationWindow();
-    void setSelectionAsSource();
     void copyTranslationToClipboard();
 
     void forceSourceAutodetect();
@@ -121,6 +120,7 @@ private slots:
 
     // Other
     void showAppRunningMessage();
+    void setSourceText(const QString &text);
 #ifdef Q_OS_WIN
     void checkForUpdates();
 #endif
@@ -142,7 +142,6 @@ private:
     // Helper functions
     void loadSettings(const AppSettings &settings);
     void checkLanguageButton(int checkedId);
-    QString selectedText();
 
     QOnlineTranslator::Engine currentEngine();
 
