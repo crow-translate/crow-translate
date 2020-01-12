@@ -6,11 +6,17 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.0...HEAD)
 
+**Added**
+
+-   Malay localization.
+
 **Changed**
 
 -   Fix disabling transliteration.
 -   Minor performance improvements.
+-   Fix Malay language flag icon.
 -   Linux: Fix launch at startup.
+-   Windows: Improve getting selection mechanism.
 
 ## [2.3.0](https://github.com/crow-translate/crow-translate/tree/2.3.0) (2019-12-21)
 
@@ -20,12 +26,12 @@ All notable changes to this project will be documented in this file. This projec
 
 -   The ability to disable embedded global shortcuts.
 -   D-Bus API.
--   KDE shortcuts support.
+-   Native KDE shortcuts support.
 -   The ability to simplify source text in query.
 
 **Changed**
 
--   Fix crash on Wayland (still no support for hotkeys and selection).
+-   Fix crash on Wayland.
 -   Use a simpler and more compatible way to show notifications.
 -   Stop speaking source text on change.
 -   Google: Fix parsing several sentences in some cases.
