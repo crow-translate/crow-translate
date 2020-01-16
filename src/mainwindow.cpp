@@ -837,7 +837,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Global shortcuts
-    if (settings.isGlobalShortuctsEnabled()) {
+    if (QHotkey::isPlatformSupported() && settings.isGlobalShortuctsEnabled()) {
         m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);
         m_speakSelectionHotkey->setShortcut(settings.speakSelectionShortcut(), true);
         m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingShortcut(), true);

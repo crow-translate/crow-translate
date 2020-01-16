@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. This projec
 -   Fix disabling transliteration.
 -   Minor performance improvements.
 -   Fix Malay language flag icon.
+-   Force disable embedded global shortcuts on Wayland.
 -   Linux: Fix launch at startup.
 -   Windows: Improve getting selection mechanism.
 

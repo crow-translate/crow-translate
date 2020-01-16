@@ -24,6 +24,7 @@
 #include "singleapplication.h"
 #include "shortcutsmodel/shortcutsmodel.h"
 #include "shortcutsmodel/shortcutitem.h"
+#include "qhotkey.h"
 #ifdef Q_OS_WIN
 #include "updaterdialog.h"
 #include "qgittag.h"
@@ -207,8 +208,9 @@ void SettingsDialog::accept()
     settings.setProxyPassword(ui->proxyPasswordEdit->text());
 
     // Shortcuts
+    if (QHotkey::isPlatformSupported())
+        settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
-    settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
 }
 
 void SettingsDialog::processProxyTypeChanged(int type)
@@ -462,8 +464,9 @@ void SettingsDialog::restoreDefaults()
     ui->proxyPasswordEdit->setText(AppSettings::defaultProxyPassword());
 
     // Shortcuts
+    if (QHotkey::isPlatformSupported())
+        ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
     resetAllShortcuts();
-    ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
 }
 
 void SettingsDialog::loadSettings()
@@ -515,8 +518,13 @@ void SettingsDialog::loadSettings()
     ui->proxyPasswordEdit->setText(settings.proxyPassword());
 
     // Shortcuts
+    if (QHotkey::isPlatformSupported()) {
+        ui->globalShortcutsCheckBox->setChecked(settings.isGlobalShortuctsEnabled());
+    } else {
+        ui->globalShortcutsCheckBox->setChecked(false);
+        ui->globalShortcutsCheckBox->setEnabled(false);
+    }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
-    ui->globalShortcutsCheckBox->setChecked(settings.isGlobalShortuctsEnabled());
 }
 
 void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)
