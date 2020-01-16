@@ -24,8 +24,8 @@ jobs:
     - name: Clone repo
       uses: actions/checkout@v1
       with:
-        submodules: recursive
-        fetch-depth: 5
+        submodules: true
+        fetch-depth: 1
 
     - name: Build
       run: |
@@ -45,8 +45,8 @@ jobs:
     - name: Clone repo
       uses: actions/checkout@v1
       with:
-        submodules: recursive
-        fetch-depth: 5
+        submodules: true
+        fetch-depth: 1
 
     - name: Build
       run: |
