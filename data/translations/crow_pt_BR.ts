@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="159"/>
+        <location filename="../../src/settings/appsettings.cpp" line="156"/>
         <source>Unable to create autorun file from %1</source>
         <translation>Não foi possível criar o arquivo de execução automática a partir de %1</translation>
     </message>
@@ -95,24 +95,24 @@
         <translation>Erro: Não há texto para tradução</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="401"/>
+        <location filename="../../src/cli.cpp" line="403"/>
         <source>Error: %1</source>
         <translation>Erro: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="426"/>
-        <location filename="../../src/cli.cpp" line="447"/>
+        <location filename="../../src/cli.cpp" line="428"/>
+        <location filename="../../src/cli.cpp" line="449"/>
         <source>Error: File does not exist: %1</source>
         <translation>Erro: Arquivo não existe: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="431"/>
-        <location filename="../../src/cli.cpp" line="452"/>
+        <location filename="../../src/cli.cpp" line="433"/>
+        <location filename="../../src/cli.cpp" line="454"/>
         <source>Error: Unable to open file: %1</source>
         <translation>Erro: Não foi possível abrir o arquivo: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="193"/>
+        <location filename="../../src/cli.cpp" line="183"/>
         <source>%1 - translation options:</source>
         <translation>%1 - opções de tradução:</translation>
     </message>
@@ -122,17 +122,17 @@
         <translation>Erro: Para --%1, você deve especificar as opções --%2 e/ou --%3</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="209"/>
+        <location filename="../../src/cli.cpp" line="200"/>
         <source>%1 - examples:</source>
         <translation>%1 - exemplos:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="239"/>
+        <location filename="../../src/cli.cpp" line="231"/>
         <source>Source text:</source>
         <translation>Texto original:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="247"/>
+        <location filename="../../src/cli.cpp" line="239"/>
         <source>Translation into %1:</source>
         <translation>Tradução para %1:</translation>
     </message>
@@ -196,8 +196,8 @@
         <translation>Configurações da aplicação</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="123"/>
-        <location filename="../../src/mainwindow.cpp" line="592"/>
+        <location filename="../../src/mainwindow.cpp" line="119"/>
+        <location filename="../../src/mainwindow.cpp" line="603"/>
         <source>Settings</source>
         <translation>Configurações</translation>
     </message>
@@ -233,29 +233,29 @@
         <translation>Tradução</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="122"/>
-        <location filename="../../src/mainwindow.cpp" line="591"/>
+        <location filename="../../src/mainwindow.cpp" line="118"/>
+        <location filename="../../src/mainwindow.cpp" line="602"/>
         <source>Show window</source>
         <translation>Exibir janela</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="124"/>
-        <location filename="../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../src/mainwindow.cpp" line="120"/>
+        <location filename="../../src/mainwindow.cpp" line="604"/>
         <source>Exit</source>
         <translation>Sair</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="325"/>
+        <location filename="../../src/mainwindow.cpp" line="336"/>
         <source>Unable to detect language</source>
         <translation>Não foi possível detectar o idioma</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="383"/>
+        <location filename="../../src/mainwindow.cpp" line="386"/>
         <source>Unable to translate text</source>
         <translation>Não foi possível traduzir o texto</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="545"/>
+        <location filename="../../src/mainwindow.cpp" line="548"/>
         <source>The application is already running</source>
         <translation>A aplicação já está em execução</translation>
     </message>
@@ -1039,9 +1039,9 @@
         <translation>Idioma:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="62"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="73"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="74"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
         <source>&lt;System language&gt;</source>
         <translation>&lt;Idioma do Sistema&gt;</translation>
     </message>
@@ -1129,8 +1129,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="369"/>
         <location filename="../../src/settings/settingsdialog.ui" line="630"/>
         <location filename="../../src/settings/settingsdialog.ui" line="705"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="529"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="547"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="538"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="556"/>
         <source>Default</source>
         <translation>Padrão</translation>
     </message>
@@ -1155,32 +1155,32 @@
         <translation>Personalizado:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="279"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
         <source>Zahar</source>
         <translation>Zahar</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="280"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
         <source>Ermil</source>
         <translation>Ermil</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="281"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
         <source>Jane</source>
         <translation>Jane</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
         <source>Oksana</source>
         <translation>Oksana</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
         <source>Alyss</source>
         <translation>Alyss</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
         <source>Omazh</source>
         <translation>Omazh</translation>
     </message>
@@ -1190,17 +1190,17 @@
         <translation>Conotação emocional:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
         <source>Neutral</source>
         <translation>Neutro</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
         <source>Good</source>
         <translation>Bom</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Evil</source>
         <translation>Mau</translation>
     </message>
@@ -1540,102 +1540,102 @@
         <translation>Autor:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="43"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="44"/>
         <source>Portable mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="53"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="54"/>
         <source>Use %1 from the application folder to store settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="105"/>
         <source>Interface icons:</source>
         <translation>Ícones da interface:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="113"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="115"/>
         <source>Updates</source>
         <translation>Atualizações</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="122"/>
         <source>Check for updates:</source>
         <translation>Verificar atualizações:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
         <source>Every day</source>
         <translation>Diariamente</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
         <source>Every week</source>
         <translation>Semanalmente</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="128"/>
         <source>Every month</source>
         <translation>Mensalmente</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
         <source>Never</source>
         <translation>Nunca</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="133"/>
         <source>Check now</source>
         <translation>Verificar agora</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="132"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="134"/>
         <source>Check for updates now</source>
         <translation>Verificar atualizações agora</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
         <source>Happy New Year!</source>
         <translation>Feliz Ano Novo!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Select icon</source>
         <translation>Selecione o ícone</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>Imagens (*.png *.ico *.svg *.jpg);;Todos os arquivos()</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Nothing to play</source>
         <translation>Nada para reproduzir</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Playback text is empty</source>
         <translation>O texto para reprodução está vazio</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="328"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
         <source>Unable to detect language</source>
         <translation>Não foi possível detectar o idioma</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
         <source>Checking for updates...</source>
         <translation>Verificando atualizações...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
         <source>Update available!</source>
         <translation>Atualização disponível!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="414"/>
         <source>No updates available.</source>
         <translation>Não há atualizações disponíveis.</translation>
     </message>
@@ -1764,7 +1764,7 @@
         <translation>opções de tradução:</translation>
     </message>
     <message>
-        <location filename="../../src/translationedit.cpp" line="94"/>
+        <location filename="../../src/translationedit.cpp" line="95"/>
         <source>examples:</source>
         <translation>exemplos:</translation>
     </message>
@@ -1785,72 +1785,73 @@
 <context>
     <name>UpdaterDialog</name>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="66"/>
+        <location filename="../../src/updaterdialog.ui" line="44"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uma nova versão do Crow Translate está disponível! As atualizações adicionam funcionalidade e melhoram a estabilidade do aplicativo. Na maioria das vezes. &lt;br/&gt;Você também pode baixar a nova versão manualmente a partir deste &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="36"/>
+        <location filename="../../src/updaterdialog.ui" line="90"/>
         <source>Cancel download</source>
         <translation>Cancelar download</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="39"/>
+        <location filename="../../src/updaterdialog.ui" line="93"/>
         <source>Cancel</source>
         <translation>Cancelar</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="56"/>
+        <location filename="../../src/updaterdialog.ui" line="34"/>
         <source>Download the installer to the Downloads folder</source>
         <translation>Baixar o instalador na pasta de Downloads</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="59"/>
+        <location filename="../../src/updaterdialog.ui" line="37"/>
         <source>Download</source>
         <translation>Baixar</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="23"/>
+        <location filename="../../src/updaterdialog.ui" line="24"/>
         <source>Exit the program and run the installer</source>
         <translation>Sair do programa e executar o instalador</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="26"/>
+        <location filename="../../src/updaterdialog.ui" line="27"/>
         <source>Install</source>
         <translation>Instalar</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="46"/>
+        <location filename="../../src/updaterdialog.ui" line="67"/>
         <source>Close this window</source>
         <translation>Fechar essa janela</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="49"/>
+        <location filename="../../src/updaterdialog.ui" line="70"/>
         <source>Update later</source>
         <translation>Atualizar depois</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="55"/>
+        <location filename="../../src/updaterdialog.ui" line="109"/>
         <source>Current version:</source>
         <translation>Versão Atual:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="59"/>
-        <source>Latest version:</source>
-        <translation>Última versão:</translation>
+        <location filename="../../src/updaterdialog.ui" line="129"/>
+        <source>Available version:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="64"/>
+        <location filename="../../src/updaterdialog.cpp" line="59"/>
+        <location filename="../../src/updaterdialog.cpp" line="62"/>
         <source>Changelog:</source>
         <translation>Changelog:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="133"/>
+        <location filename="../../src/updaterdialog.cpp" line="132"/>
         <source>Downloading is complete</source>
         <translation>O download está completo</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="89"/>
+        <location filename="../../src/updaterdialog.cpp" line="88"/>
         <source>Unable to write file</source>
         <translation>Não foi possível gravar o arquivo</translation>
     </message>

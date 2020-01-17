@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="159"/>
+        <location filename="../../src/settings/appsettings.cpp" line="156"/>
         <source>Unable to create autorun file from %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -95,24 +95,24 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="401"/>
+        <location filename="../../src/cli.cpp" line="403"/>
         <source>Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="426"/>
-        <location filename="../../src/cli.cpp" line="447"/>
+        <location filename="../../src/cli.cpp" line="428"/>
+        <location filename="../../src/cli.cpp" line="449"/>
         <source>Error: File does not exist: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="431"/>
-        <location filename="../../src/cli.cpp" line="452"/>
+        <location filename="../../src/cli.cpp" line="433"/>
+        <location filename="../../src/cli.cpp" line="454"/>
         <source>Error: Unable to open file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="193"/>
+        <location filename="../../src/cli.cpp" line="183"/>
         <source>%1 - translation options:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -122,17 +122,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="209"/>
+        <location filename="../../src/cli.cpp" line="200"/>
         <source>%1 - examples:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="239"/>
+        <location filename="../../src/cli.cpp" line="231"/>
         <source>Source text:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="247"/>
+        <location filename="../../src/cli.cpp" line="239"/>
         <source>Translation into %1:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -196,8 +196,8 @@
         <translation>应用设置</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="123"/>
-        <location filename="../../src/mainwindow.cpp" line="592"/>
+        <location filename="../../src/mainwindow.cpp" line="119"/>
+        <location filename="../../src/mainwindow.cpp" line="603"/>
         <source>Settings</source>
         <translation>设置</translation>
     </message>
@@ -233,29 +233,29 @@
         <translation>译文</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="122"/>
-        <location filename="../../src/mainwindow.cpp" line="591"/>
+        <location filename="../../src/mainwindow.cpp" line="118"/>
+        <location filename="../../src/mainwindow.cpp" line="602"/>
         <source>Show window</source>
         <translation>显示主窗口</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="124"/>
-        <location filename="../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../src/mainwindow.cpp" line="120"/>
+        <location filename="../../src/mainwindow.cpp" line="604"/>
         <source>Exit</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="325"/>
+        <location filename="../../src/mainwindow.cpp" line="336"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="383"/>
+        <location filename="../../src/mainwindow.cpp" line="386"/>
         <source>Unable to translate text</source>
         <translation>无法翻译文字</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="545"/>
+        <location filename="../../src/mainwindow.cpp" line="548"/>
         <source>The application is already running</source>
         <translation>应用已正在运行</translation>
     </message>
@@ -1039,9 +1039,9 @@
         <translation>语言：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="62"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="73"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="74"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
         <source>&lt;System language&gt;</source>
         <translation>系统语言</translation>
     </message>
@@ -1129,8 +1129,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="369"/>
         <location filename="../../src/settings/settingsdialog.ui" line="630"/>
         <location filename="../../src/settings/settingsdialog.ui" line="705"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="529"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="547"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="538"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="556"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
@@ -1155,32 +1155,32 @@
         <translation>自定义：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="279"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
         <source>Zahar</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="280"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
         <source>Ermil</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="281"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
         <source>Jane</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
         <source>Oksana</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
         <source>Alyss</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
         <source>Omazh</source>
         <translation></translation>
     </message>
@@ -1190,17 +1190,17 @@
         <translation>情感色彩：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
         <source>Neutral</source>
         <translation>中性</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
         <source>Good</source>
         <translation>良好情绪</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Evil</source>
         <translation>糟糕情绪</translation>
     </message>
@@ -1540,102 +1540,102 @@
         <translation>作者：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="43"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="44"/>
         <source>Portable mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="53"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="54"/>
         <source>Use %1 from the application folder to store settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="105"/>
         <source>Interface icons:</source>
         <translation>界面图标：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="113"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="115"/>
         <source>Updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="122"/>
         <source>Check for updates:</source>
         <translation>检查更新：</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
         <source>Every day</source>
         <translation>每天</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
         <source>Every week</source>
         <translation>每周</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="128"/>
         <source>Every month</source>
         <translation>每月</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
         <source>Never</source>
         <translation>从不</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="133"/>
         <source>Check now</source>
         <translation>立即检查</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="132"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="134"/>
         <source>Check for updates now</source>
         <translation>立即检查更新</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
         <source>Happy New Year!</source>
         <translation>新年快乐！</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Select icon</source>
         <translation>选择图标</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>图片 (*.png *.ico *.svg *.jpg);;所有文件()</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Nothing to play</source>
         <translation>无播放文字</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Playback text is empty</source>
         <translation>发音文字为空</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="328"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
         <source>Checking for updates...</source>
         <translation>正在检查更新...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
         <source>Update available!</source>
         <translation>有可用更新！</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="414"/>
         <source>No updates available.</source>
         <translation>无可用更新。</translation>
     </message>
@@ -1764,7 +1764,7 @@
         <translation type="unfinished">翻译选项：</translation>
     </message>
     <message>
-        <location filename="../../src/translationedit.cpp" line="94"/>
+        <location filename="../../src/translationedit.cpp" line="95"/>
         <source>examples:</source>
         <translation type="unfinished">示例：</translation>
     </message>
@@ -1785,72 +1785,73 @@
 <context>
     <name>UpdaterDialog</name>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="66"/>
+        <location filename="../../src/updaterdialog.ui" line="44"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;新版本 Crow Translate 可用！版本更新会为应用添加功能并提升应用稳定性。&lt;br/&gt;你可以从这里手动下载最新版 &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="36"/>
+        <location filename="../../src/updaterdialog.ui" line="90"/>
         <source>Cancel download</source>
         <translation>取消下载</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="39"/>
+        <location filename="../../src/updaterdialog.ui" line="93"/>
         <source>Cancel</source>
         <translation>取消</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="56"/>
+        <location filename="../../src/updaterdialog.ui" line="34"/>
         <source>Download the installer to the Downloads folder</source>
         <translation>下载安装包到下载文件夹</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="59"/>
+        <location filename="../../src/updaterdialog.ui" line="37"/>
         <source>Download</source>
         <translation>下载</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="23"/>
+        <location filename="../../src/updaterdialog.ui" line="24"/>
         <source>Exit the program and run the installer</source>
         <translation>退出应用并运行安装</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="26"/>
+        <location filename="../../src/updaterdialog.ui" line="27"/>
         <source>Install</source>
         <translation>安装</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="46"/>
+        <location filename="../../src/updaterdialog.ui" line="67"/>
         <source>Close this window</source>
         <translation>关闭窗口</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="49"/>
+        <location filename="../../src/updaterdialog.ui" line="70"/>
         <source>Update later</source>
         <translation>以后更新</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="55"/>
+        <location filename="../../src/updaterdialog.ui" line="109"/>
         <source>Current version:</source>
         <translation>当前版本：</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="59"/>
-        <source>Latest version:</source>
-        <translation>最新版本：</translation>
+        <location filename="../../src/updaterdialog.ui" line="129"/>
+        <source>Available version:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="64"/>
+        <location filename="../../src/updaterdialog.cpp" line="59"/>
+        <location filename="../../src/updaterdialog.cpp" line="62"/>
         <source>Changelog:</source>
         <translation>更新日志：</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="133"/>
+        <location filename="../../src/updaterdialog.cpp" line="132"/>
         <source>Downloading is complete</source>
         <translation>下载已完成</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="89"/>
+        <location filename="../../src/updaterdialog.cpp" line="88"/>
         <source>Unable to write file</source>
         <translation>无法写入文件</translation>
     </message>

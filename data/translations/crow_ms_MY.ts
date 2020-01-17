@@ -17,7 +17,7 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="159"/>
+        <location filename="../../src/settings/appsettings.cpp" line="156"/>
         <source>Unable to create autorun file from %1</source>
         <translation>Tidak dapat cipta fail auto-mula dari %1</translation>
     </message>
@@ -95,24 +95,24 @@
         <translation>Ralat: Tiada teks untuk terjemahan</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="401"/>
+        <location filename="../../src/cli.cpp" line="403"/>
         <source>Error: %1</source>
         <translation>Ralat: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="426"/>
-        <location filename="../../src/cli.cpp" line="447"/>
+        <location filename="../../src/cli.cpp" line="428"/>
+        <location filename="../../src/cli.cpp" line="449"/>
         <source>Error: File does not exist: %1</source>
         <translation>Ralat: Fail tidak wujud: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="431"/>
-        <location filename="../../src/cli.cpp" line="452"/>
+        <location filename="../../src/cli.cpp" line="433"/>
+        <location filename="../../src/cli.cpp" line="454"/>
         <source>Error: Unable to open file: %1</source>
         <translation>Ralat: Tidak dapat membuka fail: %1</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="193"/>
+        <location filename="../../src/cli.cpp" line="183"/>
         <source>%1 - translation options:</source>
         <translation>%1 - pilihan terjemahan:</translation>
     </message>
@@ -122,17 +122,17 @@
         <translation>Ralat: Untuk --%1 anda mesti tetapkan pilihan --%2 dan/atau --%3</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="209"/>
+        <location filename="../../src/cli.cpp" line="200"/>
         <source>%1 - examples:</source>
         <translation>%1 - contoh:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="239"/>
+        <location filename="../../src/cli.cpp" line="231"/>
         <source>Source text:</source>
         <translation>Teks sumber:</translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="247"/>
+        <location filename="../../src/cli.cpp" line="239"/>
         <source>Translation into %1:</source>
         <translation>Terjemahan ke %1:</translation>
     </message>
@@ -196,8 +196,8 @@
         <translation>Tetapan aplikasi</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="123"/>
-        <location filename="../../src/mainwindow.cpp" line="592"/>
+        <location filename="../../src/mainwindow.cpp" line="119"/>
+        <location filename="../../src/mainwindow.cpp" line="603"/>
         <source>Settings</source>
         <translation>Tetapan</translation>
     </message>
@@ -233,29 +233,29 @@
         <translation>Terjemahan</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="122"/>
-        <location filename="../../src/mainwindow.cpp" line="591"/>
+        <location filename="../../src/mainwindow.cpp" line="118"/>
+        <location filename="../../src/mainwindow.cpp" line="602"/>
         <source>Show window</source>
         <translation>Papar tetingkap</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="124"/>
-        <location filename="../../src/mainwindow.cpp" line="593"/>
+        <location filename="../../src/mainwindow.cpp" line="120"/>
+        <location filename="../../src/mainwindow.cpp" line="604"/>
         <source>Exit</source>
         <translation>Keluar</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="325"/>
+        <location filename="../../src/mainwindow.cpp" line="336"/>
         <source>Unable to detect language</source>
         <translation>Tidak dapat mengesan bahasa</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="383"/>
+        <location filename="../../src/mainwindow.cpp" line="386"/>
         <source>Unable to translate text</source>
         <translation>Tidak dapat terjemah teks</translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="545"/>
+        <location filename="../../src/mainwindow.cpp" line="548"/>
         <source>The application is already running</source>
         <translation>Aplikasi ini sudah berjalan</translation>
     </message>
@@ -1039,9 +1039,9 @@
         <translation>Bahasa:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="62"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="73"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="74"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
         <source>&lt;System language&gt;</source>
         <translation>Bahasa sistem</translation>
     </message>
@@ -1129,8 +1129,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="369"/>
         <location filename="../../src/settings/settingsdialog.ui" line="630"/>
         <location filename="../../src/settings/settingsdialog.ui" line="705"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="529"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="547"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="538"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="556"/>
         <source>Default</source>
         <translation>Lalai</translation>
     </message>
@@ -1155,32 +1155,32 @@
         <translation>Khusus:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="279"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
         <source>Zahar</source>
         <translation>Zahar</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="280"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
         <source>Ermil</source>
         <translation>Ermil</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="281"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
         <source>Jane</source>
         <translation>Jane</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="282"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
         <source>Oksana</source>
         <translation>Oksana</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="283"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
         <source>Alyss</source>
         <translation>Alyss</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="284"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
         <source>Omazh</source>
         <translation>Omazh</translation>
     </message>
@@ -1190,17 +1190,17 @@
         <translation>Konotasi beremosi:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="285"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
         <source>Neutral</source>
         <translation>Neutral</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="286"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
         <source>Good</source>
         <translation>Baik</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Evil</source>
         <translation>Jahat</translation>
     </message>
@@ -1450,11 +1450,6 @@
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Daftar pintasan global dalam sistem&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="946"/>
-        <source>Enable global shortcuts</source>
-        <translation>Aktifkan pintasan global</translation>
-    </message>
-    <message>
         <location filename="../../src/settings/settingsdialog.ui" line="975"/>
         <source>Shortcut</source>
         <translation>Pintasan</translation>
@@ -1463,6 +1458,11 @@
         <location filename="../../src/settings/settingsdialog.ui" line="965"/>
         <source>Reset all</source>
         <translation>Nyahtetap semua</translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="946"/>
+        <source>Enable global shortcucts</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="981"/>
@@ -1500,6 +1500,11 @@
         <translation>Versi:</translation>
     </message>
     <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="1113"/>
+        <source>Autor:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1177"/>
         <source>Ukraine</source>
         <translation>Ukraine</translation>
@@ -1535,107 +1540,102 @@
         <translation>Ikon bendera:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1113"/>
-        <source>Author:</source>
-        <translation>Penulis:</translation>
-    </message>
-    <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="43"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="44"/>
         <source>Portable mode</source>
         <translation>Mod mudah alih</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="53"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="54"/>
         <source>Use %1 from the application folder to store settings</source>
         <translation>Guna %1 dari folder aplikasi untuk simpan tetapan</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="105"/>
         <source>Interface icons:</source>
         <translation>Ikon antaramuka:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="113"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="115"/>
         <source>Updates</source>
         <translation>Kemaskini</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="122"/>
         <source>Check for updates:</source>
         <translation>Semak untuk kemaskini:</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
         <source>Every day</source>
         <translation>Setiap hari</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
         <source>Every week</source>
         <translation>Setiap minggu</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="128"/>
         <source>Every month</source>
         <translation>Setiap bulan</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
         <source>Never</source>
         <translation>Jangan langsung</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="133"/>
         <source>Check now</source>
         <translation>Semak sekarang</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="132"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="134"/>
         <source>Check for updates now</source>
         <translation>Semak sekarang untuk kemaskini</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
         <source>Happy New Year!</source>
         <translation>Selamat Tahun Baru!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Select icon</source>
         <translation>Pilih ikon</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="249"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="252"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation>Imej (*.png *.ico *.svg *.jpg);;Semua fail()</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Nothing to play</source>
         <translation>Tiada apa untuk dimain</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
         <source>Playback text is empty</source>
         <translation>Teks untuk dimain kosong</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="328"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
         <source>Unable to detect language</source>
         <translation>Tidak dapat mengesan bahasa</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
         <source>Checking for updates...</source>
         <translation>Menyemak kemaskini...</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
         <source>Update available!</source>
         <translation>Kemaskini tersedia!</translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="414"/>
         <source>No updates available.</source>
         <translation>Tiada kemaskini tersedia.</translation>
     </message>
@@ -1764,7 +1764,7 @@
         <translation>pilihan terjemahan:</translation>
     </message>
     <message>
-        <location filename="../../src/translationedit.cpp" line="94"/>
+        <location filename="../../src/translationedit.cpp" line="95"/>
         <source>examples:</source>
         <translation>contoh:</translation>
     </message>
@@ -1785,72 +1785,73 @@
 <context>
     <name>UpdaterDialog</name>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="66"/>
+        <location filename="../../src/updaterdialog.ui" line="44"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Versi terbaru Crow Translate sudah tersedia! Kemaskini untuk menambah fungsi dan meningkatkan kestabilan aplikasi. Selalunya.&lt;br/&gt;Anda juga boleh muatturun terbitan secara manual dari &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="36"/>
+        <location filename="../../src/updaterdialog.ui" line="90"/>
         <source>Cancel download</source>
         <translation>Batal muatturun</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="39"/>
+        <location filename="../../src/updaterdialog.ui" line="93"/>
         <source>Cancel</source>
         <translation>Batal</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="56"/>
+        <location filename="../../src/updaterdialog.ui" line="34"/>
         <source>Download the installer to the Downloads folder</source>
         <translation>Muatturun pemasang ke folder Downloads</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="59"/>
+        <location filename="../../src/updaterdialog.ui" line="37"/>
         <source>Download</source>
         <translation>Muatturun</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="23"/>
+        <location filename="../../src/updaterdialog.ui" line="24"/>
         <source>Exit the program and run the installer</source>
         <translation>Keluar dari program ini dan jalankan pemasang</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="26"/>
+        <location filename="../../src/updaterdialog.ui" line="27"/>
         <source>Install</source>
         <translation>Pasang</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="46"/>
+        <location filename="../../src/updaterdialog.ui" line="67"/>
         <source>Close this window</source>
         <translation>Tutup tetingkap ini</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="49"/>
+        <location filename="../../src/updaterdialog.ui" line="70"/>
         <source>Update later</source>
         <translation>Kemaskini nanti</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="55"/>
+        <location filename="../../src/updaterdialog.ui" line="109"/>
         <source>Current version:</source>
         <translation>Versi semasa:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="59"/>
-        <source>Latest version:</source>
-        <translation>Versi terkini:</translation>
+        <location filename="../../src/updaterdialog.ui" line="129"/>
+        <source>Available version:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="64"/>
+        <location filename="../../src/updaterdialog.cpp" line="59"/>
+        <location filename="../../src/updaterdialog.cpp" line="62"/>
         <source>Changelog:</source>
         <translation>Senarai perubahan:</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="133"/>
+        <location filename="../../src/updaterdialog.cpp" line="132"/>
         <source>Downloading is complete</source>
         <translation>Muatturun selesai</translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="89"/>
+        <location filename="../../src/updaterdialog.cpp" line="88"/>
         <source>Unable to write file</source>
         <translation>Tidak dapat menulis fail</translation>
     </message>

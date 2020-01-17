@@ -11,10 +11,11 @@
    </rect>
   </property>
   <property name="windowIcon">
-   <iconset theme="software-update-available"/>
+   <iconset theme="software-update-available">
+    <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QGridLayout" name="dialogLayout">
-   <item row="4" column="1">
+   <item row="5" column="1">
     <widget class="QPushButton" name="installButton">
      <property name="enabled">
       <bool>false</bool>
@@ -27,30 +28,7 @@
      </property>
     </widget>
    </item>
-   <item row="1" column="0" colspan="4">
-    <widget class="QLabel" name="versionsLabel"/>
-   </item>
-   <item row="3" column="3">
-    <widget class="QPushButton" name="cancelDownloadButton">
-     <property name="toolTip">
-      <string>Cancel download</string>
-     </property>
-     <property name="text">
-      <string>Cancel</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="3">
-    <widget class="QPushButton" name="updateLaterButton">
-     <property name="toolTip">
-      <string>Close this window</string>
-     </property>
-     <property name="text">
-      <string>Update later</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0">
+   <item row="5" column="0">
     <widget class="QPushButton" name="downloadButton">
      <property name="toolTip">
       <string>Download the installer to the Downloads folder</string>
@@ -76,10 +54,24 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="0" colspan="4">
-    <widget class="QTextEdit" name="changelogTextEdit"/>
+   <item row="4" column="0" colspan="3">
+    <widget class="QProgressBar" name="downloadBar">
+     <property name="value">
+      <number>0</number>
+     </property>
+    </widget>
    </item>
-   <item row="4" column="2">
+   <item row="5" column="3">
+    <widget class="QPushButton" name="updateLaterButton">
+     <property name="toolTip">
+      <string>Close this window</string>
+     </property>
+     <property name="text">
+      <string>Update later</string>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="2">
     <widget class="QLabel" name="updateStatusLabel">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -92,10 +84,56 @@
      </property>
     </widget>
    </item>
-   <item row="3" column="0" colspan="3">
-    <widget class="QProgressBar" name="downloadBar">
-     <property name="value">
-      <number>0</number>
+   <item row="4" column="3">
+    <widget class="QPushButton" name="cancelDownloadButton">
+     <property name="toolTip">
+      <string>Cancel download</string>
+     </property>
+     <property name="text">
+      <string>Cancel</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="0" colspan="4">
+    <widget class="QTextEdit" name="changelogTextEdit"/>
+   </item>
+   <item row="1" column="0">
+    <widget class="QLabel" name="currentVersionTitleLabel">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Current version:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <widget class="QLabel" name="currentVersionLabel">
+     <property name="text">
+      <string/>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QLabel" name="availableVersionTitleLabel">
+     <property name="font">
+      <font>
+       <weight>75</weight>
+       <bold>true</bold>
+      </font>
+     </property>
+     <property name="text">
+      <string>Available version:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1">
+    <widget class="QLabel" name="availableVersionLabel">
+     <property name="text">
+      <string/>
      </property>
     </widget>
    </item>

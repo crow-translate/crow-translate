@@ -51,10 +51,14 @@ UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
     m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + QDir::separator() + release->assets().at(installer).name();
 
     // Show release data
-    ui->versionsLabel->setText(QStringLiteral("<b>%1</b> %2<br><b>%3</b> %4")
-                               .arg(tr("Current version:"), SingleApplication::applicationVersion(), tr("Latest version:"), release->tagName()));
+    ui->currentVersionLabel->setText(SingleApplication::applicationVersion());
+    ui->availableVersionLabel->setText(release->tagName());
 
     QString changelog = release->body();
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    changelog.prepend(QStringLiteral("### %1\n").arg(tr("Changelog:")));
+    ui->changelogTextEdit->setMarkdown(changelog);
+#else
     changelog.prepend(QStringLiteral("<b>%1</b><br><br>").arg(tr("Changelog:")));
     changelog.replace(QStringLiteral("**Added**"), QStringLiteral("<b>Added</b><ul>"));
     changelog.replace(QStringLiteral("**Changed**"), QStringLiteral("</ul><b>Changed</b><ul>"));
@@ -63,6 +67,7 @@ UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
     changelog.replace(QStringLiteral(".\n"), QStringLiteral("</li>"));
     changelog.append(QStringLiteral("</ul>"));
     ui->changelogTextEdit->setText(changelog);
+#endif
 }
 
 UpdaterDialog::~UpdaterDialog()
