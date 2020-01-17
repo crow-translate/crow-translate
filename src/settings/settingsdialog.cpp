@@ -47,7 +47,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->setupUi(this);
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
-    ui->logoLabel->setPixmap(QIcon::fromTheme("crow-translate").pixmap(512, 512));
+    ui->logoLabel->setPixmap(QIcon::fromTheme(QStringLiteral("crow-translate")).pixmap(512, 512));
     ui->versionLabel->setText(SingleApplication::applicationVersion());
 
 #ifdef PORTABLE_MODE
@@ -171,7 +171,7 @@ void SettingsDialog::accept()
     settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
-    settings.setAutostartEnabled(ui->autostartCheckBox->isChecked());
+    AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
@@ -327,7 +327,7 @@ void SettingsDialog::detectTextLanguage()
 
 void SettingsDialog::speakTestText()
 {
-    if (m_translator->error()) {
+    if (m_translator->error() != QOnlineTranslator::NoError) {
         QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
         return;
     }
@@ -477,7 +477,7 @@ void SettingsDialog::loadSettings()
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
-    ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
+    ui->autostartCheckBox->setChecked(AppSettings::isAutostartEnabled());
 #ifdef PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
 #endif

@@ -74,8 +74,8 @@ public:
     void setStartMinimized(bool minimized);
     static bool defaultStartMinimized();
 
-    bool isAutostartEnabled() const;
-    void setAutostartEnabled(bool enabled);
+    static bool isAutostartEnabled();
+    static void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
 #ifdef PORTABLE_MODE
@@ -107,7 +107,7 @@ public:
     static int defaultPopupWidth();
 
     TrayIcon::IconType trayIconType() const;
-    void setTrayIconType(TrayIcon::IconType icon);
+    void setTrayIconType(TrayIcon::IconType type);
     static TrayIcon::IconType defaultTrayIconType();
 
     QString customIconPath() const;

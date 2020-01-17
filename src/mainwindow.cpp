@@ -115,9 +115,9 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, this, &MainWindow::checkLanguageButton);
 
     // System tray icon
-    m_trayMenu->addAction(QIcon::fromTheme("window"), tr("Show window"), this, &MainWindow::show);
-    m_trayMenu->addAction(QIcon::fromTheme("dialog-object-properties"), tr("Settings"), this, &MainWindow::openSettings);
-    m_trayMenu->addAction(QIcon::fromTheme("application-exit"), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::show);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), this, &MainWindow::openSettings);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
     m_trayIcon->setContextMenu(m_trayMenu);
 
     // State machine to handle translator signals async
@@ -332,7 +332,7 @@ void MainWindow::requestSourceLanguage()
 
 void MainWindow::parseSourceLanguage()
 {
-    if (m_translator->error()) {
+    if (m_translator->error() != QOnlineTranslator::NoError) {
         QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
         return;
     }
@@ -382,7 +382,7 @@ void MainWindow::showTranslationWindow()
 
 void MainWindow::copyTranslationToClipboard()
 {
-    if (m_translator->error()) {
+    if (m_translator->error() != QOnlineTranslator::NoError) {
         QMessageBox::critical(this, tr("Unable to translate text"), m_translator->errorString());
         return;
     }
@@ -589,7 +589,7 @@ void MainWindow::changeEvent(QEvent *event)
         AppSettings settings;
         const QLocale::Language lang = settings.language();
         if (lang == QLocale::AnyLanguage)
-            settings.applyLanguage(lang); // Reload language if application use system language
+            AppSettings::applyLanguage(lang); // Reload language if application use system language
         break;
     }
     case QEvent::LanguageChange:

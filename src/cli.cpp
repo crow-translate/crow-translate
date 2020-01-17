@@ -46,10 +46,10 @@ Cli::Cli(QObject *parent)
 void Cli::process(const QCoreApplication &app)
 {
     const QCommandLineOption codes({"c", "codes"}, tr("Display all language codes."));
-    const QCommandLineOption source({"s", "source"}, tr("Specify the source language (by default, engine will try to determine the language on its own)."), "code", "auto");
-    const QCommandLineOption translation({"t", "translation"}, tr("Specify the translation language(s), splitted by '+' (by default, the system language is used)."), "code", "auto");
-    const QCommandLineOption locale({"l", "locale"}, tr("Specify the translator language (by default, the system language is used)."), "code", "auto");
-    const QCommandLineOption engine({"e", "engine"}, tr("Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default."), "engine", "google");
+    const QCommandLineOption source({"s", "source"}, tr("Specify the source language (by default, engine will try to determine the language on its own)."), QStringLiteral("code"), QStringLiteral("auto"));
+    const QCommandLineOption translation({"t", "translation"}, tr("Specify the translation language(s), splitted by '+' (by default, the system language is used)."), QStringLiteral("code"), QStringLiteral("auto"));
+    const QCommandLineOption locale({"l", "locale"}, tr("Specify the translator language (by default, the system language is used)."), QStringLiteral("code"), QStringLiteral("auto"));
+    const QCommandLineOption engine({"e", "engine"}, tr("Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default."), QStringLiteral("engine"), QStringLiteral("google"));
     const QCommandLineOption speakTranslation({"p", "speak-translation"}, tr("Speak the translation."));
     const QCommandLineOption speakSource({"u", "speak-source"}, tr("Speak the source."));
     const QCommandLineOption audioOnly({"a", "audio-only"}, tr("Print text only for speaking when using --%1 or --%2.").arg(speakSource.names().at(1), speakTranslation.names().at(1)));
@@ -58,7 +58,7 @@ void Cli::process(const QCoreApplication &app)
 
     QCommandLineParser parser;
     parser.setApplicationDescription(tr("A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing."));
-    parser.addPositionalArgument("text", tr("Text to translate. By default, the translation will be done to the system language."));
+    parser.addPositionalArgument(QStringLiteral("text"), tr("Text to translate. By default, the translation will be done to the system language."));
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOption(codes);
@@ -81,11 +81,11 @@ void Cli::process(const QCoreApplication &app)
     }
 
     // Engine
-    if (parser.value(engine) == "google")
+    if (parser.value(engine) == QStringLiteral("google"))
         m_engine = QOnlineTranslator::Google;
-    else if (parser.value(engine) == "yandex")
+    else if (parser.value(engine) == QLatin1String("yandex"))
         m_engine = QOnlineTranslator::Yandex;
-    else if (parser.value(engine) == "bing")
+    else if (parser.value(engine) == QLatin1String("bing"))
         m_engine = QOnlineTranslator::Bing;
     else {
         qCritical() << tr("Error: Unknown engine") << '\n';
@@ -138,16 +138,6 @@ void Cli::process(const QCoreApplication &app)
     m_stateMachine->start();
 }
 
-void Cli::printLangCodes()
-{
-    QTextStream out(stdout);
-
-    for (int languageIndex = QOnlineTranslator::Auto; languageIndex != QOnlineTranslator::Zulu; ++languageIndex) {
-        const auto language = static_cast<QOnlineTranslator::Language>(languageIndex);
-        out << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << '\n';
-    }
-}
-
 void Cli::requestTranslation()
 {
     auto *state = qobject_cast<QState *>(sender());
@@ -160,7 +150,7 @@ void Cli::printTranslation()
 {
     QTextStream out(stdout);
 
-    if (m_translator->error()) {
+    if (m_translator->error() != QOnlineTranslator::NoError) {
         error(m_translator->errorString());
         return;
     }
@@ -169,7 +159,7 @@ void Cli::printTranslation()
     if (!m_sourcePrinted) {
         out << m_translator->source() << '\n';
         if (!m_translator->sourceTranslit().isEmpty())
-            out << '(' << m_translator->sourceTranslit().replace('\n', ")\n(") << ")\n";
+            out << '(' << m_translator->sourceTranslit().replace('\n', QStringLiteral(")\n(")) << ")\n";
         m_sourcePrinted = true;
     }
     out << '\n';
@@ -184,21 +174,22 @@ void Cli::printTranslation()
     if (!m_translator->translation().isEmpty()) {
         out << m_translator->translation() << '\n';
         if (!m_translator->translationTranslit().isEmpty())
-            out << '/' << m_translator->translationTranslit().replace('\n', "/\n/") << "/\n";
+            out << '/' << m_translator->translationTranslit().replace('\n', QStringLiteral("/\n/")) << "/\n";
         out << '\n';
     }
 
     // Translation options
     if (!m_translator->translationOptions().isEmpty()) {
         out << tr("%1 - translation options:").arg(m_translator->source()) << '\n';
-        for (auto it = m_translator->translationOptions().cbegin(); it != m_translator->translationOptions().cend(); ++it) {
+        const QMap<QString, QVector<QOnlineTranslator::QOption>> translationOptions = m_translator->translationOptions();
+        for (auto it = translationOptions.cbegin(); it != translationOptions.cend(); ++it) {
             out << it.key() << '\n';
             for (const auto &[word, gender, translations] : it.value()) {
                 out << '\t';
                 if (!gender.isEmpty())
                     out << gender << ' ';
                 out << word << ": ";
-                out << translations.join(", ") << '\n';
+                out << translations.join(QStringLiteral(", ")) << '\n';
             }
             out << '\n';
         }
@@ -207,7 +198,8 @@ void Cli::printTranslation()
     // Examples
     if (!m_translator->examples().isEmpty()) {
         out << tr("%1 - examples:").arg(m_translator->source()) << '\n';
-        for (auto it = m_translator->examples().cbegin(); it != m_translator->examples().cend(); ++it) {
+        const QMap<QString, QVector<QOnlineTranslator::QExample>> examples = m_translator->examples();
+        for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
             out << it.key() << '\n';
             for (const auto &[example, description] : it.value()) {
                 out << '\t' << description << '\n';
@@ -224,7 +216,7 @@ void Cli::requestLanguage()
 
 void Cli::parseLanguage()
 {
-    if (m_translator->error()) {
+    if (m_translator->error() != QOnlineTranslator::NoError) {
         error(m_translator->errorString());
         return;
     }
@@ -248,6 +240,16 @@ void Cli::printSpeakingTranslation()
     out << m_translator->translation() << '\n';
 }
 
+void Cli::printLangCodes()
+{
+    QTextStream out(stdout);
+
+    for (int languageIndex = QOnlineTranslator::Auto; languageIndex != QOnlineTranslator::Zulu; ++languageIndex) {
+        const auto language = static_cast<QOnlineTranslator::Language>(languageIndex);
+        out << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << '\n';
+    }
+}
+
 void Cli::speakSource()
 {
     speak(m_sourceText, m_sourceLang);
@@ -263,7 +265,7 @@ void Cli::buildShowCodesStateMachine()
     auto *showCodesState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(showCodesState);
 
-    connect(showCodesState, &QState::entered, this, &Cli::printLangCodes);
+    connect(showCodesState, &QState::entered, &Cli::printLangCodes);
     showCodesState->addTransition(new QFinalState(m_stateMachine));
 }
 
@@ -406,7 +408,7 @@ void Cli::speak(const QString &text, QOnlineTranslator::Language lang)
 {
     QOnlineTts tts;
     tts.generateUrls(text, m_engine, lang);
-    if (tts.error()) {
+    if (tts.error() != QOnlineTts::NoError) {
         error(tts.errorString());
         return;
     }
@@ -420,7 +422,7 @@ QByteArray Cli::readFilesFromStdin()
 {
     QString stdinText = QTextStream(stdin).readAll();
     QByteArray filesData;
-    for (const QString &filePath : stdinText.split(QRegularExpression("\\s+"), QString::SkipEmptyParts)) {
+    for (const QString &filePath : stdinText.split(QRegularExpression(QStringLiteral("\\s+")), QString::SkipEmptyParts)) {
         QFile file(filePath);
         if (!file.exists()) {
             qCritical() << tr("Error: File does not exist: %1").arg(file.fileName()) << '\n';

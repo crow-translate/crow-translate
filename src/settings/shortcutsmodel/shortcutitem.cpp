@@ -60,7 +60,7 @@ int ShortcutItem::childCount() const
 
 int ShortcutItem::row() const
 {
-    if (m_parentItem)
+    if (m_parentItem != nullptr)
         return m_parentItem->m_childItems.indexOf(const_cast<ShortcutItem *>(this));
 
     return 0;
@@ -113,7 +113,7 @@ void ShortcutItem::resetShortcut()
 void ShortcutItem::resetAllShortucts()
 {
     m_shortcut = m_defaultShortcut;
-    for (ShortcutItem *item : m_childItems)
+    for (ShortcutItem *item : qAsConst(m_childItems))
         item->resetAllShortucts();
 }
 
@@ -126,6 +126,6 @@ void ShortcutItem::setEnabled(bool enabled)
 {
     m_enabled = enabled;
     m_model->updateItem(this);
-    for (ShortcutItem *item : m_childItems)
+    for (ShortcutItem *item : qAsConst(m_childItems))
         item->setEnabled(enabled);
 }

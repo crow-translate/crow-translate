@@ -51,23 +51,17 @@ UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
     m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + QDir::separator() + release->assets().at(installer).name();
 
     // Show release data
-    ui->versionsLabel->setText("<b>"
-                               + tr("Current version:")
-                               + " </b>"
-                               + SingleApplication::applicationVersion()
-                               + "<br><b>"
-                               + tr("Latest version:")
-                               + " </b>"
-                               + release->tagName());
+    ui->versionsLabel->setText(QStringLiteral("<b>%1</b> %2<br><b>%3</b> %4")
+                               .arg(tr("Current version:"), SingleApplication::applicationVersion(), tr("Latest version:"), release->tagName()));
 
     QString changelog = release->body();
-    changelog.prepend("<b>" + tr("Changelog:") + "</b><br><br>");
-    changelog.replace("**Added**", "<b>Added</b><ul>");
-    changelog.replace("**Changed**", "</ul><b>Changed</b><ul>");
-    changelog.replace("**Removed**", "</ul><b>Removed</b><ul>");
-    changelog.replace("-   ", "<li>");
-    changelog.replace(".\n", "</li>");
-    changelog.append("</ul>");
+    changelog.prepend(QStringLiteral("<b>%1</b><br><br>").arg(tr("Changelog:")));
+    changelog.replace(QStringLiteral("**Added**"), QStringLiteral("<b>Added</b><ul>"));
+    changelog.replace(QStringLiteral("**Changed**"), QStringLiteral("</ul><b>Changed</b><ul>"));
+    changelog.replace(QStringLiteral("**Removed**"), QStringLiteral("</ul><b>Removed</b><ul>"));
+    changelog.replace(QStringLiteral("-   "), QStringLiteral("<li>"));
+    changelog.replace(QStringLiteral(".\n"), QStringLiteral("</li>"));
+    changelog.append(QStringLiteral("</ul>"));
     ui->changelogTextEdit->setText(changelog);
 }
 

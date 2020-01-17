@@ -32,46 +32,46 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     // Global shortcuts
     auto *globalShortcuts = new ShortcutItem(tr("Global"), m_rootItem);
 
-    auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), "preferences-desktop-locale", globalShortcuts);
+    auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), QStringLiteral("preferences-desktop-locale"), globalShortcuts);
     translateSelectionShortcut->setDefaultShortcut(AppSettings::defaultTranslateSelectionShortcut());
 
-    auto *speakSelection = new ShortcutItem(tr("Speak selected text"), "media-playback-start", globalShortcuts);
+    auto *speakSelection = new ShortcutItem(tr("Speak selected text"), QStringLiteral("media-playback-start"), globalShortcuts);
     speakSelection->setDefaultShortcut(AppSettings::defaultSpeakSelectionShortcut());
 
-    auto *speakTranslatedSelectionShortcut = new ShortcutItem(tr("Speak translation of selected text"), "media-playback-start", globalShortcuts);
+    auto *speakTranslatedSelectionShortcut = new ShortcutItem(tr("Speak translation of selected text"), QStringLiteral("media-playback-start"), globalShortcuts);
     speakTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslatedSelectionShortcut());
 
-    auto *stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), "media-playback-stop", globalShortcuts);
+    auto *stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), QStringLiteral("media-playback-stop"), globalShortcuts);
     stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingShortcut());
 
-    auto *showMainWindowShortcut = new ShortcutItem(tr("Show main window"), "window", globalShortcuts);
+    auto *showMainWindowShortcut = new ShortcutItem(tr("Show main window"), QStringLiteral("window"), globalShortcuts);
     showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowShortcut());
 
-    auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), "edit-copy", globalShortcuts);
+    auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), globalShortcuts);
     copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
 
-    auto *translateShortcut = new ShortcutItem(tr("Translate"), "go-next", windowShortcuts);
+    auto *translateShortcut = new ShortcutItem(tr("Translate"), QStringLiteral("go-next"), windowShortcuts);
     translateShortcut->setDefaultShortcut(AppSettings::defaultTranslateShortcut());
 
-    auto *closeWindowShortcut = new ShortcutItem(tr("Close window"), "application-exit", windowShortcuts);
+    auto *closeWindowShortcut = new ShortcutItem(tr("Close window"), QStringLiteral("application-exit"), windowShortcuts);
     closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowShortcut());
 
     // Source text shortcuts
     auto *sourceText = new ShortcutItem(tr("Source text"), windowShortcuts);
 
-    auto *speakSourceShortcut = new ShortcutItem(tr("Speak / pause text speaking"), "media-playback-start", sourceText);
+    auto *speakSourceShortcut = new ShortcutItem(tr("Speak / pause text speaking"), QStringLiteral("media-playback-start"), sourceText);
     speakSourceShortcut->setDefaultShortcut(AppSettings::defaultSpeakSourceShortcut());
 
     // Translation text shortcuts
     auto *translationText = new ShortcutItem(tr("Translation"), windowShortcuts);
 
-    auto *speakTranslationShortcut = new ShortcutItem(tr("Speak / pause speaking"), "media-playback-start", translationText);
+    auto *speakTranslationShortcut = new ShortcutItem(tr("Speak / pause speaking"), QStringLiteral("media-playback-start"), translationText);
     speakTranslationShortcut->setDefaultShortcut(AppSettings::defaultSpeakTranslationShortcut());
 
-    auto *copyTranslationShortcut = new ShortcutItem(tr("Copy to clipboard"), "edit-copy", translationText);
+    auto *copyTranslationShortcut = new ShortcutItem(tr("Copy to clipboard"), QStringLiteral("edit-copy"), translationText);
     copyTranslationShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslationShortcut());
 }
 
@@ -133,7 +133,7 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
     ShortcutItem *parentItem = parent.isValid() ? static_cast<ShortcutItem *>(parent.internalPointer()) : m_rootItem;
 
     ShortcutItem *childItem = parentItem->child(row);
-    if (!childItem)
+    if (childItem == nullptr)
         return QModelIndex();
 
     return createIndex(row, column, childItem);

@@ -32,7 +32,9 @@ RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, 
 
 bool RetranslationTransition::eventTest(QEvent *)
 {
-    return !m_translator->error() && m_group->isAutoButtonChecked() && m_translator->sourceLanguage() == m_translator->translationLanguage();
+    return m_translator->error() == QOnlineTranslator::NoError
+            && m_group->isAutoButtonChecked()
+            && m_translator->sourceLanguage() == m_translator->translationLanguage();
 }
 
 void RetranslationTransition::onTransition(QEvent *)

@@ -29,7 +29,7 @@ TranslatorErrorTransition::TranslatorErrorTransition(QOnlineTranslator *translat
 
 bool TranslatorErrorTransition::eventTest(QEvent *)
 {
-    return m_translator->error();
+    return m_translator->error() != QOnlineTranslator::NoError;
 }
 
 void TranslatorErrorTransition::onTransition(QEvent *)

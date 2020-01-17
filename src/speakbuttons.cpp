@@ -132,7 +132,7 @@ void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language langua
 
     QOnlineTts onlineTts;
     onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
-    if (onlineTts.error()) {
+    if (onlineTts.error() != QOnlineTts::NoError) {
         QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
         return;
     }
@@ -161,7 +161,7 @@ void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
         if (s_currentlyPlaying == m_mediaPlayer)
             s_currentlyPlaying = nullptr;
 
-        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        ui->playPauseButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
         ui->stopButton->setEnabled(false);
         break;
     case QMediaPlayer::PlayingState:
@@ -169,14 +169,14 @@ void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
             s_currentlyPlaying->pause();
         s_currentlyPlaying = m_mediaPlayer;
 
-        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-pause"));
+        ui->playPauseButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-pause")));
         ui->stopButton->setEnabled(true);
         break;
     case QMediaPlayer::PausedState:
         if (s_currentlyPlaying == m_mediaPlayer)
             s_currentlyPlaying = nullptr;
 
-        ui->playPauseButton->setIcon(QIcon::fromTheme("media-playback-start"));
+        ui->playPauseButton->setIcon(QIcon::fromTheme(QStringLiteral("media-playback-start")));
         break;
     }
 }

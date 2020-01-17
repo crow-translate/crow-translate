@@ -40,8 +40,6 @@ public:
     void process(const QCoreApplication &app);
 
 private slots:
-    void printLangCodes();
-
     void requestTranslation();
     void printTranslation();
 
@@ -53,6 +51,8 @@ private slots:
 
     void printSpeakingSourceText();
     void printSpeakingTranslation();
+
+    static void printLangCodes();
 
 private:
     // Main state machines
