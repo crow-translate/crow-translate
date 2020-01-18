@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1837,7 +1835,7 @@
     <message>
         <location filename="../../src/updaterdialog.ui" line="129"/>
         <source>Available version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut sürüm:</translation>
     </message>
     <message>
         <location filename="../../src/updaterdialog.cpp" line="59"/>
