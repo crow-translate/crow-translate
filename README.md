@@ -143,10 +143,11 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 This project uses the following third-party libraries:
 
--   [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - my library that provides free usage of Google, Yandex and Bing translate API for Qt5.
--   [QHotkey](https://github.com/Skycoder42/QHotkey) - A global shortcut/hotkey for Desktop Qt-Applications.
--   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - Сreate a taskbar/launcher progress and more, for all desktop platforms.
--   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - A simple single instance application for Qt.
+-   [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
+-   [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
+-   [QHotkey](https://github.com/Skycoder42/QHotkey) - provides global shortcuts for desktop platforms.
+-   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
+-   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
 
 Therefore, if you want to clone this project, you need to use the `--recursive` option: 
 
