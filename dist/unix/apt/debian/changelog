@@ -1,3 +1,13 @@
+crow-translate (2.3.1-1) buster bionic disco; urgency=low
+
+  * Add Malay localization.
+  * Fix disabling transliteration.
+  * Minor performance improvements.
+  * Fix Malay language flag icon.
+  * Force disable embedded global shortcuts on Wayland.
+  * Linux: Fix launch at startup.
+  * Windows: Improve getting selection mechanism.
+
 crow-translate (2.3.0-1) buster bionic disco; urgency=low
 
   * Add the ability to disable embedded global shortcuts.

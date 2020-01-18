@@ -33,7 +33,7 @@ int launchCli(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion(QStringLiteral("2.3.0"));
+    QCoreApplication::setApplicationVersion(QStringLiteral("2.3.1"));
     QCoreApplication::setApplicationName(QStringLiteral("Crow Translate"));
     QCoreApplication::setOrganizationName(QStringLiteral("crow"));
 
