@@ -19,7 +19,6 @@ QMAKE_TARGET_PRODUCT = Crow Translate
 RC_ICONS = dist\windows\icon.ico
 
 include(src/qonlinetranslator/qonlinetranslator.pri)
-include(src/qgittag/qgittag.pri)
 include(src/third-party/qtaskbarcontrol/qtaskbarcontrol.pri)
 include(src/third-party/singleapplication/singleapplication.pri)
 include(src/third-party/qhotkey/qhotkey.pri)
@@ -108,6 +107,8 @@ win32 {
 
     RESOURCES += \
         data/windows-icons.qrc
+
+    include(src/qgittag/qgittag.pri)
 }
 
 unix {
