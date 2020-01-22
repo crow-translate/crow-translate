@@ -193,8 +193,9 @@ You can install the package from the [Fedora Copr](https://copr.fedorainfracloud
 
 #### openSUSE (Tumbleweed, Leap)
 
-Users of openSUSE Tumbleweed (rolling distribution) can always install the latest version via `$ sudo zypper install crow-translate`
-A package for users of the other openSUSE distributions like Leap 15.x is available on [OBS](https://software.opensuse.org/package/crow-translate?search_term=crow-translate).
+Tumbleweed users can always install the latest version via `$ sudo zypper install crow-translate`
+
+A package for users of the other openSUSE distributions like Leap 15.x is available on [Open Build Service](https://software.opensuse.org/package/crow-translate?search_term=crow-translate).
 
 
 ## Building
