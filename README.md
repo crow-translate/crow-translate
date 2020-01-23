@@ -197,7 +197,6 @@ Tumbleweed users can always install the latest version via `$ sudo zypper instal
 
 A package for users of the other openSUSE distributions like Leap 15.x is available on [Open Build Service](https://software.opensuse.org/package/crow-translate?search_term=crow-translate).
 
-
 ## Building
 
 ### Automatic script
