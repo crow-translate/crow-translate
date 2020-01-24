@@ -81,7 +81,7 @@ void Cli::process(const QCoreApplication &app)
     }
 
     // Engine
-    if (parser.value(engine) == QStringLiteral("google"))
+    if (parser.value(engine) == QLatin1String("google"))
         m_engine = QOnlineTranslator::Google;
     else if (parser.value(engine) == QLatin1String("yandex"))
         m_engine = QOnlineTranslator::Yandex;
