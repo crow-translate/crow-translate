@@ -133,9 +133,23 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 ## Dependencies
 
-**Arch Linux:** qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl
+### Arch Linux packages
 
-**Debian:** gstreamer1.0-fluendo-mp3, qtgstreamer-plugins-qt5, gstreamer1.0-plugins-good, gstreamer1.0-alsa, gstreamer1.0-pulseaudio, libqt5multimedia5-plugins
+**Build:** `qt5-base qt5-multimedia qt5-x11extras qt5-tools`
+
+**Run:** `qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl`
+
+### Debian packages
+
+**Build:** `qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools`
+
+**Run**: `gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins`
+
+### Solus packages
+
+**Build:**  `qt5-tools-devel qt5-multimedia-devel qt5-svg-devel qt5-x11extras-devel`
+
+**Run**: `qt5-base qt5-x11extras qt5-multimedia libstdc++ libgcc glibc libx11`
 
 ## Third-party
 
@@ -173,29 +187,75 @@ Only Linux supports icon theming. Windows use [Papirus](https://github.com/Papir
 
 ### Windows
 
-You can download the installer or archive from the [releases](https://github.com/crow-translate/crow-translate/releases/latest) page.
+:package: [Releases page](https://github.com/crow-translate/crow-translate/releases/latest)
 
-You can also install `crow-translate` from [scoop](https://scoop.sh).
+:package: [Scoop package](https://github.com/lukesampson/scoop-extras/blob/master/bucket/crow-translate.json)
+
+```bash
+sudo scoop install crow-translate -g
+```
 
 ### Linux
 
-#### Pacman-based (Arch Linux, Manjaro, Chakra etc.)
+#### Arch Linux, Manjaro, Chakra, etc
 
-You can install [crow-translate](https://aur.archlinux.org/packages/crow-translate) or [crow-translate-git](https://aur.archlinux.org/packages/crow-translate-git) from AUR.
+:package: [Stable version in AUR](https://aur.archlinux.org/packages/crow-translate)
 
-#### APT-based (Debian, Ubuntu, Mint etc.)
+```bash
+git clone https://aur.archlinux.org/crow-translate.git
+cd crow-translate
+makepkg -si
+```
 
-The package is available on the [releases](https://github.com/crow-translate/crow-translate/releases/latest) page.
+:package: [Git version in AUR](https://aur.archlinux.org/packages/crow-translate-git)
 
-#### RPM-based (Fedora, RHEL, CentOS etc.)
+```bash
+git clone https://aur.archlinux.org/crow-translate-git.git
+cd crow-translate-git
+makepkg -si
+```
 
-You can install the package from the [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate).
+#### Debian, Ubuntu, Mint, etc
 
-#### openSUSE (Tumbleweed, Leap)
+:package: [Releases page](https://github.com/crow-translate/crow-translate/releases/latest)
 
-Tumbleweed users can always install the latest version via `$ sudo zypper install crow-translate`
+#### Fedora
 
-A package for users of the other openSUSE distributions like Leap 15.x is available on [Open Build Service](https://software.opensuse.org/package/crow-translate?search_term=crow-translate).
+:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate)
+
+```bash
+sudo dnf copr enable faezebax/crow-translate
+sudo dnf install crow-translate
+```
+
+#### CentOS, RHEL
+
+:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate)
+
+```bash
+sudo yum copr enable faezebax/crow-translate
+sudo yum install crow-translate
+```
+
+#### openSUSE Tumbleweed
+
+:package: [Tumbleweed repository](https://software.opensuse.org/package/crow-translate)
+
+```bash
+sudo zypper install crow-translate
+```
+
+#### openSUSE Leap
+
+:package: [Open Build Service](https://software.opensuse.org/package/crow-translate)
+
+#### Solus
+
+:package: [Solus repository](https://dev.getsol.us/source/crow-translate)
+
+```bash
+sudo eopkg it crow-translate
+```
 
 ## Building
 
