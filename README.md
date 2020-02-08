@@ -145,6 +145,10 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 **Run**: `gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins`
 
+### openSUSE packages
+
+**Build:**  `gcc-c++ libqt5-linguist-devel libqt5-qtbase-devel libqt5-qtmultimedia-devel libqt5-qtx11extras-devel`
+
 ### Solus packages
 
 **Build:**  `qt5-tools-devel qt5-multimedia-devel qt5-svg-devel qt5-x11extras-devel`
