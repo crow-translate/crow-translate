@@ -138,7 +138,7 @@ bool AppSettings::isAutostartEnabled()
     return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), SingleApplication::desktopFileName()));
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
-    return autostartSettings.contains("Crow Translate");
+    return autostartSettings.contains(QStringLiteral("Crow Translate"));
 #endif
 }
 
