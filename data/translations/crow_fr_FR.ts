@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="fr_FR">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="fr_FR" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -142,12 +140,12 @@
     <message>
         <location filename="../../src/main.cpp" line="66"/>
         <source>Unable to register D-Bus object for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Impossible d&apos;inscrire D-Bus objet pour %1</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="68"/>
         <source>D-Bus service %1 is already registered by another application</source>
-        <translation type="unfinished"></translation>
+        <translation>D-Bus service %1 est déjà enregistré par une autre application</translation>
     </message>
 </context>
 <context>
@@ -210,17 +208,17 @@
         <location filename="../../src/mainwindow.ui" line="198"/>
         <location filename="../../src/mainwindow.ui" line="271"/>
         <source>Add language</source>
-        <translation type="unfinished">Ajouter une langue</translation>
+        <translation>Ajouter une langue</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="349"/>
         <source>Cancel</source>
-        <translation type="unfinished">Annuler</translation>
+        <translation>Annuler</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="360"/>
         <source>Clear</source>
-        <translation type="unfinished">Effacer</translation>
+        <translation>Effacer</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="377"/>
@@ -266,7 +264,7 @@
         <location filename="../../src/popupwindow.ui" line="29"/>
         <location filename="../../src/popupwindow.ui" line="163"/>
         <source>Add language</source>
-        <translation type="unfinished">Ajouter une langue</translation>
+        <translation>Ajouter la langue</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="96"/>
@@ -1367,12 +1365,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="494"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Remplacer chaque séquence d&apos;espaces blancs (cela inclut les caractères ASCII &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) avec un seul espace dans les requêtes&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="497"/>
         <source>Simplify source</source>
-        <translation type="unfinished"></translation>
+        <translation>Simplifier la source</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="540"/>
@@ -1710,12 +1708,12 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Parler / en pause lecture texte</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
         <source>Speak / pause speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Parler / faire une pause</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
@@ -1733,27 +1731,27 @@
     <message>
         <location filename="../../src/speakbuttons.ui" line="24"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Parler / en pause lecture texte</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.ui" line="34"/>
         <source>Stop text speaking</source>
-        <translation type="unfinished">Arrêter la lecture du texte</translation>
+        <translation>Arrêter lecture du texte</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>No text specified</source>
-        <translation type="unfinished">Aucun texte spécifié</translation>
+        <translation>Aucun texte spécifié</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished">C&apos;est vide, pas de texte à lire</translation>
+        <translation>Pas de lecture, aucun texte</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="136"/>
         <source>Unable to generate URLs for TTS</source>
-        <translation type="unfinished">Impossible de générer des URL pour TTS</translation>
+        <translation>Incapable de générer URLs pour TTS</translation>
     </message>
 </context>
 <context>
@@ -1837,7 +1835,7 @@
     <message>
         <location filename="../../src/updaterdialog.ui" line="129"/>
         <source>Available version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Version disponible:</translation>
     </message>
     <message>
         <location filename="../../src/updaterdialog.cpp" line="59"/>
