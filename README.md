@@ -115,7 +115,8 @@ Currently available only for [global shortcuts](#global).
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakSelection()
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakTranslatedSelection()
         ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking()
-        └── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection()
+        └── method void io.crow_translate.CrowTranslate.MainWindow.quit()
 
 For example, you can show main window using `dbus-send`:
 

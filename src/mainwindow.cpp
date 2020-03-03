@@ -282,6 +282,11 @@ void MainWindow::copyTranslatedSelection()
     emit copyTranslatedSelectionRequested();
 }
 
+void MainWindow::quit()
+{
+    SingleApplication::quit();
+}
+
 void MainWindow::requestTranslation()
 {
     QOnlineTranslator::Language translationLang;

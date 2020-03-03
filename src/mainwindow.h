@@ -75,6 +75,7 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
+    Q_SCRIPTABLE void quit();
 
 signals:
     void translateSelectionRequested();

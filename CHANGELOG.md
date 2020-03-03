@@ -6,7 +6,9 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.1...HEAD)
 
-_No unreleased changes yet_
+**Added**
+
+-   The ability to exit the application via D-Bus.
 
 ## [2.3.1](https://github.com/crow-translate/crow-translate/tree/2.3.1) (2020-01-18)
 
