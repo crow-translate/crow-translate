@@ -29,6 +29,7 @@
 #include <QKeySequence>
 #include <QSettings>
 #include <QTranslator>
+#include <QFont>
 #ifdef Q_OS_WIN
 #include <QDir>
 #endif
@@ -227,6 +228,16 @@ void AppSettings::setLastUpdateCheckDate(const QDate &date)
      m_settings->setValue(QStringLiteral("LastUpdateCheckDate"), date);
 }
 #endif
+
+QFont AppSettings::font() const
+{
+    return m_settings->value(QStringLiteral("Interface/Font"), QApplication::font()).value<QFont>();
+}
+
+void AppSettings::setFont(const QFont &font)
+{
+    m_settings->setValue(QStringLiteral("Interface/Font"), font);
+}
 
 double AppSettings::popupOpacity() const
 {

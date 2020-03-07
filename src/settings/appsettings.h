@@ -94,6 +94,9 @@ public:
 #endif
 
     // Interface settings
+    QFont font() const;
+    void setFont(const QFont &font);
+
     double popupOpacity() const;
     void setPopupOpacity(double opacity);
     static double defaultPopupOpacity();

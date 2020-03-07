@@ -812,6 +812,8 @@ void MainWindow::setupRequestStateButtons(QState *state)
 void MainWindow::loadSettings(const AppSettings &settings)
 {
     // Interface
+    ui->translationEdit->setFont(settings.font());
+    ui->sourceEdit->setFont(settings.font());
     m_trayIcon->loadSettings(settings);
     m_popupSize = {settings.popupWidth(), settings.popupHeight()};
     m_popupOpacity = settings.popupOpacity();

@@ -50,6 +50,7 @@ PopupWindow::PopupWindow(MainWindow *parent)
     // Window settings
     setWindowOpacity(parent->popupOpacity());
     resize(parent->popupSize());
+    ui->translationEdit->setFont(parent->translationEdit()->font());
 
     // Player buttons
     ui->sourceSpeakButtons->setMediaPlayer(parent->sourceSpeakButtons()->mediaPlayer());

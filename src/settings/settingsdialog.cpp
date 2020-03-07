@@ -177,9 +177,14 @@ void SettingsDialog::accept()
 #endif
 
     // Interface settings
+    QFont font = ui->fontNameComboBox->currentFont();
+    font.setPointSize(ui->fontSizeSpinBox->value());
+    settings.setFont(font);
+
     settings.setPopupOpacity(static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
+
     settings.setTrayIconType(static_cast<TrayIcon::IconType>(ui->trayIconComboBox->currentIndex()));
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
@@ -433,9 +438,14 @@ void SettingsDialog::restoreDefaults()
 #endif
 
     // Interface settings
+    const QFont defaultFont = QApplication::font();
+    ui->fontNameComboBox->setCurrentFont(defaultFont);
+    ui->fontSizeSpinBox->setValue(defaultFont.pointSize());
+
     ui->popupOpacitySlider->setValue(static_cast<int>(AppSettings::defaultPopupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(AppSettings::defaultPopupWidth());
     ui->popupHeightSpinBox->setValue(AppSettings::defaultPopupHeight());
+
     ui->trayIconComboBox->setCurrentIndex(AppSettings::defaultTrayIconType());
     ui->customTrayIconEdit->setText(AppSettings::defaultCustomIconPath());
 
@@ -486,6 +496,10 @@ void SettingsDialog::loadSettings()
 #endif
 
     // Interface settings
+    const QFont font = settings.font();
+    ui->fontNameComboBox->setCurrentFont(font);
+    ui->fontSizeSpinBox->setValue(font.pointSize());
+
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
