@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="tr">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="tr" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -1342,17 +1340,17 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="239"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazı tipi</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="245"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>İsim:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="255"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Boyut:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="460"/>
