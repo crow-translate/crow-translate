@@ -168,7 +168,7 @@ This project uses the following third-party libraries:
 -   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
 -   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
 
-Therefore, if you want to clone this project, you need to use the `--recursive` option: 
+Therefore, if you want to clone this project, you need to use the `--recursive` option:
 
 ```bash
 git clone --recursive git@github.com:crow-translate/crow-translate.git
