@@ -11,7 +11,7 @@ cleanDir()
 }
 
 case $ID in
-    "arch" | "parabola" | "manjarolinux" )
+    "arch" | "parabola" | "manjaro" )
         cd pacman
     
         makepkg
