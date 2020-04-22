@@ -117,7 +117,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // System tray icon
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::show);
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), this, &MainWindow::openSettings);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit, Qt::QueuedConnection);
     m_trayIcon->setContextMenu(m_trayMenu);
 
     // State machine to handle translator signals async
@@ -284,7 +284,7 @@ void MainWindow::copyTranslatedSelection()
 
 void MainWindow::quit()
 {
-    SingleApplication::quit();
+    QMetaObject::invokeMethod(SingleApplication::instance(), &SingleApplication::quit, Qt::QueuedConnection);
 }
 
 void MainWindow::requestTranslation()

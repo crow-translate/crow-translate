@@ -39,8 +39,10 @@ Cli::Cli(QObject *parent)
 {
     m_player->setPlaylist(new QMediaPlaylist);
 
-    connect(m_stateMachine, &QStateMachine::finished, QCoreApplication::instance(), &QCoreApplication::quit);
-    connect(m_stateMachine, &QStateMachine::stopped, QCoreApplication::instance(), &QCoreApplication::quit);
+    connect(m_stateMachine, &QStateMachine::finished, QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
+    connect(m_stateMachine, &QStateMachine::stopped, QCoreApplication::instance(), [] {
+        QCoreApplication::exit(1);
+    }, Qt::QueuedConnection);
 }
 
 void Cli::process(const QCoreApplication &app)
@@ -148,62 +150,61 @@ void Cli::requestTranslation()
 
 void Cli::printTranslation()
 {
-    QTextStream out(stdout);
-
     if (m_translator->error() != QOnlineTranslator::NoError) {
-        error(m_translator->errorString());
+        qCritical() << tr("Error: %1").arg(m_translator->errorString());
+        m_stateMachine->stop();
         return;
     }
 
     // Show source text and its transliteration only once
     if (!m_sourcePrinted) {
-        out << m_translator->source() << '\n';
+        m_stdout << m_translator->source() << '\n';
         if (!m_translator->sourceTranslit().isEmpty())
-            out << '(' << m_translator->sourceTranslit().replace('\n', QStringLiteral(")\n(")) << ")\n";
+            m_stdout << '(' << m_translator->sourceTranslit().replace('\n', QStringLiteral(")\n(")) << ")\n";
         m_sourcePrinted = true;
     }
-    out << '\n';
+    m_stdout << '\n';
 
     // Languages
-    out << "[ " << m_translator->sourceLanguageString() << " -> ";
-    out << m_translator->translationLanguageString() << " ]" << "\n\n";
+    m_stdout << "[ " << m_translator->sourceLanguageString() << " -> ";
+    m_stdout << m_translator->translationLanguageString() << " ]" << "\n\n";
     if (m_sourceLang == QOnlineTranslator::Auto)
         m_sourceLang = m_translator->sourceLanguage();
 
     // Translation and its transliteration
     if (!m_translator->translation().isEmpty()) {
-        out << m_translator->translation() << '\n';
+        m_stdout << m_translator->translation() << '\n';
         if (!m_translator->translationTranslit().isEmpty())
-            out << '/' << m_translator->translationTranslit().replace('\n', QStringLiteral("/\n/")) << "/\n";
-        out << '\n';
+            m_stdout << '/' << m_translator->translationTranslit().replace('\n', QStringLiteral("/\n/")) << "/\n";
+        m_stdout << '\n';
     }
 
     // Translation options
     if (!m_translator->translationOptions().isEmpty()) {
-        out << tr("%1 - translation options:").arg(m_translator->source()) << '\n';
+        m_stdout << tr("%1 - translation options:").arg(m_translator->source()) << '\n';
         const QMap<QString, QVector<QOnlineTranslator::QOption>> translationOptions = m_translator->translationOptions();
         for (auto it = translationOptions.cbegin(); it != translationOptions.cend(); ++it) {
-            out << it.key() << '\n';
+            m_stdout << it.key() << '\n';
             for (const auto &[word, gender, translations] : it.value()) {
-                out << '\t';
+                m_stdout << '\t';
                 if (!gender.isEmpty())
-                    out << gender << ' ';
-                out << word << ": ";
-                out << translations.join(QStringLiteral(", ")) << '\n';
+                    m_stdout << gender << ' ';
+                m_stdout << word << ": ";
+                m_stdout << translations.join(QStringLiteral(", ")) << '\n';
             }
-            out << '\n';
+            m_stdout << '\n';
         }
     }
 
     // Examples
     if (!m_translator->examples().isEmpty()) {
-        out << tr("%1 - examples:").arg(m_translator->source()) << '\n';
+        m_stdout << tr("%1 - examples:").arg(m_translator->source()) << '\n';
         const QMap<QString, QVector<QOnlineTranslator::QExample>> examples = m_translator->examples();
         for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
-            out << it.key() << '\n';
+            m_stdout << it.key() << '\n';
             for (const auto &[example, description] : it.value()) {
-                out << '\t' << description << '\n';
-                out << '\t' << example << '\n';
+                m_stdout << '\t' << description << '\n';
+                m_stdout << '\t' << example << '\n';
             }
         }
     }
@@ -217,7 +218,8 @@ void Cli::requestLanguage()
 void Cli::parseLanguage()
 {
     if (m_translator->error() != QOnlineTranslator::NoError) {
-        error(m_translator->errorString());
+        qCritical() << tr("Error: %1").arg(m_translator->errorString());
+        m_stateMachine->stop();
         return;
     }
 
@@ -226,27 +228,21 @@ void Cli::parseLanguage()
 
 void Cli::printSpeakingSourceText()
 {
-    QTextStream out(stdout);
-
-    out << tr("Source text:") << '\n';
-    out << m_sourceText << '\n';
+    m_stdout << tr("Source text:") << '\n';
+    m_stdout << m_sourceText << '\n';
 }
 
 void Cli::printSpeakingTranslation()
 {
-    QTextStream out(stdout);
-
-    out << tr("Translation into %1:").arg(m_translator->translationLanguageString()) << '\n';
-    out << m_translator->translation() << '\n';
+    m_stdout << tr("Translation into %1:").arg(m_translator->translationLanguageString()) << '\n';
+    m_stdout << m_translator->translation() << '\n';
 }
 
 void Cli::printLangCodes()
 {
-    QTextStream out(stdout);
-
     for (int languageIndex = QOnlineTranslator::Auto; languageIndex != QOnlineTranslator::Zulu; ++languageIndex) {
         const auto language = static_cast<QOnlineTranslator::Language>(languageIndex);
-        out << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << '\n';
+        m_stdout << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << '\n';
     }
 }
 
@@ -265,7 +261,7 @@ void Cli::buildShowCodesStateMachine()
     auto *showCodesState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(showCodesState);
 
-    connect(showCodesState, &QState::entered, &Cli::printLangCodes);
+    connect(showCodesState, &QState::entered, this, &Cli::printLangCodes);
     showCodesState->addTransition(new QFinalState(m_stateMachine));
 }
 
@@ -292,8 +288,6 @@ void Cli::buildAudioOnlyStateMachine()
 
 void Cli::buildTranslationStateMachine()
 {
-    QTextStream out(stdout);
-
     auto *nextTranslationState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(nextTranslationState);
 
@@ -396,20 +390,13 @@ void Cli::buildSpeakTranslationsState(QState *parent)
     nextSpeakTranslationState->addTransition(new QFinalState(parent));
 }
 
-void Cli::error(const QString &error)
-{
-    QTextStream out(stdout);
-
-    qCritical() << tr("Error: %1").arg(error) << '\n';
-    m_stateMachine->stop();
-}
-
 void Cli::speak(const QString &text, QOnlineTranslator::Language lang)
 {
     QOnlineTts tts;
     tts.generateUrls(text, m_engine, lang);
     if (tts.error() != QOnlineTts::NoError) {
-        error(tts.errorString());
+        qCritical() << tr("Error: %1").arg(tts.errorString());
+        m_stateMachine->stop();
         return;
     }
 
@@ -425,12 +412,12 @@ QByteArray Cli::readFilesFromStdin()
     for (const QString &filePath : stdinText.split(QRegularExpression(QStringLiteral("\\s+")), QString::SkipEmptyParts)) {
         QFile file(filePath);
         if (!file.exists()) {
-            qCritical() << tr("Error: File does not exist: %1").arg(file.fileName()) << '\n';
+            qCritical() << tr("Error: File does not exist: %1").arg(file.fileName());
             continue;
         }
 
         if (!file.open(QFile::ReadOnly)) {
-            qCritical() << tr("Error: Unable to open file: %1").arg(file.fileName()) << '\n';
+            qCritical() << tr("Error: Unable to open file: %1").arg(file.fileName());
             continue;
         }
 
@@ -446,12 +433,12 @@ QByteArray Cli::readFilesFromArguments(const QStringList &arguments)
     for (const QString &filePath : arguments) {
         QFile file(filePath);
         if (!file.exists()) {
-            qCritical() << tr("Error: File does not exist: %1").arg(file.fileName()) << '\n';
+            qCritical() << tr("Error: File does not exist: %1").arg(file.fileName());
             continue;
         }
 
         if (!file.open(QFile::ReadOnly)) {
-            qCritical() << tr("Error: Unable to open file: %1").arg(file.fileName()) << '\n';
+            qCritical() << tr("Error: Unable to open file: %1").arg(file.fileName());
             continue;
         }
 

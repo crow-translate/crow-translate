@@ -25,6 +25,7 @@
 
 #include <QObject>
 #include <QVector>
+#include <QTextStream>
 
 class QCoreApplication;
 class QMediaPlayer;
@@ -52,7 +53,7 @@ private slots:
     void printSpeakingSourceText();
     void printSpeakingTranslation();
 
-    static void printLangCodes();
+    void printLangCodes();
 
 private:
     // Main state machines
@@ -64,8 +65,7 @@ private:
     void buildSpeakSourceState(QState *parent);
     void buildSpeakTranslationsState(QState *parent);
 
-    // Helper functions
-    void error(const QString &error);
+    // Helpers
     void speak(const QString &text, QOnlineTranslator::Language lang);
 
     static QByteArray readFilesFromStdin();
@@ -74,6 +74,7 @@ private:
     QMediaPlayer *m_player;
     QOnlineTranslator *m_translator;
     QStateMachine *m_stateMachine;
+    QTextStream m_stdout{stdout};
 
     QString m_sourceText;
     QVector<QOnlineTranslator::Language> m_translationLangs;
@@ -82,7 +83,6 @@ private:
     QOnlineTranslator::Language m_uiLang = QOnlineTranslator::NoLanguage;
     bool m_speakSource = false;
     bool m_speakTranslation = false;
-
     bool m_sourcePrinted = false;
 
     static constexpr char s_langProperty[] = "Language";
