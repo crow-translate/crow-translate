@@ -284,7 +284,11 @@ void MainWindow::copyTranslatedSelection()
 
 void MainWindow::quit()
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     QMetaObject::invokeMethod(SingleApplication::instance(), &SingleApplication::quit, Qt::QueuedConnection);
+#else
+    QMetaObject::invokeMethod(SingleApplication::instance(), "quit", Qt::QueuedConnection);
+#endif
 }
 
 void MainWindow::requestTranslation()
