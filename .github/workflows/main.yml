@@ -1,5 +1,5 @@
 name: Main
-on: 
+on:
   push:
     branches-ignore:
     - 'releases/**'
@@ -21,13 +21,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - name: Clone repo
-      uses: actions/checkout@v2
-
-    - name: Checkout submodules
-      run: |
-        echo $MAKEFLAGS
-        git submodule init
-        git submodule update
+      uses: actions/checkout@v2.1.0
+      with:
+        submodules: true
 
     - name: Install dependencies
       run: |
@@ -42,20 +38,17 @@ jobs:
     runs-on: windows-latest
     steps:
     - name: Clone repo
-      uses: actions/checkout@v2
-
-    - name: Checkout submodules
-      run: |
-        git submodule init
-        git submodule update
+      uses: actions/checkout@v2.1.0
+      with:
+        submodules: true
 
     - name: Install Qt
-      uses: jurplel/install-qt-action@v1
+      uses: jurplel/install-qt-action@v2.6.2
       with:
         arch: win64_mingw73
 
     - name: Enable Git symlinks
-      run: git config --global core.symlinks true
+      run: git config core.symlinks true
 
     - name: Build
       run: |
