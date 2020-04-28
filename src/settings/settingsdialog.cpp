@@ -68,6 +68,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português (Brasil)"), QLocale::Portuguese);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türk"), QLocale::Turkish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), QStringLiteral("Русский"), QLocale::Russian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), QStringLiteral("Espanol"), QLocale::Spanish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), QStringLiteral("Українська"), QLocale::Ukrainian);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("简体中文 (中国)"), QLocale::Chinese);
 
