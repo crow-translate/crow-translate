@@ -26,7 +26,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 <p align="center">
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/main.png" alt="Main screenshot"/>
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
-  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/sentense.png" width="250px" height="140px" alt="Sentence screenshot"/>
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/linux-plasma/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
@@ -38,7 +38,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 <p align="center">
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/main.png" alt="Main screenshot"/>
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/popup.png" width="250px" height="140px" alt="Popup screenshot"/>
-  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/sentense.png" width="250px" height="140px" alt="Sentense screenshot"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/sentense.png" width="250px" height="140px" alt="Sentence screenshot"/>
   <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/img/screenshots/windows/settings.png" width="250px" height="140px" alt="Settings screenshot"/>
 </p>
 <p align="center">
@@ -273,7 +273,7 @@ cd dist/unix
 ./create-package.sh
 ```
 
-Than you can install it as usual. The script will tell you where the package will be after the making. Currently, only **Arch Linux**, **Debian** and their derivatives are supported.
+Then you can install it as usual. The script will tell you where the package will be after the making. Currently, only **Arch Linux**, **Debian** and their derivatives are supported.
 
 ### Manual building
 
