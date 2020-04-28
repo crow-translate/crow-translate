@@ -4,7 +4,7 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 
 **Crow Translate** es un traductor simple y ligero programado en **C++ / Qt** que permite traducir y reproducir de manera hablada el texto utilizando las API de traducción de servicios como Google, Yandex o Bing.
-También puedes estar interesado en mi biblioteca [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "Una biblioteca para Qt5 que ofrece un libre uso de las API de traducción de Google, Yandex and Bing translate API.") Utilizada en este proyecto. 
+También puedes estar interesado en mi biblioteca [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "Una biblioteca para Qt5 que ofrece un libre uso de las API de traducción de Google, Yandex and Bing translate API.") utilizada en este proyecto. 
 
 ## Índice
 
@@ -63,13 +63,13 @@ Wayland no permite el registro de atajos de teclado globales, pero puedes utiliz
 
 ### Global
 
-| Combinación de teclas                           | Descripción                                              |
-| ----------------------------------------------- | -------------------------------------------------------- |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Traducir el texto seleccionado                           |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Reproducir hablando el texto seleccionado                |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> | Reproducir hablando la traducción del texto seleccionado |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd> | Parar la reproducción                                    |
-| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Mostrar la pantalla principal                            |
+| Combinación de teclas                           | Descripción                                                       | 
+| ----------------------------------------------- | ----------------------------------------------------------------- |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>E</kbd> | Traducir el texto seleccionado                                    |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>S</kbd> | Reproducir de manera hablada el texto seleccionado                |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>F</kbd> | Reproducir de manera hablada la traducción del texto seleccionado |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>G</kbd> | Parar la reproducción                                             |
+| <kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>C</kbd> | Mostrar la pantalla principal                                     |
 
 ### En la pantalla principal
 
@@ -77,8 +77,8 @@ Wayland no permite el registro de atajos de teclado globales, pero puedes utiliz
 | ------------------------------------------------- | ------------------------------------------------------------- |
 | <kbd>Ctrl</kbd> + <kbd>Enter</kbd>                | Traducir                                                      |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Cerrar ventana                                                |
-| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Reproducir / pausar la reproducción hablando del texto origen |
-| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Reproducir / pausar la reproducción hablando de la traducción |
+| <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Reproducir / pausar la reproducción hablada del texto origen  |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Reproducir / pausar la reproducción hablada de la traducción  |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>C</kbd> | Copiar la traducción al portapapeles                          |
 
 ## Comandos para la línea de comandos
