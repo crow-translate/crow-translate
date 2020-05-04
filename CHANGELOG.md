@@ -9,7 +9,11 @@ All notable changes to this project will be documented in this file. This projec
 **Added**
 
 -   The ability to exit the application via D-Bus.
+
+**Changed**
+
 -   Return 1 exit code on translation error in CLI.
+-   Fix showing the main window if it was minimized.
 
 ## [2.3.1](https://github.com/crow-translate/crow-translate/tree/2.3.1) (2020-01-18)
 

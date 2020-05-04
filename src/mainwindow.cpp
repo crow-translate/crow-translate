@@ -251,6 +251,7 @@ void MainWindow::open()
 {
     ui->sourceEdit->setFocus();
 
+    setWindowState(windowState() & ~Qt::WindowMinimized);
     show();
     activateWindow();
     raise();
