@@ -1,6 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE TS>
-<TS version="2.1" language="uk">
+<?xml version="1.0" ?><!DOCTYPE TS><TS language="uk" version="2.1">
 <context>
     <name>AddLangDialog</name>
     <message>
@@ -19,7 +17,7 @@
     <message>
         <location filename="../../src/settings/appsettings.cpp" line="157"/>
         <source>Unable to create autorun file from %1</source>
-        <translation>Не вийшло створити файл автозапуску з %1</translation>
+        <translation>Не вдалося створити файл автозапуску з %1</translation>
     </message>
 </context>
 <context>
@@ -27,114 +25,114 @@
     <message>
         <location filename="../../src/cli.cpp" line="48"/>
         <source>Display all language codes.</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати усі коди мов.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="49"/>
         <source>Specify the source language (by default, engine will try to determine the language on its own).</source>
-        <translation type="unfinished"></translation>
+        <translation>Указати мову оригіналу (за замовчуванням рушій намагатиметься визначити мову автоматично).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="50"/>
         <source>Specify the translation language(s), splitted by &apos;+&apos; (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>Вкажіть мову(и) перекладу, розділені &apos;+&apos; (усталено використовується системна мова). </translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="51"/>
         <source>Specify the translator language (by default, the system language is used).</source>
-        <translation type="unfinished"></translation>
+        <translation>Вкажіть мову перекладача (усталено використовується системна мова).</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="52"/>
         <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos; or &apos;bing&apos;), Google is used by default.</source>
-        <translation type="unfinished"></translation>
+        <translation>Вкажіть рушій перекладача (&apos;google&apos;, &apos;yandex&apos; або &apos;bing&apos;), усталено використовується Google.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="53"/>
         <source>Speak the translation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Прочитати переклад уголос.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="54"/>
         <source>Speak the source.</source>
-        <translation type="unfinished"></translation>
+        <translation>Прочитати оригінал уголос.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="55"/>
         <source>Print text only for speaking when using --%1 or --%2.</source>
-        <translation type="unfinished"></translation>
+        <translation> Друкувати текст лише для озвучування при використанні --%1 або --%2.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="56"/>
         <source>Read source text from files. Arguments will be interpreted as file paths.</source>
-        <translation type="unfinished"></translation>
+        <translation>Зчитати початковий текст із файлів. Аргументи будуть інтерпретируватися як шляхи до файлів.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="57"/>
         <source>Add stdin data to source text.</source>
-        <translation type="unfinished"></translation>
+        <translation> Додати дані стандартного вводу у початковий текст.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="60"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
-        <translation type="unfinished"></translation>
+        <translation> Простий та легкий перекладач, який дозволяє перекладати й озвучувати текст за допомогою Google, Yandex і Bing.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="61"/>
         <source>Text to translate. By default, the translation will be done to the system language.</source>
-        <translation type="unfinished"></translation>
+        <translation> Текст для перекладу. Усталено переклад буде виконано мовою системи.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="91"/>
         <source>Error: Unknown engine</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Невідомий рушій</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="122"/>
         <source>Error: There is no text for translation</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Відсутній текст для перекладу</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="403"/>
         <source>Error: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="428"/>
         <location filename="../../src/cli.cpp" line="449"/>
         <source>Error: File does not exist: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Файл не існує: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="433"/>
         <location filename="../../src/cli.cpp" line="454"/>
         <source>Error: Unable to open file: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Не вдалося відкрити файл: %1</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="183"/>
         <source>%1 - translation options:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - варіанти перекладу:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="129"/>
         <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Для --%1 необхідно вказати --%2 та/або --%3 параметри </translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="200"/>
         <source>%1 - examples:</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 - приклади:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="231"/>
         <source>Source text:</source>
-        <translation type="unfinished"></translation>
+        <translation>Початковий текст:</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="239"/>
         <source>Translation into %1:</source>
-        <translation type="unfinished"></translation>
+        <translation>Переклад на %1:</translation>
     </message>
 </context>
 <context>
@@ -142,12 +140,12 @@
     <message>
         <location filename="../../src/main.cpp" line="66"/>
         <source>Unable to register D-Bus object for %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося зареєструвати об&apos;єкт D-Bus для %1</translation>
     </message>
     <message>
         <location filename="../../src/main.cpp" line="68"/>
         <source>D-Bus service %1 is already registered by another application</source>
-        <translation type="unfinished"></translation>
+        <translation>Сервіс D-Bus %1 вже зареєстрований иншим застосунком</translation>
     </message>
 </context>
 <context>
@@ -178,7 +176,7 @@
     <message>
         <location filename="../../src/mainwindow.ui" line="25"/>
         <source>Source</source>
-        <translation>Джерело</translation>
+        <translation>Оригінал</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="96"/>
@@ -210,17 +208,17 @@
         <location filename="../../src/mainwindow.ui" line="198"/>
         <location filename="../../src/mainwindow.ui" line="271"/>
         <source>Add language</source>
-        <translation type="unfinished">Додати мову</translation>
+        <translation>Додати мову</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="349"/>
         <source>Cancel</source>
-        <translation type="unfinished">Скасувати</translation>
+        <translation>Скасувати</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="360"/>
         <source>Clear</source>
-        <translation type="unfinished">Очистити</translation>
+        <translation>Очистити</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.ui" line="377"/>
@@ -247,17 +245,17 @@
     <message>
         <location filename="../../src/mainwindow.cpp" line="341"/>
         <source>Unable to detect language</source>
-        <translation type="unfinished">Не вийшло визначити мову</translation>
+        <translation>Не вдається визначити мову</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="391"/>
         <source>Unable to translate text</source>
-        <translation>Не вийшло перекласти текст</translation>
+        <translation>Не вдалося перекласти текст</translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="553"/>
         <source>The application is already running</source>
-        <translation>Застосунок уже працює</translation>
+        <translation>Застосунок уже запущено</translation>
     </message>
 </context>
 <context>
@@ -266,7 +264,7 @@
         <location filename="../../src/popupwindow.ui" line="29"/>
         <location filename="../../src/popupwindow.ui" line="163"/>
         <source>Add language</source>
-        <translation type="unfinished">Додати мову</translation>
+        <translation>Додати мову</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="96"/>
@@ -276,7 +274,7 @@
     <message>
         <location filename="../../src/popupwindow.ui" line="188"/>
         <source>Copy source text to the clipboard</source>
-        <translation>Скопіювати вихідний текст до буфера обміну</translation>
+        <translation>Скопіювати текст оригіналу до буфера обміну</translation>
     </message>
     <message>
         <location filename="../../src/popupwindow.ui" line="246"/>
@@ -294,7 +292,7 @@
     <message>
         <location filename="../../src/qgittag/src/qgittag.cpp" line="147"/>
         <source>Release number %1 is missing</source>
-        <translation type="unfinished"></translation>
+        <translation>Випуск під номером %1 відсутній</translation>
     </message>
 </context>
 <context>
@@ -302,12 +300,12 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="189"/>
         <source>Selected source language %1 is not supported for %2</source>
-        <translation>Обрана вихідна мова %1 не підтримується %2</translation>
+        <translation>Обрана мова оригіналу %1 не підтримується %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="195"/>
         <source>Selected translation language %1 is not supported for %2</source>
-        <translation>Обрана мова перекладу %1 не підтримується %2</translation>
+        <translation>Обрана мова перекладу 1% не підтримується %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="201"/>
@@ -422,7 +420,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="369"/>
         <source>Danish</source>
-        <translation>Датська</translation>
+        <translation>Данська</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="371"/>
@@ -452,7 +450,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="381"/>
         <source>Filipino</source>
-        <translation>Філіпінська</translation>
+        <translation>Філіпійська</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="383"/>
@@ -512,7 +510,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="405"/>
         <source>Hebrew</source>
-        <translation>Єврейська</translation>
+        <translation>Гебрейська</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="407"/>
@@ -522,7 +520,7 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="409"/>
         <source>Hindi</source>
-        <translation>Хінді</translation>
+        <translation>Гінді</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="411"/>
@@ -929,19 +927,19 @@
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="962"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1045"/>
         <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
-        <translation>Помилка: Системи рушія перекладу помітили підозрілий трафік із вашої комп&apos;ютерної мережі. Спробуйте пізніше.</translation>
+        <translation>Помилка: Системами рушія перекладу помічено підозрілий трафік із вашої комп&apos;ютерної мережі. Спробуйте пізніше.</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="974"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1111"/>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1244"/>
         <source>Error: Unable to parse autodetected language</source>
-        <translation type="unfinished"></translation>
+        <translation>Помилка: Не вдалося розібрати автоматично визначену мову</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1059"/>
         <source>Error: Unable to parse Yandex SID.</source>
-        <translation>Помилка: Не вийшло розібрати Yandex SID.</translation>
+        <translation>Помилка: Не вдалося розібрати Yandex SID.</translation>
     </message>
 </context>
 <context>
@@ -949,32 +947,32 @@
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="54"/>
         <source>Selected engine %1 does not support voice settings</source>
-        <translation type="unfinished"></translation>
+        <translation> Обраний рушій %1 не підтримує налаштування голосу</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="59"/>
         <source>Selected engine %1 does not support emotion settings</source>
-        <translation type="unfinished"></translation>
+        <translation> Обраний рушій %1 не підтримує налаштування емоцій</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="121"/>
         <source>%1 engine does not support TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>Рушій %1 не підтримує TTS</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="190"/>
         <source>Selected language %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Обрана мова %1 не підтримується для %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="203"/>
         <source>Selected voice %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation>Обраний голос %1 не підтримується для %2</translation>
     </message>
     <message>
         <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="216"/>
         <source>Selected emotion %1 is not supported for %2</source>
-        <translation type="unfinished"></translation>
+        <translation> Обрана емоція %1 не підтримується для %2</translation>
     </message>
 </context>
 <context>
@@ -1026,7 +1024,7 @@
         <location filename="../../src/settings/settingsdialog.ui" line="153"/>
         <location filename="../../src/settings/settingsdialog.ui" line="288"/>
         <source>Pop-up window</source>
-        <translation>Вікно, що спливає</translation>
+        <translation>Виринне вікно</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="158"/>
@@ -1048,7 +1046,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="199"/>
         <source>Show tray icon</source>
-        <translation>Відображати піктограму в лотку</translation>
+        <translation>Показувати піктограму у таці</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="189"/>
@@ -1123,7 +1121,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="414"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Системна піктограма для лотка&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Системна піктограма для таці&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="418"/>
@@ -1132,7 +1130,7 @@
         <location filename="../../src/settings/settingsdialog.cpp" line="552"/>
         <location filename="../../src/settings/settingsdialog.cpp" line="570"/>
         <source>Default</source>
-        <translation>За замовчуванням</translation>
+        <translation>Усталено</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="427"/>
@@ -1207,7 +1205,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="496"/>
         <source>Enable source transliteration</source>
-        <translation>Увімкнути транслітерацію джерела</translation>
+        <translation>Увімкнути транслітерацію оригіналу</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="506"/>
@@ -1217,7 +1215,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="516"/>
         <source>Enable source transcription</source>
-        <translation>Увімкнути транскрипцію джерела</translation>
+        <translation>Увімкнути транскрипцію оригіналу</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="526"/>
@@ -1237,17 +1235,17 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="556"/>
         <source>Automatic language detection</source>
-        <translation type="unfinished"></translation>
+        <translation>Автоматичне визначення мови</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="575"/>
         <source>Primary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Основна мова перекладу</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="582"/>
         <source>Secondary translation language:</source>
-        <translation type="unfinished"></translation>
+        <translation>Вторинна мова перекладу</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="596"/>
@@ -1337,22 +1335,22 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="196"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Відображати піктограму в системному лотку&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Показувати піктограму у системній таці&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="239"/>
         <source>Font</source>
-        <translation type="unfinished"></translation>
+        <translation>Шрифт</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="245"/>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Назва:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="255"/>
         <source>Size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Розмір:</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="460"/>
@@ -1382,12 +1380,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="543"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Замінювати у запитах кожну послідовність пробілів (включаючи символи ASCII &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos; та &apos; &apos;) одним пробілом&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="546"/>
         <source>Simplify source</source>
-        <translation type="unfinished"></translation>
+        <translation>Спростити початковий текст</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="589"/>
@@ -1397,12 +1395,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="603"/>
         <source>Force detection of source language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation> Примусово визначати мову початкового тексту при використанні без вікна</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="610"/>
         <source>Force detection of translation language when used without window</source>
-        <translation type="unfinished"></translation>
+        <translation>Примусово визначати мову перекладу при використанні без вікна</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="687"/>
@@ -1462,12 +1460,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="992"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Реєструвати глобальні сполучення клавіш у системі&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="995"/>
         <source>Enable global shortcucts</source>
-        <translation type="unfinished"></translation>
+        <translation>Увімкнути глобальні сполучення клавіш</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1024"/>
@@ -1527,7 +1525,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1011"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скинути всі гарячі клавіші до налаштувань за замовчуванням&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скинути всі гарячі клавіші до типових налаштувань&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1037"/>
@@ -1537,7 +1535,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1072"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скинути гарячий клавіш до налаштувань за замовчуванням&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Скинути гарячий клавіш до типових налаштувань&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="1142"/>
@@ -1557,12 +1555,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="44"/>
         <source>Portable mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Портативний режим</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="54"/>
         <source>Use %1 from the application folder to store settings</source>
-        <translation type="unfinished"></translation>
+        <translation>Використовувати %1 з теки додатку для збереження налаштувань</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="105"/>
@@ -1572,7 +1570,7 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="115"/>
         <source>Updates</source>
-        <translation type="unfinished"></translation>
+        <translation>Оновлення</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="122"/>
@@ -1632,12 +1630,12 @@
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
         <source>Playback text is empty</source>
-        <translation>Текст для промовлення</translation>
+        <translation>Текст для промовляння</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="336"/>
         <source>Unable to detect language</source>
-        <translation>Не вийшло визначити мову</translation>
+        <translation>Не вдалося визначити мову</translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="391"/>
@@ -1695,7 +1693,7 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="47"/>
         <source>Show main window</source>
-        <translation type="unfinished"></translation>
+        <translation>Показати головне вікно</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="50"/>
@@ -1720,17 +1718,17 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
         <source>Source text</source>
-        <translation>Вихідний текст</translation>
+        <translation>Початковий текст</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="65"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Озвучити / призупинити озвучування тексту</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="71"/>
         <source>Speak / pause speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Озвучити / призупинити озвучування</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
@@ -1748,27 +1746,27 @@
     <message>
         <location filename="../../src/speakbuttons.ui" line="24"/>
         <source>Speak / pause text speaking</source>
-        <translation type="unfinished"></translation>
+        <translation>Озвучити / призупинити озвучування тексту</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.ui" line="34"/>
         <source>Stop text speaking</source>
-        <translation type="unfinished">Зупинити промовлення тексту</translation>
+        <translation> Зупинити озвучування тексту</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>No text specified</source>
-        <translation type="unfinished"></translation>
+        <translation>Текст не вказано</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="129"/>
         <source>Playback text is empty</source>
-        <translation type="unfinished">Текст для промовлення</translation>
+        <translation> Текст для відтворення порожній</translation>
     </message>
     <message>
         <location filename="../../src/speakbuttons.cpp" line="136"/>
         <source>Unable to generate URLs for TTS</source>
-        <translation type="unfinished"></translation>
+        <translation>Не вдалося створити URL-и для TTS</translation>
     </message>
 </context>
 <context>
@@ -1776,12 +1774,12 @@
     <message>
         <location filename="../../src/translationedit.cpp" line="60"/>
         <source>translation options:</source>
-        <translation type="unfinished">налаштування перекладу:</translation>
+        <translation>варіанти перекладу:</translation>
     </message>
     <message>
         <location filename="../../src/translationedit.cpp" line="95"/>
         <source>examples:</source>
-        <translation type="unfinished">приклади:</translation>
+        <translation>приклади:</translation>
     </message>
 </context>
 <context>
@@ -1789,12 +1787,12 @@
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>Invalid tray icon</source>
-        <translation type="unfinished"></translation>
+        <translation>Недійсна піктограма для таці</translation>
     </message>
     <message>
         <location filename="../../src/trayicon.cpp" line="42"/>
         <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
-        <translation type="unfinished"></translation>
+        <translation> Вказана піктограма &apos;%1&apos; недійсна. Буде використано типову піктограму.</translation>
     </message>
 </context>
 <context>
@@ -1852,7 +1850,7 @@
     <message>
         <location filename="../../src/updaterdialog.ui" line="129"/>
         <source>Available version:</source>
-        <translation type="unfinished"></translation>
+        <translation>Доступна версія:</translation>
     </message>
     <message>
         <location filename="../../src/updaterdialog.cpp" line="59"/>
