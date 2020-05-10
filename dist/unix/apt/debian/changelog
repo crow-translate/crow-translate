@@ -1,3 +1,10 @@
+crow-translate (2.3.2-1) buster bionic disco; urgency=low
+
+  * Add the ability to exit the application via D-Bus.
+  * Return exit code 1 on translation error in CLI.
+  * Fix showing the main window if it was minimized.
+  * Bing: Fix language auto detection.
+
 crow-translate (2.3.1-1) buster bionic disco; urgency=low
 
   * Add Malay localization.

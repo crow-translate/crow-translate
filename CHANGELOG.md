@@ -4,7 +4,13 @@ All notable changes to this project will be documented in this file. This projec
 
 ## [Unreleased](https://github.com/crow-translate/crow-translate/tree/HEAD)
 
-[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.1...HEAD)
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.2...HEAD)
+
+_No unreleased changes yet_
+
+## [2.3.1](https://github.com/crow-translate/crow-translate/tree/2.3.2) (2020-05-10)
+
+[Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.1...2.3.2)
 
 **Added**
 
@@ -12,7 +18,7 @@ All notable changes to this project will be documented in this file. This projec
 
 **Changed**
 
-- Return 1 exit code on translation error in CLI.
+- Return exit code 1 on translation error in CLI.
 - Fix showing the main window if it was minimized.
 - Bing: Fix language auto detection.
 
