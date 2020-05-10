@@ -4,20 +4,20 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 
 **Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
-You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project. 
+You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project.
 
 ## Content
 
--   [Screenshots](#screenshots)
--   [Features](#features)
--   [Default keyboard shortcuts](#default-keyboard-shortcuts)
--   [CLI commands](#cli-commands)
--   [D-Bus API](#d-bus-api)
--   [Dependencies](#dependencies)
--   [Third-party](#third-party)
--   [Installation](#installation)
--   [Building](#building)
--   [Localization](#localization)
+- [Screenshots](#screenshots)
+- [Features](#features)
+- [Default keyboard shortcuts](#default-keyboard-shortcuts)
+- [CLI commands](#cli-commands)
+- [D-Bus API](#d-bus-api)
+- [Dependencies](#dependencies)
+- [Third-party](#third-party)
+- [Installation](#installation)
+- [Building](#building)
+- [Localization](#localization)
 
 ## Screenshots
 
@@ -47,13 +47,13 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 ## Features
 
--   Translate and speak text in any application that supports text selection
--   Support 117 different languages
--   Low memory consumption (~20MB)
--   Highly customizable shortcuts
--   Command-line interface with rich options
--   D-Bus API
--   Available for Linux and Windows
+- Translate and speak text in any application that supports text selection
+- Support 117 different languages
+- Low memory consumption (~20MB)
+- Highly customizable shortcuts
+- Command-line interface with rich options
+- D-Bus API
+- Available for Linux and Windows
 
 ## Default keyboard shortcuts
 
@@ -162,11 +162,11 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 This project uses the following third-party libraries:
 
--   [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
--   [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
--   [QHotkey](https://github.com/Skycoder42/QHotkey) - provides global shortcuts for desktop platforms.
--   [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
--   [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
+- [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
+- [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
+- [QHotkey](https://github.com/Skycoder42/QHotkey) - provides global shortcuts for desktop platforms.
+- [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
+- [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
 
 Therefore, if you want to clone this project, you need to use the `--recursive` option:
 
@@ -289,7 +289,7 @@ You will then get a binary named `crow`.
 
 ### Build parameters
 
--   `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
+- `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
 
 Build parameters are passed at the qmake stage: `qmake "DEFINES += PORTABLE_MODE"`.
 
