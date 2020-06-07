@@ -20,6 +20,7 @@
 
 #include "appsettings.h"
 #include "singleapplication.h"
+#include "cmake.h"
 
 #include <QStandardPaths>
 #include <QFileInfo>
@@ -79,7 +80,7 @@ void AppSettings::applyLanguage(QLocale::Language lang)
     else
         QLocale::setDefault(QLocale(lang));
 
-    s_appTranslator.load(QLocale(), QStringLiteral("crow"), QStringLiteral("_"), QStringLiteral(":/i18n"));
+    s_appTranslator.load(QLocale(), QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
     s_qtTranslator.load(QLocale(), QStringLiteral("qt"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 

@@ -711,7 +711,7 @@
                <string notr="true">Google</string>
               </property>
               <property name="icon">
-               <iconset resource="../../data/resources.qrc">
+               <iconset resource="../../data/icons/engines/engines.qrc">
                 <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
               </property>
              </item>
@@ -720,7 +720,7 @@
                <string notr="true">Yandex</string>
               </property>
               <property name="icon">
-               <iconset resource="../../data/resources.qrc">
+               <iconset resource="../../data/icons/engines/engines.qrc">
                 <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
               </property>
              </item>
@@ -729,7 +729,7 @@
                <string notr="true">Bing</string>
               </property>
               <property name="icon">
-               <iconset resource="../../data/resources.qrc">
+               <iconset resource="../../data/icons/engines/engines.qrc">
                 <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
               </property>
              </item>
@@ -1281,6 +1281,7 @@
    <container>1</container>
    <slots>
     <signal>playerMediaRequested()</signal>
+    <slot>stopSpeaking()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -1293,7 +1294,7 @@
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../../data/resources.qrc"/>
+  <include location="../../data/icons/engines/engines.qrc"/>
  </resources>
  <connections>
   <connection>

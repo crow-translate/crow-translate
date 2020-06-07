@@ -1,0 +1,9 @@
+#ifndef CMAKE_H
+#define CMAKE_H
+
+#define VERSION_MAJOR @crow-translate_VERSION_MAJOR@
+#define VERSION_MINOR @crow-translate_VERSION_MINOR@
+#define VERSION_PATCH @crow-translate_VERSION_PATCH@
+#define PROJECT_NAME "@PROJECT_NAME@"
+
+#endif // CMAKE_H

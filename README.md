@@ -14,7 +14,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 - [CLI commands](#cli-commands)
 - [D-Bus API](#d-bus-api)
 - [Dependencies](#dependencies)
-- [Third-party](#third-party)
+- [Icons](#icons)
 - [Installation](#installation)
 - [Building](#building)
 - [Localization](#localization)
@@ -134,33 +134,16 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 ## Dependencies
 
-### Arch Linux packages
+### Required
 
-**Build:** `qt5-base qt5-multimedia qt5-x11extras qt5-tools`
+- [CMake](https://cmake.org) 3.14+
+- [Extra CMake Modules](https://github.com/KDE/extra-cmake-modules)
+- [Png2Ico](https://www.winterdrache.de/freeware/png2ico) or [IcoTool](https://www.nongnu.org/icoutils) for generating executable icon (Windows)
+- [Qt](https://www.qt.io) 5.9+ with Widgets, Network, Multimedia, X11Extras (Linux), DBus (Linux) and WinExtras (Windows) modules
 
-**Run:** `qt5-base qt5-multimedia qt5-x11extras gst-plugins-good openssl`
+### Static libraries
 
-### Debian packages
-
-**Build:** `qt5-default qt5-qmake libqt5x11extras5-dev qttools5-dev-tools qtmultimedia5-dev qtbase5-dev qtbase5-dev-tools`
-
-**Run**: `gstreamer1.0-fluendo-mp3 qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins`
-
-### openSUSE packages
-
-**Build:**  `gcc-c++ libqt5-linguist-devel libqt5-qtbase-devel libqt5-qtmultimedia-devel libqt5-qtx11extras-devel`
-
-### Solus packages
-
-**Build:**  `qt5-tools-devel qt5-multimedia-devel qt5-svg-devel qt5-x11extras-devel`
-
-**Run**: `qt5-base qt5-x11extras qt5-multimedia libstdc++ libgcc glibc libx11`
-
-## Third-party
-
-### Libraries
-
-This project uses the following third-party libraries:
+This project uses the following static libraries that already exists in the repository as submodules (you do not need to install in manually):
 
 - [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
 - [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
@@ -182,7 +165,7 @@ git submodule init
 git submodule update
 ```
 
-### Icons
+## Icons
 
 Only Linux supports icon theming. Windows use [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme "Free and open source SVG icon theme") icons.
 
@@ -264,35 +247,47 @@ sudo eopkg it crow-translate
 
 ## Building
 
-### Automatic script
-
-You can use the automatic script that builds **Crow Translate** and creates a package for your distribution:
-
-```bash
-cd dist/unix
-./create-package.sh
-```
-
-Then you can install it as usual. The script will tell you where the package will be after the making. Currently, only **Arch Linux**, **Debian** and their derivatives are supported.
-
-### Manual building
+### Building executable
 
 You can build **Crow Translate** by using the following commands:
 
 ```bash
-qmake # Or qmake-qt5 in some distributions
-make
-make clean
+mkdir build
+cd build
+cmake .. # Or `cmake -D CMAKE_BUILD_TYPE=Release ..` for single-configuration generators such as Ninja or GNU Make
+cmake --build . # Or `cmake --build . --config Release` for multi-config generators such as Visual Studio Generators or Xcode
 ```
 
 You will then get a binary named `crow`.
+
+### Building a package using CPack
+
+CMake allows to create [specified package types](https://cmake.org/cmake/help/latest/manual/cpack-generators.7.html) automatically.
+
+If you use Makefile, Ninja, or Xcode generator you can use [package](https://cmake.org/cmake/help/latest/module/CPack.html#targets-package-and-package-source) target:
+
+```bash
+mkdir build
+cd build
+cmake -D CMAKE_BUILD_TYPE=Release -D CPACK_GENERATOR=DEB .. # You can specify several types of packages separated by semicolons in double quotes, for example: `CPACK_GENERATOR="DEB;ZIP;NSIS"`
+cmake --build . --target package
+```
+
+Or you can use [CPack](https://cmake.org/cmake/help/latest/module/CPack.html) utility for any generators:
+
+```bash
+mkdir build
+cd build
+cmake .. # Or `cmake -D CMAKE_BUILD_TYPE=Release ..` for single-configuration generators such as Ninja or GNU Make
+cpack -G DEB # Or `cpack -G DEB -C Release` for multi-config generators such as Visual Studio Generators or Xcode
+```
 
 ### Build parameters
 
 - `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
 
-Build parameters are passed at the qmake stage: `qmake "DEFINES += PORTABLE_MODE"`.
+Build parameters are passed at configuration stage: `cmake -D PORTABLE_MODE ..`.
 
 ## Localization
 
-To help with localization you can use [Transifex](https://www.transifex.com/crow-translate/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, make a request on the Transifex page or copy `data/translations/crow.ts` to `data/translations/crow_<ISO 639-1 language code>.ts`, translate it and send a pull request.
+To help with localization you can use [Transifex](https://www.transifex.com/crow-translate/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, make a request on the Transifex page or copy `data/translations/crow.ts` to `data/translations/crow-translate_<ISO 639-1 language code>_<ISO 3166-1 alpha-2 language code>.ts`, translate it and send a pull request.

@@ -22,6 +22,7 @@
 #include "cli.h"
 #include "singleapplication.h"
 #include "settings/appsettings.h"
+#include "cmake.h"
 
 #ifdef Q_OS_LINUX
 #include <QDBusConnection>
@@ -33,9 +34,9 @@ int launchCli(int argc, char *argv[]);
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setApplicationVersion(QStringLiteral("2.3.2"));
+    QCoreApplication::setApplicationVersion(QStringLiteral("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_PATCH));
     QCoreApplication::setApplicationName(QStringLiteral("Crow Translate"));
-    QCoreApplication::setOrganizationName(QStringLiteral("crow"));
+    QCoreApplication::setOrganizationName(QStringLiteral("Crow Translate"));
 
     if (argc == 1)
         return launchGui(argc, argv); // Launch GUI if there are no arguments

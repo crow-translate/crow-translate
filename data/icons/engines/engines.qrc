@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/icons/engines/">
+        <file>google.svg</file>
+        <file>yandex.svg</file>
+        <file>bing.svg</file>
+    </qresource>
+</RCC>
