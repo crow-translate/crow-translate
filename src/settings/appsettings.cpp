@@ -62,7 +62,7 @@ void AppSettings::setupLocalization() const
 
 QLocale::Language AppSettings::language() const
 {
-    return m_settings->value(QStringLiteral("Language"), defaultLanguage()).value<QLocale::Language>();
+    return m_settings->value(QStringLiteral("Locale"), defaultLanguage()).value<QLocale::Language>();
 }
 
 void AppSettings::setLanguage(QLocale::Language lang)
