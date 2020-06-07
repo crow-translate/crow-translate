@@ -49,7 +49,6 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 #if defined(Q_OS_LINUX)
-    SingleApplication::setOrganizationDomain(QStringLiteral("io.crow_translate.CrowTranslate"));
     SingleApplication::setDesktopFileName(SingleApplication::organizationDomain() + ".desktop");
 #elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
@@ -62,11 +61,11 @@ int launchGui(int argc, char *argv[])
 
 #ifdef Q_OS_LINUX
     if (QDBusConnection::sessionBus().isConnected()) {
-        if (QDBusConnection::sessionBus().registerService(SingleApplication::organizationDomain())) {
+        if (const QString service = QStringLiteral("io.crow_translate.CrowTranslate"); QDBusConnection::sessionBus().registerService(service)) {
             if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/MainWindow"), &window, QDBusConnection::ExportScriptableSlots))
                 qWarning() << SingleApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(window.metaObject()->className());
         } else {
-            qWarning() << SingleApplication::translate("D-Bus", "D-Bus service %1 is already registered by another application").arg(SingleApplication::organizationDomain());
+            qWarning() << SingleApplication::translate("D-Bus", "D-Bus service %1 is already registered by another application").arg(service);
         }
     }
 #endif
