@@ -35,8 +35,8 @@ int launchCli(int argc, char *argv[]);
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationVersion(QStringLiteral("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_PATCH));
-    QCoreApplication::setApplicationName(QStringLiteral(CPACK_PACKAGE_VENDOR));
-    QCoreApplication::setOrganizationName(QStringLiteral(CPACK_PACKAGE_VENDOR));
+    QCoreApplication::setApplicationName(QStringLiteral(APPLICATION_NAME));
+    QCoreApplication::setOrganizationName(QStringLiteral(APPLICATION_NAME));
 
     if (argc == 1)
         return launchGui(argc, argv); // Launch GUI if there are no arguments
