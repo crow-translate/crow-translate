@@ -136,7 +136,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/s
 
 install(TARGETS ${PROJECT_NAME})
 if(UNIX)
-    install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/Crow\ Translate/Crow\ Translate/translations)
+    install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${CPACK_PACKAGE_VENDOR}/${CPACK_PACKAGE_VENDOR}/translations)
     install(FILES data/io.crow_translate.CrowTranslate.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
     ecm_install_icons(ICONS
         ${APP_ICONS}
