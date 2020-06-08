@@ -1,0 +1,62 @@
+name: Main
+on:
+  push:
+    branches-ignore:
+      - 'releases/**'
+    paths-ignore:
+    - '**.md'
+    - '.github/workflows/release.yml'
+    - '.gitignore'
+  pull_request:
+    paths-ignore:
+    - '**.md'
+    - '.github/workflows/release.yml'
+    - '.gitignore'
+jobs:
+  Linux:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Clone repo
+      uses: actions/checkout@v2.2.0
+      with:
+        submodules: true
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get update
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev
+
+    - name: Build
+      run: |
+        mkdir build
+        cd build
+        cmake -D PORTABLE_MODE=ON ..
+        cmake --build . --parallel 2
+  Windows:
+    runs-on: windows-latest
+    steps:
+    - name: Enable Git symlinks
+      run: git config --global core.symlinks true
+
+    - name: Clone repo
+      uses: actions/checkout@v2.2.0
+      with:
+        submodules: true
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v2.6.3
+
+    - name: Install Extra CMake Modules
+      run: |
+        git clone --depth 1 --branch v5.70.0 https://github.com/KDE/extra-cmake-modules.git
+        cmake -S extra-cmake-modules -B extra-cmake-modules/build
+        cmake --build extra-cmake-modules/build --target install
+
+    - name: Build
+      env:
+        ECM_ROOT: C:\Program Files\ECM
+      run: |
+        mkdir build
+        cd build
+        cmake -D PORTABLE_MODE=ON ..
+        cmake --build . --parallel 2
