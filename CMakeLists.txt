@@ -141,6 +141,11 @@ elseif(WIN32)
 endif()
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
+option(PORTABLE_MODE "Enable portable functionality" OFF)
+if(${PORTABLE_MODE})
+    target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
+endif()
+
 install(TARGETS ${PROJECT_NAME})
 if(UNIX)
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${APPLICATION_NAME}/${APPLICATION_NAME}/translations)
