@@ -409,7 +409,11 @@ QByteArray Cli::readFilesFromStdin()
 {
     QString stdinText = QTextStream(stdin).readAll();
     QByteArray filesData;
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    for (const QString &filePath : stdinText.split(QRegularExpression(QStringLiteral("\\s+")), Qt::SkipEmptyParts)) {
+#else
     for (const QString &filePath : stdinText.split(QRegularExpression(QStringLiteral("\\s+")), QString::SkipEmptyParts)) {
+#endif
         QFile file(filePath);
         if (!file.exists()) {
             qCritical() << tr("Error: File does not exist: %1").arg(file.fileName());

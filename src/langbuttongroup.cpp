@@ -29,7 +29,11 @@ LangButtonGroup::LangButtonGroup(GroupType type, QObject *parent)
     , m_type(type)
     , m_group(new QButtonGroup(this))
 {
+#if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
+    connect(m_group, &QButtonGroup::idToggled, this, &LangButtonGroup::processButtonToggled);
+#else
     connect(m_group, qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &LangButtonGroup::processButtonToggled);
+#endif
 }
 
 void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
