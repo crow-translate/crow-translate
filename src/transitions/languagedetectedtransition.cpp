@@ -19,6 +19,7 @@
  */
 
 #include "languagedetectedtransition.h"
+
 #include "langbuttongroup.h"
 
 LanguageDetectedTransition::LanguageDetectedTransition(LangButtonGroup *group, QState *sourceState)

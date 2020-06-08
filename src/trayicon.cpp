@@ -19,8 +19,9 @@
  */
 
 #include "trayicon.h"
-#include "singleapplication.h"
+
 #include "mainwindow.h"
+#include "singleapplication.h"
 #include "settings/appsettings.h"
 
 #include <QFileInfo>

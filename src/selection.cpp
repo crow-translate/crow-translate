@@ -19,12 +19,13 @@
  */
 
 #include "selection.h"
+
 #include "singleapplication.h"
 
 #include <QClipboard>
 #ifdef Q_OS_WIN
-#include <QTimer>
 #include <QMimeData>
+#include <QTimer>
 
 #include <windows.h>
 #endif
@@ -49,7 +50,7 @@ void Selection::requestSelection()
         m_originalClipboardData->setData(format, clipboardData->data(format));
 
     // Wait until all modifiers will be unpressed (to avoid conflicts with the other shortcuts)
-    while(GetAsyncKeyState(VK_LWIN) || GetAsyncKeyState(VK_RWIN) || GetAsyncKeyState(VK_SHIFT) || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_CONTROL));
+    while (GetAsyncKeyState(VK_LWIN) || GetAsyncKeyState(VK_RWIN) || GetAsyncKeyState(VK_SHIFT) || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_CONTROL)) {};
 
     // Generate Ctrl + C input
     INPUT copyText[4];
@@ -100,7 +101,7 @@ Selection::Selection()
 void Selection::getSelection()
 {
 #if defined(Q_OS_LINUX)
-     emit requestedSelectionAvailable(SingleApplication::clipboard()->text(QClipboard::Selection));
+    emit requestedSelectionAvailable(SingleApplication::clipboard()->text(QClipboard::Selection));
 #elif defined(Q_OS_WIN)
     const QString selection = SingleApplication::clipboard()->text();
     if (selection.isEmpty() && m_maxSelectionDelay->isActive())

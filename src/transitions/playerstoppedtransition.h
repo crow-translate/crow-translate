@@ -34,5 +34,4 @@ protected:
     bool eventTest(QEvent *event) override;
 };
 
-
 #endif // PLAYERSTOPPEDTRANSITION_H

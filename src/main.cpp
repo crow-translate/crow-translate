@@ -18,11 +18,11 @@
  *
  */
 
-#include "mainwindow.h"
 #include "cli.h"
+#include "cmake.h"
+#include "mainwindow.h"
 #include "singleapplication.h"
 #include "settings/appsettings.h"
-#include "cmake.h"
 
 #ifdef Q_OS_LINUX
 #include <QDBusConnection>

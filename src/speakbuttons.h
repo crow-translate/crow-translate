@@ -24,8 +24,8 @@
 #include "qonlinetranslator.h"
 #include "qonlinetts.h"
 
-#include <QWidget>
 #include <QMediaPlayer>
+#include <QWidget>
 
 class AppSettings;
 

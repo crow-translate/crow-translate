@@ -19,11 +19,12 @@
  */
 
 #include "shortcutsmodel.h"
+
 #include "shortcutitem.h"
 #include "settings/appsettings.h"
 
-#include <QMetaEnum>
 #include <QFont>
+#include <QMetaEnum>
 
 ShortcutsModel::ShortcutsModel(QObject *parent)
     : QAbstractItemModel(parent)

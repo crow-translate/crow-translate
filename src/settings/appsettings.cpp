@@ -19,18 +19,19 @@
  */
 
 #include "appsettings.h"
-#include "singleapplication.h"
-#include "cmake.h"
 
-#include <QStandardPaths>
+#include "cmake.h"
+#include "singleapplication.h"
+
 #include <QFileInfo>
-#include <QTextStream>
+#include <QFont>
+#include <QKeySequence>
 #include <QLibraryInfo>
 #include <QMetaEnum>
-#include <QKeySequence>
 #include <QSettings>
+#include <QStandardPaths>
+#include <QTextStream>
 #include <QTranslator>
-#include <QFont>
 #ifdef Q_OS_WIN
 #include <QDir>
 #endif
@@ -96,7 +97,7 @@ AppSettings::WindowMode AppSettings::windowMode() const
 
 void AppSettings::setWindowMode(WindowMode mode)
 {
-     m_settings->setValue(QStringLiteral("WindowMode"), mode);
+    m_settings->setValue(QStringLiteral("WindowMode"), mode);
 }
 
 AppSettings::WindowMode AppSettings::defaultWindowMode()
@@ -111,7 +112,7 @@ bool AppSettings::isShowTrayIcon() const
 
 void AppSettings::setShowTrayIcon(bool visible)
 {
-     m_settings->setValue(QStringLiteral("TrayIconVisible"), visible);
+    m_settings->setValue(QStringLiteral("TrayIconVisible"), visible);
 }
 
 bool AppSettings::defaultShowTrayIcon()
@@ -126,7 +127,7 @@ bool AppSettings::isStartMinimized() const
 
 void AppSettings::setStartMinimized(bool minimized)
 {
-     m_settings->setValue(QStringLiteral("StartMinimized"), minimized);
+    m_settings->setValue(QStringLiteral("StartMinimized"), minimized);
 }
 
 bool AppSettings::defaultStartMinimized()
@@ -159,7 +160,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
         }
     } else {
         // Remove autorun file
-        if(autorunFile.exists())
+        if (autorunFile.exists())
             autorunFile.remove();
     }
 #elif defined(Q_OS_WIN)
@@ -211,7 +212,7 @@ AppSettings::Interval AppSettings::checkForUpdatesInterval() const
 
 void AppSettings::setCheckForUpdatesInterval(AppSettings::Interval interval)
 {
-     m_settings->setValue(QStringLiteral("CheckForUpdatesInterval"), interval);
+    m_settings->setValue(QStringLiteral("CheckForUpdatesInterval"), interval);
 }
 
 AppSettings::Interval AppSettings::defaultCheckForUpdatesInterval()
@@ -226,7 +227,7 @@ QDate AppSettings::lastUpdateCheckDate() const
 
 void AppSettings::setLastUpdateCheckDate(const QDate &date)
 {
-     m_settings->setValue(QStringLiteral("LastUpdateCheckDate"), date);
+    m_settings->setValue(QStringLiteral("LastUpdateCheckDate"), date);
 }
 #endif
 
@@ -247,7 +248,7 @@ double AppSettings::popupOpacity() const
 
 void AppSettings::setPopupOpacity(double opacity)
 {
-     m_settings->setValue(QStringLiteral("PopupOpacity"), opacity);
+    m_settings->setValue(QStringLiteral("PopupOpacity"), opacity);
 }
 
 double AppSettings::defaultPopupOpacity()
@@ -262,7 +263,7 @@ int AppSettings::popupHeight() const
 
 void AppSettings::setPopupHeight(int height)
 {
-     m_settings->setValue(QStringLiteral("PopupHeight"), height);
+    m_settings->setValue(QStringLiteral("PopupHeight"), height);
 }
 
 int AppSettings::defaultPopupHeight()
@@ -277,7 +278,7 @@ int AppSettings::popupWidth() const
 
 void AppSettings::setPopupWidth(int width)
 {
-     m_settings->setValue(QStringLiteral("PopupWidth"), width);
+    m_settings->setValue(QStringLiteral("PopupWidth"), width);
 }
 
 int AppSettings::defaultPopupWidth()
@@ -292,7 +293,7 @@ TrayIcon::IconType AppSettings::trayIconType() const
 
 void AppSettings::setTrayIconType(TrayIcon::IconType type)
 {
-     m_settings->setValue(QStringLiteral("TrayIconName"), type);
+    m_settings->setValue(QStringLiteral("TrayIconName"), type);
 }
 
 TrayIcon::IconType AppSettings::defaultTrayIconType()
@@ -307,7 +308,7 @@ QString AppSettings::customIconPath() const
 
 void AppSettings::setCustomIconPath(const QString &path)
 {
-     m_settings->setValue(QStringLiteral("CustomIconPath"), path);
+    m_settings->setValue(QStringLiteral("CustomIconPath"), path);
 }
 
 QString AppSettings::defaultCustomIconPath()
@@ -322,7 +323,7 @@ bool AppSettings::isSourceTranslitEnabled() const
 
 void AppSettings::setSourceTranslitEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("Translation/SourceTranslitEnabled"), enable);
+    m_settings->setValue(QStringLiteral("Translation/SourceTranslitEnabled"), enable);
 }
 
 bool AppSettings::defaultSourceTranslitEnabled()
@@ -337,7 +338,7 @@ bool AppSettings::isTranslationTranslitEnabled() const
 
 void AppSettings::setTranslationTranslitEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("Translation/TranslationTranslitEnabled"), enable);
+    m_settings->setValue(QStringLiteral("Translation/TranslationTranslitEnabled"), enable);
 }
 
 bool AppSettings::defaultTranslationTranslitEnabled()
@@ -352,7 +353,7 @@ bool AppSettings::isSourceTranscriptionEnabled() const
 
 void AppSettings::setSourceTranscriptionEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("Translation/SourceTranscriptionEnabled"), enable);
+    m_settings->setValue(QStringLiteral("Translation/SourceTranscriptionEnabled"), enable);
 }
 
 bool AppSettings::defaultSourceTranscriptionEnabled()
@@ -367,7 +368,7 @@ bool AppSettings::isTranslationOptionsEnabled() const
 
 void AppSettings::setTranslationOptionsEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("Translation/TranslationOptionsEnabled"), enable);
+    m_settings->setValue(QStringLiteral("Translation/TranslationOptionsEnabled"), enable);
 }
 
 bool AppSettings::defaultTranslationOptionsEnabled()
@@ -382,7 +383,7 @@ bool AppSettings::isExamplesEnabled() const
 
 void AppSettings::setExamplesEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("Translation/ExamplesEnabled"), enable);
+    m_settings->setValue(QStringLiteral("Translation/ExamplesEnabled"), enable);
 }
 
 bool AppSettings::defaultExamplesEnabled()
@@ -412,7 +413,7 @@ QOnlineTranslator::Language AppSettings::primaryLanguage() const
 
 void AppSettings::setPrimaryLanguage(QOnlineTranslator::Language lang)
 {
-     m_settings->setValue(QStringLiteral("Translation/PrimaryLanguage"), lang);
+    m_settings->setValue(QStringLiteral("Translation/PrimaryLanguage"), lang);
 }
 
 QOnlineTranslator::Language AppSettings::defaultPrimaryLanguage()
@@ -427,7 +428,7 @@ QOnlineTranslator::Language AppSettings::secondaryLanguage() const
 
 void AppSettings::setSecondaryLanguage(QOnlineTranslator::Language lang)
 {
-     m_settings->setValue(QStringLiteral("Translation/SecondaryLanguage"), lang);
+    m_settings->setValue(QStringLiteral("Translation/SecondaryLanguage"), lang);
 }
 
 QOnlineTranslator::Language AppSettings::defaultSecondaryLanguage()
@@ -455,7 +456,7 @@ bool AppSettings::isForceSourceAutodetect() const
 
 void AppSettings::setForceSourceAutodetect(bool force)
 {
-     m_settings->setValue(QStringLiteral("Translation/ForceSourceAutodetect"), force);
+    m_settings->setValue(QStringLiteral("Translation/ForceSourceAutodetect"), force);
 }
 
 bool AppSettings::defaultForceSourceAutodetect()
@@ -470,7 +471,7 @@ bool AppSettings::isForceTranslationAutodetect() const
 
 void AppSettings::setForceTranslationAutodetect(bool force)
 {
-     m_settings->setValue(QStringLiteral("Translation/ForceTranslationAutodetect"), force);
+    m_settings->setValue(QStringLiteral("Translation/ForceTranslationAutodetect"), force);
 }
 
 bool AppSettings::defaultForceTranslationAutodetect()
@@ -498,7 +499,7 @@ void AppSettings::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice v
     case QOnlineTranslator::Bing:
         qFatal("Currently only Yandex have voice settings");
     case QOnlineTranslator::Yandex:
-         m_settings->setValue(QStringLiteral("Translation/YandexVoice"), voice);
+        m_settings->setValue(QStringLiteral("Translation/YandexVoice"), voice);
         return;
     }
 
@@ -538,7 +539,7 @@ void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emoti
     case QOnlineTranslator::Google:
         qFatal("Currently only Yandex have emotion settings");
     case QOnlineTranslator::Yandex:
-         m_settings->setValue(QStringLiteral("Translation/YandexEmotion"), emotion);
+        m_settings->setValue(QStringLiteral("Translation/YandexEmotion"), emotion);
         return;
     }
 
@@ -565,7 +566,7 @@ QNetworkProxy::ProxyType AppSettings::proxyType() const
 
 void AppSettings::setProxyType(QNetworkProxy::ProxyType type)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyType"), type);
+    m_settings->setValue(QStringLiteral("Connection/ProxyType"), type);
 }
 
 QNetworkProxy::ProxyType AppSettings::defaultProxyType()
@@ -580,7 +581,7 @@ QString AppSettings::proxyHost() const
 
 void AppSettings::setProxyHost(const QString &hostName)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyHost"), hostName);
+    m_settings->setValue(QStringLiteral("Connection/ProxyHost"), hostName);
 }
 
 QString AppSettings::defaultProxyHost()
@@ -595,7 +596,7 @@ quint16 AppSettings::proxyPort() const
 
 void AppSettings::setProxyPort(quint16 port)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyPort"), port);
+    m_settings->setValue(QStringLiteral("Connection/ProxyPort"), port);
 }
 
 quint16 AppSettings::defaultProxyPort()
@@ -610,7 +611,7 @@ bool AppSettings::isProxyAuthEnabled() const
 
 void AppSettings::setProxyAuthEnabled(bool enabled)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyAuthEnabled"), enabled);
+    m_settings->setValue(QStringLiteral("Connection/ProxyAuthEnabled"), enabled);
 }
 
 bool AppSettings::defaultProxyAuthEnabled()
@@ -625,7 +626,7 @@ QString AppSettings::proxyUsername() const
 
 void AppSettings::setProxyUsername(const QString &username)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyUsername"), username);
+    m_settings->setValue(QStringLiteral("Connection/ProxyUsername"), username);
 }
 
 QString AppSettings::defaultProxyUsername()
@@ -640,7 +641,7 @@ QString AppSettings::proxyPassword() const
 
 void AppSettings::setProxyPassword(const QString &password)
 {
-     m_settings->setValue(QStringLiteral("Connection/ProxyPassword"), password);
+    m_settings->setValue(QStringLiteral("Connection/ProxyPassword"), password);
 }
 
 QString AppSettings::defaultProxyPassword()
@@ -670,7 +671,7 @@ QKeySequence AppSettings::translateSelectionShortcut() const
 
 void AppSettings::setTranslateSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/TranslateSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/TranslateSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultTranslateSelectionShortcut()
@@ -685,7 +686,7 @@ QKeySequence AppSettings::speakSelectionShortcut() const
 
 void AppSettings::setSpeakSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/SpeakSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/SpeakSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultSpeakSelectionShortcut()
@@ -700,7 +701,7 @@ QKeySequence AppSettings::speakTranslatedSelectionShortcut() const
 
 void AppSettings::setSpeakTranslatedSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/SpeakTranslatedSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/SpeakTranslatedSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultSpeakTranslatedSelectionShortcut()
@@ -715,7 +716,7 @@ QKeySequence AppSettings::stopSpeakingShortcut() const
 
 void AppSettings::setStopSpeakingShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/StopSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/StopSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultStopSpeakingShortcut()
@@ -730,7 +731,7 @@ QKeySequence AppSettings::showMainWindowShortcut() const
 
 void AppSettings::setShowMainWindowShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/ShowMainWindow"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/ShowMainWindow"), shortcut);
 }
 
 QKeySequence AppSettings::defaultShowMainWindowShortcut()
@@ -745,7 +746,7 @@ QKeySequence AppSettings::copyTranslatedSelectionShortcut() const
 
 void AppSettings::setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/CopyTranslatedSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/CopyTranslatedSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
@@ -760,7 +761,7 @@ QKeySequence AppSettings::translateShortcut() const
 
 void AppSettings::setTranslateShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/Translate"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/Translate"), shortcut);
 }
 
 QKeySequence AppSettings::defaultTranslateShortcut()
@@ -775,7 +776,7 @@ QKeySequence AppSettings::closeWindowShortcut() const
 
 void AppSettings::setCloseWindowShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/CloseWindow"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/CloseWindow"), shortcut);
 }
 
 QKeySequence AppSettings::defaultCloseWindowShortcut()
@@ -790,7 +791,7 @@ QKeySequence AppSettings::speakSourceShortcut() const
 
 void AppSettings::setSpeakSourceShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/SpeakSource"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/SpeakSource"), shortcut);
 }
 
 QKeySequence AppSettings::defaultSpeakSourceShortcut()
@@ -805,7 +806,7 @@ QKeySequence AppSettings::speakTranslationShortcut() const
 
 void AppSettings::setSpeakTranslationShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/SpeakTranslation"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/SpeakTranslation"), shortcut);
 }
 
 QKeySequence AppSettings::defaultSpeakTranslationShortcut()
@@ -820,7 +821,7 @@ QKeySequence AppSettings::copyTranslationShortcut() const
 
 void AppSettings::setCopyTranslationShortcut(const QKeySequence &shortcut)
 {
-     m_settings->setValue(QStringLiteral("Shortcuts/CopyTranslation"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/CopyTranslation"), shortcut);
 }
 
 QKeySequence AppSettings::defaultCopyTranslationShortcut()
@@ -839,7 +840,7 @@ void AppSettings::setButtonLanguage(LangButtonGroup::GroupType group, int id, QO
 {
     const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
 
-     m_settings->setValue(QStringLiteral("Buttons/%1Button%2").arg(groupType.key(group), QString::number(id)), lang);
+    m_settings->setValue(QStringLiteral("Buttons/%1Button%2").arg(groupType.key(group), QString::number(id)), lang);
 }
 
 int AppSettings::checkedButton(LangButtonGroup::GroupType group) const
@@ -853,7 +854,7 @@ void AppSettings::setCheckedButton(LangButtonGroup::GroupType group, int id)
 {
     const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
 
-     m_settings->setValue(QStringLiteral("Buttons/Checked%1Button").arg(groupType.key(group)), id);
+    m_settings->setValue(QStringLiteral("Buttons/Checked%1Button").arg(groupType.key(group)), id);
 }
 
 QByteArray AppSettings::mainWindowGeometry() const
@@ -863,7 +864,7 @@ QByteArray AppSettings::mainWindowGeometry() const
 
 void AppSettings::setMainWindowGeometry(const QByteArray &geometry)
 {
-     m_settings->setValue(QStringLiteral("WindowGeometry"), geometry);
+    m_settings->setValue(QStringLiteral("WindowGeometry"), geometry);
 }
 
 bool AppSettings::isAutoTranslateEnabled() const
@@ -873,7 +874,7 @@ bool AppSettings::isAutoTranslateEnabled() const
 
 void AppSettings::setAutoTranslateEnabled(bool enable)
 {
-     m_settings->setValue(QStringLiteral("AutoTranslate"), enable);
+    m_settings->setValue(QStringLiteral("AutoTranslate"), enable);
 }
 
 QOnlineTranslator::Engine AppSettings::currentEngine() const
@@ -883,5 +884,5 @@ QOnlineTranslator::Engine AppSettings::currentEngine() const
 
 void AppSettings::setCurrentEngine(QOnlineTranslator::Engine currentEngine)
 {
-     m_settings->setValue(QStringLiteral("CurrentEngine"), currentEngine);
+    m_settings->setValue(QStringLiteral("CurrentEngine"), currentEngine);
 }

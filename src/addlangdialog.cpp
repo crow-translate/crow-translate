@@ -20,6 +20,7 @@
 
 #include "addlangdialog.h"
 #include "ui_addlangdialog.h"
+
 #include "langbuttongroup.h"
 
 #include <QPushButton>

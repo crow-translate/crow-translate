@@ -19,6 +19,7 @@
  */
 
 #include "shortcutitem.h"
+
 #include "shortcutsmodel.h"
 
 ShortcutItem::ShortcutItem(ShortcutsModel *model)

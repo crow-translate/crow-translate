@@ -20,6 +20,7 @@
 
 #include "speakbuttons.h"
 #include "ui_speakbuttons.h"
+
 #include "settings/appsettings.h"
 
 #include <QMediaPlaylist>

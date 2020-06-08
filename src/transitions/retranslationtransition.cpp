@@ -20,8 +20,8 @@
 
 #include "retranslationtransition.h"
 
-#include "qonlinetranslator.h"
 #include "langbuttongroup.h"
+#include "qonlinetranslator.h"
 
 RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LangButtonGroup *group, QState *sourceState)
     : QAbstractTransition(sourceState)

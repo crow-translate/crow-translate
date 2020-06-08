@@ -99,7 +99,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
-            for (const auto &[example, description]: it.value()) {
+            for (const auto &[example, description] : it.value()) {
                 append(description);
                 append(QStringLiteral("<font color=\"grey\"><i>%1</i></font>").arg(example));
                 append({});

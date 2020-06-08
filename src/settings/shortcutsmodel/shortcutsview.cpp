@@ -19,6 +19,7 @@
  */
 
 #include "shortcutsview.h"
+
 #include "shortcutsmodel.h"
 
 #include <QHeaderView>

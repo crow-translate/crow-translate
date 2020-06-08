@@ -20,21 +20,22 @@
 
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
+
 #include "appsettings.h"
-#include "singleapplication.h"
-#include "shortcutsmodel/shortcutsmodel.h"
-#include "shortcutsmodel/shortcutitem.h"
 #include "qhotkey.h"
+#include "singleapplication.h"
+#include "shortcutsmodel/shortcutitem.h"
+#include "shortcutsmodel/shortcutsmodel.h"
 #ifdef Q_OS_WIN
-#include "updaterdialog.h"
 #include "qgittag.h"
+#include "updaterdialog.h"
 #endif
 
-#include <QNetworkProxy>
-#include <QFileDialog>
-#include <QScreen>
-#include <QMessageBox>
 #include <QDate>
+#include <QFileDialog>
+#include <QMessageBox>
+#include <QNetworkProxy>
+#include <QScreen>
 
 SettingsDialog::SettingsDialog(QWidget *parent)
     : QDialog(parent)
@@ -144,10 +145,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     // Check current date
     const QDate date = QDate::currentDate();
-    if ((date.month() == 12 && date.day() == 31)
-            || (date.month() == 1 && date.day() == 1)) {
+    if ((date.month() == 12 && date.day() == 31) || (date.month() == 1 && date.day() == 1))
         ui->testSpeechEdit->setText(tr("Happy New Year!"));
-    }
 
     loadSettings();
 }
@@ -424,7 +423,6 @@ void SettingsDialog::checkForUpdates()
     settings.setLastUpdateCheckDate(QDate::currentDate());
 }
 #endif
-
 
 void SettingsDialog::restoreDefaults()
 {

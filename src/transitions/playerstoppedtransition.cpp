@@ -36,4 +36,3 @@ bool PlayerStoppedTransition::eventTest(QEvent *event)
     auto *signalEvent = dynamic_cast<QStateMachine::SignalEvent *>(event);
     return signalEvent->arguments().constFirst().toInt() == QMediaPlayer::StoppedState;
 }
-

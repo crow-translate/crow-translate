@@ -20,34 +20,35 @@
 
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "popupwindow.h"
+
 #include "addlangdialog.h"
 #include "langbuttongroup.h"
-#include "speakbuttons.h"
-#include "selection.h"
+#include "popupwindow.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
+#include "selection.h"
 #include "singleapplication.h"
-#include "settings/settingsdialog.h"
+#include "speakbuttons.h"
 #include "settings/appsettings.h"
-#include "transitions/translatorabortedtransition.h"
-#include "transitions/translatorerrortransition.h"
-#include "transitions/textemptytransition.h"
+#include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
 #include "transitions/retranslationtransition.h"
+#include "transitions/textemptytransition.h"
+#include "transitions/translatorabortedtransition.h"
+#include "transitions/translatorerrortransition.h"
 #ifdef Q_OS_WIN
-#include "updaterdialog.h"
 #include "qgittag.h"
+#include "updaterdialog.h"
 #endif
 
 #include <QClipboard>
-#include <QShortcut>
-#include <QNetworkProxy>
-#include <QMessageBox>
-#include <QMenu>
-#include <QMediaPlaylist>
-#include <QStateMachine>
 #include <QFinalState>
+#include <QMediaPlaylist>
+#include <QMenu>
+#include <QMessageBox>
+#include <QNetworkProxy>
+#include <QShortcut>
+#include <QStateMachine>
 
 MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
@@ -593,8 +594,7 @@ void MainWindow::checkForUpdates()
 void MainWindow::changeEvent(QEvent *event)
 {
     switch (event->type()) {
-    case QEvent::LocaleChange:
-    {
+    case QEvent::LocaleChange: {
         // System language chaged
         AppSettings settings;
         const QLocale::Language lang = settings.language();

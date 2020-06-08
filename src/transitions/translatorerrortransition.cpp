@@ -19,6 +19,7 @@
  */
 
 #include "translatorerrortransition.h"
+
 #include "qonlinetranslator.h"
 
 TranslatorErrorTransition::TranslatorErrorTransition(QOnlineTranslator *translator, QState *sourceState)

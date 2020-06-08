@@ -21,9 +21,9 @@
 #ifndef APPSETTINGS_H
 #define APPSETTINGS_H
 
+#include "langbuttongroup.h"
 #include "qonlinetranslator.h"
 #include "qonlinetts.h"
-#include "langbuttongroup.h"
 #include "trayicon.h"
 
 #include <QLocale>

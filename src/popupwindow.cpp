@@ -20,17 +20,18 @@
 
 #include "popupwindow.h"
 #include "ui_popupwindow.h"
+
 #include "langbuttongroup.h"
-#include "translationedit.h"
-#include "singleapplication.h"
 #include "mainwindow.h"
+#include "singleapplication.h"
 #include "speakbuttons.h"
+#include "translationedit.h"
 #include "settings/appsettings.h"
 
-#include <QScreen>
-#include <QMediaPlaylist>
-#include <QShortcut>
 #include <QCloseEvent>
+#include <QMediaPlaylist>
+#include <QScreen>
+#include <QShortcut>
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
@@ -65,7 +66,7 @@ PopupWindow::PopupWindow(MainWindow *parent)
     m_sourceLangButtons->addButton(ui->thirdSourceButton);
     m_sourceLangButtons->loadLanguages(parent->sourceLangButtons());
     connect(parent->sourceLangButtons(), &LangButtonGroup::buttonChecked, m_sourceLangButtons, &LangButtonGroup::checkButton);
-    connect(parent->sourceLangButtons(), &LangButtonGroup::languageChanged, m_sourceLangButtons,  &LangButtonGroup::setLanguage);
+    connect(parent->sourceLangButtons(), &LangButtonGroup::languageChanged, m_sourceLangButtons, &LangButtonGroup::setLanguage);
 
     // Translation button group
     m_translationLangButtons->addButton(ui->autoTranslationButton);
@@ -74,7 +75,7 @@ PopupWindow::PopupWindow(MainWindow *parent)
     m_translationLangButtons->addButton(ui->thirdTranslationButton);
     m_translationLangButtons->loadLanguages(parent->translationLangButtons());
     connect(parent->translationLangButtons(), &LangButtonGroup::buttonChecked, m_translationLangButtons, &LangButtonGroup::checkButton);
-    connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons,  &LangButtonGroup::setLanguage);
+    connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons, &LangButtonGroup::setLanguage);
 
     // Shortcuts
     m_closeWindowsShortcut->setKey(parent->closeWindowShortcut()->key());
@@ -114,12 +115,12 @@ void PopupWindow::showEvent(QShowEvent *event)
 #endif
 
     if (availableSize.width() - position.x() - geometry().width() < 0) {
-        position.rx()-= frameGeometry().width();
+        position.rx() -= frameGeometry().width();
         if (position.x() < 0)
             position.rx() = 0;
     }
     if (availableSize.height() - position.y() - geometry().height() < 0) {
-        position.ry()-= frameGeometry().height();
+        position.ry() -= frameGeometry().height();
         if (position.y() < 0)
             position.ry() = 0;
     }

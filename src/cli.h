@@ -24,8 +24,8 @@
 #include "qonlinetranslator.h"
 
 #include <QObject>
-#include <QVector>
 #include <QTextStream>
+#include <QVector>
 
 class QCoreApplication;
 class QMediaPlayer;

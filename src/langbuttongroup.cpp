@@ -19,6 +19,7 @@
  */
 
 #include "langbuttongroup.h"
+
 #include "settings/appsettings.h"
 
 #include <QAbstractButton>
@@ -70,9 +71,9 @@ void LangButtonGroup::addButton(QAbstractButton *button)
 
     m_group->addButton(button, m_group->buttons().count());
     if (buttonId == 0) {
-       button->setText(tr("Auto"));
-       button->setToolTip(tr("Auto"));
-       button->setProperty(s_languageProperty, QOnlineTranslator::Auto); // Save language id in property
+        button->setText(tr("Auto"));
+        button->setToolTip(tr("Auto"));
+        button->setProperty(s_languageProperty, QOnlineTranslator::Auto); // Save language id in property
     }
 }
 

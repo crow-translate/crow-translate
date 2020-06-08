@@ -19,17 +19,18 @@
  */
 
 #include "cli.h"
+
 #include "qonlinetts.h"
 #include "singleapplication.h"
 #include "transitions/playerstoppedtransition.h"
 
 #include <QCommandLineParser>
 #include <QFile>
-#include <QRegularExpression>
+#include <QFinalState>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
+#include <QRegularExpression>
 #include <QStateMachine>
-#include <QFinalState>
 
 Cli::Cli(QObject *parent)
     : QObject(parent)
