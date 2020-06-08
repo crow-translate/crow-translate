@@ -32,6 +32,8 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
+option(PORTABLE_MODE "Enable portable functionality" OFF)
+
 set(QAPPLICATION_CLASS QApplication)
 option(QHOTKEY_INSTALL OFF)
 
@@ -141,8 +143,7 @@ elseif(WIN32)
 endif()
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
-option(PORTABLE_MODE "Enable portable functionality" OFF)
-if(${PORTABLE_MODE})
+if(PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
 endif()
 
