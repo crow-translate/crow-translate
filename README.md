@@ -225,6 +225,20 @@ sudo yum copr enable faezebax/crow-translate
 sudo yum install crow-translate
 ```
 
+#### Mageia 7
+
+:package: [BlogDrake Repositiry](http://ftp.blogdrake.net)
+
+```bash
+# With urpmi
+sudo urpmi urpmi.addmedia --wget --distrib http://ftp.blogdrake.net/mageia/mageia7/x86_64 # Or i586
+sudo urpmi crow-translate
+
+# Or with dnf
+sudo dnf config-manager --add-repo http://ftp.blogdrake.net/mageia/BDK.repo
+sudo dnf install crow-translate
+```
+
 #### openSUSE Tumbleweed
 
 :package: [Tumbleweed repository](https://software.opensuse.org/package/crow-translate)
