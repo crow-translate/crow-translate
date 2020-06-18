@@ -24,11 +24,7 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true">
-       <property name="layoutDirection">
-        <enum>Qt::RightToLeft</enum>
-       </property>
-      </widget>
+      <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true"/>
      </item>
      <item>
       <widget class="QToolButton" name="swapButton">
@@ -42,7 +38,11 @@
       </widget>
      </item>
      <item>
-      <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true"/>
+      <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true">
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

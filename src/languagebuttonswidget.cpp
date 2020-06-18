@@ -411,7 +411,7 @@ void LanguageButtonsWidget::addButton(QOnlineTranslator::Language language)
     setButtonLanguage(button, language);
 
     // Insert all languages after "Edit" button
-    ui->languagesLayout->insertWidget(1, button);
+    ui->languagesLayout->insertWidget(ui->languagesLayout->count() - 1, button);
 }
 
 void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language language)
