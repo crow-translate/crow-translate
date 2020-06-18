@@ -21,7 +21,7 @@
 #include "popupwindow.h"
 #include "ui_popupwindow.h"
 
-#include "langbuttongroup.h"
+#include "languagebuttonswidget.h"
 #include "mainwindow.h"
 #include "singleapplication.h"
 #include "speakbuttons.h"
@@ -40,8 +40,6 @@ PopupWindow::PopupWindow(MainWindow *parent)
     : QWidget(parent, Qt::Window | Qt::FramelessWindowHint)
     , ui(new Ui::PopupWindow)
     , m_closeWindowsShortcut(new QShortcut(this))
-    , m_sourceLangButtons(new LangButtonGroup(LangButtonGroup::Source, this))
-    , m_translationLangButtons(new LangButtonGroup(LangButtonGroup::Translation, this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -60,22 +58,20 @@ PopupWindow::PopupWindow(MainWindow *parent)
     connect(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, parent->translationSpeakButtons(), &SpeakButtons::playerMediaRequested);
 
     // Source button group
-    m_sourceLangButtons->addButton(ui->autoSourceButton);
-    m_sourceLangButtons->addButton(ui->firstSourceButton);
-    m_sourceLangButtons->addButton(ui->secondSourceButton);
-    m_sourceLangButtons->addButton(ui->thirdSourceButton);
-    m_sourceLangButtons->loadLanguages(parent->sourceLangButtons());
-    connect(parent->sourceLangButtons(), &LangButtonGroup::buttonChecked, m_sourceLangButtons, &LangButtonGroup::checkButton);
-    connect(parent->sourceLangButtons(), &LangButtonGroup::languageChanged, m_sourceLangButtons, &LangButtonGroup::setLanguage);
+    ui->sourceLanguagesWidget->setLanguages(parent->sourceLanguageButtons()->languages());
+    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, parent->sourceLanguageButtons(), &LanguageButtonsWidget::checkButton);
+    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::languagesChanged, parent->sourceLanguageButtons(), &LanguageButtonsWidget::setLanguages);
+    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::buttonChecked, ui->sourceLanguagesWidget, &LanguageButtonsWidget::checkButton);
+    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::autoLanguageChanged, ui->sourceLanguagesWidget, &LanguageButtonsWidget::setAutoLanguage);
+    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::languageAdded, ui->sourceLanguagesWidget, &LanguageButtonsWidget::addLanguage);
 
     // Translation button group
-    m_translationLangButtons->addButton(ui->autoTranslationButton);
-    m_translationLangButtons->addButton(ui->firstTranslationButton);
-    m_translationLangButtons->addButton(ui->secondTranslationButton);
-    m_translationLangButtons->addButton(ui->thirdTranslationButton);
-    m_translationLangButtons->loadLanguages(parent->translationLangButtons());
-    connect(parent->translationLangButtons(), &LangButtonGroup::buttonChecked, m_translationLangButtons, &LangButtonGroup::checkButton);
-    connect(parent->translationLangButtons(), &LangButtonGroup::languageChanged, m_translationLangButtons, &LangButtonGroup::setLanguage);
+    ui->translationLanguagesWidget->setLanguages(parent->translationLanguageButtons()->languages());
+    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, parent->translationLanguageButtons(), &LanguageButtonsWidget::checkButton);
+    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::languagesChanged, parent->translationLanguageButtons(), &LanguageButtonsWidget::setLanguages);
+    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::buttonChecked, ui->translationLanguagesWidget, &LanguageButtonsWidget::checkButton);
+    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::autoLanguageChanged, ui->translationLanguagesWidget, &LanguageButtonsWidget::setAutoLanguage);
+    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::languageAdded, ui->translationLanguagesWidget, &LanguageButtonsWidget::addLanguage);
 
     // Shortcuts
     m_closeWindowsShortcut->setKey(parent->closeWindowShortcut()->key());
@@ -85,12 +81,8 @@ PopupWindow::PopupWindow(MainWindow *parent)
     ui->sourceSpeakButtons->setSpeakShortcut(parent->sourceSpeakButtons()->speakShortcut());
     ui->translationSpeakButtons->setSpeakShortcut(parent->translationSpeakButtons()->speakShortcut());
 
-    // Connect popup window events
+    // Other
     connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), parent->engineCombobox(), &QComboBox::setCurrentIndex);
-    connect(m_sourceLangButtons, &LangButtonGroup::buttonChecked, parent->sourceLangButtons(), &LangButtonGroup::checkButton);
-    connect(m_translationLangButtons, &LangButtonGroup::buttonChecked, parent->translationLangButtons(), &LangButtonGroup::checkButton);
-    connect(ui->addSourceLangButton, &QToolButton::clicked, parent->addSourceLangButton(), &QToolButton::click);
-    connect(ui->addTranslationLangButton, &QToolButton::clicked, parent->addTranslationLangButton(), &QToolButton::click);
     connect(ui->swapButton, &QToolButton::clicked, parent->swapButton(), &QToolButton::click);
     connect(ui->copySourceButton, &QToolButton::clicked, parent->copySourceButton(), &QToolButton::click);
     connect(ui->copyTranslationButton, &QToolButton::clicked, parent->copyTranslationButton(), &QToolButton::click);

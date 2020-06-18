@@ -24,71 +24,11 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QToolButton" name="addSourceLangButton">
-       <property name="toolTip">
-        <string>Add language</string>
-       </property>
-       <property name="icon">
-        <iconset theme="list-add">
-         <normaloff>.</normaloff>.</iconset>
+      <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true">
+       <property name="layoutDirection">
+        <enum>Qt::RightToLeft</enum>
        </property>
       </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="autoSourceButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="firstSourceButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="secondSourceButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="thirdSourceButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="sourceSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-      </spacer>
      </item>
      <item>
       <widget class="QToolButton" name="swapButton">
@@ -102,71 +42,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="translationSpacer">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-     <item>
-      <widget class="QToolButton" name="firstTranslationButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="secondTranslationButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="thirdTranslationButton">
-       <property name="text">
-        <string/>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="autoTranslationButton">
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QToolButton" name="addTranslationLangButton">
-       <property name="toolTip">
-        <string>Add language</string>
-       </property>
-       <property name="icon">
-        <iconset theme="list-add">
-         <normaloff>.</normaloff>.</iconset>
-       </property>
-      </widget>
+      <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true"/>
      </item>
     </layout>
    </item>
@@ -213,7 +89,7 @@
          <string notr="true">Google</string>
         </property>
         <property name="icon">
-         <iconset resource="../data/resources.qrc">
+         <iconset resource="../data/icons/engines/engines.qrc">
           <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
         </property>
        </item>
@@ -222,7 +98,7 @@
          <string notr="true">Yandex</string>
         </property>
         <property name="icon">
-         <iconset resource="../data/resources.qrc">
+         <iconset resource="../data/icons/engines/engines.qrc">
           <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
         </property>
        </item>
@@ -231,7 +107,7 @@
          <string notr="true">Bing</string>
         </property>
         <property name="icon">
-         <iconset resource="../data/resources.qrc">
+         <iconset resource="../data/icons/engines/engines.qrc">
           <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
         </property>
        </item>
@@ -274,11 +150,18 @@
    <container>1</container>
    <slots>
     <signal>playerMediaRequested()</signal>
+    <slot>stopSpeaking()</slot>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>LanguageButtonsWidget</class>
+   <extends>QWidget</extends>
+   <header>languagebuttonswidget.h</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources>
-  <include location="../data/resources.qrc"/>
+  <include location="../data/icons/engines/engines.qrc"/>
  </resources>
  <connections/>
 </ui>

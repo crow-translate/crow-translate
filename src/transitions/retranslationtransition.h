@@ -24,12 +24,12 @@
 #include <QAbstractTransition>
 
 class QOnlineTranslator;
-class LangButtonGroup;
+class LanguageButtonsWidget;
 
 class RetranslationTransition : public QAbstractTransition
 {
 public:
-    RetranslationTransition(QOnlineTranslator *translator, LangButtonGroup *group, QState *sourceState = nullptr);
+    RetranslationTransition(QOnlineTranslator *translator, LanguageButtonsWidget *buttons, QState *sourceState = nullptr);
 
 protected:
     bool eventTest(QEvent *) override;
@@ -37,7 +37,7 @@ protected:
 
 private:
     QOnlineTranslator *m_translator;
-    LangButtonGroup *m_group;
+    LanguageButtonsWidget *m_languageButtons;
 };
 
 #endif // RETRANSLATIONTRANSITION_H

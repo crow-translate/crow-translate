@@ -20,20 +20,20 @@
 
 #include "retranslationtransition.h"
 
-#include "langbuttongroup.h"
+#include "languagebuttonswidget.h"
 #include "qonlinetranslator.h"
 
-RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LangButtonGroup *group, QState *sourceState)
+RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LanguageButtonsWidget *buttons, QState *sourceState)
     : QAbstractTransition(sourceState)
     , m_translator(translator)
-    , m_group(group)
+    , m_languageButtons(buttons)
 {
 }
 
 bool RetranslationTransition::eventTest(QEvent *)
 {
     return m_translator->error() == QOnlineTranslator::NoError
-            && m_group->isAutoButtonChecked()
+            && m_languageButtons->isAutoButtonChecked()
             && m_translator->sourceLanguage() == m_translator->translationLanguage();
 }
 

@@ -23,19 +23,19 @@
 
 #include <QAbstractTransition>
 
-class LangButtonGroup;
+class LanguageButtonsWidget;
 
 class LanguageDetectedTransition : public QAbstractTransition
 {
 public:
-    explicit LanguageDetectedTransition(LangButtonGroup *group, QState *sourceState = nullptr);
+    explicit LanguageDetectedTransition(LanguageButtonsWidget *buttons, QState *sourceState = nullptr);
 
 protected:
     bool eventTest(QEvent *) override;
     void onTransition(QEvent *) override;
 
 private:
-    LangButtonGroup *m_group;
+    LanguageButtonsWidget *m_languageButtons;
 };
 
 #endif // LANGUAGEDETECTEDTRANSITION_H

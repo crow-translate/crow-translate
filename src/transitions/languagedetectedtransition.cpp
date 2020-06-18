@@ -20,17 +20,17 @@
 
 #include "languagedetectedtransition.h"
 
-#include "langbuttongroup.h"
+#include "languagebuttonswidget.h"
 
-LanguageDetectedTransition::LanguageDetectedTransition(LangButtonGroup *group, QState *sourceState)
+LanguageDetectedTransition::LanguageDetectedTransition(LanguageButtonsWidget *buttons, QState *sourceState)
     : QAbstractTransition(sourceState)
-    , m_group(group)
+    , m_languageButtons(buttons)
 {
 }
 
 bool LanguageDetectedTransition::eventTest(QEvent *)
 {
-    return m_group->checkedLanguage() != QOnlineTranslator::Auto;
+    return m_languageButtons->checkedLanguage() != QOnlineTranslator::Auto;
 }
 
 void LanguageDetectedTransition::onTransition(QEvent *)

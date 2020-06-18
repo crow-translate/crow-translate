@@ -21,11 +21,11 @@
 #include "addlangdialog.h"
 #include "ui_addlangdialog.h"
 
-#include "langbuttongroup.h"
+#include "languagebuttonswidget.h"
 
 #include <QPushButton>
 
-AddLangDialog::AddLangDialog(QWidget *parent)
+AddLangDialog::AddLangDialog(const QVector<QOnlineTranslator::Language> &currentLanguages, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddLangDialog)
 {
@@ -33,15 +33,16 @@ AddLangDialog::AddLangDialog(QWidget *parent)
 
     // Load languages
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
-        const auto lang = static_cast<QOnlineTranslator::Language>(i);
-
-        auto *item = new QListWidgetItem;
-        item->setText(QOnlineTranslator::languageString(lang));
-        item->setIcon(LangButtonGroup::countryIcon(lang));
-        item->setData(Qt::UserRole, lang);
-        ui->langListWidget->addItem(item);
+        const auto language = static_cast<QOnlineTranslator::Language>(i);
+        if (!currentLanguages.contains(language))
+            addLanguage(ui->availableLanguagesListWidget, language);
     }
-    ui->langListWidget->setCurrentRow(0);
+    ui->availableLanguagesListWidget->setCurrentRow(0);
+
+    for (QOnlineTranslator::Language language : currentLanguages)
+        addLanguage(ui->currentLanguagesListWidget, language);
+    if (ui->currentLanguagesListWidget->count() != 0)
+        ui->currentLanguagesListWidget->setCurrentRow(0);
 }
 
 AddLangDialog::~AddLangDialog()
@@ -49,15 +50,31 @@ AddLangDialog::~AddLangDialog()
     delete ui;
 }
 
+QVector<QOnlineTranslator::Language> AddLangDialog::languages() const
+{
+    return m_languages;
+}
+
+void AddLangDialog::accept()
+{
+    QDialog::accept();
+
+    m_languages.reserve(ui->currentLanguagesListWidget->count());
+    for (int i = 0; i < ui->currentLanguagesListWidget->count(); ++i) {
+        QListWidgetItem *item = ui->currentLanguagesListWidget->item(i);
+        m_languages.append(item->data(Qt::UserRole).value<QOnlineTranslator::Language>());
+    }
+}
+
 void AddLangDialog::filterLanguages(const QString &text)
 {
     bool isItemSelected = false;
-    for (int i = 0; i < ui->langListWidget->count(); ++i) {
-        QListWidgetItem *item = ui->langListWidget->item(i);
+    for (int i = 0; i < ui->availableLanguagesListWidget->count(); ++i) {
+        QListWidgetItem *item = ui->availableLanguagesListWidget->item(i);
         if (item->text().contains(text, Qt::CaseInsensitive)) {
             item->setHidden(false);
             if (!isItemSelected) {
-                ui->langListWidget->setCurrentItem(item); // Select first unhidden item
+                ui->availableLanguagesListWidget->setCurrentItem(item); // Select first unhidden item
                 isItemSelected = true;
             }
         } else {
@@ -69,13 +86,68 @@ void AddLangDialog::filterLanguages(const QString &text)
     ui->dialogButtonBox->button(QDialogButtonBox::Ok)->setEnabled(isItemSelected);
 }
 
-void AddLangDialog::accept()
+void AddLangDialog::moveLanguageRight()
 {
-    QDialog::accept();
-    m_lang = ui->langListWidget->currentItem()->data(Qt::UserRole).value<QOnlineTranslator::Language>();
+    moveLanguageHorizontally(ui->availableLanguagesListWidget, ui->currentLanguagesListWidget);
+    ui->moveLeftButton->setEnabled(true);
 }
 
-QOnlineTranslator::Language AddLangDialog::language() const
+void AddLangDialog::moveLanguageLeft()
 {
-    return m_lang;
+    // Block signals to emit index change after item deletion
+    ui->currentLanguagesListWidget->blockSignals(true);
+    moveLanguageHorizontally(ui->currentLanguagesListWidget, ui->availableLanguagesListWidget);
+    ui->currentLanguagesListWidget->blockSignals(false);
+
+    emit ui->currentLanguagesListWidget->currentRowChanged(ui->currentLanguagesListWidget->currentRow());
+
+    if (ui->currentLanguagesListWidget->count() == 0)
+        ui->moveLeftButton->setEnabled(false);
+}
+
+void AddLangDialog::moveLanguageUp()
+{
+    moveLanguageVertically(ui->currentLanguagesListWidget, - 1);
+}
+
+void AddLangDialog::moveLanguageDown()
+{
+    moveLanguageVertically(ui->currentLanguagesListWidget, + 1);
+}
+
+void AddLangDialog::checkVerticalMovement(int row)
+{
+    if (row == -1) {
+        ui->moveUpButton->setEnabled(false);
+        ui->moveDownButton->setEnabled(false);
+        return;
+    }
+
+    // Disable "Up" button for first element and "Down" for last
+    ui->moveUpButton->setEnabled(row != 0);
+    ui->moveDownButton->setEnabled(row != ui->currentLanguagesListWidget->count() - 1);
+
+}
+
+void AddLangDialog::addLanguage(QListWidget *widget, QOnlineTranslator::Language language)
+{
+    auto *item = new QListWidgetItem;
+    item->setText(QOnlineTranslator::languageString(language));
+    item->setIcon(LanguageButtonsWidget::countryIcon(language));
+    item->setData(Qt::UserRole, language);
+    widget->addItem(item);
+}
+
+void AddLangDialog::moveLanguageVertically(QListWidget *widget, int offset)
+{
+    const int currentRow = widget->currentRow();
+    widget->insertItem(currentRow + offset, widget->takeItem(currentRow));
+    widget->setCurrentRow(currentRow + offset);
+}
+
+void AddLangDialog::moveLanguageHorizontally(QListWidget *from, QListWidget *to)
+{
+    QListWidgetItem *item = from->takeItem(from->currentRow());
+    to->addItem(item);
+    to->setCurrentItem(item);
 }

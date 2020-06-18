@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>340</width>
-    <height>300</height>
+    <width>450</width>
+    <height>400</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,8 +17,38 @@
    <iconset theme="preferences-desktop-locale">
     <normaloff>.</normaloff>.</iconset>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="2" column="1" alignment="Qt::AlignBottom">
+    <widget class="QToolButton" name="moveRightButton">
+     <property name="icon">
+      <iconset theme="arrow-right">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="5" column="1" alignment="Qt::AlignTop">
+    <widget class="QToolButton" name="moveDownButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="icon">
+      <iconset theme="arrow-down">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="2" rowspan="5">
+    <widget class="QListWidget" name="currentLanguagesListWidget"/>
+   </item>
+   <item row="3" column="1">
+    <widget class="QToolButton" name="moveLeftButton">
+     <property name="icon">
+      <iconset theme="arrow-left">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0">
     <widget class="QLineEdit" name="searchEdit">
      <property name="placeholderText">
       <string>Filter</string>
@@ -28,14 +58,51 @@
      </property>
     </widget>
    </item>
-   <item>
-    <widget class="QListWidget" name="langListWidget">
+   <item row="4" column="1">
+    <widget class="QToolButton" name="moveUpButton">
+     <property name="enabled">
+      <bool>false</bool>
+     </property>
+     <property name="icon">
+      <iconset theme="arrow-up">
+       <normaloff>.</normaloff>.</iconset>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0" rowspan="4">
+    <widget class="QListWidget" name="availableLanguagesListWidget">
      <property name="sortingEnabled">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="0" column="0">
+    <widget class="QLabel" name="availableLanguagesLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Available languages:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="2">
+    <widget class="QLabel" name="currentLanguagesLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Preferred" vsizetype="Maximum">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+     <property name="text">
+      <string>Current languages:</string>
+     </property>
+    </widget>
+   </item>
+   <item row="6" column="0" colspan="3">
     <widget class="QDialogButtonBox" name="dialogButtonBox">
      <property name="standardButtons">
       <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
@@ -79,10 +146,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>langListWidget</sender>
+   <sender>availableLanguagesListWidget</sender>
    <signal>itemDoubleClicked(QListWidgetItem*)</signal>
    <receiver>AddLangDialog</receiver>
-   <slot>accept()</slot>
+   <slot>moveLanguageRight()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>149</x>
@@ -110,8 +177,93 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>moveDownButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>moveLanguageDown()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>267</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveLeftButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>moveLanguageLeft()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveRightButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>moveLanguageRight()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>153</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>moveUpButton</sender>
+   <signal>clicked()</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>moveLanguageUp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>224</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>currentLanguagesListWidget</sender>
+   <signal>currentRowChanged(int)</signal>
+   <receiver>AddLangDialog</receiver>
+   <slot>checkVerticalMovement(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>345</x>
+     <y>191</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>224</x>
+     <y>199</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>filterLanguages(QString)</slot>
+  <slot>moveLanguageDown()</slot>
+  <slot>moveLanguageUp()</slot>
+  <slot>moveLanguageLeft()</slot>
+  <slot>moveLanguageRight()</slot>
+  <slot>checkVerticalMovement(int)</slot>
  </slots>
 </ui>

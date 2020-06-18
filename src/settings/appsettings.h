@@ -21,7 +21,6 @@
 #ifndef APPSETTINGS_H
 #define APPSETTINGS_H
 
-#include "langbuttongroup.h"
 #include "qonlinetranslator.h"
 #include "qonlinetts.h"
 #include "trayicon.h"
@@ -38,6 +37,11 @@ class AppSettings : public QObject
     Q_DISABLE_COPY(AppSettings)
 
 public:
+    enum LanguageButtonsType {
+        Source,
+        Translation
+    };
+    Q_ENUM(LanguageButtonsType)
     enum WindowMode {
         PopupWindow,
         MainWindow
@@ -245,11 +249,11 @@ public:
     static QKeySequence defaultCopyTranslationShortcut();
 
     // Buttons
-    QOnlineTranslator::Language buttonLanguage(LangButtonGroup::GroupType group, int id) const;
-    void setButtonLanguage(LangButtonGroup::GroupType group, int id, QOnlineTranslator::Language lang);
+    QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;
+    void setLanguages(LanguageButtonsType type, const QVector<QOnlineTranslator::Language> &languages);
 
-    int checkedButton(LangButtonGroup::GroupType group) const;
-    void setCheckedButton(LangButtonGroup::GroupType group, int id);
+    int checkedButton(LanguageButtonsType type) const;
+    void setCheckedButton(LanguageButtonsType type, int id);
 
     // Main window settings
     QByteArray mainWindowGeometry() const;

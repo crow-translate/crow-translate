@@ -829,32 +829,47 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
 
-QOnlineTranslator::Language AppSettings::buttonLanguage(LangButtonGroup::GroupType group, int id) const
+QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const
 {
-    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+    const auto typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
+    const QStringList languageCodes = m_settings->value(QStringLiteral("Buttons/%1").arg(typeEnum.valueToKey(type))).toStringList();
 
-    return m_settings->value(QStringLiteral("Buttons/%1Button%2").arg(groupType.key(group), QString::number(id)), QOnlineTranslator::NoLanguage).value<QOnlineTranslator::Language>();
+    QVector<QOnlineTranslator::Language> languages;
+    languages.reserve(languageCodes.size());
+    for (const QString &languageCode : languageCodes) {
+        QOnlineTranslator::Language language = QOnlineTranslator::language(languageCode);
+        if (language != QOnlineTranslator::NoLanguage && language != QOnlineTranslator::Auto)
+            languages.append(language);
+        else
+            qWarning() << tr("Unknown language code: %1").arg(languageCode);
+    }
+
+    return languages;
 }
 
-void AppSettings::setButtonLanguage(LangButtonGroup::GroupType group, int id, QOnlineTranslator::Language lang)
+void AppSettings::setLanguages(LanguageButtonsType type, const QVector<QOnlineTranslator::Language> &languages)
 {
-    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+    QStringList languageCodes;
+    languageCodes.reserve(languages.size());
+    for (QOnlineTranslator::Language language : languages)
+        languageCodes.append(QOnlineTranslator::languageCode(language));
 
-    m_settings->setValue(QStringLiteral("Buttons/%1Button%2").arg(groupType.key(group), QString::number(id)), lang);
+    const auto typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
+    m_settings->setValue(QStringLiteral("Buttons/%1").arg(typeEnum.valueToKey(type)), languageCodes);
 }
 
-int AppSettings::checkedButton(LangButtonGroup::GroupType group) const
+int AppSettings::checkedButton(LanguageButtonsType type) const
 {
-    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+    const QMetaEnum typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
 
-    return m_settings->value(QStringLiteral("Buttons/Checked%1Button").arg(groupType.key(group))).toInt();
+    return m_settings->value(QStringLiteral("Buttons/Checked%1").arg(typeEnum.key(type))).toInt();
 }
 
-void AppSettings::setCheckedButton(LangButtonGroup::GroupType group, int id)
+void AppSettings::setCheckedButton(LanguageButtonsType type, int id)
 {
-    const QMetaEnum groupType = QMetaEnum::fromType<LangButtonGroup::GroupType>();
+    const QMetaEnum typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
 
-    m_settings->setValue(QStringLiteral("Buttons/Checked%1Button").arg(groupType.key(group)), id);
+    m_settings->setValue(QStringLiteral("Buttons/Checked%1").arg(typeEnum.key(type)), id);
 }
 
 QByteArray AppSettings::mainWindowGeometry() const

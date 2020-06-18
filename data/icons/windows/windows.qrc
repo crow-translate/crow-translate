@@ -30,7 +30,7 @@
         <file>16x16/actions/dialog-ok-apply.svg</file>
         <file>16x16/actions/edit-clear.svg</file>
         <file>32x32/apps/audio-speakers.svg</file>
-        <file>16x16/actions/list-add.svg</file>
         <file>16x16/actions/dialog-cancel.svg</file>
+        <file>16x16/actions/document-edit.svg</file>
     </qresource>
 </RCC>

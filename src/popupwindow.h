@@ -23,7 +23,6 @@
 
 #include <QWidget>
 
-class LangButtonGroup;
 class QShortcut;
 class MainWindow;
 
@@ -46,8 +45,6 @@ private:
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;
-    LangButtonGroup *m_sourceLangButtons;
-    LangButtonGroup *m_translationLangButtons;
 };
 
 #endif // POPUPWINDOW_H

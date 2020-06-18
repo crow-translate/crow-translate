@@ -27,7 +27,7 @@
 #include <QMediaPlayer>
 
 class TrayIcon;
-class LangButtonGroup;
+class LanguageButtonsWidget;
 class SpeakButtons;
 class AppSettings;
 class QHotkey;
@@ -53,15 +53,13 @@ public:
     ~MainWindow() override;
 
     const QComboBox *engineCombobox() const;
-    const QToolButton *addSourceLangButton() const;
-    const QToolButton *addTranslationLangButton() const;
     const QToolButton *swapButton() const;
     const QToolButton *copySourceButton() const;
     const QToolButton *copyTranslationButton() const;
     const QToolButton *copyAllTranslationButton() const;
     const TranslationEdit *translationEdit() const;
-    const LangButtonGroup *sourceLangButtons() const;
-    const LangButtonGroup *translationLangButtons() const;
+    const LanguageButtonsWidget *sourceLanguageButtons() const;
+    const LanguageButtonsWidget *translationLanguageButtons() const;
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     const QShortcut *closeWindowShortcut() const;
@@ -113,9 +111,6 @@ private slots:
     void copyTranslation();
     void copyAllTranslationInfo();
 
-    void addSourceLanguage();
-    void addTranslationLanguage();
-
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 
@@ -155,9 +150,6 @@ private:
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
     QShortcut *m_closeWindowsShortcut;
-
-    LangButtonGroup *m_sourceLangButtons;
-    LangButtonGroup *m_translationLangButtons;
 
     QStateMachine *m_stateMachine;
     QOnlineTranslator *m_translator;

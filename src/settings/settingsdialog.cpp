@@ -21,6 +21,7 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
+#include "languagebuttonswidget.h"
 #include "appsettings.h"
 #include "qhotkey.h"
 #include "singleapplication.h"
@@ -77,7 +78,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
-        const QIcon langIcon = LangButtonGroup::countryIcon(lang);
+        const QIcon langIcon = LanguageButtonsWidget::countryIcon(lang);
 
         ui->primaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
         ui->secondaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);

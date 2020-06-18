@@ -19,12 +19,19 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="mainLayout">
-    <item row="5" column="1" rowspan="5">
-     <widget class="SourceTextEdit" name="sourceEdit">
-      <property name="placeholderText">
-       <string>Source</string>
+    <item row="4" column="1">
+     <layout class="QHBoxLayout" name="topSourceLayout">
+      <property name="spacing">
+       <number>0</number>
       </property>
-     </widget>
+      <item>
+       <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
     <item row="4" column="3">
      <widget class="QToolButton" name="swapButton">
@@ -33,6 +40,120 @@
       </property>
       <property name="icon">
        <iconset theme="object-flip-horizontal">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="1" rowspan="5">
+     <widget class="SourceTextEdit" name="sourceEdit">
+      <property name="placeholderText">
+       <string>Source</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="4">
+     <layout class="QHBoxLayout" name="topTranslationLayout">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true"/>
+      </item>
+     </layout>
+    </item>
+    <item row="9" column="3">
+     <widget class="QToolButton" name="abortButton">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="toolTip">
+       <string>Cancel</string>
+      </property>
+      <property name="icon">
+       <iconset theme="dialog-cancel">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="6" column="3" rowspan="3">
+     <widget class="QToolButton" name="translateButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="toolTip">
+       <string>Translate</string>
+      </property>
+      <property name="icon">
+       <iconset theme="go-next">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="10" column="1">
+     <layout class="QHBoxLayout" name="buttomSourceLayout">
+      <item>
+       <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QToolButton" name="copySourceButton">
+        <property name="toolTip">
+         <string>Copy source text to the clipboard</string>
+        </property>
+        <property name="icon">
+         <iconset theme="edit-copy">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="autoTranslateCheckBox">
+        <property name="text">
+         <string>Automatically translate</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="buttomSourceSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>0</width>
+          <height>0</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item row="5" column="4" rowspan="5">
+     <widget class="TranslationEdit" name="translationEdit">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="placeholderText">
+       <string>Translation</string>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <widget class="QToolButton" name="clearButton">
+      <property name="toolTip">
+       <string>Clear</string>
+      </property>
+      <property name="icon">
+       <iconset theme="edit-clear">
         <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
@@ -125,263 +246,6 @@
       </item>
      </layout>
     </item>
-    <item row="4" column="4">
-     <layout class="QHBoxLayout" name="topTranslationLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item>
-       <spacer name="translationSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item>
-       <widget class="QToolButton" name="firstTranslationButton">
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="autoRepeat">
-         <bool>false</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="secondTranslationButton">
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="thirdTranslationButton">
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="autoTranslationButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="addTranslationLangButton">
-        <property name="toolTip">
-         <string>Add language</string>
-        </property>
-        <property name="icon">
-         <iconset theme="list-add">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item row="10" column="1">
-     <layout class="QHBoxLayout" name="buttomSourceLayout">
-      <item>
-       <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="copySourceButton">
-        <property name="toolTip">
-         <string>Copy source text to the clipboard</string>
-        </property>
-        <property name="icon">
-         <iconset theme="edit-copy">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="autoTranslateCheckBox">
-        <property name="text">
-         <string>Automatically translate</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="buttomSourceSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="5" column="4" rowspan="5">
-     <widget class="TranslationEdit" name="translationEdit">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Translation</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <layout class="QHBoxLayout" name="topSourceLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <item>
-       <widget class="QToolButton" name="addSourceLangButton">
-        <property name="toolTip">
-         <string>Add language</string>
-        </property>
-        <property name="icon">
-         <iconset theme="list-add">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="autoSourceButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="firstSourceButton">
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="secondSourceButton">
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="thirdSourceButton">
-        <property name="enabled">
-         <bool>true</bool>
-        </property>
-        <property name="checkable">
-         <bool>true</bool>
-        </property>
-        <property name="toolButtonStyle">
-         <enum>Qt::ToolButtonTextBesideIcon</enum>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="sourceSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="9" column="3">
-     <widget class="QToolButton" name="abortButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="toolTip">
-       <string>Cancel</string>
-      </property>
-      <property name="icon">
-       <iconset theme="dialog-cancel">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QToolButton" name="clearButton">
-      <property name="toolTip">
-       <string>Clear</string>
-      </property>
-      <property name="icon">
-       <iconset theme="edit-clear">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="6" column="3" rowspan="3">
-     <widget class="QToolButton" name="translateButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Translate</string>
-      </property>
-      <property name="icon">
-       <iconset theme="go-next">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
    </layout>
   </widget>
  </widget>
@@ -415,16 +279,16 @@
     <signal>translationEmpty(bool)</signal>
    </slots>
   </customwidget>
+  <customwidget>
+   <class>LanguageButtonsWidget</class>
+   <extends>QWidget</extends>
+   <header>languagebuttonswidget.h</header>
+   <container>1</container>
+  </customwidget>
  </customwidgets>
  <tabstops>
   <tabstop>sourceEdit</tabstop>
-  <tabstop>firstSourceButton</tabstop>
-  <tabstop>secondSourceButton</tabstop>
-  <tabstop>thirdSourceButton</tabstop>
   <tabstop>swapButton</tabstop>
-  <tabstop>firstTranslationButton</tabstop>
-  <tabstop>secondTranslationButton</tabstop>
-  <tabstop>thirdTranslationButton</tabstop>
   <tabstop>translationEdit</tabstop>
   <tabstop>copySourceButton</tabstop>
   <tabstop>copyTranslationButton</tabstop>
@@ -548,38 +412,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>addSourceLangButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>addSourceLanguage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>22</x>
-     <y>22</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>324</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>addTranslationLangButton</sender>
-   <signal>clicked()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>addTranslationLanguage()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>626</x>
-     <y>22</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>324</x>
-     <y>149</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>abortButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
@@ -684,8 +516,6 @@
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
   <slot>copyAllTranslationInfo()</slot>
-  <slot>addSourceLanguage()</slot>
-  <slot>addTranslationLanguage()</slot>
   <slot>abortTranslation()</slot>
   <slot>clearText()</slot>
  </slots>

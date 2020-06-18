@@ -97,7 +97,8 @@ add_executable(${PROJECT_NAME}
     src/addlangdialog.cpp
     src/addlangdialog.ui
     src/cli.cpp
-    src/langbuttongroup.cpp
+    src/languagebuttonswidget.cpp
+    src/languagebuttonswidget.ui
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.ui

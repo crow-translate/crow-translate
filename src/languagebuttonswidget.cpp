@@ -1,156 +1,113 @@
-/*
- *  Copyright © 2018-2020 Hennadii Chernyshchyk <genaloner@gmail.com>
- *
- *  This file is part of Crow Translate.
- *
- *  Crow Translate is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation; either version 3 of the License, or
- *  (at your option) any later version.
- *
- *  Crow Translate is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a get of the GNU General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
- *
- */
+ #include "languagebuttonswidget.h"
+#include "ui_languagebuttonswidget.h"
 
-#include "langbuttongroup.h"
+#include "addlangdialog.h"
 
-#include "settings/appsettings.h"
-
-#include <QAbstractButton>
 #include <QButtonGroup>
+#include <QToolButton>
 
-LangButtonGroup::LangButtonGroup(GroupType type, QObject *parent)
-    : QObject(parent)
-    , m_type(type)
-    , m_group(new QButtonGroup(this))
+LanguageButtonsWidget::LanguageButtonsWidget(QWidget *parent)
+    : QWidget(parent)
+    , ui(new Ui::LanguageButtonsWidget)
+    , m_buttonGroup(new QButtonGroup)
 {
+    ui->setupUi(this);
+    addButton(QOnlineTranslator::Auto);
+    m_buttonGroup->button(s_autoButtonIndex)->setChecked(true);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
-    connect(m_group, &QButtonGroup::idToggled, this, &LangButtonGroup::processButtonToggled);
+    connect(m_buttonGroup, &QButtonGroup::idToggled, this, &LanguageButtonsWidget::savePreviousToggledButton);
 #else
-    connect(m_group, qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &LangButtonGroup::processButtonToggled);
+    connect(m_buttonGroup, qOverload<int, bool>(&QButtonGroup::buttonToggled), this, &LanguageButtonsWidget::savePreviousToggledButton);
 #endif
 }
 
-void LangButtonGroup::loadLanguages(const LangButtonGroup *group)
+LanguageButtonsWidget::~LanguageButtonsWidget()
 {
-    Q_ASSERT(group->m_group->buttons().size() == m_group->buttons().size());
-
-    // Copy all languages from buttons
-    for (int i = 0; i < m_group->buttons().size(); ++i)
-        setLanguage(i, group->language(i));
-
-    // Copy checked button
-    m_group->button(group->m_group->checkedId())->setChecked(true);
+    delete ui;
 }
 
-void LangButtonGroup::loadLanguages(const AppSettings &settings)
+QVector<QOnlineTranslator::Language> LanguageButtonsWidget::languages() const
 {
-    for (int i = 1; i < m_group->buttons().size(); ++i)
-        setLanguage(i, settings.buttonLanguage(m_type, i));
-
-    m_group->button(settings.checkedButton(m_type))->setChecked(true);
+    return m_languages;
 }
 
-void LangButtonGroup::saveLanguages(AppSettings &settings)
+void LanguageButtonsWidget::setLanguages(const QVector<QOnlineTranslator::Language> &languages)
 {
-    for (int i = 1; i < m_group->buttons().size(); ++i)
-        settings.setButtonLanguage(m_type, i, language(i));
-
-    settings.setCheckedButton(m_type, m_group->checkedId());
-}
-
-void LangButtonGroup::addButton(QAbstractButton *button)
-{
-    const int buttonId = m_group->buttons().count();
-
-    m_group->addButton(button, m_group->buttons().count());
-    if (buttonId == 0) {
-        button->setText(tr("Auto"));
-        button->setToolTip(tr("Auto"));
-        button->setProperty(s_languageProperty, QOnlineTranslator::Auto); // Save language id in property
+    // Add or set new languages
+    for (int i = 0; i < languages.size(); ++i) {
+        // Use -1 to ignore "Auto" button
+        if (i < m_buttonGroup->buttons().size() - 1) {
+            if (m_languages[i] != languages[i])
+                setButtonLanguage(m_buttonGroup->button(i), languages[i]);
+        } else {
+            addButton(languages[i]);
+        }
     }
+
+    m_languages = languages;
+
+    // Delete extra buttons
+    for (int i = languages.size(); languages.size() != m_buttonGroup->buttons().size() - 1; ++i) {
+        QAbstractButton *button = m_buttonGroup->button(i);
+        m_buttonGroup->removeButton(button);
+        delete button;
+    }
+
+    emit languagesChanged(m_languages);
 }
 
-void LangButtonGroup::addLanguage(QOnlineTranslator::Language lang)
+QOnlineTranslator::Language LanguageButtonsWidget::checkedLanguage() const
+{
+    return language(m_buttonGroup->checkedId());
+}
+
+QOnlineTranslator::Language LanguageButtonsWidget::previousCheckedLanguage() const
+{
+    return language(m_previousCheckedId);
+}
+
+QOnlineTranslator::Language LanguageButtonsWidget::language(int index) const
+{
+    if (index == s_autoButtonIndex)
+        return m_autoLanguage;
+
+    return m_languages[index];
+}
+
+bool LanguageButtonsWidget::checkLanguage(QOnlineTranslator::Language language)
 {
     // Select auto button
-    if (lang == QOnlineTranslator::Auto) {
-        m_group->button(0)->setChecked(true);
-        return;
+    if (language == QOnlineTranslator::Auto) {
+        checkAutoButton();
+        return true;
     }
 
     // Exit the function if the current language already has a button
-    for (int i = 1; i < m_group->buttons().size(); ++i) {
-        if (lang == language(i)) {
-            m_group->button(i)->setChecked(true);
-            return;
+    for (int i = 0; i < m_languages.size(); ++i) {
+        if (language == m_languages[i]) {
+            checkButton(i);
+            return true;
         }
     }
 
-    // Shift buttons (..., 3 <- 2, 2 <- 1)
-    for (int i = m_group->buttons().size() - 1; i > 1; --i)
-        setLanguage(i, language(i - 1));
-
-    // Insert new language to first button
-    setLanguage(1, lang);
-
-    if (m_group->button(1)->isChecked())
-        emit buttonChecked(1); // Emit signal, because first button has shifted to second
-    else
-        m_group->button(1)->setChecked(true);
+    return false;
 }
 
-QOnlineTranslator::Language LangButtonGroup::checkedLanguage() const
+bool LanguageButtonsWidget::isAutoButtonChecked() const
 {
-    return m_group->checkedButton()->property(s_languageProperty).value<QOnlineTranslator::Language>();
+    return m_buttonGroup->checkedId() == s_autoButtonIndex;
 }
 
-QOnlineTranslator::Language LangButtonGroup::previousCheckedLanguage() const
+void LanguageButtonsWidget::retranslate()
 {
-    return m_group->button(m_previousCheckedId)->property(s_languageProperty).value<QOnlineTranslator::Language>();
+    for (int i = 0; i < m_languages.size(); ++i)
+        setButtonLanguage(m_buttonGroup->button(i), m_languages[i]);
+    setButtonLanguage(m_buttonGroup->button(s_autoButtonIndex), m_autoLanguage);
 }
 
-QOnlineTranslator::Language LangButtonGroup::language(int id) const
+QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language language)
 {
-    return m_group->button(id)->property(s_languageProperty).value<QOnlineTranslator::Language>();
-}
-
-bool LangButtonGroup::isAutoButtonChecked()
-{
-    return m_group->checkedId() == 0;
-}
-
-void LangButtonGroup::retranslate()
-{
-    for (int i = 0; i < m_group->buttons().size(); ++i) {
-        const QOnlineTranslator::Language lang = language(i);
-        if (lang == QOnlineTranslator::NoLanguage)
-            continue;
-
-        const QString langName = QOnlineTranslator::languageString(lang);
-        m_group->button(i)->setToolTip(langName);
-        if (i != 0) {
-            // Language button
-            m_group->button(i)->setText(langName);
-        } else {
-            // Auto language button
-            if (lang == QOnlineTranslator::Auto)
-                m_group->button(i)->setText(tr("Auto"));
-            else
-                m_group->button(i)->setText(tr("Auto") + " (" + langName + ")");
-        }
-    }
-}
-
-QIcon LangButtonGroup::countryIcon(QOnlineTranslator::Language lang)
-{
-    switch (lang) {
+    switch (language) {
     case QOnlineTranslator::Afrikaans:
     case QOnlineTranslator::Xhosa:
     case QOnlineTranslator::Zulu:
@@ -370,51 +327,105 @@ QIcon LangButtonGroup::countryIcon(QOnlineTranslator::Language lang)
     }
 }
 
-void LangButtonGroup::checkAutoButton()
+void LanguageButtonsWidget::swapCurrentLanguages(LanguageButtonsWidget *first, LanguageButtonsWidget *second)
 {
-    checkButton(0);
+    // Backup first widget buttons properties
+    const QOnlineTranslator::Language sourceLanguage = first->checkedLanguage();
+    const bool isSourceAutoButtonChecked = first->isAutoButtonChecked();
+
+    // Insert current translation language to the first widget
+    if (second->isAutoButtonChecked())
+        first->checkAutoButton();
+    else
+        first->addOrCheckLanguage(second->checkedLanguage());
+
+    // Insert current source language to the second widget
+    if (isSourceAutoButtonChecked)
+        second->checkAutoButton();
+    else
+        second->addOrCheckLanguage(sourceLanguage);
 }
 
-void LangButtonGroup::checkButton(int id)
+void LanguageButtonsWidget::checkAutoButton()
 {
-    m_group->button(id)->setChecked(true);
+    checkButton(s_autoButtonIndex);
 }
 
-void LangButtonGroup::setLanguage(int id, QOnlineTranslator::Language lang)
+void LanguageButtonsWidget::checkButton(int index)
 {
-    if (lang == language(id))
+    m_buttonGroup->button(index)->setChecked(true);
+}
+
+void LanguageButtonsWidget::addLanguage(QOnlineTranslator::Language language)
+{
+    Q_ASSERT_X(!m_languages.contains(language), "addLanguage", "Language already exists");
+
+    m_languages.append(language);
+    addButton(language);
+    emit languageAdded(language);
+}
+
+void LanguageButtonsWidget::setAutoLanguage(QOnlineTranslator::Language language)
+{
+    if (m_autoLanguage == language)
         return;
 
-    m_group->button(id)->setProperty(s_languageProperty, lang); // Save language id in property
-
-    if (lang != QOnlineTranslator::NoLanguage) {
-        const QString languageName = QOnlineTranslator::languageString(lang);
-
-        if (id != 0) {
-            // Language button
-            m_group->button(id)->setText(languageName);
-            m_group->button(id)->setIcon(countryIcon(lang));
-        } else {
-            // Auto language button
-            if (lang == QOnlineTranslator::Auto)
-                m_group->button(id)->setText(tr("Auto"));
-            else
-                m_group->button(id)->setText(tr("Auto") + " (" + languageName + ")");
-        }
-
-        m_group->button(id)->setToolTip(languageName);
-        m_group->button(id)->setVisible(true);
-    } else {
-        m_group->button(id)->setVisible(false);
-    }
-
-    emit languageChanged(id, lang);
+    m_autoLanguage = language;
+    setButtonLanguage(m_buttonGroup->button(s_autoButtonIndex), m_autoLanguage);
+    emit autoLanguageChanged(m_autoLanguage);
 }
 
-void LangButtonGroup::processButtonToggled(int id, bool checked)
+void LanguageButtonsWidget::editLanguages()
+{
+    AddLangDialog langDialog(languages());
+    if (langDialog.exec() == QDialog::Accepted)
+        setLanguages(langDialog.languages());
+}
+
+void LanguageButtonsWidget::savePreviousToggledButton(int index, bool checked)
 {
     if (!checked)
-        m_previousCheckedId = id;
+        m_previousCheckedId = index;
     else
-        emit buttonChecked(id);
+        emit buttonChecked(index);
+}
+
+void LanguageButtonsWidget::addOrCheckLanguage(QOnlineTranslator::Language language)
+{
+    if (checkLanguage(language))
+        return;
+
+    addLanguage(language);
+    m_buttonGroup->buttons().last()->setChecked(true);
+}
+
+void LanguageButtonsWidget::addButton(QOnlineTranslator::Language language)
+{
+    auto *button = new QToolButton;
+    button->setCheckable(true);
+    button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+
+    // Use special index for "Auto" button to count all other languages from 0
+    m_buttonGroup->addButton(button, language == QOnlineTranslator::Auto ? s_autoButtonIndex : m_buttonGroup->buttons().size() - 1);
+
+    setButtonLanguage(button, language);
+
+    // Insert all languages after "Edit" button
+    ui->languagesLayout->insertWidget(1, button);
+}
+
+void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language language)
+{
+    const QString languageName = QOnlineTranslator::languageString(language);
+    if (button == m_buttonGroup->button(s_autoButtonIndex)) {
+        if (language == QOnlineTranslator::Auto)
+            button->setText(tr("Auto"));
+        else
+            button->setText(tr("Auto") + " (" + languageName + ")");
+    } else {
+        button->setText(languageName);
+        button->setIcon(countryIcon(language));
+    }
+
+    button->setToolTip(languageName);
 }
