@@ -6,9 +6,15 @@ All notable changes to this project will be documented in this file. This projec
 
 [Full Changelog](https://github.com/crow-translate/crow-translate/compare/2.3.2...HEAD)
 
+**Added**
+
+- `--brief` option to print only translations.
+- The ability to add, remove or reorder used languages.
+
 **Changed**
 
 - Use `https` instead of `http` for all engines.
+- `--audio-only` option now only plays text.
 
 ## [2.3.1](https://github.com/crow-translate/crow-translate/tree/2.3.2) (2020-05-10)
 
