@@ -7,36 +7,33 @@ on:
     - '**.md'
     - '.github/workflows/release.yml'
     - '.gitignore'
+    - 'crowdin.yml'
+    - 'data/translations'
   pull_request:
     paths-ignore:
     - '**.md'
-    - 'crowdin.yml'
     - '.github/workflows/release.yml'
     - '.gitignore'
+    - 'crowdin.yml'
+    - 'data/translations'
 jobs:
-  Linux:
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Clone repo
-      uses: actions/checkout@v2.2.0
-      with:
-        submodules: true
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev
-
-    - name: Build
-      run: |
-        mkdir build
-        cd build
-        cmake -D PORTABLE_MODE=ON ..
-        cmake --build . --parallel 2
-  Windows:
-    runs-on: windows-latest
+  Main:
+    runs-on: ${{ matrix.os }}
+    env:
+      ECM_ROOT: 'C:\Program Files\ECM'
+      CXXFLAGS: ${{ matrix.CXXFLAGS }}
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, windows-latest]
+        include:
+          - os: ubuntu-18.04
+            CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
+          - os: windows-latest
+            extra-cmake-modules: '5.70.0'
+            CXXFLAGS: '/W4' # TODO: use /WX
     steps:
     - name: Enable Git symlinks
+      if: runner.os == 'Windows'
       run: git config --global core.symlinks true
 
     - name: Clone repo
@@ -44,18 +41,24 @@ jobs:
       with:
         submodules: true
 
+    - name: Install dependent apt packages
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev
+
     - name: Install Qt
+      if: runner.os == 'Windows'
       uses: jurplel/install-qt-action@v2.6.3
 
     - name: Install Extra CMake Modules
+      if: runner.os == 'Windows'
       run: |
-        git clone --depth 1 --branch v5.70.0 https://github.com/KDE/extra-cmake-modules.git
+        git clone --depth 1 --branch v${{ matrix.extra-cmake-modules }} https://github.com/KDE/extra-cmake-modules.git
         cmake -S extra-cmake-modules -B extra-cmake-modules/build
         cmake --build extra-cmake-modules/build --target install
 
     - name: Build
-      env:
-        ECM_ROOT: C:\Program Files\ECM
       run: |
         mkdir build
         cd build

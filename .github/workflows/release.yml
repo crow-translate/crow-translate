@@ -3,35 +3,24 @@ on:
   release:
     types: created
 jobs:
-  Linux:
-    runs-on: ubuntu-20.04
-    steps:
-    - name: Clone repo
-      uses: actions/checkout@v2.2.0
-      with:
-        submodules: true
-
-    - name: Install dependencies
-      run: |
-        sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev rpm
-
-    - name: Build
-      run: |
-        mkdir build
-        cd build
-        cmake -D CPACK_GENERATOR="DEB;RPM;7Z" -D CMAKE_BUILD_TYPE=Release ..
-        cmake --build . --target package --parallel 2
-
-    - name: Upload
-      uses: AButler/upload-release-assets@v2.0
-      with:
-        files: 'build/*.deb;build/*.rpm;build/*.7z'
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-  Windows:
-    runs-on: windows-latest
+  Release:
+    runs-on: ${{ matrix.os }}
+    env:
+      ECM_ROOT: 'C:\Program Files\ECM'
+    strategy:
+      matrix:
+        os: [ubuntu-18.04, windows-latest]
+        include:
+          - os: ubuntu-18.04
+            cmake-defines: '-D CPACK_GENERATOR="DEB;RPM;7Z" -D CMAKE_BUILD_TYPE=Release'
+            upload-files: 'build/*.deb;build/*.rpm;build/*.7z'
+          - os: windows-latest
+            extra-cmake-modules: '5.70.0'
+            cmake-defines: '-D OPENSSL_ROOT_DIR="C:/Program Files/Git/mingw64" -D PORTABLE_MODE=ON -D CPACK_GENERATOR="NSIS;7Z"'
+            upload-files: 'build/*.exe;build/*.7z'
     steps:
     - name: Enable Git symlinks
+      if: runner.os == 'Windows'
       run: git config --global core.symlinks true
 
     - name: Clone repo
@@ -39,30 +28,36 @@ jobs:
       with:
         submodules: true
 
+    - name: Install dependent apt packages
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev rpm
+
     - name: Install Qt
+      if: runner.os == 'Windows'
       uses: jurplel/install-qt-action@v2.6.3
 
     - name: Install Extra CMake Modules
+      if: runner.os == 'Windows'
       run: |
-        git clone --depth 1 --branch v5.70.0 https://github.com/KDE/extra-cmake-modules.git
+        git clone --depth 1 --branch v${{ matrix.extra-cmake-modules }} https://github.com/KDE/extra-cmake-modules.git
         cmake -S extra-cmake-modules -B extra-cmake-modules/build
         cmake --build extra-cmake-modules/build --target install
 
     - name: Install png2ico
-      run: |
-          choco install png2ico
+      if: runner.os == 'Windows'
+      run: choco install png2ico
 
     - name: Build
-      env:
-        ECM_ROOT: C:\Program Files\ECM
       run: |
         mkdir build
         cd build
-        cmake -D OPENSSL_ROOT_DIR="C:/Program Files/Git/mingw64" -D PORTABLE_MODE=ON -D CPACK_GENERATOR="NSIS;7Z" ..
+        cmake ${{ matrix.cmake-defines }} ..
         cmake --build . --target package --parallel 2 --config Release
 
     - name: Upload
       uses: AButler/upload-release-assets@v2.0
       with:
-        files: 'build/*.exe;build/*.7z'
+        files: ${{ matrix.upload-files }}
         repo-token: ${{ secrets.GITHUB_TOKEN }}
