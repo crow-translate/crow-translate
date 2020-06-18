@@ -10,6 +10,7 @@ on:
   pull_request:
     paths-ignore:
     - '**.md'
+    - 'crowdin.yml'
     - '.github/workflows/release.yml'
     - '.gitignore'
 jobs:
