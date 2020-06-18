@@ -76,82 +76,82 @@
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="58"/>
-      <source>Print text only for speaking when using --%1 or --%2.</source>
-      <translation>Печатать текст только для озвучивания при использовании --%1 или --%2.</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="59"/>
       <source>Read source text from files. Arguments will be interpreted as file paths.</source>
       <translation>Считать исходный текст из файлов. Аргументы будут интерпретироваться как пути к файлам.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="60"/>
+      <location filename="../../src/cli.cpp" line="59"/>
       <source>Add stdin data to source text.</source>
       <translation>Добавить данные стандартного ввода в исходный текст.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="63"/>
+      <location filename="../../src/cli.cpp" line="60"/>
+      <source>Do not print any text when using --%1 or --%2.</source>
+      <translation type="unfinished">Do not print any text when using --%1 or --%2.</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="61"/>
+      <source>Print only translations</source>
+      <translation type="unfinished">Print only translations</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="64"/>
       <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
       <translation>Простой и легковесный переводчик, который позволяет переводить и озвучивать текст с помощью Google, Yandex и Bing.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="64"/>
+      <location filename="../../src/cli.cpp" line="65"/>
       <source>Text to translate. By default, the translation will be done to the system language.</source>
       <translation>Текст для перевода. По умолчанию перевод будет выполнен на язык системы.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="94"/>
+      <location filename="../../src/cli.cpp" line="87"/>
+      <source>Error: You can&apos;t use --%1 with --%2</source>
+      <translation type="unfinished">Error: You can&apos;t use --%1 with --%2</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="133"/>
       <source>Error: Unknown engine</source>
       <translation>Ошибка: Неизвестный движок</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="125"/>
+      <location filename="../../src/cli.cpp" line="121"/>
       <source>Error: There is no text for translation</source>
       <translation>Ошибка: Нет текста для перевода</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="155"/>
-      <location filename="../../src/cli.cpp" line="222"/>
-      <location filename="../../src/cli.cpp" line="399"/>
+      <location filename="../../src/cli.cpp" line="167"/>
+      <location filename="../../src/cli.cpp" line="251"/>
+      <location filename="../../src/cli.cpp" line="340"/>
       <source>Error: %1</source>
       <translation>Ошибка: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="420"/>
-      <location filename="../../src/cli.cpp" line="441"/>
+      <location filename="../../src/cli.cpp" line="361"/>
+      <location filename="../../src/cli.cpp" line="382"/>
       <source>Error: File does not exist: %1</source>
       <translation>Ошибка: Файл не существует: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="425"/>
-      <location filename="../../src/cli.cpp" line="446"/>
+      <location filename="../../src/cli.cpp" line="366"/>
+      <location filename="../../src/cli.cpp" line="387"/>
       <source>Error: Unable to open file: %1</source>
       <translation>Ошибка: Невозможно открыть файл: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="185"/>
+      <location filename="../../src/cli.cpp" line="212"/>
       <source>%1 - translation options:</source>
       <translation>%1 - варианты перевода:</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="132"/>
+      <location filename="../../src/cli.cpp" line="82"/>
       <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
       <translation>Ошибка: Для --%1 необходимо указать --%2 и/или --%3 параметры</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="202"/>
+      <location filename="../../src/cli.cpp" line="229"/>
       <source>%1 - examples:</source>
       <translation>%1 - примеры:</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="232"/>
-      <source>Source text:</source>
-      <translation>Исходный текст:</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="238"/>
-      <source>Translation into %1:</source>
-      <translation>Перевод на %1:</translation>
     </message>
   </context>
   <context>
