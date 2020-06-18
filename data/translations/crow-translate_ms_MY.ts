@@ -76,82 +76,82 @@
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="58"/>
-      <source>Print text only for speaking when using --%1 or --%2.</source>
-      <translation>Cetak teks sahaja untuk sebutan bila gunakan --%1 atau --%2.</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="59"/>
       <source>Read source text from files. Arguments will be interpreted as file paths.</source>
       <translation>Baca teks sumber dari fail. Hujahan akan ditafsir sebagai alamat fail.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="60"/>
+      <location filename="../../src/cli.cpp" line="59"/>
       <source>Add stdin data to source text.</source>
       <translation>Tambah data stdin ke teks sumber.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="63"/>
+      <location filename="../../src/cli.cpp" line="60"/>
+      <source>Do not print any text when using --%1 or --%2.</source>
+      <translation type="unfinished">Do not print any text when using --%1 or --%2.</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="61"/>
+      <source>Print only translations</source>
+      <translation type="unfinished">Print only translations</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="64"/>
       <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
       <translation>Penterjemah ringan dan mudah yang boleh menterjemah dan menyebut teks menggunakan Google, Yandex dan Bing.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="64"/>
+      <location filename="../../src/cli.cpp" line="65"/>
       <source>Text to translate. By default, the translation will be done to the system language.</source>
       <translation>Teks untuk diterjemah. Secara lalai, terjemahan akan dilakukan dengan bahasa sistem.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="94"/>
+      <location filename="../../src/cli.cpp" line="87"/>
+      <source>Error: You can&apos;t use --%1 with --%2</source>
+      <translation type="unfinished">Error: You can&apos;t use --%1 with --%2</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="133"/>
       <source>Error: Unknown engine</source>
       <translation>Ralat: Enjin tidak dikenali</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="125"/>
+      <location filename="../../src/cli.cpp" line="121"/>
       <source>Error: There is no text for translation</source>
       <translation>Ralat: Tiada teks untuk terjemahan</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="155"/>
-      <location filename="../../src/cli.cpp" line="222"/>
-      <location filename="../../src/cli.cpp" line="399"/>
+      <location filename="../../src/cli.cpp" line="167"/>
+      <location filename="../../src/cli.cpp" line="251"/>
+      <location filename="../../src/cli.cpp" line="340"/>
       <source>Error: %1</source>
       <translation>Ralat: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="420"/>
-      <location filename="../../src/cli.cpp" line="441"/>
+      <location filename="../../src/cli.cpp" line="361"/>
+      <location filename="../../src/cli.cpp" line="382"/>
       <source>Error: File does not exist: %1</source>
       <translation>Ralat: Fail tidak wujud: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="425"/>
-      <location filename="../../src/cli.cpp" line="446"/>
+      <location filename="../../src/cli.cpp" line="366"/>
+      <location filename="../../src/cli.cpp" line="387"/>
       <source>Error: Unable to open file: %1</source>
       <translation>Ralat: Tidak dapat membuka fail: %1</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="185"/>
+      <location filename="../../src/cli.cpp" line="212"/>
       <source>%1 - translation options:</source>
       <translation>%1 - pilihan terjemahan:</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="132"/>
+      <location filename="../../src/cli.cpp" line="82"/>
       <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
       <translation>Ralat: Untuk --%1 anda mesti tetapkan pilihan --%2 dan/atau --%3</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="202"/>
+      <location filename="../../src/cli.cpp" line="229"/>
       <source>%1 - examples:</source>
       <translation>%1 - contoh:</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="232"/>
-      <source>Source text:</source>
-      <translation>Teks sumber:</translation>
-    </message>
-    <message>
-      <location filename="../../src/cli.cpp" line="238"/>
-      <source>Translation into %1:</source>
-      <translation>Terjemahan ke %1:</translation>
     </message>
   </context>
   <context>
