@@ -92,7 +92,6 @@ The program also has a console interface.
 | `-h, --help`               | Display help                                                                                   |
 | `-v, --version`            | Display version information                                                                    |
 | `-c, --codes`              | Display language codes                                                                         |
-| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`              |
 | `-s, --source <code>`      | Specify the source language (by default, engine will try to determine the language on its own) |
 | `-t, --translation <code>` | Specify the translation language(s), splitted by '+' (by default, the system language is used) |
 | `-l, --locale <code>`      | Specify the translator language (by default, the system language is used)                      |
@@ -101,6 +100,8 @@ The program also has a console interface.
 | `-u, --speak-source`       | Speak the source                                                                               |
 | `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths                       |
 | `-i, --stdin`              | Add stdin data to source text                                                                  |
+| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`              |
+| `-b, --brief`              | Print only translations                                                                        |
 
 **Note:** If you do not pass startup arguments to the program, the GUI starts.
 

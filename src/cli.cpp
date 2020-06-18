@@ -55,9 +55,10 @@ void Cli::process(const QCoreApplication &app)
     const QCommandLineOption engine({"e", "engine"}, tr("Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default."), QStringLiteral("engine"), QStringLiteral("google"));
     const QCommandLineOption speakTranslation({"p", "speak-translation"}, tr("Speak the translation."));
     const QCommandLineOption speakSource({"u", "speak-source"}, tr("Speak the source."));
-    const QCommandLineOption audioOnly({"a", "audio-only"}, tr("Print text only for speaking when using --%1 or --%2.").arg(speakSource.names().at(1), speakTranslation.names().at(1)));
     const QCommandLineOption file({"f", "file"}, tr("Read source text from files. Arguments will be interpreted as file paths."));
     const QCommandLineOption readStdin({"i", "stdin"}, tr("Add stdin data to source text."));
+    const QCommandLineOption audioOnly({"a", "audio-only"}, tr("Do not print any text when using --%1 or --%2.").arg(speakSource.names().at(1), speakTranslation.names().at(1)));
+    const QCommandLineOption brief({"b", "brief"}, tr("Print only translations"));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(tr("A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing."));
@@ -65,7 +66,6 @@ void Cli::process(const QCoreApplication &app)
     parser.addHelpOption();
     parser.addVersionOption();
     parser.addOption(codes);
-    parser.addOption(audioOnly);
     parser.addOption(source);
     parser.addOption(translation);
     parser.addOption(locale);
@@ -74,7 +74,19 @@ void Cli::process(const QCoreApplication &app)
     parser.addOption(speakSource);
     parser.addOption(file);
     parser.addOption(readStdin);
+    parser.addOption(audioOnly);
+    parser.addOption(brief);
     parser.process(app);
+
+    if (parser.isSet(audioOnly) && !parser.isSet(speakSource) && !parser.isSet(speakTranslation)) {
+        qCritical() << tr("Error: For --%1 you must specify --%2 and/or --%3 options").arg(audioOnly.names().at(1), speakSource.names().at(1), speakTranslation.names().at(1)) << '\n';
+        parser.showHelp();
+    }
+
+    if (parser.isSet(audioOnly) && parser.isSet(brief)) {
+        qCritical() << tr("Error: You can't use --%1 with --%2").arg(audioOnly.names().at(1), brief.names().at(1)) << '\n';
+        parser.showHelp();
+    }
 
     // Only show language codes
     if (parser.isSet(codes)) {
@@ -82,22 +94,6 @@ void Cli::process(const QCoreApplication &app)
         m_stateMachine->start();
         return;
     }
-
-    // Engine
-    if (parser.value(engine) == QLatin1String("google"))
-        m_engine = QOnlineTranslator::Google;
-    else if (parser.value(engine) == QLatin1String("yandex"))
-        m_engine = QOnlineTranslator::Yandex;
-    else if (parser.value(engine) == QLatin1String("bing"))
-        m_engine = QOnlineTranslator::Bing;
-    else {
-        qCritical() << tr("Error: Unknown engine") << '\n';
-        parser.showHelp();
-    }
-
-    // Audio options
-    m_speakSource = parser.isSet(speakSource);
-    m_speakTranslation = parser.isSet(speakTranslation);
 
     // Translation languages
     m_sourceLang = QOnlineTranslator::language(parser.value(source));
@@ -126,18 +122,34 @@ void Cli::process(const QCoreApplication &app)
         parser.showHelp();
     }
 
-    // Audio only mode
-    if (parser.isSet(audioOnly)) {
-        if (!m_speakSource && !m_speakTranslation) {
-            qCritical() << tr("Error: For --%1 you must specify --%2 and/or --%3 options").arg(audioOnly.names().at(1), speakSource.names().at(1), speakTranslation.names().at(1)) << '\n';
-            parser.showHelp();
-        }
-
-        buildAudioOnlyStateMachine();
+    // Engine
+    if (parser.value(engine) == QLatin1String("google")) {
+        m_engine = QOnlineTranslator::Google;
+    } else if (parser.value(engine) == QLatin1String("yandex")) {
+        m_engine = QOnlineTranslator::Yandex;
+    } else if (parser.value(engine) == QLatin1String("bing")) {
+        m_engine = QOnlineTranslator::Bing;
     } else {
-        buildTranslationStateMachine();
+        qCritical() << tr("Error: Unknown engine") << '\n';
+        parser.showHelp();
     }
 
+    // Audio options
+    m_speakSource = parser.isSet(speakSource);
+    m_speakTranslation = parser.isSet(speakTranslation);
+
+    // Modes
+    m_audioOnly = parser.isSet(audioOnly);
+    m_brief = parser.isSet(brief);
+    if (m_brief || m_audioOnly) {
+        m_translator->setExamplesEnabled(false);
+        m_translator->setTranslationOptionsEnabled(false);
+        m_translator->setSourceTranscriptionEnabled(false);
+        m_translator->setTranslationTranslitEnabled(false);
+        m_translator->setSourceTranslitEnabled(false);
+    }
+
+    buildTranslationStateMachine();
     m_stateMachine->start();
 }
 
@@ -149,11 +161,28 @@ void Cli::requestTranslation()
     m_translator->translate(m_sourceText, m_engine, translationLang, m_sourceLang, m_uiLang);
 }
 
-void Cli::printTranslation()
+void Cli::parseTranslation()
 {
     if (m_translator->error() != QOnlineTranslator::NoError) {
         qCritical() << tr("Error: %1").arg(m_translator->errorString());
         m_stateMachine->stop();
+        return;
+    }
+
+    if (m_sourceLang == QOnlineTranslator::Auto)
+        m_sourceLang = m_translator->sourceLanguage();
+}
+
+void Cli::printTranslation()
+{
+    // Short mode
+    if (m_brief) {
+        if (!m_translator->translation().isEmpty())
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+            m_stdout << m_translator->translation() << Qt::endl;
+#else
+            m_stdout << m_translator->translation() << endl;
+#endif
         return;
     }
 
@@ -169,8 +198,6 @@ void Cli::printTranslation()
     // Languages
     m_stdout << "[ " << m_translator->sourceLanguageString() << " -> ";
     m_stdout << m_translator->translationLanguageString() << " ]" << "\n\n";
-    if (m_sourceLang == QOnlineTranslator::Auto)
-        m_sourceLang = m_translator->sourceLanguage();
 
     // Translation and its transliteration
     if (!m_translator->translation().isEmpty()) {
@@ -209,6 +236,8 @@ void Cli::printTranslation()
             }
         }
     }
+
+    m_stdout.flush();
 }
 
 void Cli::requestLanguage()
@@ -225,18 +254,6 @@ void Cli::parseLanguage()
     }
 
     m_sourceLang = m_translator->sourceLanguage();
-}
-
-void Cli::printSpeakingSourceText()
-{
-    m_stdout << tr("Source text:") << '\n';
-    m_stdout << m_sourceText << '\n';
-}
-
-void Cli::printSpeakingTranslation()
-{
-    m_stdout << tr("Translation into %1:").arg(m_translator->translationLanguageString()) << '\n';
-    m_stdout << m_translator->translation() << '\n';
 }
 
 void Cli::printLangCodes()
@@ -266,27 +283,6 @@ void Cli::buildShowCodesStateMachine()
     showCodesState->addTransition(new QFinalState(m_stateMachine));
 }
 
-void Cli::buildAudioOnlyStateMachine()
-{
-    // States
-    auto *speakSourceState = new QState(m_stateMachine);
-    auto *speakTranslationsState = new QState(m_stateMachine);
-    m_stateMachine->setInitialState(speakSourceState);
-
-    if (m_speakSource)
-        buildSpeakSourceState(speakSourceState);
-    else
-        speakSourceState->setInitialState(new QFinalState(speakSourceState));
-
-    if (m_speakTranslation)
-        buildSpeakTranslationsState(speakTranslationsState);
-    else
-        speakTranslationsState->setInitialState(new QFinalState(speakTranslationsState));
-
-    speakSourceState->addTransition(speakSourceState, &QState::finished, speakTranslationsState);
-    speakTranslationsState->addTransition(speakTranslationsState, &QState::finished, new QFinalState(m_stateMachine));
-}
-
 void Cli::buildTranslationStateMachine()
 {
     auto *nextTranslationState = new QState(m_stateMachine);
@@ -299,10 +295,17 @@ void Cli::buildTranslationStateMachine()
         auto *speakTranslation = new QState(m_stateMachine);
         nextTranslationState = new QState(m_stateMachine);
 
-        connect(requestTranslationState, &QState::entered, this, &Cli::requestTranslation);
-        connect(parseDataState, &QState::entered, this, &Cli::printTranslation);
+        if (m_audioOnly && m_speakSource && !m_speakTranslation && m_sourceLang == QOnlineTranslator::Auto) {
+            connect(requestTranslationState, &QState::entered, this, &Cli::requestLanguage);
+            connect(parseDataState, &QState::entered, this, &Cli::parseLanguage);
+        } else {
+            connect(requestTranslationState, &QState::entered, this, &Cli::requestTranslation);
+            connect(parseDataState, &QState::entered, this, &Cli::parseTranslation);
+            if (!m_audioOnly)
+                connect(parseDataState, &QState::entered, this, &Cli::printTranslation);
 
-        requestTranslationState->setProperty(s_langProperty, lang);
+            requestTranslationState->setProperty(s_langProperty, lang);
+        }
 
         requestTranslationState->addTransition(m_translator, &QOnlineTranslator::finished, parseDataState);
         parseDataState->addTransition(speakSourceText);
@@ -327,68 +330,6 @@ void Cli::buildTranslationStateMachine()
     }
 
     nextTranslationState->addTransition(new QFinalState(m_stateMachine));
-}
-
-void Cli::buildSpeakSourceState(QState *parent)
-{
-    // Speak source substates
-    auto *printTextState = new QState(parent);
-    auto *detectLanguageState = new QState(parent);
-    auto *speakTextState = new QState(parent);
-
-    connect(printTextState, &QState::entered, this, &Cli::printSpeakingSourceText);
-    connect(speakTextState, &QState::entered, this, &Cli::speakSource);
-
-    // Transitions
-    parent->setInitialState(printTextState);
-    printTextState->addTransition(detectLanguageState);
-    detectLanguageState->addTransition(detectLanguageState, &QState::finished, speakTextState);
-
-    auto *speakTextTransition = new PlayerStoppedTransition(m_player, speakTextState);
-    speakTextTransition->setTargetState(new QFinalState(parent));
-
-    // Setup detect language state
-    if (m_sourceLang == QOnlineTranslator::Auto) {
-        auto *requestingState = new QState(detectLanguageState);
-        auto *parseState = new QState(detectLanguageState);
-
-        connect(requestingState, &QState::entered, this, &Cli::requestLanguage);
-        connect(parseState, &QState::entered, this, &Cli::parseLanguage);
-
-        detectLanguageState->setInitialState(requestingState);
-
-        requestingState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
-        parseState->addTransition(new QFinalState(detectLanguageState));
-    } else {
-        detectLanguageState->setInitialState(new QFinalState(detectLanguageState));
-    }
-}
-
-void Cli::buildSpeakTranslationsState(QState *parent)
-{
-    auto *nextSpeakTranslationState = new QState(parent);
-    parent->setInitialState(nextSpeakTranslationState);
-
-    for (QOnlineTranslator::Language language : qAsConst(m_translationLangs)) {
-        auto *requestTranslationState = nextSpeakTranslationState;
-        auto *printTextState = new QState(parent);
-        auto *speakTextState = new QState(parent);
-        nextSpeakTranslationState = new QState(parent);
-
-        connect(requestTranslationState, &QState::entered, this, &Cli::requestTranslation);
-        connect(printTextState, &QState::entered, this, &Cli::printSpeakingTranslation);
-        connect(speakTextState, &QState::entered, this, &Cli::speakTranslation);
-
-        requestTranslationState->setProperty(s_langProperty, language);
-
-        requestTranslationState->addTransition(m_translator, &QOnlineTranslator::finished, printTextState);
-        printTextState->addTransition(speakTextState);
-
-        auto *speakTextTransition = new PlayerStoppedTransition(m_player, speakTextState);
-        speakTextTransition->setTargetState(nextSpeakTranslationState);
-    }
-
-    nextSpeakTranslationState->addTransition(new QFinalState(parent));
 }
 
 void Cli::speak(const QString &text, QOnlineTranslator::Language lang)

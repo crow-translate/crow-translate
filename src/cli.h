@@ -42,6 +42,7 @@ public:
 
 private slots:
     void requestTranslation();
+    void parseTranslation();
     void printTranslation();
 
     void requestLanguage();
@@ -50,20 +51,12 @@ private slots:
     void speakSource();
     void speakTranslation();
 
-    void printSpeakingSourceText();
-    void printSpeakingTranslation();
-
     void printLangCodes();
 
 private:
     // Main state machines
     void buildShowCodesStateMachine();
-    void buildAudioOnlyStateMachine();
     void buildTranslationStateMachine();
-
-    // Nested states
-    void buildSpeakSourceState(QState *parent);
-    void buildSpeakTranslationsState(QState *parent);
 
     // Helpers
     void speak(const QString &text, QOnlineTranslator::Language lang);
@@ -84,6 +77,8 @@ private:
     bool m_speakSource = false;
     bool m_speakTranslation = false;
     bool m_sourcePrinted = false;
+    bool m_brief = false;
+    bool m_audioOnly = false;
 
     static constexpr char s_langProperty[] = "Language";
 };
