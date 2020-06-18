@@ -124,7 +124,7 @@ void SpeakButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emot
     }
 }
 
-void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language language, QOnlineTranslator::Engine engine)
+void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine)
 {
     if (text.isEmpty()) {
         QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
@@ -132,7 +132,7 @@ void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language langua
     }
 
     QOnlineTts onlineTts;
-    onlineTts.generateUrls(text, engine, language, voice(engine), emotion(engine));
+    onlineTts.generateUrls(text, engine, lang, voice(engine), emotion(engine));
     if (onlineTts.error() != QOnlineTts::NoError) {
         QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
         return;

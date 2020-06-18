@@ -44,7 +44,7 @@ signals:
 
 private:
     QString m_translation;
-    QOnlineTranslator::Language m_language = QOnlineTranslator::NoLanguage;
+    QOnlineTranslator::Language m_lang = QOnlineTranslator::NoLanguage;
 };
 
 #endif // TRANSLATIONEDIT_H

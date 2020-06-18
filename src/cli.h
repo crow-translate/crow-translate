@@ -70,7 +70,7 @@ private:
     QTextStream m_stdout{stdout};
 
     QString m_sourceText;
-    QVector<QOnlineTranslator::Language> m_translationLangs;
+    QVector<QOnlineTranslator::Language> m_translationLanguages;
     QOnlineTranslator::Engine m_engine = QOnlineTranslator::Google;
     QOnlineTranslator::Language m_sourceLang = QOnlineTranslator::NoLanguage;
     QOnlineTranslator::Language m_uiLang = QOnlineTranslator::NoLanguage;

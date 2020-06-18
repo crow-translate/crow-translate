@@ -551,13 +551,13 @@
          </widget>
         </item>
         <item>
-         <widget class="QGroupBox" name="languageDetectionGroupBox">
+         <widget class="QGroupBox" name="langDetectionGroupBox">
           <property name="title">
            <string>Automatic language detection</string>
           </property>
           <layout class="QGridLayout" name="languageDetectionLayout">
            <item row="0" column="2">
-            <spacer name="languageDetectionSpacer">
+            <spacer name="langDetectionSpacer">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>
@@ -570,28 +570,28 @@
             </spacer>
            </item>
            <item row="0" column="0">
-            <widget class="QLabel" name="primaryLanguageLabel">
+            <widget class="QLabel" name="primaryLangLabel">
              <property name="text">
               <string>Primary translation language:</string>
              </property>
             </widget>
            </item>
            <item row="1" column="0">
-            <widget class="QLabel" name="secondaryLanguageLabel">
+            <widget class="QLabel" name="secondaryLangLabel">
              <property name="text">
               <string>Secondary translation language:</string>
              </property>
             </widget>
            </item>
            <item row="0" column="1">
-            <widget class="QComboBox" name="primaryLanguageComboBox">
+            <widget class="QComboBox" name="primaryLangComboBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="1" column="1">
-            <widget class="QComboBox" name="secondaryLanguageComboBox">
+            <widget class="QComboBox" name="secondaryLangComboBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>

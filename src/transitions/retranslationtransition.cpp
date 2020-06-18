@@ -26,14 +26,14 @@
 RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, LanguageButtonsWidget *buttons, QState *sourceState)
     : QAbstractTransition(sourceState)
     , m_translator(translator)
-    , m_languageButtons(buttons)
+    , m_langButtons(buttons)
 {
 }
 
 bool RetranslationTransition::eventTest(QEvent *)
 {
     return m_translator->error() == QOnlineTranslator::NoError
-            && m_languageButtons->isAutoButtonChecked()
+            && m_langButtons->isAutoButtonChecked()
             && m_translator->sourceLanguage() == m_translator->translationLanguage();
 }
 

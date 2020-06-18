@@ -836,12 +836,12 @@ QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType 
 
     QVector<QOnlineTranslator::Language> languages;
     languages.reserve(languageCodes.size());
-    for (const QString &languageCode : languageCodes) {
-        QOnlineTranslator::Language language = QOnlineTranslator::language(languageCode);
-        if (language != QOnlineTranslator::NoLanguage && language != QOnlineTranslator::Auto)
-            languages.append(language);
+    for (const QString &langCode : languageCodes) {
+        QOnlineTranslator::Language lang = QOnlineTranslator::language(langCode);
+        if (lang != QOnlineTranslator::NoLanguage && lang != QOnlineTranslator::Auto)
+            languages.append(lang);
         else
-            qWarning() << tr("Unknown language code: %1").arg(languageCode);
+            qWarning() << tr("Unknown language code: %1").arg(langCode);
     }
 
     return languages;
@@ -849,13 +849,13 @@ QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType 
 
 void AppSettings::setLanguages(LanguageButtonsType type, const QVector<QOnlineTranslator::Language> &languages)
 {
-    QStringList languageCodes;
-    languageCodes.reserve(languages.size());
-    for (QOnlineTranslator::Language language : languages)
-        languageCodes.append(QOnlineTranslator::languageCode(language));
+    QStringList langCodes;
+    langCodes.reserve(languages.size());
+    for (QOnlineTranslator::Language lang : languages)
+        langCodes.append(QOnlineTranslator::languageCode(lang));
 
     const auto typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
-    m_settings->setValue(QStringLiteral("Buttons/%1").arg(typeEnum.valueToKey(type)), languageCodes);
+    m_settings->setValue(QStringLiteral("Buttons/%1").arg(typeEnum.valueToKey(type)), langCodes);
 }
 
 int AppSettings::checkedButton(LanguageButtonsType type) const

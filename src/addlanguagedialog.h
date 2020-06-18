@@ -28,17 +28,17 @@
 class QListWidget;
 
 namespace Ui {
-class AddLangDialog;
+class AddLanguageDialog;
 }
 
-class AddLangDialog : public QDialog
+class AddLanguageDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AddLangDialog)
+    Q_DISABLE_COPY(AddLanguageDialog)
 
 public:
-    explicit AddLangDialog(const QVector<QOnlineTranslator::Language> &currentLanguages, QWidget *parent = nullptr);
-    ~AddLangDialog() override;
+    explicit AddLanguageDialog(const QVector<QOnlineTranslator::Language> &currentLang, QWidget *parent = nullptr);
+    ~AddLanguageDialog() override;
 
     QVector<QOnlineTranslator::Language> languages() const;
 
@@ -56,11 +56,11 @@ private slots:
     void checkVerticalMovement(int row);
 
 private:
-    static void addLanguage(QListWidget *widget, QOnlineTranslator::Language language);
+    static void addLanguage(QListWidget *widget, QOnlineTranslator::Language lang);
     static void moveLanguageVertically(QListWidget *widget, int offset);
     static void moveLanguageHorizontally(QListWidget *from, QListWidget *to);
 
-    Ui::AddLangDialog *ui;
+    Ui::AddLanguageDialog *ui;
     QVector<QOnlineTranslator::Language> m_languages;
 };
 

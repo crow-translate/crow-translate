@@ -37,7 +37,7 @@ protected:
 
 private:
     QOnlineTranslator *m_translator;
-    LanguageButtonsWidget *m_languageButtons;
+    LanguageButtonsWidget *m_langButtons;
 };
 
 #endif // RETRANSLATIONTRANSITION_H

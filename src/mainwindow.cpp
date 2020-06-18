@@ -21,7 +21,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "addlangdialog.h"
+#include "addlanguagedialog.h"
 #include "popupwindow.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
@@ -613,7 +613,7 @@ void MainWindow::buildTranslationState(QState *state)
     auto *abortPreviousState = new QState(state);
     auto *requestState = new QState(state);
     auto *checkLanguagesState = new QState(state);
-    auto *requestInOtherLanguageState = new QState(state);
+    auto *requestInOtherLangeState = new QState(state);
     auto *parseState = new QState(state);
     auto *clearTranslationState = new QState(state);
     auto *finalState = new QFinalState(state);
@@ -622,7 +622,7 @@ void MainWindow::buildTranslationState(QState *state)
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
     connect(abortPreviousState, &QState::entered, ui->translationSpeakButtons, &SpeakButtons::stopSpeaking); // Stop translation speaking
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
-    connect(requestInOtherLanguageState, &QState::entered, this, &MainWindow::requestRetranslation);
+    connect(requestInOtherLangeState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
     connect(clearTranslationState, &QState::entered, this, &MainWindow::clearTranslation);
     setupRequestStateButtons(requestState);
@@ -634,12 +634,12 @@ void MainWindow::buildTranslationState(QState *state)
     auto *translationRunningTransition = new TranslatorAbortedTransition(m_translator, abortPreviousState);
     translationRunningTransition->setTargetState(requestState);
 
-    auto *otherLanguageTransition = new RetranslationTransition(m_translator, ui->translationLanguagesWidget, checkLanguagesState);
-    otherLanguageTransition->setTargetState(requestInOtherLanguageState);
+    auto *otherLangTransition = new RetranslationTransition(m_translator, ui->translationLanguagesWidget, checkLanguagesState);
+    otherLangTransition->setTargetState(requestInOtherLangeState);
 
     requestState->addTransition(m_translator, &QOnlineTranslator::finished, checkLanguagesState);
     checkLanguagesState->addTransition(parseState);
-    requestInOtherLanguageState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
+    requestInOtherLangeState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
     parseState->addTransition(finalState);
     clearTranslationState->addTransition(finalState);
 }
@@ -839,17 +839,17 @@ void MainWindow::checkLanguageButton(int checkedId)
 
     /* If the target and source languages are the same and they are not autodetect buttons,
      * then select previous checked language from just checked language group to another group */
-    const QOnlineTranslator::Language checkedLanguage = checkedGroup->language(checkedId);
-    if (checkedLanguage == anotherGroup->checkedLanguage() && !checkedGroup->isAutoButtonChecked() && !anotherGroup->isAutoButtonChecked()) {
+    const QOnlineTranslator::Language checkedLang = checkedGroup->language(checkedId);
+    if (checkedLang == anotherGroup->checkedLanguage() && !checkedGroup->isAutoButtonChecked() && !anotherGroup->isAutoButtonChecked()) {
         if (!anotherGroup->checkLanguage(checkedGroup->previousCheckedLanguage()))
             anotherGroup->checkAutoButton(); // Select "Auto" button if group do not have such language
         return;
     }
 
     // Check if selected language is supported by engine
-    if (!QOnlineTranslator::isSupportTranslation(currentEngine(), checkedLanguage)) {
+    if (!QOnlineTranslator::isSupportTranslation(currentEngine(), checkedLang)) {
         for (int i = 0; i < ui->engineComboBox->count(); ++i) {
-            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedLanguage)) {
+            if (QOnlineTranslator::isSupportTranslation(static_cast<QOnlineTranslator::Engine>(i), checkedLang)) {
                 ui->engineComboBox->setCurrentIndex(i); // Check first supported language
                 break;
             }

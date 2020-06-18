@@ -74,19 +74,19 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), QStringLiteral("Українська"), QLocale::Ukrainian);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("简体中文 (中国)"), QLocale::Chinese);
 
-    ui->primaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
-    ui->secondaryLanguageComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
+    ui->primaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
+    ui->secondaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
         const QIcon langIcon = LanguageButtonsWidget::countryIcon(lang);
 
-        ui->primaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
-        ui->secondaryLanguageComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
+        ui->primaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
+        ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
     }
 
     // Sort languages in comboboxes alphabetically
-    ui->primaryLanguageComboBox->model()->sort(0);
-    ui->secondaryLanguageComboBox->model()->sort(0);
+    ui->primaryLangComboBox->model()->sort(0);
+    ui->secondaryLangComboBox->model()->sort(0);
 
     // Set maximum and minimum values for the size of the popup window
     ui->popupWidthSlider->setMaximum(SingleApplication::primaryScreen()->availableGeometry().width());
@@ -196,8 +196,8 @@ void SettingsDialog::accept()
     settings.setTranslationOptionsEnabled(ui->translationOptionsCheckBox->isChecked());
     settings.setExamplesEnabled(ui->examplesCheckBox->isChecked());
     settings.setSimplifySource(ui->sourceSimplificationCheckBox->isChecked());
-    settings.setPrimaryLanguage(ui->primaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
-    settings.setSecondaryLanguage(ui->secondaryLanguageComboBox->currentData().value<QOnlineTranslator::Language>());
+    settings.setPrimaryLanguage(ui->primaryLangComboBox->currentData().value<QOnlineTranslator::Language>());
+    settings.setSecondaryLanguage(ui->secondaryLangComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
@@ -456,8 +456,8 @@ void SettingsDialog::restoreDefaults()
     ui->translationOptionsCheckBox->setChecked(AppSettings::defaultTranslationOptionsEnabled());
     ui->examplesCheckBox->setChecked(AppSettings::defaultExamplesEnabled());
     ui->sourceSimplificationCheckBox->setChecked(AppSettings::defaultSimplifySource());
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(AppSettings::defaultPrimaryLanguage()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(AppSettings::defaultSecondaryLanguage()));
+    ui->primaryLangComboBox->setCurrentIndex(ui->primaryLangComboBox->findData(AppSettings::defaultPrimaryLanguage()));
+    ui->secondaryLangComboBox->setCurrentIndex(ui->secondaryLangComboBox->findData(AppSettings::defaultSecondaryLanguage()));
     ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
@@ -514,8 +514,8 @@ void SettingsDialog::loadSettings()
     ui->translationOptionsCheckBox->setChecked(settings.isTranslationOptionsEnabled());
     ui->examplesCheckBox->setChecked(settings.isExamplesEnabled());
     ui->sourceSimplificationCheckBox->setChecked(settings.isSimplifySource());
-    ui->primaryLanguageComboBox->setCurrentIndex(ui->primaryLanguageComboBox->findData(settings.primaryLanguage()));
-    ui->secondaryLanguageComboBox->setCurrentIndex(ui->secondaryLanguageComboBox->findData(settings.secondaryLanguage()));
+    ui->primaryLangComboBox->setCurrentIndex(ui->primaryLangComboBox->findData(settings.primaryLanguage()));
+    ui->secondaryLangComboBox->setCurrentIndex(ui->secondaryLangComboBox->findData(settings.secondaryLanguage()));
     ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 

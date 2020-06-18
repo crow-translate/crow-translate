@@ -38,7 +38,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     // Store translation information
     const bool translationWasEmpty = m_translation.isEmpty();
     m_translation = translator->translation();
-    m_language = translator->translationLanguage();
+    m_lang = translator->translationLanguage();
 
     // Translation
     setHtml(m_translation.toHtmlEscaped().replace(QStringLiteral("\n"), QStringLiteral("<br>")));
@@ -123,14 +123,14 @@ QString TranslationEdit::translation() const
 
 QOnlineTranslator::Language TranslationEdit::translationLanguage()
 {
-    return m_language;
+    return m_lang;
 }
 
 void TranslationEdit::clearTranslation()
 {
     if (!m_translation.isEmpty()) {
         m_translation.clear();
-        m_language = QOnlineTranslator::NoLanguage;
+        m_lang = QOnlineTranslator::NoLanguage;
         emit translationEmpty(true);
     }
     clear();

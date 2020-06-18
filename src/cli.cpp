@@ -98,8 +98,8 @@ void Cli::process(const QCoreApplication &app)
     // Translation languages
     m_sourceLang = QOnlineTranslator::language(parser.value(source));
     m_uiLang = QOnlineTranslator::language(parser.value(locale));
-    for (const QString &language : parser.value(translation).split('+'))
-        m_translationLangs << QOnlineTranslator::language(language);
+    for (const QString &langCode : parser.value(translation).split('+'))
+        m_translationLanguages << QOnlineTranslator::language(langCode);
 
     // Source text
     if (parser.isSet(file)) {
@@ -258,9 +258,9 @@ void Cli::parseLanguage()
 
 void Cli::printLangCodes()
 {
-    for (int languageIndex = QOnlineTranslator::Auto; languageIndex != QOnlineTranslator::Zulu; ++languageIndex) {
-        const auto language = static_cast<QOnlineTranslator::Language>(languageIndex);
-        m_stdout << QOnlineTranslator::languageString(language) << " - " << QOnlineTranslator::languageCode(language) << '\n';
+    for (int langIndex = QOnlineTranslator::Auto; langIndex != QOnlineTranslator::Zulu; ++langIndex) {
+        const auto lang = static_cast<QOnlineTranslator::Language>(langIndex);
+        m_stdout << QOnlineTranslator::languageString(lang) << " - " << QOnlineTranslator::languageCode(lang) << '\n';
     }
 }
 
@@ -288,7 +288,7 @@ void Cli::buildTranslationStateMachine()
     auto *nextTranslationState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(nextTranslationState);
 
-    for (QOnlineTranslator::Language lang : qAsConst(m_translationLangs)) {
+    for (QOnlineTranslator::Language lang : qAsConst(m_translationLanguages)) {
         auto *requestTranslationState = nextTranslationState;
         auto *parseDataState = new QState(m_stateMachine);
         auto *speakSourceText = new QState(m_stateMachine);

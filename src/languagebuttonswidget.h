@@ -27,40 +27,40 @@ public:
     QOnlineTranslator::Language previousCheckedLanguage() const;
     QOnlineTranslator::Language language(int index) const;
 
-    bool checkLanguage(QOnlineTranslator::Language language);
+    bool checkLanguage(QOnlineTranslator::Language lang);
 
     bool isAutoButtonChecked() const;
     void retranslate();
 
-    static QIcon countryIcon(QOnlineTranslator::Language language);
+    static QIcon countryIcon(QOnlineTranslator::Language lang);
     static void swapCurrentLanguages(LanguageButtonsWidget *first, LanguageButtonsWidget *second);
 
 signals:
     void buttonChecked(int index);
-    void languageAdded(QOnlineTranslator::Language language);
+    void languageAdded(QOnlineTranslator::Language lang);
     void languagesChanged(const QVector<QOnlineTranslator::Language> &languages);
-    void autoLanguageChanged(QOnlineTranslator::Language language);
+    void autoLanguageChanged(QOnlineTranslator::Language lang);
 
 public slots:
     void checkAutoButton();
     void checkButton(int index);
-    void addLanguage(QOnlineTranslator::Language language);
-    void setAutoLanguage(QOnlineTranslator::Language language);
+    void addLanguage(QOnlineTranslator::Language lang);
+    void setAutoLanguage(QOnlineTranslator::Language lang);
 
 private slots:
     void editLanguages();
     void savePreviousToggledButton(int index, bool checked);
 
 private:
-    void addOrCheckLanguage(QOnlineTranslator::Language language);
-    void addButton(QOnlineTranslator::Language language);
-    void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language language);
+    void addOrCheckLanguage(QOnlineTranslator::Language lang);
+    void addButton(QOnlineTranslator::Language lang);
+    void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang);
 
     Ui::LanguageButtonsWidget *ui;
     QButtonGroup *m_buttonGroup;
 
     QVector<QOnlineTranslator::Language> m_languages;
-    QOnlineTranslator::Language m_autoLanguage = QOnlineTranslator::Auto;
+    QOnlineTranslator::Language m_autoLang = QOnlineTranslator::Auto;
     int m_previousCheckedId = 0;
 
     static constexpr int s_autoButtonIndex = -2; // -1 is reserved by QButtonGroup

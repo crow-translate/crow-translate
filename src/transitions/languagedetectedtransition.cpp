@@ -24,13 +24,13 @@
 
 LanguageDetectedTransition::LanguageDetectedTransition(LanguageButtonsWidget *buttons, QState *sourceState)
     : QAbstractTransition(sourceState)
-    , m_languageButtons(buttons)
+    , m_langButtons(buttons)
 {
 }
 
 bool LanguageDetectedTransition::eventTest(QEvent *)
 {
-    return m_languageButtons->checkedLanguage() != QOnlineTranslator::Auto;
+    return m_langButtons->checkedLanguage() != QOnlineTranslator::Auto;
 }
 
 void LanguageDetectedTransition::onTransition(QEvent *)

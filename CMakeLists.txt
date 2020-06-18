@@ -94,8 +94,8 @@ add_executable(${PROJECT_NAME}
     ${QM_FILES}
     data/icons/engines/engines.qrc
     data/icons/flags/flags.qrc
-    src/addlangdialog.cpp
-    src/addlangdialog.ui
+    src/addlanguagedialog.cpp
+    src/addlanguagedialog.ui
     src/cli.cpp
     src/languagebuttonswidget.cpp
     src/languagebuttonswidget.ui

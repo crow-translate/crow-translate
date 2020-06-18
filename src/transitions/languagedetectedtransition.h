@@ -35,7 +35,7 @@ protected:
     void onTransition(QEvent *) override;
 
 private:
-    LanguageButtonsWidget *m_languageButtons;
+    LanguageButtonsWidget *m_langButtons;
 };
 
 #endif // LANGUAGEDETECTEDTRANSITION_H
