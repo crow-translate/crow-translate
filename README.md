@@ -210,19 +210,19 @@ makepkg -si
 
 #### Fedora
 
-:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate)
+:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/carlis/crow-translate/)
 
 ```bash
-sudo dnf copr enable faezebax/crow-translate
+sudo dnf copr enable carlis/crow-translate
 sudo dnf install crow-translate
 ```
 
 #### CentOS, RHEL
 
-:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/faezebax/crow-translate)
+:package: [Fedora Copr](https://copr.fedorainfracloud.org/coprs/carlis/crow-translate/)
 
 ```bash
-sudo yum copr enable faezebax/crow-translate
+sudo yum copr enable carlis/crow-translate
 sudo yum install crow-translate
 ```
 
