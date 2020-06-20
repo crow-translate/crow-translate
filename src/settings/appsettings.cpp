@@ -884,7 +884,7 @@ void AppSettings::setMainWindowGeometry(const QByteArray &geometry)
 
 bool AppSettings::isAutoTranslateEnabled() const
 {
-    return m_settings->value(QStringLiteral("AutoTranslate"), true).toBool();
+    return m_settings->value(QStringLiteral("AutoTranslate"), false).toBool();
 }
 
 void AppSettings::setAutoTranslateEnabled(bool enable)

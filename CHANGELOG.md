@@ -15,6 +15,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - Use `https` instead of `http` for all engines.
 - `--audio-only` option now only plays text.
+- Automatic translation disabled by default.
 
 ## [2.3.1](https://github.com/crow-translate/crow-translate/tree/2.3.2) (2020-05-10)
 
