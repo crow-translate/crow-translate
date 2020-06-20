@@ -1103,74 +1103,27 @@
           </property>
          </widget>
         </item>
-        <item row="0" column="1">
+        <item row="0" column="1" alignment="Qt::AlignVCenter">
          <widget class="QGroupBox" name="aboutGroupBox">
           <property name="title">
            <string notr="true">Crow Translate</string>
           </property>
           <layout class="QGridLayout" name="aboutBoxLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="versionTitleLabel">
-             <property name="text">
-              <string>Version:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="8" column="0">
+           <item row="7" column="0">
             <widget class="QLabel" name="mailTitleLabel">
              <property name="text">
               <string notr="true">E-mail:</string>
              </property>
             </widget>
            </item>
-           <item row="8" column="1">
-            <widget class="QLabel" name="mailLabel">
-             <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="licenseTitleLabel">
-             <property name="text">
-              <string>License:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="10" column="1">
-            <widget class="QLabel" name="telegramLabel">
-             <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://t.me/Shatur&quot;&gt;@Shatur&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
+           <item row="5" column="0">
             <widget class="QLabel" name="autorTitleLabel">
              <property name="text">
               <string>Autor:</string>
              </property>
             </widget>
            </item>
-           <item row="10" column="0">
-            <widget class="QLabel" name="telegramTitleLabel">
-             <property name="text">
-              <string notr="true">Telegram:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="11" column="0">
+           <item row="9" column="0">
             <widget class="QLabel" name="flagIconsTitleLabel">
              <property name="text">
               <string>Flag icons:</string>
@@ -1180,7 +1133,34 @@
            <item row="0" column="1">
             <widget class="QLabel" name="versionLabel"/>
            </item>
-           <item row="11" column="1">
+           <item row="3" column="0">
+            <widget class="QLabel" name="licenseTitleLabel">
+             <property name="text">
+              <string>License:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="versionTitleLabel">
+             <property name="text">
+              <string>Version:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QLabel" name="autorLabel">
+             <property name="text">
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
+             </property>
+             <property name="textInteractionFlags">
+              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+             </property>
+            </widget>
+           </item>
+           <item row="9" column="1">
             <widget class="QLabel" name="flagIconsLabel">
              <property name="text">
               <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/madebybowtie/FlagKit&quot;&gt;FlagKit&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1200,30 +1180,16 @@
              </property>
             </widget>
            </item>
-           <item row="6" column="1">
-            <widget class="QLabel" name="autorLabel">
+           <item row="7" column="1">
+            <widget class="QLabel" name="mailLabel">
              <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="openExternalLinks">
               <bool>true</bool>
              </property>
              <property name="textInteractionFlags">
               <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="nationTitleLabel">
-             <property name="text">
-              <string>Country:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QLabel" name="nationLabel">
-             <property name="text">
-              <string>Ukraine</string>
              </property>
             </widget>
            </item>
