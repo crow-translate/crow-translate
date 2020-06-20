@@ -769,6 +769,21 @@ QKeySequence AppSettings::defaultTranslateShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Return"));
 }
 
+QKeySequence AppSettings::swapShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/Swap"), defaultSwapShortcut()).value<QKeySequence>();
+}
+
+void AppSettings::setSwapShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/Swap"), shortcut);
+}
+
+QKeySequence AppSettings::defaultSwapShortcut()
+{
+    return QKeySequence(QStringLiteral("Ctrl+S"));
+}
+
 QKeySequence AppSettings::closeWindowShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/CloseWindow"), defaultCloseWindowShortcut()).value<QKeySequence>();

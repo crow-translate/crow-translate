@@ -232,6 +232,10 @@ public:
     void setTranslateShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultTranslateShortcut();
 
+    QKeySequence swapShortcut() const;
+    void setSwapShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSwapShortcut();
+
     QKeySequence closeWindowShortcut() const;
     void setCloseWindowShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCloseWindowShortcut();

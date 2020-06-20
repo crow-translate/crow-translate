@@ -820,6 +820,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->sourceSpeakButtons->setSpeakShortcut(settings.speakSourceShortcut());
     ui->translationSpeakButtons->setSpeakShortcut(settings.speakTranslationShortcut());
     ui->translateButton->setShortcut(settings.translateShortcut());
+    ui->swapButton->setShortcut(settings.swapShortcut());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
 }

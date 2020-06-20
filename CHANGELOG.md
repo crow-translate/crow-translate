@@ -10,6 +10,7 @@ All notable changes to this project will be documented in this file. This projec
 
 - `--brief` option to print only translations.
 - The ability to add, remove or reorder used languages.
+- Swap languages shortcut.
 
 **Changed**
 

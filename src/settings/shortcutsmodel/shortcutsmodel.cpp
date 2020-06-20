@@ -57,6 +57,9 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     auto *translateShortcut = new ShortcutItem(tr("Translate"), QStringLiteral("go-next"), windowShortcuts);
     translateShortcut->setDefaultShortcut(AppSettings::defaultTranslateShortcut());
 
+    auto *swapShortcut = new ShortcutItem(tr("Swap languages"), QStringLiteral("object-flip-horizontal"), windowShortcuts);
+    swapShortcut->setDefaultShortcut(AppSettings::defaultSwapShortcut());
+
     auto *closeWindowShortcut = new ShortcutItem(tr("Close window"), QStringLiteral("application-exit"), windowShortcuts);
     closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowShortcut());
 
@@ -191,14 +194,15 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 
     // Window shortcuts
     m_rootItem->child(1)->child(0)->setShortcut(settings.translateShortcut());
-    m_rootItem->child(1)->child(1)->setShortcut(settings.closeWindowShortcut());
+    m_rootItem->child(1)->child(1)->setShortcut(settings.swapShortcut());
+    m_rootItem->child(1)->child(2)->setShortcut(settings.closeWindowShortcut());
 
     // Source text shortcuts
-    m_rootItem->child(1)->child(2)->child(0)->setShortcut(settings.speakSourceShortcut());
+    m_rootItem->child(1)->child(3)->child(0)->setShortcut(settings.speakSourceShortcut());
 
     // Translation text shortcuts
-    m_rootItem->child(1)->child(3)->child(0)->setShortcut(settings.speakTranslationShortcut());
-    m_rootItem->child(1)->child(3)->child(1)->setShortcut(settings.copyTranslationShortcut());
+    m_rootItem->child(1)->child(4)->child(0)->setShortcut(settings.speakTranslationShortcut());
+    m_rootItem->child(1)->child(4)->child(1)->setShortcut(settings.copyTranslationShortcut());
 }
 
 void ShortcutsModel::saveShortcuts(AppSettings &settings) const
@@ -213,14 +217,15 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
 
     // Window shortcuts
     settings.setTranslateShortcut(m_rootItem->child(1)->child(0)->shortcut());
-    settings.setCloseWindowShortcut(m_rootItem->child(1)->child(1)->shortcut());
+    settings.setSwapShortcut(m_rootItem->child(1)->child(1)->shortcut());
+    settings.setCloseWindowShortcut(m_rootItem->child(1)->child(2)->shortcut());
 
     // Source text shortcuts
-    settings.setSpeakSourceShortcut(m_rootItem->child(1)->child(2)->child(0)->shortcut());
+    settings.setSpeakSourceShortcut(m_rootItem->child(1)->child(3)->child(0)->shortcut());
 
     // Translation text shortcuts
-    settings.setSpeakTranslationShortcut(m_rootItem->child(1)->child(3)->child(0)->shortcut());
-    settings.setCopyTranslationShortcut(m_rootItem->child(1)->child(3)->child(1)->shortcut());
+    settings.setSpeakTranslationShortcut(m_rootItem->child(1)->child(4)->child(0)->shortcut());
+    settings.setCopyTranslationShortcut(m_rootItem->child(1)->child(4)->child(1)->shortcut());
 }
 
 void ShortcutsModel::resetAllShortcuts()
