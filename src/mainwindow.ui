@@ -18,18 +18,19 @@
     <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="mainLayout">
-    <item row="4" column="1">
-     <layout class="QHBoxLayout" name="topSourceLayout">
-      <property name="spacing">
-       <number>0</number>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="5" column="10">
+     <widget class="QToolButton" name="settingsButton">
+      <property name="toolTip">
+       <string>Application settings</string>
       </property>
-      <item>
-       <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true"/>
-      </item>
-     </layout>
+      <property name="icon">
+       <iconset theme="dialog-object-properties">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
     </item>
-    <item row="4" column="3">
+    <item row="0" column="4">
      <widget class="QToolButton" name="swapButton">
       <property name="toolTip">
        <string>Swap languages</string>
@@ -40,28 +41,67 @@
       </property>
      </widget>
     </item>
-    <item row="5" column="1" rowspan="5">
-     <widget class="SourceTextEdit" name="sourceEdit">
-      <property name="placeholderText">
-       <string>Source</string>
+    <item row="1" column="4">
+     <widget class="QToolButton" name="clearButton">
+      <property name="toolTip">
+       <string>Clear</string>
+      </property>
+      <property name="icon">
+       <iconset theme="edit-clear">
+        <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
-    <item row="4" column="4">
-     <layout class="QHBoxLayout" name="topTranslationLayout">
-      <property name="spacing">
-       <number>0</number>
+    <item row="5" column="1">
+     <widget class="QToolButton" name="copySourceButton">
+      <property name="toolTip">
+       <string>Copy source text to the clipboard</string>
       </property>
-      <item>
-       <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true">
-        <property name="layoutDirection">
-         <enum>Qt::RightToLeft</enum>
-        </property>
-       </widget>
-      </item>
-     </layout>
+      <property name="icon">
+       <iconset theme="edit-copy">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
     </item>
-    <item row="9" column="3">
+    <item row="5" column="2">
+     <widget class="QCheckBox" name="autoTranslateCheckBox">
+      <property name="text">
+       <string>Automatically translate</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="5" colspan="6">
+     <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true">
+      <property name="layoutDirection">
+       <enum>Qt::RightToLeft</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="5">
+     <spacer name="horizontalSpacer">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="5" column="8">
+     <widget class="QToolButton" name="copyTranslationButton">
+      <property name="toolTip">
+       <string>Copy translation to the clipboard</string>
+      </property>
+      <property name="icon">
+       <iconset theme="edit-copy">
+        <normaloff>.</normaloff>.</iconset>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
      <widget class="QToolButton" name="abortButton">
       <property name="enabled">
        <bool>false</bool>
@@ -75,7 +115,20 @@
       </property>
      </widget>
     </item>
-    <item row="6" column="3" rowspan="3">
+    <item row="1" column="5" rowspan="3" colspan="6">
+     <widget class="TranslationEdit" name="translationEdit">
+      <property name="styleSheet">
+       <string notr="true"/>
+      </property>
+      <property name="readOnly">
+       <bool>true</bool>
+      </property>
+      <property name="placeholderText">
+       <string>Translation</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="4">
      <widget class="QToolButton" name="translateButton">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
@@ -92,159 +145,84 @@
       </property>
      </widget>
     </item>
-    <item row="10" column="1">
-     <layout class="QHBoxLayout" name="buttomSourceLayout">
-      <item>
-       <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="copySourceButton">
-        <property name="toolTip">
-         <string>Copy source text to the clipboard</string>
-        </property>
-        <property name="icon">
-         <iconset theme="edit-copy">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="autoTranslateCheckBox">
-        <property name="text">
-         <string>Automatically translate</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <spacer name="buttomSourceSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>0</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
-    </item>
-    <item row="5" column="4" rowspan="5">
-     <widget class="TranslationEdit" name="translationEdit">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Translation</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <widget class="QToolButton" name="clearButton">
+    <item row="5" column="9">
+     <widget class="QToolButton" name="copyAllTranslationButton">
       <property name="toolTip">
-       <string>Clear</string>
+       <string>Copy all translation data to the clipboard</string>
       </property>
       <property name="icon">
-       <iconset theme="edit-clear">
+       <iconset theme="document-export">
         <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
     </item>
-    <item row="10" column="4">
-     <layout class="QHBoxLayout" name="buttomTranslationLayout">
+    <item row="5" column="6">
+     <widget class="QComboBox" name="engineComboBox">
       <item>
-       <spacer name="buttomTranslationSpacer">
-        <property name="orientation">
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeHint" stdset="0">
-         <size>
-          <width>0</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
+       <property name="text">
+        <string notr="true">Google</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../data/icons/engines/engines.qrc">
+         <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+       </property>
       </item>
       <item>
-       <widget class="QComboBox" name="engineComboBox">
-        <item>
-         <property name="text">
-          <string notr="true">Google</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../data/icons/engines/engines.qrc">
-           <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">Yandex</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../data/icons/engines/engines.qrc">
-           <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
-         </property>
-        </item>
-        <item>
-         <property name="text">
-          <string notr="true">Bing</string>
-         </property>
-         <property name="icon">
-          <iconset resource="../data/icons/engines/engines.qrc">
-           <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
-         </property>
-        </item>
-       </widget>
+       <property name="text">
+        <string notr="true">Yandex</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../data/icons/engines/engines.qrc">
+         <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+       </property>
       </item>
       <item>
-       <widget class="SpeakButtons" name="translationSpeakButtons" native="true">
-        <property name="enabled">
-         <bool>false</bool>
-        </property>
-       </widget>
+       <property name="text">
+        <string notr="true">Bing</string>
+       </property>
+       <property name="icon">
+        <iconset resource="../data/icons/engines/engines.qrc">
+         <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
+       </property>
       </item>
-      <item>
-       <widget class="QToolButton" name="copyTranslationButton">
-        <property name="toolTip">
-         <string>Copy translation to the clipboard</string>
-        </property>
-        <property name="icon">
-         <iconset theme="edit-copy">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="copyAllTranslationButton">
-        <property name="toolTip">
-         <string>Copy all translation data to the clipboard</string>
-        </property>
-        <property name="icon">
-         <iconset theme="document-export">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QToolButton" name="settingsButton">
-        <property name="toolTip">
-         <string>Application settings</string>
-        </property>
-        <property name="icon">
-         <iconset theme="dialog-object-properties">
-          <normaloff>.</normaloff>.</iconset>
-        </property>
-       </widget>
-      </item>
-     </layout>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="7">
+     <widget class="SpeakButtons" name="translationSpeakButtons" native="true">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="3">
+     <spacer name="horizontalSpacer_2">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+      <property name="sizeHint" stdset="0">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+     </spacer>
+    </item>
+    <item row="1" column="0" rowspan="3" colspan="4">
+     <widget class="SourceTextEdit" name="sourceEdit">
+      <property name="placeholderText">
+       <string>Source</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0" colspan="4">
+     <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true"/>
     </item>
    </layout>
   </widget>
@@ -290,10 +268,6 @@
   <tabstop>sourceEdit</tabstop>
   <tabstop>swapButton</tabstop>
   <tabstop>translationEdit</tabstop>
-  <tabstop>copySourceButton</tabstop>
-  <tabstop>copyTranslationButton</tabstop>
-  <tabstop>copyAllTranslationButton</tabstop>
-  <tabstop>settingsButton</tabstop>
  </tabstops>
  <resources>
   <include location="../data/icons/engines/engines.qrc"/>
