@@ -24,12 +24,16 @@
 #include "languagebuttonswidget.h"
 
 #include <QPushButton>
+#include <QShortcut>
 
 AddLanguageDialog::AddLanguageDialog(const QVector<QOnlineTranslator::Language> &currentLang, QWidget *parent)
     : QDialog(parent)
     , ui(new Ui::AddLanguageDialog)
+    , m_searchShortcut(new QShortcut(QStringLiteral("Ctrl+F"), this))
 {
     ui->setupUi(this);
+    ui->searchEdit->setPlaceholderText(tr("Filter (%1)").arg(m_searchShortcut->key().toString()));
+    connect(m_searchShortcut, &QShortcut::activated, ui->searchEdit, qOverload<>(&QLineEdit::setFocus));
 
     // Load languages
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {

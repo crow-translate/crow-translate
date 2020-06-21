@@ -27,6 +27,7 @@
 
 class QListWidget;
 class QAbstractButton;
+class QShortcut;
 
 namespace Ui {
 class AddLanguageDialog;
@@ -62,6 +63,7 @@ private:
     static void moveLanguageHorizontally(QListWidget *from, QListWidget *to, QAbstractButton *addButton, QAbstractButton *removeButton);
 
     Ui::AddLanguageDialog *ui;
+    QShortcut *m_searchShortcut;
     QVector<QOnlineTranslator::Language> m_languages;
 };
 
