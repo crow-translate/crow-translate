@@ -414,7 +414,7 @@ void LanguageButtonsWidget::checkAvailableScreenWidth()
 
     QMessageBox message;
     message.setIcon(QMessageBox::Information);
-    message.setText(tr("Window size is larger then screen due to the languages on the panel."));
+    message.setText(tr("Window width is larger then screen due to the languages on the panel."));
     message.setInformativeText(tr("Please reduce added languages."));
     if (message.exec() == QMessageBox::Ok) {
         const int languagesCountBefore = m_languages.size();

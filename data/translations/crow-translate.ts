@@ -2,25 +2,25 @@
 <!DOCTYPE TS>
 <TS version="2.1">
 <context>
-    <name>AddLangDialog</name>
+    <name>AddLanguageDialog</name>
     <message>
-        <location filename="../../src/addlangdialog.ui" line="14"/>
+        <location filename="../../src/addlanguagedialog.ui" line="14"/>
         <source>Add language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/addlangdialog.ui" line="54"/>
-        <source>Filter</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/addlangdialog.ui" line="88"/>
+        <location filename="../../src/addlanguagedialog.ui" line="88"/>
         <source>Available languages:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/addlangdialog.ui" line="101"/>
+        <location filename="../../src/addlanguagedialog.ui" line="101"/>
         <source>Current languages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/addlanguagedialog.cpp" line="35"/>
+        <source>Filter (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -32,7 +32,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="844"/>
+        <location filename="../../src/settings/appsettings.cpp" line="859"/>
         <source>Unknown language code: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -90,11 +90,6 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="61"/>
-        <source>Print only translations</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/cli.cpp" line="64"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
         <translation type="unfinished"></translation>
@@ -117,6 +112,11 @@
     <message>
         <location filename="../../src/cli.cpp" line="121"/>
         <source>Error: There is no text for translation</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/cli.cpp" line="61"/>
+        <source>Print only translations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -170,8 +170,18 @@
 <context>
     <name>LanguageButtonsWidget</name>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="422"/>
-        <location filename="../../src/languagebuttonswidget.cpp" line="424"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="417"/>
+        <source>Window width is larger then screen due to the languages on the panel.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/languagebuttonswidget.cpp" line="418"/>
+        <source>Please reduce added languages.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/languagebuttonswidget.cpp" line="482"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="484"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -179,32 +189,32 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../../src/mainwindow.ui" line="107"/>
+        <location filename="../../src/mainwindow.ui" line="58"/>
         <source>Copy source text to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="118"/>
+        <location filename="../../src/mainwindow.ui" line="69"/>
         <source>Automatically translate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="50"/>
+        <location filename="../../src/mainwindow.ui" line="220"/>
         <source>Source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="217"/>
+        <location filename="../../src/mainwindow.ui" line="96"/>
         <source>Copy translation to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="228"/>
+        <location filename="../../src/mainwindow.ui" line="151"/>
         <source>Copy all translation data to the clipboard</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="239"/>
+        <location filename="../../src/mainwindow.ui" line="25"/>
         <source>Application settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -215,27 +225,27 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="39"/>
+        <location filename="../../src/mainwindow.ui" line="36"/>
         <source>Swap languages</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="70"/>
+        <location filename="../../src/mainwindow.ui" line="110"/>
         <source>Cancel</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="153"/>
+        <location filename="../../src/mainwindow.ui" line="47"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="87"/>
+        <location filename="../../src/mainwindow.ui" line="140"/>
         <source>Translate</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.ui" line="146"/>
+        <location filename="../../src/mainwindow.ui" line="127"/>
         <source>Translation</source>
         <translation type="unfinished"></translation>
     </message>
@@ -270,7 +280,7 @@
 <context>
     <name>PopupWindow</name>
     <message>
-        <location filename="../../src/popupwindow.ui" line="36"/>
+        <location filename="../../src/popupwindow.ui" line="32"/>
         <source>Swap languages</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1511,18 +1521,8 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1115"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1146"/>
         <source>Version:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1226"/>
-        <source>Ukraine</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1219"/>
-        <source>Country:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1541,17 +1541,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1142"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1139"/>
         <source>License:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1176"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
         <source>Flag icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1162"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1122"/>
         <source>Autor:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1659,12 +1659,12 @@
 <context>
     <name>ShortcutsModel</name>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="120"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="123"/>
         <source>Description</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="122"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="125"/>
         <source>Shortcut</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1715,31 +1715,36 @@
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
+        <source>Swap languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
         <source>Close window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="64"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="67"/>
         <source>Source text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="66"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
         <source>Speak / pause text speaking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
         <source>Speak / pause speaking</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="70"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="73"/>
         <source>Translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
+        <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="78"/>
         <source>Copy to clipboard</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1801,11 +1806,6 @@
 <context>
     <name>UpdaterDialog</name>
     <message>
-        <location filename="../../src/updaterdialog.ui" line="44"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/updaterdialog.ui" line="90"/>
         <source>Cancel download</source>
         <translation type="unfinished"></translation>
@@ -1833,6 +1833,11 @@
     <message>
         <location filename="../../src/updaterdialog.ui" line="27"/>
         <source>Install</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/updaterdialog.ui" line="44"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
