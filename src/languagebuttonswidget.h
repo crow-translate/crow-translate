@@ -50,11 +50,16 @@ public slots:
 private slots:
     void editLanguages();
     void savePreviousToggledButton(int index, bool checked);
+    void checkAvailableScreenWidth();
+    void minimizeWindowWidth();
 
 private:
+    void setWindowWidthCheckEnabled(bool enable);
     void addOrCheckLanguage(QOnlineTranslator::Language lang);
     void addButton(QOnlineTranslator::Language lang);
     void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang);
+
+    bool isWindowWidthFitScreen();
 
     Ui::LanguageButtonsWidget *ui;
     QButtonGroup *m_buttonGroup;

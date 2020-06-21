@@ -2,9 +2,16 @@
 #include "ui_languagebuttonswidget.h"
 
 #include "addlanguagedialog.h"
+#include "singleapplication.h"
 
 #include <QButtonGroup>
+#include <QTimer>
 #include <QToolButton>
+#include <QScreen>
+#include <QMessageBox>
+#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
+#include <QWindow>
+#endif
 
 LanguageButtonsWidget::LanguageButtonsWidget(QWidget *parent)
     : QWidget(parent)
@@ -14,6 +21,7 @@ LanguageButtonsWidget::LanguageButtonsWidget(QWidget *parent)
     ui->setupUi(this);
     addButton(QOnlineTranslator::Auto);
     m_buttonGroup->button(s_autoButtonIndex)->setChecked(true);
+    setWindowWidthCheckEnabled(true);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 15, 0)
     connect(m_buttonGroup, &QButtonGroup::idToggled, this, &LanguageButtonsWidget::savePreviousToggledButton);
 #else
@@ -33,6 +41,9 @@ QVector<QOnlineTranslator::Language> LanguageButtonsWidget::languages() const
 
 void LanguageButtonsWidget::setLanguages(const QVector<QOnlineTranslator::Language> &languages)
 {
+    if (m_languages == languages)
+        return;
+
     // Add or set new languages
     for (int i = 0; i < languages.size(); ++i) {
         // Use -1 to ignore "Auto" button
@@ -390,6 +401,54 @@ void LanguageButtonsWidget::savePreviousToggledButton(int index, bool checked)
         emit buttonChecked(index);
 }
 
+void LanguageButtonsWidget::checkAvailableScreenWidth()
+{
+    if (isWindowWidthFitScreen())
+        return;
+
+    // Try resize first
+    window()->resize(window()->minimumWidth(), window()->height());
+
+    if (isWindowWidthFitScreen())
+        return;
+
+    QMessageBox message;
+    message.setIcon(QMessageBox::Information);
+    message.setText(tr("Window size is larger then screen due to the languages on the panel."));
+    message.setInformativeText(tr("Please reduce added languages."));
+    if (message.exec() == QMessageBox::Ok) {
+        const int languagesCountBefore = m_languages.size();
+        // Temporary disable connection to this slot to trigger it manually after resize
+        setWindowWidthCheckEnabled(false);
+        editLanguages();
+        setWindowWidthCheckEnabled(true);
+
+        if (m_languages.size() < languagesCountBefore)
+            minimizeWindowWidth(); // For unknown reason QWindow::minimumWidthChanged is not emited in this case, so wait for changes manually
+        else
+            checkAvailableScreenWidth();
+    }
+}
+
+void LanguageButtonsWidget::minimizeWindowWidth()
+{
+    if (window()->width() == window()->minimumWidth()) {
+        QTimer::singleShot(100, this, &LanguageButtonsWidget::minimizeWindowWidth);
+        return;
+    }
+
+    window()->resize(window()->minimumWidth(), window()->height());
+    checkAvailableScreenWidth();
+}
+
+void LanguageButtonsWidget::setWindowWidthCheckEnabled(bool enable)
+{
+    if (enable)
+        connect(this, &LanguageButtonsWidget::languagesChanged, this, &LanguageButtonsWidget::checkAvailableScreenWidth, Qt::QueuedConnection);
+    else
+        disconnect(this, &LanguageButtonsWidget::languagesChanged, this, &LanguageButtonsWidget::checkAvailableScreenWidth);
+}
+
 void LanguageButtonsWidget::addOrCheckLanguage(QOnlineTranslator::Language lang)
 {
     if (checkLanguage(lang))
@@ -428,4 +487,13 @@ void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTr
     }
 
     button->setToolTip(langName);
+}
+
+bool LanguageButtonsWidget::isWindowWidthFitScreen()
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    return window()->frameGeometry().width() <= screen()->availableGeometry().width();
+#else
+    return window()->frameGeometry().width() <= window()->windowHandle()->screen()->availableGeometry().width();
+#endif
 }
