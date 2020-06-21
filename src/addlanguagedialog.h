@@ -26,6 +26,7 @@
 #include <QDialog>
 
 class QListWidget;
+class QAbstractButton;
 
 namespace Ui {
 class AddLanguageDialog;
@@ -58,7 +59,7 @@ private slots:
 private:
     static void addLanguage(QListWidget *widget, QOnlineTranslator::Language lang);
     static void moveLanguageVertically(QListWidget *widget, int offset);
-    static void moveLanguageHorizontally(QListWidget *from, QListWidget *to);
+    static void moveLanguageHorizontally(QListWidget *from, QListWidget *to, QAbstractButton *addButton, QAbstractButton *removeButton);
 
     Ui::AddLanguageDialog *ui;
     QVector<QOnlineTranslator::Language> m_languages;

@@ -41,8 +41,11 @@ AddLanguageDialog::AddLanguageDialog(const QVector<QOnlineTranslator::Language> 
 
     for (QOnlineTranslator::Language lang : currentLang)
         addLanguage(ui->currentLanguagesListWidget, lang);
-    if (ui->currentLanguagesListWidget->count() != 0)
+
+    if (ui->currentLanguagesListWidget->count() != 0) {
         ui->currentLanguagesListWidget->setCurrentRow(0);
+        ui->moveLeftButton->setEnabled(true);
+    }
 }
 
 AddLanguageDialog::~AddLanguageDialog()
@@ -88,21 +91,17 @@ void AddLanguageDialog::filterLanguages(const QString &text)
 
 void AddLanguageDialog::moveLanguageRight()
 {
-    moveLanguageHorizontally(ui->availableLanguagesListWidget, ui->currentLanguagesListWidget);
-    ui->moveLeftButton->setEnabled(true);
+    moveLanguageHorizontally(ui->availableLanguagesListWidget, ui->currentLanguagesListWidget, ui->moveRightButton, ui->moveLeftButton);
 }
 
 void AddLanguageDialog::moveLanguageLeft()
 {
     // Block signals to emit index change after item deletion
     ui->currentLanguagesListWidget->blockSignals(true);
-    moveLanguageHorizontally(ui->currentLanguagesListWidget, ui->availableLanguagesListWidget);
+    moveLanguageHorizontally(ui->currentLanguagesListWidget, ui->availableLanguagesListWidget, ui->moveLeftButton, ui->moveRightButton);
     ui->currentLanguagesListWidget->blockSignals(false);
 
     emit ui->currentLanguagesListWidget->currentRowChanged(ui->currentLanguagesListWidget->currentRow());
-
-    if (ui->currentLanguagesListWidget->count() == 0)
-        ui->moveLeftButton->setEnabled(false);
 }
 
 void AddLanguageDialog::moveLanguageUp()
@@ -145,9 +144,13 @@ void AddLanguageDialog::moveLanguageVertically(QListWidget *widget, int offset)
     widget->setCurrentRow(currentRow + offset);
 }
 
-void AddLanguageDialog::moveLanguageHorizontally(QListWidget *from, QListWidget *to)
+void AddLanguageDialog::moveLanguageHorizontally(QListWidget *from, QListWidget *to, QAbstractButton *addButton, QAbstractButton *removeButton)
 {
     QListWidgetItem *item = from->takeItem(from->currentRow());
     to->addItem(item);
     to->setCurrentItem(item);
+
+    removeButton->setEnabled(true);
+    if (from->count() == 0)
+        addButton->setEnabled(false);
 }
