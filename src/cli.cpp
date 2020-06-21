@@ -58,7 +58,7 @@ void Cli::process(const QCoreApplication &app)
     const QCommandLineOption file({"f", "file"}, tr("Read source text from files. Arguments will be interpreted as file paths."));
     const QCommandLineOption readStdin({"i", "stdin"}, tr("Add stdin data to source text."));
     const QCommandLineOption audioOnly({"a", "audio-only"}, tr("Do not print any text when using --%1 or --%2.").arg(speakSource.names().at(1), speakTranslation.names().at(1)));
-    const QCommandLineOption brief({"b", "brief"}, tr("Print only translations"));
+    const QCommandLineOption brief({"b", "brief"}, tr("Print only translations."));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(tr("A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing."));
