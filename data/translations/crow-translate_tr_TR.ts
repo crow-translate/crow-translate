@@ -2,26 +2,26 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="tr" sourcelanguage="en">
   <context>
-    <name>AddLangDialog</name>
+    <name>AddLanguageDialog</name>
     <message>
-      <location filename="../../src/addlangdialog.ui" line="14"/>
+      <location filename="../../src/addlanguagedialog.ui" line="14"/>
       <source>Add language</source>
-      <translation>Dil ekle</translation>
+      <translation type="unfinished">Add language</translation>
     </message>
     <message>
-      <location filename="../../src/addlangdialog.ui" line="54"/>
-      <source>Filter</source>
-      <translation>Süzgeç</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlangdialog.ui" line="88"/>
+      <location filename="../../src/addlanguagedialog.ui" line="88"/>
       <source>Available languages:</source>
-      <translation>Available languages:</translation>
+      <translation type="unfinished">Available languages:</translation>
     </message>
     <message>
-      <location filename="../../src/addlangdialog.ui" line="101"/>
+      <location filename="../../src/addlanguagedialog.ui" line="101"/>
       <source>Current languages:</source>
-      <translation>Current languages:</translation>
+      <translation type="unfinished">Current languages:</translation>
+    </message>
+    <message>
+      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation type="unfinished">Filter (%1)</translation>
     </message>
   </context>
   <context>
@@ -32,7 +32,7 @@
       <translation>Otomatik çalıştırma dosyası oluşturulamıyor %1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="844"/>
+      <location filename="../../src/settings/appsettings.cpp" line="859"/>
       <source>Unknown language code: %1</source>
       <translation>Unknown language code: %1</translation>
     </message>
@@ -90,11 +90,6 @@
       <translation type="unfinished">Do not print any text when using --%1 or --%2.</translation>
     </message>
     <message>
-      <location filename="../../src/cli.cpp" line="61"/>
-      <source>Print only translations</source>
-      <translation type="unfinished">Print only translations</translation>
-    </message>
-    <message>
       <location filename="../../src/cli.cpp" line="64"/>
       <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
       <translation>Google, Yandex ve Bing kullanarak metinleri çevirip konuşmanıza izin veren basit ve hafif bir tercüman.</translation>
@@ -118,6 +113,11 @@
       <location filename="../../src/cli.cpp" line="121"/>
       <source>Error: There is no text for translation</source>
       <translation>Hata: Çeviri için metin yok</translation>
+    </message>
+    <message>
+      <location filename="../../src/cli.cpp" line="61"/>
+      <source>Print only translations.</source>
+      <translation type="unfinished">Print only translations.</translation>
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="167"/>
@@ -170,8 +170,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="422"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="424"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="417"/>
+      <source>Window width is larger then screen due to the languages on the panel.</source>
+      <translation type="unfinished">Window width is larger then screen due to the languages on the panel.</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.cpp" line="418"/>
+      <source>Please reduce added languages.</source>
+      <translation type="unfinished">Please reduce added languages.</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.cpp" line="482"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="484"/>
       <source>Auto</source>
       <translation>Auto</translation>
     </message>
@@ -179,32 +189,32 @@
   <context>
     <name>MainWindow</name>
     <message>
-      <location filename="../../src/mainwindow.ui" line="107"/>
+      <location filename="../../src/mainwindow.ui" line="58"/>
       <source>Copy source text to the clipboard</source>
       <translation>Kaynak metni panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="118"/>
+      <location filename="../../src/mainwindow.ui" line="69"/>
       <source>Automatically translate</source>
       <translation>Otomatik çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="50"/>
+      <location filename="../../src/mainwindow.ui" line="220"/>
       <source>Source</source>
       <translation>Kaynak</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="217"/>
+      <location filename="../../src/mainwindow.ui" line="96"/>
       <source>Copy translation to the clipboard</source>
       <translation>Çeviriyi panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="228"/>
+      <location filename="../../src/mainwindow.ui" line="151"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Tüm çeviri verilerini panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="239"/>
+      <location filename="../../src/mainwindow.ui" line="25"/>
       <source>Application settings</source>
       <translation>Uygulama ayarları</translation>
     </message>
@@ -215,27 +225,27 @@
       <translation>Ayarlar</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="39"/>
+      <location filename="../../src/mainwindow.ui" line="36"/>
       <source>Swap languages</source>
       <translation>Dilleri değiştir</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="70"/>
+      <location filename="../../src/mainwindow.ui" line="110"/>
       <source>Cancel</source>
       <translation>İptal</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="153"/>
+      <location filename="../../src/mainwindow.ui" line="47"/>
       <source>Clear</source>
       <translation>Temizle</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="87"/>
+      <location filename="../../src/mainwindow.ui" line="140"/>
       <source>Translate</source>
       <translation>Çevir</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="146"/>
+      <location filename="../../src/mainwindow.ui" line="127"/>
       <source>Translation</source>
       <translation>Çeviri</translation>
     </message>
@@ -270,7 +280,7 @@
   <context>
     <name>PopupWindow</name>
     <message>
-      <location filename="../../src/popupwindow.ui" line="36"/>
+      <location filename="../../src/popupwindow.ui" line="32"/>
       <source>Swap languages</source>
       <translation>Dilleri değiştir</translation>
     </message>
@@ -1511,19 +1521,9 @@
       <translation>Sıfırla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1115"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1146"/>
       <source>Version:</source>
       <translation>Sürüm:</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1226"/>
-      <source>Ukraine</source>
-      <translation>Ukrayna</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1219"/>
-      <source>Country:</source>
-      <translation>Ülke:</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1011"/>
@@ -1541,17 +1541,17 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kısayolu öntanımlıya sıfırla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1142"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1139"/>
       <source>License:</source>
       <translation>Lisans:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1176"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
       <source>Flag icons:</source>
       <translation>Bayrak simgeleri:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1162"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1122"/>
       <source>Autor:</source>
       <translation>Yazar:</translation>
     </message>
@@ -1659,12 +1659,12 @@
   <context>
     <name>ShortcutsModel</name>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="120"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="123"/>
       <source>Description</source>
       <translation>Açıklama</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="122"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="125"/>
       <source>Shortcut</source>
       <translation>Kısayol</translation>
     </message>
@@ -1715,31 +1715,36 @@
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
+      <source>Swap languages</source>
+      <translation>Dilleri değiştir</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
       <source>Close window</source>
       <translation>Pencereyi kapat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="64"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="67"/>
       <source>Source text</source>
       <translation>Kaynak metin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="66"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
       <source>Speak / pause text speaking</source>
       <translation>Konuşma / metin konuşmasını duraklat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
       <source>Speak / pause speaking</source>
       <translation>Konuşma / konuşmayı duraklat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="70"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="73"/>
       <source>Translation</source>
       <translation>Çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="78"/>
       <source>Copy to clipboard</source>
       <translation>Panoya kopyala</translation>
     </message>
