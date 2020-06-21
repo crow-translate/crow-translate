@@ -463,6 +463,7 @@ void LanguageButtonsWidget::addButton(QOnlineTranslator::Language lang)
     auto *button = new QToolButton;
     button->setCheckable(true);
     button->setToolButtonStyle(Qt::ToolButtonTextBesideIcon);
+    button->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred); // To make the same size for all buttons (without it "Auto" button can look different)
 
     // Use special index for "Auto" button to count all other languages from 0
     m_buttonGroup->addButton(button, lang == QOnlineTranslator::Auto ? s_autoButtonIndex : m_buttonGroup->buttons().size() - 1);
