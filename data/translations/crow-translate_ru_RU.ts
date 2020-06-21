@@ -1806,11 +1806,6 @@
   <context>
     <name>UpdaterDialog</name>
     <message>
-      <location filename="../../src/updaterdialog.ui" line="44"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Доступна новая версия Crow Translate! Обновления добавляют функциональность и улучшают стабильность приложения. Чаще всего.&lt;br/&gt;Вы также можете скачать релиз вручную по этой &lt;a href=&quot;https://github.com/Shatur95/crow-translate/releases&quot;&gt;ссылке&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/updaterdialog.ui" line="90"/>
       <source>Cancel download</source>
       <translation>Отменить загрузку</translation>
@@ -1839,6 +1834,11 @@
       <location filename="../../src/updaterdialog.ui" line="27"/>
       <source>Install</source>
       <translation>Установить</translation>
+    </message>
+    <message>
+      <location filename="../../src/updaterdialog.ui" line="44"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation type="unfinished">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/updaterdialog.ui" line="67"/>
