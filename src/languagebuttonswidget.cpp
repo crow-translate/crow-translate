@@ -191,7 +191,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Hausa:
         return QIcon(":/icons/flags/ne.svg");
     case QOnlineTranslator::Hawaiian:
-        return QIcon(":/icons/flags/es.svg");
+        return QIcon(":/icons/flags/us.svg");
     case QOnlineTranslator::Hebrew:
         return QIcon(":/icons/flags/il.svg");
     case QOnlineTranslator::Hindi:
