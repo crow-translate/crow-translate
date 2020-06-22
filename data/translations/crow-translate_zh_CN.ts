@@ -82,7 +82,7 @@
     <message>
       <location filename="../../src/cli.cpp" line="59"/>
       <source>Add stdin data to source text.</source>
-      <translation>添加标准数据到源文本</translation>
+      <translation>在源文本中添加标准输入数据</translation>
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="60"/>
@@ -172,7 +172,7 @@
     <message>
       <location filename="../../src/languagebuttonswidget.cpp" line="417"/>
       <source>Window width is larger then screen due to the languages on the panel.</source>
-      <translation>由于面板上的语言过长，窗口宽度大于屏幕宽度。</translation>
+      <translation>由于面板上的语言过多，窗口宽度大于了屏幕宽度。</translation>
     </message>
     <message>
       <location filename="../../src/languagebuttonswidget.cpp" line="418"/>
@@ -305,7 +305,7 @@
     <message>
       <location filename="../../src/qgittag/src/qgittag.cpp" line="147"/>
       <source>Release number %1 is missing</source>
-      <translation>缺少发行号 %1</translation>
+      <translation>丢失发行号 %1</translation>
     </message>
   </context>
   <context>
@@ -965,7 +965,7 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="58"/>
       <source>Selected engine %1 does not support emotion settings</source>
-      <translation>选定的引擎 %1 不支持感情设置</translation>
+      <translation>选定的引擎 %1 不支持情感色彩设置</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="119"/>
@@ -985,7 +985,7 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="214"/>
       <source>Selected emotion %1 is not supported for %2</source>
-      <translation>所选的感情 %1 不支持 %2</translation>
+      <translation>所选的情感色彩 %1 不支持 %2</translation>
     </message>
   </context>
   <context>
@@ -1074,7 +1074,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="149"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;显示一个窗口来翻译选定的文本。如果程序已经最小化，主窗口将始终被使用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;一个显示选定文本的翻译的窗口。如果程序已经最小化，「主窗口」模式将始终被选用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="173"/>
@@ -1283,7 +1283,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="765"/>
       <source>This is an example of speech synthesis.</source>
-      <translation>这是语音合成示例。</translation>
+      <translation>这是一句语音合成示例。</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="768"/>
@@ -1373,17 +1373,17 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="493"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用源语言转写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用源语言本地化转写出名字&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="503"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用翻译语言转写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用翻译语言本地化转写出名字&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="513"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用源文抄写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用原文转录&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
@@ -1418,7 +1418,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="687"/>
       <source>Engine:</source>
-      <translation>引擎：</translation>
+      <translation>合成引擎：</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="707"/>
@@ -1428,7 +1428,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="750"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;语音合成引擎声音风格&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;语音合成引擎的声音风格&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="762"/>
@@ -1438,12 +1438,12 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="811"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;验证代理密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用以认证代理的密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="824"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;验证代理用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用以认证代理的用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="834"/>
@@ -1453,12 +1453,12 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="844"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理端口&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理主机的端口号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="873"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用验证&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用认证&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="916"/>
