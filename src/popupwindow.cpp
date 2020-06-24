@@ -23,7 +23,6 @@
 
 #include "languagebuttonswidget.h"
 #include "mainwindow.h"
-#include "singleapplication.h"
 #include "speakbuttons.h"
 #include "translationedit.h"
 #include "settings/appsettings.h"
@@ -101,9 +100,9 @@ void PopupWindow::showEvent(QShowEvent *event)
 {
     QPoint position = QCursor::pos(); // Cursor position
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    const QSize availableSize = SingleApplication::screenAt(position)->availableSize();
+    const QSize availableSize = QGuiApplication::screenAt(position)->availableSize();
 #else
-    const QSize availableSize = SingleApplication::desktop()->screenGeometry(position).size();
+    const QSize availableSize = QApplication::desktop()->screenGeometry(position).size();
 #endif
 
     if (availableSize.width() - position.x() - geometry().width() < 0) {
@@ -126,7 +125,7 @@ bool PopupWindow::event(QEvent *event)
     // Close window when focus is lost
     if (event->type() == QEvent::WindowDeactivate) {
         // Do not close the window if the language selection menu is active
-        if (SingleApplication::activeModalWidget() == nullptr)
+        if (QApplication::activeModalWidget() == nullptr)
             close();
     }
     return QWidget::event(event);

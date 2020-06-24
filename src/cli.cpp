@@ -21,7 +21,6 @@
 #include "cli.h"
 
 #include "qonlinetts.h"
-#include "singleapplication.h"
 #include "transitions/playerstoppedtransition.h"
 
 #include <QCommandLineParser>

@@ -21,7 +21,6 @@
 #include "updaterdialog.h"
 #include "ui_updaterdialog.h"
 #include "qgittag.h"
-#include "singleapplication.h"
 
 #include <QFile>
 #include <QStandardPaths>
@@ -51,7 +50,7 @@ UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
     m_downloadPath = QStandardPaths::writableLocation(QStandardPaths::DownloadLocation) + QDir::separator() + release->assets().at(installer).name();
 
     // Show release data
-    ui->currentVersionLabel->setText(SingleApplication::applicationVersion());
+    ui->currentVersionLabel->setText(QCoreApplication::applicationVersion());
     ui->availableVersionLabel->setText(release->tagName());
 
     QString changelog = release->body();
@@ -117,7 +116,7 @@ void UpdaterDialog::cancelDownload()
 void UpdaterDialog::install()
 {
     QProcess::startDetached(m_downloadPath);
-    SingleApplication::exit();
+    QCoreApplication::exit();
 }
 
 void UpdaterDialog::showDownloadStatus()

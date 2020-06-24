@@ -2,7 +2,6 @@
 #include "ui_languagebuttonswidget.h"
 
 #include "addlanguagedialog.h"
-#include "singleapplication.h"
 
 #include <QButtonGroup>
 #include <QTimer>

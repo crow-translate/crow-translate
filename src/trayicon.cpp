@@ -21,10 +21,10 @@
 #include "trayicon.h"
 
 #include "mainwindow.h"
-#include "singleapplication.h"
 #include "settings/appsettings.h"
 
 #include <QFileInfo>
+#include <QGuiApplication>
 
 TrayIcon::TrayIcon(MainWindow *parent)
     : QSystemTrayIcon(parent)
@@ -49,7 +49,7 @@ void TrayIcon::loadSettings(const AppSettings &settings)
 
     const bool trayIconVisible = settings.isShowTrayIcon();
     setVisible(trayIconVisible);
-    SingleApplication::setQuitOnLastWindowClosed(!trayIconVisible);
+    QGuiApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 }
 
 QIcon TrayIcon::customTrayIcon(const QString &customName)

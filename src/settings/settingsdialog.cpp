@@ -24,7 +24,6 @@
 #include "languagebuttonswidget.h"
 #include "appsettings.h"
 #include "qhotkey.h"
-#include "singleapplication.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
 #ifdef Q_OS_WIN
@@ -50,7 +49,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
     ui->logoLabel->setPixmap(QIcon::fromTheme(QStringLiteral("crow-translate")).pixmap(512, 512));
-    ui->versionLabel->setText(SingleApplication::applicationVersion());
+    ui->versionLabel->setText(QCoreApplication::applicationVersion());
 
 #ifdef PORTABLE_MODE
     m_portableCheckbox->setToolTip(tr("Use %1 from the application folder to store settings").arg(AppSettings::portableConfigName()));
@@ -89,10 +88,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->secondaryLangComboBox->model()->sort(0);
 
     // Set maximum and minimum values for the size of the popup window
-    ui->popupWidthSlider->setMaximum(SingleApplication::primaryScreen()->availableGeometry().width());
-    ui->popupWidthSpinBox->setMaximum(SingleApplication::primaryScreen()->availableGeometry().width());
-    ui->popupHeightSlider->setMaximum(SingleApplication::primaryScreen()->availableGeometry().height());
-    ui->popupHeightSpinBox->setMaximum(SingleApplication::primaryScreen()->availableGeometry().height());
+    ui->popupWidthSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupWidthSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().width());
+    ui->popupHeightSlider->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
+    ui->popupHeightSpinBox->setMaximum(QGuiApplication::primaryScreen()->availableGeometry().height());
     ui->popupWidthSlider->setMinimum(200);
     ui->popupWidthSpinBox->setMinimum(200);
     ui->popupHeightSlider->setMinimum(200);
@@ -409,7 +408,7 @@ void SettingsDialog::checkForUpdates()
         return;
     }
 
-    if (const int installer = release->assetId(".exe"); SingleApplication::applicationVersion() < release->tagName() && installer != -1) {
+    if (const int installer = release->assetId(".exe"); QCoreApplication::applicationVersion() < release->tagName() && installer != -1) {
         m_checkForUpdatesStatusLabel->setStyleSheet("color: green");
         m_checkForUpdatesStatusLabel->setText(tr("Update available!"));
         auto *updaterDialog = new UpdaterDialog(release, installer, this);

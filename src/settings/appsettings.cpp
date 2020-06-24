@@ -21,10 +21,10 @@
 #include "appsettings.h"
 
 #include "cmake.h"
-#include "singleapplication.h"
 
 #include <QFileInfo>
 #include <QFont>
+#include <QGuiApplication>
 #include <QKeySequence>
 #include <QLibraryInfo>
 #include <QMetaEnum>
@@ -57,8 +57,8 @@ AppSettings::AppSettings(QObject *parent)
 void AppSettings::setupLocalization() const
 {
     applyLanguage(language());
-    SingleApplication::installTranslator(&s_appTranslator);
-    SingleApplication::installTranslator(&s_qtTranslator);
+    QCoreApplication::installTranslator(&s_appTranslator);
+    QCoreApplication::installTranslator(&s_qtTranslator);
 }
 
 QLocale::Language AppSettings::language() const
@@ -138,7 +138,7 @@ bool AppSettings::defaultStartMinimized()
 bool AppSettings::isAutostartEnabled()
 {
 #if defined(Q_OS_LINUX)
-    return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), SingleApplication::desktopFileName()));
+    return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), QGuiApplication::desktopFileName()));
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
     return autostartSettings.contains(QStringLiteral("Crow Translate"));
@@ -148,12 +148,12 @@ bool AppSettings::isAutostartEnabled()
 void AppSettings::setAutostartEnabled(bool enabled)
 {
 #if defined(Q_OS_LINUX)
-    QFile autorunFile(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), SingleApplication::desktopFileName()));
+    QFile autorunFile(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), QGuiApplication::desktopFileName()));
 
     if (enabled) {
         // Create autorun file
         if (!autorunFile.exists()) {
-            const QString desktopFileName = QStringLiteral("/usr/share/applications/%1").arg(SingleApplication::desktopFileName());
+            const QString desktopFileName = QStringLiteral("/usr/share/applications/%1").arg(QGuiApplication::desktopFileName());
 
             if (!QFile::copy(desktopFileName, autorunFile.fileName()))
                 qCritical() << tr("Unable to create autorun file from %1").arg(desktopFileName);
@@ -166,7 +166,7 @@ void AppSettings::setAutostartEnabled(bool enabled)
 #elif defined(Q_OS_WIN)
     QSettings autostartSettings("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run", QSettings::NativeFormat);
     if (enabled)
-        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(SingleApplication::applicationFilePath()));
+        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
     else
         autostartSettings.remove("Crow Translate");
 #endif
@@ -233,7 +233,7 @@ void AppSettings::setLastUpdateCheckDate(const QDate &date)
 
 QFont AppSettings::font() const
 {
-    return m_settings->value(QStringLiteral("Interface/Font"), QApplication::font()).value<QFont>();
+    return m_settings->value(QStringLiteral("Interface/Font"), QGuiApplication::font()).value<QFont>();
 }
 
 void AppSettings::setFont(const QFont &font)

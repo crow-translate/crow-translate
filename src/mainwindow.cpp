@@ -103,7 +103,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // System tray icon
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::show);
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), this, &MainWindow::openSettings);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), SingleApplication::instance(), &SingleApplication::quit, Qt::QueuedConnection);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
     m_trayIcon->setContextMenu(m_trayMenu);
 
     // State machine to handle translator signals async
@@ -262,9 +262,9 @@ void MainWindow::copyTranslatedSelection()
 void MainWindow::quit()
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-    QMetaObject::invokeMethod(SingleApplication::instance(), &SingleApplication::quit, Qt::QueuedConnection);
+    QMetaObject::invokeMethod(QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
 #else
-    QMetaObject::invokeMethod(SingleApplication::instance(), "quit", Qt::QueuedConnection);
+    QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::QueuedConnection);
 #endif
 }
 
@@ -373,7 +373,7 @@ void MainWindow::copyTranslationToClipboard()
         return;
     }
 
-    SingleApplication::clipboard()->setText(ui->translationEdit->translation());
+    QGuiApplication::clipboard()->setText(ui->translationEdit->translation());
 }
 
 void MainWindow::forceSourceAutodetect()
@@ -456,19 +456,19 @@ void MainWindow::setAutoTranslateEnabled(bool enabled)
 void MainWindow::copySourceText()
 {
     if (!ui->sourceEdit->toPlainText().isEmpty())
-        SingleApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
+        QGuiApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
 }
 
 void MainWindow::copyTranslation()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        SingleApplication::clipboard()->setText(ui->translationEdit->translation());
+        QGuiApplication::clipboard()->setText(ui->translationEdit->translation());
 }
 
 void MainWindow::copyAllTranslationInfo()
 {
     if (!ui->translationEdit->toPlainText().isEmpty())
-        SingleApplication::clipboard()->setText(ui->translationEdit->toPlainText());
+        QGuiApplication::clipboard()->setText(ui->translationEdit->toPlainText());
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -527,7 +527,7 @@ void MainWindow::checkForUpdates()
         return;
 
     const int installer = release->assetId(".exe");
-    if (installer != -1 && SingleApplication::applicationVersion() < release->tagName()) {
+    if (installer != -1 && QCoreApplication::applicationVersion() < release->tagName()) {
         auto *updater = new UpdaterDialog(release, installer, this);
         updater->setAttribute(Qt::WA_DeleteOnClose);
         updater->open();

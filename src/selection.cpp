@@ -20,9 +20,8 @@
 
 #include "selection.h"
 
-#include "singleapplication.h"
-
 #include <QClipboard>
+#include <QGuiApplication>
 #ifdef Q_OS_WIN
 #include <QMimeData>
 #include <QTimer>
@@ -45,7 +44,7 @@ void Selection::requestSelection()
 #elif defined(Q_OS_WIN) // Send Ctrl + C to get selected text
     // Save the original clipboard
     m_originalClipboardData.reset(new QMimeData);
-    const QMimeData *clipboardData = SingleApplication::clipboard()->mimeData();
+    const QMimeData *clipboardData = QGuiApplication::clipboard()->mimeData();
     for (const QString &format : clipboardData->formats())
         m_originalClipboardData->setData(format, clipboardData->data(format));
 
@@ -79,7 +78,7 @@ void Selection::requestSelection()
     SendInput(static_cast<UINT>(std::size(copyText)), copyText, sizeof(INPUT));
 
     // Wait for the clipboard changes
-    connect(SingleApplication::clipboard(), &QClipboard::dataChanged, this, &Selection::getSelection);
+    connect(QGuiApplication::clipboard(), &QClipboard::dataChanged, this, &Selection::getSelection);
     m_maxSelectionDelay->start();
 #endif
 }
@@ -101,18 +100,18 @@ Selection::Selection()
 void Selection::getSelection()
 {
 #if defined(Q_OS_LINUX)
-    emit requestedSelectionAvailable(SingleApplication::clipboard()->text(QClipboard::Selection));
+    emit requestedSelectionAvailable(QGuiApplication::clipboard()->text(QClipboard::Selection));
 #elif defined(Q_OS_WIN)
-    const QString selection = SingleApplication::clipboard()->text();
+    const QString selection = QGuiApplication::clipboard()->text();
     if (selection.isEmpty() && m_maxSelectionDelay->isActive())
         return;
 
     m_maxSelectionDelay->stop();
-    disconnect(SingleApplication::clipboard(), &QClipboard::dataChanged, this, &Selection::getSelection);
+    disconnect(QGuiApplication::clipboard(), &QClipboard::dataChanged, this, &Selection::getSelection);
 
     // Restore the clipboard data after exit to event loop
     QMetaObject::invokeMethod(this, [this] {
-        SingleApplication::clipboard()->setMimeData(m_originalClipboardData.take());
+        QGuiApplication::clipboard()->setMimeData(m_originalClipboardData.take());
     },  Qt::QueuedConnection);
 
     emit requestedSelectionAvailable(selection);
