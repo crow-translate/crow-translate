@@ -12,7 +12,7 @@ Icon=crow-translate
 Terminal=false
 StartupNotify=false
 Type=Application
-Categories=Office;Network;Qt
+Categories=Office;Network;Qt;
 
 [Desktop Action TranslateSelectedText]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
