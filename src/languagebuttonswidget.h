@@ -25,10 +25,10 @@ public:
 
     QOnlineTranslator::Language checkedLanguage() const;
     QOnlineTranslator::Language previousCheckedLanguage() const;
-    QOnlineTranslator::Language language(int index) const;
+    QOnlineTranslator::Language language(int id) const;
     bool checkLanguage(QOnlineTranslator::Language lang);
 
-    int checkedButtonId() const;
+    int checkedId() const;
     bool isAutoButtonChecked() const;
     void retranslate();
 
@@ -36,20 +36,20 @@ public:
     static void swapCurrentLanguages(LanguageButtonsWidget *first, LanguageButtonsWidget *second);
 
 signals:
-    void buttonChecked(int index);
+    void buttonChecked(int id);
     void languageAdded(QOnlineTranslator::Language lang);
     void languagesChanged(const QVector<QOnlineTranslator::Language> &languages);
     void autoLanguageChanged(QOnlineTranslator::Language lang);
 
 public slots:
     void checkAutoButton();
-    void checkButton(int index);
+    void checkButton(int id);
     void addLanguage(QOnlineTranslator::Language lang);
     void setAutoLanguage(QOnlineTranslator::Language lang);
 
 private slots:
     void editLanguages();
-    void savePreviousToggledButton(int index, bool checked);
+    void savePreviousToggledButton(int id, bool checked);
     void checkAvailableScreenWidth();
     void minimizeWindowWidth();
 
@@ -68,7 +68,7 @@ private:
     QOnlineTranslator::Language m_autoLang = QOnlineTranslator::Auto;
     int m_previousCheckedId = 0;
 
-    static constexpr int s_autoButtonIndex = -2; // -1 is reserved by QButtonGroup
+    static constexpr int s_autoButtonId = -2; // -1 is reserved by QButtonGroup
 };
 
 #endif // LANGUAGEBUTTONSWIDGET_H

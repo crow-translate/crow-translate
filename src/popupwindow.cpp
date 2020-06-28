@@ -122,7 +122,7 @@ bool PopupWindow::event(QEvent *event)
 void PopupWindow::connectButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons)
 {
     popupButtons->setLanguages(mainWindowButtons->languages());
-    popupButtons->checkButton(mainWindowButtons->checkedButtonId());
+    popupButtons->checkButton(mainWindowButtons->checkedId());
     connect(popupButtons, &LanguageButtonsWidget::buttonChecked, mainWindowButtons, &LanguageButtonsWidget::checkButton);
     connect(popupButtons, &LanguageButtonsWidget::languagesChanged, mainWindowButtons, &LanguageButtonsWidget::setLanguages);
     connect(mainWindowButtons, &LanguageButtonsWidget::buttonChecked, popupButtons, &LanguageButtonsWidget::checkButton);
