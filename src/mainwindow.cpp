@@ -101,7 +101,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // System tray icon
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::show);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::open);
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), this, &MainWindow::openSettings);
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
     m_trayIcon->setContextMenu(m_trayMenu);
@@ -230,7 +230,6 @@ void MainWindow::open()
     setWindowState(windowState() & ~Qt::WindowMinimized);
     show();
     activateWindow();
-    raise();
 }
 
 void MainWindow::translateSelection()
