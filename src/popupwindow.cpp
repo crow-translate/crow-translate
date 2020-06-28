@@ -56,21 +56,9 @@ PopupWindow::PopupWindow(MainWindow *parent)
     connect(ui->sourceSpeakButtons, &SpeakButtons::playerMediaRequested, parent->sourceSpeakButtons(), &SpeakButtons::playerMediaRequested);
     connect(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, parent->translationSpeakButtons(), &SpeakButtons::playerMediaRequested);
 
-    // Source button group
-    ui->sourceLanguagesWidget->setLanguages(parent->sourceLanguageButtons()->languages());
-    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, parent->sourceLanguageButtons(), &LanguageButtonsWidget::checkButton);
-    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::languagesChanged, parent->sourceLanguageButtons(), &LanguageButtonsWidget::setLanguages);
-    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::buttonChecked, ui->sourceLanguagesWidget, &LanguageButtonsWidget::checkButton);
-    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::autoLanguageChanged, ui->sourceLanguagesWidget, &LanguageButtonsWidget::setAutoLanguage);
-    connect(parent->sourceLanguageButtons(), &LanguageButtonsWidget::languageAdded, ui->sourceLanguagesWidget, &LanguageButtonsWidget::addLanguage);
-
-    // Translation button group
-    ui->translationLanguagesWidget->setLanguages(parent->translationLanguageButtons()->languages());
-    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, parent->translationLanguageButtons(), &LanguageButtonsWidget::checkButton);
-    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::languagesChanged, parent->translationLanguageButtons(), &LanguageButtonsWidget::setLanguages);
-    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::buttonChecked, ui->translationLanguagesWidget, &LanguageButtonsWidget::checkButton);
-    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::autoLanguageChanged, ui->translationLanguagesWidget, &LanguageButtonsWidget::setAutoLanguage);
-    connect(parent->translationLanguageButtons(), &LanguageButtonsWidget::languageAdded, ui->translationLanguagesWidget, &LanguageButtonsWidget::addLanguage);
+    // Language buttons
+    connectButtons(ui->sourceLanguagesWidget, parent->sourceLanguageButtons());
+    connectButtons(ui->translationLanguagesWidget, parent->translationLanguageButtons());
 
     // Shortcuts
     m_closeWindowsShortcut->setKey(parent->closeWindowShortcut()->key());
@@ -129,4 +117,15 @@ bool PopupWindow::event(QEvent *event)
             close();
     }
     return QWidget::event(event);
+}
+
+void PopupWindow::connectButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons)
+{
+    popupButtons->setLanguages(mainWindowButtons->languages());
+    popupButtons->checkButton(mainWindowButtons->checkedButtonId());
+    connect(popupButtons, &LanguageButtonsWidget::buttonChecked, mainWindowButtons, &LanguageButtonsWidget::checkButton);
+    connect(popupButtons, &LanguageButtonsWidget::languagesChanged, mainWindowButtons, &LanguageButtonsWidget::setLanguages);
+    connect(mainWindowButtons, &LanguageButtonsWidget::buttonChecked, popupButtons, &LanguageButtonsWidget::checkButton);
+    connect(mainWindowButtons, &LanguageButtonsWidget::autoLanguageChanged, popupButtons, &LanguageButtonsWidget::setAutoLanguage);
+    connect(mainWindowButtons, &LanguageButtonsWidget::languageAdded, popupButtons, &LanguageButtonsWidget::addLanguage);
 }

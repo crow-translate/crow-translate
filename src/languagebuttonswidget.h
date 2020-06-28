@@ -26,9 +26,9 @@ public:
     QOnlineTranslator::Language checkedLanguage() const;
     QOnlineTranslator::Language previousCheckedLanguage() const;
     QOnlineTranslator::Language language(int index) const;
-
     bool checkLanguage(QOnlineTranslator::Language lang);
 
+    int checkedButtonId() const;
     bool isAutoButtonChecked() const;
     void retranslate();
 

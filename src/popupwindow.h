@@ -25,6 +25,7 @@
 
 class QShortcut;
 class MainWindow;
+class LanguageButtonsWidget;
 
 namespace Ui {
 class PopupWindow;
@@ -42,6 +43,8 @@ public:
 private:
     void showEvent(QShowEvent *event) override;
     bool event(QEvent *event) override;
+
+    void connectButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons);
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;

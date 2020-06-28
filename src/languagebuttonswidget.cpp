@@ -103,6 +103,11 @@ bool LanguageButtonsWidget::checkLanguage(QOnlineTranslator::Language lang)
     return false;
 }
 
+int LanguageButtonsWidget::checkedButtonId() const
+{
+    return m_buttonGroup->checkedId();
+}
+
 bool LanguageButtonsWidget::isAutoButtonChecked() const
 {
     return m_buttonGroup->checkedId() == s_autoButtonIndex;
