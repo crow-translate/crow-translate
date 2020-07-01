@@ -110,12 +110,16 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     buildStateMachine();
     m_stateMachine->start();
 
-    // Load app settings
+    // App settings
     loadSettings(settings);
 
-    // Load main window settings
+    // Load main window settings (these settings are loaded only at startup and cannot be configured in the settings dialog)
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
+
+    ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
+    ui->translationLanguagesWidget->setLanguages(settings.languages(AppSettings::Translation));
+
     restoreGeometry(settings.mainWindowGeometry());
     if (!settings.isStartMinimized())
         show();
@@ -762,10 +766,6 @@ void MainWindow::setupRequestStateButtons(QState *state)
 
 void MainWindow::loadSettings(const AppSettings &settings)
 {
-    // Language buttons
-    ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
-    ui->translationLanguagesWidget->setLanguages(settings.languages(AppSettings::Translation));
-
     // Interface
     ui->translationEdit->setFont(settings.font());
     ui->sourceEdit->setFont(settings.font());
