@@ -781,7 +781,7 @@ void AppSettings::setSwapShortcut(const QKeySequence &shortcut)
 
 QKeySequence AppSettings::defaultSwapShortcut()
 {
-    return QKeySequence(QStringLiteral("Ctrl+S"));
+    return QKeySequence(QStringLiteral("Ctrl+R"));
 }
 
 QKeySequence AppSettings::closeWindowShortcut() const
