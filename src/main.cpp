@@ -49,7 +49,7 @@ int launchGui(int argc, char *argv[])
     SingleApplication app(argc, argv);
 
 #if defined(Q_OS_LINUX)
-    QGuiApplication::setDesktopFileName(QCoreApplication::organizationDomain() + ".desktop");
+    QGuiApplication::setDesktopFileName(QStringLiteral(DESKTOP_FILE));
 #elif defined(Q_OS_WIN)
     QIcon::setThemeName("Papirus");
 #endif

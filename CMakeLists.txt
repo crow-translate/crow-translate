@@ -6,6 +6,9 @@ set(CMAKE_PROJECT_HOMEPAGE_URL crow-translate.github.io)
 set(CMAKE_PROJECT_DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing")
 
 set(APPLICATION_NAME "Crow Translate")
+if(UNIX)
+    set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
+endif()
 
 set(CPACK_PACKAGE_VENDOR ${APPLICATION_NAME})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${APPLICATION_NAME})
@@ -151,7 +154,8 @@ endif()
 install(TARGETS ${PROJECT_NAME})
 if(UNIX)
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${APPLICATION_NAME}/${APPLICATION_NAME}/translations)
-    install(FILES data/io.crow_translate.CrowTranslate.desktop DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    install(FILES data/${DESKTOP_FILE} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+
     ecm_install_icons(ICONS
         ${APP_ICONS}
         data/icons/freedesktop/16-status-crow-translate-tray-dark.png

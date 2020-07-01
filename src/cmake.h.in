@@ -6,5 +6,6 @@
 #define VERSION_PATCH @crow-translate_VERSION_PATCH@
 #define PROJECT_NAME "@PROJECT_NAME@"
 #define APPLICATION_NAME "@APPLICATION_NAME@"
+#define DESKTOP_FILE "@DESKTOP_FILE@"
 
 #endif // CMAKE_H
