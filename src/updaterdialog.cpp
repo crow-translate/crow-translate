@@ -115,7 +115,7 @@ void UpdaterDialog::cancelDownload()
 
 void UpdaterDialog::install()
 {
-    QProcess::startDetached(m_downloadPath);
+    QProcess::startDetached(m_downloadPath, {});
     QCoreApplication::exit();
 }
 
