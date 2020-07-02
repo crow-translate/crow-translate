@@ -49,7 +49,7 @@ jobs:
 
     - name: Install Qt
       if: runner.os == 'Windows'
-      uses: jurplel/install-qt-action@v2.6.3
+      uses: jurplel/install-qt-action@v2.7.2
 
     - name: Install Extra CMake Modules
       if: runner.os == 'Windows'
