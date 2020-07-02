@@ -30,7 +30,7 @@ jobs:
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
             extra-cmake-modules: '5.70.0'
-            CXXFLAGS: '/W4' # TODO: use /WX
+            CXXFLAGS: '/W4 /WX'
     steps:
     - name: Enable Git symlinks
       if: runner.os == 'Windows'
