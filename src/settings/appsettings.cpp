@@ -487,23 +487,21 @@ QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexVoice"), defaultVoice(engine)).value<QOnlineTts::Voice>();
+    default:
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 void AppSettings::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice)
 {
     switch (engine) {
-    case QOnlineTranslator::Google:
-    case QOnlineTranslator::Bing:
-        qFatal("Currently only Yandex have voice settings");
     case QOnlineTranslator::Yandex:
         m_settings->setValue(QStringLiteral("Translation/YandexVoice"), voice);
         return;
+    default:
+        // Currently only Yandex have voice settings
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
@@ -514,9 +512,9 @@ QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Zahar;
+    default:
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
@@ -527,23 +525,21 @@ QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexEmotion"), defaultEmotion(engine)).value<QOnlineTts::Emotion>();
+    default:
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion)
 {
     switch (engine) {
-    case QOnlineTranslator::Bing:
-    case QOnlineTranslator::Google:
-        qFatal("Currently only Yandex have emotion settings");
     case QOnlineTranslator::Yandex:
         m_settings->setValue(QStringLiteral("Translation/YandexEmotion"), emotion);
         return;
+    default:
+        // Currently only Yandex have emotion settings
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 QOnlineTts::Emotion AppSettings::defaultEmotion(QOnlineTranslator::Engine engine)
@@ -554,9 +550,9 @@ QOnlineTts::Emotion AppSettings::defaultEmotion(QOnlineTranslator::Engine engine
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Neutral;
+    default:
+        Q_UNREACHABLE();
     }
-
-    qFatal("Unknown engine");
 }
 
 QNetworkProxy::ProxyType AppSettings::proxyType() const
