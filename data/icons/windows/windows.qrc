@@ -32,5 +32,9 @@
         <file>32x32/apps/audio-speakers.svg</file>
         <file>16x16/actions/dialog-cancel.svg</file>
         <file>16x16/actions/document-edit.svg</file>
+        <file>16x16/actions/arrow-down.svg</file>
+        <file>16x16/actions/arrow-left.svg</file>
+        <file>16x16/actions/arrow-right.svg</file>
+        <file>16x16/actions/arrow-up.svg</file>
     </qresource>
 </RCC>
