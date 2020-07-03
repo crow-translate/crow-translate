@@ -32,7 +32,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="859"/>
+        <location filename="../../src/settings/appsettings.cpp" line="855"/>
         <source>Unknown language code: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -40,116 +40,116 @@
 <context>
     <name>Cli</name>
     <message>
-        <location filename="../../src/cli.cpp" line="51"/>
+        <location filename="../../src/cli.cpp" line="50"/>
         <source>Display all language codes.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="52"/>
+        <location filename="../../src/cli.cpp" line="51"/>
         <source>Specify the source language (by default, engine will try to determine the language on its own).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="53"/>
+        <location filename="../../src/cli.cpp" line="52"/>
         <source>Specify the translation language(s), splitted by &apos;+&apos; (by default, the system language is used).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="54"/>
+        <location filename="../../src/cli.cpp" line="53"/>
         <source>Specify the translator language (by default, the system language is used).</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="55"/>
+        <location filename="../../src/cli.cpp" line="54"/>
         <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos; or &apos;bing&apos;), Google is used by default.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="56"/>
+        <location filename="../../src/cli.cpp" line="55"/>
         <source>Speak the translation.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="57"/>
+        <location filename="../../src/cli.cpp" line="56"/>
         <source>Speak the source.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="58"/>
+        <location filename="../../src/cli.cpp" line="57"/>
         <source>Read source text from files. Arguments will be interpreted as file paths.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="59"/>
+        <location filename="../../src/cli.cpp" line="58"/>
         <source>Add stdin data to source text.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="60"/>
+        <location filename="../../src/cli.cpp" line="59"/>
         <source>Do not print any text when using --%1 or --%2.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="64"/>
+        <location filename="../../src/cli.cpp" line="63"/>
         <source>A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="65"/>
+        <location filename="../../src/cli.cpp" line="64"/>
         <source>Text to translate. By default, the translation will be done to the system language.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="87"/>
+        <location filename="../../src/cli.cpp" line="86"/>
         <source>Error: You can&apos;t use --%1 with --%2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="133"/>
+        <location filename="../../src/cli.cpp" line="132"/>
         <source>Error: Unknown engine</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="121"/>
+        <location filename="../../src/cli.cpp" line="120"/>
         <source>Error: There is no text for translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="61"/>
+        <location filename="../../src/cli.cpp" line="60"/>
         <source>Print only translations.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="167"/>
-        <location filename="../../src/cli.cpp" line="251"/>
-        <location filename="../../src/cli.cpp" line="340"/>
+        <location filename="../../src/cli.cpp" line="166"/>
+        <location filename="../../src/cli.cpp" line="250"/>
+        <location filename="../../src/cli.cpp" line="339"/>
         <source>Error: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="361"/>
-        <location filename="../../src/cli.cpp" line="382"/>
+        <location filename="../../src/cli.cpp" line="360"/>
+        <location filename="../../src/cli.cpp" line="381"/>
         <source>Error: File does not exist: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="366"/>
-        <location filename="../../src/cli.cpp" line="387"/>
+        <location filename="../../src/cli.cpp" line="365"/>
+        <location filename="../../src/cli.cpp" line="386"/>
         <source>Error: Unable to open file: %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="212"/>
+        <location filename="../../src/cli.cpp" line="211"/>
         <source>%1 - translation options:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="82"/>
+        <location filename="../../src/cli.cpp" line="81"/>
         <source>Error: For --%1 you must specify --%2 and/or --%3 options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/cli.cpp" line="229"/>
+        <location filename="../../src/cli.cpp" line="228"/>
         <source>%1 - examples:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -170,18 +170,18 @@
 <context>
     <name>LanguageButtonsWidget</name>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="417"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="421"/>
         <source>Window width is larger then screen due to the languages on the panel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="418"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="422"/>
         <source>Please reduce added languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="482"/>
-        <location filename="../../src/languagebuttonswidget.cpp" line="484"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="486"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="488"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -220,7 +220,7 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="105"/>
-        <location filename="../../src/mainwindow.cpp" line="560"/>
+        <location filename="../../src/mainwindow.cpp" line="563"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -251,28 +251,28 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="104"/>
-        <location filename="../../src/mainwindow.cpp" line="559"/>
+        <location filename="../../src/mainwindow.cpp" line="562"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="106"/>
-        <location filename="../../src/mainwindow.cpp" line="561"/>
+        <location filename="../../src/mainwindow.cpp" line="564"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="322"/>
+        <location filename="../../src/mainwindow.cpp" line="325"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="372"/>
+        <location filename="../../src/mainwindow.cpp" line="375"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="506"/>
+        <location filename="../../src/mainwindow.cpp" line="509"/>
         <source>The application is already running</source>
         <translation type="unfinished"></translation>
     </message>
@@ -305,6 +305,19 @@
     <message>
         <location filename="../../src/qgittag/src/qgittag.cpp" line="147"/>
         <source>Release number %1 is missing</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>QHotkey</name>
+    <message>
+        <location filename="../../src/third-party/qhotkey/QHotkey/qhotkey.cpp" line="283"/>
+        <source>Failed to register %1. Error: %2</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/third-party/qhotkey/QHotkey/qhotkey.cpp" line="303"/>
+        <source>Failed to unregister %1. Error: %2</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -1050,9 +1063,9 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="65"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="64"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="76"/>
         <location filename="../../src/settings/settingsdialog.cpp" line="77"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="78"/>
         <source>&lt;System language&gt;</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1140,8 +1153,8 @@
         <location filename="../../src/settings/settingsdialog.ui" line="418"/>
         <location filename="../../src/settings/settingsdialog.ui" line="679"/>
         <location filename="../../src/settings/settingsdialog.ui" line="754"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="552"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="570"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="551"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="569"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1166,32 +1179,32 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
         <source>Zahar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
         <source>Ermil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
         <source>Jane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="291"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Oksana</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="292"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="291"/>
         <source>Alyss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="293"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="292"/>
         <source>Omazh</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1201,17 +1214,17 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="294"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="293"/>
         <source>Neutral</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="295"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="294"/>
         <source>Good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="296"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="295"/>
         <source>Evil</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1556,102 +1569,102 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="46"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="45"/>
         <source>Portable mode</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="56"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="55"/>
         <source>Use %1 from the application folder to store settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="108"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="107"/>
         <source>Interface icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="118"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="117"/>
         <source>Updates</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
         <source>Check for updates:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="128"/>
         <source>Every day</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
         <source>Every week</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
         <source>Every month</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="132"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
         <source>Never</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="135"/>
         <source>Check now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
         <source>Check for updates now</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
         <source>Happy New Year!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="258"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="257"/>
         <source>Select icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="258"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="257"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="337"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="336"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="392"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="391"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="414"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="413"/>
         <source>Update available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="420"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="419"/>
         <source>No updates available.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1861,18 +1874,18 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="59"/>
-        <location filename="../../src/updaterdialog.cpp" line="62"/>
+        <location filename="../../src/updaterdialog.cpp" line="58"/>
+        <location filename="../../src/updaterdialog.cpp" line="61"/>
         <source>Changelog:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="132"/>
+        <location filename="../../src/updaterdialog.cpp" line="131"/>
         <source>Downloading is complete</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/updaterdialog.cpp" line="88"/>
+        <location filename="../../src/updaterdialog.cpp" line="87"/>
         <source>Unable to write file</source>
         <translation type="unfinished"></translation>
     </message>
