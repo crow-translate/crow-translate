@@ -1,6 +1,3 @@
-[submodule "src/third-party/qhotkey"]
-	path = src/third-party/qhotkey
-	url = https://github.com/Shatur95/QHotkey.git
 [submodule "src/third-party/singleapplication"]
 	path = src/third-party/singleapplication
 	url = https://github.com/itay-grudev/SingleApplication.git
@@ -13,3 +10,6 @@
 [submodule "src/qgittag"]
 	path = src/qgittag
 	url = https://github.com/crow-translate/QGitTag.git
+[submodule "src/third-party/qhotkey"]
+	path = src/third-party/qhotkey
+	url = https://github.com/Skycoder42/QHotkey.git
