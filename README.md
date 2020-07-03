@@ -76,6 +76,7 @@ Wayland does not support global shortcuts registration, but you can use [D-Bus](
 | Key                                               | Description                             |
 | ------------------------------------------------- | --------------------------------------- |
 | <kbd>Ctrl</kbd> + <kbd>Return</kbd>               | Translate                               |
+| <kbd>Ctrl</kbd> + <kbd>R</kbd>                    | Swap languages                          |
 | <kbd>Ctrl</kbd> + <kbd>Q</kbd>                    | Close window                            |
 | <kbd>Ctrl</kbd> + <kbd>S</kbd>                    | Speak source / pause text speaking      |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>S</kbd> | Speak translation / pause text speaking |
