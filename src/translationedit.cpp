@@ -57,7 +57,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     // Translation options
     if (!translator->translationOptions().isEmpty()) {
-        append(QStringLiteral("<font color=\"grey\"><i>%1</i> – %2</font>").arg(translator->source(), tr("translation options:")));
+        append(QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("translation options:")));
 
         // Print words for each type of speech
         const QMap<QString, QVector<QOnlineTranslator::QOption>> translationOptions = translator->translationOptions();
@@ -92,7 +92,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     // Examples
     if (!translator->examples().isEmpty()) {
-        append(QStringLiteral("<font color=\"grey\"><i>%1</i> – %2</font>").arg(translator->source(), tr("examples:")));
+        append(QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("examples:")));
         const QMap<QString, QVector<QOnlineTranslator::QExample>> examples = translator->examples();
         for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
             append(QStringLiteral("<b>%1</b>").arg(it.key()));
