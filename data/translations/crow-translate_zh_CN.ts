@@ -282,7 +282,7 @@
     <message>
       <location filename="../../src/popupwindow.ui" line="32"/>
       <source>Swap languages</source>
-      <translation>切换语言</translation>
+      <translation>交换语言</translation>
     </message>
     <message>
       <location filename="../../src/popupwindow.ui" line="64"/>
@@ -1356,7 +1356,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="166"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接口语言&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图形界面语言&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="196"/>
@@ -1386,7 +1386,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="493"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用源语言本地化转写出名字&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用原文音译或转写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="503"/>
@@ -1556,7 +1556,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1139"/>
       <source>License:</source>
-      <translation>协议：</translation>
+      <translation>许可证：</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
@@ -1641,7 +1641,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
       <source>Nothing to play</source>
-      <translation>无播放文字</translation>
+      <translation>没有要播放的内容</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
