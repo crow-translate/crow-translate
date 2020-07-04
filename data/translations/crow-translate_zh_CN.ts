@@ -1411,7 +1411,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="546"/>
       <source>Simplify source</source>
-      <translation>简化源文格式</translation>
+      <translation>简化原文格式</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="589"/>
