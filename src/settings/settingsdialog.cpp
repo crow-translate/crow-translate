@@ -79,8 +79,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         const auto lang = static_cast<QOnlineTranslator::Language>(i);
         const QIcon langIcon = LanguageButtonsWidget::countryIcon(lang);
 
-        ui->primaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
-        ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageString(lang), i);
+        ui->primaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
+        ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
     }
 
     // Sort languages in comboboxes alphabetically

@@ -135,7 +135,7 @@ void AddLanguageDialog::checkVerticalMovement(int row)
 void AddLanguageDialog::addLanguage(QListWidget *widget, QOnlineTranslator::Language lang)
 {
     auto *item = new QListWidgetItem;
-    item->setText(QOnlineTranslator::languageString(lang));
+    item->setText(QOnlineTranslator::languageName(lang));
     item->setIcon(LanguageButtonsWidget::countryIcon(lang));
     item->setData(Qt::UserRole, lang);
     widget->addItem(item);

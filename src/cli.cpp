@@ -195,8 +195,8 @@ void Cli::printTranslation()
     m_stdout << '\n';
 
     // Languages
-    m_stdout << "[ " << m_translator->sourceLanguageString() << " -> ";
-    m_stdout << m_translator->translationLanguageString() << " ]" << "\n\n";
+    m_stdout << "[ " << m_translator->sourceLanguageName() << " -> ";
+    m_stdout << m_translator->translationLanguageName() << " ]" << "\n\n";
 
     // Translation and its transliteration
     if (!m_translator->translation().isEmpty()) {
@@ -259,7 +259,7 @@ void Cli::printLangCodes()
 {
     for (int langIndex = QOnlineTranslator::Auto; langIndex != QOnlineTranslator::Zulu; ++langIndex) {
         const auto lang = static_cast<QOnlineTranslator::Language>(langIndex);
-        m_stdout << QOnlineTranslator::languageString(lang) << " - " << QOnlineTranslator::languageCode(lang) << '\n';
+        m_stdout << QOnlineTranslator::languageName(lang) << " - " << QOnlineTranslator::languageCode(lang) << '\n';
     }
 }
 

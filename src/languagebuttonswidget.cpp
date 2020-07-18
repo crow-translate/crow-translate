@@ -516,7 +516,7 @@ QString LanguageButtonsWidget::languageString(QOnlineTranslator::Language langua
 {
     switch (m_languageFormat) {
     case AppSettings::FullName:
-        return QOnlineTranslator::languageString(language);
+        return QOnlineTranslator::languageName(language);
     case AppSettings::IsoCode:
         return QOnlineTranslator::languageCode(language);
     default:
