@@ -21,15 +21,13 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "qonlinetranslator.h"
+#include "settings/appsettings.h"
 
 #include <QMainWindow>
 #include <QMediaPlayer>
 
-class TrayIcon;
 class LanguageButtonsWidget;
 class SpeakButtons;
-class AppSettings;
 class QHotkey;
 class QTaskbarControl;
 class QShortcut;
@@ -63,6 +61,7 @@ public:
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     const QShortcut *closeWindowShortcut() const;
+    AppSettings::LanguageFormat popupLanguageFormat() const;
     QSize popupSize() const;
     double popupOpacity() const;
 
@@ -157,6 +156,7 @@ private:
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
 
+    AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;
     double m_popupOpacity;
 };

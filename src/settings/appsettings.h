@@ -21,7 +21,6 @@
 #ifndef APPSETTINGS_H
 #define APPSETTINGS_H
 
-#include "qonlinetranslator.h"
 #include "qonlinetts.h"
 #include "trayicon.h"
 
@@ -37,16 +36,24 @@ class AppSettings : public QObject
     Q_DISABLE_COPY(AppSettings)
 
 public:
+    enum LanguageFormat {
+        FullName,
+        IsoCode
+    };
+    Q_ENUM(LanguageFormat)
+
     enum LanguageButtonsType {
         Source,
         Translation
     };
     Q_ENUM(LanguageButtonsType)
+
     enum WindowMode {
         PopupWindow,
         MainWindow
     };
     Q_ENUM(WindowMode)
+
 #ifdef Q_OS_WIN
     enum Interval {
         Day,
@@ -112,6 +119,14 @@ public:
     int popupWidth() const;
     void setPopupWidth(int width);
     static int defaultPopupWidth();
+
+    LanguageFormat popupLanguageFormat() const;
+    void setPopupLanguageFormat(LanguageFormat style);
+    static LanguageFormat defaultPopupLanguageFormat();
+
+    LanguageFormat mainWindowLanguageFormat() const;
+    void setMainWindowLanguageFormat(LanguageFormat style);
+    static LanguageFormat defaultMainWindowLanguageFormat();
 
     TrayIcon::IconType trayIconType() const;
     void setTrayIconType(TrayIcon::IconType type);

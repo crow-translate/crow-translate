@@ -103,6 +103,15 @@ bool LanguageButtonsWidget::checkLanguage(QOnlineTranslator::Language lang)
     return false;
 }
 
+void LanguageButtonsWidget::setLanguageFormat(AppSettings::LanguageFormat languageFormat)
+{
+    if (m_languageFormat == languageFormat)
+        return;
+
+    m_languageFormat = languageFormat;
+    retranslate();
+}
+
 int LanguageButtonsWidget::checkedId() const
 {
     return m_buttonGroup->checkedId();
@@ -480,7 +489,7 @@ void LanguageButtonsWidget::addButton(QOnlineTranslator::Language lang)
 
 void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang)
 {
-    const QString langName = QOnlineTranslator::languageString(lang);
+    const QString langName = languageString(lang);
     if (button == m_buttonGroup->button(s_autoButtonId)) {
         if (lang == QOnlineTranslator::Auto)
             button->setText(tr("Auto"));
@@ -501,4 +510,16 @@ bool LanguageButtonsWidget::isWindowWidthFitScreen()
 #else
     return window()->frameGeometry().width() <= window()->windowHandle()->screen()->availableGeometry().width();
 #endif
+}
+
+QString LanguageButtonsWidget::languageString(QOnlineTranslator::Language language)
+{
+    switch (m_languageFormat) {
+    case AppSettings::FullName:
+        return QOnlineTranslator::languageString(language);
+    case AppSettings::IsoCode:
+        return QOnlineTranslator::languageCode(language);
+    default:
+        Q_UNREACHABLE();
+    }
 }

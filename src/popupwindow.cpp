@@ -57,6 +57,8 @@ PopupWindow::PopupWindow(MainWindow *parent)
     connect(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, parent->translationSpeakButtons(), &SpeakButtons::playerMediaRequested);
 
     // Language buttons
+    ui->sourceLanguagesWidget->setLanguageFormat(parent->popupLanguageFormat());
+    ui->translationLanguagesWidget->setLanguageFormat(parent->popupLanguageFormat());
     connectButtons(ui->sourceLanguagesWidget, parent->sourceLanguageButtons());
     connectButtons(ui->translationLanguagesWidget, parent->translationLanguageButtons());
 

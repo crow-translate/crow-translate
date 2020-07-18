@@ -370,6 +370,60 @@
          </widget>
         </item>
         <item>
+         <widget class="QGroupBox" name="languageFormatGroupBox">
+          <property name="title">
+           <string>Language format</string>
+          </property>
+          <layout class="QFormLayout" name="formLayout">
+           <property name="labelAlignment">
+            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+           </property>
+           <item row="0" column="0">
+            <widget class="QLabel" name="mainWindowLanguageFormatLabel">
+             <property name="text">
+              <string>Main window:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
+             <item>
+              <property name="text">
+               <string>Full name</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO 639-1 code</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="1" column="0">
+            <widget class="QLabel" name="popupLanguageFormatLabel">
+             <property name="text">
+              <string>Pop-up:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="1" column="1">
+            <widget class="QComboBox" name="popupLanguageFormatComboBox">
+             <item>
+              <property name="text">
+               <string>Full name</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>ISO 639-1 code</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
          <widget class="QGroupBox" name="trayIconGroupBox">
           <property name="title">
            <string>Tray icon</string>

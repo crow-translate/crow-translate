@@ -286,6 +286,36 @@ int AppSettings::defaultPopupWidth()
     return 350;
 }
 
+AppSettings::LanguageFormat AppSettings::popupLanguageFormat() const
+{
+    return m_settings->value(QStringLiteral("Interface/PopupLanguageFormat"), defaultPopupLanguageFormat()).value<LanguageFormat>();
+}
+
+void AppSettings::setPopupLanguageFormat(LanguageFormat style)
+{
+    m_settings->setValue(QStringLiteral("Interface/PopupLanguageFormat"), style);
+}
+
+AppSettings::LanguageFormat AppSettings::defaultPopupLanguageFormat()
+{
+    return IsoCode;
+}
+
+AppSettings::LanguageFormat AppSettings::mainWindowLanguageFormat() const
+{
+    return m_settings->value(QStringLiteral("Interface/MainWindowLanguageFormat"), defaultMainWindowLanguageFormat()).value<LanguageFormat>();
+}
+
+void AppSettings::setMainWindowLanguageFormat(LanguageFormat style)
+{
+    m_settings->setValue(QStringLiteral("Interface/MainWindowLanguageFormat"), style);
+}
+
+AppSettings::LanguageFormat AppSettings::defaultMainWindowLanguageFormat()
+{
+    return FullName;
+}
+
 TrayIcon::IconType AppSettings::trayIconType() const
 {
     return m_settings->value(QStringLiteral("TrayIconName"), defaultTrayIconType()).value<TrayIcon::IconType>();

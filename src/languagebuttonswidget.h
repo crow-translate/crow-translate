@@ -1,7 +1,7 @@
 #ifndef LANGUAGEBUTTONSWIDGET_H
 #define LANGUAGEBUTTONSWIDGET_H
 
-#include "qonlinetranslator.h"
+#include "settings/appsettings.h"
 
 #include <QWidget>
 
@@ -27,6 +27,7 @@ public:
     QOnlineTranslator::Language previousCheckedLanguage() const;
     QOnlineTranslator::Language language(int id) const;
     bool checkLanguage(QOnlineTranslator::Language lang);
+    void setLanguageFormat(AppSettings::LanguageFormat languageFormat);
 
     int checkedId() const;
     bool isAutoButtonChecked() const;
@@ -60,12 +61,14 @@ private:
     void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang);
 
     bool isWindowWidthFitScreen();
+    QString languageString(QOnlineTranslator::Language language);
 
     Ui::LanguageButtonsWidget *ui;
     QButtonGroup *m_buttonGroup;
 
     QVector<QOnlineTranslator::Language> m_languages;
     QOnlineTranslator::Language m_autoLang = QOnlineTranslator::Auto;
+    AppSettings::LanguageFormat m_languageFormat = AppSettings::FullName;
     int m_previousCheckedId = 0;
 
     static constexpr int s_autoButtonId = -2; // -1 is reserved by QButtonGroup

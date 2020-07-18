@@ -185,6 +185,9 @@ void SettingsDialog::accept()
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
 
+    settings.setMainWindowLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->mainWindowLanguageFormatComboBox->currentIndex()));
+    settings.setPopupLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->popupLanguageFormatComboBox->currentIndex()));
+
     settings.setTrayIconType(static_cast<TrayIcon::IconType>(ui->trayIconComboBox->currentIndex()));
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
@@ -445,6 +448,9 @@ void SettingsDialog::restoreDefaults()
     ui->popupWidthSpinBox->setValue(AppSettings::defaultPopupWidth());
     ui->popupHeightSpinBox->setValue(AppSettings::defaultPopupHeight());
 
+    ui->mainWindowLanguageFormatComboBox->setCurrentIndex(AppSettings::defaultMainWindowLanguageFormat());
+    ui->popupLanguageFormatComboBox->setCurrentIndex(AppSettings::defaultPopupLanguageFormat());
+
     ui->trayIconComboBox->setCurrentIndex(AppSettings::defaultTrayIconType());
     ui->customTrayIconEdit->setText(AppSettings::defaultCustomIconPath());
 
@@ -502,6 +508,9 @@ void SettingsDialog::loadSettings()
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
+
+    ui->mainWindowLanguageFormatComboBox->setCurrentIndex(settings.mainWindowLanguageFormat());
+    ui->popupLanguageFormatComboBox->setCurrentIndex(settings.popupLanguageFormat());
 
     ui->trayIconComboBox->setCurrentIndex(settings.trayIconType());
     ui->customTrayIconEdit->setText(settings.customIconPath());

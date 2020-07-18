@@ -217,6 +217,11 @@ const QShortcut *MainWindow::closeWindowShortcut() const
     return m_closeWindowsShortcut;
 }
 
+AppSettings::LanguageFormat MainWindow::popupLanguageFormat() const
+{
+    return m_popupLanguageFormat;
+}
+
 QSize MainWindow::popupSize() const
 {
     return m_popupSize;
@@ -769,9 +774,15 @@ void MainWindow::loadSettings(const AppSettings &settings)
     // Interface
     ui->translationEdit->setFont(settings.font());
     ui->sourceEdit->setFont(settings.font());
-    m_trayIcon->loadSettings(settings);
+
     m_popupSize = {settings.popupWidth(), settings.popupHeight()};
     m_popupOpacity = settings.popupOpacity();
+
+    ui->sourceLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
+    ui->translationLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
+    m_popupLanguageFormat = settings.popupLanguageFormat();
+
+    m_trayIcon->loadSettings(settings);
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());

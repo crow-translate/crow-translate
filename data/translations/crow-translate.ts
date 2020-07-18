@@ -32,7 +32,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="855"/>
+        <location filename="../../src/settings/appsettings.cpp" line="885"/>
         <source>Unknown language code: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -170,18 +170,18 @@
 <context>
     <name>LanguageButtonsWidget</name>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="421"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="430"/>
         <source>Window width is larger then screen due to the languages on the panel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="422"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="431"/>
         <source>Please reduce added languages.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/languagebuttonswidget.cpp" line="486"/>
-        <location filename="../../src/languagebuttonswidget.cpp" line="488"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="495"/>
+        <location filename="../../src/languagebuttonswidget.cpp" line="497"/>
         <source>Auto</source>
         <translation type="unfinished"></translation>
     </message>
@@ -220,7 +220,7 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="105"/>
-        <location filename="../../src/mainwindow.cpp" line="563"/>
+        <location filename="../../src/mainwindow.cpp" line="568"/>
         <source>Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -251,28 +251,28 @@
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="104"/>
-        <location filename="../../src/mainwindow.cpp" line="562"/>
+        <location filename="../../src/mainwindow.cpp" line="567"/>
         <source>Show window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/mainwindow.cpp" line="106"/>
-        <location filename="../../src/mainwindow.cpp" line="564"/>
+        <location filename="../../src/mainwindow.cpp" line="569"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="325"/>
+        <location filename="../../src/mainwindow.cpp" line="330"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="375"/>
+        <location filename="../../src/mainwindow.cpp" line="380"/>
         <source>Unable to translate text</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/mainwindow.cpp" line="509"/>
+        <location filename="../../src/mainwindow.cpp" line="514"/>
         <source>The application is already running</source>
         <translation type="unfinished"></translation>
     </message>
@@ -339,631 +339,631 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="329"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="379"/>
         <source>Automatically detect</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="331"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="381"/>
         <source>Afrikaans</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="333"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="383"/>
         <source>Albanian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="335"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="385"/>
         <source>Amharic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="337"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="387"/>
         <source>Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="339"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="389"/>
         <source>Armenian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="341"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="391"/>
         <source>Azeerbaijani</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="343"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="393"/>
         <source>Basque</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="345"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="395"/>
         <source>Bashkir</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="347"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="397"/>
         <source>Belarusian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="349"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="399"/>
         <source>Bengali</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="351"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="401"/>
         <source>Bosnian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="353"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="403"/>
         <source>Bulgarian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="355"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="405"/>
         <source>Catalan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="357"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="407"/>
         <source>Cantonese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="359"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="409"/>
         <source>Cebuano</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="361"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="411"/>
         <source>Chinese (Simplified)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="363"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="413"/>
         <source>Chinese (Traditional)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="365"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="415"/>
         <source>Corsican</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="367"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="417"/>
         <source>Croatian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="369"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="419"/>
         <source>Czech</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="371"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="421"/>
         <source>Danish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="373"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="423"/>
         <source>Dutch</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="375"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="425"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="377"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="427"/>
         <source>Esperanto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="379"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="429"/>
         <source>Estonian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="381"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="431"/>
         <source>Fijian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="383"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="433"/>
         <source>Filipino</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="385"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="435"/>
         <source>Finnish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="387"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="437"/>
         <source>French</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="389"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="439"/>
         <source>Frisian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="391"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="441"/>
         <source>Galician</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="393"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="443"/>
         <source>Georgian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="395"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="445"/>
         <source>German</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="397"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="447"/>
         <source>Greek</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="399"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="449"/>
         <source>Gujarati</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="401"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="451"/>
         <source>Haitian Creole</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="403"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="453"/>
         <source>Hausa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="405"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="455"/>
         <source>Hawaiian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="407"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="457"/>
         <source>Hebrew</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="409"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="459"/>
         <source>Hill Mari</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="411"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="461"/>
         <source>Hindi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="413"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="463"/>
         <source>Hmong</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="415"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="465"/>
         <source>Hungarian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="417"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="467"/>
         <source>Icelandic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="419"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="469"/>
         <source>Igbo</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="421"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="471"/>
         <source>Indonesian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="423"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="473"/>
         <source>Irish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="425"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="475"/>
         <source>Italian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="427"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="477"/>
         <source>Japanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="429"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="479"/>
         <source>Javanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="431"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="481"/>
         <source>Kannada</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="433"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="483"/>
         <source>Kazakh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="435"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="485"/>
         <source>Khmer</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="437"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="487"/>
         <source>Klingon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="439"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="489"/>
         <source>Klingon (PlqaD)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="441"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="491"/>
         <source>Korean</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="443"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="493"/>
         <source>Kurdish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="445"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="495"/>
         <source>Kyrgyz</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="447"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="497"/>
         <source>Lao</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="449"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="499"/>
         <source>Latin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="451"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="501"/>
         <source>Latvian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="453"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="503"/>
         <source>Levantine Arabic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="455"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="505"/>
         <source>Lithuanian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="457"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="507"/>
         <source>Luxembourgish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="459"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="509"/>
         <source>Macedonian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="461"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="511"/>
         <source>Malagasy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="463"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="513"/>
         <source>Malay</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="465"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="515"/>
         <source>Malayalam</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="467"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="517"/>
         <source>Maltese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="469"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="519"/>
         <source>Maori</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="471"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="521"/>
         <source>Marathi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="473"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="523"/>
         <source>Mari</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="475"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="525"/>
         <source>Mongolian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="477"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="527"/>
         <source>Myanmar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="479"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="529"/>
         <source>Nepali</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="481"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="531"/>
         <source>Norwegian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="483"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="533"/>
         <source>Chichewa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="485"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="535"/>
         <source>Papiamento</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="487"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="537"/>
         <source>Pashto</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="489"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="539"/>
         <source>Persian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="491"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="541"/>
         <source>Polish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="493"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="543"/>
         <source>Portuguese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="495"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="545"/>
         <source>Punjabi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="497"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="547"/>
         <source>Queretaro Otomi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="499"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="549"/>
         <source>Romanian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="501"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="551"/>
         <source>Russian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="503"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="553"/>
         <source>Samoan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="505"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="555"/>
         <source>Scots Gaelic</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="507"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="557"/>
         <source>Serbian (Cyrillic)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="509"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="559"/>
         <source>Serbian (Latin)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="511"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="561"/>
         <source>Sesotho</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="513"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="563"/>
         <source>Shona</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="515"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="565"/>
         <source>Sindhi</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="517"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="567"/>
         <source>Sinhala</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="519"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="569"/>
         <source>Slovak</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="521"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="571"/>
         <source>Slovenian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="523"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="573"/>
         <source>Somali</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="525"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="575"/>
         <source>Spanish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="527"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="577"/>
         <source>Sundanese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="529"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="579"/>
         <source>Swahili</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="531"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="581"/>
         <source>Swedish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="533"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="583"/>
         <source>Tagalog</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="535"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="585"/>
         <source>Tahitian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="537"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="587"/>
         <source>Tajik</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="539"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="589"/>
         <source>Tamil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="541"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="591"/>
         <source>Tatar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="543"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="593"/>
         <source>Telugu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="545"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="595"/>
         <source>Thai</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="547"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="597"/>
         <source>Tongan</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="549"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="599"/>
         <source>Turkish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="551"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="601"/>
         <source>Udmurt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="553"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="603"/>
         <source>Ukrainian</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="555"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="605"/>
         <source>Urdu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="557"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="607"/>
         <source>Uzbek</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="559"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="609"/>
         <source>Vietnamese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="561"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="611"/>
         <source>Welsh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="563"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="613"/>
         <source>Xhosa</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="565"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="615"/>
         <source>Yiddish</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="567"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="617"/>
         <source>Yoruba</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="569"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="619"/>
         <source>Yucatec Maya</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="571"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="621"/>
         <source>Zulu</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="955"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="964"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1047"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1005"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1014"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1097"/>
         <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="976"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1113"/>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1247"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1026"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1155"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1289"/>
         <source>Error: Unable to parse autodetected language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1061"/>
+        <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1103"/>
         <source>Error: Unable to parse Yandex SID.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1021,13 +1021,13 @@
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="73"/>
-        <location filename="../../src/settings/settingsdialog.ui" line="487"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="541"/>
         <source>Translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/settings/settingsdialog.ui" line="82"/>
-        <location filename="../../src/settings/settingsdialog.ui" line="637"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="691"/>
         <source>Speech synthesis</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1135,221 +1135,221 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="375"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="429"/>
         <source>Tray icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="381"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="435"/>
         <source>Icon:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="414"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="468"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="418"/>
-        <location filename="../../src/settings/settingsdialog.ui" line="679"/>
-        <location filename="../../src/settings/settingsdialog.ui" line="754"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="551"/>
-        <location filename="../../src/settings/settingsdialog.cpp" line="569"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="472"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="733"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="808"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="560"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="578"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="427"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="481"/>
         <source>Monochrome (dark theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="436"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="490"/>
         <source>Monochrome (light theme)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="445"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="499"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="401"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="455"/>
         <source>Custom:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="287"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
         <source>Zahar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="288"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="291"/>
         <source>Ermil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="289"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="292"/>
         <source>Jane</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="290"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="293"/>
         <source>Oksana</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="291"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="294"/>
         <source>Alyss</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="292"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="295"/>
         <source>Omazh</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="646"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="700"/>
         <source>Emotional connotation:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="293"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="296"/>
         <source>Neutral</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="294"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="297"/>
         <source>Good</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="295"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="298"/>
         <source>Evil</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="496"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="550"/>
         <source>Enable source transliteration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="506"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="560"/>
         <source>Enable translation transliteration</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="516"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="570"/>
         <source>Enable source transcription</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="526"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="580"/>
         <source>Enable translation options</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="533"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="587"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="536"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="590"/>
         <source>Enable examples</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="556"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="610"/>
         <source>Automatic language detection</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="575"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="629"/>
         <source>Primary translation language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="582"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="636"/>
         <source>Secondary translation language:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="596"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="650"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="659"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="713"/>
         <source>Voice:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="675"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="729"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="694"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="748"/>
         <source>Speech test:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="765"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="819"/>
         <source>This is an example of speech synthesis.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="768"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="822"/>
         <source>Test voice</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="795"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="849"/>
         <source>Proxy server</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="801"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="855"/>
         <source>Type:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="936"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="990"/>
         <source>Use system settings</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="946"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1000"/>
         <source>Don&apos;t use a proxy</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="886"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="940"/>
         <source>Host:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="863"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="917"/>
         <source>Port:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="962"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1016"/>
         <source>Info: the proxy works only for text translation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="876"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="930"/>
         <source>Authentication</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="906"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="960"/>
         <source>Username:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="896"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="950"/>
         <source>Password:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1379,192 +1379,219 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="460"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="375"/>
+        <source>Language format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="384"/>
+        <source>Main window:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="392"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="413"/>
+        <source>Full name</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="397"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="418"/>
+        <source>ISO 639-1 code</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="405"/>
+        <source>Pop-up:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.ui" line="514"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Path to the icon or icon name from theme&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="493"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="547"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="503"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="557"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="513"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="567"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="523"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="577"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="543"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="597"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="546"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="600"/>
         <source>Simplify source</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="589"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="643"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="603"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="657"/>
         <source>Force detection of source language when used without window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="610"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="664"/>
         <source>Force detection of translation language when used without window</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="687"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="741"/>
         <source>Engine:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="707"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="761"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="750"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="804"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="762"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="816"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="811"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="865"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="824"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="878"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="834"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="888"/>
         <source>Info: the password is saved unencrypted</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="844"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="898"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="873"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="927"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="916"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="970"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="932"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="986"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="992"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1046"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="995"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1049"/>
         <source>Enable global shortcucts</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1024"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1078"/>
         <source>Shortcut</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1014"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1068"/>
         <source>Reset all</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1030"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1084"/>
         <source>Key sequence:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1044"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1098"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1047"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1101"/>
         <source>Accept</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1058"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1112"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1061"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1115"/>
         <source>Clear</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1075"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
         <source>Reset</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1146"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1200"/>
         <source>Version:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1011"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1065"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1037"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1091"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1072"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1139"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1193"/>
         <source>License:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1129"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1183"/>
         <source>Flag icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.ui" line="1122"/>
+        <location filename="../../src/settings/settingsdialog.ui" line="1176"/>
         <source>Autor:</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1629,42 +1656,42 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="257"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="260"/>
         <source>Select icon</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="257"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="260"/>
         <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="328"/>
         <source>Nothing to play</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="325"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="328"/>
         <source>Playback text is empty</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="336"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="339"/>
         <source>Unable to detect language</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="391"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="394"/>
         <source>Checking for updates...</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="413"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
         <source>Update available!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="419"/>
+        <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
         <source>No updates available.</source>
         <translation type="unfinished"></translation>
     </message>
