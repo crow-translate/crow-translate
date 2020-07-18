@@ -243,12 +243,12 @@ void AppSettings::setFont(const QFont &font)
 
 double AppSettings::popupOpacity() const
 {
-    return m_settings->value(QStringLiteral("PopupOpacity"), defaultPopupOpacity()).toDouble();
+    return m_settings->value(QStringLiteral("Interface/PopupOpacity"), defaultPopupOpacity()).toDouble();
 }
 
 void AppSettings::setPopupOpacity(double opacity)
 {
-    m_settings->setValue(QStringLiteral("PopupOpacity"), opacity);
+    m_settings->setValue(QStringLiteral("Interface/PopupOpacity"), opacity);
 }
 
 double AppSettings::defaultPopupOpacity()
@@ -258,12 +258,12 @@ double AppSettings::defaultPopupOpacity()
 
 int AppSettings::popupHeight() const
 {
-    return m_settings->value(QStringLiteral("PopupHeight"), defaultPopupHeight()).toInt();
+    return m_settings->value(QStringLiteral("Interface/PopupHeight"), defaultPopupHeight()).toInt();
 }
 
 void AppSettings::setPopupHeight(int height)
 {
-    m_settings->setValue(QStringLiteral("PopupHeight"), height);
+    m_settings->setValue(QStringLiteral("Interface/PopupHeight"), height);
 }
 
 int AppSettings::defaultPopupHeight()
@@ -273,12 +273,12 @@ int AppSettings::defaultPopupHeight()
 
 int AppSettings::popupWidth() const
 {
-    return m_settings->value(QStringLiteral("PopupWidth"), defaultPopupWidth()).toInt();
+    return m_settings->value(QStringLiteral("Interface/PopupWidth"), defaultPopupWidth()).toInt();
 }
 
 void AppSettings::setPopupWidth(int width)
 {
-    m_settings->setValue(QStringLiteral("PopupWidth"), width);
+    m_settings->setValue(QStringLiteral("Interface/PopupWidth"), width);
 }
 
 int AppSettings::defaultPopupWidth()
@@ -318,12 +318,12 @@ AppSettings::LanguageFormat AppSettings::defaultMainWindowLanguageFormat()
 
 TrayIcon::IconType AppSettings::trayIconType() const
 {
-    return m_settings->value(QStringLiteral("TrayIconName"), defaultTrayIconType()).value<TrayIcon::IconType>();
+    return m_settings->value(QStringLiteral("Interface/TrayIconName"), defaultTrayIconType()).value<TrayIcon::IconType>();
 }
 
 void AppSettings::setTrayIconType(TrayIcon::IconType type)
 {
-    m_settings->setValue(QStringLiteral("TrayIconName"), type);
+    m_settings->setValue(QStringLiteral("Interface/TrayIconName"), type);
 }
 
 TrayIcon::IconType AppSettings::defaultTrayIconType()
@@ -333,12 +333,12 @@ TrayIcon::IconType AppSettings::defaultTrayIconType()
 
 QString AppSettings::customIconPath() const
 {
-    return m_settings->value(QStringLiteral("CustomIconPath"), defaultCustomIconPath()).toString();
+    return m_settings->value(QStringLiteral("Interface/CustomIconPath"), defaultCustomIconPath()).toString();
 }
 
 void AppSettings::setCustomIconPath(const QString &path)
 {
-    m_settings->setValue(QStringLiteral("CustomIconPath"), path);
+    m_settings->setValue(QStringLiteral("Interface/CustomIconPath"), path);
 }
 
 QString AppSettings::defaultCustomIconPath()
@@ -915,30 +915,30 @@ void AppSettings::setCheckedButton(LanguageButtonsType type, int id)
 
 QByteArray AppSettings::mainWindowGeometry() const
 {
-    return m_settings->value(QStringLiteral("WindowGeometry")).toByteArray();
+    return m_settings->value(QStringLiteral("MainWindow/WindowGeometry")).toByteArray();
 }
 
 void AppSettings::setMainWindowGeometry(const QByteArray &geometry)
 {
-    m_settings->setValue(QStringLiteral("WindowGeometry"), geometry);
+    m_settings->setValue(QStringLiteral("MainWindow/WindowGeometry"), geometry);
 }
 
 bool AppSettings::isAutoTranslateEnabled() const
 {
-    return m_settings->value(QStringLiteral("AutoTranslate"), false).toBool();
+    return m_settings->value(QStringLiteral("MainWindow/AutoTranslate"), false).toBool();
 }
 
 void AppSettings::setAutoTranslateEnabled(bool enable)
 {
-    m_settings->setValue(QStringLiteral("AutoTranslate"), enable);
+    m_settings->setValue(QStringLiteral("MainWindow/AutoTranslate"), enable);
 }
 
 QOnlineTranslator::Engine AppSettings::currentEngine() const
 {
-    return m_settings->value(QStringLiteral("CurrentEngine"), QOnlineTranslator::Google).value<QOnlineTranslator::Engine>();
+    return m_settings->value(QStringLiteral("MainWindow/CurrentEngine"), QOnlineTranslator::Google).value<QOnlineTranslator::Engine>();
 }
 
 void AppSettings::setCurrentEngine(QOnlineTranslator::Engine currentEngine)
 {
-    m_settings->setValue(QStringLiteral("CurrentEngine"), currentEngine);
+    m_settings->setValue(QStringLiteral("MainWindow/CurrentEngine"), currentEngine);
 }
