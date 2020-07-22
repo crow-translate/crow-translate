@@ -903,14 +903,14 @@ int AppSettings::checkedButton(LanguageButtonsType type) const
 {
     const QMetaEnum typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
 
-    return m_settings->value(QStringLiteral("Buttons/Checked%1").arg(typeEnum.key(type))).toInt();
+    return m_settings->value(QStringLiteral("Buttons/Checked%1").arg(typeEnum.valueToKey(type))).toInt();
 }
 
 void AppSettings::setCheckedButton(LanguageButtonsType type, int id)
 {
     const QMetaEnum typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
 
-    m_settings->setValue(QStringLiteral("Buttons/Checked%1").arg(typeEnum.key(type)), id);
+    m_settings->setValue(QStringLiteral("Buttons/Checked%1").arg(typeEnum.valueToKey(type)), id);
 }
 
 QByteArray AppSettings::mainWindowGeometry() const
