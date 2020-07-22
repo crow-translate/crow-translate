@@ -508,6 +508,8 @@ bool LanguageButtonsWidget::isWindowWidthFitScreen()
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
     return window()->frameGeometry().width() <= screen()->availableGeometry().width();
 #else
+    if (!window()->windowHandle())
+        return true;
     return window()->frameGeometry().width() <= window()->windowHandle()->screen()->availableGeometry().width();
 #endif
 }
