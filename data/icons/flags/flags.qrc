@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icons/flags/">
+    <qresource prefix="/icons/flags">
         <file>th.svg</file>
         <file>tr.svg</file>
         <file>es.svg</file>
@@ -94,5 +94,7 @@
         <file>lt.svg</file>
         <file>br.svg</file>
         <file>my.svg</file>
+        <file>rw.svg</file>
+        <file>tm.svg</file>
     </qresource>
 </RCC>

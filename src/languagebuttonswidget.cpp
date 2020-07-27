@@ -160,10 +160,11 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/bg.svg");
     case QOnlineTranslator::Catalan:
         return QIcon(":/icons/flags/ad.svg");
+    case QOnlineTranslator::Cantonese:
+    case QOnlineTranslator::Hmong:
     case QOnlineTranslator::SimplifiedChinese:
     case QOnlineTranslator::TraditionalChinese:
-    case QOnlineTranslator::Hmong:
-    case QOnlineTranslator::Cantonese:
+    case QOnlineTranslator::Uighur:
         return QIcon(":/icons/flags/cn.svg");
     case QOnlineTranslator::Croatian:
         return QIcon(":/icons/flags/hr.svg");
@@ -207,11 +208,12 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/us.svg");
     case QOnlineTranslator::Hebrew:
         return QIcon(":/icons/flags/il.svg");
+    case QOnlineTranslator::Gujarati:
     case QOnlineTranslator::Hindi:
     case QOnlineTranslator::Kannada:
-    case QOnlineTranslator::Gujarati:
     case QOnlineTranslator::Malayalam:
     case QOnlineTranslator::Marathi:
+    case QOnlineTranslator::Oriya:
     case QOnlineTranslator::Punjabi:
     case QOnlineTranslator::Telugu:
         return QIcon(":/icons/flags/in.svg");
@@ -237,6 +239,8 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/kz.svg");
     case QOnlineTranslator::Khmer:
         return QIcon(":/icons/flags/kh.svg");
+    case QOnlineTranslator::Kinyarwanda:
+        return QIcon(":/icons/flags/rw.svg");
     case QOnlineTranslator::Klingon:
     case QOnlineTranslator::KlingonPlqaD:
         return QIcon(":/icons/flags/tlh.svg");
@@ -338,6 +342,8 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/to.svg");
     case QOnlineTranslator::Turkish:
         return QIcon(":/icons/flags/tr.svg");
+    case QOnlineTranslator::Turkmen:
+        return QIcon(":/icons/flags/tm.svg");
     case QOnlineTranslator::Ukrainian:
         return QIcon(":/icons/flags/ua.svg");
     case QOnlineTranslator::Uzbek:
