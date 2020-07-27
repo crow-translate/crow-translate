@@ -48,7 +48,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 ## Features
 
 - Translate and speak text in any application that supports text selection
-- Support 117 different languages
+- Support 125 different languages
 - Low memory consumption (~20MB)
 - Highly customizable shortcuts
 - Command-line interface with rich options
