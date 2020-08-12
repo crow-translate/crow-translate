@@ -73,6 +73,14 @@ public slots:
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
     Q_SCRIPTABLE void quit();
+    Q_SCRIPTABLE void clearText();
+    Q_SCRIPTABLE void abortTranslation();
+    Q_SCRIPTABLE void swapLanguages();
+    Q_SCRIPTABLE void openSettings();
+    Q_SCRIPTABLE void setAutoTranslateEnabled(bool enabled);
+    Q_SCRIPTABLE void copySourceText();
+    Q_SCRIPTABLE void copyTranslation();
+    Q_SCRIPTABLE void copyAllTranslationInfo();
 
 signals:
     void translateSelectionRequested();
@@ -100,16 +108,6 @@ private slots:
     void forceAutodetect();
 
     // UI
-    void clearText();
-    void abortTranslation();
-    void swapLanguages();
-    void openSettings();
-    void setAutoTranslateEnabled(bool enabled);
-
-    void copySourceText();
-    void copyTranslation();
-    void copyAllTranslationInfo();
-
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 
