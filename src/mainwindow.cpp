@@ -457,6 +457,7 @@ void MainWindow::openSettings()
 void MainWindow::setAutoTranslateEnabled(bool enabled)
 {
     ui->sourceEdit->setRequestTranlationOnEdit(enabled);
+    ui->autoTranslateCheckBox->setChecked(enabled);
     if (enabled)
         ui->sourceEdit->markSourceAsChanged();
 }
