@@ -21,6 +21,7 @@
 #include "appsettings.h"
 
 #include "cmake.h"
+#include "languagebuttonswidget.h"
 
 #include <QFileInfo>
 #include <QFont>
@@ -903,7 +904,7 @@ int AppSettings::checkedButton(LanguageButtonsType type) const
 {
     const QMetaEnum typeEnum = QMetaEnum::fromType<LanguageButtonsType>();
 
-    return m_settings->value(QStringLiteral("Buttons/Checked%1").arg(typeEnum.valueToKey(type))).toInt();
+    return m_settings->value(QStringLiteral("Buttons/Checked%1").arg(typeEnum.valueToKey(type)), LanguageButtonsWidget::autoButtonId()).toInt();
 }
 
 void AppSettings::setCheckedButton(LanguageButtonsType type, int id)

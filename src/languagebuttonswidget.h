@@ -36,6 +36,11 @@ public:
     static QIcon countryIcon(QOnlineTranslator::Language lang);
     static void swapCurrentLanguages(LanguageButtonsWidget *first, LanguageButtonsWidget *second);
 
+    static constexpr int autoButtonId()
+    {
+        return s_autoButtonId;
+    }
+
 signals:
     void buttonChecked(int id);
     void languageAdded(QOnlineTranslator::Language lang);
