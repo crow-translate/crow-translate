@@ -116,9 +116,10 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // Load main window settings (these settings are loaded only at startup and cannot be configured in the settings dialog)
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
-
     ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
     ui->translationLanguagesWidget->setLanguages(settings.languages(AppSettings::Translation));
+    ui->translationLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Translation));
+    ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
 
     restoreGeometry(settings.mainWindowGeometry());
     if (!settings.isStartMinimized())
@@ -158,6 +159,8 @@ MainWindow::~MainWindow()
     settings.setCurrentEngine(currentEngine());
     settings.setLanguages(AppSettings::Source, ui->sourceLanguagesWidget->languages());
     settings.setLanguages(AppSettings::Translation, ui->translationLanguagesWidget->languages());
+    settings.setCheckedButton(AppSettings::Source, ui->sourceLanguagesWidget->checkedId());
+    settings.setCheckedButton(AppSettings::Translation, ui->translationLanguagesWidget->checkedId());
 
     delete ui;
 }
