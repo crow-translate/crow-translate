@@ -66,12 +66,23 @@ public:
     double popupOpacity() const;
 
 public slots:
+    // Global shortcuts
     Q_SCRIPTABLE void translateSelection();
     Q_SCRIPTABLE void speakSelection();
     Q_SCRIPTABLE void speakTranslatedSelection();
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
+
+    // Main window shortcuts
+    Q_SCRIPTABLE void clearText();
+    Q_SCRIPTABLE void abortTranslation();
+    Q_SCRIPTABLE void swapLanguages();
+    Q_SCRIPTABLE void openSettings();
+    Q_SCRIPTABLE void setAutoTranslateEnabled(bool enabled);
+    Q_SCRIPTABLE void copySourceText();
+    Q_SCRIPTABLE void copyTranslation();
+    Q_SCRIPTABLE void copyAllTranslationInfo();
     Q_SCRIPTABLE void quit();
 
 signals:
@@ -100,16 +111,7 @@ private slots:
     void forceAutodetect();
 
     // UI
-    void clearText();
-    void abortTranslation();
-    void swapLanguages();
-    void openSettings();
-    void setAutoTranslateEnabled(bool enabled);
-
-    void copySourceText();
-    void copyTranslation();
-    void copyAllTranslationInfo();
-
+    void setTranslationOnEditEnabled(bool enabled);
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 

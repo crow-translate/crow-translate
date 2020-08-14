@@ -267,6 +267,71 @@ void MainWindow::copyTranslatedSelection()
     emit copyTranslatedSelectionRequested();
 }
 
+void MainWindow::clearText()
+{
+    // Clear source text without tracking for changes
+    ui->sourceEdit->setRequestTranlationOnEdit(false);
+    ui->sourceEdit->clear();
+    if (ui->autoTranslateCheckBox->isChecked())
+        ui->sourceEdit->setRequestTranlationOnEdit(true);
+
+    clearTranslation();
+}
+
+void MainWindow::abortTranslation()
+{
+    m_translator->abort();
+}
+
+void MainWindow::swapLanguages()
+{
+    // Temporary disable toggle logic
+    disconnect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
+    disconnect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
+
+    LanguageButtonsWidget::swapCurrentLanguages(ui->sourceLanguagesWidget, ui->translationLanguagesWidget);
+
+    // Re-enable toggle logic
+    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
+    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
+
+    // Copy translation to source text
+    ui->sourceEdit->setPlainText(ui->translationEdit->translation());
+    ui->sourceEdit->moveCursor(QTextCursor::End);
+}
+
+void MainWindow::openSettings()
+{
+    SettingsDialog config(this);
+    if (config.exec() == QDialog::Accepted) {
+        const AppSettings settings;
+        loadSettings(settings);
+    }
+}
+
+void MainWindow::setAutoTranslateEnabled(bool enabled)
+{
+    ui->autoTranslateCheckBox->setChecked(enabled);
+}
+
+void MainWindow::copySourceText()
+{
+    if (!ui->sourceEdit->toPlainText().isEmpty())
+        QGuiApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
+}
+
+void MainWindow::copyTranslation()
+{
+    if (!ui->translationEdit->toPlainText().isEmpty())
+        QGuiApplication::clipboard()->setText(ui->translationEdit->translation());
+}
+
+void MainWindow::copyAllTranslationInfo()
+{
+    if (!ui->translationEdit->toPlainText().isEmpty())
+        QGuiApplication::clipboard()->setText(ui->translationEdit->toPlainText());
+}
+
 void MainWindow::quit()
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
@@ -412,71 +477,11 @@ void MainWindow::forceAutodetect()
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
-void MainWindow::clearText()
-{
-    // Clear source text without tracking for changes
-    ui->sourceEdit->setRequestTranlationOnEdit(false);
-    ui->sourceEdit->clear();
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setRequestTranlationOnEdit(true);
-
-    clearTranslation();
-}
-
-void MainWindow::abortTranslation()
-{
-    m_translator->abort();
-}
-
-void MainWindow::swapLanguages()
-{
-    // Temporary disable toggle logic
-    disconnect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
-    disconnect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
-
-    LanguageButtonsWidget::swapCurrentLanguages(ui->sourceLanguagesWidget, ui->translationLanguagesWidget);
-
-    // Re-enable toggle logic
-    connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
-    connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
-
-    // Copy translation to source text
-    ui->sourceEdit->setPlainText(ui->translationEdit->translation());
-    ui->sourceEdit->moveCursor(QTextCursor::End);
-}
-
-void MainWindow::openSettings()
-{
-    SettingsDialog config(this);
-    if (config.exec() == QDialog::Accepted) {
-        const AppSettings settings;
-        loadSettings(settings);
-    }
-}
-
-void MainWindow::setAutoTranslateEnabled(bool enabled)
+void MainWindow::setTranslationOnEditEnabled(bool enabled) 
 {
     ui->sourceEdit->setRequestTranlationOnEdit(enabled);
     if (enabled)
         ui->sourceEdit->markSourceAsChanged();
-}
-
-void MainWindow::copySourceText()
-{
-    if (!ui->sourceEdit->toPlainText().isEmpty())
-        QGuiApplication::clipboard()->setText(ui->sourceEdit->toPlainText());
-}
-
-void MainWindow::copyTranslation()
-{
-    if (!ui->translationEdit->toPlainText().isEmpty())
-        QGuiApplication::clipboard()->setText(ui->translationEdit->translation());
-}
-
-void MainWindow::copyAllTranslationInfo()
-{
-    if (!ui->translationEdit->toPlainText().isEmpty())
-        QGuiApplication::clipboard()->setText(ui->translationEdit->toPlainText());
 }
 
 void MainWindow::resetAutoSourceButtonText()

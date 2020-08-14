@@ -341,7 +341,7 @@
    <sender>autoTranslateCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>setAutoTranslateEnabled(bool)</slot>
+   <slot>setTranslationOnEditEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>205</x>
@@ -486,7 +486,7 @@
   <slot>swapLanguages()</slot>
   <slot>openSettings()</slot>
   <slot>markSourceAsUpdated()</slot>
-  <slot>setAutoTranslateEnabled(bool)</slot>
+  <slot>setTranslationOnEditEnabled(bool)</slot>
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
   <slot>copyAllTranslationInfo()</slot>
