@@ -50,7 +50,8 @@ public:
 
     enum WindowMode {
         PopupWindow,
-        MainWindow
+        MainWindow,
+        Notification
     };
     Q_ENUM(WindowMode)
 

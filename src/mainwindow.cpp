@@ -379,6 +379,12 @@ void MainWindow::parseTranslation()
         ui->translationLanguagesWidget->setAutoLanguage(m_translator->translationLanguage());
     else
         ui->translationLanguagesWidget->setAutoLanguage(QOnlineTranslator::Auto);
+
+    // If window mode is notification, send a notification including the translation result
+    const AppSettings settings;
+    if (this->isHidden() && settings.windowMode() == AppSettings::Notification) {
+        m_trayIcon->showMessage(tr("Translation Result"), ui->translationEdit->toPlainText(), QSystemTrayIcon::NoIcon, 3000);
+    }
 }
 
 void MainWindow::clearTranslation()
@@ -418,6 +424,7 @@ void MainWindow::showTranslationWindow()
     m_translateSelectionHotkey->blockSignals(true);
 
     const AppSettings settings;
+
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         auto *popup = new PopupWindow(this);
         popup->show();
@@ -434,6 +441,10 @@ void MainWindow::showTranslationWindow()
             if (!ui->autoTranslateCheckBox->isChecked())
                 ui->sourceEdit->setRequestTranlationOnEdit(false);
         });
+    } else if (this->isHidden() && settings.windowMode() == AppSettings::Notification) {
+        // If window mode is notification, then dirictly return
+        m_translateSelectionHotkey->blockSignals(false);
+		return;
     } else {
         open();
 
@@ -480,7 +491,7 @@ void MainWindow::forceAutodetect()
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
-void MainWindow::setTranslationOnEditEnabled(bool enabled) 
+void MainWindow::setTranslationOnEditEnabled(bool enabled)
 {
     ui->sourceEdit->setRequestTranlationOnEdit(enabled);
     if (enabled)

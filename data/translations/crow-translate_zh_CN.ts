@@ -1058,6 +1058,11 @@
       <translation>主窗口</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="163"/>
+      <source>Notification</source>
+      <translation>通知</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="135"/>
       <source>Language:</source>
       <translation>语言：</translation>
