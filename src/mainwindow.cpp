@@ -363,7 +363,7 @@ void MainWindow::requestRetranslation()
     m_translator->translate(ui->sourceEdit->toSourceText(), currentEngine(), translationLang, m_translator->sourceLanguage());
 }
 
-void MainWindow::parseTranslation()
+void MainWindow::displayTranslation()
 {
     if (!ui->translationEdit->parseTranslationData(m_translator)) {
         // Reset language on translation "Auto" button
@@ -379,6 +379,11 @@ void MainWindow::parseTranslation()
         ui->translationLanguagesWidget->setAutoLanguage(m_translator->translationLanguage());
     else
         ui->translationLanguagesWidget->setAutoLanguage(QOnlineTranslator::Auto);
+
+    // If window mode is notification, send a notification including the translation result
+    const AppSettings settings;
+    if (this->isHidden() && settings.windowMode() == AppSettings::Notification)
+        m_trayIcon->showMessage(tr("Translation Result"), ui->translationEdit->toPlainText(), QSystemTrayIcon::NoIcon, 3000);
 }
 
 void MainWindow::clearTranslation()
@@ -418,6 +423,7 @@ void MainWindow::showTranslationWindow()
     m_translateSelectionHotkey->blockSignals(true);
 
     const AppSettings settings;
+
     if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
         auto *popup = new PopupWindow(this);
         popup->show();
@@ -434,6 +440,10 @@ void MainWindow::showTranslationWindow()
             if (!ui->autoTranslateCheckBox->isChecked())
                 ui->sourceEdit->setRequestTranlationOnEdit(false);
         });
+    } else if (this->isHidden() && settings.windowMode() == AppSettings::Notification) {
+        // If window mode is notification, then dirictly return
+        m_translateSelectionHotkey->blockSignals(false);
+        return;
     } else {
         open();
 
@@ -480,7 +490,7 @@ void MainWindow::forceAutodetect()
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
-void MainWindow::setTranslationOnEditEnabled(bool enabled) 
+void MainWindow::setTranslationOnEditEnabled(bool enabled)
 {
     ui->sourceEdit->setRequestTranlationOnEdit(enabled);
     if (enabled)
@@ -639,7 +649,7 @@ void MainWindow::buildTranslationState(QState *state)
     connect(abortPreviousState, &QState::entered, ui->translationSpeakButtons, &SpeakButtons::stopSpeaking); // Stop translation speaking
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
     connect(requestInOtherLangeState, &QState::entered, this, &MainWindow::requestRetranslation);
-    connect(parseState, &QState::entered, this, &MainWindow::parseTranslation);
+    connect(parseState, &QState::entered, this, &MainWindow::displayTranslation);
     connect(clearTranslationState, &QState::entered, this, &MainWindow::clearTranslation);
     setupRequestStateButtons(requestState);
     setupRequestStateButtons(abortPreviousState);

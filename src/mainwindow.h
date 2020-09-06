@@ -95,7 +95,7 @@ private slots:
     // State machine's slots
     void requestTranslation();
     void requestRetranslation();
-    void parseTranslation();
+    void displayTranslation();
     void clearTranslation();
 
     void requestSourceLanguage();
