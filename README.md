@@ -230,4 +230,4 @@ Build parameters are passed at configuration stage: `cmake -D PORTABLE_MODE ..`.
 
 ## Localization
 
-To help with localization you can use [Crowdin](https://crowdin.com/project/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, make a request on the Crowdin page or copy `data/translations/crow-translate.ts` to `data/translations/crow-translate_<ISO 639-1 language code>_<ISO 3166-1 alpha-2 language code>.ts`, translate it and send a pull request.
+To help with localization you can use [Crowdin](https://crowdin.com/project/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, write me on the Crowdin page or copy `data/translations/crow-translate.ts` to `data/translations/crow-translate_<ISO 639-1 language code>_<ISO 3166-1 alpha-2 language code>.ts`, translate it and send a pull request.
