@@ -419,12 +419,16 @@ void MainWindow::speakTranslation()
 
 void MainWindow::showTranslationWindow()
 {
-    // Prevent pressing the translation hotkey again
-    m_translateSelectionHotkey->blockSignals(true);
+    // Always show main window if it already opened
+    if (!isHidden()) {
+        open();
+        return;
+    }
 
     const AppSettings settings;
-
-    if (this->isHidden() && settings.windowMode() == AppSettings::PopupWindow) {
+    switch (settings.windowMode()) {
+    case AppSettings::PopupWindow:
+    {
         auto *popup = new PopupWindow(this);
         popup->show();
         popup->activateWindow();
@@ -434,21 +438,17 @@ void MainWindow::showTranslationWindow()
             ui->sourceEdit->setRequestTranlationOnEdit(true);
 
         connect(popup, &PopupWindow::destroyed, [&] {
-            // Restore the keyboard shortcut
-            m_translateSelectionHotkey->blockSignals(false);
             // Undo force listening for changes
             if (!ui->autoTranslateCheckBox->isChecked())
                 ui->sourceEdit->setRequestTranlationOnEdit(false);
         });
-    } else if (this->isHidden() && settings.windowMode() == AppSettings::Notification) {
-        // If window mode is notification, then dirictly return
-        m_translateSelectionHotkey->blockSignals(false);
-        return;
-    } else {
+        break;
+    }
+    case AppSettings::MainWindow:
         open();
-
-        // Restore the keyboard shortcut
-        m_translateSelectionHotkey->blockSignals(false);
+        break;
+    case AppSettings::Notification:
+        break;
     }
 }
 
