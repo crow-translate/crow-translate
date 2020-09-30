@@ -242,7 +242,11 @@ public:
     QKeySequence copyTranslatedSelectionShortcut() const;
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
-
+#ifdef OCR
+    QKeySequence OCRScreenGrabShortcut() const;
+    void setOCRScreenGrabShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultOCRScreenGrabShortcut();
+#endif
     // Window shortcuts
     QKeySequence translateShortcut() const;
     void setTranslateShortcut(const QKeySequence &shortcut);
@@ -267,7 +271,16 @@ public:
     QKeySequence copyTranslationShortcut() const;
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
+#ifdef OCR
+    QString OCRLanguage() const;
+    void setOCRLanguage(const QString &language);
+    static QString defaultOCRLanguage();
 
+    // these are used expose available languages to settings window, available languages is not an actual setting.
+    QStringList availableOCRLanguages() const;
+    void setAvailableOCRLanguages(const QStringList &language);
+    static QStringList defaultAvailableOCRLanguages();
+#endif
     // Buttons
     QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;
     void setLanguages(LanguageButtonsType type, const QVector<QOnlineTranslator::Language> &languages);

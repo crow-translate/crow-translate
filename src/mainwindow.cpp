@@ -48,6 +48,8 @@
 #include <QNetworkProxy>
 #include <QShortcut>
 #include <QStateMachine>
+#include <QScreen>
+#include <QtGlobal>
 
 MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
@@ -58,6 +60,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     , m_stopSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
+    , m_OCRScreenGrabHotkey(new QHotkey(this))
     , m_closeWindowsShortcut(new QShortcut(this))
     , m_stateMachine(new QStateMachine(this))
     , m_translator(new QOnlineTranslator(this))
@@ -76,7 +79,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // Text speaking
     ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
     ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
-
+    
     // Taskbar progress for text speaking
 #if defined(Q_OS_WIN)
     m_taskbar->setWidget(this);
@@ -94,7 +97,9 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
-
+#ifdef OCR
+    connect(m_OCRScreenGrabHotkey, &QHotkey::activated, this, &MainWindow::ocrGrab);
+#endif
     // Source and translation logic
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
@@ -109,6 +114,11 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // State machine to handle translator signals async
     buildStateMachine();
     m_stateMachine->start();
+
+    // Init tesseract
+#ifdef OCR
+    m_tesseractAPI = new tesseract::TessBaseAPI();
+#endif
 
     // App settings
     loadSettings(settings);
@@ -161,7 +171,9 @@ MainWindow::~MainWindow()
     settings.setLanguages(AppSettings::Translation, ui->translationLanguagesWidget->languages());
     settings.setCheckedButton(AppSettings::Source, ui->sourceLanguagesWidget->checkedId());
     settings.setCheckedButton(AppSettings::Translation, ui->translationLanguagesWidget->checkedId());
-
+#ifdef OCR
+    m_tesseractAPI->End();
+#endif
     delete ui;
 }
 
@@ -269,6 +281,51 @@ void MainWindow::copyTranslatedSelection()
 {
     emit copyTranslatedSelectionRequested();
 }
+#ifdef OCR
+void MainWindow::ocrGrab()
+{
+    showQuickEditor();
+}
+void MainWindow::showQuickEditor()
+{
+    if(m_quickEditor)
+    {
+        m_quickEditor->close();
+        m_quickEditor->deleteLater();
+        m_quickEditor = nullptr;
+    }
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QScreen *screen =  QGuiApplication::screenAt(QCursor::pos());
+#else
+    QScreen *screen = QGuiApplication::screens()[0];
+#endif
+    QPixmap pixmap = screen->grabWindow(0);
+    m_quickEditor = new QuickEditor(pixmap);
+    connect(m_quickEditor, &QuickEditor::grabDone, this, &MainWindow::grapCompleted);
+    connect(m_quickEditor, &QuickEditor::grabCancelled, this, &MainWindow::grabCanceled);
+    m_quickEditor->show();
+}
+
+void MainWindow::grapCompleted(const QPixmap &result)
+{
+    m_quickEditor->close();
+    m_quickEditor->deleteLater();
+    m_quickEditor = nullptr;
+    QImage i = result.toImage();
+    m_tesseractAPI->SetImage(i.constBits() ,i.width(), i.height(), 4, i.bytesPerLine());
+    m_tesseractAPI->SetSourceResolution(70);
+    char* resultText = m_tesseractAPI->GetUTF8Text();
+    setSourceText(resultText);
+//    requestTranslation(); // ?
+    delete [] resultText;
+}
+void MainWindow::grabCanceled()
+{
+    m_quickEditor->close();
+    m_quickEditor->deleteLater();
+    m_quickEditor = nullptr;
+}
+#endif
 
 void MainWindow::clearText()
 {
@@ -305,6 +362,9 @@ void MainWindow::swapLanguages()
 
 void MainWindow::openSettings()
 {
+#ifdef OCR
+    AppSettings().setAvailableOCRLanguages(getAvailableOCRLanguages());
+#endif
     SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted) {
         const AppSettings settings;
@@ -835,6 +895,9 @@ void MainWindow::loadSettings(const AppSettings &settings)
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
+#ifdef OCR
+        m_OCRScreenGrabHotkey->setShortcut(settings.OCRScreenGrabShortcut(), true);
+#endif
     } else {
         m_translateSelectionHotkey->setRegistered(false);
         m_speakSelectionHotkey->setRegistered(false);
@@ -851,6 +914,18 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->swapButton->setShortcut(settings.swapShortcut());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
+
+    // OCR settings
+#ifdef OCR
+    // this will change tesseract language if setting has changed
+    if(QString(m_tesseractAPI->GetInitLanguagesAsString()).compare(settings.OCRLanguage()) != 0)
+    {
+        if (m_tesseractAPI->Init(NULL, settings.OCRLanguage().toLocal8Bit(), tesseract::OEM_LSTM_ONLY, NULL, 0, NULL, NULL, true)) {
+            fprintf(stderr, "Could not initialize tesseract.\n");
+            exit(1);
+        }
+    }
+#endif
 }
 
 // Toggle language logic
@@ -888,7 +963,20 @@ void MainWindow::checkLanguageButton(int checkedId)
 
     ui->sourceEdit->markSourceAsChanged();
 }
-
+#ifdef OCR
+QStringList MainWindow::getAvailableOCRLanguages()
+{
+    QStringList result;
+    if(!m_tesseractAPI)
+        return result;
+    GenericVector<STRING> languages;
+    m_tesseractAPI->GetAvailableLanguagesAsVector(&languages);
+    for (int i = 0; i < languages.size(); ++i) {
+        result.push_back(languages[i].c_str());
+    }
+    return result;
+}
+#endif
 QOnlineTranslator::Engine MainWindow::currentEngine()
 {
     return static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());

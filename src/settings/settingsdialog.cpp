@@ -67,7 +67,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português (Brasil)"), QLocale::Portuguese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türk"), QLocale::Turkish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türkçe"), QLocale::Turkish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), QStringLiteral("Русский"), QLocale::Russian);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), QStringLiteral("Espanol"), QLocale::Spanish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("ئۇيغۇر"), QLocale::Uighur);
@@ -101,6 +101,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+
+#ifndef OCR
+    this->ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
+#endif
 
 #ifdef Q_OS_WIN
     // Add information about icons
@@ -143,7 +147,6 @@ SettingsDialog::SettingsDialog(QWidget *parent)
 
     updatesLayout->addStretch();
 #endif
-
     // Check current date
     const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31) || (date.month() == 1 && date.day() == 1))
@@ -220,6 +223,11 @@ void SettingsDialog::accept()
     if (QHotkey::isPlatformSupported())
         settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
+
+    // OCR
+#ifdef OCR
+    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText());
+#endif
 }
 
 void SettingsDialog::processProxyTypeChanged(int type)
@@ -483,6 +491,11 @@ void SettingsDialog::restoreDefaults()
     if (QHotkey::isPlatformSupported())
         ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
     resetAllShortcuts();
+
+    // OCR
+#ifdef OCR
+    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOCRLanguage());
+#endif
 }
 
 void SettingsDialog::loadSettings()
@@ -548,6 +561,13 @@ void SettingsDialog::loadSettings()
         ui->globalShortcutsCheckBox->setEnabled(false);
     }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
+
+    // OCR
+#ifdef OCR
+    ui->ocrLanguageComboBox->clear();
+    ui->ocrLanguageComboBox->addItems(settings.availableOCRLanguages());
+    ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());
+#endif
 }
 
 void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)

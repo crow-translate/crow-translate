@@ -785,7 +785,22 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
     return QKeySequence();
 }
+#ifdef OCR
+QKeySequence AppSettings::OCRScreenGrabShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/OCRScreenGrabShortcut"), defaultOCRScreenGrabShortcut()).toString();
+}
 
+void AppSettings::setOCRScreenGrabShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/OCRScreenGrabShortcut"), shortcut);
+}
+
+QKeySequence AppSettings::defaultOCRScreenGrabShortcut()
+{
+    return QKeySequence("Ctrl+Alt+D");
+}
+#endif
 QKeySequence AppSettings::translateShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/Translate"), defaultTranslateShortcut()).value<QKeySequence>();
@@ -875,7 +890,38 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
+#ifdef OCR
+QString AppSettings::OCRLanguage() const
+{
+    return m_settings->value(QStringLiteral("OCR/Language"), defaultOCRLanguage()).value<QString>();
+}
 
+void AppSettings::setOCRLanguage(const QString &language)
+{
+    m_settings->setValue(QStringLiteral("OCR/Language"), language);
+}
+
+QString AppSettings::defaultOCRLanguage()
+{
+    return QString("eng");
+}
+
+// these are used expose available languages to settings window, available languages is not an actual setting.
+QStringList AppSettings::availableOCRLanguages() const
+{
+    return m_settings->value(QStringLiteral("OCR/Languages"), defaultAvailableOCRLanguages()).value<QStringList>();
+}
+
+void AppSettings::setAvailableOCRLanguages(const QStringList &languages)
+{
+    m_settings->setValue(QStringLiteral("OCR/Languages"), languages);
+}
+
+QStringList AppSettings::defaultAvailableOCRLanguages()
+{
+    return QStringList("eng");
+}
+#endif
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const
 {
     const auto typeEnum = QMetaEnum::fromType<LanguageButtonsType>();

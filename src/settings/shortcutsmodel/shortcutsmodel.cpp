@@ -50,7 +50,10 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
 
     auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), globalShortcuts);
     copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
-
+#ifdef OCR
+    auto *OCRScreenGrabShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("trim-to-selection"), globalShortcuts);
+    OCRScreenGrabShortcut->setDefaultShortcut(AppSettings::defaultOCRScreenGrabShortcut());
+#endif
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
 
@@ -191,7 +194,9 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_rootItem->child(0)->child(3)->setShortcut(settings.stopSpeakingShortcut());
     m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowShortcut());
     m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionShortcut());
-
+#ifdef OCR
+    m_rootItem->child(0)->child(6)->setShortcut(settings.OCRScreenGrabShortcut());
+#endif
     // Window shortcuts
     m_rootItem->child(1)->child(0)->setShortcut(settings.translateShortcut());
     m_rootItem->child(1)->child(1)->setShortcut(settings.swapShortcut());
@@ -214,7 +219,9 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setStopSpeakingShortcut(m_rootItem->child(0)->child(3)->shortcut());
     settings.setShowMainWindowShortcut(m_rootItem->child(0)->child(4)->shortcut());
     settings.setCopyTranslatedSelectionShortcut(m_rootItem->child(0)->child(5)->shortcut());
-
+#ifdef OCR
+    settings.setOCRScreenGrabShortcut(m_rootItem->child(0)->child(6)->shortcut());
+#endif
     // Window shortcuts
     settings.setTranslateShortcut(m_rootItem->child(1)->child(0)->shortcut());
     settings.setSwapShortcut(m_rootItem->child(1)->child(1)->shortcut());

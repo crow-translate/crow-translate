@@ -37,6 +37,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
 option(PORTABLE_MODE "Enable portable functionality" OFF)
+option(OCR "Enable OCR" OFF)
 
 set(QAPPLICATION_CLASS QApplication)
 option(QHOTKEY_INSTALL OFF)
@@ -95,7 +96,7 @@ qt5_add_translation(QM_FILES
 
 configure_file(src/cmake.h.in cmake.h)
 
-add_executable(${PROJECT_NAME}
+set(SOURCES
     ${QM_FILES}
     data/icons/engines/engines.qrc
     data/icons/flags/flags.qrc
@@ -129,6 +130,13 @@ add_executable(${PROJECT_NAME}
     src/trayicon.cpp
 )
 
+if(OCR)
+    set(SOURCES ${SOURCES} src/quickeditor.cpp)
+endif()
+
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
 
 if(WIN32)
@@ -141,7 +149,13 @@ if(WIN32)
     )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
+set(LIBRARIES SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
+if(OCR)
+    set(LIBRARIES ${LIBRARIES} tesseract)
+endif()
+
+target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES})
+
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
 elseif(WIN32)
@@ -151,6 +165,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/s
 
 if(PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
+endif()
+if(OCR)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE OCR)
 endif()
 
 install(TARGETS ${PROJECT_NAME})

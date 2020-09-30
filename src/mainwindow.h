@@ -25,6 +25,11 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
+#ifdef OCR
+#include "tesseract/baseapi.h"
+#include "tesseract/genericvector.h"
+#include "quickeditor.h"
+#endif
 
 class LanguageButtonsWidget;
 class SpeakButtons;
@@ -73,6 +78,11 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
+#ifdef OCR
+    void ocrGrab();
+    void grapCompleted(const QPixmap &result);
+    void grabCanceled();
+#endif
 
     // Main window shortcuts
     Q_SCRIPTABLE void clearText();
@@ -90,6 +100,9 @@ signals:
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
+#ifdef OCR
+    void ocrGrabRequested();
+#endif
 
 private slots:
     // State machine's slots
@@ -139,6 +152,9 @@ private:
     // Helper functions
     void loadSettings(const AppSettings &settings);
     void checkLanguageButton(int checkedId);
+#ifdef OCR
+    QStringList getAvailableOCRLanguages();
+#endif
 
     QOnlineTranslator::Engine currentEngine();
 
@@ -150,6 +166,7 @@ private:
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
+    QHotkey *m_OCRScreenGrabHotkey;
     QShortcut *m_closeWindowsShortcut;
 
     QStateMachine *m_stateMachine;
@@ -157,7 +174,11 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
-
+#ifdef OCR
+    QuickEditor *m_quickEditor = nullptr;
+    tesseract::TessBaseAPI *m_tesseractAPI;
+    void showQuickEditor();
+#endif
     AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;
     double m_popupOpacity;
