@@ -242,7 +242,7 @@ public:
     QKeySequence copyTranslatedSelectionShortcut() const;
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
-#ifdef OCR
+#ifdef WITH_OCR
     QKeySequence OCRScreenGrabShortcut() const;
     void setOCRScreenGrabShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultOCRScreenGrabShortcut();
@@ -271,7 +271,7 @@ public:
     QKeySequence copyTranslationShortcut() const;
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
-#ifdef OCR
+#ifdef WITH_OCR
     QString OCRLanguage() const;
     void setOCRLanguage(const QString &language);
     static QString defaultOCRLanguage();

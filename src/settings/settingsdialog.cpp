@@ -225,7 +225,7 @@ void SettingsDialog::accept()
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
 
     // OCR
-#ifdef OCR
+#ifdef WITH_OCR
     settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText());
 #endif
 }
@@ -493,7 +493,7 @@ void SettingsDialog::restoreDefaults()
     resetAllShortcuts();
 
     // OCR
-#ifdef OCR
+#ifdef WITH_OCR
     ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOCRLanguage());
 #endif
 }
@@ -563,7 +563,7 @@ void SettingsDialog::loadSettings()
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
 
     // OCR
-#ifdef OCR
+#ifdef WITH_OCR
     ui->ocrLanguageComboBox->clear();
     ui->ocrLanguageComboBox->addItems(settings.availableOCRLanguages());
     ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());

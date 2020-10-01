@@ -785,7 +785,7 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
     return QKeySequence();
 }
-#ifdef OCR
+#ifdef WITH_OCR
 QKeySequence AppSettings::OCRScreenGrabShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/OCRScreenGrabShortcut"), defaultOCRScreenGrabShortcut()).toString();
@@ -890,7 +890,7 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
-#ifdef OCR
+#ifdef WITH_OCR
 QString AppSettings::OCRLanguage() const
 {
     return m_settings->value(QStringLiteral("OCR/Language"), defaultOCRLanguage()).value<QString>();

@@ -25,7 +25,7 @@
 
 #include <QMainWindow>
 #include <QMediaPlayer>
-#ifdef OCR
+#ifdef WITH_OCR
 #include "tesseract/baseapi.h"
 #include "tesseract/genericvector.h"
 #include "quickeditor.h"
@@ -78,7 +78,7 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
-#ifdef OCR
+#ifdef WITH_OCR
     void ocrGrab();
     void grapCompleted(const QPixmap &result);
     void grabCanceled();
@@ -100,7 +100,7 @@ signals:
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
-#ifdef OCR
+#ifdef WITH_OCR
     void ocrGrabRequested();
 #endif
 
@@ -152,7 +152,7 @@ private:
     // Helper functions
     void loadSettings(const AppSettings &settings);
     void checkLanguageButton(int checkedId);
-#ifdef OCR
+#ifdef WITH_OCR
     QStringList getAvailableOCRLanguages();
 #endif
 
@@ -174,7 +174,7 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
-#ifdef OCR
+#ifdef WITH_OCR
     QuickEditor *m_quickEditor = nullptr;
     tesseract::TessBaseAPI *m_tesseractAPI;
     void showQuickEditor();

@@ -97,7 +97,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
-#ifdef OCR
+#ifdef WITH_OCR
     connect(m_OCRScreenGrabHotkey, &QHotkey::activated, this, &MainWindow::ocrGrab);
 #endif
     // Source and translation logic
@@ -116,7 +116,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     m_stateMachine->start();
 
     // Init tesseract
-#ifdef OCR
+#ifdef WITH_OCR
     m_tesseractAPI = new tesseract::TessBaseAPI();
 #endif
 
@@ -171,7 +171,7 @@ MainWindow::~MainWindow()
     settings.setLanguages(AppSettings::Translation, ui->translationLanguagesWidget->languages());
     settings.setCheckedButton(AppSettings::Source, ui->sourceLanguagesWidget->checkedId());
     settings.setCheckedButton(AppSettings::Translation, ui->translationLanguagesWidget->checkedId());
-#ifdef OCR
+#ifdef WITH_OCR
     m_tesseractAPI->End();
 #endif
     delete ui;
@@ -281,7 +281,7 @@ void MainWindow::copyTranslatedSelection()
 {
     emit copyTranslatedSelectionRequested();
 }
-#ifdef OCR
+#ifdef WITH_OCR
 void MainWindow::ocrGrab()
 {
     showQuickEditor();
@@ -362,7 +362,7 @@ void MainWindow::swapLanguages()
 
 void MainWindow::openSettings()
 {
-#ifdef OCR
+#ifdef WITH_OCR
     AppSettings().setAvailableOCRLanguages(getAvailableOCRLanguages());
 #endif
     SettingsDialog config(this);
@@ -895,7 +895,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
-#ifdef OCR
+#ifdef WITH_OCR
         m_OCRScreenGrabHotkey->setShortcut(settings.OCRScreenGrabShortcut(), true);
 #endif
     } else {
@@ -916,7 +916,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
 
     // OCR settings
-#ifdef OCR
+#ifdef WITH_OCR
     // this will change tesseract language if setting has changed
     if(QString(m_tesseractAPI->GetInitLanguagesAsString()).compare(settings.OCRLanguage()) != 0)
     {
@@ -963,7 +963,7 @@ void MainWindow::checkLanguageButton(int checkedId)
 
     ui->sourceEdit->markSourceAsChanged();
 }
-#ifdef OCR
+#ifdef WITH_OCR
 QStringList MainWindow::getAvailableOCRLanguages()
 {
     QStringList result;

@@ -37,10 +37,12 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
 option(PORTABLE_MODE "Enable portable functionality" OFF)
-option(OCR "Enable OCR" OFF)
+option(WITH_OCR "Enable OCR" ON)
 
 set(QAPPLICATION_CLASS QApplication)
 option(QHOTKEY_INSTALL OFF)
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 add_subdirectory(src/third-party/singleapplication)
 add_subdirectory(src/third-party/qhotkey)
@@ -53,6 +55,9 @@ endif()
 find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
 if(UNIX)
     find_package(Qt5 COMPONENTS DBus REQUIRED)
+endif()
+if(WITH_OCR)
+    find_package(Tesseract REQUIRED)
 endif()
 find_package(ECM REQUIRED NO_MODULE)
 
@@ -96,7 +101,7 @@ qt5_add_translation(QM_FILES
 
 configure_file(src/cmake.h.in cmake.h)
 
-set(SOURCES
+add_executable(${PROJECT_NAME}
     ${QM_FILES}
     data/icons/engines/engines.qrc
     data/icons/flags/flags.qrc
@@ -130,12 +135,9 @@ set(SOURCES
     src/trayicon.cpp
 )
 
-if(OCR)
-    set(SOURCES ${SOURCES} src/quickeditor.cpp)
+if(WITH_OCR)
+    target_sources(${PROJECT_NAME} PRIVATE src/quickeditor.cpp)
 endif()
-
-add_executable(${PROJECT_NAME} ${SOURCES})
-
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
 
@@ -149,25 +151,23 @@ if(WIN32)
     )
 endif()
 
-set(LIBRARIES SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
-if(OCR)
-    set(LIBRARIES ${LIBRARIES} tesseract)
-endif()
-
-target_link_libraries(${PROJECT_NAME} PRIVATE ${LIBRARIES})
+target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
 
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()
+if(WITH_OCR)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Tesseract::Tesseract)
+endif()
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 if(PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
 endif()
-if(OCR)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE OCR)
+if(WITH_OCR)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_OCR)
 endif()
 
 install(TARGETS ${PROJECT_NAME})

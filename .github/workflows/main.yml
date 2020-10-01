@@ -21,7 +21,6 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       ECM_ROOT: 'C:\Program Files\ECM'
-      CXXFLAGS: ${{ matrix.CXXFLAGS }}
     strategy:
       matrix:
         os: [ubuntu-18.04, windows-latest]
@@ -29,6 +28,7 @@ jobs:
           - os: ubuntu-18.04
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
+            CMAKE_TOOLCHAIN_FILE: '{{ env.VCPKG_INSTALLATION_ROOT }}\scripts\buildsystems\vcpkg.cmake'
             extra-cmake-modules: '5.70.0'
             CXXFLAGS: '/W4 /WX'
     steps:
@@ -45,7 +45,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
     - name: Install Qt
       if: runner.os == 'Windows'
@@ -58,9 +58,16 @@ jobs:
         cmake -S extra-cmake-modules -B extra-cmake-modules/build
         cmake --build extra-cmake-modules/build --target install
 
+    - name: Install Tesseract
+      if: runner.os == 'Windows'
+      run: vcpkg install tesseract:x64-windows
+
     - name: Build
       run: |
         mkdir build
         cd build
-        cmake -D PORTABLE_MODE=ON ..
+        cmake -D PORTABLE_MODE=ON -D WITH_OCR=ON -D CMAKE_TOOLCHAIN_FILE=${{ matrix.CMAKE_TOOLCHAIN_FILE }} ..
         cmake --build . --parallel 2
+      env:
+        CXXFLAGS: ${{ matrix.CXXFLAGS }}
+
