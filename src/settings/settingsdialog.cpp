@@ -226,7 +226,7 @@ void SettingsDialog::accept()
 
     // OCR
 #ifdef WITH_OCR
-    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText());
+    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
 #endif
 }
 

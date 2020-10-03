@@ -67,6 +67,10 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     , m_trayMenu(new QMenu(this))
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
+#ifdef WITH_OCR
+    , m_ocr(new Ocr(this))
+    , m_quickEditor(new QuickEditor(this))
+#endif
 {
     ui->setupUi(this);
 
@@ -98,12 +102,19 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
 #ifdef WITH_OCR
-    connect(m_OCRScreenGrabHotkey, &QHotkey::activated, this, &MainWindow::ocrGrab);
+    connect(m_OCRScreenGrabHotkey, &QHotkey::activated, this, &MainWindow::translateOcrText);
 #endif
     // Source and translation logic
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
+
+    // OCR window logic
+#ifdef WITH_OCR
+    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
+    connect(m_quickEditor, &QuickEditor::grabDone, this, &MainWindow::grapCompleted);
+    connect(m_quickEditor, &QuickEditor::grabCancelled, m_quickEditor, &QuickEditor::hide);
+#endif
 
     // System tray icon
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::open);
@@ -114,11 +125,6 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // State machine to handle translator signals async
     buildStateMachine();
     m_stateMachine->start();
-
-    // Init tesseract
-#ifdef WITH_OCR
-    m_tesseractAPI = new tesseract::TessBaseAPI();
-#endif
 
     // App settings
     loadSettings(settings);
@@ -171,9 +177,6 @@ MainWindow::~MainWindow()
     settings.setLanguages(AppSettings::Translation, ui->translationLanguagesWidget->languages());
     settings.setCheckedButton(AppSettings::Source, ui->sourceLanguagesWidget->checkedId());
     settings.setCheckedButton(AppSettings::Translation, ui->translationLanguagesWidget->checkedId());
-#ifdef WITH_OCR
-    m_tesseractAPI->End();
-#endif
     delete ui;
 }
 
@@ -281,49 +284,33 @@ void MainWindow::copyTranslatedSelection()
 {
     emit copyTranslatedSelectionRequested();
 }
+
 #ifdef WITH_OCR
+void MainWindow::translateOcrText() 
+{
+    emit translateOcrTextRequested();
+}
+
 void MainWindow::ocrGrab()
 {
     showQuickEditor();
 }
 void MainWindow::showQuickEditor()
 {
-    if(m_quickEditor)
-    {
-        m_quickEditor->close();
-        m_quickEditor->deleteLater();
-        m_quickEditor = nullptr;
-    }
 #if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
     QScreen *screen =  QGuiApplication::screenAt(QCursor::pos());
 #else
     QScreen *screen = QGuiApplication::screens()[0];
 #endif
     QPixmap pixmap = screen->grabWindow(0);
-    m_quickEditor = new QuickEditor(pixmap);
-    connect(m_quickEditor, &QuickEditor::grabDone, this, &MainWindow::grapCompleted);
-    connect(m_quickEditor, &QuickEditor::grabCancelled, this, &MainWindow::grabCanceled);
+    m_quickEditor->setPixmap(pixmap);
     m_quickEditor->show();
 }
 
 void MainWindow::grapCompleted(const QPixmap &result)
 {
-    m_quickEditor->close();
-    m_quickEditor->deleteLater();
-    m_quickEditor = nullptr;
-    QImage i = result.toImage();
-    m_tesseractAPI->SetImage(i.constBits() ,i.width(), i.height(), 4, i.bytesPerLine());
-    m_tesseractAPI->SetSourceResolution(70);
-    char* resultText = m_tesseractAPI->GetUTF8Text();
-    setSourceText(resultText);
-//    requestTranslation(); // ?
-    delete [] resultText;
-}
-void MainWindow::grabCanceled()
-{
-    m_quickEditor->close();
-    m_quickEditor->deleteLater();
-    m_quickEditor = nullptr;
+    m_ocr->recognize(result.toImage());
+    m_quickEditor->hide();
 }
 #endif
 
@@ -363,7 +350,7 @@ void MainWindow::swapLanguages()
 void MainWindow::openSettings()
 {
 #ifdef WITH_OCR
-    AppSettings().setAvailableOCRLanguages(getAvailableOCRLanguages());
+    AppSettings().setAvailableOCRLanguages(m_ocr->availableLanguages());
 #endif
     SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted) {
@@ -663,6 +650,9 @@ void MainWindow::buildStateMachine()
     auto *speakSelectionState = new QState(m_stateMachine);
     auto *speakTranslatedSelectionState = new QState(m_stateMachine);
     auto *copyTranslatedSelectionState = new QState(m_stateMachine);
+#ifdef WITH_OCR
+    auto *translateOcrTextState = new QState(m_stateMachine);
+#endif
     m_stateMachine->setInitialState(idleState);
 
     buildTranslationState(translationState);
@@ -672,6 +662,9 @@ void MainWindow::buildStateMachine()
     buildSpeakSelectionState(speakSelectionState);
     buildSpeakTranslatedSelectionState(speakTranslatedSelectionState);
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
+#ifdef WITH_OCR
+    buildTranslateOcrTextState(translateOcrTextState);
+#endif
 
     // Add transitions between all states
     for (QState *state : m_stateMachine->findChildren<QState *>()) {
@@ -684,6 +677,9 @@ void MainWindow::buildStateMachine()
         state->addTransition(this, &MainWindow::speakSelectionRequested, speakSelectionState);
         state->addTransition(this, &MainWindow::speakTranslatedSelectionRequested, speakTranslatedSelectionState);
         state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
+#ifdef WITH_OCR
+        state->addTransition(this, &MainWindow::translateOcrTextRequested, translateOcrTextState);
+#endif
     }
 
     translationState->addTransition(translationState, &QState::finished, idleState);
@@ -692,7 +688,30 @@ void MainWindow::buildStateMachine()
     translateSelectionState->addTransition(translateSelectionState, &QState::finished, idleState);
     speakSelectionState->addTransition(speakSelectionState, &QState::finished, idleState);
     speakTranslatedSelectionState->addTransition(speakTranslatedSelectionState, &QState::finished, idleState);
+#ifdef WITH_OCR
+    translateOcrTextState->addTransition(translateOcrTextState, &QState::finished, idleState);
+#endif
 }
+
+#ifdef WITH_OCR
+void MainWindow::buildTranslateOcrTextState(QState *state) 
+{
+    auto *selectState = new QState(state);
+    auto *showWindowState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(selectState);
+    
+    connect(selectState, &QState::entered, this, &MainWindow::showQuickEditor);
+    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildTranslationState(translationState);
+
+    selectState->addTransition(m_quickEditor, &QuickEditor::grabCancelled, finalState);
+    selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
+    showWindowState->addTransition(translationState);
+    translationState->addTransition(translationState, &QState::finished, finalState);
+}
+#endif
 
 void MainWindow::buildTranslationState(QState *state)
 {
@@ -917,12 +936,10 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // OCR settings
 #ifdef WITH_OCR
-    // this will change tesseract language if setting has changed
-    if(QString(m_tesseractAPI->GetInitLanguagesAsString()).compare(settings.OCRLanguage()) != 0)
-    {
-        if (m_tesseractAPI->Init(NULL, settings.OCRLanguage().toLocal8Bit(), tesseract::OEM_LSTM_ONLY, NULL, 0, NULL, NULL, true)) {
-            fprintf(stderr, "Could not initialize tesseract.\n");
-            exit(1);
+    if (const QByteArray &language = settings.OCRLanguage(); m_ocr->language() != language) {
+        if (!m_ocr->setLanguage(language)) {
+            QMessageBox::critical(this, tr("Unable to set OCR language"),
+                                  tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
         }
     }
 #endif
@@ -963,20 +980,7 @@ void MainWindow::checkLanguageButton(int checkedId)
 
     ui->sourceEdit->markSourceAsChanged();
 }
-#ifdef WITH_OCR
-QStringList MainWindow::getAvailableOCRLanguages()
-{
-    QStringList result;
-    if(!m_tesseractAPI)
-        return result;
-    GenericVector<STRING> languages;
-    m_tesseractAPI->GetAvailableLanguagesAsVector(&languages);
-    for (int i = 0; i < languages.size(); ++i) {
-        result.push_back(languages[i].c_str());
-    }
-    return result;
-}
-#endif
+
 QOnlineTranslator::Engine MainWindow::currentEngine()
 {
     return static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());

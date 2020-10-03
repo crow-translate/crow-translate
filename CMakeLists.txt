@@ -52,7 +52,7 @@ if(WIN32)
     add_subdirectory(src/qgittag)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+find_package(Qt5 COMPONENTS Widgets LinguistTools Concurrent REQUIRED)
 if(UNIX)
     find_package(Qt5 COMPONENTS DBus REQUIRED)
 endif()
@@ -136,7 +136,10 @@ add_executable(${PROJECT_NAME}
 )
 
 if(WITH_OCR)
-    target_sources(${PROJECT_NAME} PRIVATE src/quickeditor.cpp)
+    target_sources(${PROJECT_NAME} PRIVATE
+        src/ocr/quickeditor.cpp
+        src/ocr/ocr.cpp
+    )
 endif()
 
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
@@ -151,7 +154,7 @@ if(WIN32)
     )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
+target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator Qt5::Concurrent)
 
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)

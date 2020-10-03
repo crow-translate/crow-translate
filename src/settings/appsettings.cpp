@@ -890,20 +890,21 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
+
 #ifdef WITH_OCR
-QString AppSettings::OCRLanguage() const
+QByteArray AppSettings::OCRLanguage() const
 {
-    return m_settings->value(QStringLiteral("OCR/Language"), defaultOCRLanguage()).value<QString>();
+    return m_settings->value(QStringLiteral("OCR/Language"), defaultOCRLanguage()).toByteArray();
 }
 
-void AppSettings::setOCRLanguage(const QString &language)
+void AppSettings::setOCRLanguage(const QByteArray &language)
 {
     m_settings->setValue(QStringLiteral("OCR/Language"), language);
 }
 
-QString AppSettings::defaultOCRLanguage()
+QByteArray AppSettings::defaultOCRLanguage()
 {
-    return QString("eng");
+    return "eng";
 }
 
 // these are used expose available languages to settings window, available languages is not an actual setting.
@@ -922,6 +923,7 @@ QStringList AppSettings::defaultAvailableOCRLanguages()
     return QStringList("eng");
 }
 #endif
+
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const
 {
     const auto typeEnum = QMetaEnum::fromType<LanguageButtonsType>();

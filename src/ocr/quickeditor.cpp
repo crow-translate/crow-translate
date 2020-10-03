@@ -67,7 +67,7 @@ static QRect fromNativePixels(const QRect &rect, const QScreen *screen)
     return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
 }
 
-QuickEditor::QuickEditor(const QPixmap &thePixmap, QWidget *parent) :
+QuickEditor::QuickEditor(QWidget *parent) :
     QWidget(parent),
     mMaskColor(QColor::fromRgbF(0, 0, 0, 0.15)),
     mStrokeColor(palette().highlight().color()),
@@ -80,7 +80,6 @@ QuickEditor::QuickEditor(const QPixmap &thePixmap, QWidget *parent) :
     )),
     mLabelForegroundColor(palette().windowText().color()),
     mMouseDragState(MouseState::None),
-    mPixmap(thePixmap),
     mMagnifierAllowed(false),
     mShowMagnifier(false),
     mToggleMagnifier(false),
@@ -100,6 +99,25 @@ QuickEditor::QuickEditor(const QPixmap &thePixmap, QWidget *parent) :
 
     dprI = 1.0 / devicePixelRatioF();
 
+    // TODO This is a hack until a better interface is available
+//    if (plasmashell) {
+//        using namespace KWayland::Client;
+//        winId();
+//        auto surface = Surface::fromWindow(windowHandle());
+//        if (surface) {
+//            PlasmaShellSurface *plasmashellSurface = plasmashell->createSurface(surface, this);
+//            plasmashellSurface->setRole(PlasmaShellSurface::Role::Panel);
+//            plasmashellSurface->setPanelTakesFocus(true);
+//            plasmashellSurface->setPosition(geometry().topLeft());
+//        }
+//    }
+
+    update();
+}
+
+void QuickEditor::setPixmap(const QPixmap &thePixmap) 
+{
+    mPixmap = thePixmap;
     if (true /*KWindowSystem::isPlatformX11()*/) {
         // Even though we want the quick editor window to be placed at (0, 0) in the native
         // pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
@@ -117,18 +135,6 @@ QuickEditor::QuickEditor(const QPixmap &thePixmap, QWidget *parent) :
         setGeometry(0, 0, static_cast<int>(mPixmap.width() * dprI), static_cast<int>(mPixmap.height() * dprI));
     }
 
-    // TODO This is a hack until a better interface is available
-//    if (plasmashell) {
-//        using namespace KWayland::Client;
-//        winId();
-//        auto surface = Surface::fromWindow(windowHandle());
-//        if (surface) {
-//            PlasmaShellSurface *plasmashellSurface = plasmashell->createSurface(surface, this);
-//            plasmashellSurface->setRole(PlasmaShellSurface::Role::Panel);
-//            plasmashellSurface->setPanelTakesFocus(true);
-//            plasmashellSurface->setPosition(geometry().topLeft());
-//        }
-//    }
     if (QSettings().contains("last_crop_region") && mRememberRegion) {
         auto savedRect = QSettings().value("last_crop_region").value<QList<QVariant>>();
         QRect cropRegion = QRect(savedRect[0].value<int>(), savedRect[1].value<int>(), savedRect[2].value<int>(), savedRect[3].value<int>());
@@ -144,8 +150,6 @@ QuickEditor::QuickEditor(const QPixmap &thePixmap, QWidget *parent) :
     } else {
         setCursor(Qt::CrossCursor);
     }
-
-    update();
 }
 
 void QuickEditor::acceptSelection()

@@ -44,10 +44,12 @@ class QuickEditor: public QWidget
 
     public:
 
-    explicit QuickEditor(const QPixmap &thePixmap, QWidget *parent = nullptr);
+    explicit QuickEditor(QWidget *parent = nullptr);
     virtual ~QuickEditor() = default;
 
-    private:
+    void setPixmap(const QPixmap &thePixmap);
+
+  private:
 
     enum MouseState : short {
         None = 0, // 0000
