@@ -112,13 +112,8 @@ void QuickEditor::loadSettings(const AppSettings &settings)
 
 void QuickEditor::capture() 
 {
-    // TODO: use all screens to create a pixmap
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QScreen *screen =  QGuiApplication::screenAt(QCursor::pos());
-#else
     QScreen *screen = QGuiApplication::screens()[0];
-#endif
-    mPixmap = screen->grabWindow(0);
+    mPixmap = screen->grabWindow(0, -screen->geometry().x(), -screen->geometry().y(), screen->virtualGeometry().width(), screen->virtualGeometry().height());
 
     if (QX11Info::isPlatformX11()) {
         // Even though we want the quick editor window to be placed at (0, 0) in the native
