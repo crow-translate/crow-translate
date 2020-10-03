@@ -102,7 +102,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
-#ifndef OCR
+#ifndef WITH_OCR
     this->ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
 #endif
 
