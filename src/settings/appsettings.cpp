@@ -785,22 +785,24 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
     return QKeySequence();
 }
+
 #ifdef WITH_OCR
-QKeySequence AppSettings::OCRScreenGrabShortcut() const
+QKeySequence AppSettings::translateScreenAreaShortcut() const
 {
-    return m_settings->value(QStringLiteral("Shortcuts/OCRScreenGrabShortcut"), defaultOCRScreenGrabShortcut()).toString();
+    return m_settings->value(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), defaultTranslateScreenAreaShortcut()).toString();
 }
 
-void AppSettings::setOCRScreenGrabShortcut(const QKeySequence &shortcut)
+void AppSettings::setTranslateScreenAreaShortcut(const QKeySequence &shortcut)
 {
-    m_settings->setValue(QStringLiteral("Shortcuts/OCRScreenGrabShortcut"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), shortcut);
 }
 
-QKeySequence AppSettings::defaultOCRScreenGrabShortcut()
+QKeySequence AppSettings::defaultTranslateScreenAreaShortcut()
 {
-    return QKeySequence("Ctrl+Alt+D");
+    return QKeySequence(QStringLiteral("Ctrl+Alt+D"));
 }
 #endif
+
 QKeySequence AppSettings::translateShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/Translate"), defaultTranslateShortcut()).value<QKeySequence>();
@@ -892,17 +894,17 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
 }
 
 #ifdef WITH_OCR
-QByteArray AppSettings::OCRLanguage() const
+QByteArray AppSettings::ocrLanguage() const
 {
-    return m_settings->value(QStringLiteral("OCR/Language"), defaultOCRLanguage()).toByteArray();
+    return m_settings->value(QStringLiteral("OCR/Language"), defaultOcrLanguage()).toByteArray();
 }
 
-void AppSettings::setOCRLanguage(const QByteArray &language)
+void AppSettings::setOcrLanguage(const QByteArray &language)
 {
     m_settings->setValue(QStringLiteral("OCR/Language"), language);
 }
 
-QByteArray AppSettings::defaultOCRLanguage()
+QByteArray AppSettings::defaultOcrLanguage()
 {
     return "eng";
 }

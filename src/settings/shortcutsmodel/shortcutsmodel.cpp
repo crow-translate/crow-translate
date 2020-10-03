@@ -51,8 +51,8 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), globalShortcuts);
     copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 #ifdef WITH_OCR
-    auto *OCRScreenGrabShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("trim-to-selection"), globalShortcuts);
-    OCRScreenGrabShortcut->setDefaultShortcut(AppSettings::defaultOCRScreenGrabShortcut());
+    auto *translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("trim-to-selection"), globalShortcuts);
+    translateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultTranslateScreenAreaShortcut());
 #endif
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
@@ -195,7 +195,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowShortcut());
     m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionShortcut());
 #ifdef WITH_OCR
-    m_rootItem->child(0)->child(6)->setShortcut(settings.OCRScreenGrabShortcut());
+    m_rootItem->child(0)->child(6)->setShortcut(settings.translateScreenAreaShortcut());
 #endif
     // Window shortcuts
     m_rootItem->child(1)->child(0)->setShortcut(settings.translateShortcut());
@@ -220,7 +220,7 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setShowMainWindowShortcut(m_rootItem->child(0)->child(4)->shortcut());
     settings.setCopyTranslatedSelectionShortcut(m_rootItem->child(0)->child(5)->shortcut());
 #ifdef WITH_OCR
-    settings.setOCRScreenGrabShortcut(m_rootItem->child(0)->child(6)->shortcut());
+    settings.setTranslateScreenAreaShortcut(m_rootItem->child(0)->child(6)->shortcut());
 #endif
     // Window shortcuts
     settings.setTranslateShortcut(m_rootItem->child(1)->child(0)->shortcut());

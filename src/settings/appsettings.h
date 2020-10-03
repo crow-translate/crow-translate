@@ -251,11 +251,13 @@ public:
     QKeySequence copyTranslatedSelectionShortcut() const;
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
+
 #ifdef WITH_OCR
-    QKeySequence OCRScreenGrabShortcut() const;
-    void setOCRScreenGrabShortcut(const QKeySequence &shortcut);
-    static QKeySequence defaultOCRScreenGrabShortcut();
+    QKeySequence translateScreenAreaShortcut() const;
+    void setTranslateScreenAreaShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultTranslateScreenAreaShortcut();
 #endif
+
     // Window shortcuts
     QKeySequence translateShortcut() const;
     void setTranslateShortcut(const QKeySequence &shortcut);
@@ -282,9 +284,9 @@ public:
     static QKeySequence defaultCopyTranslationShortcut();
 
 #ifdef WITH_OCR
-    QByteArray OCRLanguage() const;
-    void setOCRLanguage(const QByteArray &language);
-    static QByteArray defaultOCRLanguage();
+    QByteArray ocrLanguage() const;
+    void setOcrLanguage(const QByteArray &language);
+    static QByteArray defaultOcrLanguage();
 
     RegionRememberType regionRememberType() const;
     void setRegionRememberType(RegionRememberType type);

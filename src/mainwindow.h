@@ -82,7 +82,7 @@ public slots:
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
 #ifdef WITH_OCR
-    Q_SCRIPTABLE void translateOcrText();
+    Q_SCRIPTABLE void translateScreenArea();
 #endif
 
     // Main window shortcuts
@@ -102,7 +102,7 @@ signals:
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
 #ifdef WITH_OCR
-    void translateOcrTextRequested();
+    void translateScreenAreaRequested();
 #endif
 
 private slots:
@@ -148,7 +148,7 @@ private:
     void buildSpeakTranslatedSelectionState(QState *state);
     void buildCopyTranslatedSelectionState(QState *state);
 #ifdef WITH_OCR
-    void buildTranslateOcrTextState(QState *state);
+    void buildTranslateScreenAreaState(QState *state);
 #endif
 
     void setupRequestStateButtons(QState *state);
@@ -167,7 +167,7 @@ private:
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
-    QHotkey *m_OCRScreenGrabHotkey;
+    QHotkey *m_translateScreenAreaHotkey;
     QShortcut *m_closeWindowsShortcut;
 
     QStateMachine *m_stateMachine;

@@ -212,7 +212,7 @@ void SettingsDialog::accept()
 
 #ifdef WITH_OCR
     // OCR
-    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
+    settings.setOcrLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
@@ -484,7 +484,7 @@ void SettingsDialog::restoreDefaults()
 
 #ifdef WITH_OCR
     // OCR
-    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOCRLanguage());
+    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOcrLanguage());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
@@ -554,7 +554,7 @@ void SettingsDialog::loadSettings()
 
 #ifdef WITH_OCR
     // OCR
-    ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());
+    ui->ocrLanguageComboBox->setCurrentText(settings.ocrLanguage());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
