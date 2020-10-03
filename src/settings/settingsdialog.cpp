@@ -21,8 +21,9 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
-#include "languagebuttonswidget.h"
 #include "appsettings.h"
+#include "languagebuttonswidget.h"
+#include "mainwindow.h"
 #include "qhotkey.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
@@ -37,7 +38,7 @@
 #include <QNetworkProxy>
 #include <QScreen>
 
-SettingsDialog::SettingsDialog(QWidget *parent)
+SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
     , m_translator(new QOnlineTranslator(this))
@@ -103,6 +104,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
 #ifndef WITH_OCR
+    ui->ocrLanguageComboBox->addItems(parent->ocr()->availableLanguages());
     this->ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
 #endif
 
@@ -564,8 +566,6 @@ void SettingsDialog::loadSettings()
 
     // OCR
 #ifdef WITH_OCR
-    ui->ocrLanguageComboBox->clear();
-    ui->ocrLanguageComboBox->addItems(settings.availableOCRLanguages());
     ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());
 #endif
 }

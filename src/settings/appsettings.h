@@ -276,11 +276,6 @@ public:
     QByteArray OCRLanguage() const;
     void setOCRLanguage(const QByteArray &language);
     static QByteArray defaultOCRLanguage();
-
-    // these are used expose available languages to settings window, available languages is not an actual setting.
-    QStringList availableOCRLanguages() const;
-    void setAvailableOCRLanguages(const QStringList &language);
-    static QStringList defaultAvailableOCRLanguages();
 #endif
 
     // Buttons

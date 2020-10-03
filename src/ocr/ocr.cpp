@@ -30,7 +30,7 @@ Ocr::Ocr(QObject *parent)
 {
 }
 
-QStringList Ocr::availableLanguages() 
+QStringList Ocr::availableLanguages() const
 {
     QStringList availableLanguages;
     GenericVector<STRING> languages;
@@ -40,7 +40,7 @@ QStringList Ocr::availableLanguages()
     return availableLanguages;
 }
 
-QByteArray Ocr::language() 
+QByteArray Ocr::language() const
 {
     return QByteArray::fromRawData(m_tesseract.GetInitLanguagesAsString(), qstrlen(m_tesseract.GetInitLanguagesAsString()));
 }

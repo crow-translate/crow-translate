@@ -906,22 +906,6 @@ QByteArray AppSettings::defaultOCRLanguage()
 {
     return "eng";
 }
-
-// these are used expose available languages to settings window, available languages is not an actual setting.
-QStringList AppSettings::availableOCRLanguages() const
-{
-    return m_settings->value(QStringLiteral("OCR/Languages"), defaultAvailableOCRLanguages()).value<QStringList>();
-}
-
-void AppSettings::setAvailableOCRLanguages(const QStringList &languages)
-{
-    m_settings->setValue(QStringLiteral("OCR/Languages"), languages);
-}
-
-QStringList AppSettings::defaultAvailableOCRLanguages()
-{
-    return QStringList("eng");
-}
 #endif
 
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const

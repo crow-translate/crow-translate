@@ -66,6 +66,9 @@ public:
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     const QShortcut *closeWindowShortcut() const;
+#ifdef WITH_OCR
+    const Ocr *ocr() const;
+#endif
     AppSettings::LanguageFormat popupLanguageFormat() const;
     QSize popupSize() const;
     double popupOpacity() const;

@@ -30,10 +30,10 @@ class Ocr : public QObject
     Q_OBJECT
 
 public:
-    Ocr(QObject *parent);
+    explicit Ocr(QObject *parent = nullptr);
 
-    QStringList availableLanguages();
-    QByteArray language();
+    QStringList availableLanguages() const;
+    QByteArray language() const;
     bool setLanguage(const QByteArray &language);
 
     void recognize(const QImage &image);

@@ -235,6 +235,13 @@ const QShortcut *MainWindow::closeWindowShortcut() const
     return m_closeWindowsShortcut;
 }
 
+#ifdef WITH_OCR
+const Ocr *MainWindow::ocr() const
+{
+    return m_ocr;
+}
+#endif
+
 AppSettings::LanguageFormat MainWindow::popupLanguageFormat() const
 {
     return m_popupLanguageFormat;
@@ -349,9 +356,6 @@ void MainWindow::swapLanguages()
 
 void MainWindow::openSettings()
 {
-#ifdef WITH_OCR
-    AppSettings().setAvailableOCRLanguages(m_ocr->availableLanguages());
-#endif
     SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted) {
         const AppSettings settings;
