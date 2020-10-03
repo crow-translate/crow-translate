@@ -103,9 +103,10 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
-#ifndef WITH_OCR
+#ifdef WITH_OCR
     ui->ocrLanguageComboBox->addItems(parent->ocr()->availableLanguages());
-    this->ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
+#else
+    ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
 #endif
 
 #ifdef Q_OS_WIN
@@ -209,6 +210,15 @@ void SettingsDialog::accept()
     settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
+#ifdef WITH_OCR
+    // OCR
+    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
+    settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
+    settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
+    settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
+    settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
+#endif
+
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
     settings.setEmotion(QOnlineTranslator::Yandex, ui->playerButtons->emotion(QOnlineTranslator::Yandex));
@@ -225,11 +235,6 @@ void SettingsDialog::accept()
     if (QHotkey::isPlatformSupported())
         settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
-
-    // OCR
-#ifdef WITH_OCR
-    settings.setOCRLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
-#endif
 }
 
 void SettingsDialog::processProxyTypeChanged(int type)
@@ -477,6 +482,15 @@ void SettingsDialog::restoreDefaults()
     ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
+#ifdef WITH_OCR
+    // OCR
+    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOCRLanguage());
+    ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
+    ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
+    ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
+    ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
+#endif
+
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
     ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
@@ -493,11 +507,6 @@ void SettingsDialog::restoreDefaults()
     if (QHotkey::isPlatformSupported())
         ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
     resetAllShortcuts();
-
-    // OCR
-#ifdef WITH_OCR
-    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOCRLanguage());
-#endif
 }
 
 void SettingsDialog::loadSettings()
@@ -543,6 +552,15 @@ void SettingsDialog::loadSettings()
     ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
+#ifdef WITH_OCR
+    // OCR
+    ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());
+    ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
+    ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
+    ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
+    ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
+#endif
+
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
     ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
@@ -563,11 +581,6 @@ void SettingsDialog::loadSettings()
         ui->globalShortcutsCheckBox->setEnabled(false);
     }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
-
-    // OCR
-#ifdef WITH_OCR
-    ui->ocrLanguageComboBox->setCurrentText(settings.OCRLanguage());
-#endif
 }
 
 void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)

@@ -906,6 +906,76 @@ QByteArray AppSettings::defaultOCRLanguage()
 {
     return "eng";
 }
+
+AppSettings::RegionRememberType AppSettings::regionRememberType() const
+{
+    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
+}
+
+void AppSettings::setRegionRememberType(RegionRememberType type) 
+{
+    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
+}
+
+AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 
+{
+    return NeverRemember;
+}
+
+QRect AppSettings::cropRegion() const
+{
+    return m_settings->value(QStringLiteral("OCR/RememberedCropRegion"), defaultRegionRememberType()).toRect();
+}
+
+void AppSettings::setCropRegion(QRect rect) 
+{
+    m_settings->setValue(QStringLiteral("OCR/RememberedCropRegion"), rect);
+}
+
+bool AppSettings::isShowMagnifier() const
+{
+    return m_settings->value(QStringLiteral("OCR/ShowMagnifier"), defaultShowMagnifier()).toBool();
+}
+
+void AppSettings::setShowMagnifier(bool show) 
+{
+    m_settings->setValue(QStringLiteral("OCR/ShowMagnifier"), show);
+}
+
+bool AppSettings::defaultShowMagnifier() 
+{
+    return false;
+}
+
+bool AppSettings::isCaptureOnRelease() const
+{
+    return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();
+}
+
+void AppSettings::setCaptureOnRelease(bool capture) 
+{
+    m_settings->setValue(QStringLiteral("OCR/CaptureOnRelease"), capture);
+}
+
+bool AppSettings::defaultCaptureOnRelease() 
+{
+    return false;
+}
+
+bool AppSettings::isApplyLightMask() const
+{
+    return m_settings->value(QStringLiteral("OCR/ApplyLightMask"), defaultApplyLightMask()).toBool();
+}
+
+void AppSettings::setApplyLightMask(bool use)
+{
+    m_settings->setValue(QStringLiteral("OCR/ApplyLightMask"), use);
+}
+
+bool AppSettings::defaultApplyLightMask()
+{
+    return true;
+}
 #endif
 
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const

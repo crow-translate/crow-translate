@@ -36,7 +36,7 @@ public:
     QByteArray language() const;
     bool setLanguage(const QByteArray &language);
 
-    void recognize(const QImage &image);
+    void recognize(const QPixmap &pixmap);
 
 signals:
     void recognized(const QString &text);

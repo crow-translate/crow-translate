@@ -17,12 +17,16 @@
  *  Boston, MA 02110-1301, USA.
  */
 
-#include <QGuiApplication>
-#include <QScreen>
-#include <QtCore/qmath.h>
-#include <QPainterPath>
-
 #include "quickeditor.h"
+
+#include "settings/appsettings.h"
+
+#include <QGuiApplication>
+#include <QPainterPath>
+#include <QScreen>
+#include <QWindow>
+#include <QX11Info>
+#include <QtMath>
 
 const int QuickEditor::handleRadiusMouse = 9;
 const int QuickEditor::handleRadiusTouch = 12;
@@ -79,46 +83,44 @@ QuickEditor::QuickEditor(QWidget *parent) :
         0.85
     )),
     mLabelForegroundColor(palette().windowText().color()),
+    mMidHelpText(tr("Click and drag to draw a selection rectangle,\nor press Esc to quit")),
+    mMidHelpTextFont(font()),
+    mBottomHelpTextFont(font()),
+    mBottomHelpGridLeftWidth(0),
     mMouseDragState(MouseState::None),
     mMagnifierAllowed(false),
-    mShowMagnifier(false),
     mToggleMagnifier(false),
-    mReleaseToCapture(false),
-    mRememberRegion(false),
     mDisableArrowKeys(false),
     mPrimaryScreenGeo(QGuiApplication::primaryScreen()->geometry()),
+    mbottomHelpLength(bottomHelpMaxLength),
     mHandleRadius(handleRadiusMouse)
 {
-    if (false /*Settings::useLightMaskColour()*/) {
-        mMaskColor = QColor(255, 255, 255, 100);
-    }
-
     setMouseTracking(true);
     setAttribute(Qt::WA_StaticContents);
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 
     dprI = 1.0 / devicePixelRatioF();
-
-    // TODO This is a hack until a better interface is available
-//    if (plasmashell) {
-//        using namespace KWayland::Client;
-//        winId();
-//        auto surface = Surface::fromWindow(windowHandle());
-//        if (surface) {
-//            PlasmaShellSurface *plasmashellSurface = plasmashell->createSurface(surface, this);
-//            plasmashellSurface->setRole(PlasmaShellSurface::Role::Panel);
-//            plasmashellSurface->setPanelTakesFocus(true);
-//            plasmashellSurface->setPosition(geometry().topLeft());
-//        }
-//    }
-
-    update();
 }
 
-void QuickEditor::setPixmap(const QPixmap &thePixmap) 
+void QuickEditor::loadSettings(const AppSettings &settings) 
 {
-    mPixmap = thePixmap;
-    if (true /*KWindowSystem::isPlatformX11()*/) {
+    mRememberRegion = settings.regionRememberType();
+    mReleaseToCapture = settings.isCaptureOnRelease();
+    mShowMagnifier = settings.isShowMagnifier();
+    mMaskColor = settings.isApplyLightMask() ? QColor(255, 255, 255, 100) : QColor();
+}
+
+void QuickEditor::capture() 
+{
+    // TODO: use all screens to create a pixmap
+#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
+    QScreen *screen =  QGuiApplication::screenAt(QCursor::pos());
+#else
+    QScreen *screen = QGuiApplication::screens()[0];
+#endif
+    mPixmap = screen->grabWindow(0);
+
+    if (QX11Info::isPlatformX11()) {
         // Even though we want the quick editor window to be placed at (0, 0) in the native
         // pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
         //
@@ -135,9 +137,8 @@ void QuickEditor::setPixmap(const QPixmap &thePixmap)
         setGeometry(0, 0, static_cast<int>(mPixmap.width() * dprI), static_cast<int>(mPixmap.height() * dprI));
     }
 
-    if (QSettings().contains("last_crop_region") && mRememberRegion) {
-        auto savedRect = QSettings().value("last_crop_region").value<QList<QVariant>>();
-        QRect cropRegion = QRect(savedRect[0].value<int>(), savedRect[1].value<int>(), savedRect[2].value<int>(), savedRect[3].value<int>());
+    if (mRememberRegion == AppSettings::RememberAlways || mRememberRegion == AppSettings::RememberLast) {
+        QRect cropRegion = AppSettings().cropRegion();
         if (!cropRegion.isEmpty()) {
             mSelection = QRectF(
                 cropRegion.x() * dprI,
@@ -148,8 +149,35 @@ void QuickEditor::setPixmap(const QPixmap &thePixmap)
         }
         setMouseCursor(QCursor::pos());
     } else {
+        mSelection = {};
+        mStartPos = {};
+        mInitialTopLeft = {};
+        mMouseDragState = MouseState::None;
+        mMousePos = {};
+        mHandlePositions = QVector<QPointF> {8};
+        mDisableArrowKeys = false;
         setCursor(Qt::CrossCursor);
     }
+
+    setBottomHelpText();
+    mMidHelpTextFont.setPointSize(midHelpTextFontSize);
+    if (!bottomHelpTextPrepared) {
+        bottomHelpTextPrepared = true;
+        const auto prepare = [this](QStaticText& item) {
+            item.prepare(QTransform(), mBottomHelpTextFont);
+            item.setPerformanceHint(QStaticText::AggressiveCaching);
+        };
+        for (auto& pair : mBottomHelpText) {
+            prepare(pair.first);
+            for (auto &item : pair.second) {
+                prepare(item);
+            }
+        }
+    }
+    layoutBottomHelpText();
+
+    update();
+    show();
 }
 
 void QuickEditor::acceptSelection()
@@ -162,11 +190,10 @@ void QuickEditor::acceptSelection()
             qRound(mSelection.width() * dpr),
             qRound(mSelection.height() * dpr)
         );
-        auto lastRect = QList<QVariant>({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
-        QSettings().setValue("last_crop_region", lastRect);
-//        Settings::setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
+        AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
         emit grabDone(mPixmap.copy(scaledCropRegion));
     }
+    hide();
 }
 
 void QuickEditor::keyPressEvent(QKeyEvent* event)
@@ -179,6 +206,7 @@ void QuickEditor::keyPressEvent(QKeyEvent* event)
     switch(event->key()) {
     case Qt::Key_Escape:
         emit grabCancelled();
+        hide();
         break;
     case Qt::Key_Return:
     case Qt::Key_Enter:
@@ -521,17 +549,101 @@ void QuickEditor::paintEvent(QPaintEvent*)
             painter.fillRect(rect, mMaskColor);
         }
 
-//        bool dragHandlesVisible = false;
+        bool dragHandlesVisible = false;
         if (mMouseDragState == MouseState::None) {
-//            dragHandlesVisible = true;
+            dragHandlesVisible = true;
             drawDragHandles(painter);
         } else if (mMagnifierAllowed && (mShowMagnifier ^ mToggleMagnifier)) {
             drawMagnifier(painter);
         }
-//        drawSelectionSizeTooltip(painter, dragHandlesVisible);
+        drawSelectionSizeTooltip(painter, dragHandlesVisible);
+        drawBottomHelpText(painter);
+    } else {
+        drawMidHelpText(painter);
     }
 }
 
+void QuickEditor::layoutBottomHelpText()
+{
+    int maxRightWidth = 0;
+    int contentWidth = 0;
+    int contentHeight = 0;
+    mBottomHelpGridLeftWidth = 0;
+    for (int i = 0; i < mbottomHelpLength; i++) {
+        const auto& item = mBottomHelpText[i];
+        const auto& left = item.first;
+        const auto& right = item.second;
+        const auto leftSize = left.size().toSize();
+        mBottomHelpGridLeftWidth = qMax(mBottomHelpGridLeftWidth, leftSize.width());
+        for (const auto& item : right) {
+            const auto rightItemSize = item.size().toSize();
+            maxRightWidth = qMax(maxRightWidth, rightItemSize.width());
+            contentHeight += rightItemSize.height();
+        }
+        contentWidth = qMax(contentWidth, mBottomHelpGridLeftWidth + maxRightWidth + bottomHelpBoxPairSpacing);
+        contentHeight += (i != bottomHelpMaxLength ? bottomHelpBoxMarginBottom : 0);
+    }
+    mBottomHelpContentPos.setX((mPrimaryScreenGeo.width() - contentWidth) / 2 + mPrimaryScreenGeo.x());
+    mBottomHelpContentPos.setY(height() - contentHeight - 8);
+    mBottomHelpGridLeftWidth += mBottomHelpContentPos.x();
+    mBottomHelpBorderBox.setRect(
+        mBottomHelpContentPos.x() - bottomHelpBoxPaddingX,
+        mBottomHelpContentPos.y() - bottomHelpBoxPaddingY,
+        contentWidth + bottomHelpBoxPaddingX * 2,
+        contentHeight + bottomHelpBoxPaddingY * 2 - 1
+    );
+}
+
+void QuickEditor::setBottomHelpText() {
+    if (mReleaseToCapture && mSelection.size().isEmpty()) {
+        // Release to capture enabled and NO saved region available
+        mbottomHelpLength = 3;
+        //: Mouse and keyboard actions
+        mBottomHelpText[0] = { QStaticText(tr("Confirm capture:")), { QStaticText(tr("Release left-click")), QStaticText(tr("Enter")) } };
+        mBottomHelpText[1] = { QStaticText(tr("Create new selection rectangle:")), { QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))} };
+        mBottomHelpText[2] = { QStaticText(tr("Cancel:")), { QStaticText(tr("Escape")) } };
+    } else {
+        // Default text, Release to capture option disabled
+        //: Mouse and keyboard actions
+        mBottomHelpText[0] = { QStaticText(tr("Confirm capture:")), { QStaticText(tr("Double-click")), QStaticText(tr("Enter")) } };
+        mBottomHelpText[1] = { QStaticText(tr("Create new selection rectangle:")), { QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))} };
+        mBottomHelpText[2] = { QStaticText(tr("Move selection rectangle:")), { QStaticText(tr("Drag inside selection rectangle")), QStaticText(tr("Arrow keys")), QStaticText(tr("+ Shift: Move in 1 pixel steps"))} };
+        mBottomHelpText[3] = { QStaticText(tr("Resize selection rectangle:")), { QStaticText(tr("Drag handles")), QStaticText(tr("Arrow keys + Alt")), QStaticText(tr("+ Shift: Resize in 1 pixel steps"))} };
+        mBottomHelpText[4] = { QStaticText(tr("Reset selection:")), { QStaticText(tr("Right-click")) } };
+        mBottomHelpText[5] = { QStaticText(tr("Cancel:")), { QStaticText(tr("Escape")) } };
+    }
+}
+
+void QuickEditor::drawBottomHelpText(QPainter &painter)
+{
+    if (mSelection.intersects(mBottomHelpBorderBox)) {
+        return;
+    }
+
+    painter.setBrush(mLabelBackgroundColor);
+    painter.setPen(mLabelForegroundColor);
+    painter.setFont(mBottomHelpTextFont);
+    painter.setRenderHint(QPainter::Antialiasing, false);
+    painter.drawRect(mBottomHelpBorderBox);
+    painter.setRenderHint(QPainter::Antialiasing, true);
+
+    int topOffset = mBottomHelpContentPos.y();
+    for (int i = 0; i < mbottomHelpLength; i++) {
+        const auto& item = mBottomHelpText[i];
+        const auto& left = item.first;
+        const auto& right = item.second;
+        const auto leftSize = left.size().toSize();
+        painter.drawStaticText(mBottomHelpGridLeftWidth - leftSize.width(), topOffset, left);
+        for (const auto& item : right) {
+            const auto rightItemSize = item.size().toSize();
+            painter.drawStaticText(mBottomHelpGridLeftWidth + bottomHelpBoxPairSpacing, topOffset, item);
+            topOffset += rightItemSize.height();
+        }
+        if (i != bottomHelpMaxLength) {
+            topOffset += bottomHelpBoxMarginBottom;
+        }
+    }
+}
 
 void QuickEditor::drawDragHandles(QPainter &painter)
 {
@@ -654,6 +766,22 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     }
 }
 
+void QuickEditor::drawMidHelpText(QPainter &painter)
+{
+    painter.fillRect(rect(), mMaskColor);
+    painter.setFont(mMidHelpTextFont);
+    QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, mMidHelpText);
+    QPoint pos((mPrimaryScreenGeo.width() - textSize.width()) / 2 + mPrimaryScreenGeo.x(), (height() - textSize.height()) / 2);
+
+    painter.setBrush(mLabelBackgroundColor);
+    QPen pen(mLabelForegroundColor);
+    pen.setWidth(2);
+    painter.setPen(pen);
+    painter.drawRoundedRect(QRect(pos.x() - 20, pos.y() - 20, textSize.width() + 40, textSize.height() + 40), 4, 4);
+
+    painter.setCompositionMode(QPainter::CompositionMode_Source);
+    painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, mMidHelpText);
+}
 
 void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible)
 {
@@ -662,7 +790,7 @@ void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVi
     // - on top of the selection if the selection x position fits the box height plus some margin
     // - at the bottom otherwise
     const qreal dpr = devicePixelRatioF();
-    QString selectionSizeText = QString::asprintf("%d×%d",(qRound(mSelection.width() * dpr)),qRound(mSelection.height() * dpr));
+    QString selectionSizeText = QString(u8"%1×%2").arg(qRound(mSelection.width() * dpr)).arg(qRound(mSelection.height() * dpr));
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
 
     const int selectionBoxWidth = selectionSizeTextRect.width() + selectionBoxPaddingX * 2;

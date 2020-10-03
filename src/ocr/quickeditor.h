@@ -20,36 +20,30 @@
 #ifndef QUICKEDITOR_H
 #define QUICKEDITOR_H
 
+#include "settings/appsettings.h"
+
 #include <QKeyEvent>
 #include <QPainter>
 #include <QStaticText>
 #include <QWidget>
-#include <utility>
-#include <QWindow>
+
 #include <vector>
-#include <QSettings>
-#include <QList>
 
 class QMouseEvent;
-
-namespace KWayland {
-namespace Client {
-class PlasmaShell;
-}
-}
+class AppSettings;
 
 class QuickEditor: public QWidget
 {
     Q_OBJECT
 
-    public:
+public:
 
     explicit QuickEditor(QWidget *parent = nullptr);
-    virtual ~QuickEditor() = default;
 
-    void setPixmap(const QPixmap &thePixmap);
+    void loadSettings(const AppSettings &settings);
+    void capture();
 
-  private:
+private:
 
     enum MouseState : short {
         None = 0, // 0000
@@ -84,7 +78,10 @@ class QuickEditor: public QWidget
     void drawBottomHelpText(QPainter& painter);
     void drawDragHandles(QPainter& painter);
     void drawMagnifier(QPainter& painter);
+    void drawMidHelpText(QPainter& painter);
     void drawSelectionSizeTooltip(QPainter& painter, bool dragHandlesVisible);
+    void setBottomHelpText();
+    void layoutBottomHelpText();
     void setMouseCursor(const QPointF& pos);
     MouseState mouseLocation(const QPointF& pos);
 
@@ -122,6 +119,13 @@ class QuickEditor: public QWidget
     QRectF mSelection;
     QPointF mStartPos;
     QPointF mInitialTopLeft;
+    QString mMidHelpText;
+    QFont mMidHelpTextFont;
+    std::pair<QStaticText, std::vector<QStaticText>> mBottomHelpText[bottomHelpMaxLength];
+    QFont mBottomHelpTextFont;
+    QRect mBottomHelpBorderBox;
+    QPoint mBottomHelpContentPos;
+    int mBottomHelpGridLeftWidth;
     MouseState mMouseDragState;
     QPixmap mPixmap;
     qreal dprI;
@@ -130,16 +134,17 @@ class QuickEditor: public QWidget
     bool mShowMagnifier;
     bool mToggleMagnifier;
     bool mReleaseToCapture;
-    bool mRememberRegion;
+    AppSettings::RegionRememberType mRememberRegion = AppSettings::defaultRegionRememberType();
     bool mDisableArrowKeys;
     QRect mPrimaryScreenGeo;
+    int mbottomHelpLength;
 
     // Midpoints of handles
     QVector<QPointF> mHandlePositions = QVector<QPointF> {8};
     // Radius of handles is either handleRadiusMouse or handleRadiusTouch
     int mHandleRadius;
 
-signals:
+Q_SIGNALS:
 
     void grabDone(const QPixmap &thePixmap);
     void grabCancelled();

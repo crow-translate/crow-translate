@@ -112,7 +112,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // OCR window logic
 #ifdef WITH_OCR
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
-    connect(m_quickEditor, &QuickEditor::grabDone, this, &MainWindow::grapCompleted);
+    connect(m_quickEditor, &QuickEditor::grabDone, m_ocr, &Ocr::recognize);
     connect(m_quickEditor, &QuickEditor::grabCancelled, m_quickEditor, &QuickEditor::hide);
 #endif
 
@@ -296,28 +296,6 @@ void MainWindow::copyTranslatedSelection()
 void MainWindow::translateOcrText() 
 {
     emit translateOcrTextRequested();
-}
-
-void MainWindow::ocrGrab()
-{
-    showQuickEditor();
-}
-void MainWindow::showQuickEditor()
-{
-#if (QT_VERSION >= QT_VERSION_CHECK(5, 10, 0))
-    QScreen *screen =  QGuiApplication::screenAt(QCursor::pos());
-#else
-    QScreen *screen = QGuiApplication::screens()[0];
-#endif
-    QPixmap pixmap = screen->grabWindow(0);
-    m_quickEditor->setPixmap(pixmap);
-    m_quickEditor->show();
-}
-
-void MainWindow::grapCompleted(const QPixmap &result)
-{
-    m_ocr->recognize(result.toImage());
-    m_quickEditor->hide();
 }
 #endif
 
@@ -706,7 +684,7 @@ void MainWindow::buildTranslateOcrTextState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(selectState);
     
-    connect(selectState, &QState::entered, this, &MainWindow::showQuickEditor);
+    connect(selectState, &QState::entered, m_quickEditor, &QuickEditor::capture);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
@@ -893,6 +871,21 @@ void MainWindow::loadSettings(const AppSettings &settings)
     m_translator->setExamplesEnabled(settings.isExamplesEnabled());
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
+    // OCR settings
+#ifdef WITH_OCR
+    if (const QByteArray &language = settings.OCRLanguage(); m_ocr->language() != language) {
+        if (!m_ocr->setLanguage(language)) {
+            QMessageBox::critical(this, tr("Unable to set OCR language"),
+                                  tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
+        }
+    }
+    m_quickEditor->loadSettings(settings);
+#endif
+
+    // TTS
+    ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+
     // Connection
     QNetworkProxy proxy;
     proxy.setType(settings.proxyType());
@@ -905,10 +898,6 @@ void MainWindow::loadSettings(const AppSettings &settings)
         }
     }
     QNetworkProxy::setApplicationProxy(proxy);
-
-    // TTS
-    ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
-    ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Global shortcuts
     if (QHotkey::isPlatformSupported() && settings.isGlobalShortuctsEnabled()) {
@@ -937,16 +926,6 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->swapButton->setShortcut(settings.swapShortcut());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
-
-    // OCR settings
-#ifdef WITH_OCR
-    if (const QByteArray &language = settings.OCRLanguage(); m_ocr->language() != language) {
-        if (!m_ocr->setLanguage(language)) {
-            QMessageBox::critical(this, tr("Unable to set OCR language"),
-                                  tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
-        }
-    }
-#endif
 }
 
 // Toggle language logic

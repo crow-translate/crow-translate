@@ -55,6 +55,15 @@ public:
     };
     Q_ENUM(WindowMode)
 
+#ifdef WITH_OCR
+    enum RegionRememberType {
+        NeverRemember,
+        RememberLast,
+        RememberAlways
+    };
+    Q_ENUM(RegionRememberType)
+#endif
+
 #ifdef Q_OS_WIN
     enum Interval {
         Day,
@@ -276,6 +285,25 @@ public:
     QByteArray OCRLanguage() const;
     void setOCRLanguage(const QByteArray &language);
     static QByteArray defaultOCRLanguage();
+
+    RegionRememberType regionRememberType() const;
+    void setRegionRememberType(RegionRememberType type);
+    static RegionRememberType defaultRegionRememberType();
+
+    QRect cropRegion() const;
+    void setCropRegion(QRect rect);
+
+    bool isShowMagnifier() const;
+    void setShowMagnifier(bool show);
+    static bool defaultShowMagnifier();
+
+    bool isCaptureOnRelease() const;
+    void setCaptureOnRelease(bool capture);
+    static bool defaultCaptureOnRelease();
+
+    bool isApplyLightMask() const;
+    void setApplyLightMask(bool use);
+    static bool defaultApplyLightMask();
 #endif
 
     // Buttons

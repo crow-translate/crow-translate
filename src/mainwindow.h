@@ -81,11 +81,8 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
-    Q_SCRIPTABLE void translateOcrText();
 #ifdef WITH_OCR
-    void ocrGrab();
-    void showQuickEditor();
-    void grapCompleted(const QPixmap &result);
+    Q_SCRIPTABLE void translateOcrText();
 #endif
 
     // Main window shortcuts

@@ -20,10 +20,10 @@
 
 #include "ocr.h"
 
-#include <tesseract/genericvector.h>
-
-#include <QImage>
+#include <QPixmap>
 #include <QtConcurrent>
+
+#include <tesseract/genericvector.h>
 
 Ocr::Ocr(QObject *parent)
     : QObject(parent)
@@ -50,11 +50,11 @@ bool Ocr::setLanguage(const QByteArray &language)
     return m_tesseract.Init(nullptr, language, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
 }
 
-void Ocr::recognize(const QImage &image) 
+void Ocr::recognize(const QPixmap &pixmap) 
 {
     Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call setLanguage first");
 
-    QtConcurrent::run([this, image] {
+    QtConcurrent::run([this, image = pixmap.toImage()] {
         m_tesseract.SetImage(image.constBits() ,image.width(), image.height(), 4, image.bytesPerLine());
         m_tesseract.SetSourceResolution(70);
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
