@@ -47,7 +47,15 @@ QByteArray Ocr::language() const
 
 bool Ocr::setLanguage(const QByteArray &language) 
 {
-    return m_tesseract.Init(nullptr, language, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
+    // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
+    if (language.isEmpty())
+        return m_tesseract.Init(nullptr, nullptr, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
+
+    if (this->language() != language)
+        return m_tesseract.Init(nullptr, language, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
+
+    // Language are already set
+    return true;
 }
 
 void Ocr::recognize(const QPixmap &pixmap) 

@@ -31,6 +31,7 @@
 #include "settings/appsettings.h"
 #include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
+#include "transitions/ocruninitializedtransition.h"
 #include "transitions/retranslationtransition.h"
 #include "transitions/textemptytransition.h"
 #include "transitions/translatorabortedtransition.h"
@@ -678,16 +679,21 @@ void MainWindow::buildStateMachine()
 #ifdef WITH_OCR
 void MainWindow::buildTranslateScreenAreaState(QState *state)
 {
+    auto *initialState = new QState(state);
     auto *selectState = new QState(state);
     auto *showWindowState = new QState(state);
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
-    state->setInitialState(selectState);
+    state->setInitialState(initialState);
     
     connect(selectState, &QState::entered, m_quickEditor, &QuickEditor::capture);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
+    auto *ocrLanguagesSetTransition = new OcrUninitializedTransition(this, initialState);
+    ocrLanguagesSetTransition->setTargetState(finalState);
+
+    initialState->addTransition(selectState);
     selectState->addTransition(m_quickEditor, &QuickEditor::grabCancelled, finalState);
     selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
     showWindowState->addTransition(translationState);
@@ -873,11 +879,10 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // OCR settings
 #ifdef WITH_OCR
-    if (const QByteArray &language = settings.ocrLanguage(); m_ocr->language() != language) {
-        if (!m_ocr->setLanguage(language)) {
-            QMessageBox::critical(this, tr("Unable to set OCR language"),
-                                  tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
-        }
+    if (const QByteArray &language = settings.ocrLanguage(); !m_ocr->setLanguage(language) && !language.isEmpty()) {
+        // Show error only if language was specified by user
+        QMessageBox::critical(this, tr("Unable to set OCR language"),
+                              tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
     }
     m_quickEditor->loadSettings(settings);
 #endif

@@ -906,7 +906,7 @@ void AppSettings::setOcrLanguage(const QByteArray &language)
 
 QByteArray AppSettings::defaultOcrLanguage()
 {
-    return "eng";
+    return {};
 }
 
 AppSettings::RegionRememberType AppSettings::regionRememberType() const

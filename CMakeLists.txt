@@ -126,6 +126,7 @@ add_executable(${PROJECT_NAME}
     src/speakbuttons.cpp
     src/speakbuttons.ui
     src/transitions/languagedetectedtransition.cpp
+    src/transitions/ocruninitializedtransition.cpp
     src/transitions/playerstoppedtransition.cpp
     src/transitions/retranslationtransition.cpp
     src/transitions/textemptytransition.cpp
