@@ -700,23 +700,19 @@
       <widget class="QWidget" name="ocrPage">
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QGroupBox" name="ocrEngineGroupBox">
+         <widget class="QGroupBox" name="ocrLanguagesGroupBox">
           <property name="title">
-           <string>Engine</string>
+           <string>Languages</string>
           </property>
-          <layout class="QFormLayout">
-           <property name="labelAlignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-           </property>
-           <item row="0" column="0">
-            <widget class="QLabel" name="ocrLanguageLabel">
-             <property name="text">
-              <string>Language:</string>
+          <layout class="QVBoxLayout" name="verticalLayout_3">
+           <item>
+            <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
+             <property name="toolTip">
+              <string>Loading additional languages will impact both speed and accuracy,
+as there is more work to do to decide on the applicable language,
+and there is more chance of hallucinating incorrect words.</string>
              </property>
             </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="ocrLanguageComboBox"/>
            </item>
           </layout>
          </widget>
@@ -1454,6 +1450,11 @@
    <slots>
     <signal>currentItemChanged(ShortcutItem*)</signal>
    </slots>
+  </customwidget>
+  <customwidget>
+   <class>OcrLanguagesListWidget</class>
+   <extends>QListWidget</extends>
+   <header>settings/ocrlanguageslistwidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

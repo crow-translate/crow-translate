@@ -894,17 +894,17 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
 }
 
 #ifdef WITH_OCR
-QByteArray AppSettings::ocrLanguage() const
+QByteArray AppSettings::ocrLanguagesString() const
 {
-    return m_settings->value(QStringLiteral("OCR/Language"), defaultOcrLanguage()).toByteArray();
+    return m_settings->value(QStringLiteral("OCR/Language"), defaultOcrLanguagesString()).toByteArray();
 }
 
-void AppSettings::setOcrLanguage(const QByteArray &language)
+void AppSettings::setOcrLanguagesString(const QByteArray &string)
 {
-    m_settings->setValue(QStringLiteral("OCR/Language"), language);
+    m_settings->setValue(QStringLiteral("OCR/Language"), string);
 }
 
-QByteArray AppSettings::defaultOcrLanguage()
+QByteArray AppSettings::defaultOcrLanguagesString()
 {
     return {};
 }

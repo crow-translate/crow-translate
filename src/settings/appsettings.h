@@ -284,9 +284,9 @@ public:
     static QKeySequence defaultCopyTranslationShortcut();
 
 #ifdef WITH_OCR
-    QByteArray ocrLanguage() const;
-    void setOcrLanguage(const QByteArray &language);
-    static QByteArray defaultOcrLanguage();
+    QByteArray ocrLanguagesString() const;
+    void setOcrLanguagesString(const QByteArray &string);
+    static QByteArray defaultOcrLanguagesString();
 
     RegionRememberType regionRememberType() const;
     void setRegionRememberType(RegionRememberType type);

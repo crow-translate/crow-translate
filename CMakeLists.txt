@@ -117,6 +117,7 @@ add_executable(${PROJECT_NAME}
     src/popupwindow.ui
     src/selection.cpp
     src/settings/appsettings.cpp
+    src/settings/ocrlanguageslistwidget.cpp
     src/settings/settingsdialog.cpp
     src/settings/settingsdialog.ui
     src/settings/shortcutsmodel/shortcutitem.cpp

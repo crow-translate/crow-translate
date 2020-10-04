@@ -18,24 +18,18 @@
  *
  */
 
-#include "ocruninitializedtransition.h"
+#ifndef LANGUAGESLISTWIDGET_H
+#define LANGUAGESLISTWIDGET_H
 
-#include "mainwindow.h"
+#include <QListWidget>
 
-#include <QMessageBox>
-
-OcrUninitializedTransition::OcrUninitializedTransition(MainWindow *mainWindow, QState *sourceState)
-    : QAbstractTransition(sourceState)
-    , m_mainWindow(mainWindow)
+class OcrLanguagesListWidget : public QListWidget
 {
-}
+public:
+    OcrLanguagesListWidget(QWidget *parent = nullptr);
 
-bool OcrUninitializedTransition::eventTest(QEvent *)
-{
-    return m_mainWindow->ocr()->languagesString().isEmpty();
-}
+    void setCheckedLanguages(const QByteArray &languagesString);
+    QByteArray checkedLanguagesString() const;
+};
 
-void OcrUninitializedTransition::onTransition(QEvent *)
-{
-    QMessageBox::critical(m_mainWindow, Ocr::tr("OCR languages are not loaded"), Ocr::tr("You should set at least one OCR language in the application settings"));
-}
+#endif // LANGUAGESLISTWIDGET_H

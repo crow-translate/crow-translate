@@ -33,8 +33,8 @@ public:
     explicit Ocr(QObject *parent = nullptr);
 
     QStringList availableLanguages() const;
-    QByteArray language() const;
-    bool setLanguage(const QByteArray &language);
+    QByteArray languagesString() const;
+    bool setLanguagesString(const QByteArray &string);
 
     void recognize(const QPixmap &pixmap);
 

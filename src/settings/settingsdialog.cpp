@@ -104,7 +104,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
 
 #ifdef WITH_OCR
-    ui->ocrLanguageComboBox->addItems(parent->ocr()->availableLanguages());
+    ui->ocrLanguagesListWidget->addItems(parent->ocr()->availableLanguages());
 #else
     ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
 #endif
@@ -212,7 +212,7 @@ void SettingsDialog::accept()
 
 #ifdef WITH_OCR
     // OCR
-    settings.setOcrLanguage(ui->ocrLanguageComboBox->currentText().toLocal8Bit());
+    settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
@@ -484,7 +484,7 @@ void SettingsDialog::restoreDefaults()
 
 #ifdef WITH_OCR
     // OCR
-    ui->ocrLanguageComboBox->setCurrentText(AppSettings::defaultOcrLanguage());
+    ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
@@ -554,7 +554,7 @@ void SettingsDialog::loadSettings()
 
 #ifdef WITH_OCR
     // OCR
-    ui->ocrLanguageComboBox->setCurrentText(settings.ocrLanguage());
+    ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());

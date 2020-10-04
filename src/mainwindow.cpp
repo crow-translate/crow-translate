@@ -879,10 +879,10 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     // OCR settings
 #ifdef WITH_OCR
-    if (const QByteArray &language = settings.ocrLanguage(); !m_ocr->setLanguage(language) && !language.isEmpty()) {
+    if (const QByteArray &languages = settings.ocrLanguagesString(); !m_ocr->setLanguagesString(languages) && !languages.isEmpty()) {
         // Show error only if language was specified by user
         QMessageBox::critical(this, Ocr::tr("Unable to set OCR language"),
-                              Ocr::tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
+                              Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
     }
     m_quickEditor->loadSettings(settings);
 #endif

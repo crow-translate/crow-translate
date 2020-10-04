@@ -40,19 +40,19 @@ QStringList Ocr::availableLanguages() const
     return availableLanguages;
 }
 
-QByteArray Ocr::language() const
+QByteArray Ocr::languagesString() const
 {
     return QByteArray::fromRawData(m_tesseract.GetInitLanguagesAsString(), qstrlen(m_tesseract.GetInitLanguagesAsString()));
 }
 
-bool Ocr::setLanguage(const QByteArray &language) 
+bool Ocr::setLanguagesString(const QByteArray &string)
 {
     // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
-    if (language.isEmpty())
+    if (string.isEmpty())
         return m_tesseract.Init(nullptr, nullptr, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
 
-    if (this->language() != language)
-        return m_tesseract.Init(nullptr, language, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
+    if (languagesString() != string)
+        return m_tesseract.Init(nullptr, string, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
 
     // Language are already set
     return true;
