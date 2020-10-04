@@ -112,8 +112,8 @@ void QuickEditor::loadSettings(const AppSettings &settings)
 
 void QuickEditor::capture() 
 {
-    QScreen *screen = QGuiApplication::screens()[0];
-    mPixmap = screen->grabWindow(0, -screen->geometry().x(), -screen->geometry().y(), screen->virtualGeometry().width(), screen->virtualGeometry().height());
+    const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
+    mPixmap = QGuiApplication::primaryScreen()->grabWindow(0, - virtualGeometry.x(), - virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
 
     if (QX11Info::isPlatformX11()) {
         // Even though we want the quick editor window to be placed at (0, 0) in the native
