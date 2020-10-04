@@ -690,8 +690,8 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
-    auto *ocrLanguagesSetTransition = new OcrUninitializedTransition(this, initialState);
-    ocrLanguagesSetTransition->setTargetState(finalState);
+    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
+    ocrUninitializedTransition->setTargetState(finalState);
 
     initialState->addTransition(selectState);
     selectState->addTransition(m_quickEditor, &QuickEditor::grabCancelled, finalState);
@@ -881,8 +881,8 @@ void MainWindow::loadSettings(const AppSettings &settings)
 #ifdef WITH_OCR
     if (const QByteArray &language = settings.ocrLanguage(); !m_ocr->setLanguage(language) && !language.isEmpty()) {
         // Show error only if language was specified by user
-        QMessageBox::critical(this, tr("Unable to set OCR language"),
-                              tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
+        QMessageBox::critical(this, Ocr::tr("Unable to set OCR language"),
+                              Ocr::tr("Unable to initialize Tesseract with %1 language").arg(QString(language)));
     }
     m_quickEditor->loadSettings(settings);
 #endif
