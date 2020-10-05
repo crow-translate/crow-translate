@@ -292,6 +292,21 @@ int AppSettings::defaultPopupWidth()
     return 350;
 }
 
+int AppSettings::translationNotificationDisplayTime() const
+{
+    return m_settings->value(QStringLiteral("Interface/TranslationNotificationDisplayTime"), defaultTranslationNotificationDisplayTime()).toInt();
+}
+
+void AppSettings::setTranslationNotificationDisplayTime(int displayTime)
+{
+    m_settings->setValue(QStringLiteral("Interface/TranslationNotificationDisplayTime"), displayTime);
+}
+
+int AppSettings::defaultTranslationNotificationDisplayTime()
+{
+    return 3;
+}
+
 AppSettings::LanguageFormat AppSettings::popupLanguageFormat() const
 {
     return m_settings->value(QStringLiteral("Interface/PopupLanguageFormat"), defaultPopupLanguageFormat()).value<LanguageFormat>();

@@ -98,6 +98,10 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->popupHeightSlider->setMinimum(200);
     ui->popupHeightSpinBox->setMinimum(200);
 
+    // Set maximum and minimum values for the time of the translation notification display
+    ui->translationNotificationDisplayTimeSpinBox->setMaximum(60);
+    ui->translationNotificationDisplayTimeSpinBox->setMinimum(1);
+
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
@@ -185,6 +189,8 @@ void SettingsDialog::accept()
     settings.setPopupOpacity(static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
+
+    settings.setTranslationNotificationDisplayTime(ui->translationNotificationDisplayTimeSpinBox->value());
 
     settings.setMainWindowLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->mainWindowLanguageFormatComboBox->currentIndex()));
     settings.setPopupLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->popupLanguageFormatComboBox->currentIndex()));
@@ -509,6 +515,8 @@ void SettingsDialog::loadSettings()
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
+
+    ui->translationNotificationDisplayTimeSpinBox->setValue(settings.translationNotificationDisplayTime());
 
     ui->mainWindowLanguageFormatComboBox->setCurrentIndex(settings.mainWindowLanguageFormat());
     ui->popupLanguageFormatComboBox->setCurrentIndex(settings.popupLanguageFormat());

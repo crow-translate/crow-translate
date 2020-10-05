@@ -383,7 +383,7 @@ void MainWindow::displayTranslation()
     // If window mode is notification, send a notification including the translation result
     const AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::Notification)
-        m_trayIcon->showMessage(tr("Translation Result"), ui->translationEdit->toPlainText(), QSystemTrayIcon::NoIcon, 3000);
+        m_trayIcon->showMessage(tr("Translation Result"), ui->translationEdit->toPlainText(), QSystemTrayIcon::NoIcon, m_translationNotificationDisplayTime*1000);
 }
 
 void MainWindow::clearTranslation()
@@ -795,6 +795,8 @@ void MainWindow::loadSettings(const AppSettings &settings)
 
     m_popupSize = {settings.popupWidth(), settings.popupHeight()};
     m_popupOpacity = settings.popupOpacity();
+
+    m_translationNotificationDisplayTime = settings.translationNotificationDisplayTime();
 
     ui->sourceLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
     ui->translationLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
