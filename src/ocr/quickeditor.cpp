@@ -76,11 +76,10 @@ QuickEditor::QuickEditor(QWidget *parent)
     , mMaskColor(QColor::fromRgbF(0, 0, 0, 0.15))
     , mStrokeColor(palette().highlight().color())
     , mCrossColor(QColor::fromRgbF(mStrokeColor.redF(), mStrokeColor.greenF(), mStrokeColor.blueF(), 0.7))
-    , mLabelBackgroundColor(QColor::fromRgbF(
-              palette().light().color().redF(),
-              palette().light().color().greenF(),
-              palette().light().color().blueF(),
-              0.85))
+    , mLabelBackgroundColor(QColor::fromRgbF(palette().light().color().redF(),
+                                             palette().light().color().greenF(),
+                                             palette().light().color().blueF(),
+                                             0.85))
     , mLabelForegroundColor(palette().windowText().color())
     , mMidHelpText(tr("Click and drag to draw a selection rectangle,\nor press Esc to quit"))
     , mMidHelpTextFont(font())
@@ -171,20 +170,6 @@ void QuickEditor::capture()
 
     update();
     show();
-}
-
-void QuickEditor::acceptSelection()
-{
-    if (!mSelection.isEmpty()) {
-        const qreal dpr = devicePixelRatioF();
-        QRect scaledCropRegion = QRect(qRound(mSelection.x() * dpr),
-                                       qRound(mSelection.y() * dpr),
-                                       qRound(mSelection.width() * dpr),
-                                       qRound(mSelection.height() * dpr));
-        AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
-        emit grabDone(mPixmap.copy(scaledCropRegion));
-    }
-    hide();
 }
 
 void QuickEditor::keyPressEvent(QKeyEvent *event)
@@ -278,61 +263,6 @@ void QuickEditor::keyReleaseEvent(QKeyEvent *event)
         update();
     }
     event->accept();
-}
-
-int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
-{
-    if (newTopLeftX < 0) {
-        if (mouse) {
-            // tweak startPos to prevent rectangle from getting stuck
-            mStartPos.setX(mStartPos.x() + newTopLeftX * dprI);
-        }
-        newTopLeftX = 0;
-    }
-
-    return newTopLeftX;
-}
-
-int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
-{
-    // the max X coordinate of the top left point
-    const int realMaxX = qRound((width() - mSelection.width()) * devicePixelRatioF());
-    const int xOffset = newTopLeftX - realMaxX;
-    if (xOffset > 0) {
-        if (mouse) {
-            mStartPos.setX(mStartPos.x() + xOffset * dprI);
-        }
-        newTopLeftX = realMaxX;
-    }
-
-    return newTopLeftX;
-}
-
-int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
-{
-    if (newTopLeftY < 0) {
-        if (mouse) {
-            mStartPos.setY(mStartPos.y() + newTopLeftY * dprI);
-        }
-        newTopLeftY = 0;
-    }
-
-    return newTopLeftY;
-}
-
-int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
-{
-    // the max Y coordinate of the top left point
-    const int realMaxY = qRound((height() - mSelection.height()) * devicePixelRatioF());
-    const int yOffset = newTopLeftY - realMaxY;
-    if (yOffset > 0) {
-        if (mouse) {
-            mStartPos.setY(mStartPos.y() + yOffset * dprI);
-        }
-        newTopLeftY = realMaxY;
-    }
-
-    return newTopLeftY;
 }
 
 void QuickEditor::mousePressEvent(QMouseEvent *event)
@@ -542,55 +472,59 @@ void QuickEditor::paintEvent(QPaintEvent *)
     }
 }
 
-void QuickEditor::layoutBottomHelpText()
+int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
 {
-    int maxRightWidth = 0;
-    int contentWidth = 0;
-    int contentHeight = 0;
-    mBottomHelpGridLeftWidth = 0;
-    for (int i = 0; i < mbottomHelpLength; i++) {
-        const auto &item = mBottomHelpText[i];
-        const auto &left = item.first;
-        const auto &right = item.second;
-        const auto leftSize = left.size().toSize();
-        mBottomHelpGridLeftWidth = qMax(mBottomHelpGridLeftWidth, leftSize.width());
-        for (const auto &item : right) {
-            const auto rightItemSize = item.size().toSize();
-            maxRightWidth = qMax(maxRightWidth, rightItemSize.width());
-            contentHeight += rightItemSize.height();
+    if (newTopLeftX < 0) {
+        if (mouse) {
+            // tweak startPos to prevent rectangle from getting stuck
+            mStartPos.setX(mStartPos.x() + newTopLeftX * dprI);
         }
-        contentWidth = qMax(contentWidth, mBottomHelpGridLeftWidth + maxRightWidth + bottomHelpBoxPairSpacing);
-        contentHeight += (i != bottomHelpMaxLength ? bottomHelpBoxMarginBottom : 0);
+        newTopLeftX = 0;
     }
-    mBottomHelpContentPos.setX((mPrimaryScreenGeo.width() - contentWidth) / 2 + mPrimaryScreenGeo.x());
-    mBottomHelpContentPos.setY(height() - contentHeight - 8);
-    mBottomHelpGridLeftWidth += mBottomHelpContentPos.x();
-    mBottomHelpBorderBox.setRect(
-            mBottomHelpContentPos.x() - bottomHelpBoxPaddingX,
-            mBottomHelpContentPos.y() - bottomHelpBoxPaddingY,
-            contentWidth + bottomHelpBoxPaddingX * 2,
-            contentHeight + bottomHelpBoxPaddingY * 2 - 1);
+
+    return newTopLeftX;
 }
 
-void QuickEditor::setBottomHelpText()
+int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
 {
-    if (mReleaseToCapture && mSelection.size().isEmpty()) {
-        // Release to capture enabled and NO saved region available
-        mbottomHelpLength = 3;
-        //: Mouse and keyboard actions
-        mBottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Release left-click")), QStaticText(tr("Enter"))}};
-        mBottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
-        mBottomHelpText[2] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
-    } else {
-        // Default text, Release to capture option disabled
-        //: Mouse and keyboard actions
-        mBottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Double-click")), QStaticText(tr("Enter"))}};
-        mBottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
-        mBottomHelpText[2] = {QStaticText(tr("Move selection rectangle:")), {QStaticText(tr("Drag inside selection rectangle")), QStaticText(tr("Arrow keys")), QStaticText(tr("+ Shift: Move in 1 pixel steps"))}};
-        mBottomHelpText[3] = {QStaticText(tr("Resize selection rectangle:")), {QStaticText(tr("Drag handles")), QStaticText(tr("Arrow keys + Alt")), QStaticText(tr("+ Shift: Resize in 1 pixel steps"))}};
-        mBottomHelpText[4] = {QStaticText(tr("Reset selection:")), {QStaticText(tr("Right-click"))}};
-        mBottomHelpText[5] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
+    // the max X coordinate of the top left point
+    const int realMaxX = qRound((width() - mSelection.width()) * devicePixelRatioF());
+    const int xOffset = newTopLeftX - realMaxX;
+    if (xOffset > 0) {
+        if (mouse) {
+            mStartPos.setX(mStartPos.x() + xOffset * dprI);
+        }
+        newTopLeftX = realMaxX;
     }
+
+    return newTopLeftX;
+}
+
+int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
+{
+    if (newTopLeftY < 0) {
+        if (mouse) {
+            mStartPos.setY(mStartPos.y() + newTopLeftY * dprI);
+        }
+        newTopLeftY = 0;
+    }
+
+    return newTopLeftY;
+}
+
+int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
+{
+    // the max Y coordinate of the top left point
+    const int realMaxY = qRound((height() - mSelection.height()) * devicePixelRatioF());
+    const int yOffset = newTopLeftY - realMaxY;
+    if (yOffset > 0) {
+        if (mouse) {
+            mStartPos.setY(mStartPos.y() + yOffset * dprI);
+        }
+        newTopLeftY = realMaxY;
+    }
+
+    return newTopLeftY;
 }
 
 void QuickEditor::drawBottomHelpText(QPainter &painter)
@@ -882,4 +816,68 @@ QuickEditor::MouseState QuickEditor::mouseLocation(const QPointF &pos)
     } else {
         return MouseState::Outside;
     }
+}
+
+void QuickEditor::layoutBottomHelpText()
+{
+    int maxRightWidth = 0;
+    int contentWidth = 0;
+    int contentHeight = 0;
+    mBottomHelpGridLeftWidth = 0;
+    for (int i = 0; i < mbottomHelpLength; i++) {
+        const auto &item = mBottomHelpText[i];
+        const auto &left = item.first;
+        const auto &right = item.second;
+        const auto leftSize = left.size().toSize();
+        mBottomHelpGridLeftWidth = qMax(mBottomHelpGridLeftWidth, leftSize.width());
+        for (const auto &item : right) {
+            const auto rightItemSize = item.size().toSize();
+            maxRightWidth = qMax(maxRightWidth, rightItemSize.width());
+            contentHeight += rightItemSize.height();
+        }
+        contentWidth = qMax(contentWidth, mBottomHelpGridLeftWidth + maxRightWidth + bottomHelpBoxPairSpacing);
+        contentHeight += (i != bottomHelpMaxLength ? bottomHelpBoxMarginBottom : 0);
+    }
+    mBottomHelpContentPos.setX((mPrimaryScreenGeo.width() - contentWidth) / 2 + mPrimaryScreenGeo.x());
+    mBottomHelpContentPos.setY(height() - contentHeight - 8);
+    mBottomHelpGridLeftWidth += mBottomHelpContentPos.x();
+    mBottomHelpBorderBox.setRect(mBottomHelpContentPos.x() - bottomHelpBoxPaddingX,
+                                 mBottomHelpContentPos.y() - bottomHelpBoxPaddingY,
+                                 contentWidth + bottomHelpBoxPaddingX * 2,
+                                 contentHeight + bottomHelpBoxPaddingY * 2 - 1);
+}
+
+void QuickEditor::setBottomHelpText()
+{
+    if (mReleaseToCapture && mSelection.size().isEmpty()) {
+        // Release to capture enabled and NO saved region available
+        mbottomHelpLength = 3;
+        //: Mouse and keyboard actions
+        mBottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Release left-click")), QStaticText(tr("Enter"))}};
+        mBottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
+        mBottomHelpText[2] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
+    } else {
+        // Default text, Release to capture option disabled
+        //: Mouse and keyboard actions
+        mBottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Double-click")), QStaticText(tr("Enter"))}};
+        mBottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
+        mBottomHelpText[2] = {QStaticText(tr("Move selection rectangle:")), {QStaticText(tr("Drag inside selection rectangle")), QStaticText(tr("Arrow keys")), QStaticText(tr("+ Shift: Move in 1 pixel steps"))}};
+        mBottomHelpText[3] = {QStaticText(tr("Resize selection rectangle:")), {QStaticText(tr("Drag handles")), QStaticText(tr("Arrow keys + Alt")), QStaticText(tr("+ Shift: Resize in 1 pixel steps"))}};
+        mBottomHelpText[4] = {QStaticText(tr("Reset selection:")), {QStaticText(tr("Right-click"))}};
+        mBottomHelpText[5] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
+    }
+}
+
+void QuickEditor::acceptSelection()
+{
+    if (!mSelection.isEmpty()) {
+        const qreal dpr = devicePixelRatioF();
+        QRect scaledCropRegion = QRect(qRound(mSelection.x() * dpr),
+                                       qRound(mSelection.y() * dpr),
+                                       qRound(mSelection.width() * dpr),
+                                       qRound(mSelection.height() * dpr));
+        AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
+        emit grabDone(mPixmap.copy(scaledCropRegion));
+    }
+    hide();
 }

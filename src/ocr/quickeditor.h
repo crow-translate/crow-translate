@@ -65,11 +65,6 @@ private:
         RightOrLeft = Right & Left, // 100000
     };
 
-    void acceptSelection();
-    int boundsLeft(int newTopLeftX, const bool mouse = true);
-    int boundsRight(int newTopLeftX, const bool mouse = true);
-    int boundsUp(int newTopLeftY, const bool mouse = true);
-    int boundsDown(int newTopLeftY, const bool mouse = true);
     void keyPressEvent(QKeyEvent *event) override;
     void keyReleaseEvent(QKeyEvent *event) override;
     void mousePressEvent(QMouseEvent *event) override;
@@ -77,15 +72,25 @@ private:
     void mouseReleaseEvent(QMouseEvent *event) override;
     void mouseDoubleClickEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *) override;
+
+    int boundsLeft(int newTopLeftX, const bool mouse = true);
+    int boundsRight(int newTopLeftX, const bool mouse = true);
+    int boundsUp(int newTopLeftY, const bool mouse = true);
+    int boundsDown(int newTopLeftY, const bool mouse = true);
+
     void drawBottomHelpText(QPainter &painter);
     void drawDragHandles(QPainter &painter);
     void drawMagnifier(QPainter &painter);
     void drawMidHelpText(QPainter &painter);
     void drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible);
-    void setBottomHelpText();
-    void layoutBottomHelpText();
+
     void setMouseCursor(const QPointF &pos);
     MouseState mouseLocation(const QPointF &pos);
+
+    void setBottomHelpText();
+    void layoutBottomHelpText();
+
+    void acceptSelection();
 
     static const int handleRadiusMouse;
     static const int handleRadiusTouch;
