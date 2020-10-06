@@ -52,16 +52,18 @@ void QuickEditor::capture()
     m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
 
     if (QX11Info::isPlatformX11()) {
-        // Even though we want the quick editor window to be placed at (0, 0) in the native
-        // pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
-        //
-        // The main reason for that is that Qt will scale the window position relative to the
-        // upper left corner of the screen where the quick editor is on in order to perform
-        // a conversion from the device-independent coordinates to the native pixels.
-        //
-        // Since (0, 0) in the device-independent pixels may not correspond to (0, 0) in the
-        // native pixels, we have to map (0, 0) from native pixels to dip and use that as
-        // the window position.
+        /*
+         * Even though we want the quick editor window to be placed at (0, 0) in the native
+         * pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
+         *
+         * The main reason for that is that Qt will scale the window position relative to the
+         * upper left corner of the screen where the quick editor is on in order to perform
+         * a conversion from the device-independent coordinates to the native pixels.
+         *
+         * Since (0, 0) in the device-independent pixels may not correspond to (0, 0) in the
+         * native pixels, we have to map (0, 0) from native pixels to dip and use that as
+         * the window position.
+         */
         winId();
         setGeometry(fromNativePixels(m_screenPixmap.rect(), windowHandle()->screen()));
     } else {
@@ -94,9 +96,8 @@ void QuickEditor::capture()
         s_bottomHelpTextPrepared = true;
         for (auto &pair : m_bottomHelpText) {
             prepare(pair.first);
-            for (auto &item : pair.second) {
+            for (auto &item : pair.second)
                 prepare(item);
-            }
         }
     }
     layoutBottomHelpText();
@@ -109,9 +110,8 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
 {
     const auto modifiers = event->modifiers();
     const bool shiftPressed = modifiers & Qt::ShiftModifier;
-    if (shiftPressed) {
+    if (shiftPressed)
         m_toggleMagnifier = true;
-    }
     switch (event->key()) {
     case Qt::Key_Escape:
         emit grabCancelled();
@@ -144,11 +144,10 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsRight(qRound(m_selection.left() * devicePixelRatioF() + step), false);
-        if (modifiers & Qt::AltModifier) {
+        if (modifiers & Qt::AltModifier)
             m_selection.setRight(m_dprI * newPos + m_selection.width());
-        } else {
+        else
             m_selection.moveLeft(m_dprI * newPos);
-        }
         update();
         break;
     }
@@ -159,11 +158,10 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsDown(qRound(m_selection.top() * devicePixelRatioF() + step), false);
-        if (modifiers & Qt::AltModifier) {
+        if (modifiers & Qt::AltModifier)
             m_selection.setBottom(m_dprI * newPos + m_selection.height());
-        } else {
+        else
             m_selection.moveTop(m_dprI * newPos);
-        }
         update();
         break;
     }
@@ -200,14 +198,14 @@ void QuickEditor::keyReleaseEvent(QKeyEvent *event)
 
 void QuickEditor::mousePressEvent(QMouseEvent *event)
 {
-    if (event->source() == Qt::MouseEventNotSynthesized) {
+    if (event->source() == Qt::MouseEventNotSynthesized)
         m_handleRadius = s_handleRadiusMouse;
-    } else {
+    else
         m_handleRadius = s_handleRadiusTouch;
-    }
 
     if (event->button() & Qt::LeftButton) {
-        /* NOTE  Workaround for Bug 407843
+       /*
+        * NOTE Workaround for https://bugs.kde.org/show_bug.cgi?id=407843
         * If we show the selection Widget when a right click menu is open we lose focus on X.
         * When the user clicks we get the mouse back. We can only grab the keyboard if we already
         * have mouse focus. So just grab it undconditionally here.
@@ -248,9 +246,8 @@ void QuickEditor::mousePressEvent(QMouseEvent *event)
             break;
         }
     }
-    if (m_magnifierAllowed) {
+    if (m_magnifierAllowed)
         update();
-    }
     event->accept();
 }
 
@@ -260,11 +257,10 @@ void QuickEditor::mouseMoveEvent(QMouseEvent *event)
     m_mousePos = pos;
     m_magnifierAllowed = true;
     switch (m_mouseDragState) {
-    case MouseState::None: {
+    case MouseState::None:
         setMouseCursor(pos);
         m_magnifierAllowed = false;
         break;
-    }
     case MouseState::TopLeft:
     case MouseState::TopRight:
     case MouseState::BottomRight:
@@ -278,14 +274,13 @@ void QuickEditor::mouseMoveEvent(QMouseEvent *event)
         update();
         break;
     }
-    case MouseState::Outside: {
+    case MouseState::Outside:
         m_selection.setRect(qMin(pos.x(), m_startPos.x()),
                            qMin(pos.y(), m_startPos.y()),
                            qAbs(pos.x() - m_startPos.x()) + m_dprI,
                            qAbs(pos.y() - m_startPos.y()) + m_dprI);
         update();
         break;
-    }
     case MouseState::Top:
     case MouseState::Bottom: {
         const bool afterY = pos.y() >= m_startPos.y();
@@ -308,23 +303,22 @@ void QuickEditor::mouseMoveEvent(QMouseEvent *event)
     }
     case MouseState::Inside: {
         m_magnifierAllowed = false;
-        // We use some math here to figure out if the diff with which we
-        // move the rectangle with moves it out of bounds,
-        // in which case we adjust the diff to not let that happen
-
+        /*
+         * We use some math here to figure out if the diff with which we
+         * move the rectangle with moves it out of bounds,
+         * in which case we adjust the diff to not let that happen
+         */
         const qreal dpr = devicePixelRatioF();
-        // new top left point of the rectangle
+        // New top left point of the rectangle
         QPoint newTopLeft = ((pos - m_startPos + m_initialTopLeft) * dpr).toPoint();
 
         int newTopLeftX = boundsLeft(newTopLeft.x());
-        if (newTopLeftX != 0) {
+        if (newTopLeftX != 0)
             newTopLeftX = boundsRight(newTopLeftX);
-        }
 
         int newTopLeftY = boundsUp(newTopLeft.y());
-        if (newTopLeftY != 0) {
+        if (newTopLeftY != 0)
             newTopLeftY = boundsDown(newTopLeftY);
-        }
 
         const auto newTopLeftF = QPointF(newTopLeftX * m_dprI, newTopLeftY * m_dprI);
 
@@ -363,9 +357,8 @@ void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
 void QuickEditor::mouseDoubleClickEvent(QMouseEvent *event)
 {
     event->accept();
-    if (event->button() == Qt::LeftButton && m_selection.contains(event->pos())) {
+    if (event->button() == Qt::LeftButton && m_selection.contains(event->pos()))
         acceptSelection();
-    }
 }
 
 void QuickEditor::paintEvent(QPaintEvent *)
@@ -379,17 +372,15 @@ void QuickEditor::paintEvent(QPaintEvent *)
     if (!m_selection.size().isEmpty() || m_mouseDragState != MouseState::None) {
         painter.fillRect(m_selection, m_strokeColor);
         const QRectF innerRect = m_selection.adjusted(1, 1, -1, -1);
-        if (innerRect.width() > 0 && innerRect.height() > 0) {
+        if (innerRect.width() > 0 && innerRect.height() > 0)
             painter.eraseRect(m_selection.adjusted(1, 1, -1, -1));
-        }
 
         QRectF top(0, 0, width(), m_selection.top());
         QRectF right(m_selection.right(), m_selection.top(), width() - m_selection.right(), m_selection.height());
         QRectF bottom(0, m_selection.bottom(), width(), height() - m_selection.bottom());
         QRectF left(0, m_selection.top(), m_selection.left(), m_selection.height());
-        for (const auto &rect : {top, right, bottom, left}) {
+        for (const auto &rect : {top, right, bottom, left})
             painter.fillRect(rect, m_maskColor);
-        }
 
         bool dragHandlesVisible = false;
         if (m_mouseDragState == MouseState::None) {
@@ -408,10 +399,8 @@ void QuickEditor::paintEvent(QPaintEvent *)
 int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
 {
     if (newTopLeftX < 0) {
-        if (mouse) {
-            // tweak startPos to prevent rectangle from getting stuck
-            m_startPos.setX(m_startPos.x() + newTopLeftX * m_dprI);
-        }
+        if (mouse)
+            m_startPos.setX(m_startPos.x() + newTopLeftX * m_dprI); // Tweak startPos to prevent rectangle from getting stuck
         newTopLeftX = 0;
     }
 
@@ -420,13 +409,12 @@ int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
 
 int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
 {
-    // the max X coordinate of the top left point
+    // The max X coordinate of the top left point
     const int realMaxX = qRound((width() - m_selection.width()) * devicePixelRatioF());
     const int xOffset = newTopLeftX - realMaxX;
     if (xOffset > 0) {
-        if (mouse) {
+        if (mouse)
             m_startPos.setX(m_startPos.x() + xOffset * m_dprI);
-        }
         newTopLeftX = realMaxX;
     }
 
@@ -436,9 +424,8 @@ int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
 int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
 {
     if (newTopLeftY < 0) {
-        if (mouse) {
+        if (mouse)
             m_startPos.setY(m_startPos.y() + newTopLeftY * m_dprI);
-        }
         newTopLeftY = 0;
     }
 
@@ -447,13 +434,12 @@ int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
 
 int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
 {
-    // the max Y coordinate of the top left point
+    // The max Y coordinate of the top left point
     const int realMaxY = qRound((height() - m_selection.height()) * devicePixelRatioF());
     const int yOffset = newTopLeftY - realMaxY;
     if (yOffset > 0) {
-        if (mouse) {
+        if (mouse)
             m_startPos.setY(m_startPos.y() + yOffset * m_dprI);
-        }
         newTopLeftY = realMaxY;
     }
 
@@ -462,9 +448,8 @@ int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
 
 void QuickEditor::drawBottomHelpText(QPainter &painter)
 {
-    if (m_selection.intersects(m_bottomHelpBorderBox)) {
+    if (m_selection.intersects(m_bottomHelpBorderBox))
         return;
-    }
 
     painter.setBrush(m_labelBackgroundColor);
     painter.setPen(m_labelForegroundColor);
@@ -485,9 +470,8 @@ void QuickEditor::drawBottomHelpText(QPainter &painter)
             painter.drawStaticText(m_bottomHelpGridLeftWidth + s_bottomHelpBoxPairSpacing, topOffset, item);
             topOffset += rightItemSize.height();
         }
-        if (i != s_bottomHelpMaxLength) {
+        if (i != s_bottomHelpMaxLength)
             topOffset += s_bottomHelpBoxMarginBottom;
-        }
     }
 }
 
@@ -501,9 +485,9 @@ void QuickEditor::drawDragHandles(QPainter &painter)
     const qreal centerY = top + m_selection.height() / 2.0;
     const qreal bottom = top + m_selection.height();
 
-    // rectangle too small: make handles free-floating
+    // Rectangle too small: make handles free-floating
     qreal offset = 0;
-    // rectangle too close to screen edges: move handles on that edge inside the rectangle, so they're still visible
+    // Rectangle too close to screen edges: move handles on that edge inside the rectangle, so they're still visible
     qreal offsetTop = 0;
     qreal offsetRight = 0;
     qreal offsetBottom = 0;
@@ -530,32 +514,31 @@ void QuickEditor::drawDragHandles(QPainter &painter)
         offsetLeft = (offsetLeft >= 0) ? 0 : offsetLeft;
     }
 
-    //top-left handle
-    this->m_handlePositions[0] = QPointF{left - offset - offsetLeft, top - offset - offsetTop};
-    //top-right handle
-    this->m_handlePositions[1] = QPointF{right + offset + offsetRight, top - offset - offsetTop};
-    // bottom-right handle
-    this->m_handlePositions[2] = QPointF{right + offset + offsetRight, bottom + offset + offsetBottom};
-    // bottom-left
-    this->m_handlePositions[3] = QPointF{left - offset - offsetLeft, bottom + offset + offsetBottom};
-    // top-center handle
-    this->m_handlePositions[4] = QPointF{centerX, top - offset - offsetTop};
-    // right-center handle
-    this->m_handlePositions[5] = QPointF{right + offset + offsetRight, centerY};
-    // bottom-center handle
-    this->m_handlePositions[6] = QPointF{centerX, bottom + offset + offsetBottom};
-    // left-center handle
-    this->m_handlePositions[7] = QPointF{left - offset - offsetLeft, centerY};
+    // Top-left handle
+    m_handlePositions[0] = QPointF{left - offset - offsetLeft, top - offset - offsetTop};
+    // Top-right handle
+    m_handlePositions[1] = QPointF{right + offset + offsetRight, top - offset - offsetTop};
+    // Bottom-right handle
+    m_handlePositions[2] = QPointF{right + offset + offsetRight, bottom + offset + offsetBottom};
+    // Bottom-left
+    m_handlePositions[3] = QPointF{left - offset - offsetLeft, bottom + offset + offsetBottom};
+    // Top-center handle
+    m_handlePositions[4] = QPointF{centerX, top - offset - offsetTop};
+    // Right-center handle
+    m_handlePositions[5] = QPointF{right + offset + offsetRight, centerY};
+    // Bottom-center handle
+    m_handlePositions[6] = QPointF{centerX, bottom + offset + offsetBottom};
+    // Left-center handle
+    m_handlePositions[7] = QPointF{left - offset - offsetLeft, centerY};
 
-    // start path
+    // Start path
     QPainterPath path;
 
-    // add handles to the path
-    for (const QPointF &handlePosition : this->m_handlePositions) {
+    // Add handles to the path
+    for (const QPointF &handlePosition : m_handlePositions)
         path.addEllipse(handlePosition, m_handleRadius, m_handleRadius);
-    }
 
-    // draw the path
+    // Draw the path
     painter.fillPath(path, m_strokeColor);
 }
 
@@ -589,13 +572,11 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     QRectF magniRect(magX, magY, pixels, pixels);
 
     qreal drawPosX = m_mousePos.x() + s_magOffset + pixels * s_magZoom / 2;
-    if (drawPosX > width() - pixels * s_magZoom / 2) {
+    if (drawPosX > width() - pixels * s_magZoom / 2)
         drawPosX = m_mousePos.x() - s_magOffset - pixels * s_magZoom / 2;
-    }
     qreal drawPosY = m_mousePos.y() + s_magOffset + pixels * s_magZoom / 2;
-    if (drawPosY > height() - pixels * s_magZoom / 2) {
+    if (drawPosY > height() - pixels * s_magZoom / 2)
         drawPosY = m_mousePos.y() - s_magOffset - pixels * s_magZoom / 2;
-    }
     QPointF drawPos(drawPosX, drawPosY);
     QRectF crossHairTop(drawPos.x() + s_magZoom * (offsetX - 0.5), drawPos.y() - s_magZoom * (s_magPixels + 0.5), s_magZoom, s_magZoom * (s_magPixels + offsetY));
     QRectF crossHairRight(drawPos.x() + s_magZoom * (0.5 + offsetX), drawPos.y() + s_magZoom * (offsetY - 0.5), s_magZoom * (s_magPixels - offsetX), s_magZoom);
@@ -607,9 +588,8 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     painter.fillRect(crossHairBorder, m_labelForegroundColor);
     painter.drawPixmapFragments(&frag, 1, m_screenPixmap, QPainter::OpaqueHint);
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    for (auto &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft}) {
+    for (auto &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft})
         painter.fillRect(rect, m_crossColor);
-    }
 }
 
 void QuickEditor::drawMidHelpText(QPainter &painter)
@@ -637,10 +617,12 @@ void QuickEditor::drawMidHelpText(QPainter &painter)
 
 void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible)
 {
-    // Set the selection size and finds the most appropriate position:
-    // - vertically centered inside the selection if the box is not covering the a large part of selection
-    // - on top of the selection if the selection x position fits the box height plus some margin
-    // - at the bottom otherwise
+    /*
+     * Set the selection size and finds the most appropriate position:
+     * - vertically centered inside the selection if the box is not covering the a large part of selection
+     * - on top of the selection if the selection x position fits the box height plus some margin
+     * - at the bottom otherwise
+     */
     const qreal dpr = devicePixelRatioF();
     QString selectionSizeText = QString(u8"%1×%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
@@ -652,20 +634,18 @@ void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVi
                                      width() - selectionBoxWidth);
     int selectionBoxY;
     if ((m_selection.width() >= s_selectionSizeThreshold) && (m_selection.height() >= s_selectionSizeThreshold)) {
-        // show inside the box
+        // Show inside the box
         selectionBoxY = static_cast<int>(m_selection.y() + (m_selection.height() - selectionSizeTextRect.height()) / 2);
     } else {
-        // show on top by default, above the drag Handles if they're visible
+        // Show on top by default, above the drag Handles if they're visible
         if (dragHandlesVisible) {
             selectionBoxY = static_cast<int>(m_handlePositions[4].y() - m_handleRadius - selectionBoxHeight - s_selectionBoxMarginY);
-            if (selectionBoxY < 0) {
+            if (selectionBoxY < 0)
                 selectionBoxY = static_cast<int>(m_handlePositions[6].y() + m_handleRadius + s_selectionBoxMarginY);
-            }
         } else {
             selectionBoxY = static_cast<int>(m_selection.y() - selectionBoxHeight - s_selectionBoxMarginY);
-            if (selectionBoxY < 0) {
+            if (selectionBoxY < 0)
                 selectionBoxY = static_cast<int>(m_selection.y() + m_selection.height() + s_selectionBoxMarginY);
-            }
         }
     }
 
@@ -686,63 +666,58 @@ void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVi
 void QuickEditor::setMouseCursor(const QPointF &pos)
 {
     MouseState mouseState = mouseLocation(pos);
-    if (mouseState == MouseState::Outside) {
+    if (mouseState == MouseState::Outside)
         setCursor(Qt::CrossCursor);
-    } else if (MouseState::TopLeftOrBottomRight & mouseState) {
+    else if (MouseState::TopLeftOrBottomRight & mouseState)
         setCursor(Qt::SizeFDiagCursor);
-    } else if (MouseState::TopRightOrBottomLeft & mouseState) {
+    else if (MouseState::TopRightOrBottomLeft & mouseState)
         setCursor(Qt::SizeBDiagCursor);
-    } else if (MouseState::TopOrBottom & mouseState) {
+    else if (MouseState::TopOrBottom & mouseState)
         setCursor(Qt::SizeVerCursor);
-    } else if (MouseState::RightOrLeft & mouseState) {
+    else if (MouseState::RightOrLeft & mouseState)
         setCursor(Qt::SizeHorCursor);
-    } else {
+    else
         setCursor(Qt::OpenHandCursor);
-    }
 }
 
 QuickEditor::MouseState QuickEditor::mouseLocation(const QPointF &pos)
 {
-    if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopLeft;
-    } else if (isPointInsideCircle(m_handlePositions[1], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[1], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopRight;
-    } else if (isPointInsideCircle(m_handlePositions[2], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[2], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::BottomRight;
-    } else if (isPointInsideCircle(m_handlePositions[3], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[3], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::BottomLeft;
-    } else if (isPointInsideCircle(m_handlePositions[4], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[4], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Top;
-    } else if (isPointInsideCircle(m_handlePositions[5], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[5], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Right;
-    } else if (isPointInsideCircle(m_handlePositions[6], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[6], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Bottom;
-    } else if (isPointInsideCircle(m_handlePositions[7], m_handleRadius * s_increaseDragAreaFactor, pos)) {
+    else if (isPointInsideCircle(m_handlePositions[7], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Left;
-    }
 
-    //Rectangle can be resized when border is dragged, if it's big enough
+    // Rectangle can be resized when border is dragged, if it's big enough
     if (m_selection.width() >= 100 && m_selection.height() >= 100) {
         if (isInRange(m_selection.x(), m_selection.x() + m_selection.width(), pos.x())) {
-            if (isWithinThreshold(pos.y() - m_selection.y(), s_borderDragAreaSize)) {
+            if (isWithinThreshold(pos.y() - m_selection.y(), s_borderDragAreaSize))
                 return MouseState::Top;
-            } else if (isWithinThreshold(pos.y() - m_selection.y() - m_selection.height(), s_borderDragAreaSize)) {
+            if (isWithinThreshold(pos.y() - m_selection.y() - m_selection.height(), s_borderDragAreaSize))
                 return MouseState::Bottom;
-            }
         }
         if (isInRange(m_selection.y(), m_selection.y() + m_selection.height(), pos.y())) {
-            if (isWithinThreshold(pos.x() - m_selection.x(), s_borderDragAreaSize)) {
+            if (isWithinThreshold(pos.x() - m_selection.x(), s_borderDragAreaSize))
                 return MouseState::Left;
-            } else if (isWithinThreshold(pos.x() - m_selection.x() - m_selection.width(), s_borderDragAreaSize)) {
+            if (isWithinThreshold(pos.x() - m_selection.x() - m_selection.width(), s_borderDragAreaSize))
                 return MouseState::Right;
-            }
         }
     }
-    if (m_selection.contains(pos)) {
+
+    if (m_selection.contains(pos))
         return MouseState::Inside;
-    } else {
-        return MouseState::Outside;
-    }
+    return MouseState::Outside;
 }
 
 void QuickEditor::layoutBottomHelpText()
