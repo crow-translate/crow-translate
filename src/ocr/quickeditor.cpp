@@ -28,30 +28,7 @@
 #include <QX11Info>
 #include <QtMath>
 
-const int QuickEditor::handleRadiusMouse = 9;
-const int QuickEditor::handleRadiusTouch = 12;
-const qreal QuickEditor::increaseDragAreaFactor = 2.0;
-const int QuickEditor::minSpacingBetweenHandles = 20;
-const int QuickEditor::borderDragAreaSize = 10;
-
-const int QuickEditor::selectionSizeThreshold = 100;
-
-const int QuickEditor::selectionBoxPaddingX = 5;
-const int QuickEditor::selectionBoxPaddingY = 4;
-const int QuickEditor::selectionBoxMarginY = 5;
-
 bool QuickEditor::bottomHelpTextPrepared = false;
-const int QuickEditor::bottomHelpBoxPaddingX = 12;
-const int QuickEditor::bottomHelpBoxPaddingY = 8;
-const int QuickEditor::bottomHelpBoxPairSpacing = 6;
-const int QuickEditor::bottomHelpBoxMarginBottom = 5;
-const int QuickEditor::midHelpTextFontSize = 12;
-
-const int QuickEditor::magnifierLargeStep = 15;
-
-const int QuickEditor::magZoom = 5;
-const int QuickEditor::magPixels = 16;
-const int QuickEditor::magOffset = 32;
 
 static QPoint fromNative(const QPoint &point, const QScreen *screen)
 {

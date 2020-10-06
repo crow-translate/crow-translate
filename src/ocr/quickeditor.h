@@ -92,31 +92,33 @@ private:
 
     void acceptSelection();
 
-    static const int handleRadiusMouse;
-    static const int handleRadiusTouch;
-    static const qreal increaseDragAreaFactor;
-    static const int minSpacingBetweenHandles;
-    static const int borderDragAreaSize;
+    static constexpr int handleRadiusMouse = 9;
+    static constexpr int handleRadiusTouch = 12;
+    static constexpr qreal increaseDragAreaFactor = 2.0;
+    static constexpr int minSpacingBetweenHandles = 20;
+    static constexpr int borderDragAreaSize = 10;
 
-    static const int selectionSizeThreshold;
+    static constexpr int selectionSizeThreshold = 100;
 
-    static const int selectionBoxPaddingX;
-    static const int selectionBoxPaddingY;
-    static const int selectionBoxMarginY;
+    static constexpr int selectionBoxPaddingX = 5;
+    static constexpr int selectionBoxPaddingY = 4;
+    static constexpr int selectionBoxMarginY = 5;
 
-    static const int bottomHelpMaxLength = 6;
+    static constexpr int bottomHelpMaxLength = 6;
+
+    static constexpr int bottomHelpBoxPaddingX = 12;
+    static constexpr int bottomHelpBoxPaddingY = 8;
+    static constexpr int bottomHelpBoxPairSpacing = 6;
+    static constexpr int bottomHelpBoxMarginBottom = 5;
+    static constexpr int midHelpTextFontSize = 12;
+
+    static constexpr int magnifierLargeStep = 15;
+
+    static constexpr int magZoom = 5;
+    static constexpr int magPixels = 16;
+    static constexpr int magOffset = 32;
+
     static bool bottomHelpTextPrepared;
-    static const int bottomHelpBoxPaddingX;
-    static const int bottomHelpBoxPaddingY;
-    static const int bottomHelpBoxPairSpacing;
-    static const int bottomHelpBoxMarginBottom;
-    static const int midHelpTextFontSize;
-
-    static const int magnifierLargeStep;
-
-    static const int magZoom;
-    static const int magPixels;
-    static const int magOffset;
 
     QColor mMaskColor;
     QColor mStrokeColor;
