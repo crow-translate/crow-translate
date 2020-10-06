@@ -141,25 +141,27 @@ private:
     QRectF m_selection;
     QPointF m_startPos;
     QPointF m_initialTopLeft;
+
     std::pair<QStaticText, std::vector<QStaticText>> m_bottomHelpText[s_bottomHelpMaxLength];
     QRect m_bottomHelpBorderBox;
     QPoint m_bottomHelpContentPos;
     int m_bottomHelpGridLeftWidth = 0;
-    MouseState m_mouseDragState = MouseState::None;
-    QPixmap m_screenPixmap;
-    QPointF m_mousePos;
-    bool m_magnifierAllowed = false;
-    bool m_showMagnifier = AppSettings::defaultShowMagnifier();
-    bool m_toggleMagnifier = false;
-    bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();
-    AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
-    bool m_disableArrowKeys = false;
     int m_bottomHelpLength = s_bottomHelpMaxLength;
 
-    // Midpoints of handles
-    QVector<QPointF> m_handlePositions = QVector<QPointF>{8};
-    // Radius of handles is either s_handleRadiusMouse or s_handleRadiusTouch
-    int m_handleRadius = s_handleRadiusMouse;
+    bool m_showMagnifier = AppSettings::defaultShowMagnifier();
+    bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();
+    AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
+
+    QPixmap m_screenPixmap;
+    QPointF m_mousePos;
+    MouseState m_mouseDragState = MouseState::None;
+
+    bool m_magnifierAllowed = false;
+    bool m_toggleMagnifier = false;
+    bool m_disableArrowKeys = false;
+
+    int m_handleRadius = s_handleRadiusMouse; // Radius of handles is either s_handleRadiusMouse or s_handleRadiusTouch
+    QVector<QPointF> m_handlePositions = QVector<QPointF>{8}; // Midpoints of handles
 };
 
 #endif // QUICKEDITOR_H
