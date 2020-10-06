@@ -101,6 +101,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &SettingsDialog::setShowTrayIconCheckBoxState);
 
 #ifdef Q_OS_WIN
     // Add information about icons
@@ -240,6 +241,17 @@ void SettingsDialog::processProxyTypeChanged(int type)
         ui->proxyPortSpinbox->setEnabled(false);
         ui->proxyInfoLabel->setEnabled(false);
         ui->proxyAuthCheckBox->setEnabled(false);
+    }
+}
+
+// Update "showTrayIconCheckBox" state when “Notification" mode selected
+void SettingsDialog::setShowTrayIconCheckBoxState(int index)
+{
+    if (index == AppSettings::Notification) {
+        ui->showTrayIconCheckBox->setDisabled(true);
+        ui->showTrayIconCheckBox->setChecked(true);
+    } else {
+        ui->showTrayIconCheckBox->setEnabled(true);
     }
 }
 
