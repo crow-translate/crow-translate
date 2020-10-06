@@ -96,7 +96,7 @@ void QuickEditor::capture()
         s_bottomHelpTextPrepared = true;
         for (auto &pair : m_bottomHelpText) {
             prepare(pair.first);
-            for (auto &item : pair.second)
+            for (QStaticText &item : pair.second)
                 prepare(item);
         }
     }
@@ -108,8 +108,7 @@ void QuickEditor::capture()
 
 void QuickEditor::keyPressEvent(QKeyEvent *event)
 {
-    const auto modifiers = event->modifiers();
-    const bool shiftPressed = modifiers & Qt::ShiftModifier;
+    const bool shiftPressed = event->modifiers() & Qt::ShiftModifier;
     if (shiftPressed)
         m_toggleMagnifier = true;
     switch (event->key()) {
@@ -128,7 +127,7 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsUp(qRound(m_selection.top() * devicePixelRatioF() - step), false);
-        if (modifiers & Qt::AltModifier) {
+        if (event->modifiers() & Qt::AltModifier) {
             m_selection.setBottom(m_dprI * newPos + m_selection.height());
             m_selection = m_selection.normalized();
         } else {
@@ -144,7 +143,7 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsRight(qRound(m_selection.left() * devicePixelRatioF() + step), false);
-        if (modifiers & Qt::AltModifier)
+        if (event->modifiers() & Qt::AltModifier)
             m_selection.setRight(m_dprI * newPos + m_selection.width());
         else
             m_selection.moveLeft(m_dprI * newPos);
@@ -158,7 +157,7 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsDown(qRound(m_selection.top() * devicePixelRatioF() + step), false);
-        if (modifiers & Qt::AltModifier)
+        if (event->modifiers() & Qt::AltModifier)
             m_selection.setBottom(m_dprI * newPos + m_selection.height());
         else
             m_selection.moveTop(m_dprI * newPos);
@@ -172,7 +171,7 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
         const int newPos = boundsLeft(qRound(m_selection.left() * devicePixelRatioF() - step), false);
-        if (modifiers & Qt::AltModifier) {
+        if (event->modifiers() & Qt::AltModifier) {
             m_selection.setRight(m_dprI * newPos + m_selection.width());
             m_selection = m_selection.normalized();
         } else {
@@ -335,8 +334,8 @@ void QuickEditor::mouseMoveEvent(QMouseEvent *event)
 
 void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
 {
-    const auto button = event->button();
-    if (button == Qt::LeftButton) {
+    switch (event->button()) {
+    case Qt::LeftButton:
         m_disableArrowKeys = false;
         if (m_mouseDragState == MouseState::Inside) {
             setCursor(Qt::OpenHandCursor);
@@ -345,9 +344,13 @@ void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
             m_mouseDragState = MouseState::None;
             return acceptSelection();
         }
-    } else if (button == Qt::RightButton) {
+        break;
+    case Qt::RightButton:
         m_selection.setWidth(0);
         m_selection.setHeight(0);
+        break;
+    default:
+        break;
     }
     event->accept();
     m_mouseDragState = MouseState::None;
@@ -379,7 +382,7 @@ void QuickEditor::paintEvent(QPaintEvent *)
         QRectF right(m_selection.right(), m_selection.top(), width() - m_selection.right(), m_selection.height());
         QRectF bottom(0, m_selection.bottom(), width(), height() - m_selection.bottom());
         QRectF left(0, m_selection.top(), m_selection.left(), m_selection.height());
-        for (const auto &rect : {top, right, bottom, left})
+        for (const QRectF &rect : {top, right, bottom, left})
             painter.fillRect(rect, m_maskColor);
 
         bool dragHandlesVisible = false;
@@ -461,12 +464,12 @@ void QuickEditor::drawBottomHelpText(QPainter &painter)
     int topOffset = m_bottomHelpContentPos.y();
     for (int i = 0; i < m_bottomHelpLength; i++) {
         const auto &item = m_bottomHelpText[i];
-        const auto &left = item.first;
-        const auto &right = item.second;
-        const auto leftSize = left.size().toSize();
+        const QStaticText &left = item.first;
+        const std::vector<QStaticText> &right = item.second;
+        const QSize leftSize = left.size().toSize();
         painter.drawStaticText(m_bottomHelpGridLeftWidth - leftSize.width(), topOffset, left);
-        for (const auto &item : right) {
-            const auto rightItemSize = item.size().toSize();
+        for (const QStaticText &item : right) {
+            const QSize rightItemSize = item.size().toSize();
             painter.drawStaticText(m_bottomHelpGridLeftWidth + s_bottomHelpBoxPairSpacing, topOffset, item);
             topOffset += rightItemSize.height();
         }
@@ -588,7 +591,7 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     painter.fillRect(crossHairBorder, m_labelForegroundColor);
     painter.drawPixmapFragments(&frag, 1, m_screenPixmap, QPainter::OpaqueHint);
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
-    for (auto &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft})
+    for (const QRectF &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft})
         painter.fillRect(rect, m_crossColor);
 }
 
@@ -728,12 +731,12 @@ void QuickEditor::layoutBottomHelpText()
     m_bottomHelpGridLeftWidth = 0;
     for (int i = 0; i < m_bottomHelpLength; i++) {
         const auto &item = m_bottomHelpText[i];
-        const auto &left = item.first;
-        const auto &right = item.second;
-        const auto leftSize = left.size().toSize();
+        const QStaticText &left = item.first;
+        const std::vector<QStaticText> &right = item.second;
+        const QSize leftSize = left.size().toSize();
         m_bottomHelpGridLeftWidth = qMax(m_bottomHelpGridLeftWidth, leftSize.width());
-        for (const auto &item : right) {
-            const auto rightItemSize = item.size().toSize();
+        for (const QStaticText &item : right) {
+            const QSize rightItemSize = item.size().toSize();
             maxRightWidth = qMax(maxRightWidth, rightItemSize.width());
             contentHeight += rightItemSize.height();
         }
