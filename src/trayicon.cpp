@@ -47,6 +47,8 @@ void TrayIcon::loadSettings(const AppSettings &settings)
         setIcon(QIcon::fromTheme(trayIconName(iconType)));
     }
 
+    setTranslationNotificationTimeout(settings.translationNotificationTimeout());
+
     const bool trayIconVisible = settings.isShowTrayIcon();
     setVisible(trayIconVisible);
     QGuiApplication::setQuitOnLastWindowClosed(!trayIconVisible);
@@ -74,6 +76,21 @@ QString TrayIcon::trayIconName(TrayIcon::IconType type)
     default:
         return QString();
     }
+}
+
+void TrayIcon::showTranslationMessage(const QString &message)
+{
+    showMessage(tr("Translation Result"), message, QSystemTrayIcon::NoIcon, translationNotificationTimeout()*1000);
+}
+
+int TrayIcon::translationNotificationTimeout()
+{
+    return m_translationNotificaitonTimeout;
+}
+
+void TrayIcon::setTranslationNotificationTimeout(int timeout)
+{
+    m_translationNotificaitonTimeout = timeout;
 }
 
 void TrayIcon::processTrayActivated(QSystemTrayIcon::ActivationReason reason)

@@ -47,8 +47,15 @@ public:
     static QIcon customTrayIcon(const QString &customName);
     static QString trayIconName(IconType type);
 
+    void showTranslationMessage(const QString &message);
+    int translationNotificationTimeout();
+    void setTranslationNotificationTimeout(int timeout);
+
 private slots:
     void processTrayActivated(QSystemTrayIcon::ActivationReason reason);
+
+private:
+    int m_translationNotificaitonTimeout;
 };
 
 #endif // TRAYICON_H

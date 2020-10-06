@@ -161,8 +161,6 @@ private:
     AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;
     double m_popupOpacity;
-
-    int m_translationNotificationDisplayTime;
 };
 
 #endif // MAINWINDOW_H

@@ -381,16 +381,22 @@
           </property>
           <layout class="QHBoxLayout" name="notificationBoxLayout">
            <item>
-            <widget class="QLabel" name="translationNotificationDisplayTimeLabel">
+            <widget class="QLabel" name="translationNotificationTimeoutLabel">
              <property name="text">
-              <string>Translation notification display time:</string>
+              <string>Translation notification timeout:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QSpinBox" name="translationNotificationDisplayTimeSpinBox">
+            <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
              <property name="suffix">
               <string> s</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>60</number>
              </property>
             </widget>
            </item>

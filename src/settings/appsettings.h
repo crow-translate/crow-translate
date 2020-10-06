@@ -121,9 +121,9 @@ public:
     void setPopupWidth(int width);
     static int defaultPopupWidth();
 
-    int translationNotificationDisplayTime() const;
-    void setTranslationNotificationDisplayTime(int displayTime);
-    static int defaultTranslationNotificationDisplayTime();
+    int translationNotificationTimeout() const;
+    void setTranslationNotificationTimeout(int timeout);
+    static int defaultTranslationNotificationTimeout();
 
     LanguageFormat popupLanguageFormat() const;
     void setPopupLanguageFormat(LanguageFormat style);
