@@ -6,22 +6,22 @@
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="14"/>
         <source>Add language</source>
-        <translation type="unfinished">Añadir idioma</translation>
+        <translation>Añadir idioma</translation>
     </message>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="88"/>
         <source>Available languages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idiomas disponibles:</translation>
     </message>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="101"/>
         <source>Current languages:</source>
-        <translation type="unfinished"></translation>
+        <translation>Idiomas actuales:</translation>
     </message>
     <message>
         <location filename="../../src/addlanguagedialog.cpp" line="35"/>
         <source>Filter (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>Filtrar (%1)</translation>
     </message>
 </context>
 <context>
@@ -34,7 +34,7 @@
     <message>
         <location filename="../../src/settings/appsettings.cpp" line="859"/>
         <source>Unknown language code: %1</source>
-        <translation type="unfinished"></translation>
+        <translation>Código de idioma desconocido: %1</translation>
     </message>
 </context>
 <context>
@@ -42,7 +42,7 @@
     <message>
         <location filename="../../src/cli.cpp" line="51"/>
         <source>Display all language codes.</source>
-        <translation>Mostrar los códigos de todos los idiomas</translation>
+        <translation>Mostrar los códigos de todos los idiomas.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="52"/>
@@ -87,7 +87,7 @@
     <message>
         <location filename="../../src/cli.cpp" line="60"/>
         <source>Do not print any text when using --%1 or --%2.</source>
-        <translation type="unfinished"></translation>
+        <translation>No mostrar ningún texto al utilizar --%1 o --%2.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="64"/>
@@ -102,7 +102,7 @@
     <message>
         <location filename="../../src/cli.cpp" line="87"/>
         <source>Error: You can&apos;t use --%1 with --%2</source>
-        <translation type="unfinished"></translation>
+        <translation>Error: No puede utilizar --%1 con --%2</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="133"/>
@@ -117,7 +117,7 @@
     <message>
         <location filename="../../src/cli.cpp" line="61"/>
         <source>Print only translations.</source>
-        <translation type="unfinished"></translation>
+        <translation>Mostrar solo las traducciones.</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="167"/>
@@ -172,18 +172,18 @@
     <message>
         <location filename="../../src/languagebuttonswidget.cpp" line="417"/>
         <source>Window width is larger then screen due to the languages on the panel.</source>
-        <translation type="unfinished"></translation>
+        <translation>El ancho de la ventana es mayor que la ventana debido a los idiomas del panel.</translation>
     </message>
     <message>
         <location filename="../../src/languagebuttonswidget.cpp" line="418"/>
         <source>Please reduce added languages.</source>
-        <translation type="unfinished"></translation>
+        <translation>Por favor, reduzca los idiomas añadidos.</translation>
     </message>
     <message>
         <location filename="../../src/languagebuttonswidget.cpp" line="482"/>
         <location filename="../../src/languagebuttonswidget.cpp" line="484"/>
         <source>Auto</source>
-        <translation type="unfinished">Auto</translation>
+        <translation>Auto</translation>
     </message>
 </context>
 <context>
@@ -1716,7 +1716,7 @@
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
         <source>Swap languages</source>
-        <translation type="unfinished">Intercambiar idiomas</translation>
+        <translation>Intercambiar idiomas</translation>
     </message>
     <message>
         <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
@@ -1838,7 +1838,7 @@
     <message>
         <location filename="../../src/updaterdialog.ui" line="44"/>
         <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-        <translation type="unfinished"></translation>
+        <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;¡Hay disponible una nueva versión de Crow Translate! Las actualizaciones añaden funcionalidades y mejoran la estabilidad de la aplicación. Muy a menudo.&lt;br/&gt;También puede descargar la nueva publicación de manera manual desde este &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;enlace&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
         <location filename="../../src/updaterdialog.ui" line="67"/>

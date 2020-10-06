@@ -130,6 +130,10 @@ public:
     void setPopupWidth(int width);
     static int defaultPopupWidth();
 
+    int translationNotificationTimeout() const;
+    void setTranslationNotificationTimeout(int timeout);
+    static int defaultTranslationNotificationTimeout();
+
     LanguageFormat popupLanguageFormat() const;
     void setPopupLanguageFormat(LanguageFormat style);
     static LanguageFormat defaultPopupLanguageFormat();
