@@ -101,6 +101,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+    
+    // Disable "Show tray icon" if "Pop-up mode selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &SettingsDialog::setShowTrayIconCheckBoxState);
 
 #ifdef Q_OS_WIN
@@ -244,7 +246,7 @@ void SettingsDialog::processProxyTypeChanged(int type)
     }
 }
 
-// Update "showTrayIconCheckBox" state when “Notification" mode selected
+// Update "Show tray Icon" checkbox state when “Notification" mode selected
 void SettingsDialog::setShowTrayIconCheckBoxState(int index)
 {
     if (index == AppSettings::Notification) {
