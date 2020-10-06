@@ -128,38 +128,38 @@ private:
 
     static bool s_bottomHelpTextPrepared;
 
+    const qreal m_dprI = 1.0 / devicePixelRatioF();
+    const QColor m_strokeColor = palette().highlight().color();
+    const QColor m_crossColor = QColor::fromRgbF(m_strokeColor.redF(), m_strokeColor.greenF(), m_strokeColor.blueF(), 0.7);
+    const QColor m_labelForegroundColor = palette().windowText().color();
+    const QColor m_labelBackgroundColor = QColor::fromRgbF(palette().light().color().redF(),
+                                                     palette().light().color().greenF(),
+                                                     palette().light().color().blueF(),
+                                                     0.85);
+
     QColor m_maskColor;
-    QColor m_strokeColor;
-    QColor m_crossColor;
-    QColor m_labelBackgroundColor;
-    QColor m_labelForegroundColor;
     QRectF m_selection;
     QPointF m_startPos;
     QPointF m_initialTopLeft;
-    QString m_midHelpText;
-    QFont m_midHelpTextFont;
     std::pair<QStaticText, std::vector<QStaticText>> m_bottomHelpText[s_bottomHelpMaxLength];
-    QFont m_bottomHelpTextFont;
     QRect m_bottomHelpBorderBox;
     QPoint m_bottomHelpContentPos;
-    int m_bottomHelpGridLeftWidth;
-    MouseState m_mouseDragState;
+    int m_bottomHelpGridLeftWidth = 0;
+    MouseState m_mouseDragState = MouseState::None;
     QPixmap m_pixmap;
-    qreal m_dprI;
     QPointF m_mousePos;
-    bool m_magnifierAllowed;
-    bool m_showMagnifier;
-    bool m_toggleMagnifier;
-    bool m_releaseToCapture;
+    bool m_magnifierAllowed = false;
+    bool m_showMagnifier = AppSettings::defaultShowMagnifier();
+    bool m_toggleMagnifier = false;
+    bool m_releaseToCapture = AppSettings::defaultCaptureOnRelease();
     AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
-    bool m_disableArrowKeys;
-    QRect m_primaryScreenGeo;
-    int m_bottomHelpLength;
+    bool m_disableArrowKeys = false;
+    int m_bottomHelpLength = s_bottomHelpMaxLength;
 
     // Midpoints of handles
     QVector<QPointF> m_handlePositions = QVector<QPointF>{8};
     // Radius of handles is either s_handleRadiusMouse or s_handleRadiusTouch
-    int m_handleRadius;
+    int m_handleRadius = s_handleRadiusMouse;
 };
 
 #endif // QUICKEDITOR_H

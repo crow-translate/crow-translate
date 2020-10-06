@@ -32,31 +32,10 @@ bool QuickEditor::s_bottomHelpTextPrepared = false;
 
 QuickEditor::QuickEditor(QWidget *parent)
     : QWidget(parent)
-    , m_maskColor(QColor::fromRgbF(0, 0, 0, 0.15))
-    , m_strokeColor(palette().highlight().color())
-    , m_crossColor(QColor::fromRgbF(m_strokeColor.redF(), m_strokeColor.greenF(), m_strokeColor.blueF(), 0.7))
-    , m_labelBackgroundColor(QColor::fromRgbF(palette().light().color().redF(),
-                                             palette().light().color().greenF(),
-                                             palette().light().color().blueF(),
-                                             0.85))
-    , m_labelForegroundColor(palette().windowText().color())
-    , m_midHelpText(tr("Click and drag to draw a selection rectangle,\nor press Esc to quit"))
-    , m_midHelpTextFont(font())
-    , m_bottomHelpTextFont(font())
-    , m_bottomHelpGridLeftWidth(0)
-    , m_mouseDragState(MouseState::None)
-    , m_magnifierAllowed(false)
-    , m_toggleMagnifier(false)
-    , m_disableArrowKeys(false)
-    , m_primaryScreenGeo(QGuiApplication::primaryScreen()->geometry())
-    , m_bottomHelpLength(s_bottomHelpMaxLength)
-    , m_handleRadius(s_handleRadiusMouse)
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_StaticContents);
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
-
-    m_dprI = 1.0 / devicePixelRatioF();
 }
 
 void QuickEditor::loadSettings(const AppSettings &settings)
@@ -111,7 +90,6 @@ void QuickEditor::capture()
     }
 
     setBottomHelpText();
-    m_midHelpTextFont.setPointSize(s_midHelpTextFontSize);
     if (!s_bottomHelpTextPrepared) {
         s_bottomHelpTextPrepared = true;
         for (auto &pair : m_bottomHelpText) {
@@ -490,7 +468,7 @@ void QuickEditor::drawBottomHelpText(QPainter &painter)
 
     painter.setBrush(m_labelBackgroundColor);
     painter.setPen(m_labelForegroundColor);
-    painter.setFont(m_bottomHelpTextFont);
+    painter.setFont(font());
     painter.setRenderHint(QPainter::Antialiasing, false);
     painter.drawRect(m_bottomHelpBorderBox);
     painter.setRenderHint(QPainter::Antialiasing, true);
@@ -637,9 +615,15 @@ void QuickEditor::drawMagnifier(QPainter &painter)
 void QuickEditor::drawMidHelpText(QPainter &painter)
 {
     painter.fillRect(rect(), m_maskColor);
-    painter.setFont(m_midHelpTextFont);
-    QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, m_midHelpText);
-    QPoint pos((m_primaryScreenGeo.width() - textSize.width()) / 2 + m_primaryScreenGeo.x(), (height() - textSize.height()) / 2);
+
+    QFont midHelpTextFont = font();
+    midHelpTextFont.setPointSize(s_midHelpTextFontSize);
+    painter.setFont(midHelpTextFont);
+
+    const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
+    QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
+    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
+    QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x(), (height() - textSize.height()) / 2);
 
     painter.setBrush(m_labelBackgroundColor);
     QPen pen(m_labelForegroundColor);
@@ -648,7 +632,7 @@ void QuickEditor::drawMidHelpText(QPainter &painter)
     painter.drawRoundedRect(QRect(pos.x() - 20, pos.y() - 20, textSize.width() + 40, textSize.height() + 40), 4, 4);
 
     painter.setCompositionMode(QPainter::CompositionMode_Source);
-    painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, m_midHelpText);
+    painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, midHelpText);
 }
 
 void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible)
@@ -781,7 +765,8 @@ void QuickEditor::layoutBottomHelpText()
         contentWidth = qMax(contentWidth, m_bottomHelpGridLeftWidth + maxRightWidth + s_bottomHelpBoxPairSpacing);
         contentHeight += (i != s_bottomHelpMaxLength ? s_bottomHelpBoxMarginBottom : 0);
     }
-    m_bottomHelpContentPos.setX((m_primaryScreenGeo.width() - contentWidth) / 2 + m_primaryScreenGeo.x());
+    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
+    m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x());
     m_bottomHelpContentPos.setY(height() - contentHeight - 8);
     m_bottomHelpGridLeftWidth += m_bottomHelpContentPos.x();
     m_bottomHelpBorderBox.setRect(m_bottomHelpContentPos.x() - s_bottomHelpBoxPaddingX,
