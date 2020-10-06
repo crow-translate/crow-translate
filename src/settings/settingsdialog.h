@@ -58,6 +58,7 @@ private slots:
     void processProxyTypeChanged(int type);
     void processTrayIconTypeChanged(int type);
 
+    void setShowTrayIconCheckBoxState(int index);
     void chooseCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
 

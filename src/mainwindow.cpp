@@ -383,7 +383,7 @@ void MainWindow::displayTranslation()
     // If window mode is notification, send a notification including the translation result
     const AppSettings settings;
     if (this->isHidden() && settings.windowMode() == AppSettings::Notification)
-        m_trayIcon->showMessage(tr("Translation Result"), ui->translationEdit->toPlainText(), QSystemTrayIcon::NoIcon, 3000);
+        m_trayIcon->showTranslationMessage(ui->translationEdit->toPlainText());
 }
 
 void MainWindow::clearTranslation()

@@ -101,6 +101,9 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
+    
+    // Disable "Show tray icon" if "Pop-up mode selected
+    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &SettingsDialog::setShowTrayIconCheckBoxState);
 
 #ifdef Q_OS_WIN
     // Add information about icons
@@ -186,6 +189,8 @@ void SettingsDialog::accept()
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
 
+    settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
+
     settings.setMainWindowLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->mainWindowLanguageFormatComboBox->currentIndex()));
     settings.setPopupLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->popupLanguageFormatComboBox->currentIndex()));
 
@@ -238,6 +243,17 @@ void SettingsDialog::processProxyTypeChanged(int type)
         ui->proxyPortSpinbox->setEnabled(false);
         ui->proxyInfoLabel->setEnabled(false);
         ui->proxyAuthCheckBox->setEnabled(false);
+    }
+}
+
+// Update "Show tray Icon" checkbox state when “Notification" mode selected
+void SettingsDialog::setShowTrayIconCheckBoxState(int index)
+{
+    if (index == AppSettings::Notification) {
+        ui->showTrayIconCheckBox->setDisabled(true);
+        ui->showTrayIconCheckBox->setChecked(true);
+    } else {
+        ui->showTrayIconCheckBox->setEnabled(true);
     }
 }
 
@@ -509,6 +525,8 @@ void SettingsDialog::loadSettings()
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
+
+    ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
 
     ui->mainWindowLanguageFormatComboBox->setCurrentIndex(settings.mainWindowLanguageFormat());
     ui->popupLanguageFormatComboBox->setCurrentIndex(settings.popupLanguageFormat());
