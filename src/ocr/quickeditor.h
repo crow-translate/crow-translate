@@ -87,10 +87,18 @@ private:
     void setMouseCursor(const QPointF &pos);
     MouseState mouseLocation(const QPointF &pos);
 
+    void prepare(QStaticText &text);
     void setBottomHelpText();
     void layoutBottomHelpText();
 
     void acceptSelection();
+
+    static QPoint fromNative(const QPoint &point, const QScreen *screen);
+    static QSize fromNative(const QSize &size, const QScreen *screen);
+    static QRect fromNativePixels(const QRect &rect, const QScreen *screen);
+    static bool isPointInsideCircle(const QPointF &circleCenter, qreal radius, const QPointF &point);
+    static bool isInRange(qreal low, qreal high, qreal value);
+    static bool isWithinThreshold(qreal offset, qreal threshold);
 
     static constexpr int handleRadiusMouse = 9;
     static constexpr int handleRadiusTouch = 12;

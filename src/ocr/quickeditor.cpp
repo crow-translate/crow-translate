@@ -30,24 +30,6 @@
 
 bool QuickEditor::bottomHelpTextPrepared = false;
 
-static QPoint fromNative(const QPoint &point, const QScreen *screen)
-{
-    const QPoint origin = screen->geometry().topLeft();
-    const qreal devicePixelRatio = screen->devicePixelRatio();
-
-    return (point - origin) / devicePixelRatio + origin;
-}
-
-static QSize fromNative(const QSize &size, const QScreen *screen)
-{
-    return size / screen->devicePixelRatio();
-}
-
-static QRect fromNativePixels(const QRect &rect, const QScreen *screen)
-{
-    return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
-}
-
 QuickEditor::QuickEditor(QWidget *parent)
     : QWidget(parent)
     , mMaskColor(QColor::fromRgbF(0, 0, 0, 0.15))
@@ -132,10 +114,6 @@ void QuickEditor::capture()
     mMidHelpTextFont.setPointSize(midHelpTextFontSize);
     if (!bottomHelpTextPrepared) {
         bottomHelpTextPrepared = true;
-        const auto prepare = [this](QStaticText &item) {
-            item.prepare(QTransform(), mBottomHelpTextFont);
-            item.setPerformanceHint(QStaticText::AggressiveCaching);
-        };
         for (auto &pair : mBottomHelpText) {
             prepare(pair.first);
             for (auto &item : pair.second) {
@@ -741,10 +719,6 @@ void QuickEditor::setMouseCursor(const QPointF &pos)
 
 QuickEditor::MouseState QuickEditor::mouseLocation(const QPointF &pos)
 {
-    auto isPointInsideCircle = [](const QPointF &circleCenter, qreal radius, const QPointF &point) {
-        return (qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2)) ? true : false;
-    };
-
     if (isPointInsideCircle(mHandlePositions[0], mHandleRadius * increaseDragAreaFactor, pos)) {
         return MouseState::TopLeft;
     } else if (isPointInsideCircle(mHandlePositions[1], mHandleRadius * increaseDragAreaFactor, pos)) {
@@ -763,27 +737,19 @@ QuickEditor::MouseState QuickEditor::mouseLocation(const QPointF &pos)
         return MouseState::Left;
     }
 
-    auto inRange = [](qreal low, qreal high, qreal value) {
-        return value >= low && value <= high;
-    };
-
-    auto withinThreshold = [](qreal offset, qreal threshold) {
-        return qFabs(offset) <= threshold;
-    };
-
     //Rectangle can be resized when border is dragged, if it's big enough
     if (mSelection.width() >= 100 && mSelection.height() >= 100) {
-        if (inRange(mSelection.x(), mSelection.x() + mSelection.width(), pos.x())) {
-            if (withinThreshold(pos.y() - mSelection.y(), borderDragAreaSize)) {
+        if (isInRange(mSelection.x(), mSelection.x() + mSelection.width(), pos.x())) {
+            if (isWithinThreshold(pos.y() - mSelection.y(), borderDragAreaSize)) {
                 return MouseState::Top;
-            } else if (withinThreshold(pos.y() - mSelection.y() - mSelection.height(), borderDragAreaSize)) {
+            } else if (isWithinThreshold(pos.y() - mSelection.y() - mSelection.height(), borderDragAreaSize)) {
                 return MouseState::Bottom;
             }
         }
-        if (inRange(mSelection.y(), mSelection.y() + mSelection.height(), pos.y())) {
-            if (withinThreshold(pos.x() - mSelection.x(), borderDragAreaSize)) {
+        if (isInRange(mSelection.y(), mSelection.y() + mSelection.height(), pos.y())) {
+            if (isWithinThreshold(pos.x() - mSelection.x(), borderDragAreaSize)) {
                 return MouseState::Left;
-            } else if (withinThreshold(pos.x() - mSelection.x() - mSelection.width(), borderDragAreaSize)) {
+            } else if (isWithinThreshold(pos.x() - mSelection.x() - mSelection.width(), borderDragAreaSize)) {
                 return MouseState::Right;
             }
         }
@@ -857,4 +823,43 @@ void QuickEditor::acceptSelection()
         emit grabDone(mPixmap.copy(scaledCropRegion));
     }
     hide();
+}
+
+QPoint QuickEditor::fromNative(const QPoint &point, const QScreen *screen)
+{
+    const QPoint origin = screen->geometry().topLeft();
+    const qreal devicePixelRatio = screen->devicePixelRatio();
+
+    return (point - origin) / devicePixelRatio + origin;
+}
+
+QSize QuickEditor::fromNative(const QSize &size, const QScreen *screen)
+{
+    return size / screen->devicePixelRatio();
+}
+
+QRect QuickEditor::fromNativePixels(const QRect &rect, const QScreen *screen)
+{
+    return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
+}
+
+bool QuickEditor::isPointInsideCircle(const QPointF &circleCenter, qreal radius, const QPointF &point)
+{
+    return (qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2)) ? true : false;
+}
+
+bool QuickEditor::isInRange(qreal low, qreal high, qreal value)
+{
+    return value >= low && value <= high;
+}
+
+bool QuickEditor::isWithinThreshold(qreal offset, qreal threshold)
+{
+    return qFabs(offset) <= threshold;
+}
+
+void QuickEditor::prepare(QStaticText &text)
+{
+    text.prepare(QTransform(), font());
+    text.setPerformanceHint(QStaticText::AggressiveCaching);
 }
