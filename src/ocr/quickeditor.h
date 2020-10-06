@@ -32,19 +32,21 @@
 class QMouseEvent;
 class AppSettings;
 
-class QuickEditor: public QWidget
+class QuickEditor : public QWidget
 {
     Q_OBJECT
 
 public:
-
     explicit QuickEditor(QWidget *parent = nullptr);
 
     void loadSettings(const AppSettings &settings);
     void capture();
 
-private:
+signals:
+    void grabDone(const QPixmap &thePixmap);
+    void grabCancelled();
 
+private:
     enum MouseState : short {
         None = 0, // 0000
         Inside = 1 << 0, // 0001
@@ -68,22 +70,22 @@ private:
     int boundsRight(int newTopLeftX, const bool mouse = true);
     int boundsUp(int newTopLeftY, const bool mouse = true);
     int boundsDown(int newTopLeftY, const bool mouse = true);
-    void keyPressEvent(QKeyEvent* event) override;
-    void keyReleaseEvent(QKeyEvent* event) override;
-    void mousePressEvent(QMouseEvent* event) override;
-    void mouseMoveEvent(QMouseEvent* event) override;
-    void mouseReleaseEvent(QMouseEvent* event) override;
-    void mouseDoubleClickEvent(QMouseEvent* event) override;
-    void paintEvent(QPaintEvent*) override;
-    void drawBottomHelpText(QPainter& painter);
-    void drawDragHandles(QPainter& painter);
-    void drawMagnifier(QPainter& painter);
-    void drawMidHelpText(QPainter& painter);
-    void drawSelectionSizeTooltip(QPainter& painter, bool dragHandlesVisible);
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void mouseReleaseEvent(QMouseEvent *event) override;
+    void mouseDoubleClickEvent(QMouseEvent *event) override;
+    void paintEvent(QPaintEvent *) override;
+    void drawBottomHelpText(QPainter &painter);
+    void drawDragHandles(QPainter &painter);
+    void drawMagnifier(QPainter &painter);
+    void drawMidHelpText(QPainter &painter);
+    void drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible);
     void setBottomHelpText();
     void layoutBottomHelpText();
-    void setMouseCursor(const QPointF& pos);
-    MouseState mouseLocation(const QPointF& pos);
+    void setMouseCursor(const QPointF &pos);
+    MouseState mouseLocation(const QPointF &pos);
 
     static const int handleRadiusMouse;
     static const int handleRadiusTouch;
@@ -140,14 +142,9 @@ private:
     int mbottomHelpLength;
 
     // Midpoints of handles
-    QVector<QPointF> mHandlePositions = QVector<QPointF> {8};
+    QVector<QPointF> mHandlePositions = QVector<QPointF>{8};
     // Radius of handles is either handleRadiusMouse or handleRadiusTouch
     int mHandleRadius;
-
-Q_SIGNALS:
-
-    void grabDone(const QPixmap &thePixmap);
-    void grabCancelled();
 };
 
 #endif // QUICKEDITOR_H
