@@ -100,66 +100,66 @@ private:
     static bool isInRange(qreal low, qreal high, qreal value);
     static bool isWithinThreshold(qreal offset, qreal threshold);
 
-    static constexpr int handleRadiusMouse = 9;
-    static constexpr int handleRadiusTouch = 12;
-    static constexpr qreal increaseDragAreaFactor = 2.0;
-    static constexpr int minSpacingBetweenHandles = 20;
-    static constexpr int borderDragAreaSize = 10;
+    static constexpr int s_handleRadiusMouse = 9;
+    static constexpr int s_handleRadiusTouch = 12;
+    static constexpr qreal s_increaseDragAreaFactor = 2.0;
+    static constexpr int s_minSpacingBetweenHandles = 20;
+    static constexpr int s_borderDragAreaSize = 10;
 
-    static constexpr int selectionSizeThreshold = 100;
+    static constexpr int s_selectionSizeThreshold = 100;
 
-    static constexpr int selectionBoxPaddingX = 5;
-    static constexpr int selectionBoxPaddingY = 4;
-    static constexpr int selectionBoxMarginY = 5;
+    static constexpr int s_selectionBoxPaddingX = 5;
+    static constexpr int s_selectionBoxPaddingY = 4;
+    static constexpr int s_selectionBoxMarginY = 5;
 
-    static constexpr int bottomHelpMaxLength = 6;
+    static constexpr int s_bottomHelpMaxLength = 6;
 
-    static constexpr int bottomHelpBoxPaddingX = 12;
-    static constexpr int bottomHelpBoxPaddingY = 8;
-    static constexpr int bottomHelpBoxPairSpacing = 6;
-    static constexpr int bottomHelpBoxMarginBottom = 5;
-    static constexpr int midHelpTextFontSize = 12;
+    static constexpr int s_bottomHelpBoxPaddingX = 12;
+    static constexpr int s_bottomHelpBoxPaddingY = 8;
+    static constexpr int s_bottomHelpBoxPairSpacing = 6;
+    static constexpr int s_bottomHelpBoxMarginBottom = 5;
+    static constexpr int s_midHelpTextFontSize = 12;
 
-    static constexpr int magnifierLargeStep = 15;
+    static constexpr int s_magnifierLargeStep = 15;
 
-    static constexpr int magZoom = 5;
-    static constexpr int magPixels = 16;
-    static constexpr int magOffset = 32;
+    static constexpr int s_magZoom = 5;
+    static constexpr int s_magPixels = 16;
+    static constexpr int s_magOffset = 32;
 
-    static bool bottomHelpTextPrepared;
+    static bool s_bottomHelpTextPrepared;
 
-    QColor mMaskColor;
-    QColor mStrokeColor;
-    QColor mCrossColor;
-    QColor mLabelBackgroundColor;
-    QColor mLabelForegroundColor;
-    QRectF mSelection;
-    QPointF mStartPos;
-    QPointF mInitialTopLeft;
-    QString mMidHelpText;
-    QFont mMidHelpTextFont;
-    std::pair<QStaticText, std::vector<QStaticText>> mBottomHelpText[bottomHelpMaxLength];
-    QFont mBottomHelpTextFont;
-    QRect mBottomHelpBorderBox;
-    QPoint mBottomHelpContentPos;
-    int mBottomHelpGridLeftWidth;
-    MouseState mMouseDragState;
-    QPixmap mPixmap;
-    qreal dprI;
-    QPointF mMousePos;
-    bool mMagnifierAllowed;
-    bool mShowMagnifier;
-    bool mToggleMagnifier;
-    bool mReleaseToCapture;
-    AppSettings::RegionRememberType mRememberRegion = AppSettings::defaultRegionRememberType();
-    bool mDisableArrowKeys;
-    QRect mPrimaryScreenGeo;
-    int mbottomHelpLength;
+    QColor m_maskColor;
+    QColor m_strokeColor;
+    QColor m_crossColor;
+    QColor m_labelBackgroundColor;
+    QColor m_labelForegroundColor;
+    QRectF m_selection;
+    QPointF m_startPos;
+    QPointF m_initialTopLeft;
+    QString m_midHelpText;
+    QFont m_midHelpTextFont;
+    std::pair<QStaticText, std::vector<QStaticText>> m_bottomHelpText[s_bottomHelpMaxLength];
+    QFont m_bottomHelpTextFont;
+    QRect m_bottomHelpBorderBox;
+    QPoint m_bottomHelpContentPos;
+    int m_bottomHelpGridLeftWidth;
+    MouseState m_mouseDragState;
+    QPixmap m_pixmap;
+    qreal m_dprI;
+    QPointF m_mousePos;
+    bool m_magnifierAllowed;
+    bool m_showMagnifier;
+    bool m_toggleMagnifier;
+    bool m_releaseToCapture;
+    AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
+    bool m_disableArrowKeys;
+    QRect m_primaryScreenGeo;
+    int m_bottomHelpLength;
 
     // Midpoints of handles
-    QVector<QPointF> mHandlePositions = QVector<QPointF>{8};
-    // Radius of handles is either handleRadiusMouse or handleRadiusTouch
-    int mHandleRadius;
+    QVector<QPointF> m_handlePositions = QVector<QPointF>{8};
+    // Radius of handles is either s_handleRadiusMouse or s_handleRadiusTouch
+    int m_handleRadius;
 };
 
 #endif // QUICKEDITOR_H
