@@ -35,6 +35,7 @@ QStringList Ocr::availableLanguages() const
     QStringList availableLanguages;
     GenericVector<STRING> languages;
     m_tesseract.GetAvailableLanguagesAsVector(&languages);
+    availableLanguages.reserve(languages.size());
     for (int i = 0; i < languages.size(); ++i)
         availableLanguages.append(languages[i].string());
     return availableLanguages;

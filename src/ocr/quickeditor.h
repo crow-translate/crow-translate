@@ -78,25 +78,25 @@ private:
     int boundsUp(int newTopLeftY, const bool mouse = true);
     int boundsDown(int newTopLeftY, const bool mouse = true);
 
-    void drawBottomHelpText(QPainter &painter);
+    void drawBottomHelpText(QPainter &painter) const;
     void drawDragHandles(QPainter &painter);
-    void drawMagnifier(QPainter &painter);
-    void drawMidHelpText(QPainter &painter);
-    void drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible);
+    void drawMagnifier(QPainter &painter) const;
+    void drawMidHelpText(QPainter &painter) const;
+    void drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const;
 
-    void setMouseCursor(const QPointF &pos);
-    MouseState mouseLocation(const QPointF &pos);
+    void setMouseCursor(QPointF pos);
+    MouseState mouseLocation(QPointF pos) const;
 
-    void prepare(QStaticText &text);
+    void prepare(QStaticText &text) const;
     void setBottomHelpText();
     void layoutBottomHelpText();
 
     void acceptSelection();
 
-    static QPoint fromNative(const QPoint &point, const QScreen *screen);
-    static QSize fromNative(const QSize &size, const QScreen *screen);
-    static QRect fromNativePixels(const QRect &rect, const QScreen *screen);
-    static bool isPointInsideCircle(const QPointF &circleCenter, qreal radius, const QPointF &point);
+    static QPoint fromNative(QPoint point, const QScreen *screen);
+    static QSize fromNative(QSize size, const QScreen *screen);
+    static QRect fromNativePixels(QRect rect, const QScreen *screen);
+    static bool isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point);
     static bool isInRange(qreal low, qreal high, qreal value);
     static bool isWithinThreshold(qreal offset, qreal threshold);
 

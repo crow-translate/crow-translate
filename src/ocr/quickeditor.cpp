@@ -84,10 +84,16 @@ void QuickEditor::capture()
         m_selection = {};
         m_startPos = {};
         m_initialTopLeft = {};
-        m_mouseDragState = MouseState::None;
+
         m_mousePos = {};
-        m_handlePositions = QVector<QPointF>{8};
+        m_mouseDragState = MouseState::None;
+
+        m_magnifierAllowed = false;
+        m_toggleMagnifier = false;
         m_disableArrowKeys = false;
+
+        m_handleRadius = s_handleRadiusMouse;
+        m_handlePositions = QVector<QPointF>{8};
         setCursor(Qt::CrossCursor);
     }
 
@@ -337,13 +343,10 @@ void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
     switch (event->button()) {
     case Qt::LeftButton:
         m_disableArrowKeys = false;
-        if (m_mouseDragState == MouseState::Inside) {
+        if (m_mouseDragState == MouseState::Inside)
             setCursor(Qt::OpenHandCursor);
-        } else if (m_mouseDragState == MouseState::Outside && m_captureOnRelease) {
-            event->accept();
-            m_mouseDragState = MouseState::None;
-            return acceptSelection();
-        }
+        else if (m_mouseDragState == MouseState::Outside && m_captureOnRelease)
+            acceptSelection();
         break;
     case Qt::RightButton:
         m_selection.setWidth(0);
@@ -449,7 +452,7 @@ int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
     return newTopLeftY;
 }
 
-void QuickEditor::drawBottomHelpText(QPainter &painter)
+void QuickEditor::drawBottomHelpText(QPainter &painter) const
 {
     if (m_selection.intersects(m_bottomHelpBorderBox))
         return;
@@ -545,7 +548,7 @@ void QuickEditor::drawDragHandles(QPainter &painter)
     painter.fillPath(path, m_strokeColor);
 }
 
-void QuickEditor::drawMagnifier(QPainter &painter)
+void QuickEditor::drawMagnifier(QPainter &painter) const
 {
     const int pixels = 2 * s_magPixels + 1;
     int magX = static_cast<int>(m_mousePos.x() * devicePixelRatioF() - s_magPixels);
@@ -574,12 +577,12 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     }
     QRectF magniRect(magX, magY, pixels, pixels);
 
-    qreal drawPosX = m_mousePos.x() + s_magOffset + pixels * s_magZoom / 2;
-    if (drawPosX > width() - pixels * s_magZoom / 2)
-        drawPosX = m_mousePos.x() - s_magOffset - pixels * s_magZoom / 2;
-    qreal drawPosY = m_mousePos.y() + s_magOffset + pixels * s_magZoom / 2;
-    if (drawPosY > height() - pixels * s_magZoom / 2)
-        drawPosY = m_mousePos.y() - s_magOffset - pixels * s_magZoom / 2;
+    qreal drawPosX = m_mousePos.x() + s_magOffset + pixels * static_cast<qreal>(s_magZoom) / 2;
+    if (drawPosX > width() - pixels * static_cast<qreal>(s_magZoom) / 2)
+        drawPosX = m_mousePos.x() - s_magOffset - pixels * static_cast<qreal>(s_magZoom) / 2;
+    qreal drawPosY = m_mousePos.y() + s_magOffset + pixels * static_cast<qreal>(s_magZoom) / 2;
+    if (drawPosY > height() - pixels * static_cast<qreal>(s_magZoom) / 2)
+        drawPosY = m_mousePos.y() - s_magOffset - pixels * static_cast<qreal>(s_magZoom) / 2;
     QPointF drawPos(drawPosX, drawPosY);
     QRectF crossHairTop(drawPos.x() + s_magZoom * (offsetX - 0.5), drawPos.y() - s_magZoom * (s_magPixels + 0.5), s_magZoom, s_magZoom * (s_magPixels + offsetY));
     QRectF crossHairRight(drawPos.x() + s_magZoom * (0.5 + offsetX), drawPos.y() + s_magZoom * (offsetY - 0.5), s_magZoom * (s_magPixels - offsetX), s_magZoom);
@@ -595,7 +598,7 @@ void QuickEditor::drawMagnifier(QPainter &painter)
         painter.fillRect(rect, m_crossColor);
 }
 
-void QuickEditor::drawMidHelpText(QPainter &painter)
+void QuickEditor::drawMidHelpText(QPainter &painter) const
 {
     painter.fillRect(rect(), m_maskColor);
 
@@ -618,7 +621,7 @@ void QuickEditor::drawMidHelpText(QPainter &painter)
     painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, midHelpText);
 }
 
-void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible)
+void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const
 {
     /*
      * Set the selection size and finds the most appropriate position:
@@ -666,7 +669,7 @@ void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVi
     painter.drawText(selectionBoxRect, Qt::AlignCenter, selectionSizeText);
 }
 
-void QuickEditor::setMouseCursor(const QPointF &pos)
+void QuickEditor::setMouseCursor(QPointF pos)
 {
     MouseState mouseState = mouseLocation(pos);
     if (mouseState == MouseState::Outside)
@@ -683,7 +686,7 @@ void QuickEditor::setMouseCursor(const QPointF &pos)
         setCursor(Qt::OpenHandCursor);
 }
 
-QuickEditor::MouseState QuickEditor::mouseLocation(const QPointF &pos)
+QuickEditor::MouseState QuickEditor::mouseLocation(QPointF pos) const
 {
     if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopLeft;
@@ -748,9 +751,9 @@ void QuickEditor::layoutBottomHelpText()
     m_bottomHelpContentPos.setY(height() - contentHeight - 8);
     m_bottomHelpGridLeftWidth += m_bottomHelpContentPos.x();
     m_bottomHelpBorderBox.setRect(m_bottomHelpContentPos.x() - s_bottomHelpBoxPaddingX,
-                                 m_bottomHelpContentPos.y() - s_bottomHelpBoxPaddingY,
-                                 contentWidth + s_bottomHelpBoxPaddingX * 2,
-                                 contentHeight + s_bottomHelpBoxPaddingY * 2 - 1);
+                                  m_bottomHelpContentPos.y() - s_bottomHelpBoxPaddingY,
+                                  contentWidth + s_bottomHelpBoxPaddingX * 2,
+                                  contentHeight + s_bottomHelpBoxPaddingY * 2 - 1);
 }
 
 void QuickEditor::setBottomHelpText()
@@ -788,7 +791,7 @@ void QuickEditor::acceptSelection()
     hide();
 }
 
-QPoint QuickEditor::fromNative(const QPoint &point, const QScreen *screen)
+QPoint QuickEditor::fromNative(QPoint point, const QScreen *screen)
 {
     const QPoint origin = screen->geometry().topLeft();
     const qreal devicePixelRatio = screen->devicePixelRatio();
@@ -796,17 +799,17 @@ QPoint QuickEditor::fromNative(const QPoint &point, const QScreen *screen)
     return (point - origin) / devicePixelRatio + origin;
 }
 
-QSize QuickEditor::fromNative(const QSize &size, const QScreen *screen)
+QSize QuickEditor::fromNative(QSize size, const QScreen *screen)
 {
     return size / screen->devicePixelRatio();
 }
 
-QRect QuickEditor::fromNativePixels(const QRect &rect, const QScreen *screen)
+QRect QuickEditor::fromNativePixels(QRect rect, const QScreen *screen)
 {
     return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
 }
 
-bool QuickEditor::isPointInsideCircle(const QPointF &circleCenter, qreal radius, const QPointF &point)
+bool QuickEditor::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
 {
     return (qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2)) ? true : false;
 }
@@ -821,7 +824,7 @@ bool QuickEditor::isWithinThreshold(qreal offset, qreal threshold)
     return qFabs(offset) <= threshold;
 }
 
-void QuickEditor::prepare(QStaticText &text)
+void QuickEditor::prepare(QStaticText &text) const
 {
     text.prepare(QTransform(), font());
     text.setPerformanceHint(QStaticText::AggressiveCaching);
