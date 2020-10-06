@@ -41,7 +41,7 @@ QuickEditor::QuickEditor(QWidget *parent)
 void QuickEditor::loadSettings(const AppSettings &settings)
 {
     m_rememberRegion = settings.regionRememberType();
-    m_releaseToCapture = settings.isCaptureOnRelease();
+    m_captureOnRelease = settings.isCaptureOnRelease();
     m_showMagnifier = settings.isShowMagnifier();
     m_maskColor = settings.isApplyLightMask() ? QColor(255, 255, 255, 100) : QColor();
 }
@@ -49,7 +49,7 @@ void QuickEditor::loadSettings(const AppSettings &settings)
 void QuickEditor::capture()
 {
     const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
-    m_pixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
+    m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
 
     if (QX11Info::isPlatformX11()) {
         // Even though we want the quick editor window to be placed at (0, 0) in the native
@@ -63,9 +63,9 @@ void QuickEditor::capture()
         // native pixels, we have to map (0, 0) from native pixels to dip and use that as
         // the window position.
         winId();
-        setGeometry(fromNativePixels(m_pixmap.rect(), windowHandle()->screen()));
+        setGeometry(fromNativePixels(m_screenPixmap.rect(), windowHandle()->screen()));
     } else {
-        setGeometry(0, 0, static_cast<int>(m_pixmap.width() * m_dprI), static_cast<int>(m_pixmap.height() * m_dprI));
+        setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
     }
 
     if (m_rememberRegion == AppSettings::RememberAlways || m_rememberRegion == AppSettings::RememberLast) {
@@ -346,7 +346,7 @@ void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
         m_disableArrowKeys = false;
         if (m_mouseDragState == MouseState::Inside) {
             setCursor(Qt::OpenHandCursor);
-        } else if (m_mouseDragState == MouseState::Outside && m_releaseToCapture) {
+        } else if (m_mouseDragState == MouseState::Outside && m_captureOnRelease) {
             event->accept();
             m_mouseDragState = MouseState::None;
             return acceptSelection();
@@ -372,7 +372,7 @@ void QuickEditor::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
-    QBrush brush(m_pixmap);
+    QBrush brush(m_screenPixmap);
     brush.setTransform(QTransform().scale(m_dprI, m_dprI));
     painter.setBackground(brush);
     painter.eraseRect(rect());
@@ -568,7 +568,7 @@ void QuickEditor::drawMagnifier(QPainter &painter)
         offsetX = magX;
         magX = 0;
     } else {
-        const int maxX = m_pixmap.width() - pixels;
+        const int maxX = m_screenPixmap.width() - pixels;
         if (magX > maxX) {
             offsetX = magX - maxX;
             magX = maxX;
@@ -580,7 +580,7 @@ void QuickEditor::drawMagnifier(QPainter &painter)
         offsetY = magY;
         magY = 0;
     } else {
-        const int maxY = m_pixmap.height() - pixels;
+        const int maxY = m_screenPixmap.height() - pixels;
         if (magY > maxY) {
             offsetY = magY - maxY;
             magY = maxY;
@@ -605,7 +605,7 @@ void QuickEditor::drawMagnifier(QPainter &painter)
     const auto frag = QPainter::PixmapFragment::create(drawPos, magniRect, s_magZoom, s_magZoom);
 
     painter.fillRect(crossHairBorder, m_labelForegroundColor);
-    painter.drawPixmapFragments(&frag, 1, m_pixmap, QPainter::OpaqueHint);
+    painter.drawPixmapFragments(&frag, 1, m_screenPixmap, QPainter::OpaqueHint);
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
     for (auto &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft}) {
         painter.fillRect(rect, m_crossColor);
@@ -777,7 +777,7 @@ void QuickEditor::layoutBottomHelpText()
 
 void QuickEditor::setBottomHelpText()
 {
-    if (m_releaseToCapture && m_selection.size().isEmpty()) {
+    if (m_captureOnRelease && m_selection.size().isEmpty()) {
         // Release to capture enabled and NO saved region available
         m_bottomHelpLength = 3;
         //: Mouse and keyboard actions
@@ -805,7 +805,7 @@ void QuickEditor::acceptSelection()
                                        qRound(m_selection.width() * dpr),
                                        qRound(m_selection.height() * dpr));
         AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
-        emit grabDone(m_pixmap.copy(scaledCropRegion));
+        emit grabDone(m_screenPixmap.copy(scaledCropRegion));
     }
     hide();
 }

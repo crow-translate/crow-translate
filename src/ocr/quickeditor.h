@@ -146,12 +146,12 @@ private:
     QPoint m_bottomHelpContentPos;
     int m_bottomHelpGridLeftWidth = 0;
     MouseState m_mouseDragState = MouseState::None;
-    QPixmap m_pixmap;
+    QPixmap m_screenPixmap;
     QPointF m_mousePos;
     bool m_magnifierAllowed = false;
     bool m_showMagnifier = AppSettings::defaultShowMagnifier();
     bool m_toggleMagnifier = false;
-    bool m_releaseToCapture = AppSettings::defaultCaptureOnRelease();
+    bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();
     AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
     bool m_disableArrowKeys = false;
     int m_bottomHelpLength = s_bottomHelpMaxLength;
