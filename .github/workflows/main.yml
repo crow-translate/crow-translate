@@ -60,7 +60,7 @@ jobs:
 
     - name: Install Tesseract
       if: runner.os == 'Windows'
-      run: vcpkg install tesseract:x64-windows
+      run: vcpkg install tesseract:x64-windows-md
 
     - name: Build
       run: |
@@ -68,6 +68,6 @@ jobs:
         cd build
         cmake .. -D PORTABLE_MODE=ON -D WITH_OCR=ON -D CMAKE_TOOLCHAIN_FILE=${{ matrix.CMAKE_TOOLCHAIN_FILE }}
         cmake --build . --parallel 2
-      env:
-        CXXFLAGS: ${{ matrix.CXXFLAGS }}
+      # env:
+      #   CXXFLAGS: ${{ matrix.CXXFLAGS }}
 

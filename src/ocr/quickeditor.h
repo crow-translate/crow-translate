@@ -87,6 +87,7 @@ private:
     void setMouseCursor(QPointF pos);
     MouseState mouseLocation(QPointF pos) const;
 
+    void setGeometryToScreenPixmap();
     void prepare(QStaticText &text) const;
     void setBottomHelpText();
     void layoutBottomHelpText();

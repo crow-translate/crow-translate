@@ -25,8 +25,10 @@
 #include <QPainterPath>
 #include <QScreen>
 #include <QWindow>
-#include <QX11Info>
 #include <QtMath>
+#ifdef Q_OS_LINUX
+#include <QX11Info>
+#endif
 
 bool QuickEditor::s_bottomHelpTextPrepared = false;
 
@@ -51,24 +53,7 @@ void QuickEditor::capture()
     const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
     m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
 
-    if (QX11Info::isPlatformX11()) {
-        /*
-         * Even though we want the quick editor window to be placed at (0, 0) in the native
-         * pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
-         *
-         * The main reason for that is that Qt will scale the window position relative to the
-         * upper left corner of the screen where the quick editor is on in order to perform
-         * a conversion from the device-independent coordinates to the native pixels.
-         *
-         * Since (0, 0) in the device-independent pixels may not correspond to (0, 0) in the
-         * native pixels, we have to map (0, 0) from native pixels to dip and use that as
-         * the window position.
-         */
-        winId();
-        setGeometry(fromNativePixels(m_screenPixmap.rect(), windowHandle()->screen()));
-    } else {
-        setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
-    }
+    setGeometryToScreenPixmap();
 
     if (m_rememberRegion == AppSettings::RememberAlways || m_rememberRegion == AppSettings::RememberLast) {
         QRect cropRegion = AppSettings().cropRegion();
@@ -724,6 +709,31 @@ QuickEditor::MouseState QuickEditor::mouseLocation(QPointF pos) const
     if (m_selection.contains(pos))
         return MouseState::Inside;
     return MouseState::Outside;
+}
+
+void QuickEditor::setGeometryToScreenPixmap() 
+{
+#ifdef Q_OS_LINUX
+    if (QX11Info::isPlatformX11()) {
+        /*
+         * Even though we want the quick editor window to be placed at (0, 0) in the native
+         * pixels, we cannot really specify a window position of (0, 0) if HiDPI support is on.
+         *
+         * The main reason for that is that Qt will scale the window position relative to the
+         * upper left corner of the screen where the quick editor is on in order to perform
+         * a conversion from the device-independent coordinates to the native pixels.
+         *
+         * Since (0, 0) in the device-independent pixels may not correspond to (0, 0) in the
+         * native pixels, we have to map (0, 0) from native pixels to dip and use that as
+         * the window position.
+         */
+        winId();
+        setGeometry(fromNativePixels(m_screenPixmap.rect(), windowHandle()->screen()));
+        return;
+    }
+#endif
+
+    setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
 }
 
 void QuickEditor::layoutBottomHelpText()
