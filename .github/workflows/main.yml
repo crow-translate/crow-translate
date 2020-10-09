@@ -19,8 +19,6 @@ on:
 jobs:
   Main:
     runs-on: ${{ matrix.os }}
-    env:
-      ECM_ROOT: 'C:\Program Files\ECM'
     strategy:
       matrix:
         os: [ubuntu-18.04, windows-latest]
@@ -28,9 +26,8 @@ jobs:
           - os: ubuntu-18.04
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
-            CMAKE_TOOLCHAIN_FILE: 'C:\vcpkg\scripts\buildsystems\vcpkg.cmake'
-            extra-cmake-modules: '5.70.0'
-            CXXFLAGS: '/W4 /WX'
+            extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=x64-windows -D CMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake'
+            CXXFLAGS: '/W4' #TODO: Use /WX
     steps:
     - name: Enable Git symlinks
       if: runner.os == 'Windows'
@@ -41,33 +38,32 @@ jobs:
       with:
         submodules: true
 
-    - name: Install dependent apt packages
+    - name: Install apt packages
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev libgif-dev libwebp-dev
 
     - name: Install Qt
       if: runner.os == 'Windows'
       uses: jurplel/install-qt-action@v2.7.2
 
-    - name: Install Extra CMake Modules
+    - name: Cache vcpkg packages
+      uses: actions/cache@v2
       if: runner.os == 'Windows'
-      run: |
-        git clone --depth 1 --branch v${{ matrix.extra-cmake-modules }} https://github.com/KDE/extra-cmake-modules.git
-        cmake -S extra-cmake-modules -B extra-cmake-modules/build
-        cmake --build extra-cmake-modules/build --target install
+      with:
+        path: C:/vcpkg/packages
+        key: ${{ matrix.os }}-ecm-tesseract41
 
-    - name: Install Tesseract
+    - name: Install vcpkg packages
       if: runner.os == 'Windows'
-      run: vcpkg install tesseract:x64-windows-md
+      run: vcpkg install tesseract ecm --triplet x64-windows
 
     - name: Build
       run: |
         mkdir build
         cd build
-        cmake .. -D PORTABLE_MODE=ON -D WITH_OCR=ON -D CMAKE_TOOLCHAIN_FILE=${{ matrix.CMAKE_TOOLCHAIN_FILE }}
+        cmake .. -D PORTABLE_MODE=ON -D WITH_OCR=ON ${{ matrix.extra-cmake-arguments }}
         cmake --build . --parallel 2
-      # env:
-      #   CXXFLAGS: ${{ matrix.CXXFLAGS }}
-
+      env:
+        CXXFLAGS: ${{ matrix.CXXFLAGS }}
