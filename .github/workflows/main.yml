@@ -57,12 +57,12 @@ jobs:
       id: vcpkg-cache
       if: runner.os == 'Windows'
       with:
-        path: C:/vcpkg/packages
+        path: ${{ env.LOCALAPPDATA }}/vcpkg/archives
         key: ${{ matrix.os }}-ecm-tesseract41
 
     - name: Install vcpkg packages
       if: runner.os == 'Windows' && steps.vcpkg-cache.outputs.cache-hit != 'true'
-      run: vcpkg install tesseract ecm --triplet x64-windows
+      run: vcpkg install tesseract ecm --triplet x64-windows --binarycaching
 
     - name: Build
       run: |
