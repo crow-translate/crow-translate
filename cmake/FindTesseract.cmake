@@ -1,4 +1,4 @@
-# Most distributions use the autotools build system for packaging Tesseract, which currently does not generate CMake Config files.
+# Most distributions use the autotools build system for packaging Tesseract, which currently does not generate CMake Config files
 
 find_path(Tesseract_INCLUDE_DIR
     NAMES tesseract/baseapi.h

@@ -22,12 +22,6 @@ find_package_handle_standard_args(Leptonica
 )
 
 if(Leptonica_FOUND)
-    find_package(GIF REQUIRED)
-    find_package(JPEG REQUIRED)
-    find_package(PNG REQUIRED)
-    find_package(TIFF REQUIRED)
-    find_package(ZLIB REQUIRED)
-    find_package(WEBP REQUIRED)
     set(Leptonica_LIBRARIES ${Leptonica_LIBRARY})
     set(Leptonica_INCLUDE_DIRS ${Leptonica_INCLUDE_DIR})
     set(Leptonica_DEFINITIONS ${PC_Leptonica_CFLAGS_OTHER})
@@ -39,7 +33,18 @@ if(Leptonica_FOUND)
             INTERFACE_COMPILE_OPTIONS "${PC_Leptonica_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${Leptonica_INCLUDE_DIR}"
         )
-        target_link_libraries(Leptonica::Leptonica INTERFACE ZLIB::ZLIB TIFF::TIFF PNG::PNG JPEG::JPEG GIF::GIF WEBP::WEBP)
+
+        include(DetectLibraryType)
+        detect_library_type(Leptonica_TYPE PATH ${Leptonica_LIBRARY})
+        if(Leptonica_TYPE STREQUAL STATIC)
+            find_package(GIF REQUIRED)
+            find_package(JPEG REQUIRED)
+            find_package(PNG REQUIRED)
+            find_package(TIFF REQUIRED)
+            find_package(ZLIB REQUIRED)
+            find_package(WEBP REQUIRED)
+            target_link_libraries(Leptonica::Leptonica INTERFACE ZLIB::ZLIB TIFF::TIFF PNG::PNG JPEG::JPEG GIF::GIF WEBP::WEBP)
+        endif()
     endif()
 endif()
 
