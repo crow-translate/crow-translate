@@ -1,12 +1,15 @@
 # Leptonica is currently placing CMake Config files in the wrong directory
 # Dependency for Tesseract
 
+find_package(PkgConfig)
+pkg_check_modules(PC_Leptonica QUIET lept)
+
 find_path(Leptonica_INCLUDE_DIR
     NAMES leptonica/leptwin.h
     PATHS ${PC_Leptonica_INCLUDE_DIRS}
 )
 find_library(Leptonica_LIBRARY
-    NAMES leptonica lept leptonica-1.78.0d leptonica-1.78.0
+    NAMES leptonica lept leptonica-${PC_Leptonica_VERSION}d leptonica-${PC_Leptonica_VERSION}
     PATHS ${PC_Leptonica_LIBRARY_DIRS}
 )
 

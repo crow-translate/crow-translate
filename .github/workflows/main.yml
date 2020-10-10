@@ -48,15 +48,20 @@ jobs:
       if: runner.os == 'Windows'
       uses: jurplel/install-qt-action@v2.7.2
 
+    - name: Install PkgConfig to find versions from vcpkg
+      if: runner.os == 'Windows'
+      run: choco install pkgconfiglite
+
     - name: Cache vcpkg packages
       uses: actions/cache@v2
+      id: vcpkg-cache
       if: runner.os == 'Windows'
       with:
         path: C:/vcpkg/packages
         key: ${{ matrix.os }}-ecm-tesseract41
 
     - name: Install vcpkg packages
-      if: runner.os == 'Windows'
+      if: runner.os == 'Windows' && steps.vcpkg-cache.outputs.cache-hit != 'true'
       run: vcpkg install tesseract ecm --triplet x64-windows
 
     - name: Build

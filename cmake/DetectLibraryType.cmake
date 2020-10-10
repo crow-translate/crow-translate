@@ -53,7 +53,7 @@ function(detect_library_type LIBRARY_TYPE)
             set(${LIBRARY_TYPE} STATIC PARENT_SCOPE)
         endif()
 
-        # when import suffix != static suffix, we can disambiguate static and import
+        # When import suffix != static suffix, we can disambiguate static and import
         if(WIN32 AND NOT CMAKE_IMPORT_LIBRARY_SUFFIX STREQUAL CMAKE_STATIC_LIBRARY_SUFFIX)
             string(LENGTH "${CMAKE_IMPORT_LIBRARY_SUFFIX}" IMPORT_SUFFIX_LENGTH)
             math(EXPR IMPORT_SUFFIX_INDEX "${PATH_LENGTH} - ${IMPORT_SUFFIX_LENGTH}")
