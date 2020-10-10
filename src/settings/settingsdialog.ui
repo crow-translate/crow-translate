@@ -82,8 +82,7 @@
         <string>OCR</string>
        </property>
        <property name="icon">
-        <iconset theme="trim-to-selection">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="scanner"/>
        </property>
       </item>
       <item>

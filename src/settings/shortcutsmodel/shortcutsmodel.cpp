@@ -51,7 +51,7 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), globalShortcuts);
     copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 
-    auto *translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("trim-to-selection"), globalShortcuts);
+    auto *translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("scanner"), globalShortcuts);
     translateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultTranslateScreenAreaShortcut());
 
     // Window shortcuts

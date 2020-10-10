@@ -36,6 +36,6 @@
         <file>16x16/actions/arrow-left.svg</file>
         <file>16x16/actions/arrow-right.svg</file>
         <file>16x16/actions/arrow-up.svg</file>
-        <file>16x16/actions/trim-to-selection.svg</file>
+        <file>32x32/apps/scanner.svg</file>
     </qresource>
 </RCC>
