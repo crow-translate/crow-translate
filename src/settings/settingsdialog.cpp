@@ -85,6 +85,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
         ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
     }
 
+    ui->ocrLanguagesListWidget->addItems(parent->ocr()->availableLanguages());
+
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
     ui->secondaryLangComboBox->model()->sort(0);
@@ -105,12 +107,6 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     
     // Disable "Show tray icon" if "Pop-up mode selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &SettingsDialog::setShowTrayIconCheckBoxState);
-
-#ifdef WITH_OCR
-    ui->ocrLanguagesListWidget->addItems(parent->ocr()->availableLanguages());
-#else
-    ui->pagesListWidget->findItems("OCR", Qt::MatchExactly)[0]->setHidden(true);
-#endif
 
 #ifdef Q_OS_WIN
     // Add information about icons
@@ -215,14 +211,12 @@ void SettingsDialog::accept()
     settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
-#ifdef WITH_OCR
     // OCR
     settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
     settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
-#endif
 
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
@@ -498,14 +492,12 @@ void SettingsDialog::restoreDefaults()
     ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
-#ifdef WITH_OCR
     // OCR
     ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
-#endif
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
@@ -570,14 +562,12 @@ void SettingsDialog::loadSettings()
     ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
-#ifdef WITH_OCR
     // OCR
     ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
-#endif
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));

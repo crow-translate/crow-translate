@@ -26,10 +26,8 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 
-#ifdef WITH_OCR
 #include "ocr/ocr.h"
 #include "ocr/quickeditor.h"
-#endif
 
 class LanguageButtonsWidget;
 class SpeakButtons;
@@ -66,9 +64,8 @@ public:
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     const QShortcut *closeWindowShortcut() const;
-#ifdef WITH_OCR
     const Ocr *ocr() const;
-#endif
+
     AppSettings::LanguageFormat popupLanguageFormat() const;
     QSize popupSize() const;
     double popupOpacity() const;
@@ -81,9 +78,7 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
-#ifdef WITH_OCR
     Q_SCRIPTABLE void translateScreenArea();
-#endif
 
     // Main window shortcuts
     Q_SCRIPTABLE void clearText();
@@ -101,9 +96,7 @@ signals:
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
-#ifdef WITH_OCR
     void translateScreenAreaRequested();
-#endif
 
 private slots:
     // State machine's slots
@@ -147,9 +140,7 @@ private:
     void buildSpeakSelectionState(QState *state);
     void buildSpeakTranslatedSelectionState(QState *state);
     void buildCopyTranslatedSelectionState(QState *state);
-#ifdef WITH_OCR
     void buildTranslateScreenAreaState(QState *state);
-#endif
 
     void setupRequestStateButtons(QState *state);
 
@@ -175,10 +166,8 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
-#ifdef WITH_OCR
     Ocr *m_ocr;
     QuickEditor *m_quickEditor;
-#endif
 
     AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;

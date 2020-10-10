@@ -801,7 +801,6 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
     return QKeySequence();
 }
 
-#ifdef WITH_OCR
 QKeySequence AppSettings::translateScreenAreaShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), defaultTranslateScreenAreaShortcut()).toString();
@@ -816,7 +815,6 @@ QKeySequence AppSettings::defaultTranslateScreenAreaShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Alt+D"));
 }
-#endif
 
 QKeySequence AppSettings::translateShortcut() const
 {
@@ -908,7 +906,6 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
 
-#ifdef WITH_OCR
 QByteArray AppSettings::ocrLanguagesString() const
 {
     return m_settings->value(QStringLiteral("OCR/Language"), defaultOcrLanguagesString()).toByteArray();
@@ -993,7 +990,6 @@ bool AppSettings::defaultApplyLightMask()
 {
     return true;
 }
-#endif
 
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const
 {

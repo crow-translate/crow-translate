@@ -68,10 +68,8 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     , m_trayMenu(new QMenu(this))
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
-#ifdef WITH_OCR
     , m_ocr(new Ocr(this))
     , m_quickEditor(new QuickEditor(this))
-#endif
 {
     ui->setupUi(this);
 
@@ -102,20 +100,17 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
-#ifdef WITH_OCR
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
-#endif
+
     // Source and translation logic
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // OCR logic
-#ifdef WITH_OCR
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     connect(m_quickEditor, &QuickEditor::grabDone, m_ocr, &Ocr::recognize);
     connect(m_quickEditor, &QuickEditor::grabCancelled, m_quickEditor, &QuickEditor::hide);
-#endif
 
     // System tray icon
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::open);
@@ -236,12 +231,10 @@ const QShortcut *MainWindow::closeWindowShortcut() const
     return m_closeWindowsShortcut;
 }
 
-#ifdef WITH_OCR
 const Ocr *MainWindow::ocr() const
 {
     return m_ocr;
 }
-#endif
 
 AppSettings::LanguageFormat MainWindow::popupLanguageFormat() const
 {
@@ -293,12 +286,10 @@ void MainWindow::copyTranslatedSelection()
     emit copyTranslatedSelectionRequested();
 }
 
-#ifdef WITH_OCR
 void MainWindow::translateScreenArea()
 {
     emit translateScreenAreaRequested();
 }
-#endif
 
 void MainWindow::clearText()
 {
@@ -633,9 +624,7 @@ void MainWindow::buildStateMachine()
     auto *speakSelectionState = new QState(m_stateMachine);
     auto *speakTranslatedSelectionState = new QState(m_stateMachine);
     auto *copyTranslatedSelectionState = new QState(m_stateMachine);
-#ifdef WITH_OCR
     auto *translateScreenAreaState = new QState(m_stateMachine);
-#endif
     m_stateMachine->setInitialState(idleState);
 
     buildTranslationState(translationState);
@@ -645,9 +634,7 @@ void MainWindow::buildStateMachine()
     buildSpeakSelectionState(speakSelectionState);
     buildSpeakTranslatedSelectionState(speakTranslatedSelectionState);
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
-#ifdef WITH_OCR
     buildTranslateScreenAreaState(translateScreenAreaState);
-#endif
 
     // Add transitions between all states
     for (QState *state : m_stateMachine->findChildren<QState *>()) {
@@ -660,9 +647,7 @@ void MainWindow::buildStateMachine()
         state->addTransition(this, &MainWindow::speakSelectionRequested, speakSelectionState);
         state->addTransition(this, &MainWindow::speakTranslatedSelectionRequested, speakTranslatedSelectionState);
         state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
-#ifdef WITH_OCR
         state->addTransition(this, &MainWindow::translateScreenAreaRequested, translateScreenAreaState);
-#endif
     }
 
     translationState->addTransition(translationState, &QState::finished, idleState);
@@ -671,12 +656,9 @@ void MainWindow::buildStateMachine()
     translateSelectionState->addTransition(translateSelectionState, &QState::finished, idleState);
     speakSelectionState->addTransition(speakSelectionState, &QState::finished, idleState);
     speakTranslatedSelectionState->addTransition(speakTranslatedSelectionState, &QState::finished, idleState);
-#ifdef WITH_OCR
     translateScreenAreaState->addTransition(translateScreenAreaState, &QState::finished, idleState);
-#endif
 }
 
-#ifdef WITH_OCR
 void MainWindow::buildTranslateScreenAreaState(QState *state)
 {
     auto *initialState = new QState(state);
@@ -699,7 +681,6 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     showWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
-#endif
 
 void MainWindow::buildTranslationState(QState *state)
 {
@@ -878,14 +859,12 @@ void MainWindow::loadSettings(const AppSettings &settings)
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
     // OCR settings
-#ifdef WITH_OCR
     if (const QByteArray &languages = settings.ocrLanguagesString(); !m_ocr->setLanguagesString(languages) && languages != AppSettings::defaultOcrLanguagesString()) {
         // Show error only if languages was specified by user
         QMessageBox::critical(this, Ocr::tr("Unable to set OCR languages"),
                               Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
     }
     m_quickEditor->loadSettings(settings);
-#endif
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
@@ -912,9 +891,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
-#ifdef WITH_OCR
         m_translateScreenAreaHotkey->setShortcut(settings.translateScreenAreaShortcut(), true);
-#endif
     } else {
         m_translateSelectionHotkey->setRegistered(false);
         m_speakSelectionHotkey->setRegistered(false);

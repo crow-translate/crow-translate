@@ -40,7 +40,6 @@ set(CMAKE_WIN32_EXECUTABLE ON)
 cmake_policy(SET CMP0091 NEW)
 
 option(PORTABLE_MODE "Enable portable functionality" OFF)
-option(WITH_OCR "Enable OCR" ON)
 
 set(QAPPLICATION_CLASS QApplication)
 option(QHOTKEY_INSTALL OFF)
@@ -56,11 +55,9 @@ if(WIN32)
 endif()
 
 find_package(Qt5 COMPONENTS Widgets LinguistTools Concurrent REQUIRED)
+find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 COMPONENTS DBus REQUIRED)
-endif()
-if(WITH_OCR)
-    find_package(Tesseract REQUIRED)
 endif()
 find_package(ECM REQUIRED NO_MODULE)
 
@@ -116,6 +113,8 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.ui
+    src/ocr/ocr.cpp
+    src/ocr/quickeditor.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
     src/selection.cpp
@@ -140,13 +139,6 @@ add_executable(${PROJECT_NAME}
     src/trayicon.cpp
 )
 
-if(WITH_OCR)
-    target_sources(${PROJECT_NAME} PRIVATE
-        src/ocr/quickeditor.cpp
-        src/ocr/ocr.cpp
-    )
-endif()
-
 set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
 
 if(WIN32)
@@ -159,23 +151,17 @@ if(WIN32)
     )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator Qt5::Concurrent)
+target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator Qt5::Concurrent Tesseract::Tesseract)
 
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()
-if(WITH_OCR)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Tesseract::Tesseract)
-endif()
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 if(PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
-endif()
-if(WITH_OCR)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_OCR)
 endif()
 
 install(TARGETS ${PROJECT_NAME})

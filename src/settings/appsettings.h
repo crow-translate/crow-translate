@@ -55,14 +55,12 @@ public:
     };
     Q_ENUM(WindowMode)
 
-#ifdef WITH_OCR
     enum RegionRememberType {
         NeverRemember,
         RememberLast,
         RememberAlways
     };
     Q_ENUM(RegionRememberType)
-#endif
 
 #ifdef Q_OS_WIN
     enum Interval {
@@ -256,11 +254,9 @@ public:
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
 
-#ifdef WITH_OCR
     QKeySequence translateScreenAreaShortcut() const;
     void setTranslateScreenAreaShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultTranslateScreenAreaShortcut();
-#endif
 
     // Window shortcuts
     QKeySequence translateShortcut() const;
@@ -287,7 +283,6 @@ public:
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
 
-#ifdef WITH_OCR
     QByteArray ocrLanguagesString() const;
     void setOcrLanguagesString(const QByteArray &string);
     static QByteArray defaultOcrLanguagesString();
@@ -310,7 +305,6 @@ public:
     bool isApplyLightMask() const;
     void setApplyLightMask(bool use);
     static bool defaultApplyLightMask();
-#endif
 
     // Buttons
     QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;

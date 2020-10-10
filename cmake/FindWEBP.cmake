@@ -1,5 +1,8 @@
 # Dependency for Leptonica
 
+find_package(PkgConfig)
+pkg_check_modules(PC_WEBP QUIET webp)
+
 find_path(WEBP_INCLUDE_DIR
     NAMES webp/decode.h
     PATHS ${PC_WEBP_INCLUDE_DIRS}

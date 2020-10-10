@@ -68,7 +68,7 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake .. -D PORTABLE_MODE=ON -D WITH_OCR=ON ${{ matrix.extra-cmake-arguments }}
+        cmake .. -D PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
         cmake --build . --parallel 2
       env:
         CXXFLAGS: ${{ matrix.CXXFLAGS }}
