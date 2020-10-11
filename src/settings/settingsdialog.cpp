@@ -21,9 +21,11 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
-#include "languagebuttonswidget.h"
 #include "appsettings.h"
+#include "languagebuttonswidget.h"
+#include "mainwindow.h"
 #include "qhotkey.h"
+#include "ocr/ocr.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
 #ifdef Q_OS_WIN
@@ -37,7 +39,7 @@
 #include <QNetworkProxy>
 #include <QScreen>
 
-SettingsDialog::SettingsDialog(QWidget *parent)
+SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
     , m_translator(new QOnlineTranslator(this))
@@ -67,7 +69,7 @@ SettingsDialog::SettingsDialog(QWidget *parent)
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português (Brasil)"), QLocale::Portuguese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türk"), QLocale::Turkish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türkçe"), QLocale::Turkish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), QStringLiteral("Русский"), QLocale::Russian);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), QStringLiteral("Espanol"), QLocale::Spanish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("ئۇيغۇر"), QLocale::Uighur);
@@ -83,6 +85,8 @@ SettingsDialog::SettingsDialog(QWidget *parent)
         ui->primaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
         ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
     }
+
+    ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
 
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
@@ -209,6 +213,14 @@ void SettingsDialog::accept()
     settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
+    // OCR
+    settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
+    settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
+    settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
+    settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
+    settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
+    settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
+
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
     settings.setEmotion(QOnlineTranslator::Yandex, ui->playerButtons->emotion(QOnlineTranslator::Yandex));
@@ -282,6 +294,20 @@ void SettingsDialog::chooseCustomTrayIcon()
 void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
 {
     ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
+}
+
+void SettingsDialog::chooseOcrLanguagesPath() 
+{
+    const QString path = ui->ocrLanguagesPathEdit->text().left(ui->ocrLanguagesPathEdit->text().lastIndexOf(QDir::separator()));
+    const QString directory = QFileDialog::getExistingDirectory(this, tr("Select OCR languages path"), path);
+    if (!directory.isEmpty())
+        ui->ocrLanguagesPathEdit->setText(directory);
+}
+
+void SettingsDialog::onOcrLanguagesPathChanged(const QString &path) 
+{
+    ui->ocrLanguagesListWidget->clear();
+    ui->ocrLanguagesListWidget->addLanguages(Ocr::availableLanguages(path));
 }
 
 // Disable unsupported voice settings for engines.
@@ -483,6 +509,14 @@ void SettingsDialog::restoreDefaults()
     ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
+    // OCR
+    ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
+    ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
+    ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
+    ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
+    ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
+    ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
+
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
     ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
@@ -545,6 +579,14 @@ void SettingsDialog::loadSettings()
     ui->secondaryLangComboBox->setCurrentIndex(ui->secondaryLangComboBox->findData(settings.secondaryLanguage()));
     ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
+
+    // OCR
+    ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
+    ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
+    ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
+    ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
+    ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
+    ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));

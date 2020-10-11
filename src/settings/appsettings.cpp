@@ -801,6 +801,21 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
     return QKeySequence();
 }
 
+QKeySequence AppSettings::translateScreenAreaShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), defaultTranslateScreenAreaShortcut()).toString();
+}
+
+void AppSettings::setTranslateScreenAreaShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), shortcut);
+}
+
+QKeySequence AppSettings::defaultTranslateScreenAreaShortcut()
+{
+    return QKeySequence(QStringLiteral("Ctrl+Alt+O"));
+}
+
 QKeySequence AppSettings::translateShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/Translate"), defaultTranslateShortcut()).value<QKeySequence>();
@@ -889,6 +904,106 @@ void AppSettings::setCopyTranslationShortcut(const QKeySequence &shortcut)
 QKeySequence AppSettings::defaultCopyTranslationShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
+}
+
+QByteArray AppSettings::ocrLanguagesPath() const
+{
+    return m_settings->value(QStringLiteral("OCR/LanguagesPath"), defaultOcrLanguagesPath()).toByteArray();
+}
+
+void AppSettings::setOcrLanguagesPath(const QByteArray &path) 
+{
+    m_settings->setValue(QStringLiteral("OCR/LanguagesPath"), path);
+}
+
+QByteArray AppSettings::defaultOcrLanguagesPath() 
+{
+    return {};
+}
+
+QByteArray AppSettings::ocrLanguagesString() const
+{
+    return m_settings->value(QStringLiteral("OCR/Languages"), defaultOcrLanguagesString()).toByteArray();
+}
+
+void AppSettings::setOcrLanguagesString(const QByteArray &string)
+{
+    m_settings->setValue(QStringLiteral("OCR/Languages"), string);
+}
+
+QByteArray AppSettings::defaultOcrLanguagesString()
+{
+    return {};
+}
+
+AppSettings::RegionRememberType AppSettings::regionRememberType() const
+{
+    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
+}
+
+void AppSettings::setRegionRememberType(RegionRememberType type) 
+{
+    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
+}
+
+AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 
+{
+    return NeverRemember;
+}
+
+QRect AppSettings::cropRegion() const
+{
+    return m_settings->value(QStringLiteral("OCR/RememberedCropRegion"), defaultRegionRememberType()).toRect();
+}
+
+void AppSettings::setCropRegion(QRect rect) 
+{
+    m_settings->setValue(QStringLiteral("OCR/RememberedCropRegion"), rect);
+}
+
+bool AppSettings::isShowMagnifier() const
+{
+    return m_settings->value(QStringLiteral("OCR/ShowMagnifier"), defaultShowMagnifier()).toBool();
+}
+
+void AppSettings::setShowMagnifier(bool show) 
+{
+    m_settings->setValue(QStringLiteral("OCR/ShowMagnifier"), show);
+}
+
+bool AppSettings::defaultShowMagnifier() 
+{
+    return false;
+}
+
+bool AppSettings::isCaptureOnRelease() const
+{
+    return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();
+}
+
+void AppSettings::setCaptureOnRelease(bool capture) 
+{
+    m_settings->setValue(QStringLiteral("OCR/CaptureOnRelease"), capture);
+}
+
+bool AppSettings::defaultCaptureOnRelease() 
+{
+    return false;
+}
+
+bool AppSettings::isApplyLightMask() const
+{
+    return m_settings->value(QStringLiteral("OCR/ApplyLightMask"), defaultApplyLightMask()).toBool();
+}
+
+void AppSettings::setApplyLightMask(bool use)
+{
+    m_settings->setValue(QStringLiteral("OCR/ApplyLightMask"), use);
+}
+
+bool AppSettings::defaultApplyLightMask()
+{
+    return true;
 }
 
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const

@@ -9,3 +9,6 @@
 .clangd
 vim.json
 compile_commands.json
+
+# VSCode
+.vscode

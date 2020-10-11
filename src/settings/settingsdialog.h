@@ -25,6 +25,7 @@
 
 #include <QDialog>
 
+class MainWindow;
 class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;
@@ -48,7 +49,7 @@ class SettingsDialog : public QDialog
     Q_DISABLE_COPY(SettingsDialog)
 
 public:
-    explicit SettingsDialog(QWidget *parent = nullptr);
+    explicit SettingsDialog(MainWindow *parent = nullptr);
     ~SettingsDialog() override;
 
 public slots:
@@ -61,6 +62,9 @@ private slots:
     void setShowTrayIconCheckBoxState(int index);
     void chooseCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
+
+    void chooseOcrLanguagesPath();
+    void onOcrLanguagesPathChanged(const QString &path);
 
     void showAvailableTtsOptions(int engine);
     void saveEngineVoice(int voice);

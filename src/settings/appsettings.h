@@ -55,6 +55,13 @@ public:
     };
     Q_ENUM(WindowMode)
 
+    enum RegionRememberType {
+        NeverRemember,
+        RememberLast,
+        RememberAlways
+    };
+    Q_ENUM(RegionRememberType)
+
 #ifdef Q_OS_WIN
     enum Interval {
         Day,
@@ -247,6 +254,10 @@ public:
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
 
+    QKeySequence translateScreenAreaShortcut() const;
+    void setTranslateScreenAreaShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultTranslateScreenAreaShortcut();
+
     // Window shortcuts
     QKeySequence translateShortcut() const;
     void setTranslateShortcut(const QKeySequence &shortcut);
@@ -271,6 +282,33 @@ public:
     QKeySequence copyTranslationShortcut() const;
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
+
+    QByteArray ocrLanguagesPath() const;
+    void setOcrLanguagesPath(const QByteArray &path);
+    static QByteArray defaultOcrLanguagesPath();
+
+    QByteArray ocrLanguagesString() const;
+    void setOcrLanguagesString(const QByteArray &string);
+    static QByteArray defaultOcrLanguagesString();
+
+    RegionRememberType regionRememberType() const;
+    void setRegionRememberType(RegionRememberType type);
+    static RegionRememberType defaultRegionRememberType();
+
+    QRect cropRegion() const;
+    void setCropRegion(QRect rect);
+
+    bool isShowMagnifier() const;
+    void setShowMagnifier(bool show);
+    static bool defaultShowMagnifier();
+
+    bool isCaptureOnRelease() const;
+    void setCaptureOnRelease(bool capture);
+    static bool defaultCaptureOnRelease();
+
+    bool isApplyLightMask() const;
+    void setApplyLightMask(bool use);
+    static bool defaultApplyLightMask();
 
     // Buttons
     QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;

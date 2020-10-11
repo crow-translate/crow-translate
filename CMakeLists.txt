@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.14.0)
+cmake_minimum_required(VERSION 3.15.0)
 
 project(crow-translate VERSION 2.5.1 LANGUAGES CXX)
 
@@ -36,6 +36,9 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
+# Allow set CMAKE_MSVC_RUNTIME_LIBRARY
+cmake_policy(SET CMP0091 NEW)
+
 option(PORTABLE_MODE "Enable portable functionality" OFF)
 
 set(QAPPLICATION_CLASS QApplication)
@@ -49,7 +52,10 @@ if(WIN32)
     add_subdirectory(src/qgittag)
 endif()
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools REQUIRED)
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+
+find_package(Qt5 COMPONENTS Widgets LinguistTools Concurrent REQUIRED)
+find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 COMPONENTS DBus REQUIRED)
 endif()
@@ -107,10 +113,13 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/mainwindow.cpp
     src/mainwindow.ui
+    src/ocr/ocr.cpp
+    src/ocr/screengrabber.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
     src/selection.cpp
     src/settings/appsettings.cpp
+    src/settings/ocrlanguageslistwidget.cpp
     src/settings/settingsdialog.cpp
     src/settings/settingsdialog.ui
     src/settings/shortcutsmodel/shortcutitem.cpp
@@ -120,6 +129,7 @@ add_executable(${PROJECT_NAME}
     src/speakbuttons.cpp
     src/speakbuttons.ui
     src/transitions/languagedetectedtransition.cpp
+    src/transitions/ocruninitializedtransition.cpp
     src/transitions/playerstoppedtransition.cpp
     src/transitions/retranslationtransition.cpp
     src/transitions/textemptytransition.cpp
@@ -141,7 +151,8 @@ if(WIN32)
     )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator)
+target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator Qt5::Concurrent Tesseract::Tesseract)
+
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
 elseif(WIN32)

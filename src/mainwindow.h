@@ -27,6 +27,8 @@
 #include <QMediaPlayer>
 
 class LanguageButtonsWidget;
+class Ocr;
+class ScreenGrabber;
 class SpeakButtons;
 class QHotkey;
 class QTaskbarControl;
@@ -61,6 +63,8 @@ public:
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     const QShortcut *closeWindowShortcut() const;
+    const Ocr *ocr() const;
+
     AppSettings::LanguageFormat popupLanguageFormat() const;
     QSize popupSize() const;
     double popupOpacity() const;
@@ -73,6 +77,7 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
+    Q_SCRIPTABLE void translateScreenArea();
 
     // Main window shortcuts
     Q_SCRIPTABLE void clearText();
@@ -90,6 +95,7 @@ signals:
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
+    void translateScreenAreaRequested();
 
 private slots:
     // State machine's slots
@@ -133,6 +139,7 @@ private:
     void buildSpeakSelectionState(QState *state);
     void buildSpeakTranslatedSelectionState(QState *state);
     void buildCopyTranslatedSelectionState(QState *state);
+    void buildTranslateScreenAreaState(QState *state);
 
     void setupRequestStateButtons(QState *state);
 
@@ -150,6 +157,7 @@ private:
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
+    QHotkey *m_translateScreenAreaHotkey;
     QShortcut *m_closeWindowsShortcut;
 
     QStateMachine *m_stateMachine;
@@ -157,6 +165,8 @@ private:
     QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
+    Ocr *m_ocr;
+    ScreenGrabber *m_quickEditor;
 
     AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;
