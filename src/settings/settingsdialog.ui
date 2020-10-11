@@ -747,6 +747,9 @@
            </item>
            <item row="0" column="2">
             <widget class="QToolButton" name="ocrLanguagesPathButton">
+             <property name="toolTip">
+              <string>Select OCR languages path</string>
+             </property>
              <property name="icon">
               <iconset theme="folder">
                <normaloff>.</normaloff>.</iconset>
@@ -794,7 +797,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="1" column="0" colspan="3">
             <widget class="QCheckBox" name="showMagnifierCheckBox">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Show a magnifier next to the cursor</string>
              </property>
              <property name="text">
               <string>Show magnifier</string>
@@ -804,7 +807,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="3" column="0" colspan="2">
             <widget class="QCheckBox" name="applyLightMaskCheckBox">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Apply a slight fog to the unselected part</string>
              </property>
              <property name="text">
               <string>Apply light mask</string>
@@ -827,7 +830,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="0" column="1">
             <widget class="QComboBox" name="rememberRegionComboBox">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>When to remember the last captured region</string>
              </property>
              <item>
               <property name="text">
@@ -852,7 +855,7 @@ and there is more chance of hallucinating incorrect words.</string>
               <bool>true</bool>
              </property>
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>Finish capturing the fragment when the mouse button is released</string>
              </property>
              <property name="text">
               <string>Capture on release</string>
