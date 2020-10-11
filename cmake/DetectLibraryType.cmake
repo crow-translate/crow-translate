@@ -8,7 +8,7 @@ function(detect_library_type LIBRARY_TYPE)
         message(FATAL_ERROR "The `PATH` argument is required.")
     endif()
 
-    if (DEFINED PARAMS_UNPARSED_ARGUMENTS)
+    if(DEFINED PARAMS_UNPARSED_ARGUMENTS)
         message(FATAL_ERROR "Unparsed arguments for vtk_detect_library_type: " "${PARAMS_UNPARSED_ARGUMENTS}")
     endif()
 
@@ -19,7 +19,7 @@ function(detect_library_type LIBRARY_TYPE)
     set(${LIBRARY_TYPE} UNKNOWN PARENT_SCOPE)
     # Windows libraries all end with `.lib`. We need to detect the type based on
     # the contents of the library. However, MinGW does use different extensions.
-    if (WIN32 AND NOT MINGW)
+    if(WIN32 AND NOT MINGW)
         find_program(DUMPBIN_EXECUTABLE NAMES dumpbin)
         mark_as_advanced(DUMPBIN_EXECUTABLE)
         execute_process(

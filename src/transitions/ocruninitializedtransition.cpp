@@ -21,6 +21,7 @@
 #include "ocruninitializedtransition.h"
 
 #include "mainwindow.h"
+#include "ocr/ocr.h"
 
 #include <QMessageBox>
 

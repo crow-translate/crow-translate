@@ -44,8 +44,6 @@ option(PORTABLE_MODE "Enable portable functionality" OFF)
 set(QAPPLICATION_CLASS QApplication)
 option(QHOTKEY_INSTALL OFF)
 
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
-
 add_subdirectory(src/third-party/singleapplication)
 add_subdirectory(src/third-party/qhotkey)
 add_subdirectory(src/third-party/qtaskbarcontrol)
@@ -53,6 +51,8 @@ add_subdirectory(src/qonlinetranslator)
 if(WIN32)
     add_subdirectory(src/qgittag)
 endif()
+
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(Qt5 COMPONENTS Widgets LinguistTools Concurrent REQUIRED)
 find_package(Tesseract REQUIRED)

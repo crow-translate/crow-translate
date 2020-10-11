@@ -26,10 +26,9 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 
-#include "ocr/ocr.h"
-#include "ocr/screengrabber.h"
-
 class LanguageButtonsWidget;
+class Ocr;
+class ScreenGrabber;
 class SpeakButtons;
 class QHotkey;
 class QTaskbarControl;

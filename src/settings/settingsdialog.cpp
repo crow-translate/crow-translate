@@ -25,6 +25,7 @@
 #include "languagebuttonswidget.h"
 #include "mainwindow.h"
 #include "qhotkey.h"
+#include "ocr/ocr.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
 #ifdef Q_OS_WIN
@@ -149,6 +150,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
     updatesLayout->addStretch();
 #endif
+
     // Check current date
     const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31) || (date.month() == 1 && date.day() == 1))

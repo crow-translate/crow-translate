@@ -28,6 +28,8 @@
 #include "selection.h"
 #include "singleapplication.h"
 #include "speakbuttons.h"
+#include "ocr/ocr.h"
+#include "ocr/screengrabber.h"
 #include "settings/appsettings.h"
 #include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
@@ -49,8 +51,6 @@
 #include <QNetworkProxy>
 #include <QShortcut>
 #include <QStateMachine>
-#include <QScreen>
-#include <QtGlobal>
 
 MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     : QMainWindow(parent)
@@ -82,7 +82,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // Text speaking
     ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
     ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
-    
+
     // Taskbar progress for text speaking
 #if defined(Q_OS_WIN)
     m_taskbar->setWidget(this);
@@ -448,8 +448,7 @@ void MainWindow::showTranslationWindow()
 
     const AppSettings settings;
     switch (settings.windowMode()) {
-    case AppSettings::PopupWindow:
-    {
+    case AppSettings::PopupWindow: {
         auto *popup = new PopupWindow(this);
         popup->show();
         popup->activateWindow();
@@ -667,7 +666,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(initialState);
-    
+
     connect(selectState, &QState::entered, m_quickEditor, &ScreenGrabber::capture);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
@@ -863,7 +862,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
         // Show error only if languages was specified by user
         if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath()) {
             QMessageBox::critical(this, Ocr::tr("Unable to set OCR languages"),
-                              Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
+                                  Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
         }
     }
     m_quickEditor->loadSettings(settings);
