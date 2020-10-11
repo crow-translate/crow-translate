@@ -34,7 +34,7 @@ SpeakButtons::SpeakButtons(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &SpeakButtons::processSpeakPressed);
+    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &SpeakButtons::onSpeakButtonPressed);
     connect(ui->stopButton, &QAbstractButton::clicked, this, &SpeakButtons::stopSpeaking);
 }
 
@@ -53,14 +53,14 @@ void SpeakButtons::setMediaPlayer(QMediaPlayer *mediaPlayer)
     if (m_mediaPlayer != nullptr) {
         disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::loadPlayerState);
         disconnect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::stateChanged);
-        disconnect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::processPositionChanged);
+        disconnect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::onPlayerPositionChanged);
     }
 
     m_mediaPlayer = mediaPlayer;
     if (m_mediaPlayer->playlist() == nullptr)
         m_mediaPlayer->setPlaylist(new QMediaPlaylist);
 
-    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::processPositionChanged);
+    connect(m_mediaPlayer, &QMediaPlayer::positionChanged, this, &SpeakButtons::onPlayerPositionChanged);
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::loadPlayerState);
     connect(m_mediaPlayer, &QMediaPlayer::stateChanged, this, &SpeakButtons::stateChanged);
 
@@ -182,7 +182,7 @@ void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
     }
 }
 
-void SpeakButtons::processSpeakPressed()
+void SpeakButtons::onSpeakButtonPressed()
 {
     switch (m_mediaPlayer->state()) {
     case QMediaPlayer::StoppedState:
@@ -197,7 +197,7 @@ void SpeakButtons::processSpeakPressed()
     }
 }
 
-void SpeakButtons::processPositionChanged(qint64 position)
+void SpeakButtons::onPlayerPositionChanged(qint64 position)
 {
     if (m_mediaPlayer->duration() != 0)
         emit positionChanged(static_cast<double>(position) / m_mediaPlayer->duration());

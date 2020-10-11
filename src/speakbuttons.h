@@ -68,8 +68,8 @@ signals:
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);
-    void processSpeakPressed();
-    void processPositionChanged(qint64 position);
+    void onSpeakButtonPressed();
+    void onPlayerPositionChanged(qint64 position);
 
 private:
     Ui::SpeakButtons *ui;

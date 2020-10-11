@@ -29,7 +29,7 @@
 TrayIcon::TrayIcon(MainWindow *parent)
     : QSystemTrayIcon(parent)
 {
-    connect(this, &TrayIcon::activated, this, &TrayIcon::processTrayActivated);
+    connect(this, &TrayIcon::activated, this, &TrayIcon::onTrayActivated);
 }
 
 void TrayIcon::loadSettings(const AppSettings &settings)
@@ -83,7 +83,7 @@ void TrayIcon::showTranslationMessage(const QString &message)
     showMessage(tr("Translation Result"), message, QSystemTrayIcon::NoIcon, m_translationNotificaitonTimeout * 1000);
 }
 
-void TrayIcon::processTrayActivated(QSystemTrayIcon::ActivationReason reason)
+void TrayIcon::onTrayActivated(QSystemTrayIcon::ActivationReason reason)
 {
     if (reason != QSystemTrayIcon::Trigger)
         return;

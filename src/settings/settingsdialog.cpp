@@ -106,9 +106,6 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
     
-    // Disable "Show tray icon" if "Pop-up mode selected
-    connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), this, &SettingsDialog::setShowTrayIconCheckBoxState);
-
 #ifdef Q_OS_WIN
     // Add information about icons
     auto *papirusTitleLabel = new QLabel(this);
@@ -239,7 +236,7 @@ void SettingsDialog::accept()
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
 }
 
-void SettingsDialog::processProxyTypeChanged(int type)
+void SettingsDialog::onProxyTypeChanged(int type)
 {
     if (type == QNetworkProxy::HttpProxy || type == QNetworkProxy::Socks5Proxy) {
         ui->proxyHostEdit->setEnabled(true);
@@ -259,9 +256,9 @@ void SettingsDialog::processProxyTypeChanged(int type)
 }
 
 // Update "Show tray Icon" checkbox state when “Notification" mode selected
-void SettingsDialog::setShowTrayIconCheckBoxState(int index)
+void SettingsDialog::onWindowModeChanged(int mode)
 {
-    if (index == AppSettings::Notification) {
+    if (mode == AppSettings::Notification) {
         ui->showTrayIconCheckBox->setDisabled(true);
         ui->showTrayIconCheckBox->setChecked(true);
     } else {
@@ -270,7 +267,7 @@ void SettingsDialog::setShowTrayIconCheckBoxState(int index)
 }
 
 // Disable (enable) "Custom icon path" option
-void SettingsDialog::processTrayIconTypeChanged(int type)
+void SettingsDialog::onTrayIconTypeChanged(int type)
 {
     if (type == TrayIcon::CustomIcon) {
         ui->customTrayIconLabel->setEnabled(true);

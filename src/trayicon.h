@@ -50,7 +50,7 @@ public:
     void showTranslationMessage(const QString &message);
 
 private slots:
-    void processTrayActivated(QSystemTrayIcon::ActivationReason reason);
+    void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
     int m_translationNotificaitonTimeout;

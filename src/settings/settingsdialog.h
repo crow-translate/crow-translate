@@ -56,10 +56,10 @@ public slots:
     void accept() override;
 
 private slots:
-    void processProxyTypeChanged(int type);
-    void processTrayIconTypeChanged(int type);
+    void onProxyTypeChanged(int type);
+    void onWindowModeChanged(int mode);
 
-    void setShowTrayIconCheckBoxState(int index);
+    void onTrayIconTypeChanged(int type);
     void selectCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
 

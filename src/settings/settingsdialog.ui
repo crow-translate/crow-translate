@@ -1779,7 +1779,7 @@ and there is more chance of hallucinating incorrect words.</string>
    <sender>proxyTypeComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>processProxyTypeChanged(int)</slot>
+   <slot>onProxyTypeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -1795,7 +1795,7 @@ and there is more chance of hallucinating incorrect words.</string>
    <sender>trayIconComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>processTrayIconTypeChanged(int)</slot>
+   <slot>onTrayIconTypeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -2031,10 +2031,26 @@ and there is more chance of hallucinating incorrect words.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>windowModeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onWindowModeChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>402</x>
+     <y>99</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
-  <slot>processProxyTypeChanged(int)</slot>
-  <slot>processTrayIconTypeChanged(int)</slot>
+  <slot>onProxyTypeChanged(int)</slot>
+  <slot>onTrayIconTypeChanged(int)</slot>
   <slot>selectCustomTrayIcon()</slot>
   <slot>setCustomTrayIconPreview(QString)</slot>
   <slot>showAvailableTtsOptions(int)</slot>
@@ -2049,5 +2065,6 @@ and there is more chance of hallucinating incorrect words.</string>
   <slot>loadShortcut(ShortcutItem*)</slot>
   <slot>selectOcrLanguagesPath()</slot>
   <slot>onOcrLanguagesPathChanged(QString)</slot>
+  <slot>onWindowModeChanged(int)</slot>
  </slots>
 </ui>
