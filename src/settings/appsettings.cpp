@@ -813,7 +813,7 @@ void AppSettings::setTranslateScreenAreaShortcut(const QKeySequence &shortcut)
 
 QKeySequence AppSettings::defaultTranslateScreenAreaShortcut()
 {
-    return QKeySequence(QStringLiteral("Ctrl+Alt+D"));
+    return QKeySequence(QStringLiteral("Ctrl+Alt+O"));
 }
 
 QKeySequence AppSettings::translateShortcut() const
