@@ -148,8 +148,9 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 - [CMake](https://cmake.org) 3.14+
 - [Extra CMake Modules](https://github.com/KDE/extra-cmake-modules)
+- [Qt](https://www.qt.io) 5.9+ with Widgets, Network, Multimedia, Concurrent, X11Extras (Linux), DBus (Linux) and WinExtras (Windows) modules
+- [Tesseract](https://tesseract-ocr.github.io) 4.0+
 - [Png2Ico](https://www.winterdrache.de/freeware/png2ico) or [IcoTool](https://www.nongnu.org/icoutils) for generating executable icon (Windows)
-- [Qt](https://www.qt.io) 5.9+ with Widgets, Network, Multimedia, X11Extras (Linux), DBus (Linux) and WinExtras (Windows) modules
 
 ### Static libraries
 
