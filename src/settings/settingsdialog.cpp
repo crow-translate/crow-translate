@@ -85,7 +85,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
         ui->secondaryLangComboBox->addItem(langIcon, QOnlineTranslator::languageName(lang), i);
     }
 
-    ui->ocrLanguagesListWidget->addItems(parent->ocr()->availableLanguages());
+    ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
 
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
@@ -212,6 +212,7 @@ void SettingsDialog::accept()
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
     // OCR
+    settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
     settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
@@ -291,6 +292,20 @@ void SettingsDialog::chooseCustomTrayIcon()
 void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
 {
     ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
+}
+
+void SettingsDialog::chooseOcrLanguagesPath() 
+{
+    const QString path = ui->ocrLanguagesPathEdit->text().left(ui->ocrLanguagesPathEdit->text().lastIndexOf(QDir::separator()));
+    const QString directory = QFileDialog::getExistingDirectory(this, tr("Select OCR languages path"), path);
+    if (!directory.isEmpty())
+        ui->ocrLanguagesPathEdit->setText(directory);
+}
+
+void SettingsDialog::onOcrLanguagesPathChanged(const QString &path) 
+{
+    ui->ocrLanguagesListWidget->clear();
+    ui->ocrLanguagesListWidget->addLanguages(Ocr::availableLanguages(path));
 }
 
 // Disable unsupported voice settings for engines.
@@ -493,6 +508,7 @@ void SettingsDialog::restoreDefaults()
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
     // OCR
+    ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
@@ -563,6 +579,7 @@ void SettingsDialog::loadSettings()
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
     // OCR
+    ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());

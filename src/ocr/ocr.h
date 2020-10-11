@@ -25,6 +25,8 @@
 
 #include <tesseract/baseapi.h>
 
+class QDir;
+
 class Ocr : public QObject
 {
     Q_OBJECT
@@ -34,14 +36,17 @@ public:
 
     QStringList availableLanguages() const;
     QByteArray languagesString() const;
-    bool setLanguagesString(const QByteArray &string);
+    bool setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath);
 
     void recognize(const QPixmap &pixmap);
+
+    static QStringList availableLanguages(const QString &languagesPath);
 
 signals:
     void recognized(const QString &text);
 
 private:
+    static QStringList parseLanguageFiles(const QDir &directory);
     tesseract::TessBaseAPI m_tesseract;
 };
 

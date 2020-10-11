@@ -283,6 +283,10 @@ public:
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
 
+    QByteArray ocrLanguagesPath() const;
+    void setOcrLanguagesPath(const QByteArray &path);
+    static QByteArray defaultOcrLanguagesPath();
+
     QByteArray ocrLanguagesString() const;
     void setOcrLanguagesString(const QByteArray &string);
     static QByteArray defaultOcrLanguagesString();

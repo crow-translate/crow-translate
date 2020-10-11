@@ -46,14 +46,11 @@ QByteArray Ocr::languagesString() const
     return QByteArray::fromRawData(m_tesseract.GetInitLanguagesAsString(), qstrlen(m_tesseract.GetInitLanguagesAsString()));
 }
 
-bool Ocr::setLanguagesString(const QByteArray &string)
+bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath)
 {
     // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
-    if (string.isEmpty())
-        return m_tesseract.Init(nullptr, nullptr, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
-
-    if (languagesString() != string)
-        return m_tesseract.Init(nullptr, string, tesseract::OEM_LSTM_ONLY, nullptr, 0, nullptr, nullptr, true) == 0;
+    if (languagesString() != languages || languages.isEmpty())
+        return m_tesseract.Init(languagesPath.isEmpty() ? nullptr : languagesPath.data(), languages.isEmpty() ? nullptr : languages.data(), tesseract::OEM_LSTM_ONLY) == 0;
 
     // Language are already set
     return true;
@@ -69,4 +66,37 @@ void Ocr::recognize(const QPixmap &pixmap)
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
         emit recognized(resultText.data());
     });
+}
+
+QStringList Ocr::availableLanguages(const QString &languagesPath) 
+{
+    // From the specified directory
+    if (!languagesPath.isEmpty())
+        return parseLanguageFiles(languagesPath);
+
+    // From the environment variable
+    if (const QString environmentLanguagesPath = qEnvironmentVariable("TESSDATA_PREFIX"); !environmentLanguagesPath.isEmpty())
+        return parseLanguageFiles(environmentLanguagesPath);
+
+    // From the default location
+    for (const QString &path : QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
+        if (path.isEmpty())
+            continue;
+        const QStringList languages = parseLanguageFiles(path + QDir::separator() + QStringLiteral("tessdata"));
+        if (!languages.isEmpty())
+            return languages;
+    }
+
+    return {};
+}
+
+QStringList Ocr::parseLanguageFiles(const QDir &directory) 
+{
+    const QFileInfoList files = directory.entryInfoList({QStringLiteral("*.traineddata")}, QDir::Files);
+    QStringList languages;
+    languages.reserve(files.size());
+    for (const QFileInfo &file : files)
+        languages.append(file.baseName());
+
+    return languages;
 }

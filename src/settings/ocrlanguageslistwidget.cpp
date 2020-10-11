@@ -25,6 +25,14 @@ OcrLanguagesListWidget::OcrLanguagesListWidget(QWidget *parent)
 {
 }
 
+void OcrLanguagesListWidget::addLanguages(const QStringList &labels) 
+{
+    for (const QString &label : labels) {
+        auto *widgetItem = new QListWidgetItem(label, this);
+        widgetItem->setCheckState(Qt::Unchecked);
+    }
+}
+
 void OcrLanguagesListWidget::setCheckedLanguages(const QByteArray &languagesString)
 {
     const QByteArrayList languages = languagesString.split('+');
@@ -32,8 +40,6 @@ void OcrLanguagesListWidget::setCheckedLanguages(const QByteArray &languagesStri
         QListWidgetItem *widgetItem = item(i);
         if (languages.contains(widgetItem->text().toLocal8Bit()))
             widgetItem->setCheckState(Qt::Checked);
-        else
-            widgetItem->setCheckState(Qt::Unchecked);
     }
 }
 

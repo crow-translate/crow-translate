@@ -906,6 +906,21 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
 
+QByteArray AppSettings::ocrLanguagesPath() const
+{
+    return m_settings->value(QStringLiteral("OCR/LanguagesPath"), defaultOcrLanguagesPath()).toByteArray();
+}
+
+void AppSettings::setOcrLanguagesPath(const QByteArray &path) 
+{
+    m_settings->setValue(QStringLiteral("OCR/LanguagesPath"), path);
+}
+
+QByteArray AppSettings::defaultOcrLanguagesPath() 
+{
+    return {};
+}
+
 QByteArray AppSettings::ocrLanguagesString() const
 {
     return m_settings->value(QStringLiteral("OCR/Languages"), defaultOcrLanguagesString()).toByteArray();

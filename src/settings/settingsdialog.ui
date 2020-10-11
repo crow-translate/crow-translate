@@ -82,7 +82,8 @@
         <string>OCR</string>
        </property>
        <property name="icon">
-        <iconset theme="scanner"/>
+        <iconset theme="scanner">
+         <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
       <item>
@@ -723,19 +724,48 @@
        </layout>
       </widget>
       <widget class="QWidget" name="ocrPage">
-       <layout class="QVBoxLayout" name="verticalLayout_2">
+       <layout class="QVBoxLayout" name="ocrLayout">
         <item>
          <widget class="QGroupBox" name="ocrLanguagesGroupBox">
           <property name="title">
            <string>Languages</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_3">
-           <item>
+          <layout class="QGridLayout" name="ocrLanguagesLayout">
+           <item row="0" column="1">
+            <widget class="QLineEdit" name="ocrLanguagesPathEdit">
+             <property name="placeholderText">
+              <string>Directory with trained models</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="ocrLanguagesPathLabel">
+             <property name="text">
+              <string>Languages path:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QToolButton" name="ocrLanguagesPathButton">
+             <property name="icon">
+              <iconset theme="folder">
+               <normaloff>.</normaloff>.</iconset>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0" colspan="3">
             <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
              <property name="toolTip">
               <string>Loading additional languages will impact both speed and accuracy,
 as there is more work to do to decide on the applicable language,
 and there is more chance of hallucinating incorrect words.</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QLabel" name="downloadMoreLabel">
+             <property name="text">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
@@ -747,7 +777,7 @@ and there is more chance of hallucinating incorrect words.</string>
           <property name="title">
            <string>Screen capture</string>
           </property>
-          <layout class="QGridLayout" name="generalBoxLayout_2">
+          <layout class="QGridLayout" name="screenCaptureLayout">
            <item row="0" column="0">
             <widget class="QLabel" name="rememverRegionLabel">
              <property name="sizePolicy">
@@ -1966,6 +1996,38 @@ and there is more chance of hallucinating incorrect words.</string>
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>ocrLanguagesPathButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>chooseOcrLanguagesPath()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>ocrLanguagesPathEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onOcrLanguagesPathChanged(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>256</x>
+     <y>20</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>307</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>processProxyTypeChanged(int)</slot>
@@ -1982,5 +2044,7 @@ and there is more chance of hallucinating incorrect words.</string>
   <slot>acceptCurrentShortcut()</slot>
   <slot>updateAcceptButton()</slot>
   <slot>loadShortcut(ShortcutItem*)</slot>
+  <slot>chooseOcrLanguagesPath()</slot>
+  <slot>onOcrLanguagesPathChanged(QString)</slot>
  </slots>
 </ui>
