@@ -43,7 +43,7 @@ public:
     void capture();
 
 signals:
-    void grabDone(const QPixmap &thePixmap);
+    void grabDone(const QPixmap &thePixmap, int dpi);
     void grabCancelled();
 
 private:

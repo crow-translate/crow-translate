@@ -56,13 +56,13 @@ bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &lang
     return true;
 }
 
-void Ocr::recognize(const QPixmap &pixmap) 
+void Ocr::recognize(const QPixmap &pixmap, int dpi) 
 {
     Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call setLanguage first");
 
-    QtConcurrent::run([this, image = pixmap.toImage()] {
+    QtConcurrent::run([this, dpi, image = pixmap.toImage()] {
         m_tesseract.SetImage(image.constBits() ,image.width(), image.height(), 4, image.bytesPerLine());
-        m_tesseract.SetSourceResolution(70);
+        m_tesseract.SetSourceResolution(dpi);
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
         emit recognized(resultText.data());
     });

@@ -796,7 +796,13 @@ void ScreenGrabber::acceptSelection()
                                        qRound(m_selection.width() * dpr),
                                        qRound(m_selection.height() * dpr));
         AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
-        emit grabDone(m_screenPixmap.copy(scaledCropRegion));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+        qreal dpi = QGuiApplication::screenAt(QCursor::pos())->logicalDotsPerInch();
+#else
+        // Until Qt 5.10 there was no way to get the screen with the current cursor
+        qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+#endif
+        emit grabDone(m_screenPixmap.copy(scaledCropRegion), static_cast<int>(dpi));
     }
     hide();
 }

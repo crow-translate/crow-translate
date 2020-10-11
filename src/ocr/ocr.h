@@ -38,7 +38,7 @@ public:
     QByteArray languagesString() const;
     bool setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath);
 
-    void recognize(const QPixmap &pixmap);
+    void recognize(const QPixmap &pixmap, int dpi);
 
     static QStringList availableLanguages(const QString &languagesPath);
 
