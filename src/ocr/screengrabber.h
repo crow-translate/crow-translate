@@ -93,6 +93,7 @@ private:
     void layoutBottomHelpText();
 
     void acceptSelection();
+    void cancelSelection();
 
     static QPoint fromNative(QPoint point, const QScreen *screen);
     static QSize fromNative(QSize size, const QScreen *screen);

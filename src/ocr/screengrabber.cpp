@@ -104,8 +104,7 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
         m_toggleMagnifier = true;
     switch (event->key()) {
     case Qt::Key_Escape:
-        emit grabCancelled();
-        hide();
+        cancelSelection();
         break;
     case Qt::Key_Return:
     case Qt::Key_Enter:
@@ -805,6 +804,14 @@ void ScreenGrabber::acceptSelection()
         emit grabDone(m_screenPixmap.copy(scaledCropRegion), static_cast<int>(dpi));
     }
     hide();
+    releaseKeyboard();
+}
+
+void ScreenGrabber::cancelSelection() 
+{
+    releaseKeyboard();
+    hide();
+    emit grabCancelled();
 }
 
 QPoint ScreenGrabber::fromNative(QPoint point, const QScreen *screen)
