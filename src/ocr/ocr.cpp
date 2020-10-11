@@ -75,7 +75,12 @@ QStringList Ocr::availableLanguages(const QString &languagesPath)
         return parseLanguageFiles(languagesPath);
 
     // From the environment variable
+
+#if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
     if (const QString environmentLanguagesPath = qEnvironmentVariable("TESSDATA_PREFIX"); !environmentLanguagesPath.isEmpty())
+#else
+    if (const QString environmentLanguagesPath = qgetenv("TESSDATA_PREFIX"); !environmentLanguagesPath.isEmpty())
+#endif
         return parseLanguageFiles(environmentLanguagesPath);
 
     // From the default location
