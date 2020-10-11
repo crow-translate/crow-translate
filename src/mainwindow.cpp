@@ -688,7 +688,6 @@ void MainWindow::buildTranslationState(QState *state)
     auto *checkLanguagesState = new QState(state);
     auto *requestInOtherLangState = new QState(state);
     auto *parseState = new QState(state);
-    auto *clearTranslationState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(abortPreviousState);
 
@@ -697,12 +696,12 @@ void MainWindow::buildTranslationState(QState *state)
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
     connect(requestInOtherLangState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::displayTranslation);
-    connect(clearTranslationState, &QState::entered, this, &MainWindow::clearTranslation);
     setupRequestStateButtons(requestState);
     setupRequestStateButtons(abortPreviousState);
 
     auto *noTextTransition = new TextEmptyTransition(ui->sourceEdit, abortPreviousState);
-    noTextTransition->setTargetState(clearTranslationState);
+    connect(noTextTransition, &TextEmptyTransition::triggered, this, &MainWindow::clearTranslation);
+    noTextTransition->setTargetState(finalState);
 
     auto *translationRunningTransition = new TranslatorAbortedTransition(m_translator, abortPreviousState);
     translationRunningTransition->setTargetState(requestState);
@@ -714,7 +713,6 @@ void MainWindow::buildTranslationState(QState *state)
     checkLanguagesState->addTransition(parseState);
     requestInOtherLangState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
     parseState->addTransition(finalState);
-    clearTranslationState->addTransition(finalState);
 }
 
 void MainWindow::buildSpeakSourceState(QState *state)
