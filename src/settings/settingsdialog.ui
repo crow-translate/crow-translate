@@ -1811,7 +1811,7 @@ and there is more chance of hallucinating incorrect words.</string>
    <sender>customTrayIconButton</sender>
    <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>chooseCustomTrayIcon()</slot>
+   <slot>selectCustomTrayIcon()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>282</x>
@@ -2003,7 +2003,7 @@ and there is more chance of hallucinating incorrect words.</string>
    <sender>ocrLanguagesPathButton</sender>
    <signal>clicked()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>chooseOcrLanguagesPath()</slot>
+   <slot>selectOcrLanguagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -2035,7 +2035,7 @@ and there is more chance of hallucinating incorrect words.</string>
  <slots>
   <slot>processProxyTypeChanged(int)</slot>
   <slot>processTrayIconTypeChanged(int)</slot>
-  <slot>chooseCustomTrayIcon()</slot>
+  <slot>selectCustomTrayIcon()</slot>
   <slot>setCustomTrayIconPreview(QString)</slot>
   <slot>showAvailableTtsOptions(int)</slot>
   <slot>saveEngineEmotion(int)</slot>
@@ -2047,7 +2047,7 @@ and there is more chance of hallucinating incorrect words.</string>
   <slot>acceptCurrentShortcut()</slot>
   <slot>updateAcceptButton()</slot>
   <slot>loadShortcut(ShortcutItem*)</slot>
-  <slot>chooseOcrLanguagesPath()</slot>
+  <slot>selectOcrLanguagesPath()</slot>
   <slot>onOcrLanguagesPathChanged(QString)</slot>
  </slots>
 </ui>

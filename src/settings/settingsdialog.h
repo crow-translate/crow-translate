@@ -60,10 +60,10 @@ private slots:
     void processTrayIconTypeChanged(int type);
 
     void setShowTrayIconCheckBoxState(int index);
-    void chooseCustomTrayIcon();
+    void selectCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
 
-    void chooseOcrLanguagesPath();
+    void selectOcrLanguagesPath();
     void onOcrLanguagesPathChanged(const QString &path);
 
     void showAvailableTtsOptions(int engine);

@@ -283,7 +283,7 @@ void SettingsDialog::processTrayIconTypeChanged(int type)
     }
 }
 
-void SettingsDialog::chooseCustomTrayIcon()
+void SettingsDialog::selectCustomTrayIcon()
 {
     const QString path = ui->customTrayIconEdit->text().left(ui->customTrayIconEdit->text().lastIndexOf(QDir::separator()));
     const QString file = QFileDialog::getOpenFileName(this, tr("Select icon"), path, tr("Images (*.png *.ico *.svg *.jpg);;All files()"));
@@ -296,7 +296,7 @@ void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
     ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
 }
 
-void SettingsDialog::chooseOcrLanguagesPath() 
+void SettingsDialog::selectOcrLanguagesPath() 
 {
     const QString path = ui->ocrLanguagesPathEdit->text().left(ui->ocrLanguagesPathEdit->text().lastIndexOf(QDir::separator()));
     const QString directory = QFileDialog::getExistingDirectory(this, tr("Select OCR languages path"), path);
