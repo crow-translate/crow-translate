@@ -261,7 +261,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QFontComboBox" name="fontNameComboBox"/>
+            <widget class="QFontComboBox" name="fontNameComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="fontSizeLabel">
@@ -272,6 +276,9 @@
            </item>
            <item>
             <widget class="QSpinBox" name="fontSizeSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="suffix">
               <string notr="true"> pt</string>
              </property>
@@ -398,6 +405,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="suffix">
               <string> sec</string>
              </property>
@@ -427,6 +437,9 @@
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Full name</string>
@@ -448,6 +461,9 @@
            </item>
            <item row="1" column="1">
             <widget class="QComboBox" name="popupLanguageFormatComboBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <item>
               <property name="text">
                <string>Full name</string>
@@ -480,6 +496,9 @@
             <widget class="QToolButton" name="customTrayIconButton">
              <property name="enabled">
               <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string notr="true"/>
@@ -550,8 +569,8 @@
              <property name="enabled">
               <bool>false</bool>
              </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Path to the icon or icon name from theme&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             <property name="placeholderText">
+              <string>Path to the icon or icon name from theme</string>
              </property>
             </widget>
            </item>
@@ -693,15 +712,21 @@
            </item>
            <item row="2" column="0" colspan="3">
             <widget class="QCheckBox" name="forceSourceAutoCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
-              <string>Force detection of source language when used without window</string>
+              <string>Force source language detection outside the window</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0" colspan="3">
             <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
-              <string>Force detection of translation language when used without window</string>
+              <string>Force translation language detection outside the window</string>
              </property>
             </widget>
            </item>
@@ -748,7 +773,7 @@
            <item row="0" column="2">
             <widget class="QToolButton" name="ocrLanguagesPathButton">
              <property name="toolTip">
-              <string>Select OCR languages path</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="icon">
               <iconset theme="folder">
@@ -759,16 +784,20 @@
            <item row="2" column="0" colspan="3">
             <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
              <property name="toolTip">
-              <string>Loading additional languages will impact both speed and accuracy,
-as there is more work to do to decide on the applicable language,
-and there is more chance of hallucinating incorrect words.</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
            <item row="3" column="0">
             <widget class="QLabel" name="downloadMoreLabel">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="openExternalLinks">
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -797,7 +826,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="1" column="0" colspan="3">
             <widget class="QCheckBox" name="showMagnifierCheckBox">
              <property name="toolTip">
-              <string>Show a magnifier next to the cursor</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Show magnifier</string>
@@ -807,7 +836,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="3" column="0" colspan="2">
             <widget class="QCheckBox" name="applyLightMaskCheckBox">
              <property name="toolTip">
-              <string>Apply a slight fog to the unselected part</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Apply light mask</string>
@@ -830,7 +859,7 @@ and there is more chance of hallucinating incorrect words.</string>
            <item row="0" column="1">
             <widget class="QComboBox" name="rememberRegionComboBox">
              <property name="toolTip">
-              <string>When to remember the last captured region</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <item>
               <property name="text">
@@ -855,7 +884,7 @@ and there is more chance of hallucinating incorrect words.</string>
               <bool>true</bool>
              </property>
              <property name="toolTip">
-              <string>Finish capturing the fragment when the mouse button is released</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
               <string>Capture on release</string>
