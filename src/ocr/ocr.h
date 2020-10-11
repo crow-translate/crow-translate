@@ -47,6 +47,7 @@ signals:
 
 private:
     static QStringList parseLanguageFiles(const QDir &directory);
+
     tesseract::TessBaseAPI m_tesseract;
 };
 

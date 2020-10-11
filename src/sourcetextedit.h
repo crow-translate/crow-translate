@@ -50,12 +50,12 @@ private slots:
     void checkSourceEmptyChanged();
 
 private:
+    static constexpr int s_delay = 500;
+
     QTimer *m_textEditedTimer;
     bool m_requestTranslationOnEdit = false;
     bool m_sourceEmpty = true;
     bool m_simplifySource = false;
-
-    static constexpr int s_delay = 500;
 };
 
 #endif // SOURCETEXTEDIT_H

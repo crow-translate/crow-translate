@@ -68,6 +68,8 @@ private:
     bool isWindowWidthFitScreen();
     QString languageString(QOnlineTranslator::Language language);
 
+    static constexpr int s_autoButtonId = -2; // -1 is reserved by QButtonGroup
+
     Ui::LanguageButtonsWidget *ui;
     QButtonGroup *m_buttonGroup;
 
@@ -75,8 +77,6 @@ private:
     QOnlineTranslator::Language m_autoLang = QOnlineTranslator::Auto;
     AppSettings::LanguageFormat m_languageFormat = AppSettings::FullName;
     int m_previousCheckedId = 0;
-
-    static constexpr int s_autoButtonId = -2; // -1 is reserved by QButtonGroup
 };
 
 #endif // LANGUAGEBUTTONSWIDGET_H

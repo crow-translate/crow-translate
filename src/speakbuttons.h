@@ -72,12 +72,12 @@ private slots:
     void onPlayerPositionChanged(qint64 position);
 
 private:
+    static QMediaPlayer *s_currentlyPlaying;
+
     Ui::SpeakButtons *ui;
     QMediaPlayer *m_mediaPlayer = nullptr;
     QOnlineTts::Voice m_yandexVoice = QOnlineTts::NoVoice;
     QOnlineTts::Emotion m_yandexEmotion = QOnlineTts::NoEmotion;
-
-    static QMediaPlayer *s_currentlyPlaying;
 };
 
 #endif // PLAYERBUTTONS_H

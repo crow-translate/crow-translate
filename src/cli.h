@@ -64,6 +64,8 @@ private:
     static QByteArray readFilesFromStdin();
     static QByteArray readFilesFromArguments(const QStringList &arguments);
 
+    static constexpr char s_langProperty[] = "Language";
+
     QMediaPlayer *m_player;
     QOnlineTranslator *m_translator;
     QStateMachine *m_stateMachine;
@@ -79,8 +81,6 @@ private:
     bool m_sourcePrinted = false;
     bool m_brief = false;
     bool m_audioOnly = false;
-
-    static constexpr char s_langProperty[] = "Language";
 };
 
 #endif // CLI_H

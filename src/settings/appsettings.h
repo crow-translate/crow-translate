@@ -328,13 +328,13 @@ public:
     void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
 
 private:
-    QSettings *m_settings;
-
     static QTranslator s_appTranslator;
     static QTranslator s_qtTranslator; // Qt library translations
 #ifdef PORTABLE_MODE
     static const QString s_portableConfigName;
 #endif
+
+    QSettings *m_settings;
 };
 
 #endif // APPSETTINGS_H
