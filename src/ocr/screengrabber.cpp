@@ -17,7 +17,7 @@
  *  Boston, MA 02110-1301, USA.
  */
 
-#include "quickeditor.h"
+#include "screengrabber.h"
 
 #include "settings/appsettings.h"
 

@@ -27,7 +27,7 @@
 #include <QMediaPlayer>
 
 #include "ocr/ocr.h"
-#include "ocr/quickeditor.h"
+#include "ocr/screengrabber.h"
 
 class LanguageButtonsWidget;
 class SpeakButtons;

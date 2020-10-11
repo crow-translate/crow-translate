@@ -114,7 +114,7 @@ add_executable(${PROJECT_NAME}
     src/mainwindow.cpp
     src/mainwindow.ui
     src/ocr/ocr.cpp
-    src/ocr/quickeditor.cpp
+    src/ocr/screengrabber.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
     src/selection.cpp
