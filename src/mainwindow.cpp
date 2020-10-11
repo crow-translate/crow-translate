@@ -686,7 +686,7 @@ void MainWindow::buildTranslationState(QState *state)
     auto *abortPreviousState = new QState(state);
     auto *requestState = new QState(state);
     auto *checkLanguagesState = new QState(state);
-    auto *requestInOtherLangeState = new QState(state);
+    auto *requestInOtherLangState = new QState(state);
     auto *parseState = new QState(state);
     auto *clearTranslationState = new QState(state);
     auto *finalState = new QFinalState(state);
@@ -695,7 +695,7 @@ void MainWindow::buildTranslationState(QState *state)
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
     connect(abortPreviousState, &QState::entered, ui->translationSpeakButtons, &SpeakButtons::stopSpeaking); // Stop translation speaking
     connect(requestState, &QState::entered, this, &MainWindow::requestTranslation);
-    connect(requestInOtherLangeState, &QState::entered, this, &MainWindow::requestRetranslation);
+    connect(requestInOtherLangState, &QState::entered, this, &MainWindow::requestRetranslation);
     connect(parseState, &QState::entered, this, &MainWindow::displayTranslation);
     connect(clearTranslationState, &QState::entered, this, &MainWindow::clearTranslation);
     setupRequestStateButtons(requestState);
@@ -708,11 +708,11 @@ void MainWindow::buildTranslationState(QState *state)
     translationRunningTransition->setTargetState(requestState);
 
     auto *otherLangTransition = new RetranslationTransition(m_translator, ui->translationLanguagesWidget, checkLanguagesState);
-    otherLangTransition->setTargetState(requestInOtherLangeState);
+    otherLangTransition->setTargetState(requestInOtherLangState);
 
     requestState->addTransition(m_translator, &QOnlineTranslator::finished, checkLanguagesState);
     checkLanguagesState->addTransition(parseState);
-    requestInOtherLangeState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
+    requestInOtherLangState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
     parseState->addTransition(finalState);
     clearTranslationState->addTransition(finalState);
 }
