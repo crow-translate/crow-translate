@@ -30,9 +30,9 @@
 #include <QX11Info>
 #endif
 
-bool QuickEditor::s_bottomHelpTextPrepared = false;
+bool ScreenGrabber::s_bottomHelpTextPrepared = false;
 
-QuickEditor::QuickEditor(QWidget *parent)
+ScreenGrabber::ScreenGrabber(QWidget *parent)
     : QWidget(parent)
 {
     setMouseTracking(true);
@@ -40,7 +40,7 @@ QuickEditor::QuickEditor(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 }
 
-void QuickEditor::loadSettings(const AppSettings &settings)
+void ScreenGrabber::loadSettings(const AppSettings &settings)
 {
     m_rememberRegion = settings.regionRememberType();
     m_captureOnRelease = settings.isCaptureOnRelease();
@@ -48,7 +48,7 @@ void QuickEditor::loadSettings(const AppSettings &settings)
     m_maskColor = settings.isApplyLightMask() ? QColor(255, 255, 255, 100) : QColor();
 }
 
-void QuickEditor::capture()
+void ScreenGrabber::capture()
 {
     const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
     m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
@@ -97,7 +97,7 @@ void QuickEditor::capture()
     show();
 }
 
-void QuickEditor::keyPressEvent(QKeyEvent *event)
+void ScreenGrabber::keyPressEvent(QKeyEvent *event)
 {
     const bool shiftPressed = event->modifiers() & Qt::ShiftModifier;
     if (shiftPressed)
@@ -177,7 +177,7 @@ void QuickEditor::keyPressEvent(QKeyEvent *event)
     event->accept();
 }
 
-void QuickEditor::keyReleaseEvent(QKeyEvent *event)
+void ScreenGrabber::keyReleaseEvent(QKeyEvent *event)
 {
     if (m_toggleMagnifier && !(event->modifiers() & Qt::ShiftModifier)) {
         m_toggleMagnifier = false;
@@ -186,7 +186,7 @@ void QuickEditor::keyReleaseEvent(QKeyEvent *event)
     event->accept();
 }
 
-void QuickEditor::mousePressEvent(QMouseEvent *event)
+void ScreenGrabber::mousePressEvent(QMouseEvent *event)
 {
     if (event->source() == Qt::MouseEventNotSynthesized)
         m_handleRadius = s_handleRadiusMouse;
@@ -241,7 +241,7 @@ void QuickEditor::mousePressEvent(QMouseEvent *event)
     event->accept();
 }
 
-void QuickEditor::mouseMoveEvent(QMouseEvent *event)
+void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
 {
     const QPointF &pos = event->pos();
     m_mousePos = pos;
@@ -323,7 +323,7 @@ void QuickEditor::mouseMoveEvent(QMouseEvent *event)
     event->accept();
 }
 
-void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
+void ScreenGrabber::mouseReleaseEvent(QMouseEvent *event)
 {
     switch (event->button()) {
     case Qt::LeftButton:
@@ -345,14 +345,14 @@ void QuickEditor::mouseReleaseEvent(QMouseEvent *event)
     update();
 }
 
-void QuickEditor::mouseDoubleClickEvent(QMouseEvent *event)
+void ScreenGrabber::mouseDoubleClickEvent(QMouseEvent *event)
 {
     event->accept();
     if (event->button() == Qt::LeftButton && m_selection.contains(event->pos()))
         acceptSelection();
 }
 
-void QuickEditor::paintEvent(QPaintEvent *)
+void ScreenGrabber::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
@@ -387,7 +387,7 @@ void QuickEditor::paintEvent(QPaintEvent *)
     }
 }
 
-int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
+int ScreenGrabber::boundsLeft(int newTopLeftX, const bool mouse)
 {
     if (newTopLeftX < 0) {
         if (mouse)
@@ -398,7 +398,7 @@ int QuickEditor::boundsLeft(int newTopLeftX, const bool mouse)
     return newTopLeftX;
 }
 
-int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
+int ScreenGrabber::boundsRight(int newTopLeftX, const bool mouse)
 {
     // The max X coordinate of the top left point
     const int realMaxX = qRound((width() - m_selection.width()) * devicePixelRatioF());
@@ -412,7 +412,7 @@ int QuickEditor::boundsRight(int newTopLeftX, const bool mouse)
     return newTopLeftX;
 }
 
-int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
+int ScreenGrabber::boundsUp(int newTopLeftY, const bool mouse)
 {
     if (newTopLeftY < 0) {
         if (mouse)
@@ -423,7 +423,7 @@ int QuickEditor::boundsUp(int newTopLeftY, const bool mouse)
     return newTopLeftY;
 }
 
-int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
+int ScreenGrabber::boundsDown(int newTopLeftY, const bool mouse)
 {
     // The max Y coordinate of the top left point
     const int realMaxY = qRound((height() - m_selection.height()) * devicePixelRatioF());
@@ -437,7 +437,7 @@ int QuickEditor::boundsDown(int newTopLeftY, const bool mouse)
     return newTopLeftY;
 }
 
-void QuickEditor::drawBottomHelpText(QPainter &painter) const
+void ScreenGrabber::drawBottomHelpText(QPainter &painter) const
 {
     if (m_selection.intersects(m_bottomHelpBorderBox))
         return;
@@ -466,7 +466,7 @@ void QuickEditor::drawBottomHelpText(QPainter &painter) const
     }
 }
 
-void QuickEditor::drawDragHandles(QPainter &painter)
+void ScreenGrabber::drawDragHandles(QPainter &painter)
 {
     // Rectangular region
     const qreal left = m_selection.x();
@@ -533,7 +533,7 @@ void QuickEditor::drawDragHandles(QPainter &painter)
     painter.fillPath(path, m_strokeColor);
 }
 
-void QuickEditor::drawMagnifier(QPainter &painter) const
+void ScreenGrabber::drawMagnifier(QPainter &painter) const
 {
     const int pixels = 2 * s_magPixels + 1;
     int magX = static_cast<int>(m_mousePos.x() * devicePixelRatioF() - s_magPixels);
@@ -583,7 +583,7 @@ void QuickEditor::drawMagnifier(QPainter &painter) const
         painter.fillRect(rect, m_crossColor);
 }
 
-void QuickEditor::drawMidHelpText(QPainter &painter) const
+void ScreenGrabber::drawMidHelpText(QPainter &painter) const
 {
     painter.fillRect(rect(), m_maskColor);
 
@@ -606,7 +606,7 @@ void QuickEditor::drawMidHelpText(QPainter &painter) const
     painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, midHelpText);
 }
 
-void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const
+void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const
 {
     /*
      * Set the selection size and finds the most appropriate position:
@@ -654,7 +654,7 @@ void QuickEditor::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVi
     painter.drawText(selectionBoxRect, Qt::AlignCenter, selectionSizeText);
 }
 
-void QuickEditor::setMouseCursor(QPointF pos)
+void ScreenGrabber::setMouseCursor(QPointF pos)
 {
     MouseState mouseState = mouseLocation(pos);
     if (mouseState == MouseState::Outside)
@@ -671,7 +671,7 @@ void QuickEditor::setMouseCursor(QPointF pos)
         setCursor(Qt::OpenHandCursor);
 }
 
-QuickEditor::MouseState QuickEditor::mouseLocation(QPointF pos) const
+ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
 {
     if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopLeft;
@@ -711,7 +711,7 @@ QuickEditor::MouseState QuickEditor::mouseLocation(QPointF pos) const
     return MouseState::Outside;
 }
 
-void QuickEditor::setGeometryToScreenPixmap() 
+void ScreenGrabber::setGeometryToScreenPixmap() 
 {
 #ifdef Q_OS_LINUX
     if (QX11Info::isPlatformX11()) {
@@ -736,7 +736,7 @@ void QuickEditor::setGeometryToScreenPixmap()
     setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
 }
 
-void QuickEditor::layoutBottomHelpText()
+void ScreenGrabber::layoutBottomHelpText()
 {
     int maxRightWidth = 0;
     int contentWidth = 0;
@@ -766,7 +766,7 @@ void QuickEditor::layoutBottomHelpText()
                                   contentHeight + s_bottomHelpBoxPaddingY * 2 - 1);
 }
 
-void QuickEditor::setBottomHelpText()
+void ScreenGrabber::setBottomHelpText()
 {
     if (m_captureOnRelease && m_selection.size().isEmpty()) {
         // Release to capture enabled and NO saved region available
@@ -787,7 +787,7 @@ void QuickEditor::setBottomHelpText()
     }
 }
 
-void QuickEditor::acceptSelection()
+void ScreenGrabber::acceptSelection()
 {
     if (!m_selection.isEmpty()) {
         const qreal dpr = devicePixelRatioF();
@@ -801,7 +801,7 @@ void QuickEditor::acceptSelection()
     hide();
 }
 
-QPoint QuickEditor::fromNative(QPoint point, const QScreen *screen)
+QPoint ScreenGrabber::fromNative(QPoint point, const QScreen *screen)
 {
     const QPoint origin = screen->geometry().topLeft();
     const qreal devicePixelRatio = screen->devicePixelRatio();
@@ -809,32 +809,32 @@ QPoint QuickEditor::fromNative(QPoint point, const QScreen *screen)
     return (point - origin) / devicePixelRatio + origin;
 }
 
-QSize QuickEditor::fromNative(QSize size, const QScreen *screen)
+QSize ScreenGrabber::fromNative(QSize size, const QScreen *screen)
 {
     return size / screen->devicePixelRatio();
 }
 
-QRect QuickEditor::fromNativePixels(QRect rect, const QScreen *screen)
+QRect ScreenGrabber::fromNativePixels(QRect rect, const QScreen *screen)
 {
     return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
 }
 
-bool QuickEditor::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
+bool ScreenGrabber::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
 {
     return (qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2)) ? true : false;
 }
 
-bool QuickEditor::isInRange(qreal low, qreal high, qreal value)
+bool ScreenGrabber::isInRange(qreal low, qreal high, qreal value)
 {
     return value >= low && value <= high;
 }
 
-bool QuickEditor::isWithinThreshold(qreal offset, qreal threshold)
+bool ScreenGrabber::isWithinThreshold(qreal offset, qreal threshold)
 {
     return qFabs(offset) <= threshold;
 }
 
-void QuickEditor::prepare(QStaticText &text) const
+void ScreenGrabber::prepare(QStaticText &text) const
 {
     text.prepare(QTransform(), font());
     text.setPerformanceHint(QStaticText::AggressiveCaching);

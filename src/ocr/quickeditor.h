@@ -32,12 +32,12 @@
 class QMouseEvent;
 class AppSettings;
 
-class QuickEditor : public QWidget
+class ScreenGrabber : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit QuickEditor(QWidget *parent = nullptr);
+    explicit ScreenGrabber(QWidget *parent = nullptr);
 
     void loadSettings(const AppSettings &settings);
     void capture();
