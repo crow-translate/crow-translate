@@ -71,7 +71,6 @@ set(APP_ICONS
     data/icons/freedesktop/48-apps-crow-translate.png
     data/icons/freedesktop/512-apps-crow-translate.png
     data/icons/freedesktop/64-apps-crow-translate.png
-    data/icons/freedesktop/sc-apps-crow-translate.svg
 )
 
 qt5_add_translation(QM_FILES
@@ -166,6 +165,7 @@ if(UNIX)
 
     ecm_install_icons(ICONS
         ${APP_ICONS}
+        data/icons/freedesktop/sc-apps-crow-translate.svg
         data/icons/freedesktop/16-status-crow-translate-tray-dark.png
         data/icons/freedesktop/16-status-crow-translate-tray-light.png
         data/icons/freedesktop/22-status-crow-translate-tray-dark.png

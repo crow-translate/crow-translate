@@ -27,16 +27,14 @@ jobs:
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
             extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=x64-windows -D CMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake'
-            CXXFLAGS: '/W4' #TODO: Use /WX
+            CXXFLAGS: '/W4' # TODO: Use /WX
     steps:
     - name: Enable Git symlinks
       if: runner.os == 'Windows'
       run: git config --global core.symlinks true
 
     - name: Clone repo
-      uses: actions/checkout@v2.3.1
-      with:
-        submodules: true
+      uses: actions/checkout@v2.3.3
 
     - name: Install apt packages
       if: runner.os == 'Linux'
@@ -46,7 +44,7 @@ jobs:
 
     - name: Install Qt
       if: runner.os == 'Windows'
-      uses: jurplel/install-qt-action@v2.7.2
+      uses: jurplel/install-qt-action@v2.9.0
 
     - name: Install PkgConfig to find versions from vcpkg
       if: runner.os == 'Windows'

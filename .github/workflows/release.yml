@@ -1,7 +1,7 @@
 name: Release
 on:
   release:
-    types: created
+    types: [created]
 jobs:
   Release:
     runs-on: ${{ matrix.os }}
@@ -25,8 +25,6 @@ jobs:
 
     - name: Clone repo
       uses: actions/checkout@v2.3.1
-      with:
-        submodules: true
 
     - name: Install dependent apt packages
       if: runner.os == 'Linux'

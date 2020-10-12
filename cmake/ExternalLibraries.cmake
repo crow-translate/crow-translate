@@ -2,13 +2,13 @@ include(FetchContent)
 
 set(QAPPLICATION_CLASS QApplication)
 FetchContent_Declare(SingleApplication
-    GIT_REPOSITORY https://github.com/itay-grudev/SingleApplication
-    GIT_TAG v3.1.5
+    GIT_REPOSITORY https://github.com/Shatur95/SingleApplication
+    GIT_TAG fix-conversion-warning
 )
 
 FetchContent_Declare(QTaskbarControl
-    GIT_REPOSITORY https://github.com/Skycoder42/QTaskbarControl
-    GIT_TAG 56a0aea84365969f13553cdcf28a8c01d71b6183
+    GIT_REPOSITORY https://github.com/Shatur95/QTaskbarControl
+    GIT_TAG fix-refactoring-typo
 )
 
 option(QHOTKEY_INSTALL OFF)
