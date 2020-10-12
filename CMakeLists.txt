@@ -54,10 +54,10 @@ endif()
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-find_package(Qt5 COMPONENTS Widgets LinguistTools Concurrent REQUIRED)
+find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
-    find_package(Qt5 COMPONENTS DBus REQUIRED)
+    find_package(Qt5 REQUIRED COMPONENTS DBus)
 endif()
 find_package(ECM REQUIRED NO_MODULE)
 
@@ -139,8 +139,6 @@ add_executable(${PROJECT_NAME}
     src/trayicon.cpp
 )
 
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
-
 if(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
     target_sources(${PROJECT_NAME} PRIVATE
@@ -151,14 +149,23 @@ if(WIN32)
     )
 endif()
 
-target_link_libraries(${PROJECT_NAME} PRIVATE SingleApplication::SingleApplication QHotkey::QHotkey QTaskbarControl::QTaskbarControl QOnlineTranslator::QOnlineTranslator Qt5::Concurrent Tesseract::Tesseract)
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
+
+target_link_libraries(${PROJECT_NAME} PRIVATE
+    SingleApplication::SingleApplication
+    QHotkey::QHotkey
+    QTaskbarControl::QTaskbarControl
+    QOnlineTranslator::QOnlineTranslator
+    Qt5::Concurrent
+    Tesseract::Tesseract
+)
 
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()
-target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
 
 if(PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
