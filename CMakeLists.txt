@@ -41,28 +41,16 @@ cmake_policy(SET CMP0091 NEW)
 
 option(PORTABLE_MODE "Enable portable functionality" OFF)
 
-set(QAPPLICATION_CLASS QApplication)
-option(QHOTKEY_INSTALL OFF)
-
-add_subdirectory(src/third-party/singleapplication)
-add_subdirectory(src/third-party/qhotkey)
-add_subdirectory(src/third-party/qtaskbarcontrol)
-add_subdirectory(src/qonlinetranslator)
-if(WIN32)
-    add_subdirectory(src/qgittag)
-endif()
-
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+find_package(ECM REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
 endif()
-find_package(ECM REQUIRED NO_MODULE)
 
-list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-
+include(ExternalLibraries)
 include(GNUInstallDirs)
 include(CPack)
 if(UNIX)
