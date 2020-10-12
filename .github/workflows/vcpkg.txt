@@ -1,8 +1,0 @@
-tesseract
-ecm
-qt5-base
-qt5-svg
-qt5-multimedia
-qt5-winextras
---triplet
-x64-windows
