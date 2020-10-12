@@ -42,17 +42,16 @@ jobs:
         sudo apt-get update
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
-    - name: Install Qt
-      if: runner.os == 'Windows'
-      uses: jurplel/install-qt-action@v2.9.0
-
     - name: Install PkgConfig to find versions from vcpkg
       if: runner.os == 'Windows'
       run: choco install pkgconfiglite
 
-    - name: Install vcpkg packages
-      if: runner.os == 'Windows'
-      run: vcpkg install tesseract ecm --triplet x64-windows
+    - name: Restore from cache and run vcpkg
+      uses: lukka/run-vcpkg@v4.1
+      with:
+        vcpkgArguments: '@.github/workflows/vcpkg.txt'
+        appendedCacheKey: ${{ hashFiles(.github/workflows/vcpkg.txt) }}
+        vcpkgGitCommitId: 2020.07
 
     - name: Build
       run: |
