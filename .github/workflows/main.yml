@@ -48,6 +48,7 @@ jobs:
 
     - name: Restore from cache and run vcpkg
       uses: lukka/run-vcpkg@v4.1
+      if: runner.os == 'Windows'
       with:
         vcpkgArguments: '@.github/workflows/vcpkg.txt'
         appendedCacheKey: ${{ hashFiles('.github/workflows/vcpkg.txt') }}
