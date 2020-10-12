@@ -50,8 +50,8 @@ jobs:
       uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
       with:
-        vcpkgArguments: '@.github/workflows/vcpkg.txt'
-        appendedCacheKey: ${{ hashFiles('.github/workflows/vcpkg.txt') }}
+        vcpkgArguments: '@${{ runner.workspace }}/.github/workflows/vcpkg.txt'
+        appendedCacheKey: ${{ hashFiles('${{ runner.workspace }}/.github/workflows/vcpkg.txt') }}
         vcpkgGitCommitId: 2020.07
 
     - name: Build
