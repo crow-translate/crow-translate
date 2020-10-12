@@ -43,7 +43,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
     , m_translator(new QOnlineTranslator(this))
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
 {
@@ -53,7 +53,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->logoLabel->setPixmap(QIcon::fromTheme(QStringLiteral("crow-translate")).pixmap(512, 512));
     ui->versionLabel->setText(QCoreApplication::applicationVersion());
 
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setToolTip(tr("Use %1 from the application folder to store settings").arg(AppSettings::portableConfigName()));
     ui->generalGroupBox->layout()->addWidget(m_portableCheckbox);
 #endif
@@ -166,7 +166,7 @@ void SettingsDialog::accept()
     QDialog::accept();
 
     // Set settings location first
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     AppSettings::setPortableModeEnabled(m_portableCheckbox->isChecked());
 #endif
 
@@ -541,7 +541,7 @@ void SettingsDialog::loadSettings()
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::isAutostartEnabled());
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
 #endif
 #ifdef Q_OS_WIN

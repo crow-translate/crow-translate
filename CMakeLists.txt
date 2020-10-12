@@ -39,7 +39,7 @@ set(CMAKE_WIN32_EXECUTABLE ON)
 # Allow set CMAKE_MSVC_RUNTIME_LIBRARY
 cmake_policy(SET CMP0091 NEW)
 
-option(PORTABLE_MODE "Enable portable functionality" OFF)
+option(WITH_PORTABLE_MODE "Enable portable functionality" OFF)
 
 find_package(ECM REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -155,8 +155,8 @@ elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()
 
-if(PORTABLE_MODE)
-    target_compile_definitions(${PROJECT_NAME} PRIVATE PORTABLE_MODE)
+if(WITH_PORTABLE_MODE)
+    target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_PORTABLE_MODE)
 endif()
 
 install(TARGETS ${PROJECT_NAME})

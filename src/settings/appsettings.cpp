@@ -37,13 +37,13 @@
 
 QTranslator AppSettings::s_appTranslator;
 QTranslator AppSettings::s_qtTranslator;
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
 const QString AppSettings::s_portableConfigName = QStringLiteral("settings.ini");
 #endif
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
-#ifndef PORTABLE_MODE
+#ifndef WITH_PORTABLE_MODE
     , m_settings(new QSettings(this))
 {
 }
@@ -183,7 +183,7 @@ bool AppSettings::defaultAutostartEnabled()
     return false;
 }
 
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
 bool AppSettings::isPortableModeEnabled() const
 {
     return m_settings->format() == QSettings::IniFormat;

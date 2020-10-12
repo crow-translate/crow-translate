@@ -16,7 +16,7 @@ jobs:
             upload-files: 'build/*.deb;build/*.rpm;build/*.7z'
           - os: windows-latest
             extra-cmake-modules: '5.70.0'
-            cmake-defines: '-D OPENSSL_ROOT_DIR="C:/Program Files/Git/mingw64" -D PORTABLE_MODE=ON -D CPACK_GENERATOR="NSIS;7Z"'
+            cmake-defines: '-D OPENSSL_ROOT_DIR="C:/Program Files/Git/mingw64" -D WITH_PORTABLE_MODE=ON -D CPACK_GENERATOR="NSIS;7Z"'
             upload-files: 'build/*.exe;build/*.7z'
     steps:
     - name: Enable Git symlinks

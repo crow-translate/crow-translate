@@ -225,9 +225,9 @@ cpack -G DEB # Or `cpack -G DEB -C Release` for multi-config generators such as 
 
 ### Build parameters
 
-- `PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
+- `WITH_PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
 
-Build parameters are passed at configuration stage: `cmake -D PORTABLE_MODE ..`.
+Build parameters are passed at configuration stage: `cmake -D WITH_PORTABLE_MODE ..`.
 
 ## Localization
 

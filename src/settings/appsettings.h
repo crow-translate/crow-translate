@@ -97,7 +97,7 @@ public:
     static void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     bool isPortableModeEnabled() const;
     static void setPortableModeEnabled(bool enabled);
     static QString portableConfigName();
@@ -330,7 +330,7 @@ public:
 private:
     static QTranslator s_appTranslator;
     static QTranslator s_qtTranslator; // Qt library translations
-#ifdef PORTABLE_MODE
+#ifdef WITH_PORTABLE_MODE
     static const QString s_portableConfigName;
 #endif
 
