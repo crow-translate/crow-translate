@@ -26,7 +26,7 @@ jobs:
           - os: ubuntu-18.04
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
-            extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=x64-windows -D CMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake'
+            extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=x64-windows -D CMAKE_TOOLCHAIN_FILE=$RUNVCPKG_VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake'
             CXXFLAGS: '/W4' # TODO: Use /WX
     steps:
     - name: Enable Git symlinks
