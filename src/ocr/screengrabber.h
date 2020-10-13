@@ -27,8 +27,6 @@
 #include <QStaticText>
 #include <QWidget>
 
-#include <vector>
-
 class QMouseEvent;
 class AppSettings;
 
@@ -62,7 +60,7 @@ private:
         TopLeftOrBottomRight = TopLeft & BottomRight, // 100
         TopRightOrBottomLeft = TopRight & BottomLeft, // 1000
         TopOrBottom = Top & Bottom, // 10000
-        RightOrLeft = Right & Left, // 100000
+        RightOrLeft = Right & Left // 100000
     };
 
     void keyPressEvent(QKeyEvent *event) override;
@@ -114,7 +112,9 @@ private:
     static constexpr int s_selectionBoxPaddingY = 4;
     static constexpr int s_selectionBoxMarginY = 5;
 
-    static constexpr int s_bottomHelpMaxLength = 6;
+    static constexpr int s_bottomHelpOnReleaseLength = 3;
+    static constexpr int s_bottomHelpNormalLength = 6;
+    static constexpr int s_bottomHelpMaxLength = s_bottomHelpNormalLength;
 
     static constexpr int s_bottomHelpBoxPaddingX = 12;
     static constexpr int s_bottomHelpBoxPaddingY = 8;
@@ -127,8 +127,6 @@ private:
     static constexpr int s_magZoom = 5;
     static constexpr int s_magPixels = 16;
     static constexpr int s_magOffset = 32;
-
-    static bool s_bottomHelpTextPrepared;
 
     const qreal m_dprI = 1.0 / devicePixelRatioF();
     const QColor m_strokeColor = palette().highlight().color();
@@ -144,11 +142,11 @@ private:
     QPointF m_startPos;
     QPointF m_initialTopLeft;
 
-    std::pair<QStaticText, std::vector<QStaticText>> m_bottomHelpText[s_bottomHelpMaxLength];
+    QVector<QStaticText> m_bottomLeftHelpText;
+    QVector<QVector<QStaticText>> m_bottomRightHelpText;
     QRect m_bottomHelpBorderBox;
     QPoint m_bottomHelpContentPos;
     int m_bottomHelpGridLeftWidth = 0;
-    int m_bottomHelpLength = s_bottomHelpMaxLength;
 
     bool m_showMagnifier = AppSettings::defaultShowMagnifier();
     bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();

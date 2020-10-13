@@ -30,8 +30,6 @@
 #include <QX11Info>
 #endif
 
-bool ScreenGrabber::s_bottomHelpTextPrepared = false;
-
 ScreenGrabber::ScreenGrabber(QWidget *parent)
     : QWidget(parent)
 {
@@ -83,14 +81,6 @@ void ScreenGrabber::capture()
     }
 
     setBottomHelpText();
-    if (!s_bottomHelpTextPrepared) {
-        s_bottomHelpTextPrepared = true;
-        for (auto &pair : m_bottomHelpText) {
-            prepare(pair.first);
-            for (QStaticText &item : pair.second)
-                prepare(item);
-        }
-    }
     layoutBottomHelpText();
 
     update();
@@ -449,15 +439,13 @@ void ScreenGrabber::drawBottomHelpText(QPainter &painter) const
     painter.setRenderHint(QPainter::Antialiasing, true);
 
     int topOffset = m_bottomHelpContentPos.y();
-    for (int i = 0; i < m_bottomHelpLength; i++) {
-        const auto &item = m_bottomHelpText[i];
-        const QStaticText &left = item.first;
-        const std::vector<QStaticText> &right = item.second;
-        const QSize leftSize = left.size().toSize();
-        painter.drawStaticText(m_bottomHelpGridLeftWidth - leftSize.width(), topOffset, left);
-        for (const QStaticText &item : right) {
-            const QSize rightItemSize = item.size().toSize();
-            painter.drawStaticText(m_bottomHelpGridLeftWidth + s_bottomHelpBoxPairSpacing, topOffset, item);
+    for (int i = 0; i < m_bottomLeftHelpText.size(); i++) {
+        const QStaticText &leftText = m_bottomLeftHelpText[i];
+        const QSize leftSize = leftText.size().toSize();
+        painter.drawStaticText(m_bottomHelpGridLeftWidth - leftSize.width(), topOffset, leftText);
+        for (const QStaticText &rightTextPart : m_bottomRightHelpText[i]) {
+            const QSize rightItemSize = rightTextPart.size().toSize();
+            painter.drawStaticText(m_bottomHelpGridLeftWidth + s_bottomHelpBoxPairSpacing, topOffset, rightTextPart);
             topOffset += rightItemSize.height();
         }
         if (i != s_bottomHelpMaxLength)
@@ -741,14 +729,11 @@ void ScreenGrabber::layoutBottomHelpText()
     int contentWidth = 0;
     int contentHeight = 0;
     m_bottomHelpGridLeftWidth = 0;
-    for (int i = 0; i < m_bottomHelpLength; i++) {
-        const auto &item = m_bottomHelpText[i];
-        const QStaticText &left = item.first;
-        const std::vector<QStaticText> &right = item.second;
-        const QSize leftSize = left.size().toSize();
+    for (int i = 0; i < m_bottomLeftHelpText.size(); i++) {
+        const QSize leftSize = m_bottomLeftHelpText[i].size().toSize();
         m_bottomHelpGridLeftWidth = qMax(m_bottomHelpGridLeftWidth, leftSize.width());
-        for (const QStaticText &item : right) {
-            const QSize rightItemSize = item.size().toSize();
+        for (const QStaticText &rightTextPart : qAsConst(m_bottomRightHelpText[i])) {
+            const QSize rightItemSize = rightTextPart.size().toSize();
             maxRightWidth = qMax(maxRightWidth, rightItemSize.width());
             contentHeight += rightItemSize.height();
         }
@@ -767,22 +752,43 @@ void ScreenGrabber::layoutBottomHelpText()
 
 void ScreenGrabber::setBottomHelpText()
 {
-    if (m_captureOnRelease && m_selection.size().isEmpty()) {
-        // Release to capture enabled and NO saved region available
-        m_bottomHelpLength = 3;
-        //: Mouse and keyboard actions
-        m_bottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Release left-click")), QStaticText(tr("Enter"))}};
-        m_bottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
-        m_bottomHelpText[2] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
-    } else {
-        // Default text, Release to capture option disabled
-        //: Mouse and keyboard actions
-        m_bottomHelpText[0] = {QStaticText(tr("Confirm capture:")), {QStaticText(tr("Double-click")), QStaticText(tr("Enter"))}};
-        m_bottomHelpText[1] = {QStaticText(tr("Create new selection rectangle:")), {QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))}};
-        m_bottomHelpText[2] = {QStaticText(tr("Move selection rectangle:")), {QStaticText(tr("Drag inside selection rectangle")), QStaticText(tr("Arrow keys")), QStaticText(tr("+ Shift: Move in 1 pixel steps"))}};
-        m_bottomHelpText[3] = {QStaticText(tr("Resize selection rectangle:")), {QStaticText(tr("Drag handles")), QStaticText(tr("Arrow keys + Alt")), QStaticText(tr("+ Shift: Resize in 1 pixel steps"))}};
-        m_bottomHelpText[4] = {QStaticText(tr("Reset selection:")), {QStaticText(tr("Right-click"))}};
-        m_bottomHelpText[5] = {QStaticText(tr("Cancel:")), {QStaticText(tr("Escape"))}};
+    Q_ASSERT_X(m_bottomLeftHelpText.size() == m_bottomRightHelpText.size(), "setButtomHelpText", "The left and right columns must be the same size");
+
+    const int expectedLinesCount = m_captureOnRelease && m_selection.size().isEmpty() ? s_bottomHelpOnReleaseLength : s_bottomHelpNormalLength;
+    if (m_bottomLeftHelpText.size() != expectedLinesCount) {
+        m_bottomLeftHelpText.clear();
+        m_bottomRightHelpText.clear();
+        m_bottomLeftHelpText.reserve(expectedLinesCount);
+        m_bottomRightHelpText.reserve(expectedLinesCount);
+    }
+
+    m_bottomLeftHelpText.append(QStaticText(tr("Confirm capture:")));
+    if (expectedLinesCount == s_bottomHelpOnReleaseLength)
+        m_bottomRightHelpText.append({QStaticText(tr("Release left-click")), QStaticText(tr("Enter"))});
+    else
+        m_bottomRightHelpText.append({QStaticText(tr("Double-click")), QStaticText(tr("Enter"))});
+
+    m_bottomLeftHelpText.append(QStaticText(tr("Create new selection rectangle:")));
+    m_bottomRightHelpText.append({QStaticText(tr("Drag outside selection rectangle")), QStaticText(tr("+ Shift: Magnifier"))});
+
+    if (expectedLinesCount == s_bottomHelpNormalLength) {
+        m_bottomLeftHelpText.append(QStaticText(tr("Move selection rectangle:")));
+        m_bottomRightHelpText.append({QStaticText(tr("Drag inside selection rectangle")), QStaticText(tr("Arrow keys")), QStaticText(tr("+ Shift: Move in 1 pixel steps"))});
+
+        m_bottomLeftHelpText.append(QStaticText(tr("Resize selection rectangle:")));
+        m_bottomRightHelpText.append({QStaticText(tr("Drag handles")), QStaticText(tr("Arrow keys + Alt")), QStaticText(tr("+ Shift: Resize in 1 pixel steps"))});
+
+        m_bottomLeftHelpText.append(QStaticText(tr("Reset selection:")));
+        m_bottomRightHelpText.append({QStaticText(tr("Right-click"))});
+    }
+
+    m_bottomLeftHelpText.append(QStaticText(tr("Cancel:")));
+    m_bottomRightHelpText.append({QStaticText(tr("Escape"))});
+
+    for (int i = 0; i < m_bottomLeftHelpText.size(); ++i) {
+        prepare(m_bottomLeftHelpText[i]);
+        for (QStaticText &rightPart : m_bottomRightHelpText[i])
+            prepare(rightPart);
     }
 }
 
