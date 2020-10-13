@@ -599,9 +599,6 @@ void MainWindow::changeEvent(QEvent *event)
         // Reload UI if application language changed
         ui->retranslateUi(this);
 
-        ui->sourceLanguagesWidget->retranslate();
-        ui->translationLanguagesWidget->retranslate();
-
         m_trayMenu->actions().at(0)->setText(tr("Show window"));
         m_trayMenu->actions().at(1)->setText(tr("Settings"));
         m_trayMenu->actions().at(2)->setText(tr("Exit"));

@@ -60,6 +60,8 @@ private slots:
     void minimizeWindowWidth();
 
 private:
+    void changeEvent(QEvent *event) override;
+
     void setWindowWidthCheckEnabled(bool enable);
     void addOrCheckLanguage(QOnlineTranslator::Language lang);
     void addButton(QOnlineTranslator::Language lang);
