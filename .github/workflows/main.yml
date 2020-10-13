@@ -50,8 +50,10 @@ jobs:
       uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
       with:
-        vcpkgArguments: tesseract ecm qt5-base qt5-svg qt5-multimedia qt5-winextras --triplet x64-windows
+        vcpkgArguments: tesseract ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools --triplet x64-windows
         vcpkgGitCommitId: 2020.07
+      env:
+        VCPKG_DISABLE_METRICS: 1
 
     - name: Build
       run: |
