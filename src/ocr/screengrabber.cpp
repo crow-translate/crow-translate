@@ -87,6 +87,19 @@ void ScreenGrabber::capture()
     show();
 }
 
+void ScreenGrabber::changeEvent(QEvent *event) 
+{
+    switch (event->type()) {
+    case QEvent::LanguageChange:
+        // Clear cached text
+        m_bottomLeftHelpText.clear();
+        m_bottomRightHelpText.clear();
+        break;
+    default:
+        QWidget::changeEvent(event);
+    }
+}
+
 void ScreenGrabber::keyPressEvent(QKeyEvent *event)
 {
     const bool shiftPressed = event->modifiers() & Qt::ShiftModifier;
