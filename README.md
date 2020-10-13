@@ -152,29 +152,15 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 - [Tesseract](https://tesseract-ocr.github.io) 4.0+
 - [Png2Ico](https://www.winterdrache.de/freeware/png2ico) or [IcoTool](https://www.nongnu.org/icoutils) for generating executable icon (Windows)
 
-### Static libraries
+### External libraries
 
-This project uses the following static libraries that already exists in the repository as submodules (you do not need to install in manually):
+This project uses the following external libraries, which will be downloaded automatically at configure time using the built-in CMake [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module:
 
 - [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
 - [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
 - [QHotkey](https://github.com/Skycoder42/QHotkey) - provides global shortcuts for desktop platforms.
 - [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
 - [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
-
-Therefore, if you want to clone this project, you need to use the `--recursive` option:
-
-```bash
-git clone --recursive git@github.com:crow-translate/crow-translate.git
-```
-
-or you can initialize these modules later:
-
-```bash
-git clone git@github.com:crow-translate/crow-translate.git
-git submodule init
-git submodule update
-```
 
 ## Icons
 
