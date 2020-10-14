@@ -24,10 +24,14 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
+            # Enable warnings
+            extra-cmake-arguments: '-D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"'
           - os: windows-latest
-            extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=x64-windows -D CMAKE_TOOLCHAIN_FILE=C:/vcpkg/scripts/buildsystems/vcpkg.cmake'
-            CXXFLAGS: '/W4' # TODO: Use /WX
+            # Enable warnings and exclude third-party headers for them
+            extra-cmake-arguments: >-
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4"
+              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
+              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
     - name: Enable Git symlinks
       if: runner.os == 'Windows'
@@ -42,17 +46,18 @@ jobs:
         sudo apt-get update
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
-    - name: Install Qt
-      if: runner.os == 'Windows'
-      uses: jurplel/install-qt-action@v2.9.0
-
     - name: Install PkgConfig to find versions from vcpkg
       if: runner.os == 'Windows'
       run: choco install pkgconfiglite
 
-    - name: Install vcpkg packages
+    - name: Restore from cache and run vcpkg
+      uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
-      run: vcpkg install tesseract ecm --triplet x64-windows
+      with:
+        vcpkgArguments: tesseract ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools --triplet x64-windows
+        vcpkgGitCommitId: 56fffbe49dfb4dd8fae0940f272c5fd2b86be991
+      env:
+        VCPKG_DISABLE_METRICS: 1
 
     - name: Build
       run: |
@@ -60,5 +65,3 @@ jobs:
         cd build
         cmake .. -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
         cmake --build . --parallel 2
-      env:
-        CXXFLAGS: ${{ matrix.CXXFLAGS }}
