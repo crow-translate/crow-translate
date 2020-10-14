@@ -13,8 +13,8 @@ FetchContent_Declare(QTaskbarControl
 
 option(QHOTKEY_INSTALL OFF)
 FetchContent_Declare(QHotkey
-    GIT_REPOSITORY https://github.com/Skycoder42/QHotkey
-    GIT_TAG 1.4.1
+    GIT_REPOSITORY https://github.com/Shatur95/QHotkey
+    GIT_TAG fix-implicit-conversion-warning
 )
 
 FetchContent_Declare(QOnlineTranslator

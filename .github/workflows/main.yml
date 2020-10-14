@@ -29,7 +29,7 @@ jobs:
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4"
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4 /wd4530 /WX"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
@@ -46,11 +46,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
-    - name: Install PkgConfig to find versions from vcpkg
+    #  To find versions from vcpkg
+    - name: Install PkgConfig
       if: runner.os == 'Windows'
       run: choco install pkgconfiglite
 
-    - name: Restore from cache and run vcpkg
+    - name: Install vcpkg packages
       uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
       with:
