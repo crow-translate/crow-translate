@@ -27,7 +27,7 @@ jobs:
             CXXFLAGS: '-Wall -Wextra -pedantic -Werror'
           - os: windows-latest
             extra-cmake-arguments: '-D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake'
-            CXXFLAGS: '/experimental:external /external:I C:/ProgramData/vcpkg/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4' # TODO: Use /WX
+            CXXFLAGS: '/experimental:external /external:I C:/ProgramData/vcpkg/installed/x64-windows/include /external:W0 /external:templates- /W4' # TODO: Use /WX
     steps:
     - name: Enable Git symlinks
       if: runner.os == 'Windows'
