@@ -24,8 +24,10 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
+            # Enable warnings
             extra-cmake-arguments: '-D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"'
           - os: windows-latest
+            # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
