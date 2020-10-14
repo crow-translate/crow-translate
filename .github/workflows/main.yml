@@ -24,10 +24,10 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            extra-cmake-arguments: '-D CMAKE_CXX_FLAGS=-Wall -Wextra -pedantic -Werror'
+            extra-cmake-arguments: '-D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"'
           - os: windows-latest
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS=/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
