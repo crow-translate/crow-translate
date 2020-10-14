@@ -38,12 +38,27 @@ ScreenGrabber::ScreenGrabber(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 }
 
+ScreenGrabber::~ScreenGrabber() 
+{
+    if (m_regionRememberType == AppSettings::RememberAlways)
+        AppSettings().setCropRegion(scaledCropRegion());
+}
+
 void ScreenGrabber::loadSettings(const AppSettings &settings)
 {
-    m_rememberRegion = settings.regionRememberType();
+    m_regionRememberType = settings.regionRememberType();
     m_captureOnRelease = settings.isCaptureOnRelease();
     m_showMagnifier = settings.isShowMagnifier();
     m_maskColor = settings.isApplyLightMask() ? QColor(255, 255, 255, 100) : QColor();
+
+    if (m_regionRememberType == AppSettings::RememberAlways) {
+        if (const QRect cropRegion = settings.cropRegion(); !cropRegion.isEmpty()) {
+            m_selection = QRectF(cropRegion.x() * m_dprI,
+                                 cropRegion.y() * m_dprI,
+                                 cropRegion.width() * m_dprI,
+                                 cropRegion.height() * m_dprI);
+        }
+    }
 }
 
 void ScreenGrabber::capture()
@@ -53,23 +68,13 @@ void ScreenGrabber::capture()
 
     setGeometryToScreenPixmap();
 
-    if (m_rememberRegion == AppSettings::RememberAlways || m_rememberRegion == AppSettings::RememberLast) {
-        QRect cropRegion = AppSettings().cropRegion();
-        if (!cropRegion.isEmpty()) {
-            m_selection = QRectF(cropRegion.x() * m_dprI,
-                                cropRegion.y() * m_dprI,
-                                cropRegion.width() * m_dprI,
-                                cropRegion.height() * m_dprI)
-                                 .intersected(rect());
-        }
-        setMouseCursor(QCursor::pos());
-    } else {
+    m_mouseDragState = MouseState::None;
+    if (m_regionRememberType == AppSettings::NeverRemember) {
         m_selection = {};
         m_startPos = {};
         m_initialTopLeft = {};
 
         m_mousePos = {};
-        m_mouseDragState = MouseState::None;
 
         m_magnifierAllowed = false;
         m_toggleMagnifier = false;
@@ -78,6 +83,9 @@ void ScreenGrabber::capture()
         m_handleRadius = s_handleRadiusMouse;
         m_handlePositions = QVector<QPointF>{8};
         setCursor(Qt::CrossCursor);
+    } else {
+        m_selection = m_selection.intersected(rect());
+        setMouseCursor(QCursor::pos());
     }
 
     setBottomHelpText();
@@ -711,6 +719,15 @@ ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
     return MouseState::Outside;
 }
 
+QRect ScreenGrabber::scaledCropRegion() const
+{
+    const qreal dpr = devicePixelRatioF();
+    return {qRound(m_selection.x() * dpr),
+            qRound(m_selection.y() * dpr),
+            qRound(m_selection.width() * dpr),
+            qRound(m_selection.height() * dpr)};
+}
+
 void ScreenGrabber::setGeometryToScreenPixmap() 
 {
 #ifdef Q_OS_LINUX
@@ -808,19 +825,13 @@ void ScreenGrabber::setBottomHelpText()
 void ScreenGrabber::acceptSelection()
 {
     if (!m_selection.isEmpty()) {
-        const qreal dpr = devicePixelRatioF();
-        QRect scaledCropRegion = QRect(qRound(m_selection.x() * dpr),
-                                       qRound(m_selection.y() * dpr),
-                                       qRound(m_selection.width() * dpr),
-                                       qRound(m_selection.height() * dpr));
-        AppSettings().setCropRegion({scaledCropRegion.x(), scaledCropRegion.y(), scaledCropRegion.width(), scaledCropRegion.height()});
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
         qreal dpi = QGuiApplication::screenAt(QCursor::pos())->logicalDotsPerInch();
 #else
         // Until Qt 5.10 there was no way to get the screen with the current cursor
         qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
 #endif
-        emit grabDone(m_screenPixmap.copy(scaledCropRegion), static_cast<int>(dpi));
+        emit grabDone(m_screenPixmap.copy(scaledCropRegion()), static_cast<int>(dpi));
     }
     hide();
     releaseKeyboard();

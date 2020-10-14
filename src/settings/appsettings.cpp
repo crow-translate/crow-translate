@@ -944,6 +944,8 @@ AppSettings::RegionRememberType AppSettings::regionRememberType() const
 void AppSettings::setRegionRememberType(RegionRememberType type) 
 {
     m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
+    if (type != RememberAlways)
+        m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
 }
 
 AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 

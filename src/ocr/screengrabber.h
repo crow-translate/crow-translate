@@ -36,6 +36,7 @@ class ScreenGrabber : public QWidget
 
 public:
     explicit ScreenGrabber(QWidget *parent = nullptr);
+    ~ScreenGrabber() override;
 
     void loadSettings(const AppSettings &settings);
     void capture();
@@ -86,6 +87,7 @@ private:
     void setMouseCursor(QPointF pos);
     MouseState mouseLocation(QPointF pos) const;
 
+    QRect scaledCropRegion() const;
     void setGeometryToScreenPixmap();
     void prepare(QStaticText &text) const;
     void setBottomHelpText();
@@ -151,7 +153,7 @@ private:
 
     bool m_showMagnifier = AppSettings::defaultShowMagnifier();
     bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();
-    AppSettings::RegionRememberType m_rememberRegion = AppSettings::defaultRegionRememberType();
+    AppSettings::RegionRememberType m_regionRememberType = AppSettings::defaultRegionRememberType();
 
     QPixmap m_screenPixmap;
     QPointF m_mousePos;
