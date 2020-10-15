@@ -9,13 +9,6 @@ on:
     - '.gitignore'
     - 'crowdin.yml'
     - 'data/translations/**'
-  pull_request:
-    paths-ignore:
-    - '**.md'
-    - '.github/workflows/release.yml'
-    - '.gitignore'
-    - 'crowdin.yml'
-    - 'data/translations/**'
 jobs:
   Main:
     runs-on: ${{ matrix.os }}
@@ -24,13 +17,14 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            # Enable warnings
+            # Enable warnings (-Werror)
             extra-cmake-arguments : >-
-              -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
+              -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic"
+              -D CMAKE_CXX_CLANG_TIDY="/usr/bin/clang-tidy;--warnings-as-errors=*;-header-filter=src/*"
           - os: windows-latest
-            # Enable warnings and exclude third-party headers for them
+            # Enable warnings and exclude third-party headers for them (TODO: /WX)
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4 /wd4530 /WX"
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /external:templates- /W4 /wd4530"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
@@ -45,7 +39,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev clang-tidy
 
     #  To find versions from vcpkg
     - name: Install PkgConfig
