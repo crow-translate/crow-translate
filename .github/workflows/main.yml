@@ -17,10 +17,8 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            # Enable warnings (TOOD: -Werror --warnings-as-errors=*)
             extra-cmake-arguments : >-
-              -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic"
-              -D CMAKE_CXX_CLANG_TIDY=/usr/bin/clang-tidy
+              -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
