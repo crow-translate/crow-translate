@@ -544,7 +544,7 @@ void ScreenGrabber::drawDragHandles(QPainter &painter)
 void ScreenGrabber::drawMagnifier(QPainter &painter) const
 {
     const int pixels = 2 * s_magPixels + 1;
-    int magX = static_cast<int>(m_mousePos.x() * devicePixelRatioF() - s_magPixels);
+    auto magX = static_cast<int>(m_mousePos.x() * devicePixelRatioF() - s_magPixels);
     int offsetX = 0;
     if (magX < 0) {
         offsetX = magX;
@@ -556,7 +556,7 @@ void ScreenGrabber::drawMagnifier(QPainter &painter) const
             magX = maxX;
         }
     }
-    int magY = static_cast<int>(m_mousePos.y() * devicePixelRatioF() - s_magPixels);
+    auto magY = static_cast<int>(m_mousePos.y() * devicePixelRatioF() - s_magPixels);
     int offsetY = 0;
     if (magY < 0) {
         offsetY = magY;
