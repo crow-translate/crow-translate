@@ -22,9 +22,9 @@ jobs:
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic"
               -D CMAKE_CXX_CLANG_TIDY=/usr/bin/clang-tidy
           - os: windows-latest
-            # Enable warnings and exclude third-party headers for them (TODO: /WX)
+            # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4 /wd4530"
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4 /wd4530 /WX"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
@@ -57,7 +57,5 @@ jobs:
 
     - name: Build
       run: |
-        mkdir build
-        cd build
-        cmake .. -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
+        cmake -B ../build -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
         cmake --build . --parallel 2
