@@ -7,14 +7,14 @@ FetchContent_Declare(SingleApplication
 )
 
 FetchContent_Declare(QTaskbarControl
-    GIT_REPOSITORY https://github.com/Shatur95/QTaskbarControl
-    GIT_TAG fix-refactoring-typo
+    GIT_REPOSITORY https://github.com/Skycoder42/QTaskbarControl
+    GIT_TAG 2.0.2
 )
 
 option(QHOTKEY_INSTALL OFF)
 FetchContent_Declare(QHotkey
-    GIT_REPOSITORY https://github.com/Shatur95/QHotkey
-    GIT_TAG fix-implicit-conversion-warning
+    GIT_REPOSITORY https://github.com/Skycoder42/QHotkey
+    GIT_TAG 53745ba936ec3eef4653ecffbfb50e66c6722fd9
 )
 
 FetchContent_Declare(QOnlineTranslator
