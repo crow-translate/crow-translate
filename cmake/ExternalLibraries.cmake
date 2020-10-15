@@ -27,7 +27,7 @@ FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTran
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG 1.0.5
+        GIT_TAG f1b2950791e35f1f25bd143e4c5f832d4cb2e498
     )
 
     FetchContent_MakeAvailable(QGitTag)
