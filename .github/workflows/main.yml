@@ -27,7 +27,7 @@ jobs:
             # Enable warnings
             extra-cmake-arguments : >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
-              -D CMAKE_CXX_CLANG_TIDY=/usr/bin/clang-tidy;--warnings-as-errors=*
+              -D CMAKE_CXX_CLANG_TIDY="/usr/bin/clang-tidy;--warnings-as-errors=*"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
