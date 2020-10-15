@@ -9,4 +9,6 @@
 #
 # This also disables warnings from external dependencies downloaded into the
 # build directory via FetchContent.
-file(WRITE ${CMAKE_BINARY_DIR}/.clang-tidy "Checks: '-*,llvm-twine-local'")
+if(CMAKE_CXX_CLANG_TIDY)
+    file(WRITE ${CMAKE_BINARY_DIR}/.clang-tidy "Checks: '-*,llvm-twine-local'")
+endif()
