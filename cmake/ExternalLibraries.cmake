@@ -2,8 +2,8 @@ include(FetchContent)
 
 set(QAPPLICATION_CLASS QApplication)
 FetchContent_Declare(SingleApplication
-    GIT_REPOSITORY https://github.com/Shatur95/SingleApplication
-    GIT_TAG fix-conversion-warning
+    GIT_REPOSITORY https://github.com/itay-grudev/SingleApplication
+    GIT_TAG 5d837262f42a446719754fd8ea6f1373b2bc0fd0
 )
 
 FetchContent_Declare(QTaskbarControl
