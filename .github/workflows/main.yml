@@ -58,4 +58,4 @@ jobs:
     - name: Build
       run: |
         cmake -B ../build -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
-        cmake --build . --parallel 2
+        cmake --build ../build --parallel 2
