@@ -62,7 +62,7 @@ private slots:
 private:
     void changeEvent(QEvent *event) override;
 
-    void setWindowWidthCheckEnabled(bool enable);
+    void setWindowWidthCheckEnabled(bool enable) const;
     void addOrCheckLanguage(QOnlineTranslator::Language lang);
     void addButton(QOnlineTranslator::Language lang);
     void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang);

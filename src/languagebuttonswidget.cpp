@@ -471,7 +471,7 @@ void LanguageButtonsWidget::changeEvent(QEvent *event)
     }
 }
 
-void LanguageButtonsWidget::setWindowWidthCheckEnabled(bool enable)
+void LanguageButtonsWidget::setWindowWidthCheckEnabled(bool enable) const
 {
     if (enable)
         connect(this, &LanguageButtonsWidget::languagesChanged, this, &LanguageButtonsWidget::checkAvailableScreenWidth, Qt::QueuedConnection);

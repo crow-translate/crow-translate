@@ -27,16 +27,16 @@ ShortcutItem::ShortcutItem(ShortcutsModel *model)
 {
 }
 
-ShortcutItem::ShortcutItem(const QString &description, ShortcutItem *parent)
-    : m_description(description)
+ShortcutItem::ShortcutItem(QString description, ShortcutItem *parent)
+    : m_description(qMove(description))
     , m_parentItem(parent)
     , m_model(parent->m_model)
 {
     m_parentItem->m_childItems.append(this);
 }
 
-ShortcutItem::ShortcutItem(const QString &description, const QString &iconName, ShortcutItem *parent)
-    : m_description(description)
+ShortcutItem::ShortcutItem(QString description, const QString &iconName, ShortcutItem *parent)
+    : m_description(qMove(description))
     , m_icon(QIcon::fromTheme(iconName))
     , m_parentItem(parent)
     , m_model(parent->m_model)

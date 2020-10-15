@@ -21,7 +21,6 @@
 #include "trayicon.h"
 
 #include "mainwindow.h"
-#include "settings/appsettings.h"
 
 #include <QFileInfo>
 #include <QGuiApplication>

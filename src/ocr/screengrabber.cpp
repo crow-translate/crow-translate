@@ -683,19 +683,19 @@ ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
 {
     if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopLeft;
-    else if (isPointInsideCircle(m_handlePositions[1], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[1], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopRight;
-    else if (isPointInsideCircle(m_handlePositions[2], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[2], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::BottomRight;
-    else if (isPointInsideCircle(m_handlePositions[3], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[3], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::BottomLeft;
-    else if (isPointInsideCircle(m_handlePositions[4], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[4], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Top;
-    else if (isPointInsideCircle(m_handlePositions[5], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[5], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Right;
-    else if (isPointInsideCircle(m_handlePositions[6], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[6], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Bottom;
-    else if (isPointInsideCircle(m_handlePositions[7], m_handleRadius * s_increaseDragAreaFactor, pos))
+    if (isPointInsideCircle(m_handlePositions[7], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::Left;
 
     // Rectangle can be resized when border is dragged, if it's big enough
@@ -864,7 +864,7 @@ QRect ScreenGrabber::fromNativePixels(QRect rect, const QScreen *screen)
 
 bool ScreenGrabber::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
 {
-    return (qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2)) ? true : false;
+    return qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2);
 }
 
 bool ScreenGrabber::isInRange(qreal low, qreal high, qreal value)

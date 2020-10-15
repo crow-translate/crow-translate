@@ -32,8 +32,8 @@ class ShortcutItem
 
 public:
     explicit ShortcutItem(ShortcutsModel *model);
-    ShortcutItem(const QString &description, ShortcutItem *parent);
-    ShortcutItem(const QString &description, const QString &iconName, ShortcutItem *parent);
+    ShortcutItem(QString description, ShortcutItem *parent);
+    ShortcutItem(QString description, const QString &iconName, ShortcutItem *parent);
     ~ShortcutItem();
 
     ShortcutItem *child(int row);

@@ -678,7 +678,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
-void MainWindow::buildTranslationState(QState *state)
+void MainWindow::buildTranslationState(QState *state) const
 {
     auto *abortPreviousState = new QState(state);
     auto *requestState = new QState(state);
@@ -712,7 +712,7 @@ void MainWindow::buildTranslationState(QState *state)
     parseState->addTransition(finalState);
 }
 
-void MainWindow::buildSpeakSourceState(QState *state)
+void MainWindow::buildSpeakSourceState(QState *state) const
 {
     auto *initialState = new QState(state);
     auto *abortPreviousState = new QState(state);
@@ -743,7 +743,7 @@ void MainWindow::buildSpeakSourceState(QState *state)
     speakTextState->addTransition(finalState);
 }
 
-void MainWindow::buildTranslateSelectionState(QState *state)
+void MainWindow::buildTranslateSelectionState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
     auto *showWindowState = new QState(state);
@@ -760,7 +760,7 @@ void MainWindow::buildTranslateSelectionState(QState *state)
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
-void MainWindow::buildSpeakTranslationState(QState *state)
+void MainWindow::buildSpeakTranslationState(QState *state) const
 {
     auto *speakTextState = new QState(state);
     auto *finalState = new QFinalState(state);
@@ -771,7 +771,7 @@ void MainWindow::buildSpeakTranslationState(QState *state)
     speakTextState->addTransition(finalState);
 }
 
-void MainWindow::buildSpeakSelectionState(QState *state)
+void MainWindow::buildSpeakSelectionState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
     auto *speakSourceState = new QState(state);
@@ -786,7 +786,7 @@ void MainWindow::buildSpeakSelectionState(QState *state)
     speakSourceState->addTransition(speakSourceState, &QState::finished, finalState);
 }
 
-void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
+void MainWindow::buildSpeakTranslatedSelectionState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
     auto *translationState = new QState(state);
@@ -804,7 +804,7 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state)
     speakTranslationState->addTransition(speakTranslationState, &QState::finished, finalState);
 }
 
-void MainWindow::buildCopyTranslatedSelectionState(QState *state)
+void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
     auto *translationState = new QState(state);
@@ -822,7 +822,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state)
     copyTranslationState->addTransition(finalState);
 }
 
-void MainWindow::setupRequestStateButtons(QState *state)
+void MainWindow::setupRequestStateButtons(QState *state) const
 {
     state->assignProperty(ui->translateButton, "enabled", false);
     state->assignProperty(ui->clearButton, "enabled", false);

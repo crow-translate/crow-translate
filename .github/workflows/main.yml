@@ -9,13 +9,6 @@ on:
     - '.gitignore'
     - 'crowdin.yml'
     - 'data/translations/**'
-  pull_request:
-    paths-ignore:
-    - '**.md'
-    - '.github/workflows/release.yml'
-    - '.gitignore'
-    - 'crowdin.yml'
-    - 'data/translations/**'
 jobs:
   Main:
     runs-on: ${{ matrix.os }}
@@ -24,12 +17,12 @@ jobs:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            # Enable warnings
-            extra-cmake-arguments: '-D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"'
+            extra-cmake-arguments : >-
+              -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4"
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4 /wd4530 /WX"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
@@ -46,11 +39,12 @@ jobs:
         sudo apt-get update
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
-    - name: Install PkgConfig to find versions from vcpkg
+    #  To find versions from vcpkg
+    - name: Install PkgConfig
       if: runner.os == 'Windows'
       run: choco install pkgconfiglite
 
-    - name: Restore from cache and run vcpkg
+    - name: Install vcpkg packages
       uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
       with:
@@ -61,7 +55,5 @@ jobs:
 
     - name: Build
       run: |
-        mkdir build
-        cd build
-        cmake .. -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
-        cmake --build . --parallel 2
+        cmake -B build -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
+        cmake --build build --parallel 2
