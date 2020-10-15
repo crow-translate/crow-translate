@@ -88,7 +88,7 @@ public slots:
     Q_SCRIPTABLE void copySourceText();
     Q_SCRIPTABLE void copyTranslation();
     Q_SCRIPTABLE void copyAllTranslationInfo();
-    Q_SCRIPTABLE void quit();
+    Q_SCRIPTABLE static void quit();
 
 signals:
     void translateSelectionRequested();
@@ -132,16 +132,16 @@ private:
     void changeEvent(QEvent *event) override;
 
     void buildStateMachine();
-    void buildTranslationState(QState *state);
-    void buildSpeakSourceState(QState *state);
-    void buildTranslateSelectionState(QState *state);
-    void buildSpeakTranslationState(QState *state);
-    void buildSpeakSelectionState(QState *state);
-    void buildSpeakTranslatedSelectionState(QState *state);
-    void buildCopyTranslatedSelectionState(QState *state);
+    void buildTranslationState(QState *state) const;
+    void buildSpeakSourceState(QState *state) const;
+    void buildTranslateSelectionState(QState *state) const;
+    void buildSpeakTranslationState(QState *state) const;
+    void buildSpeakSelectionState(QState *state) const;
+    void buildSpeakTranslatedSelectionState(QState *state) const;
+    void buildCopyTranslatedSelectionState(QState *state) const;
     void buildTranslateScreenAreaState(QState *state);
 
-    void setupRequestStateButtons(QState *state);
+    void setupRequestStateButtons(QState *state) const;
 
     // Helper functions
     void loadSettings(const AppSettings &settings);

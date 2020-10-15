@@ -83,6 +83,7 @@ void Selection::requestSelection()
 #endif
 }
 
+// NOLINTNEXTLINE(modernize-use-equals-default)
 Selection::Selection()
 {
 #ifdef Q_OS_WIN

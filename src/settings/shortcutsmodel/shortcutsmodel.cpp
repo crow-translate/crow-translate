@@ -179,7 +179,7 @@ Qt::ItemFlags ShortcutsModel::flags(const QModelIndex &index) const
         return Qt::NoItemFlags;
 
     Qt::ItemFlags itemFlags = QAbstractItemModel::flags(index);
-    auto *item = static_cast<const ShortcutItem *>(index.internalPointer());
+    const auto *item = static_cast<const ShortcutItem *>(index.internalPointer());
     itemFlags.setFlag(Qt::ItemIsEnabled, item->isEnabled());
 
     return itemFlags;

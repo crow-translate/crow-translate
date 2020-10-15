@@ -1,0 +1,23 @@
+Checks: >
+  bugprone-*,
+  cppcoreguidelines-*,
+  misc-*,
+  modernize-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -cppcoreguidelines-avoid-c-arrays,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-init-variables,
+  -cppcoreguidelines-pro-type-member-init,
+  -modernize-avoid-c-arrays,
+  -modernize-use-trailing-return-type,
+  -readability-braces-around-statements,
+  -readability-named-parameter,
+  -readability-implicit-bool-conversion,
+  -readability-magic-numbers,
+  -cppcoreguidelines-pro-type-const-cast
+
+# vim: filetype=yaml

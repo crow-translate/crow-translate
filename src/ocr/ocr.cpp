@@ -86,7 +86,7 @@ QStringList Ocr::availableLanguages(const QString &languagesPath)
     for (const QString &path : QStandardPaths::standardLocations(QStandardPaths::GenericDataLocation)) {
         if (path.isEmpty())
             continue;
-        const QStringList languages = parseLanguageFiles(path + QDir::separator() + QStringLiteral("tessdata"));
+        QStringList languages = parseLanguageFiles(path + QDir::separator() + QStringLiteral("tessdata"));
         if (!languages.isEmpty())
             return languages;
     }

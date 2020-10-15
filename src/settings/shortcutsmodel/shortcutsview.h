@@ -39,9 +39,6 @@ public:
 
 signals:
     void currentItemChanged(ShortcutItem *shortcut);
-
-private:
-    void setModel(QAbstractItemModel *model) override;
 };
 
 #endif // SHORTCUTSVIEW_H

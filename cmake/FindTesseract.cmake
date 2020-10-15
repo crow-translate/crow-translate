@@ -45,9 +45,6 @@ if(Tesseract_FOUND)
             INTERFACE_INCLUDE_DIRECTORIES "${Tesseract_INCLUDE_DIR}"
         )
         target_link_libraries(Tesseract::Tesseract INTERFACE Leptonica::Leptonica)
-        if(MSVC)
-            target_compile_definitions(Tesseract::Tesseract INTERFACE _CRT_SECURE_NO_WARNINGS)
-        endif()
     endif()
 endif()
 

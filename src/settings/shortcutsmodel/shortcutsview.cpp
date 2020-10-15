@@ -27,7 +27,7 @@
 ShortcutsView::ShortcutsView(QWidget *parent)
     : QTreeView(parent)
 {
-    setModel(new ShortcutsModel(this));
+    QTreeView::setModel(new ShortcutsModel(this));
     expandAll();
     header()->setSectionResizeMode(QHeaderView::ResizeToContents);
 
@@ -45,9 +45,4 @@ ShortcutsModel *ShortcutsView::model() const
 ShortcutItem *ShortcutsView::currentItem() const
 {
     return static_cast<ShortcutItem *>(currentIndex().internalPointer());
-}
-
-void ShortcutsView::setModel(QAbstractItemModel *model)
-{
-    QTreeView::setModel(model);
 }
