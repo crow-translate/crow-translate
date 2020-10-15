@@ -397,7 +397,7 @@ void ScreenGrabber::paintEvent(QPaintEvent *)
     }
 }
 
-int ScreenGrabber::boundsLeft(int newTopLeftX, const bool mouse)
+int ScreenGrabber::boundsLeft(int newTopLeftX, bool mouse)
 {
     if (newTopLeftX < 0) {
         if (mouse)
@@ -408,7 +408,7 @@ int ScreenGrabber::boundsLeft(int newTopLeftX, const bool mouse)
     return newTopLeftX;
 }
 
-int ScreenGrabber::boundsRight(int newTopLeftX, const bool mouse)
+int ScreenGrabber::boundsRight(int newTopLeftX, bool mouse)
 {
     // The max X coordinate of the top left point
     const int realMaxX = qRound((width() - m_selection.width()) * devicePixelRatioF());
@@ -422,7 +422,7 @@ int ScreenGrabber::boundsRight(int newTopLeftX, const bool mouse)
     return newTopLeftX;
 }
 
-int ScreenGrabber::boundsUp(int newTopLeftY, const bool mouse)
+int ScreenGrabber::boundsUp(int newTopLeftY, bool mouse)
 {
     if (newTopLeftY < 0) {
         if (mouse)
@@ -433,7 +433,7 @@ int ScreenGrabber::boundsUp(int newTopLeftY, const bool mouse)
     return newTopLeftY;
 }
 
-int ScreenGrabber::boundsDown(int newTopLeftY, const bool mouse)
+int ScreenGrabber::boundsDown(int newTopLeftY, bool mouse)
 {
     // The max Y coordinate of the top left point
     const int realMaxY = qRound((height() - m_selection.height()) * devicePixelRatioF());

@@ -73,10 +73,10 @@ private:
     void mouseDoubleClickEvent(QMouseEvent *event) override;
     void paintEvent(QPaintEvent *) override;
 
-    int boundsLeft(int newTopLeftX, const bool mouse = true);
-    int boundsRight(int newTopLeftX, const bool mouse = true);
-    int boundsUp(int newTopLeftY, const bool mouse = true);
-    int boundsDown(int newTopLeftY, const bool mouse = true);
+    int boundsLeft(int newTopLeftX, bool mouse = true);
+    int boundsRight(int newTopLeftX, bool mouse = true);
+    int boundsUp(int newTopLeftY, bool mouse = true);
+    int boundsDown(int newTopLeftY, bool mouse = true);
 
     void drawBottomHelpText(QPainter &painter) const;
     void drawDragHandles(QPainter &painter);

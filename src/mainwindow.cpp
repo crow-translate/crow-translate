@@ -359,6 +359,7 @@ void MainWindow::copyAllTranslationInfo()
 void MainWindow::quit()
 {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
+    // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     QMetaObject::invokeMethod(QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
 #else
     QMetaObject::invokeMethod(QCoreApplication::instance(), "quit", Qt::QueuedConnection);
