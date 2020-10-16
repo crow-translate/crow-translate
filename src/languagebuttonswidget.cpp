@@ -422,6 +422,7 @@ void LanguageButtonsWidget::savePreviousToggledButton(int id, bool checked)
 
 void LanguageButtonsWidget::checkAvailableScreenWidth()
 {
+    // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     if (isWindowWidthFitScreen())
         return;
 

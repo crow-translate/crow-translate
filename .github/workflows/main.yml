@@ -19,6 +19,7 @@ jobs:
           - os: ubuntu-18.04
             extra-cmake-arguments : >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
+              -D CMAKE_CXX_CLANG_TIDY="/usr/bin/clang-tidy;--warnings-as-errors=*"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
@@ -37,7 +38,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev clang-tidy
 
     #  To find versions from vcpkg
     - name: Install PkgConfig

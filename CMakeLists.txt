@@ -50,6 +50,7 @@ if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
 endif()
 
+include(IgnoreExternalCodeChecks)
 include(ExternalLibraries)
 include(GNUInstallDirs)
 include(CPack)
