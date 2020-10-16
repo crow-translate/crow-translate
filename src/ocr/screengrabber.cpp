@@ -623,7 +623,7 @@ void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandles
      * - at the bottom otherwise
      */
     const qreal dpr = devicePixelRatioF();
-    QString selectionSizeText = QString(u8"%1×%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
+    QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
 
     const int selectionBoxWidth = selectionSizeTextRect.width() + s_selectionBoxPaddingX * 2;
