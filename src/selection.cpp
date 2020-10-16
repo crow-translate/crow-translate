@@ -27,6 +27,8 @@
 #include <QTimer>
 
 #include <windows.h>
+
+using namespace std::chrono_literals;
 #endif
 
 Selection::~Selection() = default;
@@ -89,7 +91,7 @@ Selection::Selection()
 #ifdef Q_OS_WIN
     m_maxSelectionDelay = new QTimer(this);
     m_maxSelectionDelay->setSingleShot(true);
-    m_maxSelectionDelay->setInterval(1000);
+    m_maxSelectionDelay->setInterval(1000ms);
 #if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
     connect(m_maxSelectionWaitDelay, &QTimer::timeout, this, &Selection::saveSelection);
 #else

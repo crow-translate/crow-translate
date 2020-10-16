@@ -22,6 +22,8 @@
 
 #include <QTimer>
 
+using namespace std::chrono_literals;
+
 SourceTextEdit::SourceTextEdit(QWidget *parent)
     : QPlainTextEdit(parent)
     , m_textEditedTimer(new QTimer(this))
@@ -72,7 +74,7 @@ void SourceTextEdit::stopChangedTimer()
 
 void SourceTextEdit::startTimerDelay()
 {
-    m_textEditedTimer->start(s_delay);
+    m_textEditedTimer->start(500ms);
 }
 
 void SourceTextEdit::checkSourceEmptyChanged()

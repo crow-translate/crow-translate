@@ -12,6 +12,8 @@
 #include <QWindow>
 #endif
 
+using namespace std::chrono_literals;
+
 LanguageButtonsWidget::LanguageButtonsWidget(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::LanguageButtonsWidget)
@@ -453,7 +455,7 @@ void LanguageButtonsWidget::checkAvailableScreenWidth()
 void LanguageButtonsWidget::minimizeWindowWidth()
 {
     if (window()->width() == window()->minimumWidth()) {
-        QTimer::singleShot(100, this, &LanguageButtonsWidget::minimizeWindowWidth);
+        QTimer::singleShot(100ms, this, &LanguageButtonsWidget::minimizeWindowWidth);
         return;
     }
 

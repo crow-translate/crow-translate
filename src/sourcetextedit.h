@@ -50,8 +50,6 @@ private slots:
     void checkSourceEmptyChanged();
 
 private:
-    static constexpr int s_delay = 500;
-
     QTimer *m_textEditedTimer;
     bool m_requestTranslationOnEdit = false;
     bool m_sourceEmpty = true;
