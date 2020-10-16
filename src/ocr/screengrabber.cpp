@@ -534,7 +534,7 @@ void ScreenGrabber::drawDragHandles(QPainter &painter)
     QPainterPath path;
 
     // Add handles to the path
-    for (const QPointF &handlePosition : m_handlePositions)
+    for (const QPointF &handlePosition : qAsConst(m_handlePositions))
         path.addEllipse(handlePosition, m_handleRadius, m_handleRadius);
 
     // Draw the path
