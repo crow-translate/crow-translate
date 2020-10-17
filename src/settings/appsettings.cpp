@@ -380,7 +380,7 @@ void AppSettings::setSourceTranslitEnabled(bool enable)
 
 bool AppSettings::defaultSourceTranslitEnabled()
 {
-    return true;
+    return false;
 }
 
 bool AppSettings::isTranslationTranslitEnabled() const
@@ -395,7 +395,7 @@ void AppSettings::setTranslationTranslitEnabled(bool enable)
 
 bool AppSettings::defaultTranslationTranslitEnabled()
 {
-    return true;
+    return false;
 }
 
 bool AppSettings::isSourceTranscriptionEnabled() const
