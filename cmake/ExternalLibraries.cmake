@@ -19,7 +19,7 @@ FetchContent_Declare(QHotkey
 
 FetchContent_Declare(QOnlineTranslator
     GIT_REPOSITORY https://github.com/crow-translate/QOnlineTranslator
-    GIT_TAG 0ad1e2eddd1ff6d59b5f32da763def54d863a71a
+    GIT_TAG 9cdd27e33b754c81454ca02328b42ab4149d86f4
 )
 
 FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator)
@@ -27,7 +27,7 @@ FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTran
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG f1b2950791e35f1f25bd143e4c5f832d4cb2e498
+        GIT_TAG 4ad07810469db88aaa5681ed1ace184652c01bfd
     )
 
     FetchContent_MakeAvailable(QGitTag)
