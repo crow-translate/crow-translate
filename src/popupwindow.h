@@ -41,10 +41,11 @@ public:
     ~PopupWindow() override;
 
 private:
+    void loadSettings();
     void showEvent(QShowEvent *event) override;
     bool event(QEvent *event) override;
 
-    static void connectButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons);
+    static void connectLanguageButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons);
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;

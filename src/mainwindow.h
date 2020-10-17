@@ -30,11 +30,12 @@ class LanguageButtonsWidget;
 class Ocr;
 class ScreenGrabber;
 class SpeakButtons;
+class TranslationEdit;
+class TrayIcon;
 class QHotkey;
 class QTaskbarControl;
-class QShortcut;
 class QComboBox;
-class TranslationEdit;
+class QShortcut;
 class QToolButton;
 
 namespace Ui {
@@ -48,7 +49,7 @@ class MainWindow : public QMainWindow
     Q_DISABLE_COPY(MainWindow)
 
 public:
-    explicit MainWindow(const AppSettings &settings, QWidget *parent = nullptr);
+    explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow() override;
 
     const QComboBox *engineCombobox() const;
@@ -61,12 +62,8 @@ public:
     const LanguageButtonsWidget *translationLanguageButtons() const;
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
-    const QShortcut *closeWindowShortcut() const;
+    QKeySequence closeWindowShortcut() const;
     const Ocr *ocr() const;
-
-    AppSettings::LanguageFormat popupLanguageFormat() const;
-    QSize popupSize() const;
-    double popupOpacity() const;
 
 public slots:
     // Global shortcuts
@@ -143,8 +140,8 @@ private:
     void setupRequestStateButtons(QState *state) const;
 
     // Helper functions
-    void loadMainWindowSettings(const AppSettings &settings);
-    void loadAppSettings(const AppSettings &settings);
+    void loadMainWindowSettings();
+    void loadAppSettings();
     void checkLanguageButton(int checkedId);
 
     QOnlineTranslator::Engine currentEngine();
@@ -166,10 +163,6 @@ private:
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;
     ScreenGrabber *m_screenGrabber;
-
-    AppSettings::LanguageFormat m_popupLanguageFormat;
-    QSize m_popupSize;
-    double m_popupOpacity;
 };
 
 #endif // MAINWINDOW_H

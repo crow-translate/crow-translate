@@ -19,8 +19,6 @@
 
 #include "screengrabber.h"
 
-#include "settings/appsettings.h"
-
 #include <QGuiApplication>
 #include <QPainterPath>
 #include <QScreen>
@@ -44,8 +42,9 @@ ScreenGrabber::~ScreenGrabber()
         AppSettings().setCropRegion(scaledCropRegion());
 }
 
-void ScreenGrabber::loadSettings(const AppSettings &settings)
+void ScreenGrabber::loadSettings()
 {
+    const AppSettings settings;
     m_regionRememberType = settings.regionRememberType();
     m_captureOnRelease = settings.isCaptureOnRelease();
     m_showMagnifier = settings.isShowMagnifier();

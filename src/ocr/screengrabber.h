@@ -28,7 +28,6 @@
 #include <QWidget>
 
 class QMouseEvent;
-class AppSettings;
 
 class ScreenGrabber : public QWidget
 {
@@ -38,7 +37,7 @@ public:
     explicit ScreenGrabber(QWidget *parent = nullptr);
     ~ScreenGrabber() override;
 
-    void loadSettings(const AppSettings &settings);
+    void loadSettings();
     void capture();
 
 signals:

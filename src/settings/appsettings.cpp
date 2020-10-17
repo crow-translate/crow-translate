@@ -22,6 +22,7 @@
 
 #include "cmake.h"
 #include "languagebuttonswidget.h"
+#include "trayicon.h"
 
 #include <QDir>
 #include <QFileInfo>
@@ -337,19 +338,19 @@ AppSettings::LanguageFormat AppSettings::defaultMainWindowLanguageFormat()
     return FullName;
 }
 
-TrayIcon::IconType AppSettings::trayIconType() const
+AppSettings::IconType AppSettings::trayIconType() const
 {
-    return m_settings->value(QStringLiteral("Interface/TrayIconName"), defaultTrayIconType()).value<TrayIcon::IconType>();
+    return m_settings->value(QStringLiteral("Interface/TrayIconName"), defaultTrayIconType()).value<IconType>();
 }
 
-void AppSettings::setTrayIconType(TrayIcon::IconType type)
+void AppSettings::setTrayIconType(IconType type)
 {
     m_settings->setValue(QStringLiteral("Interface/TrayIconName"), type);
 }
 
-TrayIcon::IconType AppSettings::defaultTrayIconType()
+AppSettings::IconType AppSettings::defaultTrayIconType()
 {
-    return TrayIcon::DefaultIcon;
+    return DefaultIcon;
 }
 
 QString AppSettings::customIconPath() const
@@ -364,7 +365,7 @@ void AppSettings::setCustomIconPath(const QString &path)
 
 QString AppSettings::defaultCustomIconPath()
 {
-    return TrayIcon::trayIconName(TrayIcon::DefaultIcon);
+    return TrayIcon::trayIconName(AppSettings::DefaultIcon);
 }
 
 bool AppSettings::isSourceTranslitEnabled() const

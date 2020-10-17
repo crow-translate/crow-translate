@@ -22,7 +22,6 @@
 #define APPSETTINGS_H
 
 #include "qonlinetts.h"
-#include "trayicon.h"
 
 #include <QLocale>
 #include <QNetworkProxy>
@@ -61,6 +60,14 @@ public:
         RememberAlways
     };
     Q_ENUM(RegionRememberType)
+
+    enum IconType {
+        DefaultIcon,
+        LightIcon,
+        DarkIcon,
+        CustomIcon
+    };
+    Q_ENUM(IconType)
 
 #ifdef Q_OS_WIN
     enum Interval {
@@ -140,9 +147,9 @@ public:
     void setMainWindowLanguageFormat(LanguageFormat style);
     static LanguageFormat defaultMainWindowLanguageFormat();
 
-    TrayIcon::IconType trayIconType() const;
-    void setTrayIconType(TrayIcon::IconType type);
-    static TrayIcon::IconType defaultTrayIconType();
+    IconType trayIconType() const;
+    void setTrayIconType(IconType type);
+    static IconType defaultTrayIconType();
 
     QString customIconPath() const;
     void setCustomIconPath(const QString &path);

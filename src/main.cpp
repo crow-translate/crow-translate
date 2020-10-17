@@ -54,10 +54,9 @@ int launchGui(int argc, char *argv[])
     QIcon::setThemeName("Papirus");
 #endif
 
-    const AppSettings settings;
-    settings.setupLocalization();
+    AppSettings().setupLocalization();
 
-    MainWindow window(settings);
+    MainWindow window;
 
 #ifdef Q_OS_LINUX
     if (QDBusConnection::sessionBus().isConnected()) {

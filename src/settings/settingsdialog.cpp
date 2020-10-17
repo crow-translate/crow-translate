@@ -22,6 +22,7 @@
 #include "ui_settingsdialog.h"
 
 #include "appsettings.h"
+#include "trayicon.h"
 #include "languagebuttonswidget.h"
 #include "mainwindow.h"
 #include "qhotkey.h"
@@ -195,7 +196,7 @@ void SettingsDialog::accept()
     settings.setMainWindowLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->mainWindowLanguageFormatComboBox->currentIndex()));
     settings.setPopupLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->popupLanguageFormatComboBox->currentIndex()));
 
-    settings.setTrayIconType(static_cast<TrayIcon::IconType>(ui->trayIconComboBox->currentIndex()));
+    settings.setTrayIconType(static_cast<AppSettings::IconType>(ui->trayIconComboBox->currentIndex()));
     settings.setCustomIconPath(ui->customTrayIconEdit->text());
 
     // Translation settings
@@ -269,7 +270,7 @@ void SettingsDialog::onWindowModeChanged(int mode)
 // Disable (enable) "Custom icon path" option
 void SettingsDialog::onTrayIconTypeChanged(int type)
 {
-    if (type == TrayIcon::CustomIcon) {
+    if (type == AppSettings::CustomIcon) {
         ui->customTrayIconLabel->setEnabled(true);
         ui->customTrayIconEdit->setEnabled(true);
         ui->customTrayIconButton->setEnabled(true);

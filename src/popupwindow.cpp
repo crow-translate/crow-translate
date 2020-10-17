@@ -42,40 +42,39 @@ PopupWindow::PopupWindow(MainWindow *parent)
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
-    connect(parent->translationEdit(), &TranslationEdit::translationDataParsed, ui->translationEdit, &QTextEdit::setHtml);
-    ui->engineComboBox->setCurrentIndex(parent->engineCombobox()->currentIndex());
 
-    // Window settings
-    setWindowOpacity(parent->popupOpacity());
-    resize(parent->popupSize());
+    // Engine
+    ui->engineComboBox->setCurrentIndex(parent->engineCombobox()->currentIndex());
+    connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), parent->engineCombobox(), &QComboBox::setCurrentIndex);
+
+    // Translation edit
     ui->translationEdit->setFont(parent->translationEdit()->font());
+    connect(parent->translationEdit(), &TranslationEdit::translationDataParsed, ui->translationEdit, &QTextEdit::setHtml);
 
     // Player buttons
     ui->sourceSpeakButtons->setMediaPlayer(parent->sourceSpeakButtons()->mediaPlayer());
     ui->translationSpeakButtons->setMediaPlayer(parent->translationSpeakButtons()->mediaPlayer());
+    ui->sourceSpeakButtons->setSpeakShortcut(parent->sourceSpeakButtons()->speakShortcut());
+    ui->translationSpeakButtons->setSpeakShortcut(parent->translationSpeakButtons()->speakShortcut());
     connect(ui->sourceSpeakButtons, &SpeakButtons::playerMediaRequested, parent->sourceSpeakButtons(), &SpeakButtons::playerMediaRequested);
     connect(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, parent->translationSpeakButtons(), &SpeakButtons::playerMediaRequested);
 
     // Language buttons
-    ui->sourceLanguagesWidget->setLanguageFormat(parent->popupLanguageFormat());
-    ui->translationLanguagesWidget->setLanguageFormat(parent->popupLanguageFormat());
-    connectButtons(ui->sourceLanguagesWidget, parent->sourceLanguageButtons());
-    connectButtons(ui->translationLanguagesWidget, parent->translationLanguageButtons());
+    connectLanguageButtons(ui->sourceLanguagesWidget, parent->sourceLanguageButtons());
+    connectLanguageButtons(ui->translationLanguagesWidget, parent->translationLanguageButtons());
 
-    // Shortcuts
-    m_closeWindowsShortcut->setKey(parent->closeWindowShortcut()->key());
-    connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
-
+    // Buttons
     ui->copyTranslationButton->setShortcut(parent->copyTranslationButton()->shortcut());
-    ui->sourceSpeakButtons->setSpeakShortcut(parent->sourceSpeakButtons()->speakShortcut());
-    ui->translationSpeakButtons->setSpeakShortcut(parent->translationSpeakButtons()->speakShortcut());
-
-    // Other
-    connect(ui->engineComboBox, qOverload<int>(&QComboBox::currentIndexChanged), parent->engineCombobox(), &QComboBox::setCurrentIndex);
+    connect(ui->copyTranslationButton, &QToolButton::clicked, parent->copyTranslationButton(), &QToolButton::click);
     connect(ui->swapButton, &QToolButton::clicked, parent->swapButton(), &QToolButton::click);
     connect(ui->copySourceButton, &QToolButton::clicked, parent->copySourceButton(), &QToolButton::click);
-    connect(ui->copyTranslationButton, &QToolButton::clicked, parent->copyTranslationButton(), &QToolButton::click);
     connect(ui->copyAllTranslationButton, &QToolButton::clicked, parent->copyAllTranslationButton(), &QToolButton::click);
+
+    // Close window shortcut
+    m_closeWindowsShortcut->setKey(parent->closeWindowShortcut());
+    connect(m_closeWindowsShortcut, &QShortcut::activated, this, &PopupWindow::close);
+
+    loadSettings();
 }
 
 PopupWindow::~PopupWindow()
@@ -83,6 +82,16 @@ PopupWindow::~PopupWindow()
     ui->sourceSpeakButtons->pauseSpeaking();
     ui->translationSpeakButtons->pauseSpeaking();
     delete ui;
+}
+
+void PopupWindow::loadSettings() 
+{
+    const AppSettings settings;
+    setWindowOpacity(settings.popupOpacity());
+    resize(settings.popupWidth(), settings.popupHeight());
+
+    ui->sourceLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
+    ui->translationLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
 }
 
 // Move popup to cursor and prevent appearing outside the screen
@@ -121,7 +130,7 @@ bool PopupWindow::event(QEvent *event)
     return QWidget::event(event);
 }
 
-void PopupWindow::connectButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons)
+void PopupWindow::connectLanguageButtons(LanguageButtonsWidget *popupButtons, const LanguageButtonsWidget *mainWindowButtons)
 {
     popupButtons->setLanguages(mainWindowButtons->languages());
     popupButtons->checkButton(mainWindowButtons->checkedId());

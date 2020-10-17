@@ -21,10 +21,11 @@
 #ifndef TRAYICON_H
 #define TRAYICON_H
 
+#include "settings/appsettings.h"
+
 #include <QSystemTrayIcon>
 
 class QAction;
-class AppSettings;
 class MainWindow;
 
 class TrayIcon : public QSystemTrayIcon
@@ -33,22 +34,14 @@ class TrayIcon : public QSystemTrayIcon
     Q_DISABLE_COPY(TrayIcon)
 
 public:
-    enum IconType {
-        DefaultIcon,
-        LightIcon,
-        DarkIcon,
-        CustomIcon
-    };
-    Q_ENUM(IconType)
-
     TrayIcon(MainWindow *parent = nullptr);
 
-    void loadSettings(const AppSettings &settings);
+    void loadSettings();
     void retranslateMenu();
     void showTranslationMessage(const QString &message);
 
     static QIcon customTrayIcon(const QString &customName);
-    static QString trayIconName(IconType type);
+    static QString trayIconName(AppSettings::IconType type);
 
 private:
     QMenu *m_trayMenu;
@@ -56,7 +49,7 @@ private:
     QAction *m_openSettingsAction;
     QAction *m_quitAction;
 
-    int m_translationNotificaitonTimeout;
+    int m_translationNotificaitonTimeout = AppSettings::defaultTranslationNotificationTimeout();
 };
 
 #endif // TRAYICON_H

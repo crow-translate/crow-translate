@@ -28,6 +28,7 @@
 #include "selection.h"
 #include "singleapplication.h"
 #include "speakbuttons.h"
+#include "trayicon.h"
 #include "ocr/ocr.h"
 #include "ocr/screengrabber.h"
 #include "settings/appsettings.h"
@@ -51,7 +52,7 @@
 #include <QShortcut>
 #include <QStateMachine>
 
-MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
+MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
     , m_translateSelectionHotkey(new QHotkey(this))
@@ -117,8 +118,8 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     m_stateMachine->start();
 
     // App settings
-    loadAppSettings(settings);
-    loadMainWindowSettings(settings);
+    loadAppSettings();
+    loadMainWindowSettings();
 }
 
 MainWindow::~MainWindow()
@@ -184,29 +185,14 @@ const SpeakButtons *MainWindow::translationSpeakButtons() const
     return ui->translationSpeakButtons;
 }
 
-const QShortcut *MainWindow::closeWindowShortcut() const
+QKeySequence MainWindow::closeWindowShortcut() const
 {
-    return m_closeWindowsShortcut;
+    return m_closeWindowsShortcut->key();
 }
 
 const Ocr *MainWindow::ocr() const
 {
     return m_ocr;
-}
-
-AppSettings::LanguageFormat MainWindow::popupLanguageFormat() const
-{
-    return m_popupLanguageFormat;
-}
-
-QSize MainWindow::popupSize() const
-{
-    return m_popupSize;
-}
-
-double MainWindow::popupOpacity() const
-{
-    return m_popupOpacity;
 }
 
 void MainWindow::open()
@@ -285,10 +271,8 @@ void MainWindow::swapLanguages()
 void MainWindow::openSettings()
 {
     SettingsDialog config(this);
-    if (config.exec() == QDialog::Accepted) {
-        const AppSettings settings;
-        loadAppSettings(settings);
-    }
+    if (config.exec() == QDialog::Accepted)
+        loadAppSettings();
 }
 
 void MainWindow::setAutoTranslateEnabled(bool enabled)
@@ -786,8 +770,9 @@ void MainWindow::setupRequestStateButtons(QState *state) const
 }
 
 // These settings are loaded only at startup and cannot be configured in the settings dialog
-void MainWindow::loadMainWindowSettings(const AppSettings &settings) 
+void MainWindow::loadMainWindowSettings() 
 {
+    const AppSettings settings;
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
     ui->engineComboBox->setCurrentIndex(settings.currentEngine());
     ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
@@ -825,20 +810,18 @@ void MainWindow::loadMainWindowSettings(const AppSettings &settings)
 #endif
 }
 
-void MainWindow::loadAppSettings(const AppSettings &settings)
+void MainWindow::loadAppSettings()
 {
+    const AppSettings settings;
+
     // Interface
     ui->translationEdit->setFont(settings.font());
     ui->sourceEdit->setFont(settings.font());
 
-    m_popupSize = {settings.popupWidth(), settings.popupHeight()};
-    m_popupOpacity = settings.popupOpacity();
-
     ui->sourceLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
     ui->translationLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
-    m_popupLanguageFormat = settings.popupLanguageFormat();
 
-    m_trayIcon->loadSettings(settings);
+    m_trayIcon->loadSettings();
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
@@ -856,7 +839,7 @@ void MainWindow::loadAppSettings(const AppSettings &settings)
                                   Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
         }
     }
-    m_screenGrabber->loadSettings(settings);
+    m_screenGrabber->loadSettings();
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));

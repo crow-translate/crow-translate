@@ -54,26 +54,31 @@ TrayIcon::TrayIcon(MainWindow *parent)
     });
 }
 
-void TrayIcon::loadSettings(const AppSettings &settings)
+void TrayIcon::loadSettings()
 {
-    const IconType iconType = settings.trayIconType();
-    if (iconType == CustomIcon) {
+    AppSettings settings;
+
+    setVisible(settings.isShowTrayIcon());
+    QGuiApplication::setQuitOnLastWindowClosed(!isVisible());
+
+    // Any other settings does not make sense if tray icon is hidden
+    if (!isVisible())
+        return;
+
+    if (const AppSettings::IconType iconType = settings.trayIconType(); iconType == AppSettings::CustomIcon) {
         const QString customIconName = settings.customIconPath();
         setIcon(customTrayIcon(customIconName));
         if (icon().isNull()) {
-            const QString defaultIconName = trayIconName(DefaultIcon);
+            const QString defaultIconName = trayIconName(AppSettings::DefaultIcon);
             showMessage(tr("Invalid tray icon"), tr("The specified icon '%1' is invalid. The default icon will be used.").arg(customIconName));
             setIcon(QIcon::fromTheme(defaultIconName));
+            settings.setTrayIconType(AppSettings::DefaultIcon);
         }
     } else {
         setIcon(QIcon::fromTheme(trayIconName(iconType)));
     }
 
     m_translationNotificaitonTimeout = settings.translationNotificationTimeout();
-
-    const bool trayIconVisible = settings.isShowTrayIcon();
-    setVisible(trayIconVisible);
-    QGuiApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 }
 
 void TrayIcon::retranslateMenu() 
@@ -98,14 +103,14 @@ QIcon TrayIcon::customTrayIcon(const QString &customName)
     return QIcon();
 }
 
-QString TrayIcon::trayIconName(TrayIcon::IconType type)
+QString TrayIcon::trayIconName(AppSettings::IconType type)
 {
     switch (type) {
-    case DefaultIcon:
+    case AppSettings::DefaultIcon:
         return QStringLiteral("crow-translate-tray");
-    case DarkIcon:
+    case AppSettings::DarkIcon:
         return QStringLiteral("crow-translate-tray-dark");
-    case LightIcon:
+    case AppSettings::LightIcon:
         return QStringLiteral("crow-translate-tray-light");
     default:
         return QString();
