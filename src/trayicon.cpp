@@ -29,13 +29,29 @@
 TrayIcon::TrayIcon(MainWindow *parent)
     : QSystemTrayIcon(parent)
     , m_trayMenu(new QMenu(parent))
+    , m_showMainWindowAction(new QAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), m_trayMenu))
+    , m_openSettingsAction(new QAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), m_trayMenu))
+    , m_quitAction(new QAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), m_trayMenu))
 {
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), parent, &MainWindow::open);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), parent, &MainWindow::openSettings);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), parent, &MainWindow::quit);
+    connect(m_showMainWindowAction, &QAction::triggered, parent, &MainWindow::open);
+    connect(m_openSettingsAction, &QAction::triggered, parent, &MainWindow::openSettings);
+    connect(m_quitAction, &QAction::triggered, parent, &MainWindow::quit);
+
+    m_trayMenu->addAction(m_showMainWindowAction);
+    m_trayMenu->addAction(m_openSettingsAction);
+    m_trayMenu->addAction(m_quitAction);
+
     setContextMenu(m_trayMenu);
 
-    connect(this, &TrayIcon::activated, this, &TrayIcon::onTrayActivated);
+    connect(this, &TrayIcon::activated, [parent](QSystemTrayIcon::ActivationReason reason) {
+        if (reason != QSystemTrayIcon::Trigger)
+            return;
+
+        if (parent->isActiveWindow())
+            parent->hide();
+        else
+            parent->open();
+    });
 }
 
 void TrayIcon::loadSettings(const AppSettings &settings)
@@ -62,9 +78,9 @@ void TrayIcon::loadSettings(const AppSettings &settings)
 
 void TrayIcon::retranslateMenu() 
 {
-    m_trayMenu->actions().at(0)->setText(tr("Show window"));
-    m_trayMenu->actions().at(1)->setText(tr("Settings"));
-    m_trayMenu->actions().at(2)->setText(tr("Exit"));
+    m_showMainWindowAction->setText(tr("Show window"));
+    m_openSettingsAction->setText(tr("Settings"));
+    m_quitAction->setText(tr("Quit"));
 }
 
 void TrayIcon::showTranslationMessage(const QString &message)
@@ -94,16 +110,4 @@ QString TrayIcon::trayIconName(TrayIcon::IconType type)
     default:
         return QString();
     }
-}
-
-void TrayIcon::onTrayActivated(QSystemTrayIcon::ActivationReason reason)
-{
-    if (reason != QSystemTrayIcon::Trigger)
-        return;
-
-    auto *mainWindow = qobject_cast<MainWindow *>(parent());
-    if (mainWindow->isActiveWindow())
-        mainWindow->hide();
-    else
-        mainWindow->open();
 }

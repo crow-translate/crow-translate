@@ -23,6 +23,7 @@
 
 #include <QSystemTrayIcon>
 
+class QAction;
 class AppSettings;
 class MainWindow;
 
@@ -49,11 +50,11 @@ public:
     static QIcon customTrayIcon(const QString &customName);
     static QString trayIconName(IconType type);
 
-private slots:
-    void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
-
 private:
     QMenu *m_trayMenu;
+    QAction *m_showMainWindowAction;
+    QAction *m_openSettingsAction;
+    QAction *m_quitAction;
 
     int m_translationNotificaitonTimeout;
 };
