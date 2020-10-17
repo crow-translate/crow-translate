@@ -937,33 +937,6 @@ QByteArray AppSettings::defaultOcrLanguagesString()
     return {};
 }
 
-AppSettings::RegionRememberType AppSettings::regionRememberType() const
-{
-    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
-}
-
-void AppSettings::setRegionRememberType(RegionRememberType type) 
-{
-    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
-    if (type != RememberAlways)
-        m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
-}
-
-AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 
-{
-    return NeverRemember;
-}
-
-QRect AppSettings::cropRegion() const
-{
-    return m_settings->value(QStringLiteral("OCR/RememberedCropRegion"), defaultRegionRememberType()).toRect();
-}
-
-void AppSettings::setCropRegion(QRect rect) 
-{
-    m_settings->setValue(QStringLiteral("OCR/RememberedCropRegion"), rect);
-}
-
 bool AppSettings::isShowMagnifier() const
 {
     return m_settings->value(QStringLiteral("OCR/ShowMagnifier"), defaultShowMagnifier()).toBool();
@@ -1007,6 +980,33 @@ void AppSettings::setApplyLightMask(bool use)
 bool AppSettings::defaultApplyLightMask()
 {
     return true;
+}
+
+AppSettings::RegionRememberType AppSettings::regionRememberType() const
+{
+    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
+}
+
+void AppSettings::setRegionRememberType(RegionRememberType type) 
+{
+    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
+    if (type != RememberAlways)
+        m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
+}
+
+AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 
+{
+    return NeverRemember;
+}
+
+QRect AppSettings::cropRegion() const
+{
+    return m_settings->value(QStringLiteral("OCR/CropRegion"), defaultRegionRememberType()).toRect();
+}
+
+void AppSettings::setCropRegion(QRect rect) 
+{
+    m_settings->setValue(QStringLiteral("OCR/CropRegion"), rect);
 }
 
 QVector<QOnlineTranslator::Language> AppSettings::languages(LanguageButtonsType type) const

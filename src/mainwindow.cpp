@@ -812,7 +812,7 @@ void MainWindow::loadMainWindowSettings()
 
 void MainWindow::loadAppSettings()
 {
-    const AppSettings settings;
+    AppSettings settings;
 
     // Interface
     ui->translationEdit->setFont(settings.font());
@@ -821,7 +821,20 @@ void MainWindow::loadAppSettings()
     ui->sourceLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
     ui->translationLanguagesWidget->setLanguageFormat(settings.mainWindowLanguageFormat());
 
-    m_trayIcon->loadSettings();
+    if (const AppSettings::IconType iconType = settings.trayIconType(); iconType == AppSettings::CustomIcon) {
+        const QString customIconPath = settings.customIconPath();
+        m_trayIcon->setIcon(TrayIcon::customTrayIcon(customIconPath));
+        if (m_trayIcon->icon().isNull()) {
+            m_trayIcon->showMessage(TrayIcon::tr("Invalid tray icon"), TrayIcon::tr("The specified icon '%1' is invalid. The default icon will be used.").arg(customIconPath));
+            m_trayIcon->setIcon(QIcon::fromTheme(TrayIcon::trayIconName(AppSettings::DefaultIcon)));
+            settings.setTrayIconType(AppSettings::DefaultIcon);
+        }
+    } else {
+        m_trayIcon->setIcon(QIcon::fromTheme(TrayIcon::trayIconName(iconType)));
+    }
+    m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
+    m_trayIcon->setVisible(settings.isShowTrayIcon());
+    QGuiApplication::setQuitOnLastWindowClosed(!m_trayIcon->isVisible());
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
@@ -832,22 +845,28 @@ void MainWindow::loadAppSettings()
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
     // OCR settings
-    if (const QByteArray &languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->setLanguagesString(languages, settings.ocrLanguagesPath())) {
+    if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->setLanguagesString(languages, path)) {
         // Show error only if languages was specified by user
-        if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath()) {
-            QMessageBox::critical(this, Ocr::tr("Unable to set OCR languages"),
-                                  Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
-        }
+        if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath())
+            m_trayIcon->showMessage(Ocr::tr("Unable to set OCR languages"), Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
     }
-    m_screenGrabber->loadSettings();
+
+    m_screenGrabber->setCaptureOnRelese(settings.isCaptureOnRelease());
+    m_screenGrabber->setShowMagnifier(settings.isShowMagnifier());
+    m_screenGrabber->setApplyLightMask(settings.isApplyLightMask());
+    if (const AppSettings::RegionRememberType type = settings.regionRememberType(); m_screenGrabber->regionRememberType() != type) {
+        m_screenGrabber->setRegionRememberType(type);
+        // Apply last remembered selection only if remember type was changed
+        if (type == AppSettings::RememberAlways)
+            m_screenGrabber->setSelection(settings.cropRegion());
+    }
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
     ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Connection
-    QNetworkProxy proxy;
-    proxy.setType(settings.proxyType());
+    QNetworkProxy proxy(settings.proxyType());
     if (proxy.type() == QNetworkProxy::HttpProxy || proxy.type() == QNetworkProxy::Socks5Proxy) {
         proxy.setHostName(settings.proxyHost());
         proxy.setPort(settings.proxyPort());

@@ -36,7 +36,7 @@ class TrayIcon : public QSystemTrayIcon
 public:
     TrayIcon(MainWindow *parent = nullptr);
 
-    void loadSettings();
+    void setTranslationNotificationTimeout(int timeout);
     void retranslateMenu();
     void showTranslationMessage(const QString &message);
 

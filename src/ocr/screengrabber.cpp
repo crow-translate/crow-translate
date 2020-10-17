@@ -42,22 +42,37 @@ ScreenGrabber::~ScreenGrabber()
         AppSettings().setCropRegion(scaledCropRegion());
 }
 
-void ScreenGrabber::loadSettings()
+AppSettings::RegionRememberType ScreenGrabber::regionRememberType() const
 {
-    const AppSettings settings;
-    m_regionRememberType = settings.regionRememberType();
-    m_captureOnRelease = settings.isCaptureOnRelease();
-    m_showMagnifier = settings.isShowMagnifier();
-    m_maskColor = settings.isApplyLightMask() ? QColor(255, 255, 255, 100) : QColor();
+    return m_regionRememberType;
+}
 
-    if (m_regionRememberType == AppSettings::RememberAlways) {
-        if (const QRect cropRegion = settings.cropRegion(); !cropRegion.isEmpty()) {
-            m_selection = QRectF(cropRegion.x() * m_dprI,
-                                 cropRegion.y() * m_dprI,
-                                 cropRegion.width() * m_dprI,
-                                 cropRegion.height() * m_dprI);
-        }
-    }
+void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type) 
+{
+    m_regionRememberType = type;
+}
+
+void ScreenGrabber::setCaptureOnRelese(bool onRelease) 
+{
+    m_captureOnRelease = onRelease;
+}
+
+void ScreenGrabber::setShowMagnifier(bool show) 
+{
+    m_showMagnifier = show;
+}
+
+void ScreenGrabber::setApplyLightMask(bool apply) 
+{
+    m_maskColor = apply ? QColor(255, 255, 255, 100) : QColor();
+}
+
+void ScreenGrabber::setSelection(QRect region) 
+{
+    m_selection = QRectF(region.x() * m_dprI,
+                         region.y() * m_dprI,
+                         region.width() * m_dprI,
+                         region.height() * m_dprI);
 }
 
 void ScreenGrabber::capture()

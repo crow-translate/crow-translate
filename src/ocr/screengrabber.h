@@ -36,8 +36,15 @@ class ScreenGrabber : public QWidget
 public:
     explicit ScreenGrabber(QWidget *parent = nullptr);
     ~ScreenGrabber() override;
+    
+    AppSettings::RegionRememberType regionRememberType() const;
 
-    void loadSettings();
+    void setRegionRememberType(AppSettings::RegionRememberType type);
+    void setCaptureOnRelese(bool onRelease);
+    void setShowMagnifier(bool show);
+    void setApplyLightMask(bool apply);
+    void setSelection(QRect region);
+
     void capture();
 
 signals:

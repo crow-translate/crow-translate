@@ -298,13 +298,6 @@ public:
     void setOcrLanguagesString(const QByteArray &string);
     static QByteArray defaultOcrLanguagesString();
 
-    RegionRememberType regionRememberType() const;
-    void setRegionRememberType(RegionRememberType type);
-    static RegionRememberType defaultRegionRememberType();
-
-    QRect cropRegion() const;
-    void setCropRegion(QRect rect);
-
     bool isShowMagnifier() const;
     void setShowMagnifier(bool show);
     static bool defaultShowMagnifier();
@@ -316,6 +309,14 @@ public:
     bool isApplyLightMask() const;
     void setApplyLightMask(bool use);
     static bool defaultApplyLightMask();
+
+    RegionRememberType regionRememberType() const;
+    void setRegionRememberType(RegionRememberType type);
+    static RegionRememberType defaultRegionRememberType();
+
+    QRect cropRegion() const;
+    void setCropRegion(QRect rect);
+
 
     // Buttons
     QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;

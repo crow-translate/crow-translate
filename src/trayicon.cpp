@@ -54,31 +54,9 @@ TrayIcon::TrayIcon(MainWindow *parent)
     });
 }
 
-void TrayIcon::loadSettings()
+void TrayIcon::setTranslationNotificationTimeout(int timeout) 
 {
-    AppSettings settings;
-
-    setVisible(settings.isShowTrayIcon());
-    QGuiApplication::setQuitOnLastWindowClosed(!isVisible());
-
-    // Any other settings does not make sense if tray icon is hidden
-    if (!isVisible())
-        return;
-
-    if (const AppSettings::IconType iconType = settings.trayIconType(); iconType == AppSettings::CustomIcon) {
-        const QString customIconName = settings.customIconPath();
-        setIcon(customTrayIcon(customIconName));
-        if (icon().isNull()) {
-            const QString defaultIconName = trayIconName(AppSettings::DefaultIcon);
-            showMessage(tr("Invalid tray icon"), tr("The specified icon '%1' is invalid. The default icon will be used.").arg(customIconName));
-            setIcon(QIcon::fromTheme(defaultIconName));
-            settings.setTrayIconType(AppSettings::DefaultIcon);
-        }
-    } else {
-        setIcon(QIcon::fromTheme(trayIconName(iconType)));
-    }
-
-    m_translationNotificaitonTimeout = settings.translationNotificationTimeout();
+    m_translationNotificaitonTimeout = timeout;
 }
 
 void TrayIcon::retranslateMenu() 
