@@ -43,16 +43,18 @@ public:
     TrayIcon(MainWindow *parent = nullptr);
 
     void loadSettings(const AppSettings &settings);
+    void retranslateMenu();
+    void showTranslationMessage(const QString &message);
 
     static QIcon customTrayIcon(const QString &customName);
     static QString trayIconName(IconType type);
-
-    void showTranslationMessage(const QString &message);
 
 private slots:
     void onTrayActivated(QSystemTrayIcon::ActivationReason reason);
 
 private:
+    QMenu *m_trayMenu;
+
     int m_translationNotificaitonTimeout;
 };
 

@@ -33,7 +33,6 @@ class SpeakButtons;
 class QHotkey;
 class QTaskbarControl;
 class QShortcut;
-class QMenu;
 class QComboBox;
 class TranslationEdit;
 class QToolButton;
@@ -162,7 +161,6 @@ private:
 
     QStateMachine *m_stateMachine;
     QOnlineTranslator *m_translator;
-    QMenu *m_trayMenu;
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;

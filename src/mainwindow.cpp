@@ -46,7 +46,6 @@
 #include <QClipboard>
 #include <QFinalState>
 #include <QMediaPlaylist>
-#include <QMenu>
 #include <QMessageBox>
 #include <QNetworkProxy>
 #include <QShortcut>
@@ -65,7 +64,6 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     , m_closeWindowsShortcut(new QShortcut(this))
     , m_stateMachine(new QStateMachine(this))
     , m_translator(new QOnlineTranslator(this))
-    , m_trayMenu(new QMenu(this))
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
     , m_ocr(new Ocr(this))
@@ -111,12 +109,6 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
     connect(m_screenGrabber, &ScreenGrabber::grabCancelled, m_screenGrabber, &ScreenGrabber::hide);
-
-    // System tray icon
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::open);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), this, &MainWindow::openSettings);
-    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
-    m_trayIcon->setContextMenu(m_trayMenu);
 
     // State machine to handle translator signals async
     buildStateMachine();
@@ -599,10 +591,7 @@ void MainWindow::changeEvent(QEvent *event)
     case QEvent::LanguageChange:
         // Reload UI if application language changed
         ui->retranslateUi(this);
-
-        m_trayMenu->actions().at(0)->setText(tr("Show window"));
-        m_trayMenu->actions().at(1)->setText(tr("Settings"));
-        m_trayMenu->actions().at(2)->setText(tr("Exit"));
+        m_trayIcon->retranslateMenu();
         break;
     default:
         QMainWindow::changeEvent(event);

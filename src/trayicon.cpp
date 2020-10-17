@@ -24,10 +24,17 @@
 
 #include <QFileInfo>
 #include <QGuiApplication>
+#include <QMenu>
 
 TrayIcon::TrayIcon(MainWindow *parent)
     : QSystemTrayIcon(parent)
+    , m_trayMenu(new QMenu(parent))
 {
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), parent, &MainWindow::open);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), parent, &MainWindow::openSettings);
+    m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), parent, &MainWindow::quit);
+    setContextMenu(m_trayMenu);
+
     connect(this, &TrayIcon::activated, this, &TrayIcon::onTrayActivated);
 }
 
@@ -53,6 +60,18 @@ void TrayIcon::loadSettings(const AppSettings &settings)
     QGuiApplication::setQuitOnLastWindowClosed(!trayIconVisible);
 }
 
+void TrayIcon::retranslateMenu() 
+{
+    m_trayMenu->actions().at(0)->setText(tr("Show window"));
+    m_trayMenu->actions().at(1)->setText(tr("Settings"));
+    m_trayMenu->actions().at(2)->setText(tr("Exit"));
+}
+
+void TrayIcon::showTranslationMessage(const QString &message)
+{
+    showMessage(tr("Translation Result"), message, QSystemTrayIcon::NoIcon, m_translationNotificaitonTimeout * 1000);
+}
+
 QIcon TrayIcon::customTrayIcon(const QString &customName)
 {
     if (QIcon::hasThemeIcon(customName))
@@ -75,11 +94,6 @@ QString TrayIcon::trayIconName(TrayIcon::IconType type)
     default:
         return QString();
     }
-}
-
-void TrayIcon::showTranslationMessage(const QString &message)
-{
-    showMessage(tr("Translation Result"), message, QSystemTrayIcon::NoIcon, m_translationNotificaitonTimeout * 1000);
 }
 
 void TrayIcon::onTrayActivated(QSystemTrayIcon::ActivationReason reason)
