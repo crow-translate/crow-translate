@@ -143,7 +143,8 @@ private:
     void setupRequestStateButtons(QState *state) const;
 
     // Helper functions
-    void loadSettings(const AppSettings &settings);
+    void loadMainWindowSettings(const AppSettings &settings);
+    void loadAppSettings(const AppSettings &settings);
     void checkLanguageButton(int checkedId);
 
     QOnlineTranslator::Engine currentEngine();

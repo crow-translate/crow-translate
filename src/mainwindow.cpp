@@ -77,14 +77,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     // Selection requests
     connect(Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText, Qt::DirectConnection);
 
-    // Text speaking
-    ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
-    ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
-
     // Taskbar progress for text speaking
-#if defined(Q_OS_WIN)
-    m_taskbar->setWidget(this);
-#endif
     connect(ui->sourceSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
     connect(ui->translationSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
     connect(ui->sourceSpeakButtons, &SpeakButtons::positionChanged, m_taskbar, &QTaskbarControl::setProgress);
@@ -110,49 +103,22 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
     connect(m_screenGrabber, &ScreenGrabber::grabCancelled, m_screenGrabber, &ScreenGrabber::hide);
 
+#if defined(Q_OS_WIN)
+    // Windows must have a widget be set to display a playback progress
+    m_taskbar->setWidget(this);
+#endif
+
+    // Setup players for speak buttons
+    ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
+    ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
+
     // State machine to handle translator signals async
     buildStateMachine();
     m_stateMachine->start();
 
     // App settings
-    loadSettings(settings);
-
-    // Load main window settings (these settings are loaded only at startup and cannot be configured in the settings dialog)
-    ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
-    ui->engineComboBox->setCurrentIndex(settings.currentEngine());
-    ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
-    ui->translationLanguagesWidget->setLanguages(settings.languages(AppSettings::Translation));
-    ui->translationLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Translation));
-    ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
-
-    restoreGeometry(settings.mainWindowGeometry());
-    if (!settings.isStartMinimized())
-        show();
-
-#ifdef Q_OS_WIN
-    // Check date for updates
-    const AppSettings::Interval updateInterval = settings.checkForUpdatesInterval();
-    QDate checkDate = settings.lastUpdateCheckDate();
-    switch (updateInterval) {
-    case AppSettings::Day:
-        checkDate = checkDate.addDays(1);
-        break;
-    case AppSettings::Week:
-        checkDate = checkDate.addDays(7);
-        break;
-    case AppSettings::Month:
-        checkDate = checkDate.addMonths(1);
-        break;
-    case AppSettings::Never:
-        return;
-    }
-
-    if (QDate::currentDate() >= checkDate) {
-        auto *release = new QGitTag(this);
-        connect(release, &QGitTag::finished, this, &MainWindow::checkForUpdates);
-        release->get("crow-translate", "crow-translate");
-    }
-#endif
+    loadAppSettings(settings);
+    loadMainWindowSettings(settings);
 }
 
 MainWindow::~MainWindow()
@@ -321,7 +287,7 @@ void MainWindow::openSettings()
     SettingsDialog config(this);
     if (config.exec() == QDialog::Accepted) {
         const AppSettings settings;
-        loadSettings(settings);
+        loadAppSettings(settings);
     }
 }
 
@@ -819,7 +785,47 @@ void MainWindow::setupRequestStateButtons(QState *state) const
     state->assignProperty(ui->abortButton, "enabled", true);
 }
 
-void MainWindow::loadSettings(const AppSettings &settings)
+// These settings are loaded only at startup and cannot be configured in the settings dialog
+void MainWindow::loadMainWindowSettings(const AppSettings &settings) 
+{
+    ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
+    ui->engineComboBox->setCurrentIndex(settings.currentEngine());
+    ui->sourceLanguagesWidget->setLanguages(settings.languages(AppSettings::Source));
+    ui->translationLanguagesWidget->setLanguages(settings.languages(AppSettings::Translation));
+    ui->translationLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Translation));
+    ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
+
+    restoreGeometry(settings.mainWindowGeometry());
+    if (!settings.isStartMinimized())
+        show();
+
+#ifdef Q_OS_WIN
+    // Check date for updates
+    const AppSettings::Interval updateInterval = settings.checkForUpdatesInterval();
+    QDate checkDate = settings.lastUpdateCheckDate();
+    switch (updateInterval) {
+    case AppSettings::Day:
+        checkDate = checkDate.addDays(1);
+        break;
+    case AppSettings::Week:
+        checkDate = checkDate.addDays(7);
+        break;
+    case AppSettings::Month:
+        checkDate = checkDate.addMonths(1);
+        break;
+    case AppSettings::Never:
+        return;
+    }
+
+    if (QDate::currentDate() >= checkDate) {
+        auto *release = new QGitTag(this);
+        connect(release, &QGitTag::finished, this, &MainWindow::checkForUpdates);
+        release->get("crow-translate", "crow-translate");
+    }
+#endif
+}
+
+void MainWindow::loadAppSettings(const AppSettings &settings)
 {
     // Interface
     ui->translationEdit->setFont(settings.font());
