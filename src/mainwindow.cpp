@@ -805,7 +805,7 @@ void MainWindow::loadMainWindowSettings()
     if (QDate::currentDate() >= checkDate) {
         auto *release = new QGitTag(this);
         connect(release, &QGitTag::finished, this, &MainWindow::checkForUpdates);
-        release->get("crow-translate", "crow-translate");
+        release->get(QStringLiteral("crow-translate"), QStringLiteral("crow-translate"));
     }
 #endif
 }
