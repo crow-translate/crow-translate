@@ -166,7 +166,7 @@ private:
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;
-    ScreenGrabber *m_quickEditor;
+    ScreenGrabber *m_screenGrabber;
 
     AppSettings::LanguageFormat m_popupLanguageFormat;
     QSize m_popupSize;

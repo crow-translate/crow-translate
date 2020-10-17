@@ -69,7 +69,7 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
     , m_ocr(new Ocr(this))
-    , m_quickEditor(new ScreenGrabber(this))
+    , m_screenGrabber(new ScreenGrabber(this))
 {
     ui->setupUi(this);
 
@@ -109,8 +109,8 @@ MainWindow::MainWindow(const AppSettings &settings, QWidget *parent)
 
     // OCR logic
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
-    connect(m_quickEditor, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
-    connect(m_quickEditor, &ScreenGrabber::grabCancelled, m_quickEditor, &ScreenGrabber::hide);
+    connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
+    connect(m_screenGrabber, &ScreenGrabber::grabCancelled, m_screenGrabber, &ScreenGrabber::hide);
 
     // System tray icon
     m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), this, &MainWindow::open);
@@ -665,7 +665,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(initialState);
 
-    connect(selectState, &QState::entered, m_quickEditor, &ScreenGrabber::capture);
+    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
@@ -673,7 +673,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     ocrUninitializedTransition->setTargetState(finalState);
 
     initialState->addTransition(selectState);
-    selectState->addTransition(m_quickEditor, &ScreenGrabber::grabCancelled, finalState);
+    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, finalState);
     selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
     showWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
@@ -861,7 +861,7 @@ void MainWindow::loadSettings(const AppSettings &settings)
                                   Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
         }
     }
-    m_quickEditor->loadSettings(settings);
+    m_screenGrabber->loadSettings(settings);
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
