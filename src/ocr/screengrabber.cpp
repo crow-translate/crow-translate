@@ -86,10 +86,9 @@ void ScreenGrabber::capture()
 
     m_mouseDragState = MouseState::None;
     if (m_regionRememberType == AppSettings::NeverRemember) {
-        m_selection = {};
+        m_selection.setRect(0, 0, 0, 0);
         m_startPos = {};
         m_initialTopLeft = {};
-
         m_mousePos = {};
 
         m_magnifierAllowed = false;
@@ -97,7 +96,7 @@ void ScreenGrabber::capture()
         m_disableArrowKeys = false;
 
         m_handleRadius = s_handleRadiusMouse;
-        m_handlePositions = QVector<QPointF>{8};
+        m_handlePositions.fill({});
         setCursor(Qt::CrossCursor);
     } else {
         m_selection = m_selection.intersected(rect());
