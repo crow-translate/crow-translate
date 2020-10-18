@@ -858,7 +858,7 @@ void MainWindow::loadAppSettings()
         m_screenGrabber->setRegionRememberType(type);
         // Apply last remembered selection only if remember type was changed
         if (type == AppSettings::RememberAlways)
-            m_screenGrabber->setSelection(settings.cropRegion());
+            m_screenGrabber->setCropRegion(settings.cropRegion());
     }
 
     // TTS

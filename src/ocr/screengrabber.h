@@ -42,11 +42,11 @@ public:
     
     AppSettings::RegionRememberType regionRememberType() const;
 
-    void setRegionRememberType(AppSettings::RegionRememberType type);
     void setCaptureOnRelese(bool onRelease);
     void setShowMagnifier(bool show);
     void setApplyLightMask(bool apply);
-    void setSelection(QRect region);
+    void setRegionRememberType(AppSettings::RegionRememberType type);
+    void setCropRegion(QRect region);
 
     void capture();
 

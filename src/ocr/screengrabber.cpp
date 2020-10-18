@@ -49,11 +49,6 @@ AppSettings::RegionRememberType ScreenGrabber::regionRememberType() const
     return m_regionRememberType;
 }
 
-void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type) 
-{
-    m_regionRememberType = type;
-}
-
 void ScreenGrabber::setCaptureOnRelese(bool onRelease) 
 {
     m_captureOnRelease = onRelease;
@@ -69,7 +64,12 @@ void ScreenGrabber::setApplyLightMask(bool apply)
     m_maskColor = apply ? QColor(255, 255, 255, 100) : QColor();
 }
 
-void ScreenGrabber::setSelection(QRect region) 
+void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type) 
+{
+    m_regionRememberType = type;
+}
+
+void ScreenGrabber::setCropRegion(QRect region) 
 {
     m_selection = QRectF(region.x() * m_dprI,
                          region.y() * m_dprI,
