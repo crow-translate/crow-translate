@@ -9,7 +9,7 @@ function(detect_library_type LIBRARY_TYPE)
     endif()
 
     if(DEFINED PARAMS_UNPARSED_ARGUMENTS)
-        message(FATAL_ERROR "Unparsed arguments for vtk_detect_library_type: " "${PARAMS_UNPARSED_ARGUMENTS}")
+        message(FATAL_ERROR "Unparsed arguments for detect_library_type: " "${PARAMS_UNPARSED_ARGUMENTS}")
     endif()
 
     if(NOT PARAMS_PATH)
@@ -19,11 +19,14 @@ function(detect_library_type LIBRARY_TYPE)
     set(${LIBRARY_TYPE} UNKNOWN PARENT_SCOPE)
     # Windows libraries all end with `.lib`. We need to detect the type based on
     # the contents of the library. However, MinGW does use different extensions.
-    if(WIN32 AND NOT MINGW)
-        find_program(DUMPBIN_EXECUTABLE NAMES dumpbin)
+    if(MSVC)
+        get_filename_component(CXX_COMPILER_FOLDER ${CMAKE_CXX_COMPILER} DIRECTORY CACHE)
+        find_program(DUMPBIN_EXECUTABLE
+            NAMES dumpbin
+            HINTS ${CXX_COMPILER_FOLDER}
+        )
         mark_as_advanced(DUMPBIN_EXECUTABLE)
-        execute_process(
-            COMMAND "${DUMPBIN_EXECUTABLE}" /HEADERS "${PARAMS_PATH}"
+        execute_process(COMMAND "${DUMPBIN_EXECUTABLE}" /HEADERS "${PARAMS_PATH}"
             OUTPUT_VARIABLE DUMPBIN_OUTPUT
             ERROR_VARIABLE  DUMPBIN_ERROR
             RESULT_VARIABLE DUMPBIN_RESULT)
