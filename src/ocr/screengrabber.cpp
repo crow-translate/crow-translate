@@ -213,10 +213,7 @@ void ScreenGrabber::keyReleaseEvent(QKeyEvent *event)
 
 void ScreenGrabber::mousePressEvent(QMouseEvent *event)
 {
-    if (event->source() == Qt::MouseEventNotSynthesized)
-        m_handleRadius = s_handleRadiusMouse;
-    else
-        m_handleRadius = s_handleRadiusTouch;
+    m_handleRadius = event->source() == Qt::MouseEventNotSynthesized ? s_handleRadiusMouse : s_handleRadiusTouch;
 
     if (event->button() & Qt::LeftButton) {
        /*
@@ -226,17 +223,16 @@ void ScreenGrabber::mousePressEvent(QMouseEvent *event)
         * have mouse focus. So just grab it undconditionally here.
         */
         grabKeyboard();
-        const QPointF &pos = event->pos();
-        m_mousePos = pos;
+        m_mousePos = event->pos();
         m_magnifierAllowed = true;
-        m_mouseDragState = mouseLocation(pos);
+        m_mouseDragState = mouseLocation(m_mousePos);
         m_disableArrowKeys = true;
         switch (m_mouseDragState) {
         case MouseState::Outside:
-            m_startPos = pos;
+            m_startPos = m_mousePos;
             break;
         case MouseState::Inside:
-            m_startPos = pos;
+            m_startPos = m_mousePos;
             m_magnifierAllowed = false;
             m_initialTopLeft = m_selection.topLeft();
             setCursor(Qt::ClosedHandCursor);
@@ -268,50 +264,49 @@ void ScreenGrabber::mousePressEvent(QMouseEvent *event)
 
 void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
 {
-    const QPointF &pos = event->pos();
-    m_mousePos = pos;
+    m_mousePos = event->pos();
     m_magnifierAllowed = true;
     switch (m_mouseDragState) {
     case MouseState::None:
-        setMouseCursor(pos);
+        setMouseCursor(m_mousePos);
         m_magnifierAllowed = false;
         break;
     case MouseState::TopLeft:
     case MouseState::TopRight:
     case MouseState::BottomRight:
     case MouseState::BottomLeft: {
-        const bool afterX = pos.x() >= m_startPos.x();
-        const bool afterY = pos.y() >= m_startPos.y();
-        m_selection.setRect(afterX ? m_startPos.x() : pos.x(),
-                           afterY ? m_startPos.y() : pos.y(),
-                           qAbs(pos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
-                           qAbs(pos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
+        const bool afterX = m_mousePos.x() >= m_startPos.x();
+        const bool afterY = m_mousePos.y() >= m_startPos.y();
+        m_selection.setRect(afterX ? m_startPos.x() : m_mousePos.x(),
+                           afterY ? m_startPos.y() : m_mousePos.y(),
+                           qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
+                           qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
         update();
         break;
     }
     case MouseState::Outside:
-        m_selection.setRect(qMin(pos.x(), m_startPos.x()),
-                           qMin(pos.y(), m_startPos.y()),
-                           qAbs(pos.x() - m_startPos.x()) + m_dprI,
-                           qAbs(pos.y() - m_startPos.y()) + m_dprI);
+        m_selection.setRect(qMin(m_mousePos.x(), m_startPos.x()),
+                           qMin(m_mousePos.y(), m_startPos.y()),
+                           qAbs(m_mousePos.x() - m_startPos.x()) + m_dprI,
+                           qAbs(m_mousePos.y() - m_startPos.y()) + m_dprI);
         update();
         break;
     case MouseState::Top:
     case MouseState::Bottom: {
-        const bool afterY = pos.y() >= m_startPos.y();
+        const bool afterY = m_mousePos.y() >= m_startPos.y();
         m_selection.setRect(m_selection.x(),
-                           afterY ? m_startPos.y() : pos.y(),
+                           afterY ? m_startPos.y() : m_mousePos.y(),
                            m_selection.width(),
-                           qAbs(pos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
+                           qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
         update();
         break;
     }
     case MouseState::Right:
     case MouseState::Left: {
-        const bool afterX = pos.x() >= m_startPos.x();
-        m_selection.setRect(afterX ? m_startPos.x() : pos.x(),
+        const bool afterX = m_mousePos.x() >= m_startPos.x();
+        m_selection.setRect(afterX ? m_startPos.x() : m_mousePos.x(),
                            m_selection.y(),
-                           qAbs(pos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
+                           qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
                            m_selection.height());
         update();
         break;
@@ -325,7 +320,7 @@ void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
          */
         const qreal dpr = devicePixelRatioF();
         // New top left point of the rectangle
-        QPoint newTopLeft = ((pos - m_startPos + m_initialTopLeft) * dpr).toPoint();
+        const QPoint newTopLeft = ((m_mousePos - m_startPos + m_initialTopLeft) * dpr).toPoint();
 
         int newTopLeftX = boundsLeft(newTopLeft.x());
         if (newTopLeftX != 0)
@@ -335,7 +330,7 @@ void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
         if (newTopLeftY != 0)
             newTopLeftY = boundsDown(newTopLeftY);
 
-        const auto newTopLeftF = QPointF(newTopLeftX * m_dprI, newTopLeftY * m_dprI);
+        const QPointF newTopLeftF(newTopLeftX * m_dprI, newTopLeftY * m_dprI);
 
         m_selection.moveTo(newTopLeftF);
         update();
@@ -382,7 +377,7 @@ void ScreenGrabber::paintEvent(QPaintEvent *)
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing);
     QBrush brush(m_screenPixmap);
-    brush.setTransform(QTransform().scale(m_dprI, m_dprI));
+    brush.setTransform(QTransform::fromScale(m_dprI, m_dprI));
     painter.setBackground(brush);
     painter.eraseRect(rect());
     if (!m_selection.size().isEmpty() || m_mouseDragState != MouseState::None) {
@@ -638,7 +633,7 @@ void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandles
      * - at the bottom otherwise
      */
     const qreal dpr = devicePixelRatioF();
-    QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
+    const QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
 
     const int selectionBoxWidth = selectionSizeTextRect.width() + s_selectionBoxPaddingX * 2;
@@ -679,7 +674,7 @@ void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandles
 
 void ScreenGrabber::setMouseCursor(QPointF pos)
 {
-    MouseState mouseState = mouseLocation(pos);
+    const MouseState mouseState = mouseLocation(pos);
     if (mouseState == MouseState::Outside)
         setCursor(Qt::CrossCursor);
     else if (MouseState::TopLeftOrBottomRight & mouseState)
@@ -841,10 +836,10 @@ void ScreenGrabber::acceptSelection()
 {
     if (!m_selection.isEmpty()) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
-        qreal dpi = QGuiApplication::screenAt(QCursor::pos())->logicalDotsPerInch();
+        const qreal dpi = QGuiApplication::screenAt(QCursor::pos())->logicalDotsPerInch();
 #else
         // Until Qt 5.10 there was no way to get the screen with the current cursor
-        qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
+        const qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
 #endif
         emit grabDone(m_screenPixmap.copy(scaledCropRegion()), static_cast<int>(dpi));
     }
