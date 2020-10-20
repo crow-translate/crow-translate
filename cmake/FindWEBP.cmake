@@ -7,10 +7,17 @@ find_path(WEBP_INCLUDE_DIR
     NAMES webp/decode.h
     PATHS ${PC_WEBP_INCLUDE_DIRS}
 )
-find_library(WEBP_LIBRARY
+
+find_library(WEBP_LIBRARY_RELEASE
     NAMES webp
     PATHS ${PC_WEBP_LIBRARY_DIRS}
 )
+find_library(WEBP_LIBRARY_DEBUG
+    NAMES webpd
+    PATHS ${PC_WEBP_LIBRARY_DIRS}
+)
+include(SelectLibraryConfigurations)
+select_library_configurations(WEBP)
 
 set(WEBP_VERSION ${PC_WEBP_VERSION})
 
@@ -32,6 +39,8 @@ if(WEBP_FOUND)
         add_library(WEBP::WEBP UNKNOWN IMPORTED)
         set_target_properties(WEBP::WEBP PROPERTIES
             IMPORTED_LOCATION "${WEBP_LIBRARY}"
+            IMPORTED_LOCATION_RELEASE "${WEBP_LIBRARY_RELEASE}"
+            IMPORTED_LOCATION_DEBUG "${WEBP_LIBRARY_DEBUG}"
             INTERFACE_COMPILE_OPTIONS "${PC_WEBP_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${WEBP_INCLUDE_DIR}"
         )
@@ -41,4 +50,6 @@ endif()
 mark_as_advanced(
     WEBP_INCLUDE_DIR
     WEBP_LIBRARY
+    WEBP_LIBRARY_RELEASE
+    WEBP_LIBRARY_DEBUG
 )

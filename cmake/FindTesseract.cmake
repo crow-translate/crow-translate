@@ -8,19 +8,18 @@ find_path(Tesseract_INCLUDE_DIR
     PATHS ${PC_Tesseract_INCLUDE_DIRS}
 )
 
-if(PC_Tesseract_VERSION)
-    # Parse version numbers as possible postfixes in the library name
-    string(REGEX MATCHALL [0-9]+ Tesseract_VERSION_NUMBERS ${PC_Tesseract_VERSION})
-    list(GET Tesseract_VERSION_NUMBERS 0 Tesseract_MAJOR_VERSION)
-    list(GET Tesseract_VERSION_NUMBERS 1 Tesseract_MINOR_VERSION)
-
-    set(Tesseract_VERSION ${PC_Tesseract_VERSION})
-endif()
-
-find_library(Tesseract_LIBRARY
-    NAMES tesseract tesseract${Tesseract_MAJOR_VERSION}${Tesseract_MINOR_VERSION}d tesseract${Tesseract_MAJOR_VERSION}${Tesseract_MINOR_VERSION}
+find_library(Tesseract_LIBRARY_RELEASE
+    NAMES tesseract ${PC_Tesseract_LIBRARIES}
     PATHS ${PC_Tesseract_LIBRARY_DIRS}
 )
+find_library(Tesseract_LIBRARY_DEBUG
+    NAMES tesseractd ${PC_Tesseract_LIBRARIES}d
+    PATHS ${PC_Tesseract_LIBRARY_DIRS}
+)
+include(SelectLibraryConfigurations)
+select_library_configurations(Tesseract)
+
+set(Tesseract_VERSION ${PC_Tesseract_VERSION})
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Tesseract
@@ -41,6 +40,8 @@ if(Tesseract_FOUND)
         add_library(Tesseract::Tesseract UNKNOWN IMPORTED)
         set_target_properties(Tesseract::Tesseract PROPERTIES
             IMPORTED_LOCATION "${Tesseract_LIBRARY}"
+            IMPORTED_LOCATION_DEBUG "${Tesseract_LIBRARY_DEBUG}"
+            IMPORTED_LOCATION_RELEASE "${Tesseract_LIBRARY_RELEASE}"
             INTERFACE_COMPILE_OPTIONS "${PC_Tesseract_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${Tesseract_INCLUDE_DIR}"
         )
@@ -51,4 +52,6 @@ endif()
 mark_as_advanced(
     Tesseract_INCLUDE_DIR
     Tesseract_LIBRARY
+    Tesseract_LIBRARY_RELEASE
+    Tesseract_LIBRARY_DEBUG
 )
