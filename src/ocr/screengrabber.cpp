@@ -795,12 +795,15 @@ void ScreenGrabber::setBottomHelpText()
     Q_ASSERT_X(m_bottomLeftHelpText.size() == m_bottomRightHelpText.size(), "setButtomHelpText", "The left and right columns must be the same size");
 
     const int expectedLinesCount = m_captureOnRelease && m_selection.size().isEmpty() ? s_bottomHelpOnReleaseLength : s_bottomHelpNormalLength;
-    if (m_bottomLeftHelpText.size() != expectedLinesCount) {
-        m_bottomLeftHelpText.clear();
-        m_bottomRightHelpText.clear();
-        m_bottomLeftHelpText.reserve(expectedLinesCount);
-        m_bottomRightHelpText.reserve(expectedLinesCount);
-    }
+
+    // The text is already set
+    if (m_bottomLeftHelpText.size() == expectedLinesCount)
+        return;
+
+    m_bottomLeftHelpText.clear();
+    m_bottomRightHelpText.clear();
+    m_bottomLeftHelpText.reserve(expectedLinesCount);
+    m_bottomRightHelpText.reserve(expectedLinesCount);
 
     m_bottomLeftHelpText.append(QStaticText(tr("Confirm capture:")));
     if (expectedLinesCount == s_bottomHelpOnReleaseLength)
