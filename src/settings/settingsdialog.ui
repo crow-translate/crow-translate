@@ -79,7 +79,7 @@
       </item>
       <item>
        <property name="text">
-        <string>OCR</string>
+        <string notr="true">OCR</string>
        </property>
        <property name="icon">
         <iconset theme="scanner">

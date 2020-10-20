@@ -31,7 +31,7 @@ TrayIcon::TrayIcon(MainWindow *parent)
     , m_trayMenu(new QMenu(parent))
     , m_showMainWindowAction(new QAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), m_trayMenu))
     , m_openSettingsAction(new QAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), m_trayMenu))
-    , m_quitAction(new QAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), m_trayMenu))
+    , m_quitAction(new QAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Quit"), m_trayMenu))
 {
     connect(m_showMainWindowAction, &QAction::triggered, parent, &MainWindow::open);
     connect(m_openSettingsAction, &QAction::triggered, parent, &MainWindow::openSettings);
@@ -68,7 +68,7 @@ void TrayIcon::retranslateMenu()
 
 void TrayIcon::showTranslationMessage(const QString &message)
 {
-    showMessage(tr("Translation Result"), message, QSystemTrayIcon::NoIcon, m_translationNotificaitonTimeout * 1000);
+    showMessage(tr("Translation result"), message, QSystemTrayIcon::NoIcon, m_translationNotificaitonTimeout * 1000);
 }
 
 QIcon TrayIcon::customTrayIcon(const QString &customName)

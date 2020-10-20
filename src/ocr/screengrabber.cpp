@@ -826,7 +826,7 @@ void ScreenGrabber::setBottomHelpText()
     }
 
     m_bottomLeftHelpText.append(QStaticText(tr("Cancel:")));
-    m_bottomRightHelpText.append({QStaticText(tr("Escape"))});
+    m_bottomRightHelpText.append({QStaticText(tr("Esc key"))});
 
     for (int i = 0; i < m_bottomLeftHelpText.size(); ++i) {
         prepare(m_bottomLeftHelpText[i]);
