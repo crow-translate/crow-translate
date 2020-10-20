@@ -47,7 +47,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 
 ## Features
 
-- Translate and speak text in any application that supports text selection
+- Translate and speak text from screen or selection
 - Support 125 different languages
 - Low memory consumption (~20MB)
 - Highly customizable shortcuts
@@ -208,6 +208,8 @@ cd build
 cmake .. # Or `cmake -D CMAKE_BUILD_TYPE=Release ..` for single-configuration generators such as Ninja or GNU Make
 cpack -G DEB # Or `cpack -G DEB -C Release` for multi-config generators such as Visual Studio Generators or Xcode
 ```
+
+On Windows you need [VCPKG](https://github.com/microsoft/vcpkg) to bundle all necessary DLLs.
 
 ### Build parameters
 
