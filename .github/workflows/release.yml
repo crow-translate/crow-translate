@@ -5,18 +5,20 @@ on:
 jobs:
   Release:
     runs-on: ${{ matrix.os }}
-    env:
-      ECM_ROOT: 'C:\Program Files\ECM'
     strategy:
       matrix:
         os: [ubuntu-18.04, windows-latest]
         include:
           - os: ubuntu-18.04
-            cmake-defines: '-D CPACK_GENERATOR="DEB;RPM;7Z" -D CMAKE_BUILD_TYPE=Release'
+            extra-cmake-arguments : >-
+              -D CPACK_GENERATOR="DEB;RPM;7Z"
             upload-files: 'build/*.deb;build/*.rpm;build/*.7z'
           - os: windows-latest
-            extra-cmake-modules: '5.70.0'
-            cmake-defines: '-D OPENSSL_ROOT_DIR="C:/Program Files/Git/mingw64" -D WITH_PORTABLE_MODE=ON -D CPACK_GENERATOR="NSIS;7Z"'
+            extra-cmake-arguments : >-
+              -D WITH_PORTABLE_MODE=ON
+              -D CPACK_GENERATOR="NSIS;7Z"
+              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
+              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
             upload-files: 'build/*.exe;build/*.7z'
     steps:
     - name: Enable Git symlinks
@@ -24,35 +26,32 @@ jobs:
       run: git config --global core.symlinks true
 
     - name: Clone repo
-      uses: actions/checkout@v2.3.1
+      uses: actions/checkout@v2.3.3
 
-    - name: Install dependent apt packages
+    - name: Install apt packages
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev rpm
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm
 
-    - name: Install Qt
+    #  To find versions from vcpkg and set the application icon
+    - name: Install PkgConfig and png2ico
       if: runner.os == 'Windows'
-      uses: jurplel/install-qt-action@v2.7.2
+      run: choco install pkgconfiglite png2ico
 
-    - name: Install Extra CMake Modules
+    - name: Install vcpkg packages
+      uses: lukka/run-vcpkg@v4.1
       if: runner.os == 'Windows'
-      run: |
-        git clone --depth 1 --branch v${{ matrix.extra-cmake-modules }} https://github.com/KDE/extra-cmake-modules.git
-        cmake -S extra-cmake-modules -B extra-cmake-modules/build
-        cmake --build extra-cmake-modules/build --target install
-
-    - name: Install png2ico
-      if: runner.os == 'Windows'
-      run: choco install png2ico
+      with:
+        vcpkgArguments: tesseract ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools qt5-translations --triplet x64-windows
+        vcpkgGitCommitId: 56fffbe49dfb4dd8fae0940f272c5fd2b86be991
+      env:
+        VCPKG_DISABLE_METRICS: 1
 
     - name: Build
       run: |
-        mkdir build
-        cd build
-        cmake ${{ matrix.cmake-defines }} ..
-        cmake --build . --target package --parallel 2 --config Release
+        cmake -B build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
+        cmake --build build --target package --parallel 2 --config Release
 
     - name: Upload
       uses: AButler/upload-release-assets@v2.0
