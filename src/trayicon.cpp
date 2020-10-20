@@ -73,12 +73,9 @@ void TrayIcon::showTranslationMessage(const QString &message)
 
 QIcon TrayIcon::customTrayIcon(const QString &customName)
 {
-    if (QIcon::hasThemeIcon(customName))
-        return QIcon::fromTheme(customName);
     if (QFileInfo::exists(customName))
         return QIcon(customName);
-
-    return QIcon();
+    return QIcon::fromTheme(customName);
 }
 
 QString TrayIcon::trayIconName(AppSettings::IconType type)
