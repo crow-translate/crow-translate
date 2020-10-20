@@ -159,8 +159,8 @@ if(WITH_PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_PORTABLE_MODE)
 endif()
 
-install(TARGETS ${PROJECT_NAME})
 if(UNIX)
+    install(TARGETS ${PROJECT_NAME})
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${APPLICATION_NAME}/${APPLICATION_NAME}/translations)
     install(FILES data/${DESKTOP_FILE} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
 
@@ -178,11 +178,9 @@ if(UNIX)
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
     )
 elseif(WIN32)
-    find_program(WINDEPLOYQT windeployqt)
-    install(CODE "execute_process(COMMAND ${WINDEPLOYQT} \${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_BINDIR}/$<TARGET_FILE_NAME:${PROJECT_NAME}>)")
+    install(TARGETS ${PROJECT_NAME} DESTINATION .)
+    install(FILES ${QM_FILES} DESTINATION translations)
 
-    file(GLOB OPENSSL_DLLS ${OPENSSL_ROOT_DIR}/bin/libssl-*.dll ${OPENSSL_ROOT_DIR}/bin/libcrypto-*.dll)
-    install(FILES ${OPENSSL_DLLS} TYPE BIN)
-
-    install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_BINDIR}/translations)
+    include(InstallRuntimeDependencies)
+    install_runtime_dependencies(${PROJECT_NAME})
 endif()
