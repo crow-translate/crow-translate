@@ -44,6 +44,16 @@ if(WEBP_FOUND)
             INTERFACE_COMPILE_OPTIONS "${PC_WEBP_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${WEBP_INCLUDE_DIR}"
         )
+        if(WEBP_LIBRARY_RELEASE)
+            set_target_properties(WEBP::WEBP PROPERTIES
+                IMPORTED_LOCATION_RELEASE "${WEBP_LIBRARY_RELEASE}"
+            )
+        if(WEBP_LIBRARY_DEBUG)
+            set_target_properties(WEBP::WEBP PROPERTIES
+                IMPORTED_LOCATION_DEBUG "${WEBP_LIBRARY_DEBUG}"
+            )
+        endif()
+        endif()
     endif()
 endif()
 

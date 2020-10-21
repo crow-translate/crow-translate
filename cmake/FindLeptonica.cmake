@@ -40,11 +40,19 @@ if(Leptonica_FOUND)
         add_library(Leptonica::Leptonica UNKNOWN IMPORTED)
         set_target_properties(Leptonica::Leptonica PROPERTIES
             IMPORTED_LOCATION "${Leptonica_LIBRARY}"
-            IMPORTED_LOCATION_RELEASE "${Leptonica_LIBRARY_RELEASE}"
-            IMPORTED_LOCATION_DEBUG "${Leptonica_LIBRARY_DEBUG}"
             INTERFACE_COMPILE_OPTIONS "${PC_Leptonica_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${Leptonica_INCLUDE_DIR}"
         )
+        if(Leptonica_LIBRARY_RELEASE)
+            set_target_properties(Leptonica::Leptonica PROPERTIES
+                IMPORTED_LOCATION_RELEASE "${Leptonica_LIBRARY_RELEASE}"
+            )
+        endif()
+        if(Leptonica_LIBRARY_DEBUG)
+            set_target_properties(Leptonica::Leptonica PROPERTIES
+                IMPORTED_LOCATION_DEBUG "${Leptonica_LIBRARY_DEBUG}"
+            )
+        endif()
 
         include(DetectLibraryType)
         if(Leptonica_LIBRARY_RELEASE)

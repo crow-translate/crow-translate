@@ -40,11 +40,20 @@ if(Tesseract_FOUND)
         add_library(Tesseract::Tesseract UNKNOWN IMPORTED)
         set_target_properties(Tesseract::Tesseract PROPERTIES
             IMPORTED_LOCATION "${Tesseract_LIBRARY}"
-            IMPORTED_LOCATION_DEBUG "${Tesseract_LIBRARY_DEBUG}"
-            IMPORTED_LOCATION_RELEASE "${Tesseract_LIBRARY_RELEASE}"
             INTERFACE_COMPILE_OPTIONS "${PC_Tesseract_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${Tesseract_INCLUDE_DIR}"
         )
+        if(Tesseract_LIBRARY_RELEASE)
+            set_target_properties(Tesseract::Tesseract PROPERTIES
+                IMPORTED_LOCATION_RELEASE "${Tesseract_LIBRARY_RELEASE}"
+            )
+        endif()
+        if(Tesseract_LIBRARY_DEBUG)
+            set_target_properties(Tesseract::Tesseract PROPERTIES
+                IMPORTED_LOCATION_DEBUG "${Tesseract_LIBRARY_DEBUG}"
+            )
+        endif()
+
         target_link_libraries(Tesseract::Tesseract INTERFACE Leptonica::Leptonica)
     endif()
 endif()
