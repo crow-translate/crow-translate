@@ -14,7 +14,7 @@ FetchContent_Declare(QTaskbarControl
 option(QHOTKEY_INSTALL OFF)
 FetchContent_Declare(QHotkey
     GIT_REPOSITORY https://github.com/Skycoder42/QHotkey
-    GIT_TAG eb7ddaba57b108f99c2fefcd4eb23cef9c0ed681
+    GIT_TAG 1.4.2
 )
 
 FetchContent_Declare(QOnlineTranslator
