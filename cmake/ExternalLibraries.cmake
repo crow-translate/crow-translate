@@ -2,24 +2,24 @@ include(FetchContent)
 
 set(QAPPLICATION_CLASS QApplication)
 FetchContent_Declare(SingleApplication
-    GIT_REPOSITORY https://github.com/Shatur95/SingleApplication
-    GIT_TAG fix-clang-tidy-warnings
+    GIT_REPOSITORY https://github.com/itay-grudev/SingleApplication
+    GIT_TAG v3.1.5
 )
 
 FetchContent_Declare(QTaskbarControl
-    GIT_REPOSITORY https://github.com/Shatur95/QTaskbarControl
-    GIT_TAG fix-clang-tidy-warnings
+    GIT_REPOSITORY https://github.com/Skycoder42/QTaskbarControl
+    GIT_TAG 2.0.2
 )
 
 option(QHOTKEY_INSTALL OFF)
 FetchContent_Declare(QHotkey
-    GIT_REPOSITORY https://github.com/Shatur95/QHotkey
-    GIT_TAG fix-clang-tidy-warnings
+    GIT_REPOSITORY https://github.com/Skycoder42/QHotkey
+    GIT_TAG eb7ddaba57b108f99c2fefcd4eb23cef9c0ed681
 )
 
 FetchContent_Declare(QOnlineTranslator
     GIT_REPOSITORY https://github.com/crow-translate/QOnlineTranslator
-    GIT_TAG 9cdd27e33b754c81454ca02328b42ab4149d86f4
+    GIT_TAG 1.4.0
 )
 
 FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator)
@@ -27,7 +27,7 @@ FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTran
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG 4ad07810469db88aaa5681ed1ace184652c01bfd
+        GIT_TAG 1.0.6
     )
 
     FetchContent_MakeAvailable(QGitTag)
