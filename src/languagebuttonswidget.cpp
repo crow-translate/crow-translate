@@ -467,7 +467,8 @@ void LanguageButtonsWidget::changeEvent(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::LanguageChange:
-        retranslate();
+        if (m_languageFormat != AppSettings::IsoCode)
+            retranslate();
         break;
     default:
         QWidget::changeEvent(event);
