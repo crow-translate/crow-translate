@@ -3,7 +3,7 @@ include(FetchContent)
 set(QAPPLICATION_CLASS QApplication)
 FetchContent_Declare(SingleApplication
     GIT_REPOSITORY https://github.com/itay-grudev/SingleApplication
-    GIT_TAG v3.1.5
+    GIT_TAG f3de0114f45c7ff073f29cf0822df5161bb5c3b3
 )
 
 FetchContent_Declare(QTaskbarControl
