@@ -1485,7 +1485,7 @@ or press Esc to quit</source>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="762"/>
       <source>Directory with trained models</source>
-      <translation>Директория с обученными моделями</translation>
+      <translation>Каталог с обученными моделями</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="769"/>
