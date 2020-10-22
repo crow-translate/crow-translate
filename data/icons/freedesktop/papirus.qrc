@@ -1,0 +1,41 @@
+<RCC>
+    <qresource prefix="/icons">
+        <file>Papirus/index.theme</file>
+        <file>Papirus/16x16/actions/application-exit.svg</file>
+        <file>Papirus/16x16/actions/dialog-error.svg</file>
+        <file>Papirus/16x16/actions/dialog-information.svg</file>
+        <file>Papirus/16x16/actions/dialog-object-properties.svg</file>
+        <file>Papirus/16x16/actions/edit-copy.svg</file>
+        <file>Papirus/16x16/actions/folder.svg</file>
+        <file>Papirus/16x16/actions/go-next.svg</file>
+        <file>Papirus/16x16/actions/go-previous.svg</file>
+        <file>Papirus/16x16/actions/media-playback-pause.svg</file>
+        <file>Papirus/16x16/actions/media-playback-start.svg</file>
+        <file>Papirus/16x16/actions/media-playback-stop.svg</file>
+        <file>Papirus/16x16/actions/object-flip-horizontal.svg</file>
+        <file>Papirus/16x16/actions/window.svg</file>
+        <file>Papirus/16x16/apps/preferences-desktop-locale.svg</file>
+        <file>Papirus/32x32/apps/preferences-desktop-keyboard.svg</file>
+        <file>Papirus/32x32/apps/preferences-desktop-locale.svg</file>
+        <file>Papirus/32x32/apps/preferences-desktop-theme.svg</file>
+        <file>Papirus/32x32/apps/preferences-system-network.svg</file>
+        <file>Papirus/32x32/apps/preferences-system.svg</file>
+        <file>Papirus/32x32/status/dialog-information.svg</file>
+        <file>Papirus/16x16/actions/document-export.svg</file>
+        <file>Papirus/16x16/apps/software-update-available.svg</file>
+        <file>Papirus/16x16/actions/view-refresh.svg</file>
+        <file>Papirus/16x16/actions/dialog-ok-apply.svg</file>
+        <file>Papirus/16x16/actions/edit-clear.svg</file>
+        <file>Papirus/32x32/apps/audio-speakers.svg</file>
+        <file>Papirus/16x16/actions/dialog-cancel.svg</file>
+        <file>Papirus/16x16/actions/document-edit.svg</file>
+        <file>Papirus/16x16/actions/arrow-down.svg</file>
+        <file>Papirus/16x16/actions/arrow-left.svg</file>
+        <file>Papirus/16x16/actions/arrow-right.svg</file>
+        <file>Papirus/16x16/actions/arrow-up.svg</file>
+        <file>Papirus/32x32/apps/scanner.svg</file>
+        <file alias="Papirus/32x32/status/crow-translate.svg">sc-apps-crow-translate.svg</file>
+        <file alias="Papirus/32x32/status/crow-translate-tray-dark.svg">sc-status-crow-translate-tray-dark.svg</file>
+        <file alias="Papirus/32x32/status/crow-translate-tray-light.svg">sc-status-crow-translate-tray-light.svg</file>
+    </qresource>
+</RCC>

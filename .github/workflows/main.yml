@@ -27,10 +27,6 @@ jobs:
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
-    - name: Enable Git symlinks
-      if: runner.os == 'Windows'
-      run: git config --global core.symlinks true
-
     - name: Clone repo
       uses: actions/checkout@v2.3.3
 

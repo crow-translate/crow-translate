@@ -131,7 +131,7 @@ if(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
     target_sources(${PROJECT_NAME} PRIVATE
         ${WINDOWS_ICON}
-        data/icons/windows/windows.qrc
+        data/icons/freedesktop/papirus.qrc
         src/updaterdialog.cpp
         src/updaterdialog.ui
     )

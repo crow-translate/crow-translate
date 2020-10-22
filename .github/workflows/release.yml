@@ -21,10 +21,6 @@ jobs:
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
             upload-files: 'build/*.exe;build/*.7z'
     steps:
-    - name: Enable Git symlinks
-      if: runner.os == 'Windows'
-      run: git config --global core.symlinks true
-
     - name: Clone repo
       uses: actions/checkout@v2.3.3
 
