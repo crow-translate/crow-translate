@@ -29,18 +29,10 @@
 TrayIcon::TrayIcon(MainWindow *parent)
     : QSystemTrayIcon(parent)
     , m_trayMenu(new QMenu(parent))
-    , m_showMainWindowAction(new QAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), m_trayMenu))
-    , m_openSettingsAction(new QAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), m_trayMenu))
-    , m_quitAction(new QAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Quit"), m_trayMenu))
+    , m_showMainWindowAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), parent, &MainWindow::open))
+    , m_openSettingsAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("dialog-object-properties")), tr("Settings"), parent, &MainWindow::openSettings))
+    , m_quitAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), parent, &MainWindow::quit))
 {
-    connect(m_showMainWindowAction, &QAction::triggered, parent, &MainWindow::open);
-    connect(m_openSettingsAction, &QAction::triggered, parent, &MainWindow::openSettings);
-    connect(m_quitAction, &QAction::triggered, parent, &MainWindow::quit);
-
-    m_trayMenu->addAction(m_showMainWindowAction);
-    m_trayMenu->addAction(m_openSettingsAction);
-    m_trayMenu->addAction(m_quitAction);
-
     setContextMenu(m_trayMenu);
 
     connect(this, &TrayIcon::activated, [parent](QSystemTrayIcon::ActivationReason reason) {
