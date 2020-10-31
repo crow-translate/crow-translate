@@ -43,24 +43,21 @@ if(Leptonica_FOUND)
             INTERFACE_COMPILE_OPTIONS "${PC_Leptonica_CFLAGS_OTHER}"
             INTERFACE_INCLUDE_DIRECTORIES "${Leptonica_INCLUDE_DIR}"
         )
+
+        include(DetectLibraryType)
         if(Leptonica_LIBRARY_RELEASE)
+            detect_library_type(Leptonica_RELEASE_TYPE PATH ${Leptonica_LIBRARY_RELEASE})
             set_target_properties(Leptonica::Leptonica PROPERTIES
                 IMPORTED_LOCATION_RELEASE "${Leptonica_LIBRARY_RELEASE}"
             )
         endif()
         if(Leptonica_LIBRARY_DEBUG)
+            detect_library_type(Leptonica_DEBUG_TYPE PATH ${Leptonica_LIBRARY_DEBUG})
             set_target_properties(Leptonica::Leptonica PROPERTIES
                 IMPORTED_LOCATION_DEBUG "${Leptonica_LIBRARY_DEBUG}"
             )
         endif()
 
-        include(DetectLibraryType)
-        if(Leptonica_LIBRARY_RELEASE)
-            detect_library_type(Leptonica_RELEASE_TYPE PATH ${Leptonica_LIBRARY_RELEASE})
-        endif()
-        if(Leptonica_LIBRARY_DEBUG)
-            detect_library_type(Leptonica_DEBUG_TYPE PATH ${Leptonica_LIBRARY_DEBUG})
-        endif()
         if(Leptonica_RELEASE_TYPE STREQUAL STATIC OR Leptonica_DEBUG_TYPE STREQUAL STATIC)
             find_package(GIF REQUIRED)
             find_package(JPEG REQUIRED)
