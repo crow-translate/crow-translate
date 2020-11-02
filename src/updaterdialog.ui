@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowIcon">
-   <iconset theme="software-update-available">
+   <iconset theme="system-software-update">
     <normaloff>.</normaloff>.</iconset>
   </property>
   <layout class="QGridLayout" name="dialogLayout">

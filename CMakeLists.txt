@@ -129,9 +129,12 @@ add_executable(${PROJECT_NAME}
 
 if(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
+    configure_file(data/icons/freedesktop/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
+
     target_sources(${PROJECT_NAME} PRIVATE
         ${WINDOWS_ICON}
-        data/icons/freedesktop/papirus.qrc
+        ${We10X_SOURCE_DIR}/src/we10x.qrc
+        data/icons/freedesktop/application.qrc
         src/updaterdialog.cpp
         src/updaterdialog.ui
     )

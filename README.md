@@ -166,7 +166,7 @@ This project uses the following external libraries, which will be downloaded aut
 
 ## Icons
 
-Only Linux supports icon theming. Windows use [Papirus](https://github.com/PapirusDevelopmentTeam/papirus-icon-theme "Free and open source SVG icon theme") icons.
+Only Linux supports icon theming. For Windows [We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled.
 
 [FlagKit](https://github.com/madebybowtie/FlagKit "Beautiful flag icons for usage in apps and on the web") icons are used for flags.
 

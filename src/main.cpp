@@ -51,7 +51,8 @@ int launchGui(int argc, char *argv[])
 #if defined(Q_OS_LINUX)
     QGuiApplication::setDesktopFileName(QStringLiteral(DESKTOP_FILE));
 #elif defined(Q_OS_WIN)
-    QIcon::setThemeName("Papirus");
+    QIcon::setThemeName("We10X");
+    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << ":/icons");
 #endif
 
     AppSettings().setupLocalization();

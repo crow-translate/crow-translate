@@ -33,7 +33,7 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     // Global shortcuts
     auto *globalShortcuts = new ShortcutItem(tr("Global"), m_rootItem);
 
-    auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), QStringLiteral("preferences-desktop-locale"), globalShortcuts);
+    auto *translateSelectionShortcut = new ShortcutItem(tr("Translate selected text"), QStringLiteral("go-next"), globalShortcuts);
     translateSelectionShortcut->setDefaultShortcut(AppSettings::defaultTranslateSelectionShortcut());
 
     auto *speakSelection = new ShortcutItem(tr("Speak selected text"), QStringLiteral("media-playback-start"), globalShortcuts);

@@ -25,7 +25,7 @@
        <string>Application settings</string>
       </property>
       <property name="icon">
-       <iconset theme="dialog-object-properties">
+       <iconset theme="configure">
         <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
@@ -47,7 +47,7 @@
        <string>Clear</string>
       </property>
       <property name="icon">
-       <iconset theme="edit-clear">
+       <iconset theme="edit-clear-all">
         <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>
@@ -151,7 +151,7 @@
        <string>Copy all translation data to the clipboard</string>
       </property>
       <property name="icon">
-       <iconset theme="document-export">
+       <iconset theme="edit-select-all">
         <normaloff>.</normaloff>.</iconset>
       </property>
      </widget>

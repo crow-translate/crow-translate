@@ -30,5 +30,11 @@ if(WIN32)
         GIT_TAG 1.0.6
     )
 
-    FetchContent_MakeAvailable(QGitTag)
+    FetchContent_Declare(We10X
+        GIT_REPOSITORY https://github.com/yeyushengfan258/We10X-icon-theme
+        GIT_TAG 7cc84b4b62b0fdd39ce716ba928fb3222f4b931a
+    )
+
+    FetchContent_MakeAvailable(QGitTag We10X)
+    FetchContent_GetProperties(We10X SOURCE_DIR We10X_SOURCE_DIR)
 endif()

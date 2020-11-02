@@ -91,7 +91,7 @@
         <string>Speech synthesis</string>
        </property>
        <property name="icon">
-        <iconset theme="audio-speakers">
+        <iconset theme="preferences-desktop-sound">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
@@ -1341,7 +1341,7 @@
               <string>Clear</string>
              </property>
              <property name="icon">
-              <iconset theme="edit-clear">
+              <iconset theme="edit-clear-all">
                <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
