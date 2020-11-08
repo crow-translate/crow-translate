@@ -73,6 +73,7 @@ public slots:
     Q_SCRIPTABLE void stopSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
+    Q_SCRIPTABLE void recognizeScreenArea();
     Q_SCRIPTABLE void translateScreenArea();
 
     // Main window shortcuts
@@ -91,6 +92,7 @@ signals:
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
     void copyTranslatedSelectionRequested();
+    void recognizeScreenAreaRequested();
     void translateScreenAreaRequested();
 
 private slots:
@@ -135,8 +137,9 @@ private:
     void buildSpeakSelectionState(QState *state) const;
     void buildSpeakTranslatedSelectionState(QState *state) const;
     void buildCopyTranslatedSelectionState(QState *state) const;
+    void buildRecognizeState(QState *state);
+    void buildRecognizeScreenAreaState(QState *state);
     void buildTranslateScreenAreaState(QState *state);
-
     void setupRequestStateButtons(QState *state) const;
 
     // Helper functions
@@ -154,6 +157,7 @@ private:
     QHotkey *m_stopSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
+    QHotkey *m_recognizeScreenAreaHotkey;
     QHotkey *m_translateScreenAreaHotkey;
     QShortcut *m_closeWindowsShortcut;
 

@@ -261,6 +261,10 @@ public:
     void setCopyTranslatedSelectionShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslatedSelectionShortcut();
 
+    QKeySequence recognizeScreenAreaShortcut() const;
+    void setRecognizeScreenAreaShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultRecognizeScreenAreaShortcut();
+
     QKeySequence translateScreenAreaShortcut() const;
     void setTranslateScreenAreaShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultTranslateScreenAreaShortcut();

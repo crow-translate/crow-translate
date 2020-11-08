@@ -802,6 +802,21 @@ QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
     return QKeySequence();
 }
 
+QKeySequence AppSettings::recognizeScreenAreaShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/RecognizeScreenAreaShortcut"), defaultRecognizeScreenAreaShortcut()).toString();
+}
+
+void AppSettings::setRecognizeScreenAreaShortcut(const QKeySequence &shortcut) 
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/RecognizeScreenAreaShortcut"), shortcut);
+}
+
+QKeySequence AppSettings::defaultRecognizeScreenAreaShortcut() 
+{
+    return QKeySequence(QStringLiteral("Ctrl+Alt+I"));
+}
+
 QKeySequence AppSettings::translateScreenAreaShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/TranslateScreenAreaShortcut"), defaultTranslateScreenAreaShortcut()).toString();

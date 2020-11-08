@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_stopSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
+    , m_recognizeScreenAreaHotkey(new QHotkey(this))
     , m_translateScreenAreaHotkey(new QHotkey(this))
     , m_closeWindowsShortcut(new QShortcut(this))
     , m_stateMachine(new QStateMachine(this))
@@ -92,6 +93,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
+    connect(m_recognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::recognizeScreenArea);
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
 
     // Source and translation logic
@@ -228,6 +230,11 @@ void MainWindow::stopSpeaking()
 void MainWindow::copyTranslatedSelection()
 {
     emit copyTranslatedSelectionRequested();
+}
+
+Q_SCRIPTABLE void MainWindow::recognizeScreenArea() 
+{
+    emit recognizeScreenAreaRequested();
 }
 
 void MainWindow::translateScreenArea()
@@ -560,6 +567,7 @@ void MainWindow::buildStateMachine()
     auto *speakSelectionState = new QState(m_stateMachine);
     auto *speakTranslatedSelectionState = new QState(m_stateMachine);
     auto *copyTranslatedSelectionState = new QState(m_stateMachine);
+    auto *recognizeScreenAreaState = new QState(m_stateMachine);
     auto *translateScreenAreaState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(idleState);
 
@@ -570,6 +578,7 @@ void MainWindow::buildStateMachine()
     buildSpeakSelectionState(speakSelectionState);
     buildSpeakTranslatedSelectionState(speakTranslatedSelectionState);
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
+    buildRecognizeScreenAreaState(recognizeScreenAreaState);
     buildTranslateScreenAreaState(translateScreenAreaState);
 
     // Add transitions between all states
@@ -583,6 +592,7 @@ void MainWindow::buildStateMachine()
         state->addTransition(this, &MainWindow::speakSelectionRequested, speakSelectionState);
         state->addTransition(this, &MainWindow::speakTranslatedSelectionRequested, speakTranslatedSelectionState);
         state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
+        state->addTransition(this, &MainWindow::recognizeScreenAreaRequested, recognizeScreenAreaState);
         state->addTransition(this, &MainWindow::translateScreenAreaRequested, translateScreenAreaState);
     }
 
@@ -592,6 +602,7 @@ void MainWindow::buildStateMachine()
     translateSelectionState->addTransition(translateSelectionState, &QState::finished, idleState);
     speakSelectionState->addTransition(speakSelectionState, &QState::finished, idleState);
     speakTranslatedSelectionState->addTransition(speakTranslatedSelectionState, &QState::finished, idleState);
+    recognizeScreenAreaState->addTransition(recognizeScreenAreaState, &QState::finished, idleState);
     translateScreenAreaState->addTransition(translateScreenAreaState, &QState::finished, idleState);
 }
 
@@ -730,27 +741,50 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
 }
 
-void MainWindow::buildTranslateScreenAreaState(QState *state)
+void MainWindow::buildRecognizeState(QState *state) 
 {
     auto *initialState = new QState(state);
     auto *selectState = new QState(state);
-    auto *showWindowState = new QState(state);
-    auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(initialState);
 
     connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
     connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
-    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
-    buildTranslationState(translationState);
 
     auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
     ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
 
     initialState->addTransition(selectState);
     selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
-    selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
-    showWindowState->addTransition(translationState);
+    selectState->addTransition(m_ocr, &Ocr::recognized, finalState);
+}
+
+void MainWindow::buildRecognizeScreenAreaState(QState *state) 
+{
+    auto *recognizeState = new QState(state);
+    auto *showMainWindowState = new QFinalState(state);
+    state->setInitialState(recognizeState);
+
+    connect(showMainWindowState, &QState::entered, this, &MainWindow::show);
+    buildRecognizeState(recognizeState);
+
+    recognizeState->addTransition(recognizeState, &QState::finished, showMainWindowState);
+}
+
+void MainWindow::buildTranslateScreenAreaState(QState *state)
+{
+    auto *recognizeState = new QState(state);
+    auto *showTranslationWindowState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(recognizeState);
+
+    connect(showTranslationWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildRecognizeState(recognizeState);
+    buildTranslationState(translationState);
+
+    recognizeState->addTransition(recognizeState, &QState::finished, showTranslationWindowState);
+    showTranslationWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
@@ -877,6 +911,7 @@ void MainWindow::loadAppSettings()
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
+        m_recognizeScreenAreaHotkey->setShortcut(settings.recognizeScreenAreaShortcut(), true);
         m_translateScreenAreaHotkey->setShortcut(settings.translateScreenAreaShortcut(), true);
     } else {
         m_translateSelectionHotkey->setRegistered(false);

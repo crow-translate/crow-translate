@@ -51,6 +51,9 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     auto *copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), globalShortcuts);
     copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 
+    auto *recognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area"), QStringLiteral("scanner"), globalShortcuts);
+    recognizeScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultRecognizeScreenAreaShortcut());
+
     auto *translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("scanner"), globalShortcuts);
     translateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultTranslateScreenAreaShortcut());
 
@@ -194,7 +197,8 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_rootItem->child(0)->child(3)->setShortcut(settings.stopSpeakingShortcut());
     m_rootItem->child(0)->child(4)->setShortcut(settings.showMainWindowShortcut());
     m_rootItem->child(0)->child(5)->setShortcut(settings.copyTranslatedSelectionShortcut());
-    m_rootItem->child(0)->child(6)->setShortcut(settings.translateScreenAreaShortcut());
+    m_rootItem->child(0)->child(6)->setShortcut(settings.recognizeScreenAreaShortcut());
+    m_rootItem->child(0)->child(7)->setShortcut(settings.translateScreenAreaShortcut());
 
     // Window shortcuts
     m_rootItem->child(1)->child(0)->setShortcut(settings.translateShortcut());
@@ -218,7 +222,8 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setStopSpeakingShortcut(m_rootItem->child(0)->child(3)->shortcut());
     settings.setShowMainWindowShortcut(m_rootItem->child(0)->child(4)->shortcut());
     settings.setCopyTranslatedSelectionShortcut(m_rootItem->child(0)->child(5)->shortcut());
-    settings.setTranslateScreenAreaShortcut(m_rootItem->child(0)->child(6)->shortcut());
+    settings.setRecognizeScreenAreaShortcut(m_rootItem->child(0)->child(6)->shortcut());
+    settings.setTranslateScreenAreaShortcut(m_rootItem->child(0)->child(7)->shortcut());
 
     // Window shortcuts
     settings.setTranslateShortcut(m_rootItem->child(1)->child(0)->shortcut());
