@@ -595,37 +595,13 @@ void MainWindow::buildStateMachine()
     translateScreenAreaState->addTransition(translateScreenAreaState, &QState::finished, idleState);
 }
 
-void MainWindow::buildTranslateScreenAreaState(QState *state)
-{
-    auto *initialState = new QState(state);
-    auto *selectState = new QState(state);
-    auto *showWindowState = new QState(state);
-    auto *translationState = new QState(state);
-    auto *finalState = new QFinalState(state);
-    state->setInitialState(initialState);
-
-    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
-    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
-    buildTranslationState(translationState);
-
-    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
-    ocrUninitializedTransition->setTargetState(finalState);
-
-    initialState->addTransition(selectState);
-    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, finalState);
-    selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
-    showWindowState->addTransition(translationState);
-    translationState->addTransition(translationState, &QState::finished, finalState);
-}
-
 void MainWindow::buildTranslationState(QState *state) const
 {
     auto *abortPreviousState = new QState(state);
     auto *requestState = new QState(state);
     auto *checkLanguagesState = new QState(state);
     auto *requestInOtherLangState = new QState(state);
-    auto *parseState = new QState(state);
-    auto *finalState = new QFinalState(state);
+    auto *parseState = new QFinalState(state);
     state->setInitialState(abortPreviousState);
 
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
@@ -638,7 +614,7 @@ void MainWindow::buildTranslationState(QState *state) const
 
     auto *noTextTransition = new TextEmptyTransition(ui->sourceEdit, abortPreviousState);
     connect(noTextTransition, &TextEmptyTransition::triggered, this, &MainWindow::clearTranslation);
-    noTextTransition->setTargetState(finalState);
+    noTextTransition->setTargetState(m_stateMachine->initialState());
 
     auto *translationRunningTransition = new TranslatorAbortedTransition(m_translator, abortPreviousState);
     translationRunningTransition->setTargetState(requestState);
@@ -649,7 +625,6 @@ void MainWindow::buildTranslationState(QState *state) const
     requestState->addTransition(m_translator, &QOnlineTranslator::finished, checkLanguagesState);
     checkLanguagesState->addTransition(parseState);
     requestInOtherLangState->addTransition(m_translator, &QOnlineTranslator::finished, parseState);
-    parseState->addTransition(finalState);
 }
 
 void MainWindow::buildSpeakSourceState(QState *state) const
@@ -658,8 +633,7 @@ void MainWindow::buildSpeakSourceState(QState *state) const
     auto *abortPreviousState = new QState(state);
     auto *requestLangState = new QState(state);
     auto *parseLangState = new QState(state);
-    auto *speakTextState = new QState(state);
-    auto *finalState = new QFinalState(state);
+    auto *speakTextState = new QFinalState(state);
     state->setInitialState(initialState);
 
     connect(abortPreviousState, &QState::entered, m_translator, &QOnlineTranslator::abort);
@@ -675,12 +649,11 @@ void MainWindow::buildSpeakSourceState(QState *state) const
     translationRunningTransition->setTargetState(requestLangState);
 
     auto *errorTransition = new TranslatorErrorTransition(m_translator, parseLangState);
-    errorTransition->setTargetState(finalState);
+    errorTransition->setTargetState(m_stateMachine->initialState());
 
     initialState->addTransition(abortPreviousState);
     requestLangState->addTransition(m_translator, &QOnlineTranslator::finished, parseLangState);
     parseLangState->addTransition(speakTextState);
-    speakTextState->addTransition(finalState);
 }
 
 void MainWindow::buildTranslateSelectionState(QState *state) const
@@ -702,13 +675,10 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
 
 void MainWindow::buildSpeakTranslationState(QState *state) const
 {
-    auto *speakTextState = new QState(state);
-    auto *finalState = new QFinalState(state);
+    auto *speakTextState = new QFinalState(state);
     state->setInitialState(speakTextState);
 
     connect(speakTextState, &QState::entered, this, &MainWindow::speakTranslation);
-
-    speakTextState->addTransition(finalState);
 }
 
 void MainWindow::buildSpeakSelectionState(QState *state) const
@@ -748,8 +718,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
     auto *translationState = new QState(state);
-    auto *copyTranslationState = new QState(state);
-    auto *finalState = new QFinalState(state);
+    auto *copyTranslationState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
     connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
@@ -759,7 +728,29 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
 
     setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
-    copyTranslationState->addTransition(finalState);
+}
+
+void MainWindow::buildTranslateScreenAreaState(QState *state)
+{
+    auto *initialState = new QState(state);
+    auto *selectState = new QState(state);
+    auto *showWindowState = new QState(state);
+    auto *translationState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(initialState);
+
+    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
+    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildTranslationState(translationState);
+
+    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
+    ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
+
+    initialState->addTransition(selectState);
+    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
+    selectState->addTransition(m_ocr, &Ocr::recognized, showWindowState);
+    showWindowState->addTransition(translationState);
+    translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
 void MainWindow::setupRequestStateButtons(QState *state) const
