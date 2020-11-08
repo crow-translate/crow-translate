@@ -22,8 +22,10 @@
 #define OCR_H
 
 #include <QObject>
+#include <QFuture>
 
 #include <tesseract/baseapi.h>
+#include <tesseract/ocrclass.h>
 
 class QDir;
 
@@ -39,6 +41,7 @@ public:
     bool setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath);
 
     void recognize(const QPixmap &pixmap, int dpi);
+    void cancel();
 
     static QStringList availableLanguages(const QString &languagesPath);
 
@@ -48,7 +51,9 @@ signals:
 private:
     static QStringList parseLanguageFiles(const QDir &directory);
 
+    QFuture<void> m_future;
     tesseract::TessBaseAPI m_tesseract;
+    ETEXT_DESC m_monitor;
 };
 
 #endif // OCR_H

@@ -30,6 +30,11 @@
 Ocr::Ocr(QObject *parent)
     : QObject(parent)
 {
+    // For the ability to cancel task
+    m_monitor.cancel_this = &m_future;
+    m_monitor.cancel = [](void *cancel_this, int) {
+        return reinterpret_cast<QFuture<void> *>(cancel_this)->isCanceled();
+    };
 }
 
 QStringList Ocr::availableLanguages() const
@@ -60,17 +65,27 @@ bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &lang
 
 void Ocr::recognize(const QPixmap &pixmap, int dpi) 
 {
-    Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call setLanguage first");
+    Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call setLanguagesString first");
 
-    QtConcurrent::run([this, dpi, image = pixmap.toImage()] {
+    m_future.waitForFinished();
+    m_future = QtConcurrent::run([this, dpi, image = pixmap.toImage()] {
         m_tesseract.SetImage(image.constBits() ,image.width(), image.height(), 4, image.bytesPerLine());
         m_tesseract.SetSourceResolution(dpi);
+        m_tesseract.Recognize(&m_monitor);
+        if (m_future.isCanceled())
+            return;
+
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
         QString recognizedText = resultText.data();
         if (AppSettings().isConvertLineBreaks())
             recognizedText.replace(QRegularExpression(QStringLiteral("(?<!\n)\n(?!\n)")), QStringLiteral(" "));
         emit recognized(recognizedText);
     });
+}
+
+void Ocr::cancel() 
+{
+    m_future.cancel();
 }
 
 QStringList Ocr::availableLanguages(const QString &languagesPath) 

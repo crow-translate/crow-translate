@@ -739,6 +739,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(initialState);
 
+    connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
     connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
