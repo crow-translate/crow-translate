@@ -31,7 +31,7 @@ TrayIcon::TrayIcon(MainWindow *parent)
     , m_trayMenu(new QMenu(parent))
     , m_showMainWindowAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("window")), tr("Show window"), parent, &MainWindow::open))
     , m_openSettingsAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("configure")), tr("Settings"), parent, &MainWindow::openSettings))
-    , m_quitAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Exit"), parent, &MainWindow::quit))
+    , m_quitAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Quit"), parent, &MainWindow::quit))
 {
     setContextMenu(m_trayMenu);
 
