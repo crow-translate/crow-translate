@@ -389,7 +389,7 @@
    <sender>abortButton</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
-   <slot>abortTranslation()</slot>
+   <slot>cancelOperation()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>324</x>
@@ -490,7 +490,7 @@
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
   <slot>copyAllTranslationInfo()</slot>
-  <slot>abortTranslation()</slot>
+  <slot>cancelOperation()</slot>
   <slot>clearText()</slot>
  </slots>
 </ui>

@@ -72,8 +72,10 @@ void Ocr::recognize(const QPixmap &pixmap, int dpi)
         m_tesseract.SetImage(image.constBits() ,image.width(), image.height(), 4, image.bytesPerLine());
         m_tesseract.SetSourceResolution(dpi);
         m_tesseract.Recognize(&m_monitor);
-        if (m_future.isCanceled())
+        if (m_future.isCanceled()) {
+            emit canceled();
             return;
+        }
 
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
         QString recognizedText = resultText.data();

@@ -47,6 +47,7 @@ public:
 
 signals:
     void recognized(const QString &text);
+    void canceled();
 
 private:
     static QStringList parseLanguageFiles(const QDir &directory);

@@ -78,7 +78,7 @@ public slots:
 
     // Main window shortcuts
     Q_SCRIPTABLE void clearText();
-    Q_SCRIPTABLE void abortTranslation();
+    Q_SCRIPTABLE void cancelOperation();
     Q_SCRIPTABLE void swapLanguages();
     Q_SCRIPTABLE void openSettings();
     Q_SCRIPTABLE void setAutoTranslateEnabled(bool enabled);
@@ -140,6 +140,7 @@ private:
     void buildRecognizeState(QState *state);
     void buildRecognizeScreenAreaState(QState *state);
     void buildTranslateScreenAreaState(QState *state);
+
     void setupRequestStateButtons(QState *state) const;
 
     // Helper functions

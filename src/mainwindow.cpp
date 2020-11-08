@@ -253,9 +253,10 @@ void MainWindow::clearText()
     clearTranslation();
 }
 
-void MainWindow::abortTranslation()
+void MainWindow::cancelOperation()
 {
     m_translator->abort();
+    m_ocr->cancel();
 }
 
 void MainWindow::swapLanguages()
@@ -750,12 +751,14 @@ void MainWindow::buildRecognizeState(QState *state)
 
     connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
     connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
+    setupRequestStateButtons(selectState);
 
     auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
     ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
 
     initialState->addTransition(selectState);
     selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
+    selectState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
     selectState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
 
