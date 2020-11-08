@@ -290,6 +290,11 @@ public:
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
 
+    // OCR settings
+    bool isConvertLineBreaks() const;
+    void setConvertLineBreaks(bool convert);
+    static bool defaultConvertLineBreaks();
+
     QByteArray ocrLanguagesPath() const;
     void setOcrLanguagesPath(const QByteArray &path);
     static QByteArray defaultOcrLanguagesPath();

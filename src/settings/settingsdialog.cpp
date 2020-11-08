@@ -212,6 +212,7 @@ void SettingsDialog::accept()
     settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
 
     // OCR
+    settings.setConvertLineBreaks(ui->convertLineBreaksCheckBox->isChecked());
     settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
     settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
@@ -508,6 +509,7 @@ void SettingsDialog::restoreDefaults()
     ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
     // OCR
+    ui->convertLineBreaksCheckBox->setChecked(AppSettings::defaultConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
@@ -567,6 +569,7 @@ void SettingsDialog::loadSettings()
     ui->customTrayIconEdit->setText(settings.customIconPath());
 
     // Translation settings
+    ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
     ui->sourceTranslitCheckBox->setChecked(settings.isSourceTranslitEnabled());
     ui->translationTranslitCheckBox->setChecked(settings.isTranslationTranslitEnabled());
     ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());

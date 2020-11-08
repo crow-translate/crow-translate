@@ -751,26 +751,26 @@
       <widget class="QWidget" name="ocrPage">
        <layout class="QVBoxLayout" name="ocrLayout">
         <item>
-         <widget class="QGroupBox" name="ocrLanguagesGroupBox">
+         <widget class="QGroupBox" name="ocrGroupBox">
           <property name="title">
-           <string>Languages</string>
+           <string notr="true">OCR</string>
           </property>
           <layout class="QGridLayout" name="ocrLanguagesLayout">
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="ocrLanguagesPathEdit">
-             <property name="placeholderText">
-              <string>Directory with trained models</string>
+           <item row="3" column="0" colspan="3">
+            <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0">
+           <item row="1" column="0">
             <widget class="QLabel" name="ocrLanguagesPathLabel">
              <property name="text">
               <string>Languages path:</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="2">
+           <item row="1" column="2">
             <widget class="QToolButton" name="ocrLanguagesPathButton">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -781,14 +781,7 @@
              </property>
             </widget>
            </item>
-           <item row="2" column="0" colspan="3">
-            <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
+           <item row="4" column="0">
             <widget class="QLabel" name="downloadMoreLabel">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -801,6 +794,23 @@
              </property>
             </widget>
            </item>
+           <item row="1" column="1">
+            <widget class="QLineEdit" name="ocrLanguagesPathEdit">
+             <property name="placeholderText">
+              <string>Directory with trained models</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0" colspan="3">
+            <widget class="QCheckBox" name="convertLineBreaksCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Convert line breaks</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </widget>
         </item>
@@ -810,29 +820,6 @@
            <string>Screen capture</string>
           </property>
           <layout class="QGridLayout" name="screenCaptureLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="rememverRegionLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Remember region:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0" colspan="3">
-            <widget class="QCheckBox" name="showMagnifierCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Show magnifier</string>
-             </property>
-            </widget>
-           </item>
            <item row="3" column="0" colspan="2">
             <widget class="QCheckBox" name="applyLightMaskCheckBox">
              <property name="toolTip">
@@ -842,19 +829,6 @@
               <string>Apply light mask</string>
              </property>
             </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="screenCaptureBoxSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
            <item row="0" column="1">
             <widget class="QComboBox" name="rememberRegionComboBox">
@@ -876,6 +850,42 @@
                <string>Remember always</string>
               </property>
              </item>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <spacer name="screenCaptureBoxSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="QCheckBox" name="showMagnifierCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Show magnifier</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="0">
+            <widget class="QLabel" name="rememverRegionLabel">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="text">
+              <string>Remember region:</string>
+             </property>
             </widget>
            </item>
            <item row="2" column="0" colspan="3">

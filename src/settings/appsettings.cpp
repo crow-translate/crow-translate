@@ -907,6 +907,21 @@ QKeySequence AppSettings::defaultCopyTranslationShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Shift+C"));
 }
 
+bool AppSettings::isConvertLineBreaks() const
+{
+    return m_settings->value(QStringLiteral("OCR/ConvertLineBreaks"), defaultConvertLineBreaks()).toBool();
+}
+
+void AppSettings::setConvertLineBreaks(bool convert) 
+{
+    m_settings->setValue(QStringLiteral("OCR/ConvertLineBreaks"), convert);
+}
+
+bool AppSettings::defaultConvertLineBreaks() 
+{
+    return true;
+}
+
 QByteArray AppSettings::ocrLanguagesPath() const
 {
     return m_settings->value(QStringLiteral("OCR/LanguagesPath"), defaultOcrLanguagesPath()).toByteArray();

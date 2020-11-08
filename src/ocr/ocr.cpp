@@ -20,6 +20,8 @@
 
 #include "ocr.h"
 
+#include "settings/appsettings.h"
+
 #include <QPixmap>
 #include <QtConcurrent>
 
@@ -64,7 +66,10 @@ void Ocr::recognize(const QPixmap &pixmap, int dpi)
         m_tesseract.SetImage(image.constBits() ,image.width(), image.height(), 4, image.bytesPerLine());
         m_tesseract.SetSourceResolution(dpi);
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
-        emit recognized(resultText.data());
+        QString recognizedText = resultText.data();
+        if (AppSettings().isConvertLineBreaks())
+            recognizedText.replace(QRegularExpression(QStringLiteral("(?<!\n)\n(?!\n)")), QStringLiteral(" "));
+        emit recognized(recognizedText);
     });
 }
 
