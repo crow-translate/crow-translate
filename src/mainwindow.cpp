@@ -104,7 +104,6 @@ MainWindow::MainWindow(QWidget *parent)
     // OCR logic
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
-    connect(m_screenGrabber, &ScreenGrabber::grabCancelled, m_screenGrabber, &ScreenGrabber::hide);
 
 #if defined(Q_OS_WIN)
     // Windows must have a widget be set to display a playback progress
