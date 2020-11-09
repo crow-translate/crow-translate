@@ -21,7 +21,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "settings/appsettings.h"
+#include "qonlinetranslator.h"
 
 #include <QMainWindow>
 #include <QMediaPlayer>

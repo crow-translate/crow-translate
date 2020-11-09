@@ -36,7 +36,7 @@ class Selection : public QObject
 public:
     ~Selection() override;
 
-    static Selection *instance();
+    static Selection &instance();
 
 signals:
     void requestedSelectionAvailable(const QString &selection);

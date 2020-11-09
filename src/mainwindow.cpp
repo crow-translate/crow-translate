@@ -21,17 +21,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-#include "addlanguagedialog.h"
 #include "popupwindow.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
 #include "selection.h"
 #include "singleapplication.h"
-#include "speakbuttons.h"
 #include "trayicon.h"
 #include "ocr/ocr.h"
 #include "ocr/screengrabber.h"
-#include "settings/appsettings.h"
 #include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
 #include "transitions/ocruninitializedtransition.h"
@@ -48,7 +45,6 @@
 #include <QFinalState>
 #include <QMediaPlaylist>
 #include <QMessageBox>
-#include <QNetworkProxy>
 #include <QShortcut>
 #include <QStateMachine>
 
@@ -77,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(qobject_cast<SingleApplication *>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Selection requests
-    connect(Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText, Qt::DirectConnection);
+    connect(&Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText);
 
     // Taskbar progress for text speaking
     connect(ui->sourceSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
@@ -102,8 +98,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // OCR logic
-    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
+    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
 
 #if defined(Q_OS_WIN)
     // Windows must have a widget be set to display a playback progress
@@ -675,11 +671,11 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
+    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, showWindowState);
+    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, showWindowState);
     showWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
@@ -699,11 +695,11 @@ void MainWindow::buildSpeakSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
+    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
     buildSpeakSourceState(speakSourceState);
 
-    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, speakSourceState);
+    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, speakSourceState);
     speakSourceState->addTransition(speakSourceState, &QState::finished, finalState);
 }
 
@@ -715,12 +711,12 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
+    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     buildSpeakTranslationState(speakTranslationState);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
+    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
     translationState->addTransition(translationState, &QState::finished, speakTranslationState);
     speakTranslationState->addTransition(speakTranslationState, &QState::finished, finalState);
 }
@@ -732,12 +728,12 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     auto *copyTranslationState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, Selection::instance(), &Selection::requestSelection);
+    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
+    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
 }
 

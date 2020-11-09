@@ -33,10 +33,10 @@ using namespace std::chrono_literals;
 
 Selection::~Selection() = default;
 
-Selection *Selection::instance()
+Selection &Selection::instance()
 {
     static Selection singletone;
-    return &singletone;
+    return singletone;
 }
 
 void Selection::requestSelection()
