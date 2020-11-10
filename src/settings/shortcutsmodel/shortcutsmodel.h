@@ -63,6 +63,29 @@ private:
     QModelIndex index(ShortcutItem *item, int column) const;
 
     ShortcutItem *m_rootItem;
+    ShortcutItem *m_globalShortcuts;
+
+    // Global shortcuts
+    ShortcutItem *m_translateSelectionShortcut;
+    ShortcutItem *m_speakSelectionShortcut;
+    ShortcutItem *m_speakTranslatedSelectionShortcut;
+    ShortcutItem *m_stopSpeakingShortcut;
+    ShortcutItem *m_showMainWindowShortcut;
+    ShortcutItem *m_copyTranslatedSelectionShortcut;
+    ShortcutItem *m_recognizeScreenAreaShortcut;
+    ShortcutItem *m_translateScreenAreaShortcut;
+
+    // Window shortcuts
+    ShortcutItem *m_translateShortcut;
+    ShortcutItem *m_swapShortcut;
+    ShortcutItem *m_closeWindowShortcut;
+
+    // Source text shortcuts
+    ShortcutItem *m_speakSourceShortcut;
+
+    // Translation text shortcuts
+    ShortcutItem *m_speakTranslationShortcut;
+    ShortcutItem *m_copyTranslationShortcut;
 };
 
 #endif // SHORTCUTSMODEL_H
