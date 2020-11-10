@@ -19,11 +19,11 @@ jobs:
           - os: ubuntu-18.04
             extra-cmake-arguments : >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
-              -D CMAKE_CXX_CLANG_TIDY="/usr/bin/clang-tidy;--warnings-as-errors=*"
+              -D CMAKE_CXX_CLANG_TIDY="clang-tidy;--warnings-as-errors=*"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
-              -D CMAKE_CXX_FLAGS="/experimental:external /external:I $env:VCPKG_ROOT/installed/$env:RUNVCPKG_VCPKG_TRIPLET/include /external:W0 /W4 /wd4530 /WX"
+              -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
               -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
