@@ -152,7 +152,7 @@ private:
     void loadAppSettings();
     void checkLanguageButton(int checkedId);
 
-    QOnlineTranslator::Engine currentEngine();
+    QOnlineTranslator::Engine currentEngine() const;
 
     Ui::MainWindow *ui;
 

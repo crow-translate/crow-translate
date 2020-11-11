@@ -975,7 +975,7 @@ void MainWindow::checkLanguageButton(int checkedId)
     ui->sourceEdit->markSourceAsChanged();
 }
 
-QOnlineTranslator::Engine MainWindow::currentEngine()
+QOnlineTranslator::Engine MainWindow::currentEngine() const
 {
     return static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
 }
