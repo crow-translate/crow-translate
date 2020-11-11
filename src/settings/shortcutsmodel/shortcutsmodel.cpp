@@ -210,7 +210,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
 
     // Translation text shortcuts
     m_speakTranslationShortcut->setShortcut(settings.speakTranslationShortcut());
-    m_copyTranslatedSelectionShortcut->setShortcut(settings.copyTranslationShortcut());
+    m_copyTranslationShortcut->setShortcut(settings.copyTranslationShortcut());
 }
 
 void ShortcutsModel::saveShortcuts(AppSettings &settings) const
@@ -235,7 +235,7 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
 
     // Translation text shortcuts
     settings.setSpeakTranslationShortcut(m_speakTranslationShortcut->shortcut());
-    settings.setCopyTranslationShortcut(m_copyTranslatedSelectionShortcut->shortcut());
+    settings.setCopyTranslationShortcut(m_copyTranslationShortcut->shortcut());
 }
 
 void ShortcutsModel::resetAllShortcuts()
