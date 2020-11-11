@@ -671,11 +671,11 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, showWindowState);
+    setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, showWindowState);
     showWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
@@ -695,11 +695,10 @@ void MainWindow::buildSpeakSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
+    buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildSpeakSourceState(speakSourceState);
 
-    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, speakSourceState);
+    setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, speakSourceState);
     speakSourceState->addTransition(speakSourceState, &QState::finished, finalState);
 }
 
@@ -711,12 +710,11 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
+    buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildSpeakTranslationState(speakTranslationState);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
+    setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, speakTranslationState);
     speakTranslationState->addTransition(speakTranslationState, &QState::finished, finalState);
 }
@@ -728,33 +726,12 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     auto *copyTranslationState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
+    buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
 
-    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, translationState);
+    setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
-}
-
-void MainWindow::buildRecognizeState(QState *state) 
-{
-    auto *initialState = new QState(state);
-    auto *selectState = new QState(state);
-    auto *finalState = new QFinalState(state);
-    state->setInitialState(initialState);
-
-    connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
-    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
-    setupRequestStateButtons(selectState);
-
-    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
-    ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
-
-    initialState->addTransition(selectState);
-    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
-    selectState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
-    selectState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
 
 void MainWindow::buildRecognizeScreenAreaState(QState *state) 
@@ -784,6 +761,39 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     recognizeState->addTransition(recognizeState, &QState::finished, showTranslationWindowState);
     showTranslationWindowState->addTransition(translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
+}
+
+void MainWindow::buildRecognizeState(QState *state) 
+{
+    auto *initialState = new QState(state);
+    auto *selectState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(initialState);
+
+    connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
+    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
+    setupRequestStateButtons(selectState);
+
+    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
+    ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
+
+    initialState->addTransition(selectState);
+    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
+    selectState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
+    selectState->addTransition(m_ocr, &Ocr::recognized, finalState);
+}
+
+void MainWindow::buildSetSelectionAsSourceState(QState *state) const
+{
+    auto *setSelectionAsSourceState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(setSelectionAsSourceState);
+
+    connect(setSelectionAsSourceState, &QState::entered, m_ocr, &Ocr::cancel);
+    connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
+
+    setSelectionAsSourceState->addTransition(&Selection::instance(), &Selection::requestedSelectionAvailable, finalState);
 }
 
 void MainWindow::setupRequestStateButtons(QState *state) const

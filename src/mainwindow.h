@@ -130,6 +130,8 @@ private:
     void changeEvent(QEvent *event) override;
 
     void buildStateMachine();
+
+    // Top-level states
     void buildTranslationState(QState *state) const;
     void buildSpeakSourceState(QState *state) const;
     void buildTranslateSelectionState(QState *state) const;
@@ -137,13 +139,15 @@ private:
     void buildSpeakSelectionState(QState *state) const;
     void buildSpeakTranslatedSelectionState(QState *state) const;
     void buildCopyTranslatedSelectionState(QState *state) const;
-    void buildRecognizeState(QState *state);
     void buildRecognizeScreenAreaState(QState *state);
     void buildTranslateScreenAreaState(QState *state);
 
+    // State helpers
+    void buildRecognizeState(QState *state);
+    void buildSetSelectionAsSourceState(QState *state) const;
     void setupRequestStateButtons(QState *state) const;
 
-    // Helper functions
+    // Other helpers
     void loadMainWindowSettings();
     void loadAppSettings();
     void checkLanguageButton(int checkedId);
