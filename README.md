@@ -119,6 +119,7 @@ The program also has a console interface.
         ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.open();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection();
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.recognizeScreenArea();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.translateScreenArea();
         |   # Main window shortcuts
         ├── method void io.crow_translate.CrowTranslate.MainWindow.clearText();
