@@ -131,7 +131,7 @@
           <property name="title">
            <string>General</string>
           </property>
-          <layout class="QGridLayout" name="generalBoxLayout">
+          <layout class="QGridLayout" name="generalBoxLayout" columnstretch="0,0,1">
            <item row="0" column="0">
             <widget class="QLabel" name="localeLabel">
              <property name="sizePolicy">
@@ -213,19 +213,6 @@
               <string>Show tray icon</string>
              </property>
             </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="generalBoxSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </widget>
@@ -668,20 +655,7 @@
           <property name="title">
            <string>Automatic language detection</string>
           </property>
-          <layout class="QGridLayout" name="languageDetectionLayout">
-           <item row="0" column="2">
-            <spacer name="langDetectionSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
+          <layout class="QGridLayout" name="languageDetectionLayout" columnstretch="0,0,1">
            <item row="0" column="0">
             <widget class="QLabel" name="primaryLangLabel">
              <property name="text">
@@ -819,7 +793,7 @@
           <property name="title">
            <string>Screen capture</string>
           </property>
-          <layout class="QGridLayout" name="screenCaptureLayout">
+          <layout class="QGridLayout" name="screenCaptureLayout" columnstretch="0,0,1">
            <item row="3" column="0" colspan="2">
             <widget class="QCheckBox" name="applyLightMaskCheckBox">
              <property name="toolTip">
@@ -851,19 +825,6 @@
               </property>
              </item>
             </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="screenCaptureBoxSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
            <item row="1" column="0" colspan="3">
             <widget class="QCheckBox" name="showMagnifierCheckBox">
