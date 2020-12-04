@@ -6,11 +6,13 @@ set(CMAKE_PROJECT_HOMEPAGE_URL crow-translate.github.io)
 set(CMAKE_PROJECT_DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing")
 
 set(APPLICATION_NAME "Crow Translate")
+set(EXECUTABLE_NAME crow)
 if(UNIX)
     set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
 endif()
 
 set(CPACK_PACKAGE_VENDOR ${APPLICATION_NAME})
+set(CPACK_PACKAGE_EXECUTABLES ${EXECUTABLE_NAME} ${APPLICATION_NAME})
 set(CPACK_PACKAGE_INSTALL_DIRECTORY ${APPLICATION_NAME})
 set(CPACK_PACKAGE_CONTACT genaloner@gmail.com)
 set(CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/COPYING)
@@ -24,6 +26,7 @@ set(CPACK_RPM_PACKAGE_LICENSE GPLv3)
 set(CPACK_RPM_PACKAGE_GROUP Applications/Text)
 set(CPACK_RPM_COMPRESSION_TYPE lzma)
 set(CPACK_NSIS_DISPLAY_NAME ${APPLICATION_NAME})
+set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -141,7 +144,7 @@ if(WIN32)
 endif()
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src)
-set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME crow)
+set_target_properties(${PROJECT_NAME} PROPERTIES OUTPUT_NAME ${EXECUTABLE_NAME})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
     SingleApplication::SingleApplication
