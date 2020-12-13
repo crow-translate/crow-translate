@@ -42,11 +42,11 @@ jobs:
       run: choco install pkgconfiglite
 
     - name: Install vcpkg packages
-      uses: lukka/run-vcpkg@v5.0
+      uses: lukka/run-vcpkg@v6.0
       if: runner.os == 'Windows'
       with:
         vcpkgArguments: tesseract[cpu-independed] ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools --triplet x64-windows
-        vcpkgGitCommitId: 8de4ee858faf41fc6930c02203d873175940ea98
+        vcpkgGitCommitId: 066c6fd712a3b7015388de644e44faf9774f3641
       env:
         VCPKG_DISABLE_METRICS: 1
 

@@ -36,7 +36,7 @@
 #endif
 
 PopupWindow::PopupWindow(MainWindow *parent)
-    : QWidget(parent, Qt::Window | Qt::FramelessWindowHint)
+    : QWidget(parent, Qt::Tool | Qt::FramelessWindowHint)
     , ui(new Ui::PopupWindow)
     , m_closeWindowsShortcut(new QShortcut(this))
 {
