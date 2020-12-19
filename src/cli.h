@@ -81,6 +81,7 @@ private:
     bool m_sourcePrinted = false;
     bool m_brief = false;
     bool m_audioOnly = false;
+    bool m_json = false;
 };
 
 #endif // CLI_H

@@ -60,7 +60,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
         append(QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("translation options:")));
 
         // Print words for each type of speech
-        const QMap<QString, QVector<QOnlineTranslator::QOption>> translationOptions = translator->translationOptions();
+        const QMap<QString, QVector<QOption>> translationOptions = translator->translationOptions();
         for (auto it = translationOptions.cbegin(); it != translationOptions.cend(); ++it) {
             append(QStringLiteral("<b>%1</b>").arg(it.key()));
             QTextBlockFormat indent;
@@ -93,7 +93,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     // Examples
     if (!translator->examples().isEmpty()) {
         append(QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("examples:")));
-        const QMap<QString, QVector<QOnlineTranslator::QExample>> examples = translator->examples();
+        const QMap<QString, QVector<QExample>> examples = translator->examples();
         for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
             append(QStringLiteral("<b>%1</b>").arg(it.key()));
             QTextBlockFormat indent;
