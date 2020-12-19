@@ -90,8 +90,7 @@ void Cli::process(const QCoreApplication &app)
         parser.showHelp();
     }
 
-    if (parser.isSet(json) && (parser.isSet(audioOnly) || parser.isSet(brief)))
-    {
+    if (parser.isSet(json) && (parser.isSet(audioOnly) || parser.isSet(brief))) {
         qCritical() << tr("Error: You can't use --%1 with --%2 or --%3").arg(json.names().at(1), audioOnly.names().at(1), brief.names().at(1)) << '\n';
         parser.showHelp();
     }
