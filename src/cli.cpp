@@ -26,6 +26,7 @@
 #include <QCommandLineParser>
 #include <QFile>
 #include <QFinalState>
+#include <QJsonDocument>
 #include <QMediaPlayer>
 #include <QMediaPlaylist>
 #include <QRegularExpression>
@@ -58,6 +59,7 @@ void Cli::process(const QCoreApplication &app)
     const QCommandLineOption readStdin({"i", "stdin"}, tr("Add stdin data to source text."));
     const QCommandLineOption audioOnly({"a", "audio-only"}, tr("Do not print any text when using --%1 or --%2.").arg(speakSource.names().at(1), speakTranslation.names().at(1)));
     const QCommandLineOption brief({"b", "brief"}, tr("Print only translations."));
+    const QCommandLineOption json({"j", "json"}, tr("Print output formatted as JSON."));
 
     QCommandLineParser parser;
     parser.setApplicationDescription(tr("A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing."));
@@ -75,6 +77,7 @@ void Cli::process(const QCoreApplication &app)
     parser.addOption(readStdin);
     parser.addOption(audioOnly);
     parser.addOption(brief);
+    parser.addOption(json);
     parser.process(app);
 
     if (parser.isSet(audioOnly) && !parser.isSet(speakSource) && !parser.isSet(speakTranslation)) {
@@ -84,6 +87,11 @@ void Cli::process(const QCoreApplication &app)
 
     if (parser.isSet(audioOnly) && parser.isSet(brief)) {
         qCritical() << tr("Error: You can't use --%1 with --%2").arg(audioOnly.names().at(1), brief.names().at(1)) << '\n';
+        parser.showHelp();
+    }
+
+    if (parser.isSet(json) && (parser.isSet(audioOnly) || parser.isSet(brief))) {
+        qCritical() << tr("Error: You can't use --%1 with --%2 or --%3").arg(json.names().at(1), audioOnly.names().at(1), brief.names().at(1)) << '\n';
         parser.showHelp();
     }
 
@@ -140,6 +148,7 @@ void Cli::process(const QCoreApplication &app)
     // Modes
     m_audioOnly = parser.isSet(audioOnly);
     m_brief = parser.isSet(brief);
+    m_json = parser.isSet(json);
     if (m_brief || m_audioOnly) {
         m_translator->setExamplesEnabled(false);
         m_translator->setTranslationOptionsEnabled(false);
@@ -174,6 +183,15 @@ void Cli::parseTranslation()
 
 void Cli::printTranslation()
 {
+    // JSON mode
+    if (m_json) {
+        if (!m_translator->translation().isEmpty()) {
+            QJsonDocument doc = m_translator->toJson();
+            m_stdout << QString(doc.toJson(QJsonDocument::Indented));
+        }
+        return;
+    }
+
     // Short mode
     if (m_brief) {
         if (!m_translator->translation().isEmpty())
@@ -209,7 +227,7 @@ void Cli::printTranslation()
     // Translation options
     if (!m_translator->translationOptions().isEmpty()) {
         m_stdout << tr("%1 - translation options:").arg(m_translator->source()) << '\n';
-        const QMap<QString, QVector<QOnlineTranslator::QOption>> translationOptions = m_translator->translationOptions();
+        const QMap<QString, QVector<QOption>> translationOptions = m_translator->translationOptions();
         for (auto it = translationOptions.cbegin(); it != translationOptions.cend(); ++it) {
             m_stdout << it.key() << '\n';
             for (const auto &[word, gender, translations] : it.value()) {
@@ -226,7 +244,7 @@ void Cli::printTranslation()
     // Examples
     if (!m_translator->examples().isEmpty()) {
         m_stdout << tr("%1 - examples:").arg(m_translator->source()) << '\n';
-        const QMap<QString, QVector<QOnlineTranslator::QExample>> examples = m_translator->examples();
+        const QMap<QString, QVector<QExample>> examples = m_translator->examples();
         for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
             m_stdout << it.key() << '\n';
             for (const auto &[example, description] : it.value()) {
