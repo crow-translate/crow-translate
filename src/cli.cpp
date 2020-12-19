@@ -185,20 +185,16 @@ void Cli::printTranslation()
 {
     // JSON mode
     if (m_json) {
-        if (!m_translator->translation().isEmpty()) {
-            QJsonDocument doc = m_translator->toJson();
-            m_stdout << QString(doc.toJson(QJsonDocument::Indented));
-        }
+        m_stdout << m_translator->toJson().toJson();
         return;
     }
 
     // Short mode
     if (m_brief) {
-        if (!m_translator->translation().isEmpty())
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-            m_stdout << m_translator->translation() << Qt::endl;
+        m_stdout << m_translator->translation() << Qt::endl;
 #else
-            m_stdout << m_translator->translation() << endl;
+        m_stdout << m_translator->translation() << endl;
 #endif
         return;
     }
