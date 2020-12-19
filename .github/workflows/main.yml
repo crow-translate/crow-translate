@@ -9,6 +9,13 @@ on:
     - '.gitignore'
     - 'crowdin.yml'
     - 'data/translations/**'
+  pull_request:
+    paths-ignore:
+    - '**.md'
+    - '.github/workflows/release.yml'
+    - '.gitignore'
+    - 'crowdin.yml'
+    - 'data/translations/**'
 jobs:
   Main:
     runs-on: ${{ matrix.os }}
