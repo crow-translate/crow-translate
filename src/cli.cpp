@@ -80,18 +80,12 @@ void Cli::process(const QCoreApplication &app)
     parser.addOption(json);
     parser.process(app);
 
+    checkIncompatibleOptions(parser, audioOnly, brief);
+    checkIncompatibleOptions(parser, json, audioOnly);
+    checkIncompatibleOptions(parser, json, brief);
+
     if (parser.isSet(audioOnly) && !parser.isSet(speakSource) && !parser.isSet(speakTranslation)) {
         qCritical() << tr("Error: For --%1 you must specify --%2 and/or --%3 options").arg(audioOnly.names().at(1), speakSource.names().at(1), speakTranslation.names().at(1)) << '\n';
-        parser.showHelp();
-    }
-
-    if (parser.isSet(audioOnly) && parser.isSet(brief)) {
-        qCritical() << tr("Error: You can't use --%1 with --%2").arg(audioOnly.names().at(1), brief.names().at(1)) << '\n';
-        parser.showHelp();
-    }
-
-    if (parser.isSet(json) && (parser.isSet(audioOnly) || parser.isSet(brief))) {
-        qCritical() << tr("Error: You can't use --%1 with --%2 or --%3").arg(json.names().at(1), audioOnly.names().at(1), brief.names().at(1)) << '\n';
         parser.showHelp();
     }
 
@@ -358,6 +352,14 @@ void Cli::speak(const QString &text, QOnlineTranslator::Language lang)
     m_player->playlist()->clear();
     m_player->playlist()->addMedia(tts.media());
     m_player->play();
+}
+
+void Cli::checkIncompatibleOptions(QCommandLineParser &parser, const QCommandLineOption &option1, const QCommandLineOption &option2) 
+{
+    if (parser.isSet(option1) && parser.isSet(option2)) {
+        qCritical() << tr("Error: You can't use --%1 with --%2").arg(option1.names().at(1), option2.names().at(1)) << '\n';
+        parser.showHelp();
+    }
 }
 
 QByteArray Cli::readFilesFromStdin()

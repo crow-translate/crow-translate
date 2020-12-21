@@ -30,6 +30,8 @@
 class QCoreApplication;
 class QMediaPlayer;
 class QStateMachine;
+class QCommandLineParser;
+class QCommandLineOption;
 
 class Cli : public QObject
 {
@@ -60,6 +62,7 @@ private:
 
     // Helpers
     void speak(const QString &text, QOnlineTranslator::Language lang);
+    void checkIncompatibleOptions(QCommandLineParser &parser, const QCommandLineOption &option1, const QCommandLineOption &option2);
 
     static QByteArray readFilesFromStdin();
     static QByteArray readFilesFromArguments(const QStringList &arguments);
