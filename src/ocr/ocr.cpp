@@ -25,7 +25,9 @@
 #include <QPixmap>
 #include <QtConcurrent>
 
+#if TESSERACT_MAJOR_VERSION < 5
 #include <tesseract/genericvector.h>
+#endif
 
 Ocr::Ocr(QObject *parent)
     : QObject(parent)
@@ -40,11 +42,19 @@ Ocr::Ocr(QObject *parent)
 QStringList Ocr::availableLanguages() const
 {
     QStringList availableLanguages;
+#if TESSERACT_MAJOR_VERSION < 5
     GenericVector<STRING> languages;
+#else
+    std::vector<std::string> languages;
+#endif
     m_tesseract.GetAvailableLanguagesAsVector(&languages);
     availableLanguages.reserve(languages.size());
     for (int i = 0; i < languages.size(); ++i)
+#if TESSERACT_MAJOR_VERSION < 5
         availableLanguages.append(languages[i].string());
+#else
+        availableLanguages.append(QString::fromStdString(languages[i]));
+#endif
     return availableLanguages;
 }
 
