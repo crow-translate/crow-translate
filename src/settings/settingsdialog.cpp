@@ -296,7 +296,7 @@ void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
     ui->customTrayIconButton->setIcon(TrayIcon::customTrayIcon(iconPath));
 }
 
-void SettingsDialog::selectOcrLanguagesPath() 
+void SettingsDialog::selectOcrLanguagesPath()
 {
     const QString path = ui->ocrLanguagesPathEdit->text().left(ui->ocrLanguagesPathEdit->text().lastIndexOf(QDir::separator()));
     const QString directory = QFileDialog::getExistingDirectory(this, tr("Select OCR languages path"), path);
@@ -304,7 +304,7 @@ void SettingsDialog::selectOcrLanguagesPath()
         ui->ocrLanguagesPathEdit->setText(directory);
 }
 
-void SettingsDialog::onOcrLanguagesPathChanged(const QString &path) 
+void SettingsDialog::onOcrLanguagesPathChanged(const QString &path)
 {
     ui->ocrLanguagesListWidget->clear();
     ui->ocrLanguagesListWidget->addLanguages(Ocr::availableLanguages(path));
