@@ -54,7 +54,11 @@ private:
 
     QFuture<void> m_future;
     tesseract::TessBaseAPI m_tesseract;
+#if TESSERACT_MAJOR_VERSION < 5
     ETEXT_DESC m_monitor;
+#else
+    tesseract::ETEXT_DESC m_monitor;
+#endif
 };
 
 #endif // OCR_H
