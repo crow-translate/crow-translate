@@ -37,7 +37,9 @@
 #include <QTranslator>
 
 QTranslator AppSettings::s_appTranslator;
+#ifdef Q_OS_WIN
 QTranslator AppSettings::s_qtTranslator;
+#endif
 #ifdef WITH_PORTABLE_MODE
 const QString AppSettings::s_portableConfigName = QStringLiteral("settings.ini");
 #endif
@@ -58,7 +60,9 @@ void AppSettings::setupLocalization() const
 {
     applyLanguage(language());
     QCoreApplication::installTranslator(&s_appTranslator);
+#ifdef Q_OS_WIN
     QCoreApplication::installTranslator(&s_qtTranslator);
+#endif
 }
 
 QLocale::Language AppSettings::language() const
@@ -76,13 +80,13 @@ void AppSettings::setLanguage(QLocale::Language lang)
 
 void AppSettings::applyLanguage(QLocale::Language lang)
 {
-    if (lang == QLocale::AnyLanguage)
-        QLocale::setDefault(QLocale::system());
-    else
-        QLocale::setDefault(QLocale(lang));
+    const QLocale locale = lang == QLocale::AnyLanguage ? QLocale::system() : QLocale(lang);
+    QLocale::setDefault(locale);
 
-    s_appTranslator.load(QLocale(), QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
-    s_qtTranslator.load(QLocale(), QStringLiteral("qt"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    s_appTranslator.load(locale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
+#ifdef Q_OS_WIN
+    s_qtTranslator.load(locale, QStringLiteral("qtbase"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+#endif
 }
 
 QLocale::Language AppSettings::defaultLanguage()

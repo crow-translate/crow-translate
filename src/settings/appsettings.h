@@ -346,7 +346,9 @@ public:
 
 private:
     static QTranslator s_appTranslator;
+#ifdef Q_OS_WIN
     static QTranslator s_qtTranslator; // Qt library translations
+#endif
 #ifdef WITH_PORTABLE_MODE
     static const QString s_portableConfigName;
 #endif
