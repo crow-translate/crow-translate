@@ -59,6 +59,22 @@ QString SourceTextEdit::toSourceText()
     return m_simplifySource ? toPlainText().simplified() : toPlainText().trimmed();
 }
 
+void SourceTextEdit::replaceText(const QString &text)
+{
+    QTextCursor cursor = textCursor();
+    cursor.select(QTextCursor::Document);
+    cursor.insertText(text);
+    setTextCursor(cursor);
+}
+
+void SourceTextEdit::removeText()
+{
+    QTextCursor cursor = textCursor();
+    cursor.select(QTextCursor::Document);
+    cursor.removeSelectedText();
+    setTextCursor(cursor);
+}
+
 void SourceTextEdit::markSourceAsChanged()
 {
     if (m_requestTranslationOnEdit) {

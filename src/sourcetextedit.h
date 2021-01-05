@@ -37,6 +37,10 @@ public:
     void setSimplifySource(bool enabled);
     QString toSourceText();
 
+    // Text manipulation that preserves undo / redo history
+    void replaceText(const QString &text);
+    void removeText();
+
 public slots:
     void markSourceAsChanged();
     void stopChangedTimer();

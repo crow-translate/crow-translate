@@ -227,7 +227,7 @@ void MainWindow::copyTranslatedSelection()
     emit copyTranslatedSelectionRequested();
 }
 
-Q_SCRIPTABLE void MainWindow::recognizeScreenArea() 
+Q_SCRIPTABLE void MainWindow::recognizeScreenArea()
 {
     emit recognizeScreenAreaRequested();
 }
@@ -241,7 +241,7 @@ void MainWindow::clearText()
 {
     // Clear source text without tracking for changes
     ui->sourceEdit->setRequestTranlationOnEdit(false);
-    ui->sourceEdit->clear();
+    ui->sourceEdit->removeText();
     if (ui->autoTranslateCheckBox->isChecked())
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 
@@ -267,7 +267,7 @@ void MainWindow::swapLanguages()
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
 
     // Copy translation to source text
-    ui->sourceEdit->setPlainText(ui->translationEdit->translation());
+    ui->sourceEdit->replaceText(ui->translationEdit->translation());
     ui->sourceEdit->moveCursor(QTextCursor::End);
 }
 
@@ -505,7 +505,7 @@ void MainWindow::showAppRunningMessage()
 void MainWindow::setSourceText(const QString &text)
 {
     ui->sourceEdit->setRequestTranlationOnEdit(false);
-    ui->sourceEdit->setPlainText(text);
+    ui->sourceEdit->replaceText(text);
     if (ui->autoTranslateCheckBox->isChecked())
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
@@ -734,7 +734,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
 }
 
-void MainWindow::buildRecognizeScreenAreaState(QState *state) 
+void MainWindow::buildRecognizeScreenAreaState(QState *state)
 {
     auto *recognizeState = new QState(state);
     auto *showMainWindowState = new QFinalState(state);
@@ -763,7 +763,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
-void MainWindow::buildRecognizeState(QState *state) 
+void MainWindow::buildRecognizeState(QState *state)
 {
     auto *initialState = new QState(state);
     auto *selectState = new QState(state);
@@ -804,7 +804,7 @@ void MainWindow::setupRequestStateButtons(QState *state) const
 }
 
 // These settings are loaded only at startup and cannot be configured in the settings dialog
-void MainWindow::loadMainWindowSettings() 
+void MainWindow::loadMainWindowSettings()
 {
     const AppSettings settings;
     ui->autoTranslateCheckBox->setChecked(settings.isAutoTranslateEnabled());
