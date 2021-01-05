@@ -1,6 +1,6 @@
 /*
  *  Copyright © 2018 Ambareesh "Amby" Balaji <ambareeshbalaji@gmail.com>
- *  Copyright © 2018-2020 Hennadii Chernyshchyk <genaloner@gmail.com>
+ *  Copyright © 2018-2021 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *
