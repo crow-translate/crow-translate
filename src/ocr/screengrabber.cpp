@@ -38,7 +38,7 @@ ScreenGrabber::ScreenGrabber(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 }
 
-ScreenGrabber::~ScreenGrabber() 
+ScreenGrabber::~ScreenGrabber()
 {
     if (m_regionRememberType == AppSettings::RememberAlways)
         AppSettings().setCropRegion(scaledCropRegion());
@@ -49,27 +49,27 @@ AppSettings::RegionRememberType ScreenGrabber::regionRememberType() const
     return m_regionRememberType;
 }
 
-void ScreenGrabber::setCaptureOnRelese(bool onRelease) 
+void ScreenGrabber::setCaptureOnRelese(bool onRelease)
 {
     m_captureOnRelease = onRelease;
 }
 
-void ScreenGrabber::setShowMagnifier(bool show) 
+void ScreenGrabber::setShowMagnifier(bool show)
 {
     m_showMagnifier = show;
 }
 
-void ScreenGrabber::setApplyLightMask(bool apply) 
+void ScreenGrabber::setApplyLightMask(bool apply)
 {
     m_maskColor = apply ? QColor(255, 255, 255, 100) : QColor();
 }
 
-void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type) 
+void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type)
 {
     m_regionRememberType = type;
 }
 
-void ScreenGrabber::setCropRegion(QRect region) 
+void ScreenGrabber::setCropRegion(QRect region)
 {
     m_selection = QRectF(region.x() * m_dprI,
                          region.y() * m_dprI,
@@ -79,6 +79,9 @@ void ScreenGrabber::setCropRegion(QRect region)
 
 void ScreenGrabber::capture()
 {
+    if (isVisible())
+        return;
+
     const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
     m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
 
@@ -110,7 +113,7 @@ void ScreenGrabber::capture()
     show();
 }
 
-void ScreenGrabber::changeEvent(QEvent *event) 
+void ScreenGrabber::changeEvent(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::LanguageChange:
@@ -738,7 +741,7 @@ QRect ScreenGrabber::scaledCropRegion() const
             qRound(m_selection.height() * dpr)};
 }
 
-void ScreenGrabber::setGeometryToScreenPixmap() 
+void ScreenGrabber::setGeometryToScreenPixmap()
 {
 #ifdef Q_OS_LINUX
     if (QX11Info::isPlatformX11()) {
@@ -850,7 +853,7 @@ void ScreenGrabber::acceptSelection()
     releaseKeyboard();
 }
 
-void ScreenGrabber::cancelSelection() 
+void ScreenGrabber::cancelSelection()
 {
     releaseKeyboard();
     hide();

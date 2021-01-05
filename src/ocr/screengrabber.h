@@ -39,7 +39,7 @@ class ScreenGrabber : public QWidget
 public:
     explicit ScreenGrabber(QWidget *parent = nullptr);
     ~ScreenGrabber() override;
-    
+
     AppSettings::RegionRememberType regionRememberType() const;
 
     void setCaptureOnRelese(bool onRelease);
