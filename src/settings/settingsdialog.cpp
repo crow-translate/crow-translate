@@ -570,7 +570,6 @@ void SettingsDialog::loadSettings()
     ui->customTrayIconEdit->setText(settings.customIconPath());
 
     // Translation settings
-    ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
     ui->sourceTranslitCheckBox->setChecked(settings.isSourceTranslitEnabled());
     ui->translationTranslitCheckBox->setChecked(settings.isTranslationTranslitEnabled());
     ui->sourceTranscriptionCheckBox->setChecked(settings.isSourceTranscriptionEnabled());
@@ -583,6 +582,7 @@ void SettingsDialog::loadSettings()
     ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
     // OCR
+    ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
