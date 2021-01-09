@@ -83,6 +83,12 @@ void Ocr::recognize(const QPixmap &pixmap, int dpi)
     m_future = QtConcurrent::run([this, dpi, image = pixmap.toImage()] {
         m_tesseract.SetImage(image.constBits(), image.width(), image.height(), image.depth() / 8, image.bytesPerLine());
         m_tesseract.SetSourceResolution(dpi);
+        QMap<QString, QVariant> parameters = AppSettings().tesseractParameters();
+        for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+            if (!m_tesseract.SetVariable(qPrintable(it.key()), qPrintable(it.value().toString()))) {
+                qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
+            }
+        }
         m_tesseract.Recognize(&m_monitor);
         if (m_future.isCanceled()) {
             emit canceled();
