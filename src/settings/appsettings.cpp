@@ -998,11 +998,19 @@ QMap<QString, QVariant> AppSettings::tesseractParameters() const
     return parameters;
 }
 
-void AppSettings::setTesseractParameter(const QString key, const QVariant value)
+void AppSettings::setTesseractParameters(const QMap<QString, QVariant> &parameters)
 {
     m_settings->beginGroup("Tesseract");
-    m_settings->setValue(key, value);
+    m_settings->remove("");
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+        m_settings->setValue(it.key(), it.value());
+    }
     m_settings->endGroup();
+}
+
+QMap<QString, QVariant> AppSettings::defaultTesseractParameters()
+{
+    return QMap<QString, QVariant>();
 }
 
 bool AppSettings::isCaptureOnRelease() const

@@ -308,7 +308,8 @@ public:
     static QByteArray defaultOcrLanguagesString();
 
     QMap<QString, QVariant> tesseractParameters() const;
-    void setTesseractParameter(const QString key, const QVariant value);
+    void setTesseractParameters(const QMap<QString, QVariant> &parameters);
+    static QMap<QString, QVariant> defaultTesseractParameters();
 
     bool isShowMagnifier() const;
     void setShowMagnifier(bool show);

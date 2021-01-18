@@ -725,37 +725,38 @@
       <widget class="QWidget" name="ocrPage">
        <layout class="QVBoxLayout" name="ocrLayout">
         <item>
-         <widget class="QGroupBox" name="ocrGroupBox">
+         <widget class="QGroupBox" name="languagesGroupBox">
           <property name="title">
-           <string notr="true">OCR</string>
+           <string>Languages</string>
           </property>
           <layout class="QGridLayout" name="ocrLanguagesLayout">
-           <item row="3" column="0" colspan="3">
+           <item row="1" column="0" colspan="3">
             <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="0" column="0">
             <widget class="QLabel" name="ocrLanguagesPathLabel">
              <property name="text">
               <string>Languages path:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="0" column="2">
             <widget class="QToolButton" name="ocrLanguagesPathButton">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="icon">
               <iconset theme="folder">
-               <normaloff>.</normaloff>.</iconset>
+               <normaloff>.</normaloff>.
+              </iconset>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="downloadMoreLabel">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -768,13 +769,22 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="0" column="1">
             <widget class="QLineEdit" name="ocrLanguagesPathEdit">
              <property name="placeholderText">
               <string>Directory with trained models</string>
              </property>
             </widget>
            </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="ocrParametersGroupBox">
+          <property name="title">
+           <string notr="true">OCR</string>
+          </property>
+          <layout class="QGridLayout" name="ocrParametersLayout">
            <item row="0" column="0" colspan="3">
             <widget class="QCheckBox" name="convertLineBreaksCheckBox">
              <property name="toolTip">
@@ -784,6 +794,9 @@
               <string>Convert line breaks</string>
              </property>
             </widget>
+           </item>
+           <item row="1" column="0" colspan="3">
+            <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget"></widget>
            </item>
           </layout>
          </widget>
@@ -1513,6 +1526,11 @@
    <class>OcrLanguagesListWidget</class>
    <extends>QListWidget</extends>
    <header>settings/ocrlanguageslistwidget.h</header>
+  </customwidget>
+  <customwidget>
+   <class>TesseractParametersTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>settings/tesseractparameterstablewidget.h</header>
   </customwidget>
  </customwidgets>
  <resources>

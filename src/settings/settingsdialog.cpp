@@ -220,6 +220,7 @@ void SettingsDialog::accept()
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
     settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
+    settings.setTesseractParameters(ui->tesseractParametersTableWidget->parameters());
 
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
@@ -517,6 +518,7 @@ void SettingsDialog::restoreDefaults()
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
+    ui->tesseractParametersTableWidget->setParameters(AppSettings::defaultTesseractParameters());
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
@@ -589,6 +591,7 @@ void SettingsDialog::loadSettings()
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
+    ui->tesseractParametersTableWidget->setParameters(settings.tesseractParameters());
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
