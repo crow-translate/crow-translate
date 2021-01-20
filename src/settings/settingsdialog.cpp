@@ -311,6 +311,30 @@ void SettingsDialog::onOcrLanguagesPathChanged(const QString &path)
     ui->ocrLanguagesListWidget->addLanguages(Ocr::availableLanguages(path));
 }
 
+void SettingsDialog::onTesseractParametersCurrentItemChanged()
+{
+    if (ui->tesseractParametersTableWidget->currentRow() == -1) {
+        ui->tesseractParametersRemoveButton->setEnabled(false);
+    } else {
+        ui->tesseractParametersRemoveButton->setEnabled(true);
+    }
+}
+
+void SettingsDialog::onTesseractParametersAdd()
+{
+    ui->tesseractParametersTableWidget->addParameter();
+    int lastRow = ui->tesseractParametersTableWidget->rowCount() - 1;
+    QTableWidgetItem *newCell = ui->tesseractParametersTableWidget->item(lastRow, 0);
+    ui->tesseractParametersTableWidget->setCurrentItem(newCell);
+    ui->tesseractParametersTableWidget->editItem(newCell);
+}
+
+void SettingsDialog::onTesseractParametersRemove()
+{
+    int row = ui->tesseractParametersTableWidget->currentRow();
+    ui->tesseractParametersTableWidget->removeRow(row);
+}
+
 // Disable unsupported voice settings for engines.
 void SettingsDialog::showAvailableTtsOptions(int engine)
 {

@@ -65,6 +65,9 @@ private slots:
 
     void selectOcrLanguagesPath();
     void onOcrLanguagesPathChanged(const QString &path);
+    void onTesseractParametersCurrentItemChanged();
+    void onTesseractParametersAdd();
+    void onTesseractParametersRemove();
 
     void showAvailableTtsOptions(int engine);
     void saveEngineVoice(int voice);

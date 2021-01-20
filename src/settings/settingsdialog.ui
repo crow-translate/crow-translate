@@ -784,8 +784,8 @@
           <property name="title">
            <string notr="true">OCR</string>
           </property>
-          <layout class="QGridLayout" name="ocrParametersLayout">
-           <item row="0" column="0" colspan="3">
+          <layout class="QVBoxLayout" name="ocrParametersLayout">
+           <item>
             <widget class="QCheckBox" name="convertLineBreaksCheckBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -795,8 +795,50 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="0" colspan="3">
-            <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget"></widget>
+           <item>
+            <layout class="QHBoxLayout" name="tesseractParametersTableHorizontalLayout">
+             <item>
+              <layout class="QVBoxLayout" name="tesseractParametersButtonsVerticalLayout">
+               <item>
+                <spacer name="tesseractParametersButtonsVerticalSpacer1">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QToolButton" name="tesseractParametersAddButton">
+                 <property name="icon">
+                  <iconset theme="list-add">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="tesseractParametersRemoveButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="list-remove">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="tesseractParametersButtonsVerticalSpacer2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget">
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -2065,6 +2107,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>tesseractParametersAddButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onTesseractParametersAdd()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tesseractParametersRemoveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onTesseractParametersRemove()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tesseractParametersTableWidget</sender>
+   <signal>currentItemChanged(QTableWidgetItem*, QTableWidgetItem*)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onTesseractParametersCurrentItemChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onProxyTypeChanged(int)</slot>
@@ -2084,5 +2174,8 @@
   <slot>selectOcrLanguagesPath()</slot>
   <slot>onOcrLanguagesPathChanged(QString)</slot>
   <slot>onWindowModeChanged(int)</slot>
+  <slot>onTesseractParametersAdd()</slot>
+  <slot>onTesseractParametersRemove()</slot>
+  <slot>onTesseractParametersCurrentItemChanged()</slot>
  </slots>
 </ui>
