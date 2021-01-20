@@ -55,14 +55,47 @@ void TesseractParametersTableWidget::setParameters(const QMap<QString, QVariant>
     }
 }
 
-QMap<QString, QVariant> TesseractParametersTableWidget::parameters() const
+QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
 {
+    removeInvalidParameters();
     QMap<QString, QVariant> parameters;
     for (int i = 0; i < rowCount(); ++i) {
         QString key = item(i, 0)->text();
         auto value = QVariant(item(i, 1)->text());
-        if (!key.isEmpty() && !value.toString().isEmpty())
-            parameters.insert(key, value);
+        parameters.insert(key, value);
     }
     return parameters;
+}
+
+// Return false if any key is missing a value or vice versa. Also focus the empty cell.
+bool TesseractParametersTableWidget::validateParameters()
+{
+    for (int i = 0; i < rowCount(); ++i)
+    {
+        QTableWidgetItem *key = item(i, 0);
+        QTableWidgetItem *value = item(i, 1);
+        if (key->text().isEmpty() && !value->text().isEmpty()) {
+            setCurrentItem(key);
+            editItem(key);
+            return false;
+        } 
+        if (!key->text().isEmpty() && value->text().isEmpty()) {
+            setCurrentItem(value);
+            editItem(value);
+            return false;
+        }
+    }
+    return true;
+}
+
+// Remove all rows with empty cells
+void TesseractParametersTableWidget::removeInvalidParameters()
+{
+    for (int i = rowCount() - 1; i >= 0; --i) {
+        QTableWidgetItem *key = item(i, 0);
+        QTableWidgetItem *value = item(i, 1);
+        if (key->text().isEmpty() || value->text().isEmpty()) {
+            removeRow(i);
+        }
+    }
 }

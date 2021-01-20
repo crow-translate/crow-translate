@@ -165,6 +165,22 @@ SettingsDialog::~SettingsDialog()
 
 void SettingsDialog::accept()
 {
+    if (!ui->tesseractParametersTableWidget->validateParameters()) {
+        QMessageBox msgBox;
+        msgBox.setText(tr("The OCR parameter fields may not be empty."));
+        msgBox.setInformativeText(tr("Do you want to discard the invalid parameters?"));
+        msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+        msgBox.setDefaultButton(QMessageBox::No);
+        msgBox.setIcon(QMessageBox::Warning);
+        if (msgBox.exec() == QMessageBox::No) {
+            auto *ocrPage = ui->pagesStackedWidget->findChild<QWidget *>("ocrPage");
+            int n = ui->pagesStackedWidget->indexOf(ocrPage);
+            ui->pagesStackedWidget->setCurrentIndex(n);
+            ui->pagesListWidget->setCurrentRow(n);
+            return;
+        }
+    }
+
     QDialog::accept();
 
     // Set settings location first

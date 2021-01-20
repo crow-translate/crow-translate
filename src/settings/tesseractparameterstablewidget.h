@@ -31,7 +31,9 @@ public:
     void addParameter(const QString &key, const QVariant &value);
     void addParameter();
     void setParameters(const QMap<QString, QVariant> &parameters);
-    QMap<QString, QVariant> parameters() const;
+    QMap<QString, QVariant> parameters();
+    bool validateParameters();
+    void removeInvalidParameters();
 };
 
 #endif // TESSERACTPARAMETERSTABLEWIDGT_H
