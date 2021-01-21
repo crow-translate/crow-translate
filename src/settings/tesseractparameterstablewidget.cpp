@@ -38,6 +38,8 @@ void TesseractParametersTableWidget::addParameter(const QString &key, const QVar
     insertRow(rowCount());
     setItem(rowCount() - 1, 0, keyWidget);
     setItem(rowCount() - 1, 1, valueWidget);
+    setCurrentItem(keyWidget);
+    editItem(keyWidget);
 }
 
 void TesseractParametersTableWidget::setParameters(const QMap<QString, QVariant> &parameters)
@@ -46,6 +48,7 @@ void TesseractParametersTableWidget::setParameters(const QMap<QString, QVariant>
     setRowCount(0);
     for (auto it = parameters.cbegin(); it != parameters.cend(); ++it)
         addParameter(it.key(), it.value());
+    setCurrentItem(nullptr);
 }
 
 QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
@@ -58,6 +61,11 @@ QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
         parameters.insert(key, value);
     }
     return parameters;
+}
+
+void TesseractParametersTableWidget::removeCurrent()
+{
+    removeRow(currentRow());
 }
 
 // Return false if any key is missing a value or vice versa. Also focus the empty cell.

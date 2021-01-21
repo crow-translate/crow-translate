@@ -2110,8 +2110,8 @@
   <connection>
    <sender>tesseractParametersAddButton</sender>
    <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>onTesseractParametersAdd()</slot>
+   <receiver>tesseractParametersTableWidget</receiver>
+   <slot>addParameter()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>701</x>
@@ -2126,8 +2126,8 @@
   <connection>
    <sender>tesseractParametersRemoveButton</sender>
    <signal>clicked()</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>onTesseractParametersRemove()</slot>
+   <receiver>tesseractParametersTableWidget</receiver>
+   <slot>removeCurrent()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>701</x>
@@ -2174,8 +2174,8 @@
   <slot>selectOcrLanguagesPath()</slot>
   <slot>onOcrLanguagesPathChanged(QString)</slot>
   <slot>onWindowModeChanged(int)</slot>
-  <slot>onTesseractParametersAdd()</slot>
-  <slot>onTesseractParametersRemove()</slot>
+  <slot>addParameter()</slot>
+  <slot>removeCurrent()</slot>
   <slot>onTesseractParametersCurrentItemChanged()</slot>
  </slots>
 </ui>

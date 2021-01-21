@@ -25,14 +25,19 @@
 
 class TesseractParametersTableWidget : public QTableWidget
 {
+    Q_OBJECT
+
 public:
     TesseractParametersTableWidget(QWidget *parent = nullptr);
 
-    void addParameter(const QString &key = {}, const QVariant &value = {});
     void setParameters(const QMap<QString, QVariant> &parameters);
     QMap<QString, QVariant> parameters();
     bool validateParameters();
     void removeInvalidParameters();
+
+private slots:
+    void addParameter(const QString &key = {}, const QVariant &value = {});
+    void removeCurrent();
 };
 
 #endif // TESSERACTPARAMETERSTABLEWIDGT_H
