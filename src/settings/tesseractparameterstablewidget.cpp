@@ -20,14 +20,13 @@
 
 #include "tesseractparameterstablewidget.h"
 
-#include <QLineEdit>
 #include <QHeaderView>
 
 TesseractParametersTableWidget::TesseractParametersTableWidget(QWidget *parent)
     : QTableWidget(parent)
 {
     setColumnCount(2);
-    setHorizontalHeaderLabels({ tr("Property"), tr("Value") });
+    setHorizontalHeaderLabels({tr("Property"), tr("Value")});
     horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     verticalHeader()->setVisible(false);
 }
@@ -41,18 +40,12 @@ void TesseractParametersTableWidget::addParameter(const QString &key, const QVar
     setItem(rowCount() - 1, 1, valueWidget);
 }
 
-void TesseractParametersTableWidget::addParameter()
-{
-    addParameter("", "");
-}
-
 void TesseractParametersTableWidget::setParameters(const QMap<QString, QVariant> &parameters)
 {
     clearContents();
     setRowCount(0);
-    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it)
         addParameter(it.key(), it.value());
-    }
 }
 
 QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
@@ -60,8 +53,8 @@ QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
     removeInvalidParameters();
     QMap<QString, QVariant> parameters;
     for (int i = 0; i < rowCount(); ++i) {
-        QString key = item(i, 0)->text();
-        auto value = QVariant(item(i, 1)->text());
+        const QString key = item(i, 0)->text();
+        const QVariant value = item(i, 1)->text();
         parameters.insert(key, value);
     }
     return parameters;
@@ -70,8 +63,7 @@ QMap<QString, QVariant> TesseractParametersTableWidget::parameters()
 // Return false if any key is missing a value or vice versa. Also focus the empty cell.
 bool TesseractParametersTableWidget::validateParameters()
 {
-    for (int i = 0; i < rowCount(); ++i)
-    {
+    for (int i = 0; i < rowCount(); ++i) {
         QTableWidgetItem *key = item(i, 0);
         QTableWidgetItem *value = item(i, 1);
         if (key->text().isEmpty() && !value->text().isEmpty()) {
@@ -92,8 +84,8 @@ bool TesseractParametersTableWidget::validateParameters()
 void TesseractParametersTableWidget::removeInvalidParameters()
 {
     for (int i = rowCount() - 1; i >= 0; --i) {
-        QTableWidgetItem *key = item(i, 0);
-        QTableWidgetItem *value = item(i, 1);
+        const QTableWidgetItem *key = item(i, 0);
+        const QTableWidgetItem *value = item(i, 1);
         if (key->text().isEmpty() || value->text().isEmpty()) {
             removeRow(i);
         }

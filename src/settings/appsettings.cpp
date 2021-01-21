@@ -990,10 +990,8 @@ QMap<QString, QVariant> AppSettings::tesseractParameters() const
 {
     QMap<QString, QVariant> parameters;
     m_settings->beginGroup("Tesseract");
-    QStringList keys = m_settings->childKeys();
-    for (const auto &key : keys) {
+    for (const QString &key : m_settings->childKeys())
         parameters.insert(key, m_settings->value(key));
-    }
     m_settings->endGroup();
     return parameters;
 }
@@ -1002,15 +1000,14 @@ void AppSettings::setTesseractParameters(const QMap<QString, QVariant> &paramete
 {
     m_settings->beginGroup("Tesseract");
     m_settings->remove("");
-    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it)
         m_settings->setValue(it.key(), it.value());
-    }
     m_settings->endGroup();
 }
 
 QMap<QString, QVariant> AppSettings::defaultTesseractParameters()
 {
-    return QMap<QString, QVariant>();
+    return {};
 }
 
 bool AppSettings::isCaptureOnRelease() const

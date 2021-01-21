@@ -167,16 +167,15 @@ void SettingsDialog::accept()
 {
     if (!ui->tesseractParametersTableWidget->validateParameters()) {
         QMessageBox msgBox;
-        msgBox.setText(tr("The OCR parameter fields may not be empty."));
+        msgBox.setText(tr("The OCR parameter fields can not be empty."));
         msgBox.setInformativeText(tr("Do you want to discard the invalid parameters?"));
         msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
         msgBox.setDefaultButton(QMessageBox::No);
         msgBox.setIcon(QMessageBox::Warning);
         if (msgBox.exec() == QMessageBox::No) {
-            auto *ocrPage = ui->pagesStackedWidget->findChild<QWidget *>("ocrPage");
-            int n = ui->pagesStackedWidget->indexOf(ocrPage);
-            ui->pagesStackedWidget->setCurrentIndex(n);
-            ui->pagesListWidget->setCurrentRow(n);
+            const int pageIndex = ui->pagesStackedWidget->indexOf(ui->ocrPage);
+            ui->pagesStackedWidget->setCurrentIndex(pageIndex);
+            ui->pagesListWidget->setCurrentRow(pageIndex);
             return;
         }
     }
@@ -329,11 +328,10 @@ void SettingsDialog::onOcrLanguagesPathChanged(const QString &path)
 
 void SettingsDialog::onTesseractParametersCurrentItemChanged()
 {
-    if (ui->tesseractParametersTableWidget->currentRow() == -1) {
+    if (ui->tesseractParametersTableWidget->currentRow() == -1)
         ui->tesseractParametersRemoveButton->setEnabled(false);
-    } else {
+    else
         ui->tesseractParametersRemoveButton->setEnabled(true);
-    }
 }
 
 void SettingsDialog::onTesseractParametersAdd()

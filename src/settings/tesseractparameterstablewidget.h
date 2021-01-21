@@ -28,8 +28,7 @@ class TesseractParametersTableWidget : public QTableWidget
 public:
     TesseractParametersTableWidget(QWidget *parent = nullptr);
 
-    void addParameter(const QString &key, const QVariant &value);
-    void addParameter();
+    void addParameter(const QString &key = {}, const QVariant &value = {});
     void setParameters(const QMap<QString, QVariant> &parameters);
     QMap<QString, QVariant> parameters();
     bool validateParameters();
