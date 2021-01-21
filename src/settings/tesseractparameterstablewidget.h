@@ -31,7 +31,7 @@ public:
     TesseractParametersTableWidget(QWidget *parent = nullptr);
 
     void setParameters(const QMap<QString, QVariant> &parameters);
-    QMap<QString, QVariant> parameters();
+    QMap<QString, QVariant> parameters() const;
     bool validateParameters();
     void removeInvalidParameters();
 
