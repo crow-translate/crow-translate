@@ -986,6 +986,30 @@ bool AppSettings::defaultShowMagnifier()
     return false;
 }
 
+QMap<QString, QVariant> AppSettings::tesseractParameters() const
+{
+    QMap<QString, QVariant> parameters;
+    m_settings->beginGroup("Tesseract");
+    for (const QString &key : m_settings->childKeys())
+        parameters.insert(key, m_settings->value(key));
+    m_settings->endGroup();
+    return parameters;
+}
+
+void AppSettings::setTesseractParameters(const QMap<QString, QVariant> &parameters)
+{
+    m_settings->beginGroup("Tesseract");
+    m_settings->remove({}); // Remove all keys in current group
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it)
+        m_settings->setValue(it.key(), it.value());
+    m_settings->endGroup();
+}
+
+QMap<QString, QVariant> AppSettings::defaultTesseractParameters()
+{
+    return {};
+}
+
 bool AppSettings::isCaptureOnRelease() const
 {
     return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();

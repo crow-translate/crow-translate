@@ -165,6 +165,21 @@ SettingsDialog::~SettingsDialog()
 
 void SettingsDialog::accept()
 {
+    if (!ui->tesseractParametersTableWidget->validateParameters()) {
+        QMessageBox msgBox;
+        msgBox.setText(tr("The OCR parameter fields can not be empty."));
+        msgBox.setInformativeText(tr("Do you want to discard the invalid parameters?"));
+        msgBox.setStandardButtons(QMessageBox::No | QMessageBox::Yes);
+        msgBox.setDefaultButton(QMessageBox::No);
+        msgBox.setIcon(QMessageBox::Warning);
+        if (msgBox.exec() == QMessageBox::No) {
+            const int pageIndex = ui->pagesStackedWidget->indexOf(ui->ocrPage);
+            ui->pagesStackedWidget->setCurrentIndex(pageIndex);
+            ui->pagesListWidget->setCurrentRow(pageIndex);
+            return;
+        }
+    }
+
     QDialog::accept();
 
     // Set settings location first
@@ -220,6 +235,7 @@ void SettingsDialog::accept()
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
     settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
+    settings.setTesseractParameters(ui->tesseractParametersTableWidget->parameters());
 
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
@@ -308,6 +324,14 @@ void SettingsDialog::onOcrLanguagesPathChanged(const QString &path)
 {
     ui->ocrLanguagesListWidget->clear();
     ui->ocrLanguagesListWidget->addLanguages(Ocr::availableLanguages(path));
+}
+
+void SettingsDialog::onTesseractParametersCurrentItemChanged()
+{
+    if (ui->tesseractParametersTableWidget->currentRow() == -1)
+        ui->tesseractParametersRemoveButton->setEnabled(false);
+    else
+        ui->tesseractParametersRemoveButton->setEnabled(true);
 }
 
 // Disable unsupported voice settings for engines.
@@ -517,6 +541,7 @@ void SettingsDialog::restoreDefaults()
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
+    ui->tesseractParametersTableWidget->setParameters(AppSettings::defaultTesseractParameters());
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
@@ -589,6 +614,7 @@ void SettingsDialog::loadSettings()
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
+    ui->tesseractParametersTableWidget->setParameters(settings.tesseractParameters());
 
     // Speech synthesis settings
     ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));

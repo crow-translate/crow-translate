@@ -1,4 +1,4 @@
-﻿/*
+/*
  *  Copyright © 2018-2021 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
@@ -306,6 +306,10 @@ public:
     QByteArray ocrLanguagesString() const;
     void setOcrLanguagesString(const QByteArray &string);
     static QByteArray defaultOcrLanguagesString();
+
+    QMap<QString, QVariant> tesseractParameters() const;
+    void setTesseractParameters(const QMap<QString, QVariant> &parameters);
+    static QMap<QString, QVariant> defaultTesseractParameters();
 
     bool isShowMagnifier() const;
     void setShowMagnifier(bool show);

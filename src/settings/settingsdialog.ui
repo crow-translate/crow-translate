@@ -725,37 +725,38 @@
       <widget class="QWidget" name="ocrPage">
        <layout class="QVBoxLayout" name="ocrLayout">
         <item>
-         <widget class="QGroupBox" name="ocrGroupBox">
+         <widget class="QGroupBox" name="languagesGroupBox">
           <property name="title">
-           <string notr="true">OCR</string>
+           <string>Languages</string>
           </property>
           <layout class="QGridLayout" name="ocrLanguagesLayout">
-           <item row="3" column="0" colspan="3">
+           <item row="1" column="0" colspan="3">
             <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
+           <item row="0" column="0">
             <widget class="QLabel" name="ocrLanguagesPathLabel">
              <property name="text">
               <string>Languages path:</string>
              </property>
             </widget>
            </item>
-           <item row="1" column="2">
+           <item row="0" column="2">
             <widget class="QToolButton" name="ocrLanguagesPathButton">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="icon">
               <iconset theme="folder">
-               <normaloff>.</normaloff>.</iconset>
+               <normaloff>.</normaloff>.
+              </iconset>
              </property>
             </widget>
            </item>
-           <item row="4" column="0">
+           <item row="2" column="0">
             <widget class="QLabel" name="downloadMoreLabel">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -768,14 +769,23 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="1">
+           <item row="0" column="1">
             <widget class="QLineEdit" name="ocrLanguagesPathEdit">
              <property name="placeholderText">
               <string>Directory with trained models</string>
              </property>
             </widget>
            </item>
-           <item row="0" column="0" colspan="3">
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="ocrParametersGroupBox">
+          <property name="title">
+           <string notr="true">OCR</string>
+          </property>
+          <layout class="QVBoxLayout" name="ocrParametersLayout">
+           <item>
             <widget class="QCheckBox" name="convertLineBreaksCheckBox">
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -784,6 +794,51 @@
               <string>Convert line breaks</string>
              </property>
             </widget>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="tesseractParametersTableHorizontalLayout">
+             <item>
+              <layout class="QVBoxLayout" name="tesseractParametersButtonsVerticalLayout">
+               <item>
+                <spacer name="tesseractParametersButtonsVerticalSpacer1">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </spacer>
+               </item>
+               <item>
+                <widget class="QToolButton" name="tesseractParametersAddButton">
+                 <property name="icon">
+                  <iconset theme="list-add">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="tesseractParametersRemoveButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="list-remove">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="tesseractParametersButtonsVerticalSpacer2">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </item>
+             <item>
+              <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget">
+              </widget>
+             </item>
+            </layout>
            </item>
           </layout>
          </widget>
@@ -1514,6 +1569,11 @@
    <extends>QListWidget</extends>
    <header>settings/ocrlanguageslistwidget.h</header>
   </customwidget>
+  <customwidget>
+   <class>TesseractParametersTableWidget</class>
+   <extends>QTableWidget</extends>
+   <header>settings/tesseractparameterstablewidget.h</header>
+  </customwidget>
  </customwidgets>
  <resources>
   <include location="../../data/icons/engines/engines.qrc"/>
@@ -2047,6 +2107,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>tesseractParametersAddButton</sender>
+   <signal>clicked()</signal>
+   <receiver>tesseractParametersTableWidget</receiver>
+   <slot>addParameter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tesseractParametersRemoveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>tesseractParametersTableWidget</receiver>
+   <slot>removeCurrent()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>tesseractParametersTableWidget</sender>
+   <signal>currentItemChanged(QTableWidgetItem*, QTableWidgetItem*)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onTesseractParametersCurrentItemChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>701</x>
+     <y>344</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>667</x>
+     <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onProxyTypeChanged(int)</slot>
@@ -2066,5 +2174,8 @@
   <slot>selectOcrLanguagesPath()</slot>
   <slot>onOcrLanguagesPathChanged(QString)</slot>
   <slot>onWindowModeChanged(int)</slot>
+  <slot>addParameter()</slot>
+  <slot>removeCurrent()</slot>
+  <slot>onTesseractParametersCurrentItemChanged()</slot>
  </slots>
 </ui>

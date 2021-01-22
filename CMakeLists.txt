@@ -112,6 +112,7 @@ add_executable(${PROJECT_NAME}
     src/settings/ocrlanguageslistwidget.cpp
     src/settings/settingsdialog.cpp
     src/settings/settingsdialog.ui
+    src/settings/tesseractparameterstablewidget.cpp
     src/settings/shortcutsmodel/shortcutitem.cpp
     src/settings/shortcutsmodel/shortcutsmodel.cpp
     src/settings/shortcutsmodel/shortcutsview.cpp
