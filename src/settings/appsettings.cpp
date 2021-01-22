@@ -999,7 +999,7 @@ QMap<QString, QVariant> AppSettings::tesseractParameters() const
 void AppSettings::setTesseractParameters(const QMap<QString, QVariant> &parameters)
 {
     m_settings->beginGroup("Tesseract");
-    m_settings->remove("");
+    m_settings->remove({}); // Remove all keys in current group
     for (auto it = parameters.cbegin(); it != parameters.cend(); ++it)
         m_settings->setValue(it.key(), it.value());
     m_settings->endGroup();
