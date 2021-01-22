@@ -879,6 +879,7 @@ void MainWindow::loadAppSettings()
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
     // OCR settings
+    m_ocr->setParameters(settings.tesseractParameters());
     if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->setLanguagesString(languages, path)) {
         // Show error only if languages was specified by user
         if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath())
