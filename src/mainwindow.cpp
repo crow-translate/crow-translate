@@ -187,7 +187,7 @@ QKeySequence MainWindow::closeWindowShortcut() const
     return m_closeWindowsShortcut->key();
 }
 
-const Ocr *MainWindow::ocr() const
+Ocr *MainWindow::ocr() const
 {
     return m_ocr;
 }

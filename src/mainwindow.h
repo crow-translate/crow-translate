@@ -63,7 +63,7 @@ public:
     const SpeakButtons *sourceSpeakButtons() const;
     const SpeakButtons *translationSpeakButtons() const;
     QKeySequence closeWindowShortcut() const;
-    const Ocr *ocr() const;
+    Ocr *ocr() const;
 
 public slots:
     // Global shortcuts

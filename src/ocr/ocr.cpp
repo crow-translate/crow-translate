@@ -65,14 +65,6 @@ QByteArray Ocr::languagesString() const
     return QByteArray::fromRawData(m_tesseract.GetInitLanguagesAsString(), qstrlen(m_tesseract.GetInitLanguagesAsString()));
 }
 
-void Ocr::setParameters(const QMap<QString, QVariant> &parameters)
-{
-        for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
-            if (!m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
-                qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
-        }
-}
-
 bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath)
 {
     // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
@@ -134,6 +126,17 @@ QStringList Ocr::availableLanguages(const QString &languagesPath)
     }
 
     return {};
+}
+
+void Ocr::setParameters(const QMap<QString, QVariant> &parameters, bool saveSettings)
+{
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+        if (!m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
+            qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
+    }
+
+    if (saveSettings)
+        AppSettings().setTesseractParameters(parameters);
 }
 
 QStringList Ocr::parseLanguageFiles(const QDir &directory) 

@@ -32,19 +32,23 @@ class QDir;
 class Ocr : public QObject
 {
     Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "io.crow_translate.CrowTranslate.Ocr")
+    Q_DISABLE_COPY(Ocr)
 
 public:
     explicit Ocr(QObject *parent = nullptr);
 
     QStringList availableLanguages() const;
     QByteArray languagesString() const;
-    void setParameters(const QMap<QString, QVariant> &parameters);
     bool setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath);
 
     void recognize(const QPixmap &pixmap, int dpi);
     void cancel();
 
     static QStringList availableLanguages(const QString &languagesPath);
+
+public slots:
+    Q_SCRIPTABLE void setParameters(const QMap<QString, QVariant> &parameters, bool saveSettings = false);
 
 signals:
     void recognized(const QString &text);

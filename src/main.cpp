@@ -24,13 +24,18 @@
 #include "singleapplication.h"
 #include "settings/appsettings.h"
 
-#ifdef Q_OS_LINUX
+#ifdef Q_OS_UNIX
+#include "ocr/ocr.h"
+
 #include <QDBusConnection>
 #include <QDBusError>
 #endif
 
 int launchGui(int argc, char *argv[]);
 int launchCli(int argc, char *argv[]);
+#ifdef Q_OS_UNIX
+void registerDBusObject(QObject *object);
+#endif
 
 int main(int argc, char *argv[])
 {
@@ -59,11 +64,12 @@ int launchGui(int argc, char *argv[])
 
     MainWindow window;
 
-#ifdef Q_OS_LINUX
+#ifdef Q_OS_UNIX
     if (QDBusConnection::sessionBus().isConnected()) {
-        if (const QString service = QStringLiteral("io.crow_translate.CrowTranslate"); QDBusConnection::sessionBus().registerService(service)) {
-            if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/MainWindow"), &window, QDBusConnection::ExportScriptableSlots))
-                qWarning() << QCoreApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(window.metaObject()->className());
+        const QString service = QStringLiteral("io.crow_translate.CrowTranslate");
+        if (QDBusConnection::sessionBus().registerService(service)) {
+            registerDBusObject(&window);
+            registerDBusObject(window.ocr());
         } else {
             qWarning() << QCoreApplication::translate("D-Bus", "D-Bus service %1 is already registered by another application").arg(service);
         }
@@ -85,3 +91,11 @@ int launchCli(int argc, char *argv[])
 
     return QCoreApplication::exec();
 }
+
+#ifdef Q_OS_UNIX
+void registerDBusObject(QObject *object)
+{
+    if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/") + object->metaObject()->className(), object, QDBusConnection::ExportScriptableSlots))
+        qWarning() << QCoreApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(object->metaObject()->className());
+}
+#endif
