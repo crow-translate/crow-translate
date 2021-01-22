@@ -35,8 +35,8 @@ public:
     bool validateParameters();
     void removeInvalidParameters();
 
-private slots:
-    void addParameter(const QString &key = {}, const QVariant &value = {});
+public slots:
+    void addParameter(const QString &key = {}, const QVariant &value = {}, bool edit = true);
     void removeCurrent();
 };
 
