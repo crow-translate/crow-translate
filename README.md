@@ -112,6 +112,8 @@ The program also has a console interface.
 ## D-Bus API
 
     io.crow_translate.CrowTranslate
+    ├── /io/crow_translate/CrowTranslate/Ocr
+    |   └── method void io.crow_translate.CrowTranslate.Ocr.setParameters(QVariantMap parameters);
     └── /io/crow_translate/CrowTranslate/MainWindow
         |   # Global shortcuts
         ├── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection();
