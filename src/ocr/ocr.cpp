@@ -68,8 +68,10 @@ QByteArray Ocr::languagesString() const
 bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath)
 {
     // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
-    if (languagesString() != languages || languages.isEmpty())
+    if (languagesString() != languages || languages.isEmpty()) {
+        m_defaultParameters.clear(); // All variables will be restored to defaults automatically after new initialization
         return m_tesseract.Init(languagesPath.isEmpty() ? nullptr : languagesPath.data(), languages.isEmpty() ? nullptr : languages.data(), tesseract::OEM_LSTM_ONLY) == 0;
+    }
 
     // Language are already set
     return true;
@@ -130,11 +132,23 @@ QStringList Ocr::availableLanguages(const QString &languagesPath)
 
 void Ocr::setParameters(const QMap<QString, QVariant> &parameters, bool saveSettings)
 {
+    // Restore changed values before to defaults
+    for (auto it = m_defaultParameters.cbegin(); it != m_defaultParameters.cend(); ++it)
+        m_tesseract.SetVariable(it.key(), it.value());
+    m_defaultParameters.clear();
+
+    // Apply new parameters
     for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
-        if (!m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
+        const QByteArray key = it.key().toLocal8Bit();
+        const QByteArray value = it.value().toByteArray();
+        const QByteArray defaultValue = m_tesseract.GetStringVariable(key);
+        if (m_tesseract.SetVariable(key, value))
+            m_defaultParameters.insert(key, defaultValue);
+        else
             qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
     }
 
+    // Save into settings (used for calling from D-Bus)
     if (saveSettings)
         AppSettings().setTesseractParameters(parameters);
 }

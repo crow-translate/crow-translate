@@ -57,6 +57,7 @@ signals:
 private:
     static QStringList parseLanguageFiles(const QDir &directory);
 
+    QMap<QByteArray, QByteArray> m_defaultParameters;
     QFuture<void> m_future;
     tesseract::TessBaseAPI m_tesseract;
 #if TESSERACT_MAJOR_VERSION < 5
