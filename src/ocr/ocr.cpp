@@ -65,11 +65,16 @@ QByteArray Ocr::languagesString() const
     return QByteArray::fromRawData(m_tesseract.GetInitLanguagesAsString(), qstrlen(m_tesseract.GetInitLanguagesAsString()));
 }
 
-bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath)
+bool Ocr::init(const QByteArray &languages, const QByteArray &languagesPath, const QMap<QString, QVariant> &parameters)
 {
     // Call even if the specified language is empty to initialize (Tesseract will try to load eng by default)
-    if (languagesString() != languages || languages.isEmpty())
-        return m_tesseract.Init(languagesPath.isEmpty() ? nullptr : languagesPath.data(), languages.isEmpty() ? nullptr : languages.data(), tesseract::OEM_LSTM_ONLY) == 0;
+    if (languagesString() != languages || languages.isEmpty() || m_parameters != parameters) {
+        m_parameters.clear();
+        m_tesseract.End(); // Should be called to restore all parameters to default
+        if (m_tesseract.Init(languagesPath.isEmpty() ? nullptr : languagesPath.data(), languages.isEmpty() ? nullptr : languages.data(), tesseract::OEM_LSTM_ONLY) != 0)
+            return false;
+        applyParameters(parameters);
+    }
 
     // Language are already set
     return true;
@@ -77,17 +82,12 @@ bool Ocr::setLanguagesString(const QByteArray &languages, const QByteArray &lang
 
 void Ocr::recognize(const QPixmap &pixmap, int dpi) 
 {
-    Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call setLanguagesString first");
+    Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call init first");
 
     m_future.waitForFinished();
     m_future = QtConcurrent::run([this, dpi, image = pixmap.toImage()] {
         m_tesseract.SetImage(image.constBits(), image.width(), image.height(), image.depth() / 8, image.bytesPerLine());
         m_tesseract.SetSourceResolution(dpi);
-        QMap<QString, QVariant> parameters = AppSettings().tesseractParameters();
-        for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
-            if (!m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
-                qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
-        }
         m_tesseract.Recognize(&m_monitor);
         if (m_future.isCanceled()) {
             emit canceled();
@@ -131,6 +131,22 @@ QStringList Ocr::availableLanguages(const QString &languagesPath)
     }
 
     return {};
+}
+
+void Ocr::applyParameters(const QMap<QString, QVariant> &parameters, bool saveSettings)
+{
+    // Apply new parameters
+    for (auto it = parameters.cbegin(); it != parameters.cend(); ++it) {
+        // Store applied parameters
+        if (m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
+            m_parameters.insert(it.key(), it.value());
+        else
+            qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
+    }
+
+    // Save into settings (used for calling from D-Bus)
+    if (saveSettings)
+        AppSettings().setTesseractParameters(m_parameters);
 }
 
 QStringList Ocr::parseLanguageFiles(const QDir &directory) 
