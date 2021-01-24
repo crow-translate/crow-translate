@@ -22,7 +22,7 @@ jobs:
             upload-files: 'build/*.exe;build/*.7z'
     steps:
     - name: Clone repo
-      uses: actions/checkout@v2.3.3
+      uses: actions/checkout@v2.3.4
 
     - name: Install apt packages
       if: runner.os == 'Linux'
@@ -36,7 +36,7 @@ jobs:
       run: choco install pkgconfiglite png2ico
 
     - name: Install vcpkg packages
-      uses: lukka/run-vcpkg@v6.0
+      uses: lukka/run-vcpkg@v6.1
       if: runner.os == 'Windows'
       with:
         vcpkgArguments: tesseract[cpu-independed] ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools qt5-translations --triplet x64-windows
