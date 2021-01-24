@@ -879,8 +879,7 @@ void MainWindow::loadAppSettings()
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
 
     // OCR settings
-    m_ocr->setParameters(settings.tesseractParameters());
-    if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->setLanguagesString(languages, path)) {
+    if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->init(languages, path, settings.tesseractParameters())) {
         // Show error only if languages was specified by user
         if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath())
             m_trayIcon->showMessage(Ocr::tr("Unable to set OCR languages"), Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));

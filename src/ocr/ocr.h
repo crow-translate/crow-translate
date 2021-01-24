@@ -40,7 +40,7 @@ public:
 
     QStringList availableLanguages() const;
     QByteArray languagesString() const;
-    bool setLanguagesString(const QByteArray &languages, const QByteArray &languagesPath);
+    bool init(const QByteArray &languages, const QByteArray &languagesPath, const QMap<QString, QVariant> &parameters);
 
     void recognize(const QPixmap &pixmap, int dpi);
     void cancel();
@@ -48,7 +48,7 @@ public:
     static QStringList availableLanguages(const QString &languagesPath);
 
 public slots:
-    Q_SCRIPTABLE void setParameters(const QMap<QString, QVariant> &parameters, bool saveSettings = false);
+    Q_SCRIPTABLE void applyParameters(const QMap<QString, QVariant> &parameters, bool saveSettings = false);
 
 signals:
     void recognized(const QString &text);
@@ -57,7 +57,7 @@ signals:
 private:
     static QStringList parseLanguageFiles(const QDir &directory);
 
-    QMap<QByteArray, QByteArray> m_defaultParameters;
+    QMap<QString, QVariant> m_parameters;
     QFuture<void> m_future;
     tesseract::TessBaseAPI m_tesseract;
 #if TESSERACT_MAJOR_VERSION < 5
