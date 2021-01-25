@@ -139,11 +139,10 @@ private:
     void buildSpeakSelectionState(QState *state) const;
     void buildSpeakTranslatedSelectionState(QState *state) const;
     void buildCopyTranslatedSelectionState(QState *state) const;
-    void buildRecognizeScreenAreaState(QState *state);
+    void buildRecognizeScreenAreaState(QState *state, void (MainWindow::*showFunction)() = &MainWindow::show);
     void buildTranslateScreenAreaState(QState *state);
 
     // State helpers
-    void buildRecognizeState(QState *state);
     void buildSetSelectionAsSourceState(QState *state) const;
     void setupRequestStateButtons(QState *state) const;
 

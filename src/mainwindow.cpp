@@ -734,53 +734,41 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     translationState->addTransition(translationState, &QState::finished, copyTranslationState);
 }
 
-void MainWindow::buildRecognizeScreenAreaState(QState *state)
+void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::*showFunction)())
 {
-    auto *recognizeState = new QState(state);
-    auto *showMainWindowState = new QFinalState(state);
-    state->setInitialState(recognizeState);
+    auto *initialState = new QState(state);
+    auto *grabState = new QState(state);
+    auto *showWindowState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(initialState);
 
-    connect(showMainWindowState, &QState::entered, this, &MainWindow::show);
-    buildRecognizeState(recognizeState);
+    connect(grabState, &QState::entered, m_ocr, &Ocr::cancel);
+    connect(grabState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
+    connect(showWindowState, &QState::entered, this, showFunction);
+    setupRequestStateButtons(showWindowState);
 
-    recognizeState->addTransition(recognizeState, &QState::finished, showMainWindowState);
+    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
+    ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
+
+    initialState->addTransition(grabState);
+    grabState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
+    grabState->addTransition(m_screenGrabber, &ScreenGrabber::grabDone, showWindowState);
+    showWindowState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
+    showWindowState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
 
 void MainWindow::buildTranslateScreenAreaState(QState *state)
 {
     auto *recognizeState = new QState(state);
-    auto *showTranslationWindowState = new QState(state);
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(recognizeState);
 
-    connect(showTranslationWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
-    buildRecognizeState(recognizeState);
+    buildRecognizeScreenAreaState(recognizeState, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
-    recognizeState->addTransition(recognizeState, &QState::finished, showTranslationWindowState);
-    showTranslationWindowState->addTransition(translationState);
+    recognizeState->addTransition(recognizeState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
-}
-
-void MainWindow::buildRecognizeState(QState *state)
-{
-    auto *initialState = new QState(state);
-    auto *selectState = new QState(state);
-    auto *finalState = new QFinalState(state);
-    state->setInitialState(initialState);
-
-    connect(selectState, &QState::entered, m_ocr, &Ocr::cancel);
-    connect(selectState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
-    setupRequestStateButtons(selectState);
-
-    auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
-    ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
-
-    initialState->addTransition(selectState);
-    selectState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
-    selectState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
-    selectState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
 
 void MainWindow::buildSetSelectionAsSourceState(QState *state) const
