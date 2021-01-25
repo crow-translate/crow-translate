@@ -745,6 +745,7 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
     connect(grabState, &QState::entered, m_ocr, &Ocr::cancel);
     connect(grabState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
     connect(showWindowState, &QState::entered, this, showFunction);
+    connect(showWindowState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
     setupRequestStateButtons(showWindowState);
 
     auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
