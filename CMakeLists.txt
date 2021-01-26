@@ -76,17 +76,17 @@ set(APP_ICONS
 )
 
 qt5_add_translation(QM_FILES
-    data/translations/${PROJECT_NAME}_es_ES.ts
-    data/translations/${PROJECT_NAME}_fr_FR.ts
-    data/translations/${PROJECT_NAME}_ms_MY.ts
-    data/translations/${PROJECT_NAME}_nl_NL.ts
-    data/translations/${PROJECT_NAME}_pl_PL.ts
-    data/translations/${PROJECT_NAME}_pt_BR.ts
-    data/translations/${PROJECT_NAME}_ru_RU.ts
-    data/translations/${PROJECT_NAME}_tr_TR.ts
-    data/translations/${PROJECT_NAME}_ug_CN.ts
-    data/translations/${PROJECT_NAME}_uk_UA.ts
-    data/translations/${PROJECT_NAME}_zh_CN.ts
+    data/translations/${PROJECT_NAME}_es.ts
+    data/translations/${PROJECT_NAME}_fr.ts
+    data/translations/${PROJECT_NAME}_ms.ts
+    data/translations/${PROJECT_NAME}_nl.ts
+    data/translations/${PROJECT_NAME}_pl.ts
+    data/translations/${PROJECT_NAME}_pt.ts
+    data/translations/${PROJECT_NAME}_ru.ts
+    data/translations/${PROJECT_NAME}_tr.ts
+    data/translations/${PROJECT_NAME}_ug.ts
+    data/translations/${PROJECT_NAME}_uk.ts
+    data/translations/${PROJECT_NAME}_zh.ts
 )
 
 configure_file(src/cmake.h.in cmake.h)
