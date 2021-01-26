@@ -141,7 +141,7 @@ void Ocr::applyParameters(const QMap<QString, QVariant> &parameters, bool saveSe
         if (m_tesseract.SetVariable(it.key().toLocal8Bit(), it.value().toByteArray()))
             m_parameters.insert(it.key(), it.value());
         else
-            qWarning() << tr("%1 is not the name of a valid tesseract parameter.").arg(it.key());
+            qWarning() << tr("%1 is not a valid Tesseract parameter name.").arg(it.key());
     }
 
     // Save into settings (used for calling from D-Bus)
