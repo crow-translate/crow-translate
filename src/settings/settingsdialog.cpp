@@ -173,9 +173,8 @@ void SettingsDialog::accept()
         msgBox.setDefaultButton(QMessageBox::No);
         msgBox.setIcon(QMessageBox::Warning);
         if (msgBox.exec() == QMessageBox::No) {
-            const int pageIndex = ui->pagesStackedWidget->indexOf(ui->ocrPage);
-            ui->pagesStackedWidget->setCurrentIndex(pageIndex);
-            ui->pagesListWidget->setCurrentRow(pageIndex);
+            // Navigate to OCR
+            ui->pagesListWidget->setCurrentRow(ui->pagesStackedWidget->indexOf(ui->ocrPage));
             return;
         }
     }
