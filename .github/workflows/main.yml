@@ -36,7 +36,7 @@ jobs:
         sudo apt-get update
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev clang-tidy
 
-    #  To find versions from vcpkg
+    # To find versions from vcpkg
     - name: Install PkgConfig
       if: runner.os == 'Windows'
       run: choco install pkgconfiglite
