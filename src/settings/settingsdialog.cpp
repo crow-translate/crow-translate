@@ -107,7 +107,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Disable (enable) opacity slider if "Window mode" ("Popup mode") selected
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacityLabel, &QSlider::setDisabled);
     connect(ui->windowModeComboBox, qOverload<int>(&QComboBox::currentIndexChanged), ui->popupOpacitySlider, &QSlider::setDisabled);
-    
+
 #ifdef Q_OS_WIN
     // Add information about icons
     auto *papirusTitleLabel = new QLabel(this);

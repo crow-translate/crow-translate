@@ -463,7 +463,7 @@ void LanguageButtonsWidget::minimizeWindowWidth()
     checkAvailableScreenWidth();
 }
 
-void LanguageButtonsWidget::changeEvent(QEvent *event) 
+void LanguageButtonsWidget::changeEvent(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::LanguageChange:

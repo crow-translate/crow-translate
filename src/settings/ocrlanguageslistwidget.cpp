@@ -25,7 +25,7 @@ OcrLanguagesListWidget::OcrLanguagesListWidget(QWidget *parent)
 {
 }
 
-void OcrLanguagesListWidget::addLanguages(const QStringList &labels) 
+void OcrLanguagesListWidget::addLanguages(const QStringList &labels)
 {
     for (const QString &label : labels) {
         auto *widgetItem = new QListWidgetItem(label, this);

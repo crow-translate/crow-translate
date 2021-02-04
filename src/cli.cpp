@@ -354,7 +354,7 @@ void Cli::speak(const QString &text, QOnlineTranslator::Language lang)
     m_player->play();
 }
 
-void Cli::checkIncompatibleOptions(QCommandLineParser &parser, const QCommandLineOption &option1, const QCommandLineOption &option2) 
+void Cli::checkIncompatibleOptions(QCommandLineParser &parser, const QCommandLineOption &option1, const QCommandLineOption &option2)
 {
     if (parser.isSet(option1) && parser.isSet(option2)) {
         qCritical() << tr("Error: You can't use --%1 with --%2").arg(option1.names().at(1), option2.names().at(1)) << '\n';

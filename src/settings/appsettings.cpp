@@ -811,12 +811,12 @@ QKeySequence AppSettings::recognizeScreenAreaShortcut() const
     return m_settings->value(QStringLiteral("Shortcuts/RecognizeScreenAreaShortcut"), defaultRecognizeScreenAreaShortcut()).toString();
 }
 
-void AppSettings::setRecognizeScreenAreaShortcut(const QKeySequence &shortcut) 
+void AppSettings::setRecognizeScreenAreaShortcut(const QKeySequence &shortcut)
 {
     m_settings->setValue(QStringLiteral("Shortcuts/RecognizeScreenAreaShortcut"), shortcut);
 }
 
-QKeySequence AppSettings::defaultRecognizeScreenAreaShortcut() 
+QKeySequence AppSettings::defaultRecognizeScreenAreaShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Alt+I"));
 }
@@ -931,12 +931,12 @@ bool AppSettings::isConvertLineBreaks() const
     return m_settings->value(QStringLiteral("OCR/ConvertLineBreaks"), defaultConvertLineBreaks()).toBool();
 }
 
-void AppSettings::setConvertLineBreaks(bool convert) 
+void AppSettings::setConvertLineBreaks(bool convert)
 {
     m_settings->setValue(QStringLiteral("OCR/ConvertLineBreaks"), convert);
 }
 
-bool AppSettings::defaultConvertLineBreaks() 
+bool AppSettings::defaultConvertLineBreaks()
 {
     return true;
 }
@@ -946,12 +946,12 @@ QByteArray AppSettings::ocrLanguagesPath() const
     return m_settings->value(QStringLiteral("OCR/LanguagesPath"), defaultOcrLanguagesPath()).toByteArray();
 }
 
-void AppSettings::setOcrLanguagesPath(const QByteArray &path) 
+void AppSettings::setOcrLanguagesPath(const QByteArray &path)
 {
     m_settings->setValue(QStringLiteral("OCR/LanguagesPath"), path);
 }
 
-QByteArray AppSettings::defaultOcrLanguagesPath() 
+QByteArray AppSettings::defaultOcrLanguagesPath()
 {
     return {};
 }
@@ -976,12 +976,12 @@ bool AppSettings::isShowMagnifier() const
     return m_settings->value(QStringLiteral("OCR/ShowMagnifier"), defaultShowMagnifier()).toBool();
 }
 
-void AppSettings::setShowMagnifier(bool show) 
+void AppSettings::setShowMagnifier(bool show)
 {
     m_settings->setValue(QStringLiteral("OCR/ShowMagnifier"), show);
 }
 
-bool AppSettings::defaultShowMagnifier() 
+bool AppSettings::defaultShowMagnifier()
 {
     return false;
 }
@@ -1015,12 +1015,12 @@ bool AppSettings::isCaptureOnRelease() const
     return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();
 }
 
-void AppSettings::setCaptureOnRelease(bool capture) 
+void AppSettings::setCaptureOnRelease(bool capture)
 {
     m_settings->setValue(QStringLiteral("OCR/CaptureOnRelease"), capture);
 }
 
-bool AppSettings::defaultCaptureOnRelease() 
+bool AppSettings::defaultCaptureOnRelease()
 {
     return false;
 }
@@ -1045,14 +1045,14 @@ AppSettings::RegionRememberType AppSettings::regionRememberType() const
     return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
 }
 
-void AppSettings::setRegionRememberType(RegionRememberType type) 
+void AppSettings::setRegionRememberType(RegionRememberType type)
 {
     m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
     if (type != RememberAlways)
         m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
 }
 
-AppSettings::RegionRememberType AppSettings::defaultRegionRememberType() 
+AppSettings::RegionRememberType AppSettings::defaultRegionRememberType()
 {
     return NeverRemember;
 }
@@ -1062,7 +1062,7 @@ QRect AppSettings::cropRegion() const
     return m_settings->value(QStringLiteral("OCR/CropRegion"), defaultRegionRememberType()).toRect();
 }
 
-void AppSettings::setCropRegion(QRect rect) 
+void AppSettings::setCropRegion(QRect rect)
 {
     m_settings->setValue(QStringLiteral("OCR/CropRegion"), rect);
 }

@@ -80,7 +80,7 @@ bool Ocr::init(const QByteArray &languages, const QByteArray &languagesPath, con
     return true;
 }
 
-void Ocr::recognize(const QPixmap &pixmap, int dpi) 
+void Ocr::recognize(const QPixmap &pixmap, int dpi)
 {
     Q_ASSERT_X(qstrlen(m_tesseract.GetInitLanguagesAsString()) != 0, "recognize", "You should call init first");
 
@@ -102,12 +102,12 @@ void Ocr::recognize(const QPixmap &pixmap, int dpi)
     });
 }
 
-void Ocr::cancel() 
+void Ocr::cancel()
 {
     m_future.cancel();
 }
 
-QStringList Ocr::availableLanguages(const QString &languagesPath) 
+QStringList Ocr::availableLanguages(const QString &languagesPath)
 {
     // From the specified directory
     if (!languagesPath.isEmpty())
@@ -149,7 +149,7 @@ void Ocr::applyParameters(const QMap<QString, QVariant> &parameters, bool saveSe
         AppSettings().setTesseractParameters(m_parameters);
 }
 
-QStringList Ocr::parseLanguageFiles(const QDir &directory) 
+QStringList Ocr::parseLanguageFiles(const QDir &directory)
 {
     const QFileInfoList files = directory.entryInfoList({QStringLiteral("*.traineddata")}, QDir::Files);
     QStringList languages;

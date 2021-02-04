@@ -46,12 +46,12 @@ TrayIcon::TrayIcon(MainWindow *parent)
     });
 }
 
-void TrayIcon::setTranslationNotificationTimeout(int timeout) 
+void TrayIcon::setTranslationNotificationTimeout(int timeout)
 {
     m_translationNotificaitonTimeout = timeout;
 }
 
-void TrayIcon::retranslateMenu() 
+void TrayIcon::retranslateMenu()
 {
     m_showMainWindowAction->setText(tr("Show window"));
     m_openSettingsAction->setText(tr("Settings"));
