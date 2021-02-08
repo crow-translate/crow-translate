@@ -1543,12 +1543,12 @@ or press Esc to quit</source>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="858"/>
       <source>Apply light mask</source>
-      <translation>应用亮色蒙版</translation>
+      <translation>使用亮色蒙版</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="865"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择何时记住上次捕获的语言区域&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;是否记住上次使用的的语言区域&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="874"/>
