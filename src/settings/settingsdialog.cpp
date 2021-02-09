@@ -110,15 +110,15 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
 #ifdef Q_OS_WIN
     // Add information about icons
-    auto *papirusTitleLabel = new QLabel(this);
-    papirusTitleLabel->setText(tr("Interface icons:"));
-    ui->aboutGroupBox->layout()->addWidget(papirusTitleLabel);
+    auto *iconsTitleLabel = new QLabel(this);
+    iconsTitleLabel->setText(tr("Icons:"));
+    ui->aboutGroupBox->layout()->addWidget(iconsTitleLabel);
 
-    auto *papirusLabel = new QLabel(this);
-    papirusLabel->setText("<a href=\"https://github.com/PapirusDevelopmentTeam/papirus-icon-theme\">Papirus</a>");
-    papirusLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
-    papirusLabel->setOpenExternalLinks(true);
-    ui->aboutGroupBox->layout()->addWidget(papirusLabel);
+    auto *iconsLabel = new QLabel(this);
+    iconsLabel->setText("<a href=\"https://github.com/yeyushengfan258/We10X-icon-theme\">We10X</a>");
+    iconsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
+    iconsLabel->setOpenExternalLinks(true);
+    ui->aboutGroupBox->layout()->addWidget(iconsLabel);
 
     // Add updater options
     QGroupBox *updatesGroupBox = new QGroupBox(tr("Updates"));
