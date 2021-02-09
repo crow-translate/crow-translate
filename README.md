@@ -173,7 +173,7 @@ This project uses the following external libraries, which will be downloaded aut
 
 Only Linux supports icon theming. For Windows [We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled.
 
-[FlagKit](https://github.com/madebybowtie/FlagKit "Beautiful flag icons for usage in apps and on the web") icons are used for flags.
+[circle-flags](https://github.com/HatScripts/circle-flags "A collection of 300+ minimal circular SVG country flags") icons are used for flags.
 
 ## Installation
 

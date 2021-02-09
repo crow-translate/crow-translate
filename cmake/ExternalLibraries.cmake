@@ -22,7 +22,13 @@ FetchContent_Declare(QOnlineTranslator
     GIT_TAG 1.4.1
 )
 
-FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator)
+FetchContent_Declare(CircleFlags
+    GIT_REPOSITORY https://github.com/HatScripts/circle-flags
+    GIT_TAG v2.0.0
+)
+
+FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags)
+FetchContent_GetProperties(CircleFlags SOURCE_DIR CircleFlags_SOURCE_DIR)
 
 if(WIN32)
     FetchContent_Declare(QGitTag

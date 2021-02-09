@@ -150,7 +150,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Azerbaijani:
         return QIcon(":/icons/flags/az.svg");
     case QOnlineTranslator::Basque:
-        return QIcon(":/icons/flags/eu.svg");
+        return QIcon(":/icons/flags/es-pv.svg");
     case QOnlineTranslator::Belarusian:
         return QIcon(":/icons/flags/by.svg");
     case QOnlineTranslator::Bengali:
@@ -180,7 +180,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::English:
         return QIcon(":/icons/flags/gb.svg");
     case QOnlineTranslator::Esperanto:
-        return QIcon(":/icons/flags/eo.svg");
+        return QIcon(":/icons/flags/esperanto.svg");
     case QOnlineTranslator::Estonian:
         return QIcon(":/icons/flags/ee.svg");
     case QOnlineTranslator::Fijian:
@@ -227,6 +227,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Yoruba:
         return QIcon(":/icons/flags/ng.svg");
     case QOnlineTranslator::Indonesian:
+    case QOnlineTranslator::Javanese:
         return QIcon(":/icons/flags/id.svg");
     case QOnlineTranslator::Irish:
         return QIcon(":/icons/flags/ie.svg");
@@ -234,9 +235,8 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/it.svg");
     case QOnlineTranslator::Japanese:
         return QIcon(":/icons/flags/jp.svg");
-    case QOnlineTranslator::Javanese:
     case QOnlineTranslator::Sundanese:
-        return QIcon(":/icons/flags/jw.svg");
+        return QIcon(":/icons/flags/sd.svg");
     case QOnlineTranslator::Kazakh:
         return QIcon(":/icons/flags/kz.svg");
     case QOnlineTranslator::Khmer:
@@ -245,7 +245,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/rw.svg");
     case QOnlineTranslator::Klingon:
     case QOnlineTranslator::KlingonPlqaD:
-        return QIcon(":/icons/flags/tlh.svg");
+        return QIcon(":/icons/flags/fiction/klingon.svg");
     case QOnlineTranslator::Korean:
         return QIcon(":/icons/flags/kr.svg");
     case QOnlineTranslator::Kurdish:
