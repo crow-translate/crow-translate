@@ -27,22 +27,22 @@
 <context>
     <name>AppSettings</name>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="164"/>
+        <location filename="../../src/settings/appsettings.cpp" line="158"/>
         <source>Unable to create %1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="171"/>
+        <location filename="../../src/settings/appsettings.cpp" line="165"/>
         <source>Unable to copy %1 to %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="175"/>
+        <location filename="../../src/settings/appsettings.cpp" line="169"/>
         <source>Unable to remove %1 from %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/appsettings.cpp" line="1082"/>
+        <location filename="../../src/settings/appsettings.cpp" line="1076"/>
         <source>Unknown language code: %1</source>
         <translation type="unfinished"></translation>
     </message>
@@ -186,7 +186,7 @@
     <name>LanguageButtonsWidget</name>
     <message>
         <location filename="../../src/languagebuttonswidget.cpp" line="439"/>
-        <source>Window width is larger then screen due to the languages on the panel.</source>
+        <source>Window width is larger than screen due to the languages on the panel.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -1908,11 +1908,6 @@ or press Esc to quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/settings/settingsdialog.cpp" line="114"/>
-        <source>Interface icons:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
         <source>Updates</source>
         <translation type="unfinished"></translation>
@@ -1941,6 +1936,11 @@ or press Esc to quit</source>
         <location filename="../../src/settings/settingsdialog.ui" line="869"/>
         <location filename="../../src/settings/settingsdialog.cpp" line="138"/>
         <source>Never</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/settings/settingsdialog.cpp" line="114"/>
+        <source>Icons:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
