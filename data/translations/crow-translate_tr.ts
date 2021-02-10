@@ -1578,7 +1578,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="981"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşma sentezi motorunun sesli havası&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşma sentezi motorunun ses ruh hali&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1000"/>
@@ -1706,27 +1706,27 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="593"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="603"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri uyarlamasını etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri uyarlamasını etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="613"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="623"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri seçeneklerini etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri seçeneklerini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="643"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Beyaz boşlukların her bir dizisini değiştirin (bu, &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos; ve &apos;&apos; ASCII karakterlerini içerir), sorgularda tek bir boşlukla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Her beyaz boşluk dizisini (bu, ASCII karakterleri &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos; ve &apos; &apos;içerir) sorguda tek bir boşlukla değiştirin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="646"/>
@@ -1796,7 +1796,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1179"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulamayı etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulamayı etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1222"/>
@@ -1901,7 +1901,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="48"/>
       <source>Portable mode</source>
-      <translation>Taşınabilir kip</translation>
+      <translation>Taşınabilir mod</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="58"/>
@@ -2007,7 +2007,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="482"/>
       <source>Update available!</source>
-      <translation>Güncelleme var!</translation>
+      <translation>Güncelleme mevcut!</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="488"/>
@@ -2030,7 +2030,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="34"/>
       <source>Global</source>
-      <translation>Evrensel</translation>
+      <translation>Genel</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="36"/>
@@ -2182,7 +2182,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/mainwindow.cpp" line="851"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
-      <translation>Belirtilen simge &apos;%1&apos; geçersiz. Varsayılan simge kullanılacaktır.</translation>
+      <translation>Belirtilen &apos;%1&apos; simgesi geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
@@ -2263,7 +2263,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/updaterdialog.ui" line="129"/>
       <source>Available version:</source>
-      <translation>Mevcut sürüm:</translation>
+      <translation>Uygun sürüm:</translation>
     </message>
     <message>
       <location filename="../../src/updaterdialog.cpp" line="58"/>
