@@ -521,7 +521,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="487"/>
       <source>Galician</source>
-      <translation>Galicia Dili</translation>
+      <translation>Galiçyaca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="489"/>
@@ -546,7 +546,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="497"/>
       <source>Haitian Creole</source>
-      <translation>Haiti Creole</translation>
+      <translation>Haiti Kreyolu</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="499"/>
@@ -556,7 +556,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="501"/>
       <source>Hawaiian</source>
-      <translation>Hawaii</translation>
+      <translation>Hawaii Dili</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="503"/>
@@ -596,7 +596,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="517"/>
       <source>Indonesian</source>
-      <translation>Endonezya Dili</translation>
+      <translation>Endonezce</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="519"/>
@@ -631,7 +631,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="531"/>
       <source>Khmer</source>
-      <translation>Kmer</translation>
+      <translation>Kmerce</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="533"/>
@@ -676,7 +676,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="549"/>
       <source>Latvian</source>
-      <translation>Letonya Dili</translation>
+      <translation>Letonca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="551"/>
@@ -686,7 +686,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="553"/>
       <source>Lithuanian</source>
-      <translation>Litvanya Dili</translation>
+      <translation>Litvanca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="555"/>
@@ -716,12 +716,12 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="565"/>
       <source>Maltese</source>
-      <translation>Malta Dili</translation>
+      <translation>Maltaca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="567"/>
       <source>Maori</source>
-      <translation>Maori Dili</translation>
+      <translation>Maorice</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="569"/>
@@ -761,7 +761,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="583"/>
       <source>Chichewa</source>
-      <translation>Chicheva</translation>
+      <translation>Çevaca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="585"/>
@@ -791,7 +791,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="595"/>
       <source>Punjabi</source>
-      <translation>Pencap Dili</translation>
+      <translation>Pencapça</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="597"/>
@@ -811,7 +811,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="603"/>
       <source>Samoan</source>
-      <translation>Samoa</translation>
+      <translation>Samoaca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="605"/>
@@ -861,7 +861,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="623"/>
       <source>Somali</source>
-      <translation>Somali Dili</translation>
+      <translation>Somalice</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="625"/>
@@ -891,7 +891,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="635"/>
       <source>Tahitian</source>
-      <translation>Tahiti Dili</translation>
+      <translation>Tahitice</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="637"/>
@@ -916,12 +916,12 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="645"/>
       <source>Thai</source>
-      <translation>Tayland Dili</translation>
+      <translation>Tayca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="647"/>
       <source>Tongan</source>
-      <translation>Tonga</translation>
+      <translation>Tongaca</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="649"/>
@@ -976,7 +976,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="669"/>
       <source>Yiddish</source>
-      <translation>Eskenazi Dili</translation>
+      <translation>Yidiş</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="671"/>
@@ -1028,7 +1028,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="119"/>
       <source>%1 engine does not support TTS</source>
-      <translation>%1 motor TTS&apos;yi desteklemiyor</translation>
+      <translation>%1 motoru TTS'yi desteklemiyor</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="188"/>
@@ -1218,7 +1218,7 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.cpp" line="81"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="82"/>
       <source>&lt;System language&gt;</source>
-      <translation>&lt;System language&gt;</translation>
+      <translation>&lt;Sistem dili&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="213"/>
@@ -1283,7 +1283,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="309"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Açılır pencere yüksekliği piksel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Piksel cinsinden açılır pencere yüksekliği&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="332"/>
@@ -1293,7 +1293,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="356"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Açılır pencere genişliği piksel&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Piksel cinsinden açılır pencere genişliği&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="389"/>
@@ -1343,7 +1343,7 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.cpp" line="648"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="666"/>
       <source>Default</source>
-      <translation>Öntanımlı</translation>
+      <translation>Varsayılan</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="527"/>
@@ -1418,12 +1418,12 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="596"/>
       <source>Enable source transliteration</source>
-      <translation>Kaynak uyarlamasını etkinleştir</translation>
+      <translation>Kaynak harf çevirisini etkinleştir</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="606"/>
       <source>Enable translation transliteration</source>
-      <translation>Çeviri uyarlamasını etkinleştir</translation>
+      <translation>Çeviri harf çevirisini etkinleştir</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="616"/>
@@ -1438,7 +1438,7 @@ veya çıkmak için Esc tuşuna basın</translation>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="633"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kullanım örneklerini etkinleştir/devre dışı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kullanım örneklerini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="636"/>
