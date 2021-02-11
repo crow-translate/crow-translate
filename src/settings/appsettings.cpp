@@ -28,6 +28,7 @@
 #include <QFileInfo>
 #include <QFont>
 #include <QGuiApplication>
+#include <QHotkey>
 #include <QKeySequence>
 #include <QLibraryInfo>
 #include <QMetaEnum>
@@ -707,7 +708,7 @@ void AppSettings::setGlobalShortcutsEnabled(bool enabled)
 
 bool AppSettings::defaultGlobalShortcutsEnabled()
 {
-    return true;
+    return QHotkey::isPlatformSupported();
 }
 
 QKeySequence AppSettings::translateSelectionShortcut() const
