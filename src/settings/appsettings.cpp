@@ -115,7 +115,7 @@ void AppSettings::setShowTrayIcon(bool visible)
 
 bool AppSettings::defaultShowTrayIcon()
 {
-    return true;
+    return QSystemTrayIcon::isSystemTrayAvailable();
 }
 
 bool AppSettings::isStartMinimized() const

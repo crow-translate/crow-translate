@@ -194,7 +194,7 @@
            <item row="3" column="0" colspan="3">
             <widget class="QCheckBox" name="startMinimizedCheckBox">
              <property name="enabled">
-              <bool>true</bool>
+              <bool>false</bool>
              </property>
              <property name="toolTip">
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -751,8 +751,7 @@
              </property>
              <property name="icon">
               <iconset theme="folder">
-               <normaloff>.</normaloff>.
-              </iconset>
+               <normaloff>.</normaloff>.</iconset>
              </property>
             </widget>
            </item>
@@ -835,8 +834,7 @@
               </layout>
              </item>
              <item>
-              <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget">
-              </widget>
+              <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget"/>
              </item>
             </layout>
            </item>

@@ -804,7 +804,7 @@ void MainWindow::loadMainWindowSettings()
     ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
 
     restoreGeometry(settings.mainWindowGeometry());
-    if (!settings.isStartMinimized())
+    if (!QSystemTrayIcon::isSystemTrayAvailable() || !settings.isShowTrayIcon() || !settings.isStartMinimized())
         show();
 
 #ifdef Q_OS_WIN
@@ -857,7 +857,7 @@ void MainWindow::loadAppSettings()
     }
     m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
     m_trayIcon->setVisible(settings.isShowTrayIcon());
-    QGuiApplication::setQuitOnLastWindowClosed(!m_trayIcon->isVisible());
+    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() && !m_trayIcon->isVisible());
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
