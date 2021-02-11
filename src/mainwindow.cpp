@@ -47,6 +47,7 @@
 #include <QMessageBox>
 #include <QShortcut>
 #include <QStateMachine>
+#include <QNetworkProxyFactory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -889,16 +890,20 @@ void MainWindow::loadAppSettings()
     ui->sourceSpeakButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Connection
-    QNetworkProxy proxy(settings.proxyType());
-    if (proxy.type() == QNetworkProxy::HttpProxy || proxy.type() == QNetworkProxy::Socks5Proxy) {
-        proxy.setHostName(settings.proxyHost());
-        proxy.setPort(settings.proxyPort());
-        if (settings.isProxyAuthEnabled()) {
-            proxy.setUser(settings.proxyUsername());
-            proxy.setPassword(settings.proxyPassword());
+    if (const QNetworkProxy::ProxyType proxyType = settings.proxyType(); proxyType == QNetworkProxy::DefaultProxy) {
+        QNetworkProxyFactory::setUseSystemConfiguration(true);
+    } else {
+        QNetworkProxy proxy(proxyType);
+        if (proxyType == QNetworkProxy::HttpProxy || proxyType == QNetworkProxy::Socks5Proxy) {
+            proxy.setHostName(settings.proxyHost());
+            proxy.setPort(settings.proxyPort());
+            if (settings.isProxyAuthEnabled()) {
+                proxy.setUser(settings.proxyUsername());
+                proxy.setPassword(settings.proxyPassword());
+            }
         }
+        QNetworkProxy::setApplicationProxy(proxy);
     }
-    QNetworkProxy::setApplicationProxy(proxy);
 
     // Global shortcuts
     if (QHotkey::isPlatformSupported() && settings.isGlobalShortuctsEnabled()) {
