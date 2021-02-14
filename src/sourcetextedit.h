@@ -31,7 +31,7 @@ class SourceTextEdit : public QPlainTextEdit
     Q_DISABLE_COPY(SourceTextEdit)
 
 public:
-    SourceTextEdit(QWidget *parent = nullptr);
+    explicit SourceTextEdit(QWidget *parent = nullptr);
 
     void setRequestTranlationOnEdit(bool listen);
     void setSimplifySource(bool enabled);

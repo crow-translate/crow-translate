@@ -28,7 +28,7 @@ class QMediaPlayer;
 class PlayerStoppedTransition : public QSignalTransition
 {
 public:
-    PlayerStoppedTransition(QMediaPlayer *player, QState *sourceState = nullptr);
+    explicit PlayerStoppedTransition(QMediaPlayer *player, QState *sourceState = nullptr);
 
 protected:
     bool eventTest(QEvent *event) override;

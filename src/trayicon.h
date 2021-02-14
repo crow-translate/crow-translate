@@ -34,7 +34,7 @@ class TrayIcon : public QSystemTrayIcon
     Q_DISABLE_COPY(TrayIcon)
 
 public:
-    TrayIcon(MainWindow *parent = nullptr);
+    explicit TrayIcon(MainWindow *parent = nullptr);
 
     void setTranslationNotificationTimeout(int timeout);
     void retranslateMenu();
