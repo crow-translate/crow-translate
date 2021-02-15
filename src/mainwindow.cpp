@@ -858,7 +858,7 @@ void MainWindow::loadAppSettings()
     }
     m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
     m_trayIcon->setVisible(settings.isShowTrayIcon());
-    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() && !m_trayIcon->isVisible());
+    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
