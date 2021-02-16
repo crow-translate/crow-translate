@@ -4,7 +4,7 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 [![Crowdin](https://badges.crowdin.net/crow-translate/localized.svg)](https://crowdin.com/project/crow-translate)
 
-**Crow Translate** is a simple and lightweight translator programmed in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
+**Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project.
 
 ## Content
