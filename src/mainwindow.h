@@ -29,6 +29,7 @@
 class LanguageButtonsWidget;
 class Ocr;
 class ScreenGrabber;
+class OrientationWatcher;
 class SpeakButtons;
 class TranslationEdit;
 class TrayIcon;
@@ -122,6 +123,7 @@ private slots:
     // Other
     void showAppRunningMessage();
     void setSourceText(const QString &text);
+    void setOrientation(Qt::ScreenOrientation orientation);
 #ifdef Q_OS_WIN
     void checkForUpdates();
 #endif
@@ -170,6 +172,7 @@ private:
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;
+    OrientationWatcher *m_orientationWatcher;
     ScreenGrabber *m_screenGrabber;
 };
 

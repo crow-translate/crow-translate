@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>650</width>
-    <height>285</height>
+    <height>206</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,211 +18,227 @@
     <normaloff>.</normaloff>.</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QGridLayout" name="gridLayout">
-    <item row="5" column="10">
-     <widget class="QToolButton" name="settingsButton">
-      <property name="toolTip">
-       <string>Application settings</string>
-      </property>
-      <property name="icon">
-       <iconset theme="configure">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
+   <layout class="QHBoxLayout" name="centralLayout">
+    <item>
+     <layout class="QGridLayout" name="sourceLayout">
+      <item row="5" column="0">
+       <layout class="QHBoxLayout" name="sourceButtonsLayout">
+        <item>
+         <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="copySourceButton">
+          <property name="toolTip">
+           <string>Copy source text to the clipboard</string>
+          </property>
+          <property name="icon">
+           <iconset theme="edit-copy">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="autoTranslateCheckBox">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="text">
+           <string extracomment="The text should be short to fit in portrait orientation on phones.">Auto-translation</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="4" column="1">
+       <widget class="QToolButton" name="abortButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="toolTip">
+         <string>Cancel</string>
+        </property>
+        <property name="icon">
+         <iconset theme="dialog-cancel">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1">
+       <widget class="QToolButton" name="swapButton">
+        <property name="toolTip">
+         <string>Swap languages</string>
+        </property>
+        <property name="icon">
+         <iconset theme="object-flip-horizontal">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0">
+       <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" rowspan="4">
+       <widget class="SourceTextEdit" name="sourceEdit">
+        <property name="placeholderText">
+         <string>Source</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1">
+       <widget class="QToolButton" name="clearButton">
+        <property name="toolTip">
+         <string>Clear</string>
+        </property>
+        <property name="icon">
+         <iconset theme="edit-clear-all">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1">
+       <widget class="QToolButton" name="translateButton">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Fixed" vsizetype="Expanding">
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip">
+         <string>Translate</string>
+        </property>
+        <property name="icon">
+         <iconset theme="go-next">
+          <normaloff>.</normaloff>.</iconset>
+        </property>
+       </widget>
+      </item>
+     </layout>
     </item>
-    <item row="0" column="4">
-     <widget class="QToolButton" name="swapButton">
-      <property name="toolTip">
-       <string>Swap languages</string>
-      </property>
-      <property name="icon">
-       <iconset theme="object-flip-horizontal">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="4">
-     <widget class="QToolButton" name="clearButton">
-      <property name="toolTip">
-       <string>Clear</string>
-      </property>
-      <property name="icon">
-       <iconset theme="edit-clear-all">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QToolButton" name="copySourceButton">
-      <property name="toolTip">
-       <string>Copy source text to the clipboard</string>
-      </property>
-      <property name="icon">
-       <iconset theme="edit-copy">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="2">
-     <widget class="QCheckBox" name="autoTranslateCheckBox">
-      <property name="text">
-       <string>Automatically translate</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="5" colspan="6">
-     <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true">
-      <property name="layoutDirection">
-       <enum>Qt::RightToLeft</enum>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="5">
-     <spacer name="horizontalSpacer">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="5" column="8">
-     <widget class="QToolButton" name="copyTranslationButton">
-      <property name="toolTip">
-       <string>Copy translation to the clipboard</string>
-      </property>
-      <property name="icon">
-       <iconset theme="edit-copy">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="4">
-     <widget class="QToolButton" name="abortButton">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="toolTip">
-       <string>Cancel</string>
-      </property>
-      <property name="icon">
-       <iconset theme="dialog-cancel">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="5" rowspan="3" colspan="6">
-     <widget class="TranslationEdit" name="translationEdit">
-      <property name="styleSheet">
-       <string notr="true"/>
-      </property>
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-      <property name="placeholderText">
-       <string>Translation</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="4">
-     <widget class="QToolButton" name="translateButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="toolTip">
-       <string>Translate</string>
-      </property>
-      <property name="icon">
-       <iconset theme="go-next">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="9">
-     <widget class="QToolButton" name="copyAllTranslationButton">
-      <property name="toolTip">
-       <string>Copy all translation data to the clipboard</string>
-      </property>
-      <property name="icon">
-       <iconset theme="edit-select-all">
-        <normaloff>.</normaloff>.</iconset>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="6">
-     <widget class="QComboBox" name="engineComboBox">
+    <item>
+     <layout class="QVBoxLayout" name="translationLayout">
       <item>
-       <property name="text">
-        <string notr="true">Google</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../data/icons/engines/engines.qrc">
-         <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
-       </property>
+       <widget class="LanguageButtonsWidget" name="translationLanguagesWidget" native="true">
+        <property name="layoutDirection">
+         <enum>Qt::RightToLeft</enum>
+        </property>
+       </widget>
       </item>
       <item>
-       <property name="text">
-        <string notr="true">Yandex</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../data/icons/engines/engines.qrc">
-         <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
-       </property>
+       <widget class="TranslationEdit" name="translationEdit">
+        <property name="styleSheet">
+         <string notr="true"/>
+        </property>
+        <property name="readOnly">
+         <bool>true</bool>
+        </property>
+        <property name="placeholderText">
+         <string>Translation</string>
+        </property>
+       </widget>
       </item>
       <item>
-       <property name="text">
-        <string notr="true">Bing</string>
-       </property>
-       <property name="icon">
-        <iconset resource="../data/icons/engines/engines.qrc">
-         <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
-       </property>
+       <layout class="QHBoxLayout" name="translationButtonsLayout">
+        <item>
+         <spacer name="translationButtonsSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QComboBox" name="engineComboBox">
+          <item>
+           <property name="text">
+            <string notr="true">Google</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../data/icons/engines/engines.qrc">
+             <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">Yandex</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../data/icons/engines/engines.qrc">
+             <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">Bing</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../data/icons/engines/engines.qrc">
+             <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="SpeakButtons" name="translationSpeakButtons" native="true">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="copyTranslationButton">
+          <property name="toolTip">
+           <string>Copy translation to the clipboard</string>
+          </property>
+          <property name="icon">
+           <iconset theme="edit-copy">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="copyAllTranslationButton">
+          <property name="toolTip">
+           <string>Copy all translation data to the clipboard</string>
+          </property>
+          <property name="icon">
+           <iconset theme="edit-select-all">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="settingsButton">
+          <property name="toolTip">
+           <string>Application settings</string>
+          </property>
+          <property name="icon">
+           <iconset theme="configure">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-     </widget>
-    </item>
-    <item row="5" column="0">
-     <widget class="SpeakButtons" name="sourceSpeakButtons" native="true">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="7">
-     <widget class="SpeakButtons" name="translationSpeakButtons" native="true">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="3">
-     <spacer name="horizontalSpacer_2">
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-      <property name="sizeHint" stdset="0">
-       <size>
-        <width>40</width>
-        <height>20</height>
-       </size>
-      </property>
-     </spacer>
-    </item>
-    <item row="1" column="0" rowspan="3" colspan="4">
-     <widget class="SourceTextEdit" name="sourceEdit">
-      <property name="placeholderText">
-       <string>Source</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="0" colspan="4">
-     <widget class="LanguageButtonsWidget" name="sourceLanguagesWidget" native="true"/>
+     </layout>
     </item>
    </layout>
   </widget>
@@ -266,7 +282,6 @@
  </customwidgets>
  <tabstops>
   <tabstop>sourceEdit</tabstop>
-  <tabstop>swapButton</tabstop>
   <tabstop>translationEdit</tabstop>
  </tabstops>
  <resources>

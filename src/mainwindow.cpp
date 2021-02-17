@@ -24,6 +24,7 @@
 #include "popupwindow.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
+#include "orientationwatcher.h"
 #include "selection.h"
 #include "singleapplication.h"
 #include "trayicon.h"
@@ -45,9 +46,10 @@
 #include <QFinalState>
 #include <QMediaPlaylist>
 #include <QMessageBox>
+#include <QNetworkProxyFactory>
+#include <QScreen>
 #include <QShortcut>
 #include <QStateMachine>
-#include <QNetworkProxyFactory>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -66,9 +68,18 @@ MainWindow::MainWindow(QWidget *parent)
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
     , m_ocr(new Ocr(this))
+    , m_orientationWatcher(new OrientationWatcher(this))
     , m_screenGrabber(new ScreenGrabber(this))
 {
     ui->setupUi(this);
+
+    // Screen orientation
+    connect(m_orientationWatcher, &OrientationWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    setOrientation(screen()->orientation());
+#else
+    setOrientation(QGuiApplication::primaryScreen()->orientation());
+#endif
 
     // Show a message that the application is already running
     connect(qobject_cast<SingleApplication *>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
@@ -509,6 +520,30 @@ void MainWindow::setSourceText(const QString &text)
     ui->sourceEdit->replaceText(text);
     if (ui->autoTranslateCheckBox->isChecked())
         ui->sourceEdit->setRequestTranlationOnEdit(true);
+}
+
+void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
+{
+    switch (orientation) {
+    case Qt::LandscapeOrientation:
+    case Qt::InvertedLandscapeOrientation:
+        ui->centralLayout->setDirection(QBoxLayout::LeftToRight);
+        ui->translationButtonsLayout->setDirection(QBoxLayout::LeftToRight);
+        ui->translationLanguagesWidget->setLayoutDirection(Qt::RightToLeft);
+        break;
+    case Qt::PortraitOrientation:
+        ui->centralLayout->setDirection(QBoxLayout::BottomToTop);
+        ui->translationButtonsLayout->setDirection(QBoxLayout::RightToLeft);
+        ui->translationLanguagesWidget->setLayoutDirection(Qt::LeftToRight);
+        break;
+    case Qt::InvertedPortraitOrientation:
+        ui->centralLayout->setDirection(QBoxLayout::TopToBottom);
+        ui->translationButtonsLayout->setDirection(QBoxLayout::RightToLeft);
+        ui->translationLanguagesWidget->setLayoutDirection(Qt::LeftToRight);
+        break;
+    default:
+        Q_UNREACHABLE(); // Will never be called with Qt::PrimaryOrientation
+    }
 }
 
 #ifdef Q_OS_WIN

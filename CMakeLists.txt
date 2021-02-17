@@ -107,6 +107,7 @@ add_executable(${PROJECT_NAME}
     src/mainwindow.ui
     src/ocr/ocr.cpp
     src/ocr/screengrabber.cpp
+    src/orientationwatcher.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
     src/selection.cpp
@@ -114,10 +115,10 @@ add_executable(${PROJECT_NAME}
     src/settings/ocrlanguageslistwidget.cpp
     src/settings/settingsdialog.cpp
     src/settings/settingsdialog.ui
-    src/settings/tesseractparameterstablewidget.cpp
     src/settings/shortcutsmodel/shortcutitem.cpp
     src/settings/shortcutsmodel/shortcutsmodel.cpp
     src/settings/shortcutsmodel/shortcutsview.cpp
+    src/settings/tesseractparameterstablewidget.cpp
     src/sourcetextedit.cpp
     src/speakbuttons.cpp
     src/speakbuttons.ui
