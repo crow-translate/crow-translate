@@ -82,7 +82,7 @@ MainWindow::MainWindow(QWidget *parent)
 #endif
 
     // Show a message that the application is already running
-    connect(qobject_cast<SingleApplication *>(SingleApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
+    connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Selection requests
     connect(&Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText);
