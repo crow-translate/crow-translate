@@ -283,6 +283,16 @@
  <tabstops>
   <tabstop>sourceEdit</tabstop>
   <tabstop>translationEdit</tabstop>
+  <tabstop>swapButton</tabstop>
+  <tabstop>clearButton</tabstop>
+  <tabstop>translateButton</tabstop>
+  <tabstop>abortButton</tabstop>
+  <tabstop>copySourceButton</tabstop>
+  <tabstop>autoTranslateCheckBox</tabstop>
+  <tabstop>engineComboBox</tabstop>
+  <tabstop>copyTranslationButton</tabstop>
+  <tabstop>copyAllTranslationButton</tabstop>
+  <tabstop>settingsButton</tabstop>
  </tabstops>
  <resources>
   <include location="../data/icons/engines/engines.qrc"/>

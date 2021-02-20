@@ -840,8 +840,10 @@ void MainWindow::loadMainWindowSettings()
     ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
 
     restoreGeometry(settings.mainWindowGeometry());
-    if (!QSystemTrayIcon::isSystemTrayAvailable() || !settings.isShowTrayIcon() || !settings.isStartMinimized())
+    if (!QSystemTrayIcon::isSystemTrayAvailable() || !settings.isShowTrayIcon() || !settings.isStartMinimized()) {
         show();
+        ui->sourceEdit->setFocus();
+    }
 
 #ifdef Q_OS_WIN
     // Check date for updates
