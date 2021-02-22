@@ -521,7 +521,7 @@ void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTr
         button->setIcon(countryIcon(lang));
     }
 
-    button->setToolTip(langName);
+    button->setToolTip(QOnlineTranslator::languageName(lang));
 }
 
 bool LanguageButtonsWidget::isWindowWidthFitScreen()
@@ -535,13 +535,13 @@ bool LanguageButtonsWidget::isWindowWidthFitScreen()
 #endif
 }
 
-QString LanguageButtonsWidget::languageString(QOnlineTranslator::Language language)
+QString LanguageButtonsWidget::languageString(QOnlineTranslator::Language lang)
 {
     switch (m_languageFormat) {
     case AppSettings::FullName:
-        return QOnlineTranslator::languageName(language);
+        return QOnlineTranslator::languageName(lang);
     case AppSettings::IsoCode:
-        return QOnlineTranslator::languageCode(language);
+        return QOnlineTranslator::languageCode(lang);
     default:
         Q_UNREACHABLE();
     }
