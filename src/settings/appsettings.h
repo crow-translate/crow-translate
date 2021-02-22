@@ -92,6 +92,10 @@ public:
     void setWindowMode(WindowMode mode);
     static WindowMode defaultWindowMode();
 
+    int translationNotificationTimeout() const;
+    void setTranslationNotificationTimeout(int timeout);
+    static int defaultTranslationNotificationTimeout();
+
     bool isShowTrayIcon() const;
     void setShowTrayIcon(bool visible);
     static bool defaultShowTrayIcon();
@@ -134,10 +138,6 @@ public:
     int popupWidth() const;
     void setPopupWidth(int width);
     static int defaultPopupWidth();
-
-    int translationNotificationTimeout() const;
-    void setTranslationNotificationTimeout(int timeout);
-    static int defaultTranslationNotificationTimeout();
 
     LanguageFormat popupLanguageFormat() const;
     void setPopupLanguageFormat(LanguageFormat style);

@@ -875,6 +875,10 @@ void MainWindow::loadAppSettings()
 {
     AppSettings settings;
 
+    // General
+    m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
+    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
+
     // Interface
     ui->translationEdit->setFont(settings.font());
     ui->sourceEdit->setFont(settings.font());
@@ -893,9 +897,7 @@ void MainWindow::loadAppSettings()
     } else {
         m_trayIcon->setIcon(QIcon::fromTheme(TrayIcon::trayIconName(iconType)));
     }
-    m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
     m_trayIcon->setVisible(settings.isShowTrayIcon());
-    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());

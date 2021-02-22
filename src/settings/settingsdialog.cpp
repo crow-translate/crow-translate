@@ -189,8 +189,9 @@ void SettingsDialog::accept()
 
     // General settings
     AppSettings settings;
-    settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
+    settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
+    settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
         settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
@@ -208,8 +209,6 @@ void SettingsDialog::accept()
     settings.setPopupOpacity(static_cast<double>(ui->popupOpacitySlider->value()) / 100);
     settings.setPopupWidth(ui->popupWidthSpinBox->value());
     settings.setPopupHeight(ui->popupHeightSpinBox->value());
-
-    settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
 
     settings.setMainWindowLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->mainWindowLanguageFormatComboBox->currentIndex()));
     settings.setPopupLanguageFormat(static_cast<AppSettings::LanguageFormat>(ui->popupLanguageFormatComboBox->currentIndex()));
@@ -501,6 +500,7 @@ void SettingsDialog::restoreDefaults()
     // General settings
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLanguage()));
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
+    ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
         ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
@@ -570,6 +570,7 @@ void SettingsDialog::loadSettings()
     // General settings
     const AppSettings settings;
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
+    ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
         ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
@@ -599,8 +600,6 @@ void SettingsDialog::loadSettings()
     ui->popupOpacitySlider->setValue(static_cast<int>(settings.popupOpacity() * 100));
     ui->popupWidthSpinBox->setValue(settings.popupWidth());
     ui->popupHeightSpinBox->setValue(settings.popupHeight());
-
-    ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
 
     ui->mainWindowLanguageFormatComboBox->setCurrentIndex(settings.mainWindowLanguageFormat());
     ui->popupLanguageFormatComboBox->setCurrentIndex(settings.popupLanguageFormat());

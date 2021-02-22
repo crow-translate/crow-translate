@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>616</height>
+    <height>590</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -131,7 +131,7 @@
           <property name="title">
            <string>General</string>
           </property>
-          <layout class="QGridLayout" name="generalBoxLayout" columnstretch="0,0,1">
+          <layout class="QGridLayout" name="gridLayout">
            <item row="0" column="0">
             <widget class="QLabel" name="localeLabel">
              <property name="sizePolicy">
@@ -145,10 +145,43 @@
              </property>
             </widget>
            </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="windowModeLabel">
+           <item row="5" column="0">
+            <widget class="QCheckBox" name="autostartCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
              <property name="text">
-              <string>Translation mode:</string>
+              <string>Launch at startup</string>
+             </property>
+            </widget>
+           </item>
+           <item row="2" column="0">
+            <widget class="QLabel" name="translationNotificationTimeoutLabel">
+             <property name="text">
+              <string>Translation notification timeout:</string>
+             </property>
+            </widget>
+           </item>
+           <item row="3" column="0">
+            <widget class="QCheckBox" name="showTrayIconCheckBox">
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Show tray icon</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QCheckBox" name="startMinimizedCheckBox">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
+             <property name="toolTip">
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+             </property>
+             <property name="text">
+              <string>Start minimized</string>
              </property>
             </widget>
            </item>
@@ -181,44 +214,47 @@
              </property>
             </widget>
            </item>
-           <item row="4" column="0" colspan="2">
-            <widget class="QCheckBox" name="autostartCheckBox">
+           <item row="2" column="1">
+            <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
              <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
-             <property name="text">
-              <string>Launch at startup</string>
+             <property name="suffix">
+              <string> sec</string>
+             </property>
+             <property name="minimum">
+              <number>1</number>
+             </property>
+             <property name="maximum">
+              <number>60</number>
              </property>
             </widget>
            </item>
-           <item row="3" column="0" colspan="3">
-            <widget class="QCheckBox" name="startMinimizedCheckBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
+           <item row="1" column="0">
+            <widget class="QLabel" name="windowModeLabel">
              <property name="text">
-              <string>Start minimized</string>
+              <string>Translation mode:</string>
              </property>
             </widget>
            </item>
-           <item row="2" column="0" colspan="3">
-            <widget class="QCheckBox" name="showTrayIconCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           <item row="0" column="2">
+            <spacer name="horizontalSpacer">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
              </property>
-             <property name="text">
-              <string>Show tray icon</string>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
              </property>
-            </widget>
+            </spacer>
            </item>
           </layout>
          </widget>
         </item>
         <item>
-         <spacer name="generalSpacer">
+         <spacer name="generalPageSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -371,38 +407,6 @@
             <widget class="QSlider" name="popupHeightSlider">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="translationNotificationGroupBox">
-          <property name="title">
-           <string>Notification</string>
-          </property>
-          <layout class="QFormLayout" name="translationNotificationBoxLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="translationNotificationTimeoutLabel">
-             <property name="text">
-              <string>Translation notification timeout:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string> sec</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>60</number>
              </property>
             </widget>
            </item>
@@ -565,7 +569,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="interfaceSpacer">
+         <spacer name="interfacePageSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -708,7 +712,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="translationSpacer">
+         <spacer name="translationPageSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -803,6 +807,12 @@
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
                  </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
+                 </property>
                 </spacer>
                </item>
                <item>
@@ -828,6 +838,12 @@
                 <spacer name="tesseractParametersButtonsVerticalSpacer2">
                  <property name="orientation">
                   <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>0</width>
+                   <height>0</height>
+                  </size>
                  </property>
                 </spacer>
                </item>
@@ -1077,7 +1093,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="speechSpacer">
+         <spacer name="speechPageSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1271,7 +1287,7 @@
          </widget>
         </item>
         <item>
-         <spacer name="proxySpacer">
+         <spacer name="proxyPageSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1501,7 +1517,7 @@
          </widget>
         </item>
         <item row="1" column="1">
-         <spacer name="aboutVerticalSpacer">
+         <spacer name="aboutPageVerticalSpacer">
           <property name="orientation">
            <enum>Qt::Vertical</enum>
           </property>
@@ -1514,7 +1530,7 @@
          </spacer>
         </item>
         <item row="0" column="2">
-         <spacer name="aboutHorizontalSpacer">
+         <spacer name="aboutPageHorizontalSpacer">
           <property name="orientation">
            <enum>Qt::Horizontal</enum>
           </property>
