@@ -27,17 +27,17 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="159"/>
+      <location filename="../../src/settings/appsettings.cpp" line="174"/>
       <source>Unable to create %1</source>
       <translation>%1 oluşturulamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="166"/>
+      <location filename="../../src/settings/appsettings.cpp" line="181"/>
       <source>Unable to copy %1 to %2</source>
       <translation>%1'den %2'ye kopyalanamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="170"/>
+      <location filename="../../src/settings/appsettings.cpp" line="185"/>
       <source>Unable to remove %1 from %2</source>
       <translation>%1'den %2'ye kaldırılamadı</translation>
     </message>
@@ -278,12 +278,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="902"/>
+      <location filename="../../src/mainwindow.cpp" line="914"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dili ayarlanamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="902"/>
+      <location filename="../../src/mainwindow.cpp" line="914"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Tesseract %1 ile başlatılamıyor</translation>
     </message>
@@ -1173,13 +1173,13 @@ veya çıkmak için Esc tuşuna basın</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="73"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="587"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="591"/>
       <source>Translation</source>
       <translation>Çeviri</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="91"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="941"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="957"/>
       <source>Speech synthesis</source>
       <translation>Konuşma sentezi</translation>
     </message>
@@ -1199,13 +1199,13 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Hakkında</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="162"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="296"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="195"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="332"/>
       <source>Pop-up window</source>
       <translation>Açılır pencere</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="167"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="200"/>
       <source>Main window</source>
       <translation>Ana pencere</translation>
     </message>
@@ -1222,680 +1222,679 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>&lt;Sistem dili&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="213"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="171"/>
       <source>Show tray icon</source>
       <translation>Tepsi simgesini göster</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="203"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="184"/>
       <source>Start minimized</source>
       <translation>Küçültülmüş olarak başla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="151"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="236"/>
       <source>Translation mode:</source>
       <translation>Çeviri kipi:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="158"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="191"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seçilen metni çevirmek için bir pencere. Uygulama küçültülür ise, ana pencere her zaman kullanılır.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="187"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="151"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Uygulamayı sistem başlangıcında çalıştır&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="190"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="154"/>
       <source>Launch at startup</source>
       <translation>Başlangıçta çalıştır</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="200"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="181"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sistem tepsisinde küçültülmüş olarak başlat&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="366"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="402"/>
       <source>Opacity:</source>
       <translation>Saydamlık:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="319"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="355"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Açılır pencere saydamlığı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="253"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="289"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri ve kaynak metin yazı tipi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="267"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="303"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri ve kaynak metnin yazı tipi boyutu&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="302"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="338"/>
       <source>Height:</source>
       <translation>Yükseklik:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="309"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="345"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Piksel cinsinden açılır pencere yüksekliği&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="332"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="368"/>
       <source>Width:</source>
       <translation>Genişlik:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="356"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Piksel cinsinden açılır pencere genişliği&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="389"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="161"/>
       <source>Translation notification timeout:</source>
       <translation>Çeviri bildirimi zaman aşımı:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="396"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="220"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri görüntüleme süresi ile bildirim&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="399"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="223"/>
       <source> sec</source>
       <translation> saniye</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="428"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="452"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="432"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="456"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Düğmelerdeki dil metni&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="472"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="476"/>
       <source>Tray icon</source>
       <translation>Tepsi simgesi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="478"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="482"/>
       <source>Icon:</source>
       <translation>Simge:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="488"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="492"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Simge seçin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="514"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="518"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sistem tepsisi simgesi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="518"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="983"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="1058"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="663"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="681"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="522"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="999"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1074"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="662"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="680"/>
       <source>Default</source>
       <translation>Varsayılan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="527"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="531"/>
       <source>Monochrome (dark theme)</source>
       <translation>Tek renkli (koyu tema)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="536"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="540"/>
       <source>Monochrome (light theme)</source>
       <translation>Tek renkli (açık tema)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="545"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="549"/>
       <source>Custom</source>
       <translation>Özel</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="501"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="505"/>
       <source>Custom:</source>
       <translation>Özel:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="358"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="360"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="361"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="360"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="362"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="361"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="363"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="362"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="364"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="363"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="950"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="966"/>
       <source>Emotional connotation:</source>
       <translation>Duygusal çağrışım:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="365"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="364"/>
       <source>Neutral</source>
       <translation>Nötr</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="366"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="365"/>
       <source>Good</source>
       <translation>İyi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="367"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="366"/>
       <source>Evil</source>
       <translation>Kötü</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="596"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="600"/>
       <source>Enable source transliteration</source>
       <translation>Kaynak harf çevirisini etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="606"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="610"/>
       <source>Enable translation transliteration</source>
       <translation>Çeviri harf çevirisini etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="616"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="620"/>
       <source>Enable source transcription</source>
       <translation>Kaynak uyarlamasını etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="626"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="630"/>
       <source>Enable translation options</source>
       <translation>Çeviri seçeneklerini etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="633"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="637"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kullanım örneklerini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="636"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="640"/>
       <source>Enable examples</source>
       <translation>Örnekleri etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="656"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="660"/>
       <source>Automatic language detection</source>
       <translation>Otomatik dil algılama</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="662"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="666"/>
       <source>Primary translation language:</source>
       <translation>Birincil çeviri dili:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="669"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="673"/>
       <source>Secondary translation language:</source>
       <translation>İkincil çeviri dili:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="683"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="687"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yukarıda seçilen dilde ise metnin çevrileceği dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="690"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="694"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pencerenin dışında kaynak dil olarak her zaman &amp;quot;Otomatik&amp;quot; seçeneğini kullan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="693"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="697"/>
       <source>Force source language detection outside the window</source>
       <translation>Pencerenin dışında kaynak dil algılamaya zorla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="700"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="704"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pencere dışında çeviri dili olarak her zaman &amp;quot;Otomatik&amp;quot;i kullanın.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="703"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="707"/>
       <source>Force translation language detection outside the window</source>
       <translation>Pencerenin dışında çeviri dili algılamayı zorla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="774"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="778"/>
       <source>Directory with trained models</source>
       <translation>Eğitimli modellerin bulunduğu dizin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="743"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="747"/>
       <source>Languages path:</source>
       <translation>Dil yolu:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="750"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="754"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OCR dilleri yolunu seçin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="736"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="740"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ek dillerin yüklenmesi hem hızı hem de doğruluğu etkileyecektir, çünkü geçerli dile karar vermek için yapılacak daha çok iş vardır ve yanlış sözcüklerle halüsinasyon görme olasılığı daha yüksektir.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="761"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="765"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;GitHub deposunu açın&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="764"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="768"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Daha fazlasını indir&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="847"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="863"/>
       <source>Screen capture</source>
       <translation>Ekran yakalama</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="901"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="917"/>
       <source>Remember region:</source>
       <translation>Bölgeyi hatırla:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="885"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="901"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;İmlecin yanında bir büyüteç göster&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="888"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="904"/>
       <source>Show magnifier</source>
       <translation>Büyüteci göster</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="853"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="869"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seçilmemiş kısma hafif bir sis uygulayın&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="856"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="872"/>
       <source>Apply light mask</source>
       <translation>Işık maskesi uygula</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="863"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="879"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En son yakalanan bölge ne zaman hatırlansın&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="872"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="888"/>
       <source>Remember last</source>
       <translation>Sonuncuya hatırla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="877"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="893"/>
       <source>Remember always</source>
       <translation>Her zaman hatırla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="911"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="927"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fare düğmesi bırakıldığında parçayı yakalamayı bitir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="914"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="930"/>
       <source>Capture on release</source>
       <translation>Serbest bırakıldığında yakala</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="963"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="979"/>
       <source>Voice:</source>
       <translation>Ses:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="979"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="995"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşma sentezi motorunun ses ruh hali&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="998"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1014"/>
       <source>Speech test:</source>
       <translation>Konuşma testi:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1069"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1085"/>
       <source>This is an example of speech synthesis.</source>
       <translation>Bu bir konuşma sentezi örneğidir.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1072"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1088"/>
       <source>Test voice</source>
       <translation>Ses testi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1115"/>
       <source>Proxy server</source>
       <translation>Vekil sunucu</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1105"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1121"/>
       <source>Type:</source>
       <translation>Tür:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1240"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1256"/>
       <source>Use system settings</source>
       <translation>Sistem ayarlarını kullan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1266"/>
       <source>Don&apos;t use a proxy</source>
       <translation>Vekil sunucu kullanma</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1190"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1206"/>
       <source>Host:</source>
       <translation>Sunucu:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1167"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1183"/>
       <source>Port:</source>
       <translation>Port:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1266"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1282"/>
       <source>Info: the proxy works only for text translation</source>
       <translation>Bilgi: vekil sunucu sadece metin çevirisi için çalışır</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1180"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1196"/>
       <source>Authentication</source>
       <translation>Doğrula</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1210"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1226"/>
       <source>Username:</source>
       <translation>Kullanıcı adı:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1200"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1216"/>
       <source>Password:</source>
       <translation>Parola:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="172"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="383"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="205"/>
       <source>Notification</source>
       <translation>Bildirim</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="180"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="213"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Arayüz dili&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="210"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="168"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sistem tepsisinde simge göster&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="240"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="276"/>
       <source>Font</source>
       <translation>Yazı tipi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="246"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="282"/>
       <source>Name:</source>
       <translation>İsim:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="260"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="296"/>
       <source>Size:</source>
       <translation>Boyut:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="415"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="419"/>
       <source>Language format</source>
       <translation>Dil formatı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="421"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="425"/>
       <source>Main window:</source>
       <translation>Ana pencere:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="432"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="456"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="436"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="460"/>
       <source>Full name</source>
       <translation>Tam isim</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="437"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="461"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="441"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="465"/>
       <source>ISO 639-1 code</source>
       <translation>ISO 639-1 kodu</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="445"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="449"/>
       <source>Pop-up:</source>
       <translation>Açılır pencere:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="593"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="597"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="603"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="607"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri uyarlamasını etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="613"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="617"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kaynak çevirisini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="623"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="627"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Çeviri seçeneklerini etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="643"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="647"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Her beyaz boşluk dizisini (bu, ASCII karakterleri &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos; ve &apos; &apos;içerir) sorguda tek bir boşlukla değiştirin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="646"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="650"/>
       <source>Simplify source</source>
       <translation>Kaynağı basitleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="676"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="680"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Otomatik algılama sırasında metnin çevrileceği dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="730"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="734"/>
       <source>Languages</source>
       <translation>Diller</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="790"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="794"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Metin tanımadan sonra tüm tek satır sonlarını bir boşlukla değiştirin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="793"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="797"/>
       <source>Convert line breaks</source>
       <translation>Satır sonlarını dönüştür</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="991"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1007"/>
       <source>Engine:</source>
       <translation>Motor:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1011"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1027"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşma sentezi motoru&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1054"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1070"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşma sentezi motorunun sesi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1066"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1082"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşmayı testi için metin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1115"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1131"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil parolası&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1128"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1144"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil kullanıcı adı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1138"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1154"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>Bilgi: parola şifrelenmemiş olarak kaydedilir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1148"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1164"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vekil port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1177"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1193"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulamayı etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1220"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1236"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vekil sunucu adı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1236"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1252"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vekil türü&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1296"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1312"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Genel kısayolları sisteme kaydet&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1299"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1315"/>
       <source>Enable global shortcucts</source>
       <translation>Genel kısayolları etkinleştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1328"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1344"/>
       <source>Shortcut</source>
       <translation>Kısayol</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1318"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1334"/>
       <source>Reset all</source>
       <translation>Tümünü sıfırla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="560"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="564"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>Temadan simgeye veya simge adına giden yol</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1334"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1350"/>
       <source>Key sequence:</source>
       <translation>Anahtar sırası:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1348"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kısayolu onayla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1367"/>
       <source>Accept</source>
       <translation>Onayla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1362"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1378"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kısayolu temizle&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1365"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1381"/>
       <source>Clear</source>
       <translation>Temizle</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1379"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1395"/>
       <source>Reset</source>
       <translation>Sıfırla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1450"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1466"/>
       <source>Version:</source>
       <translation>Sürüm:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1315"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tüm kısayolları öntanımlılara sıfırla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1357"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seçilen işlem için tuş sırası&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1376"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kısayolu öntanımlıya sıfırla&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1443"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1459"/>
       <source>License:</source>
       <translation>Lisans:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1433"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1449"/>
       <source>Flag icons:</source>
       <translation>Bayrak simgeleri:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1426"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1442"/>
       <source>Autor:</source>
       <translation>Yazar:</translation>
     </message>
@@ -1935,7 +1934,7 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Her ay</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="867"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="883"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Never</source>
       <translation>Asla</translation>
@@ -1971,47 +1970,47 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Geçersiz parametreleri atmak istiyor musunuz?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="307"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="306"/>
       <source>Select icon</source>
       <translation>Simge seç</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="307"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="306"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Görüntüler (*.png *.ico *.svg *.jpg);;Tüm dosyalar()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="319"/>
       <source>Select OCR languages path</source>
       <translation>OCR dilleri yolunu seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="397"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="396"/>
       <source>Nothing to play</source>
       <translation>Oynatılacak bir şey yok</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="397"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="396"/>
       <source>Playback text is empty</source>
       <translation>Oynatım metni boş</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="407"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="463"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="462"/>
       <source>Checking for updates...</source>
       <translation>Güncellemeler kontrol ediliyor...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="485"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="484"/>
       <source>Update available!</source>
       <translation>Güncelleme mevcut!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="491"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="490"/>
       <source>No updates available.</source>
       <translation>Güncelleme yok.</translation>
     </message>
@@ -2176,12 +2175,12 @@ veya çıkmak için Esc tuşuna basın</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="879"/>
+      <location filename="../../src/mainwindow.cpp" line="894"/>
       <source>Invalid tray icon</source>
       <translation>Geçersiz tepsi simgesi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="879"/>
+      <location filename="../../src/mainwindow.cpp" line="894"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Belirtilen &apos;%1&apos; simgesi geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
