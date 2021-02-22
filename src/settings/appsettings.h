@@ -88,6 +88,10 @@ public:
     static void applyLanguage(QLocale::Language lang);
     static QLocale::Language defaultLanguage();
 
+    Qt::ScreenOrientation mainWindowOrientation() const;
+    void setMainWindowOrientation(Qt::ScreenOrientation mode);
+    static Qt::ScreenOrientation defaultMainWindowOrientation();
+
     WindowMode windowMode() const;
     void setWindowMode(WindowMode mode);
     static WindowMode defaultWindowMode();

@@ -89,6 +89,21 @@ QLocale::Language AppSettings::defaultLanguage()
     return QLocale::AnyLanguage;
 }
 
+Qt::ScreenOrientation AppSettings::mainWindowOrientation() const
+{
+    return m_settings->value(QStringLiteral("MainWindowOrientation"), defaultMainWindowOrientation()).value<Qt::ScreenOrientation>();
+}
+
+void AppSettings::setMainWindowOrientation(Qt::ScreenOrientation mode)
+{
+    m_settings->setValue(QStringLiteral("MainWindowOrientation"), mode);
+}
+
+Qt::ScreenOrientation AppSettings::defaultMainWindowOrientation()
+{
+    return Qt::PrimaryOrientation;
+}
+
 AppSettings::WindowMode AppSettings::windowMode() const
 {
     return m_settings->value(QStringLiteral("WindowMode"), defaultWindowMode()).value<WindowMode>();

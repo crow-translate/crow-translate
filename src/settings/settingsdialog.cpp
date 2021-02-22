@@ -190,6 +190,7 @@ void SettingsDialog::accept()
     // General settings
     AppSettings settings;
     settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
+    settings.setMainWindowOrientation(static_cast<Qt::ScreenOrientation>(ui->mainWindowOrientationComboBox->currentIndex()));
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -499,6 +500,7 @@ void SettingsDialog::restoreDefaults()
 {
     // General settings
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLanguage()));
+    ui->mainWindowOrientationComboBox->setCurrentIndex(AppSettings::defaultMainWindowOrientation());
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
@@ -570,6 +572,7 @@ void SettingsDialog::loadSettings()
     // General settings
     const AppSettings settings;
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
+    ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
     if (QSystemTrayIcon::isSystemTrayAvailable()) {
         ui->windowModeComboBox->setCurrentIndex(settings.windowMode());

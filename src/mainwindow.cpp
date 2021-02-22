@@ -75,11 +75,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Screen orientation
     connect(m_orientationWatcher, &OrientationWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    setOrientation(screen()->orientation());
-#else
-    setOrientation(QGuiApplication::primaryScreen()->orientation());
-#endif
 
     // Show a message that the application is already running
     connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
@@ -524,6 +519,14 @@ void MainWindow::setSourceText(const QString &text)
 
 void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
 {
+
+    if (orientation == Qt::PrimaryOrientation)
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        orientation = screen()->orientation();
+#else
+        orientation = QGuiApplication::primaryScreen()->orientation();
+#endif
+
     switch (orientation) {
     case Qt::LandscapeOrientation:
     case Qt::InvertedLandscapeOrientation:
@@ -532,12 +535,12 @@ void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
         ui->translationLanguagesWidget->setLayoutDirection(Qt::RightToLeft);
         break;
     case Qt::PortraitOrientation:
-        ui->centralLayout->setDirection(QBoxLayout::BottomToTop);
+        ui->centralLayout->setDirection(QBoxLayout::TopToBottom);
         ui->translationButtonsLayout->setDirection(QBoxLayout::RightToLeft);
         ui->translationLanguagesWidget->setLayoutDirection(Qt::LeftToRight);
         break;
     case Qt::InvertedPortraitOrientation:
-        ui->centralLayout->setDirection(QBoxLayout::TopToBottom);
+        ui->centralLayout->setDirection(QBoxLayout::BottomToTop);
         ui->translationButtonsLayout->setDirection(QBoxLayout::RightToLeft);
         ui->translationLanguagesWidget->setLayoutDirection(Qt::LeftToRight);
         break;
@@ -876,6 +879,7 @@ void MainWindow::loadAppSettings()
     AppSettings settings;
 
     // General
+    setOrientation(settings.mainWindowOrientation());
     m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
     QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
 
