@@ -846,6 +846,36 @@ QKeySequence AppSettings::defaultTranslateScreenAreaShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Alt+O"));
 }
 
+QKeySequence AppSettings::delayedRecognizeScreenAreaShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/DelayedRecognizeScreenAreaShortcut"), defaultDelayedRecognizeScreenAreaShortcut()).toString();
+}
+
+void AppSettings::setDelayedRecognizeScreenAreaShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/DelayedRecognizeScreenAreaShortcut"), shortcut);
+}
+
+QKeySequence AppSettings::defaultDelayedRecognizeScreenAreaShortcut()
+{
+    return {};
+}
+
+QKeySequence AppSettings::delayedTranslateScreenAreaShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/DelayedTranslateScreenAreaShortcut"), defaultDelayedTranslateScreenAreaShortcut()).toString();
+}
+
+void AppSettings::setDelayedTranslateScreenAreaShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/DelayedTranslateScreenAreaShortcut"), shortcut);
+}
+
+QKeySequence AppSettings::defaultDelayedTranslateScreenAreaShortcut()
+{
+    return {};
+}
+
 QKeySequence AppSettings::translateShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/Translate"), defaultTranslateShortcut()).value<QKeySequence>();
@@ -1020,6 +1050,38 @@ QMap<QString, QVariant> AppSettings::defaultTesseractParameters()
     return {};
 }
 
+AppSettings::RegionRememberType AppSettings::regionRememberType() const
+{
+    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
+}
+
+void AppSettings::setRegionRememberType(RegionRememberType type)
+{
+    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
+    if (type != RememberAlways)
+        m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
+}
+
+AppSettings::RegionRememberType AppSettings::defaultRegionRememberType()
+{
+    return NeverRemember;
+}
+
+int AppSettings::captureDelay() const
+{
+    return m_settings->value(QStringLiteral("OCR/CaptureDelay"), defaultCaptureDelay()).toInt();
+}
+
+void AppSettings::setCaptureDelay(int ms)
+{
+    m_settings->setValue(QStringLiteral("OCR/CaptureDelay"), ms);
+}
+
+int AppSettings::defaultCaptureDelay()
+{
+    return 1000;
+}
+
 bool AppSettings::isCaptureOnRelease() const
 {
     return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();
@@ -1048,23 +1110,6 @@ void AppSettings::setApplyLightMask(bool use)
 bool AppSettings::defaultApplyLightMask()
 {
     return true;
-}
-
-AppSettings::RegionRememberType AppSettings::regionRememberType() const
-{
-    return m_settings->value(QStringLiteral("OCR/RegionRememberType"), defaultRegionRememberType()).value<RegionRememberType>();
-}
-
-void AppSettings::setRegionRememberType(RegionRememberType type)
-{
-    m_settings->setValue(QStringLiteral("OCR/RegionRememberType"), type);
-    if (type != RememberAlways)
-        m_settings->remove(QStringLiteral("OCR/RememberedCropRegion"));
-}
-
-AppSettings::RegionRememberType AppSettings::defaultRegionRememberType()
-{
-    return NeverRemember;
 }
 
 QRect AppSettings::cropRegion() const

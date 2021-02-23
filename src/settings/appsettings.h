@@ -273,6 +273,14 @@ public:
     void setTranslateScreenAreaShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultTranslateScreenAreaShortcut();
 
+    QKeySequence delayedRecognizeScreenAreaShortcut() const;
+    void setDelayedRecognizeScreenAreaShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultDelayedRecognizeScreenAreaShortcut();
+
+    QKeySequence delayedTranslateScreenAreaShortcut() const;
+    void setDelayedTranslateScreenAreaShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultDelayedTranslateScreenAreaShortcut();
+
     // Window shortcuts
     QKeySequence translateShortcut() const;
     void setTranslateShortcut(const QKeySequence &shortcut);
@@ -315,6 +323,14 @@ public:
     void setTesseractParameters(const QMap<QString, QVariant> &parameters);
     static QMap<QString, QVariant> defaultTesseractParameters();
 
+    RegionRememberType regionRememberType() const;
+    void setRegionRememberType(RegionRememberType type);
+    static RegionRememberType defaultRegionRememberType();
+
+    int captureDelay() const;
+    void setCaptureDelay(int ms);
+    static int defaultCaptureDelay();
+
     bool isShowMagnifier() const;
     void setShowMagnifier(bool show);
     static bool defaultShowMagnifier();
@@ -327,13 +343,8 @@ public:
     void setApplyLightMask(bool use);
     static bool defaultApplyLightMask();
 
-    RegionRememberType regionRememberType() const;
-    void setRegionRememberType(RegionRememberType type);
-    static RegionRememberType defaultRegionRememberType();
-
     QRect cropRegion() const;
     void setCropRegion(QRect rect);
-
 
     // Buttons
     QVector<QOnlineTranslator::Language> languages(LanguageButtonsType type) const;

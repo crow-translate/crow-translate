@@ -125,6 +125,8 @@ The program also has a console interface.
         ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.recognizeScreenArea();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.translateScreenArea();
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.delayedRecognizeScreenArea();
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.delayedTranslateScreenArea();
         |   # Main window shortcuts
         ├── method void io.crow_translate.CrowTranslate.MainWindow.clearText();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.cancelOperation();

@@ -50,6 +50,7 @@
 #include <QScreen>
 #include <QShortcut>
 #include <QStateMachine>
+#include <QTimer>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -62,12 +63,15 @@ MainWindow::MainWindow(QWidget *parent)
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
     , m_recognizeScreenAreaHotkey(new QHotkey(this))
     , m_translateScreenAreaHotkey(new QHotkey(this))
+    , m_delayedRecognizeScreenAreaHotkey(new QHotkey(this))
+    , m_delayedTranslateScreenAreaHotkey(new QHotkey(this))
     , m_closeWindowsShortcut(new QShortcut(this))
     , m_stateMachine(new QStateMachine(this))
     , m_translator(new QOnlineTranslator(this))
     , m_trayIcon(new TrayIcon(this))
     , m_taskbar(new QTaskbarControl(this))
     , m_ocr(new Ocr(this))
+    , m_screenCaptureTimer(new QTimer(this))
     , m_orientationWatcher(new OrientationWatcher(this))
     , m_screenGrabber(new ScreenGrabber(this))
 {
@@ -98,6 +102,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_recognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::recognizeScreenArea);
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
+    connect(m_delayedRecognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::delayedRecognizeScreenArea);
+    connect(m_delayedTranslateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::delayedTranslateScreenArea);
 
     // Source and translation logic
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
@@ -107,6 +113,7 @@ MainWindow::MainWindow(QWidget *parent)
     // OCR logic
     connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
+    m_screenCaptureTimer->setSingleShot(true);
 
 #if defined(Q_OS_WIN)
     // Windows must have a widget be set to display a playback progress
@@ -242,6 +249,16 @@ void MainWindow::recognizeScreenArea()
 void MainWindow::translateScreenArea()
 {
     emit translateScreenAreaRequested();
+}
+
+Q_SCRIPTABLE void MainWindow::delayedRecognizeScreenArea()
+{
+    emit delayedRecognizeScreenAreaRequested();
+}
+
+Q_SCRIPTABLE void MainWindow::delayedTranslateScreenArea()
+{
+    emit delayedTranslateScreenAreaRequested();
 }
 
 void MainWindow::clearText()
@@ -463,6 +480,11 @@ void MainWindow::forceAutodetect()
         ui->sourceEdit->setRequestTranlationOnEdit(true);
 }
 
+void MainWindow::minimize()
+{
+    setWindowState(windowState() | Qt::WindowMinimized);
+}
+
 void MainWindow::setTranslationOnEditEnabled(bool enabled)
 {
     ui->sourceEdit->setRequestTranlationOnEdit(enabled);
@@ -604,6 +626,8 @@ void MainWindow::buildStateMachine()
     auto *copyTranslatedSelectionState = new QState(m_stateMachine);
     auto *recognizeScreenAreaState = new QState(m_stateMachine);
     auto *translateScreenAreaState = new QState(m_stateMachine);
+    auto *delayedRecognizeScreenAreaState = new QState(m_stateMachine);
+    auto *delayedTranslateScreenAreaState = new QState(m_stateMachine);
     m_stateMachine->setInitialState(idleState);
 
     buildTranslationState(translationState);
@@ -615,6 +639,8 @@ void MainWindow::buildStateMachine()
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
     buildRecognizeScreenAreaState(recognizeScreenAreaState);
     buildTranslateScreenAreaState(translateScreenAreaState);
+    buildDelayedOcrState(delayedRecognizeScreenAreaState, &MainWindow::buildRecognizeScreenAreaState, &MainWindow::show);
+    buildDelayedOcrState(delayedTranslateScreenAreaState, &MainWindow::buildTranslateScreenAreaState);
 
     // Add transitions between all states
     for (QState *state : m_stateMachine->findChildren<QState *>()) {
@@ -629,6 +655,8 @@ void MainWindow::buildStateMachine()
         state->addTransition(this, &MainWindow::copyTranslatedSelectionRequested, copyTranslatedSelectionState);
         state->addTransition(this, &MainWindow::recognizeScreenAreaRequested, recognizeScreenAreaState);
         state->addTransition(this, &MainWindow::translateScreenAreaRequested, translateScreenAreaState);
+        state->addTransition(this, &MainWindow::delayedRecognizeScreenAreaRequested, delayedRecognizeScreenAreaState);
+        state->addTransition(this, &MainWindow::delayedTranslateScreenAreaRequested, delayedTranslateScreenAreaState);
     }
 
     translationState->addTransition(translationState, &QState::finished, idleState);
@@ -639,6 +667,8 @@ void MainWindow::buildStateMachine()
     speakTranslatedSelectionState->addTransition(speakTranslatedSelectionState, &QState::finished, idleState);
     recognizeScreenAreaState->addTransition(recognizeScreenAreaState, &QState::finished, idleState);
     translateScreenAreaState->addTransition(translateScreenAreaState, &QState::finished, idleState);
+    delayedRecognizeScreenAreaState->addTransition(delayedRecognizeScreenAreaState, &QState::finished, idleState);
+    delayedTranslateScreenAreaState->addTransition(delayedTranslateScreenAreaState, &QState::finished, idleState);
 }
 
 void MainWindow::buildTranslationState(QState *state) const
@@ -811,6 +841,22 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
+template<typename Func, typename... Args>
+void MainWindow::buildDelayedOcrState(QState *state, Func buildState, Args... additionalArgs)
+{
+    auto *waitState = new QState(state);
+    auto *recognizeState = new QState(state);
+    auto *finalState = new QFinalState(state);
+    state->setInitialState(waitState);
+
+    connect(waitState, &QState::entered, this, &MainWindow::minimize);
+    connect(waitState, &QState::entered, m_screenCaptureTimer, qOverload<>(&QTimer::start));
+    (this->*buildState)(recognizeState, additionalArgs...);
+
+    waitState->addTransition(m_screenCaptureTimer, &QTimer::timeout, recognizeState);
+    recognizeState->addTransition(recognizeState, &QState::finished, finalState);
+}
+
 void MainWindow::buildSetSelectionAsSourceState(QState *state) const
 {
     auto *setSelectionAsSourceState = new QState(state);
@@ -917,16 +963,16 @@ void MainWindow::loadAppSettings()
         if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath())
             m_trayIcon->showMessage(Ocr::tr("Unable to set OCR languages"), Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
     }
-
-    m_screenGrabber->setCaptureOnRelese(settings.isCaptureOnRelease());
-    m_screenGrabber->setShowMagnifier(settings.isShowMagnifier());
-    m_screenGrabber->setApplyLightMask(settings.isApplyLightMask());
     if (const AppSettings::RegionRememberType type = settings.regionRememberType(); m_screenGrabber->regionRememberType() != type) {
         m_screenGrabber->setRegionRememberType(type);
         // Apply last remembered selection only if remember type was changed
         if (type == AppSettings::RememberAlways)
             m_screenGrabber->setCropRegion(settings.cropRegion());
     }
+    m_screenCaptureTimer->setInterval(settings.captureDelay());
+    m_screenGrabber->setCaptureOnRelese(settings.isCaptureOnRelease());
+    m_screenGrabber->setShowMagnifier(settings.isShowMagnifier());
+    m_screenGrabber->setApplyLightMask(settings.isApplyLightMask());
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
@@ -958,6 +1004,8 @@ void MainWindow::loadAppSettings()
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
         m_recognizeScreenAreaHotkey->setShortcut(settings.recognizeScreenAreaShortcut(), true);
         m_translateScreenAreaHotkey->setShortcut(settings.translateScreenAreaShortcut(), true);
+        m_delayedRecognizeScreenAreaHotkey->setShortcut(settings.delayedRecognizeScreenAreaShortcut(), true);
+        m_delayedTranslateScreenAreaHotkey->setShortcut(settings.delayedTranslateScreenAreaShortcut(), true);
     } else {
         m_translateSelectionHotkey->setRegistered(false);
         m_speakSelectionHotkey->setRegistered(false);
@@ -965,6 +1013,10 @@ void MainWindow::loadAppSettings()
         m_speakTranslatedSelectionHotkey->setRegistered(false);
         m_showMainWindowHotkey->setRegistered(false);
         m_copyTranslatedSelectionHotkey->setRegistered(false);
+        m_recognizeScreenAreaHotkey->setRegistered(false);
+        m_translateScreenAreaHotkey->setRegistered(false);
+        m_delayedRecognizeScreenAreaHotkey->setRegistered(false);
+        m_delayedTranslateScreenAreaHotkey->setRegistered(false);
     }
 
     // Window shortcuts

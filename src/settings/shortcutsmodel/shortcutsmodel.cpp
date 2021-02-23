@@ -57,6 +57,12 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     m_translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("scanner"), m_globalShortcuts);
     m_translateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultTranslateScreenAreaShortcut());
 
+    m_delayedRecognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area with delay"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_delayedRecognizeScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultDelayedRecognizeScreenAreaShortcut());
+
+    m_delayedTranslateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area with delay"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_delayedTranslateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultDelayedTranslateScreenAreaShortcut());
+
     // Window shortcuts
     auto *windowShortcuts = new ShortcutItem(tr("Main window"), m_rootItem);
 
@@ -199,6 +205,8 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_copyTranslatedSelectionShortcut->setShortcut(settings.copyTranslatedSelectionShortcut());
     m_recognizeScreenAreaShortcut->setShortcut(settings.recognizeScreenAreaShortcut());
     m_translateScreenAreaShortcut->setShortcut(settings.translateScreenAreaShortcut());
+    m_delayedRecognizeScreenAreaShortcut->setShortcut(settings.delayedRecognizeScreenAreaShortcut());
+    m_delayedTranslateScreenAreaShortcut->setShortcut(settings.delayedTranslateScreenAreaShortcut());
 
     // Window shortcuts
     m_translateShortcut->setShortcut(settings.translateShortcut());
@@ -224,6 +232,8 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setCopyTranslatedSelectionShortcut(m_copyTranslatedSelectionShortcut->shortcut());
     settings.setRecognizeScreenAreaShortcut(m_recognizeScreenAreaShortcut->shortcut());
     settings.setTranslateScreenAreaShortcut(m_translateScreenAreaShortcut->shortcut());
+    settings.setDelayedRecognizeScreenAreaShortcut(m_delayedRecognizeScreenAreaShortcut->shortcut());
+    settings.setDelayedTranslateScreenAreaShortcut(m_delayedTranslateScreenAreaShortcut->shortcut());
 
     // Window shortcuts
     settings.setTranslateShortcut(m_translateShortcut->shortcut());

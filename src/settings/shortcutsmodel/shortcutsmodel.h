@@ -74,6 +74,8 @@ private:
     ShortcutItem *m_copyTranslatedSelectionShortcut;
     ShortcutItem *m_recognizeScreenAreaShortcut;
     ShortcutItem *m_translateScreenAreaShortcut;
+    ShortcutItem *m_delayedRecognizeScreenAreaShortcut;
+    ShortcutItem *m_delayedTranslateScreenAreaShortcut;
 
     // Window shortcuts
     ShortcutItem *m_translateShortcut;

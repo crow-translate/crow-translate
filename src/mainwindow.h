@@ -76,6 +76,8 @@ public slots:
     Q_SCRIPTABLE void copyTranslatedSelection();
     Q_SCRIPTABLE void recognizeScreenArea();
     Q_SCRIPTABLE void translateScreenArea();
+    Q_SCRIPTABLE void delayedRecognizeScreenArea();
+    Q_SCRIPTABLE void delayedTranslateScreenArea();
 
     // Main window shortcuts
     Q_SCRIPTABLE void clearText();
@@ -95,6 +97,8 @@ signals:
     void copyTranslatedSelectionRequested();
     void recognizeScreenAreaRequested();
     void translateScreenAreaRequested();
+    void delayedRecognizeScreenAreaRequested();
+    void delayedTranslateScreenAreaRequested();
 
 private slots:
     // State machine's slots
@@ -114,6 +118,8 @@ private slots:
 
     void forceSourceAutodetect();
     void forceAutodetect();
+
+    void minimize();
 
     // UI
     void setTranslationOnEditEnabled(bool enabled);
@@ -144,6 +150,9 @@ private:
     void buildRecognizeScreenAreaState(QState *state, void (MainWindow::*showFunction)() = &MainWindow::show);
     void buildTranslateScreenAreaState(QState *state);
 
+    template<typename Func, typename... Args>
+    void buildDelayedOcrState(QState *state, Func buildState, Args... additionalArgs);
+
     // State helpers
     void buildSetSelectionAsSourceState(QState *state) const;
     void setupRequestStateButtons(QState *state) const;
@@ -165,6 +174,8 @@ private:
     QHotkey *m_copyTranslatedSelectionHotkey;
     QHotkey *m_recognizeScreenAreaHotkey;
     QHotkey *m_translateScreenAreaHotkey;
+    QHotkey *m_delayedRecognizeScreenAreaHotkey;
+    QHotkey *m_delayedTranslateScreenAreaHotkey;
     QShortcut *m_closeWindowsShortcut;
 
     QStateMachine *m_stateMachine;
@@ -172,6 +183,7 @@ private:
     TrayIcon *m_trayIcon;
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;
+    QTimer *m_screenCaptureTimer;
     OrientationWatcher *m_orientationWatcher;
     ScreenGrabber *m_screenGrabber;
 };

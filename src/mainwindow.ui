@@ -42,6 +42,17 @@
          </widget>
         </item>
         <item>
+         <widget class="QToolButton" name="delayedRecognizeScreenAreaButton">
+          <property name="toolTip">
+           <string>Recognize screen area with delay</string>
+          </property>
+          <property name="icon">
+           <iconset theme="scanner">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="autoTranslateCheckBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
@@ -221,6 +232,17 @@
           </property>
           <property name="icon">
            <iconset theme="edit-select-all">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="delayedTranslateScreenAreaButton">
+          <property name="toolTip">
+           <string>Translate screen area with delay</string>
+          </property>
+          <property name="icon">
+           <iconset theme="scanner">
             <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
@@ -506,6 +528,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>delayedRecognizeScreenAreaButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delayedRecognizeScreenArea()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>67</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>delayedTranslateScreenAreaButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>delayedTranslateScreenArea()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>587</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>swapLanguages()</slot>
@@ -517,5 +571,7 @@
   <slot>copyAllTranslationInfo()</slot>
   <slot>cancelOperation()</slot>
   <slot>clearText()</slot>
+  <slot>delayedRecognizeScreenArea()</slot>
+  <slot>delayedTranslateScreenArea()</slot>
  </slots>
 </ui>

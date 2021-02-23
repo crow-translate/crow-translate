@@ -234,6 +234,7 @@ void SettingsDialog::accept()
     settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
     settings.setOcrLanguagesString(ui->ocrLanguagesListWidget->checkedLanguagesString());
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
+    settings.setCaptureDelay(ui->captureDelaySpinBox->value());
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
     settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
     settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
@@ -544,6 +545,7 @@ void SettingsDialog::restoreDefaults()
     ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(AppSettings::defaultOcrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
+    ui->captureDelaySpinBox->setValue(AppSettings::defaultCaptureDelay());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
@@ -627,6 +629,7 @@ void SettingsDialog::loadSettings()
     ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
     ui->ocrLanguagesListWidget->setCheckedLanguages(settings.ocrLanguagesString());
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
+    ui->captureDelaySpinBox->setValue(settings.captureDelay());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
     ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
     ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
