@@ -234,7 +234,7 @@ void MainWindow::copyTranslatedSelection()
     emit copyTranslatedSelectionRequested();
 }
 
-Q_SCRIPTABLE void MainWindow::recognizeScreenArea()
+void MainWindow::recognizeScreenArea()
 {
     emit recognizeScreenAreaRequested();
 }
