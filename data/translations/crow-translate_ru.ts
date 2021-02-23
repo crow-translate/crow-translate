@@ -367,7 +367,7 @@
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="425"/>
       <source>Automatically detect</source>
-      <translation>Автоматически определить</translation>
+      <translation>Определять автоматически</translation>
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="427"/>
