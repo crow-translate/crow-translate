@@ -105,9 +105,6 @@ private:
     void acceptSelection();
     void cancelSelection();
 
-    static QPoint fromNative(QPoint point, const QScreen *screen);
-    static QSize fromNative(QSize size, const QScreen *screen);
-    static QRect fromNativePixels(QRect rect, const QScreen *screen);
     static bool isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point);
     static bool isInRange(qreal low, qreal high, qreal value);
     static bool isWithinThreshold(qreal offset, qreal threshold);

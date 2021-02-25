@@ -28,6 +28,8 @@
 #include <QtMath>
 #ifdef Q_OS_LINUX
 #include <QX11Info>
+
+#include <xcb/xproto.h>
 #endif
 
 ScreenGrabber::ScreenGrabber(QWidget *parent)
@@ -743,6 +745,7 @@ QRect ScreenGrabber::scaledCropRegion() const
 
 void ScreenGrabber::setGeometryToScreenPixmap()
 {
+    setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
 #ifdef Q_OS_LINUX
     if (QX11Info::isPlatformX11()) {
         /*
@@ -754,16 +757,12 @@ void ScreenGrabber::setGeometryToScreenPixmap()
          * a conversion from the device-independent coordinates to the native pixels.
          *
          * Since (0, 0) in the device-independent pixels may not correspond to (0, 0) in the
-         * native pixels, we have to map (0, 0) from native pixels to dip and use that as
-         * the window position.
+         * native pixels, we use XCB API to place the quick editor window at (0, 0).
          */
-        winId();
-        setGeometry(fromNativePixels(m_screenPixmap.rect(), windowHandle()->screen()));
-        return;
+        const uint32_t coordinates[] = {0, 0};
+        xcb_configure_window(QX11Info::connection(), winId(), XCB_CONFIG_WINDOW_X | XCB_CONFIG_WINDOW_Y, coordinates);
     }
 #endif
-
-    setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
 }
 
 void ScreenGrabber::layoutBottomHelpText()
@@ -858,24 +857,6 @@ void ScreenGrabber::cancelSelection()
     releaseKeyboard();
     hide();
     emit grabCancelled();
-}
-
-QPoint ScreenGrabber::fromNative(QPoint point, const QScreen *screen)
-{
-    const QPoint origin = screen->geometry().topLeft();
-    const qreal devicePixelRatio = screen->devicePixelRatio();
-
-    return (point - origin) / devicePixelRatio + origin;
-}
-
-QSize ScreenGrabber::fromNative(QSize size, const QScreen *screen)
-{
-    return size / screen->devicePixelRatio();
-}
-
-QRect ScreenGrabber::fromNativePixels(QRect rect, const QScreen *screen)
-{
-    return QRect(fromNative(rect.topLeft(), screen), fromNative(rect.size(), screen));
 }
 
 bool ScreenGrabber::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
