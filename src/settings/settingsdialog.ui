@@ -140,7 +140,7 @@
               <property name="title">
                <string>General</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout">
+              <layout class="QFormLayout" name="formLayout">
                <item row="0" column="0">
                 <widget class="QLabel" name="localeLabel">
                  <property name="sizePolicy">
@@ -154,10 +154,17 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="windowModeLabel">
+               <item row="0" column="1">
+                <widget class="QComboBox" name="localeComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="mainWindowOrientationLabel">
                  <property name="text">
-                  <string>Translation mode:</string>
+                  <string>Main window orientation:</string>
                  </property>
                 </widget>
                </item>
@@ -183,6 +190,13 @@
                  </item>
                 </widget>
                </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="windowModeLabel">
+                 <property name="text">
+                  <string>Translation mode:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="2" column="1">
                 <widget class="QComboBox" name="windowModeComboBox">
                  <property name="toolTip">
@@ -203,6 +217,13 @@
                    <string>Notification</string>
                   </property>
                  </item>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="translationNotificationTimeoutLabel">
+                 <property name="text">
+                  <string>Translation notification timeout:</string>
+                 </property>
                 </widget>
                </item>
                <item row="3" column="1">
@@ -227,41 +248,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="translationNotificationTimeoutLabel">
-                 <property name="text">
-                  <string>Translation notification timeout:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="mainWindowOrientationLabel">
-                 <property name="text">
-                  <string>Main window orientation:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="localeComboBox">
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="2">
-                <spacer name="horizontalSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
-               <item row="5" column="0" colspan="2">
+               <item row="4" column="0" colspan="2">
                 <widget class="QCheckBox" name="showTrayIconCheckBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -271,7 +258,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="6" column="0" colspan="2">
+               <item row="5" column="0" colspan="2">
                 <widget class="QCheckBox" name="startMinimizedCheckBox">
                  <property name="enabled">
                   <bool>false</bool>
@@ -284,7 +271,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="7" column="0" colspan="2">
+               <item row="6" column="0" colspan="2">
                 <widget class="QCheckBox" name="autostartCheckBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -325,33 +312,7 @@
               <property name="title">
                <string>Font</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_3">
-               <item row="1" column="1">
-                <widget class="QSpinBox" name="fontSizeSpinBox">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="suffix">
-                  <string notr="true"> pt</string>
-                 </property>
-                 <property name="minimum">
-                  <number>6</number>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="fontSizeLabel">
-                 <property name="text">
-                  <string>Size:</string>
-                 </property>
-                </widget>
-               </item>
+              <layout class="QFormLayout" name="formLayout_2">
                <item row="0" column="0">
                 <widget class="QLabel" name="fontNameLabel">
                  <property name="text">
@@ -366,18 +327,25 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <spacer name="fontSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
+               <item row="1" column="0">
+                <widget class="QLabel" name="fontSizeLabel">
+                 <property name="text">
+                  <string>Size:</string>
                  </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="fontSizeSpinBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
-                </spacer>
+                 <property name="suffix">
+                  <string notr="true"> pt</string>
+                 </property>
+                 <property name="minimum">
+                  <number>6</number>
+                 </property>
+                </widget>
                </item>
               </layout>
              </widget>
@@ -474,7 +442,7 @@
               <property name="title">
                <string>Language format</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_4">
+              <layout class="QFormLayout" name="formLayout_3">
                <item row="0" column="0">
                 <widget class="QLabel" name="mainWindowLanguageFormatLabel">
                  <property name="text">
@@ -482,8 +450,8 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="popupLanguageFormatComboBox">
+               <item row="0" column="1">
+                <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
@@ -506,8 +474,8 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
+               <item row="1" column="1">
+                <widget class="QComboBox" name="popupLanguageFormatComboBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
@@ -523,19 +491,6 @@
                  </item>
                 </widget>
                </item>
-               <item row="0" column="2">
-                <spacer name="languageFormatSpacer">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
               </layout>
              </widget>
             </item>
@@ -544,34 +499,11 @@
               <property name="title">
                <string>Tray icon</string>
               </property>
-              <layout class="QGridLayout" name="trayIconBox">
+              <layout class="QFormLayout" name="formLayout_4">
                <item row="0" column="0">
                 <widget class="QLabel" name="trayIconLabel">
                  <property name="text">
                   <string>Icon:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="2">
-                <widget class="QToolButton" name="customTrayIconButton">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="text">
-                  <string notr="true"/>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="customTrayIconLabel">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="text">
-                  <string>Custom:</string>
                  </property>
                 </widget>
                </item>
@@ -624,15 +556,42 @@
                  </item>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QLineEdit" name="customTrayIconEdit">
+               <item row="1" column="0">
+                <widget class="QLabel" name="customTrayIconLabel">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <property name="placeholderText">
-                  <string>Path to the icon or icon name from theme</string>
+                 <property name="text">
+                  <string>Custom:</string>
                  </property>
                 </widget>
+               </item>
+               <item row="1" column="1">
+                <layout class="QHBoxLayout" name="trayIconPathLayout">
+                 <item>
+                  <widget class="QLineEdit" name="customTrayIconEdit">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Path to the icon or icon name from theme</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QToolButton" name="customTrayIconButton">
+                   <property name="enabled">
+                    <bool>false</bool>
+                   </property>
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string notr="true"/>
+                   </property>
+                  </widget>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>
@@ -734,18 +693,11 @@
               <property name="title">
                <string>Automatic language detection</string>
               </property>
-              <layout class="QGridLayout" name="languageDetectionLayout" columnstretch="0,0,1">
+              <layout class="QFormLayout" name="formLayout_5">
                <item row="0" column="0">
                 <widget class="QLabel" name="primaryLangLabel">
                  <property name="text">
                   <string>Primary translation language:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="secondaryLangLabel">
-                 <property name="text">
-                  <string>Secondary translation language:</string>
                  </property>
                 </widget>
                </item>
@@ -756,6 +708,13 @@
                  </property>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="secondaryLangLabel">
+                 <property name="text">
+                  <string>Secondary translation language:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="secondaryLangComboBox">
                  <property name="toolTip">
@@ -763,7 +722,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0" colspan="3">
+               <item row="2" column="0" colspan="2">
                 <widget class="QCheckBox" name="forceSourceAutoCheckBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -773,7 +732,7 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="0" colspan="3">
+               <item row="3" column="0" colspan="2">
                 <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -943,30 +902,7 @@
               <property name="title">
                <string>Screen capture</string>
               </property>
-              <layout class="QGridLayout" name="screenCaptureLayout" columnstretch="0,0,1">
-               <item row="2" column="0" colspan="3">
-                <widget class="QCheckBox" name="showMagnifierCheckBox">
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="text">
-                  <string>Show magnifier</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0" colspan="3">
-                <widget class="QCheckBox" name="captureOnReleaseCheckBox">
-                 <property name="enabled">
-                  <bool>true</bool>
-                 </property>
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="text">
-                  <string>Capture on release</string>
-                 </property>
-                </widget>
-               </item>
+              <layout class="QFormLayout" name="formLayout_6">
                <item row="0" column="0">
                 <widget class="QLabel" name="rememverRegionLabel">
                  <property name="sizePolicy">
@@ -977,23 +913,6 @@
                  </property>
                  <property name="text">
                   <string>Remember region:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="4" column="0" colspan="2">
-                <widget class="QCheckBox" name="applyLightMaskCheckBox">
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="text">
-                  <string>Apply light mask</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="captureDelayLabel">
-                 <property name="text">
-                  <string>Capture delay:</string>
                  </property>
                 </widget>
                </item>
@@ -1019,6 +938,13 @@
                  </item>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="captureDelayLabel">
+                 <property name="text">
+                  <string>Capture delay:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QSpinBox" name="captureDelaySpinBox">
                  <property name="toolTip">
@@ -1029,6 +955,39 @@
                  </property>
                  <property name="maximum">
                   <number>10000</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="2">
+                <widget class="QCheckBox" name="showMagnifierCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Show magnifier</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QCheckBox" name="captureOnReleaseCheckBox">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Capture on release</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="applyLightMaskCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Apply light mask</string>
                  </property>
                 </widget>
                </item>
@@ -1063,62 +1022,11 @@
               <property name="title">
                <string>Speech synthesis</string>
               </property>
-              <layout class="QGridLayout" name="speechBoxLayout">
-               <item row="2" column="0">
-                <widget class="QLabel" name="emotionLabel">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="text">
-                  <string>Emotional connotation:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="2">
-                <widget class="SpeakButtons" name="playerButtons" native="true"/>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="voiceLabel">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="text">
-                  <string>Voice:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="1">
-                <widget class="QComboBox" name="emotionComboBox">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string>Default</string>
-                  </property>
-                 </item>
-                </widget>
-               </item>
+              <layout class="QFormLayout" name="formLayout_7">
                <item row="0" column="0">
                 <widget class="QLabel" name="engineLabel">
                  <property name="text">
                   <string>Engine:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="testSpeechLabel">
-                 <property name="text">
-                  <string>Speech test:</string>
                  </property>
                 </widget>
                </item>
@@ -1162,6 +1070,16 @@
                  </item>
                 </widget>
                </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="voiceLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Voice:</string>
+                 </property>
+                </widget>
+               </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="voiceComboBox">
                  <property name="enabled">
@@ -1183,18 +1101,63 @@
                  </item>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QLineEdit" name="testSpeechEdit">
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               <item row="2" column="0">
+                <widget class="QLabel" name="emotionLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
                  </property>
                  <property name="text">
-                  <string>This is an example of speech synthesis.</string>
-                 </property>
-                 <property name="placeholderText">
-                  <string>Test voice</string>
+                  <string>Emotional connotation:</string>
                  </property>
                 </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="emotionComboBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Default</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="testSpeechLabel">
+                 <property name="text">
+                  <string>Speech test:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <layout class="QHBoxLayout" name="testSpeechLayout">
+                 <item>
+                  <widget class="QLineEdit" name="testSpeechEdit">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>This is an example of speech synthesis.</string>
+                   </property>
+                   <property name="placeholderText">
+                    <string>Test voice</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="SpeakButtons" name="playerButtons" native="true"/>
+                 </item>
+                </layout>
                </item>
               </layout>
              </widget>
@@ -1227,7 +1190,7 @@
               <property name="title">
                <string>Proxy server</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_2">
+              <layout class="QFormLayout" name="formLayout_8">
                <item row="0" column="0">
                 <widget class="QLabel" name="proxyTypeLabel">
                  <property name="text">
@@ -1559,38 +1522,7 @@
               <property name="title">
                <string notr="true">Crow Translate</string>
               </property>
-              <layout class="QGridLayout" name="aboutBoxLayout">
-               <item row="7" column="0">
-                <widget class="QLabel" name="mailTitleLabel">
-                 <property name="text">
-                  <string notr="true">E-mail:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="5" column="0">
-                <widget class="QLabel" name="autorTitleLabel">
-                 <property name="text">
-                  <string>Autor:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="9" column="0">
-                <widget class="QLabel" name="flagIconsTitleLabel">
-                 <property name="text">
-                  <string>Flag icons:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QLabel" name="versionLabel"/>
-               </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="licenseTitleLabel">
-                 <property name="text">
-                  <string>License:</string>
-                 </property>
-                </widget>
-               </item>
+              <layout class="QFormLayout" name="formLayout_9">
                <item row="0" column="0">
                 <widget class="QLabel" name="versionTitleLabel">
                  <property name="text">
@@ -1598,7 +1530,31 @@
                  </property>
                 </widget>
                </item>
-               <item row="5" column="1">
+               <item row="0" column="1">
+                <widget class="QLabel" name="versionLabel"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="licenseTitleLabel">
+                 <property name="text">
+                  <string>License:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLabel" name="licenseLabel">
+                 <property name="text">
+                  <string notr="true">GPL v3 </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="autorTitleLabel">
+                 <property name="text">
+                  <string>Autor:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
                 <widget class="QLabel" name="autorLabel">
                  <property name="text">
                   <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -1611,10 +1567,17 @@
                  </property>
                 </widget>
                </item>
-               <item row="9" column="1">
-                <widget class="QLabel" name="flagIconsLabel">
+               <item row="3" column="0">
+                <widget class="QLabel" name="mailTitleLabel">
                  <property name="text">
-                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/HatScripts/circle-flags&quot;&gt;circle-flags&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string notr="true">E-mail:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="mailLabel">
+                 <property name="text">
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="openExternalLinks">
                   <bool>true</bool>
@@ -1624,17 +1587,17 @@
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <widget class="QLabel" name="licenseLabel">
+               <item row="4" column="0">
+                <widget class="QLabel" name="flagIconsTitleLabel">
                  <property name="text">
-                  <string notr="true">GPL v3 </string>
+                  <string>Flag icons:</string>
                  </property>
                 </widget>
                </item>
-               <item row="7" column="1">
-                <widget class="QLabel" name="mailLabel">
+               <item row="4" column="1">
+                <widget class="QLabel" name="flagIconsLabel">
                  <property name="text">
-                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/HatScripts/circle-flags&quot;&gt;circle-flags&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="openExternalLinks">
                   <bool>true</bool>
