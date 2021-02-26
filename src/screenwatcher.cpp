@@ -35,6 +35,17 @@ ScreenWatcher::ScreenWatcher(QWidget *parent)
     connect(qobject_cast<QGuiApplication *>(QCoreApplication::instance()), &QGuiApplication::screenAdded, this, &ScreenWatcher::listenForOrientationChange);
 }
 
+bool ScreenWatcher::isWidthFitScreen(QWidget *widget)
+{
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    return widget->frameGeometry().width() <= widget->screen()->availableGeometry().width();
+#else
+    if (!widget->windowHandle())
+        widget->winId(); // Call to create handle
+    return widget->frameGeometry().width() <= widget->windowHandle()->screen()->availableGeometry().width();
+#endif
+}
+
 void ScreenWatcher::listenForOrientationChange(QScreen *screen)
 {
     connect(screen, &QScreen::orientationChanged, [this, screen] (Qt::ScreenOrientation orientation) {

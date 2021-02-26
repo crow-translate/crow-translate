@@ -22,15 +22,13 @@
 #include "ui_languagebuttonswidget.h"
 
 #include "addlanguagedialog.h"
+#include "screenwatcher.h"
 
 #include <QButtonGroup>
 #include <QTimer>
 #include <QToolButton>
 #include <QScreen>
 #include <QMessageBox>
-#if QT_VERSION < QT_VERSION_CHECK(5, 14, 0)
-#include <QWindow>
-#endif
 
 using namespace std::chrono_literals;
 
@@ -445,13 +443,13 @@ void LanguageButtonsWidget::savePreviousToggledButton(int id, bool checked)
 void LanguageButtonsWidget::checkAvailableScreenWidth()
 {
     // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
-    if (isWindowWidthFitScreen())
+    if (ScreenWatcher::isWidthFitScreen(window()))
         return;
 
     // Try resize first
     window()->resize(window()->minimumWidth(), window()->height());
 
-    if (isWindowWidthFitScreen())
+    if (ScreenWatcher::isWidthFitScreen(window()))
         return;
 
     QMessageBox message;
@@ -542,17 +540,6 @@ void LanguageButtonsWidget::setButtonLanguage(QAbstractButton *button, QOnlineTr
     }
 
     button->setToolTip(QOnlineTranslator::languageName(lang));
-}
-
-bool LanguageButtonsWidget::isWindowWidthFitScreen()
-{
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-    return window()->frameGeometry().width() <= screen()->availableGeometry().width();
-#else
-    if (!window()->windowHandle())
-        return true;
-    return window()->frameGeometry().width() <= window()->windowHandle()->screen()->availableGeometry().width();
-#endif
 }
 
 QString LanguageButtonsWidget::languageString(QOnlineTranslator::Language lang)

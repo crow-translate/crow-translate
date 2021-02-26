@@ -33,6 +33,8 @@ class ScreenWatcher : public QObject
 public:
     explicit ScreenWatcher(QWidget *parent);
 
+    static bool isWidthFitScreen(QWidget *widget);
+
 signals:
     void screenOrientationChanged(Qt::ScreenOrientation orientation);
 

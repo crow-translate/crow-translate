@@ -87,7 +87,6 @@ private:
     void addButton(QOnlineTranslator::Language lang);
     void setButtonLanguage(QAbstractButton *button, QOnlineTranslator::Language lang);
 
-    bool isWindowWidthFitScreen();
     QString languageString(QOnlineTranslator::Language lang);
 
     static constexpr int s_autoButtonId = -2; // -1 is reserved by QButtonGroup
