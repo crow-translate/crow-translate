@@ -127,7 +127,7 @@
          <x>0</x>
          <y>0</y>
          <width>483</width>
-         <height>584</height>
+         <height>604</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -163,6 +163,9 @@
                </item>
                <item row="1" column="1">
                 <widget class="QComboBox" name="mainWindowOrientationComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Orientation of the main window layout&lt;br/&gt;When using &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt;, the window orientation will match the screen orientation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <item>
                   <property name="text">
                    <string extracomment="Orientation">Auto</string>
