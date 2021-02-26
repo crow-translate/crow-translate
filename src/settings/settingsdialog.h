@@ -56,6 +56,8 @@ public slots:
     void accept() override;
 
 private slots:
+    void setCurrentPage(int index);
+
     void onProxyTypeChanged(int type);
     void onWindowModeChanged(int mode);
 
@@ -87,6 +89,7 @@ private slots:
     void restoreDefaults();
 
 private:
+    void activateProtableMode();
     void loadSettings();
     void setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices);
     void setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions);

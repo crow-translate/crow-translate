@@ -22,10 +22,11 @@
 #include "ui_settingsdialog.h"
 
 #include "appsettings.h"
-#include "trayicon.h"
 #include "languagebuttonswidget.h"
 #include "mainwindow.h"
 #include "qhotkey.h"
+#include "screenwatcher.h"
+#include "trayicon.h"
 #include "ocr/ocr.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
@@ -50,6 +51,14 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 #endif
 {
     ui->setupUi(this);
+    if (!ScreenWatcher::isWidthFitScreen(this)) {
+        // Try resize first
+        window()->resize(window()->minimumWidth(), window()->height());
+
+        if (!ScreenWatcher::isWidthFitScreen(this))
+            activateProtableMode();
+    }
+
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
     ui->logoLabel->setPixmap(QIcon::fromTheme(QStringLiteral("crow-translate")).pixmap(512, 512));
@@ -256,6 +265,15 @@ void SettingsDialog::accept()
     if (QHotkey::isPlatformSupported())
         settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
+}
+
+void SettingsDialog::setCurrentPage(int index)
+{
+    // Ignore size police for hidden pages to show scrollbar only for visible page
+    // https://wiki.qt.io/Technical_FAQ#How_can_I_get_a_QStackedWidget_to_automatically_switch_size_depending_on_the_content_of_the_page.3F
+    ui->pagesStackedWidget->currentWidget()->setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
+    ui->pagesStackedWidget->setCurrentIndex(index);
+    ui->pagesStackedWidget->currentWidget()->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
 }
 
 void SettingsDialog::onProxyTypeChanged(int type)
@@ -567,6 +585,24 @@ void SettingsDialog::restoreDefaults()
     if (QHotkey::isPlatformSupported())
         ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
     resetAllShortcuts();
+}
+
+void SettingsDialog::activateProtableMode()
+{
+    ui->pagesListWidget->setMaximumWidth(QWIDGETSIZE_MAX);
+    ui->scrollArea->hide();
+
+    auto *backButton = new QPushButton(QIcon::fromTheme("arrow-left"), tr("Back"));
+    backButton->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
+    ui->settingsDialogLayout->insertWidget(0, backButton);
+    backButton->hide();
+
+    connect(backButton, &QPushButton::clicked, backButton, &QPushButton::hide);
+    connect(backButton, &QPushButton::clicked, ui->scrollArea, &QScrollArea::hide);
+    connect(backButton, &QPushButton::clicked, ui->pagesListWidget, &QListWidget::show);
+    connect(ui->pagesListWidget, &QListWidget::itemActivated, ui->pagesListWidget, &QListWidget::hide);
+    connect(ui->pagesListWidget, &QListWidget::itemActivated, backButton, &QPushButton::show);
+    connect(ui->pagesListWidget, &QListWidget::itemActivated, ui->scrollArea, &QScrollArea::show);
 }
 
 void SettingsDialog::loadSettings()

@@ -7,21 +7,15 @@
     <x>0</x>
     <y>0</y>
     <width>700</width>
-    <height>640</height>
+    <height>660</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Settings</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="settingsDialogLayout">
    <item>
     <widget class="QSplitter" name="splitter">
-     <property name="sizePolicy">
-      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -48,7 +42,7 @@
        <enum>QListView::Adjust</enum>
       </property>
       <property name="currentRow">
-       <number>-1</number>
+       <number>0</number>
       </property>
       <item>
        <property name="text">
@@ -123,1501 +117,1562 @@
        </property>
       </item>
      </widget>
-     <widget class="QStackedWidget" name="pagesStackedWidget">
-      <widget class="QWidget" name="generalPage">
-       <layout class="QVBoxLayout" name="generalLayout">
+     <widget class="QScrollArea" name="scrollArea">
+      <property name="widgetResizable">
+       <bool>true</bool>
+      </property>
+      <widget class="QWidget" name="scrollAreaWidgetContents">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>483</width>
+         <height>584</height>
+        </rect>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
-         <widget class="QGroupBox" name="generalGroupBox">
-          <property name="title">
-           <string>General</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout">
-           <item row="0" column="0">
-            <widget class="QLabel" name="localeLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Language:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="windowModeLabel">
-             <property name="text">
-              <string>Translation mode:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="mainWindowOrientationComboBox">
-             <item>
-              <property name="text">
-               <string extracomment="Orientation">Auto</string>
+         <widget class="QStackedWidget" name="pagesStackedWidget">
+          <widget class="QWidget" name="generalPage">
+           <layout class="QVBoxLayout" name="generalLayout">
+            <item>
+             <widget class="QGroupBox" name="generalGroupBox">
+              <property name="title">
+               <string>General</string>
               </property>
-             </item>
-             <item>
-              <property name="text">
-               <string extracomment="Orientation">Portrait</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string extracomment="Orientation">Landscape</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="windowModeComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Pop-up window</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Main window</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Notification</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string> sec</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>60</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="translationNotificationTimeoutLabel">
-             <property name="text">
-              <string>Translation notification timeout:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="mainWindowOrientationLabel">
-             <property name="text">
-              <string>Main window orientation:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="localeComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="horizontalSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-           <item row="5" column="0" colspan="2">
-            <widget class="QCheckBox" name="showTrayIconCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Show tray icon</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0" colspan="2">
-            <widget class="QCheckBox" name="startMinimizedCheckBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Start minimized</string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QCheckBox" name="autostartCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Launch at startup</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="generalPageSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>138</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="interfacePage">
-       <layout class="QVBoxLayout" name="interfaceLayout">
-        <item>
-         <widget class="QGroupBox" name="fontGroupBox">
-          <property name="title">
-           <string>Font</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_3">
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="fontSizeSpinBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string notr="true"> pt</string>
-             </property>
-             <property name="minimum">
-              <number>6</number>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="fontSizeLabel">
-             <property name="text">
-              <string>Size:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="fontNameLabel">
-             <property name="text">
-              <string>Name:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QFontComboBox" name="fontNameComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="fontSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="popupInterfaceGroupBox">
-          <property name="title">
-           <string>Pop-up window</string>
-          </property>
-          <layout class="QGridLayout" name="popupBoxLayout">
-           <item row="1" column="0">
-            <widget class="QLabel" name="popupHeightLabel">
-             <property name="text">
-              <string>Height:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QSpinBox" name="popupHeightSpinBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string notr="true"> px</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QSpinBox" name="popupOpacitySpinBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string notr="true">%</string>
-             </property>
-             <property name="maximum">
-              <number>100</number>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="popupWidthLabel">
-             <property name="text">
-              <string>Width:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSlider" name="popupWidthSlider">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QSlider" name="popupOpacitySlider">
-             <property name="maximum">
-              <number>100</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="2">
-            <widget class="QSpinBox" name="popupWidthSpinBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="suffix">
-              <string notr="true"> px</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="popupOpacityLabel">
-             <property name="text">
-              <string>Opacity:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSlider" name="popupHeightSlider">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="languageFormatGroupBox">
-          <property name="title">
-           <string>Language format</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_4">
-           <item row="0" column="0">
-            <widget class="QLabel" name="mainWindowLanguageFormatLabel">
-             <property name="text">
-              <string>Main window:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="popupLanguageFormatComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Full name</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO 639-1 code</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="popupLanguageFormatLabel">
-             <property name="text">
-              <string>Pop-up:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Full name</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>ISO 639-1 code</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <spacer name="languageFormatSpacer">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="trayIconGroupBox">
-          <property name="title">
-           <string>Tray icon</string>
-          </property>
-          <layout class="QGridLayout" name="trayIconBox">
-           <item row="0" column="0">
-            <widget class="QLabel" name="trayIconLabel">
-             <property name="text">
-              <string>Icon:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="2">
-            <widget class="QToolButton" name="customTrayIconButton">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string notr="true"/>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="customTrayIconLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Custom:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="trayIconComboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Default</string>
-              </property>
-              <property name="icon">
-               <iconset theme="crow-translate-tray">
-                <normaloff>.</normaloff>.</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Monochrome (dark theme)</string>
-              </property>
-              <property name="icon">
-               <iconset theme="crow-translate-tray-light">
-                <normaloff>.</normaloff>.</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Monochrome (light theme)</string>
-              </property>
-              <property name="icon">
-               <iconset theme="crow-translate-tray-dark">
-                <normaloff>.</normaloff>.</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Custom</string>
-              </property>
-              <property name="icon">
-               <iconset theme="folder">
-                <normaloff>.</normaloff>.</iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="customTrayIconEdit">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="placeholderText">
-              <string>Path to the icon or icon name from theme</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="interfacePageSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>299</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="translationPage">
-       <layout class="QVBoxLayout" name="translationLayout">
-        <item>
-         <widget class="QGroupBox" name="translationGroupBox">
-          <property name="title">
-           <string>Translation</string>
-          </property>
-          <layout class="QVBoxLayout" name="translationBoxLayout">
-           <item>
-            <widget class="QCheckBox" name="sourceTranslitCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Enable source transliteration</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="translationTranslitCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Enable translation transliteration</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Enable source transcription</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="translationOptionsCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Enable translation options</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="examplesCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Enable examples</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QCheckBox" name="sourceSimplificationCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters '\t', '\n', '\v', '\f', '\r', and ' ') with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Simplify source</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="langDetectionGroupBox">
-          <property name="title">
-           <string>Automatic language detection</string>
-          </property>
-          <layout class="QGridLayout" name="languageDetectionLayout" columnstretch="0,0,1">
-           <item row="0" column="0">
-            <widget class="QLabel" name="primaryLangLabel">
-             <property name="text">
-              <string>Primary translation language:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="secondaryLangLabel">
-             <property name="text">
-              <string>Secondary translation language:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="primaryLangComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="secondaryLangComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0" colspan="3">
-            <widget class="QCheckBox" name="forceSourceAutoCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Force source language detection outside the window</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="3">
-            <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Force translation language detection outside the window</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="translationPageSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>182</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="ocrPage">
-       <layout class="QVBoxLayout" name="ocrLayout">
-        <item>
-         <widget class="QGroupBox" name="languagesGroupBox">
-          <property name="title">
-           <string>Languages</string>
-          </property>
-          <layout class="QGridLayout" name="ocrLanguagesLayout">
-           <item row="1" column="0" colspan="3">
-            <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="ocrLanguagesPathLabel">
-             <property name="text">
-              <string>Languages path:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="2">
-            <widget class="QToolButton" name="ocrLanguagesPathButton">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="icon">
-              <iconset theme="folder">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="downloadMoreLabel">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLineEdit" name="ocrLanguagesPathEdit">
-             <property name="placeholderText">
-              <string>Directory with trained models</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="ocrParametersGroupBox">
-          <property name="title">
-           <string notr="true">OCR</string>
-          </property>
-          <layout class="QVBoxLayout" name="ocrParametersLayout">
-           <item>
-            <widget class="QCheckBox" name="convertLineBreaksCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Convert line breaks</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <layout class="QHBoxLayout" name="tesseractParametersTableHorizontalLayout">
-             <item>
-              <layout class="QVBoxLayout" name="tesseractParametersButtonsVerticalLayout">
-               <item>
-                <spacer name="tesseractParametersButtonsVerticalSpacer1">
+              <layout class="QGridLayout" name="gridLayout">
+               <item row="0" column="0">
+                <widget class="QLabel" name="localeLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Language:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="windowModeLabel">
+                 <property name="text">
+                  <string>Translation mode:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="mainWindowOrientationComboBox">
+                 <item>
+                  <property name="text">
+                   <string extracomment="Orientation">Auto</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string extracomment="Orientation">Portrait</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string extracomment="Orientation">Landscape</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="windowModeComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Pop-up window</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Main window</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Notification</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="translationNotificationTimeoutSpinBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string> sec</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>60</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="translationNotificationTimeoutLabel">
+                 <property name="text">
+                  <string>Translation notification timeout:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="mainWindowOrientationLabel">
+                 <property name="text">
+                  <string>Main window orientation:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="localeComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <spacer name="horizontalSpacer">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
-                   <width>0</width>
-                   <height>0</height>
+                   <width>40</width>
+                   <height>20</height>
                   </size>
                  </property>
                 </spacer>
                </item>
-               <item>
-                <widget class="QToolButton" name="tesseractParametersAddButton">
-                 <property name="icon">
-                  <iconset theme="list-add">
-                   <normaloff>.</normaloff>.</iconset>
+               <item row="5" column="0" colspan="2">
+                <widget class="QCheckBox" name="showTrayIconCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Show tray icon</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <widget class="QToolButton" name="tesseractParametersRemoveButton">
+               <item row="6" column="0" colspan="2">
+                <widget class="QCheckBox" name="startMinimizedCheckBox">
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
-                 <property name="icon">
-                  <iconset theme="list-remove">
-                   <normaloff>.</normaloff>.</iconset>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Start minimized</string>
                  </property>
                 </widget>
                </item>
-               <item>
-                <spacer name="tesseractParametersButtonsVerticalSpacer2">
+               <item row="7" column="0" colspan="2">
+                <widget class="QCheckBox" name="autostartCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Launch at startup</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="generalPageSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>138</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="interfacePage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="interfaceLayout">
+            <item>
+             <widget class="QGroupBox" name="fontGroupBox">
+              <property name="title">
+               <string>Font</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_3">
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="fontSizeSpinBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string notr="true"> pt</string>
+                 </property>
+                 <property name="minimum">
+                  <number>6</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="fontSizeLabel">
+                 <property name="text">
+                  <string>Size:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="fontNameLabel">
+                 <property name="text">
+                  <string>Name:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QFontComboBox" name="fontNameComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <spacer name="fontSpacer">
                  <property name="orientation">
-                  <enum>Qt::Vertical</enum>
+                  <enum>Qt::Horizontal</enum>
                  </property>
                  <property name="sizeHint" stdset="0">
                   <size>
-                   <width>0</width>
-                   <height>0</height>
+                   <width>40</width>
+                   <height>20</height>
                   </size>
                  </property>
                 </spacer>
                </item>
               </layout>
-             </item>
-             <item>
-              <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget"/>
-             </item>
-            </layout>
-           </item>
-          </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="popupInterfaceGroupBox">
+              <property name="title">
+               <string>Pop-up window</string>
+              </property>
+              <layout class="QGridLayout" name="popupBoxLayout">
+               <item row="1" column="0">
+                <widget class="QLabel" name="popupHeightLabel">
+                 <property name="text">
+                  <string>Height:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QSpinBox" name="popupHeightSpinBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string notr="true"> px</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QSpinBox" name="popupOpacitySpinBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string notr="true">%</string>
+                 </property>
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="popupWidthLabel">
+                 <property name="text">
+                  <string>Width:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSlider" name="popupWidthSlider">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSlider" name="popupOpacitySlider">
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QSpinBox" name="popupWidthSpinBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string notr="true"> px</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="popupOpacityLabel">
+                 <property name="text">
+                  <string>Opacity:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSlider" name="popupHeightSlider">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="languageFormatGroupBox">
+              <property name="title">
+               <string>Language format</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_4">
+               <item row="0" column="0">
+                <widget class="QLabel" name="mainWindowLanguageFormatLabel">
+                 <property name="text">
+                  <string>Main window:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="popupLanguageFormatComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Full name</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>ISO 639-1 code</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="popupLanguageFormatLabel">
+                 <property name="text">
+                  <string>Pop-up:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="mainWindowLanguageFormatComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Full name</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>ISO 639-1 code</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <spacer name="languageFormatSpacer">
+                 <property name="orientation">
+                  <enum>Qt::Horizontal</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>40</width>
+                   <height>20</height>
+                  </size>
+                 </property>
+                </spacer>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="trayIconGroupBox">
+              <property name="title">
+               <string>Tray icon</string>
+              </property>
+              <layout class="QGridLayout" name="trayIconBox">
+               <item row="0" column="0">
+                <widget class="QLabel" name="trayIconLabel">
+                 <property name="text">
+                  <string>Icon:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="2">
+                <widget class="QToolButton" name="customTrayIconButton">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string notr="true"/>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="customTrayIconLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Custom:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="trayIconComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Default</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="crow-translate-tray">
+                    <normaloff>.</normaloff>.</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Monochrome (dark theme)</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="crow-translate-tray-light">
+                    <normaloff>.</normaloff>.</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Monochrome (light theme)</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="crow-translate-tray-dark">
+                    <normaloff>.</normaloff>.</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Custom</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="folder">
+                    <normaloff>.</normaloff>.</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="customTrayIconEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Path to the icon or icon name from theme</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="interfacePageSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>299</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="translationPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="translationLayout">
+            <item>
+             <widget class="QGroupBox" name="translationGroupBox">
+              <property name="title">
+               <string>Translation</string>
+              </property>
+              <layout class="QVBoxLayout" name="translationBoxLayout">
+               <item>
+                <widget class="QCheckBox" name="sourceTranslitCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enable source transliteration</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="translationTranslitCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enable translation transliteration</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="sourceTranscriptionCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enable source transcription</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="translationOptionsCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enable translation options</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="examplesCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Enable examples</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QCheckBox" name="sourceSimplificationCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters '\t', '\n', '\v', '\f', '\r', and ' ') with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Simplify source</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="langDetectionGroupBox">
+              <property name="title">
+               <string>Automatic language detection</string>
+              </property>
+              <layout class="QGridLayout" name="languageDetectionLayout" columnstretch="0,0,1">
+               <item row="0" column="0">
+                <widget class="QLabel" name="primaryLangLabel">
+                 <property name="text">
+                  <string>Primary translation language:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="secondaryLangLabel">
+                 <property name="text">
+                  <string>Secondary translation language:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="primaryLangComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="secondaryLangComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0" colspan="3">
+                <widget class="QCheckBox" name="forceSourceAutoCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Force source language detection outside the window</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="3">
+                <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Force translation language detection outside the window</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="translationPageSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>182</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="ocrPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="ocrLayout">
+            <item>
+             <widget class="QGroupBox" name="languagesGroupBox">
+              <property name="title">
+               <string>Languages</string>
+              </property>
+              <layout class="QGridLayout" name="ocrLanguagesLayout">
+               <item row="1" column="0" colspan="3">
+                <widget class="OcrLanguagesListWidget" name="ocrLanguagesListWidget">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="ocrLanguagesPathLabel">
+                 <property name="text">
+                  <string>Languages path:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QToolButton" name="ocrLanguagesPathButton">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="folder">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="downloadMoreLabel">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="openExternalLinks">
+                  <bool>true</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLineEdit" name="ocrLanguagesPathEdit">
+                 <property name="placeholderText">
+                  <string>Directory with trained models</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="ocrParametersGroupBox">
+              <property name="title">
+               <string notr="true">OCR</string>
+              </property>
+              <layout class="QVBoxLayout" name="ocrParametersLayout">
+               <item>
+                <widget class="QCheckBox" name="convertLineBreaksCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Convert line breaks</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="tesseractParametersTableHorizontalLayout">
+                 <item>
+                  <layout class="QVBoxLayout" name="tesseractParametersButtonsVerticalLayout">
+                   <item>
+                    <spacer name="tesseractParametersButtonsVerticalSpacer1">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="tesseractParametersAddButton">
+                     <property name="icon">
+                      <iconset theme="list-add">
+                       <normaloff>.</normaloff>.</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QToolButton" name="tesseractParametersRemoveButton">
+                     <property name="enabled">
+                      <bool>false</bool>
+                     </property>
+                     <property name="icon">
+                      <iconset theme="list-remove">
+                       <normaloff>.</normaloff>.</iconset>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <spacer name="tesseractParametersButtonsVerticalSpacer2">
+                     <property name="orientation">
+                      <enum>Qt::Vertical</enum>
+                     </property>
+                     <property name="sizeHint" stdset="0">
+                      <size>
+                       <width>0</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                    </spacer>
+                   </item>
+                  </layout>
+                 </item>
+                 <item>
+                  <widget class="TesseractParametersTableWidget" name="tesseractParametersTableWidget"/>
+                 </item>
+                </layout>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="screenCaptureGroupBox">
+              <property name="title">
+               <string>Screen capture</string>
+              </property>
+              <layout class="QGridLayout" name="screenCaptureLayout" columnstretch="0,0,1">
+               <item row="2" column="0" colspan="3">
+                <widget class="QCheckBox" name="showMagnifierCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Show magnifier</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="3">
+                <widget class="QCheckBox" name="captureOnReleaseCheckBox">
+                 <property name="enabled">
+                  <bool>true</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Capture on release</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="rememverRegionLabel">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="text">
+                  <string>Remember region:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="applyLightMaskCheckBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Apply light mask</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="captureDelayLabel">
+                 <property name="text">
+                  <string>Capture delay:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="rememberRegionComboBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Never</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Remember last</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Remember always</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QSpinBox" name="captureDelaySpinBox">
+                 <property name="toolTip">
+                  <string>Delay before screen capture</string>
+                 </property>
+                 <property name="suffix">
+                  <string> ms</string>
+                 </property>
+                 <property name="maximum">
+                  <number>10000</number>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="ocrSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="speechPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="speechLayout">
+            <item>
+             <widget class="QGroupBox" name="speechGroupBox">
+              <property name="title">
+               <string>Speech synthesis</string>
+              </property>
+              <layout class="QGridLayout" name="speechBoxLayout">
+               <item row="2" column="0">
+                <widget class="QLabel" name="emotionLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Emotional connotation:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="2">
+                <widget class="SpeakButtons" name="playerButtons" native="true"/>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="voiceLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Voice:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QComboBox" name="emotionComboBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Default</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="engineLabel">
+                 <property name="text">
+                  <string>Engine:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="testSpeechLabel">
+                 <property name="text">
+                  <string>Speech test:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="engineComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string notr="true">Google</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../../data/icons/engines/engines.qrc">
+                    <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">Yandex</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../../data/icons/engines/engines.qrc">
+                    <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">Bing</string>
+                  </property>
+                  <property name="icon">
+                   <iconset resource="../../data/icons/engines/engines.qrc">
+                    <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="voiceComboBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Default</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLineEdit" name="testSpeechEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>This is an example of speech synthesis.</string>
+                 </property>
+                 <property name="placeholderText">
+                  <string>Test voice</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="speechPageSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="connectionPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="connectionLayout">
+            <item>
+             <widget class="QGroupBox" name="proxyGroupBox">
+              <property name="title">
+               <string>Proxy server</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="0" column="0">
+                <widget class="QLabel" name="proxyTypeLabel">
+                 <property name="text">
+                  <string>Type:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="proxyTypeComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>Use system settings</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">SOCKS5</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Don't use a proxy</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">HTTP</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="proxyHostLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Host:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QLineEdit" name="proxyHostEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="proxyPortLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Port:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QSpinBox" name="proxyPortSpinbox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="minimum">
+                  <number>1</number>
+                 </property>
+                 <property name="maximum">
+                  <number>65535</number>
+                 </property>
+                 <property name="value">
+                  <number>8080</number>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="0" colspan="2">
+                <widget class="QLabel" name="proxyInfoLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Info: the proxy works only for text translation</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="4" column="0" colspan="2">
+                <widget class="QCheckBox" name="proxyAuthCheckBox">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Authentication</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="proxyUsernameLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Username:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLineEdit" name="proxyUsernameEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="0">
+                <widget class="QLabel" name="proxyPasswordLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Password:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="6" column="1">
+                <widget class="QLineEdit" name="proxyPasswordEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="echoMode">
+                  <enum>QLineEdit::Password</enum>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="0" colspan="2">
+                <widget class="QLabel" name="proxyPasswordInfoLabel">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="text">
+                  <string>Info: the password is saved unencrypted</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <spacer name="proxyPageSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="shortcutsPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QVBoxLayout" name="shortcutsLayout">
+            <item>
+             <widget class="ShortcutsView" name="shortcutsTreeView"/>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="globalShortcutsCheckBox">
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>Enable global shortcucts</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="resetAllShortcutsButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip">
+               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+              </property>
+              <property name="text">
+               <string>Reset all</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="shortcutGroupBox">
+              <property name="enabled">
+               <bool>false</bool>
+              </property>
+              <property name="title">
+               <string>Shortcut</string>
+              </property>
+              <layout class="QHBoxLayout" name="shortcutBoxLayout">
+               <item>
+                <widget class="QLabel" name="shortcutLabel">
+                 <property name="text">
+                  <string>Key sequence:</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QKeySequenceEdit" name="shortcutSequenceEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="acceptShortcutButton">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Accept</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="dialog-ok-apply">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="clearShortcutButton">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Clear</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="edit-clear-all">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <widget class="QToolButton" name="resetShortcutButton">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string>Reset</string>
+                 </property>
+                 <property name="icon">
+                  <iconset theme="view-refresh">
+                   <normaloff>.</normaloff>.</iconset>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="aboutPage">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Ignored" vsizetype="Ignored">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <layout class="QGridLayout" name="aboutLayout">
+            <item row="0" column="0">
+             <widget class="QLabel" name="logoLabel">
+              <property name="maximumSize">
+               <size>
+                <width>200</width>
+                <height>200</height>
+               </size>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
+              </property>
+              <property name="margin">
+               <number>20</number>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1" alignment="Qt::AlignVCenter">
+             <widget class="QGroupBox" name="aboutGroupBox">
+              <property name="title">
+               <string notr="true">Crow Translate</string>
+              </property>
+              <layout class="QGridLayout" name="aboutBoxLayout">
+               <item row="7" column="0">
+                <widget class="QLabel" name="mailTitleLabel">
+                 <property name="text">
+                  <string notr="true">E-mail:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="0">
+                <widget class="QLabel" name="autorTitleLabel">
+                 <property name="text">
+                  <string>Autor:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="0">
+                <widget class="QLabel" name="flagIconsTitleLabel">
+                 <property name="text">
+                  <string>Flag icons:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QLabel" name="versionLabel"/>
+               </item>
+               <item row="3" column="0">
+                <widget class="QLabel" name="licenseTitleLabel">
+                 <property name="text">
+                  <string>License:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="versionTitleLabel">
+                 <property name="text">
+                  <string>Version:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="5" column="1">
+                <widget class="QLabel" name="autorLabel">
+                 <property name="text">
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="openExternalLinks">
+                  <bool>true</bool>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="9" column="1">
+                <widget class="QLabel" name="flagIconsLabel">
+                 <property name="text">
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/HatScripts/circle-flags&quot;&gt;circle-flags&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="openExternalLinks">
+                  <bool>true</bool>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QLabel" name="licenseLabel">
+                 <property name="text">
+                  <string notr="true">GPL v3 </string>
+                 </property>
+                </widget>
+               </item>
+               <item row="7" column="1">
+                <widget class="QLabel" name="mailLabel">
+                 <property name="text">
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="openExternalLinks">
+                  <bool>true</bool>
+                 </property>
+                 <property name="textInteractionFlags">
+                  <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <spacer name="aboutPageVerticalSpacer">
+              <property name="orientation">
+               <enum>Qt::Vertical</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>20</width>
+                <height>40</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item row="0" column="2">
+             <spacer name="aboutPageHorizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </widget>
          </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="screenCaptureGroupBox">
-          <property name="title">
-           <string>Screen capture</string>
-          </property>
-          <layout class="QGridLayout" name="screenCaptureLayout" columnstretch="0,0,1">
-           <item row="2" column="0" colspan="3">
-            <widget class="QCheckBox" name="showMagnifierCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Show magnifier</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="3">
-            <widget class="QCheckBox" name="captureOnReleaseCheckBox">
-             <property name="enabled">
-              <bool>true</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Capture on release</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="rememverRegionLabel">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Minimum" vsizetype="Minimum">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="text">
-              <string>Remember region:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
-            <widget class="QCheckBox" name="applyLightMaskCheckBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Apply light mask</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="captureDelayLabel">
-             <property name="text">
-              <string>Capture delay:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="rememberRegionComboBox">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Never</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Remember last</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Remember always</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QSpinBox" name="captureDelaySpinBox">
-             <property name="toolTip">
-              <string>Delay before screen capture</string>
-             </property>
-             <property name="suffix">
-              <string> ms</string>
-             </property>
-             <property name="maximum">
-              <number>10000</number>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="ocrSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="speechPage">
-       <layout class="QVBoxLayout" name="speechLayout">
-        <item>
-         <widget class="QGroupBox" name="speechGroupBox">
-          <property name="title">
-           <string>Speech synthesis</string>
-          </property>
-          <layout class="QGridLayout" name="speechBoxLayout">
-           <item row="2" column="0">
-            <widget class="QLabel" name="emotionLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Emotional connotation:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="2">
-            <widget class="SpeakButtons" name="playerButtons" native="true"/>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="voiceLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Voice:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QComboBox" name="emotionComboBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Default</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="engineLabel">
-             <property name="text">
-              <string>Engine:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="testSpeechLabel">
-             <property name="text">
-              <string>Speech test:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="engineComboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string notr="true">Google</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../data/icons/engines/engines.qrc">
-                <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string notr="true">Yandex</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../data/icons/engines/engines.qrc">
-                <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string notr="true">Bing</string>
-              </property>
-              <property name="icon">
-               <iconset resource="../../data/icons/engines/engines.qrc">
-                <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QComboBox" name="voiceComboBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Default</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLineEdit" name="testSpeechEdit">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>This is an example of speech synthesis.</string>
-             </property>
-             <property name="placeholderText">
-              <string>Test voice</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="speechPageSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="connectionPage">
-       <layout class="QVBoxLayout" name="connectionLayout">
-        <item>
-         <widget class="QGroupBox" name="proxyGroupBox">
-          <property name="title">
-           <string>Proxy server</string>
-          </property>
-          <layout class="QGridLayout" name="gridLayout_2">
-           <item row="0" column="0">
-            <widget class="QLabel" name="proxyTypeLabel">
-             <property name="text">
-              <string>Type:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QComboBox" name="proxyTypeComboBox">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>Use system settings</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string notr="true">SOCKS5</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string>Don't use a proxy</string>
-              </property>
-             </item>
-             <item>
-              <property name="text">
-               <string notr="true">HTTP</string>
-              </property>
-             </item>
-            </widget>
-           </item>
-           <item row="1" column="0">
-            <widget class="QLabel" name="proxyHostLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Host:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="1" column="1">
-            <widget class="QLineEdit" name="proxyHostEdit">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string/>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="0">
-            <widget class="QLabel" name="proxyPortLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Port:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="2" column="1">
-            <widget class="QSpinBox" name="proxyPortSpinbox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="minimum">
-              <number>1</number>
-             </property>
-             <property name="maximum">
-              <number>65535</number>
-             </property>
-             <property name="value">
-              <number>8080</number>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="0" colspan="2">
-            <widget class="QLabel" name="proxyInfoLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Info: the proxy works only for text translation</string>
-             </property>
-            </widget>
-           </item>
-           <item row="4" column="0" colspan="2">
-            <widget class="QCheckBox" name="proxyAuthCheckBox">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Authentication</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="proxyUsernameLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Username:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QLineEdit" name="proxyUsernameEdit">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="0">
-            <widget class="QLabel" name="proxyPasswordLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Password:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="6" column="1">
-            <widget class="QLineEdit" name="proxyPasswordEdit">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="echoMode">
-              <enum>QLineEdit::Password</enum>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="0" colspan="2">
-            <widget class="QLabel" name="proxyPasswordInfoLabel">
-             <property name="enabled">
-              <bool>false</bool>
-             </property>
-             <property name="text">
-              <string>Info: the password is saved unencrypted</string>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item>
-         <spacer name="proxyPageSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="shortcutsPage">
-       <layout class="QVBoxLayout" name="shortcutsLayout">
-        <item>
-         <widget class="ShortcutsView" name="shortcutsTreeView"/>
-        </item>
-        <item>
-         <widget class="QCheckBox" name="globalShortcutsCheckBox">
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>Enable global shortcucts</string>
-          </property>
-          <property name="checked">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="resetAllShortcutsButton">
-          <property name="sizePolicy">
-           <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip">
-           <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-          </property>
-          <property name="text">
-           <string>Reset all</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QGroupBox" name="shortcutGroupBox">
-          <property name="enabled">
-           <bool>false</bool>
-          </property>
-          <property name="title">
-           <string>Shortcut</string>
-          </property>
-          <layout class="QHBoxLayout" name="shortcutBoxLayout">
-           <item>
-            <widget class="QLabel" name="shortcutLabel">
-             <property name="text">
-              <string>Key sequence:</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QKeySequenceEdit" name="shortcutSequenceEdit">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="acceptShortcutButton">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Accept</string>
-             </property>
-             <property name="icon">
-              <iconset theme="dialog-ok-apply">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="clearShortcutButton">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Clear</string>
-             </property>
-             <property name="icon">
-              <iconset theme="edit-clear-all">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QToolButton" name="resetShortcutButton">
-             <property name="toolTip">
-              <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="text">
-              <string>Reset</string>
-             </property>
-             <property name="icon">
-              <iconset theme="view-refresh">
-               <normaloff>.</normaloff>.</iconset>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-       </layout>
-      </widget>
-      <widget class="QWidget" name="aboutPage">
-       <layout class="QGridLayout" name="aboutLayout">
-        <item row="0" column="0">
-         <widget class="QLabel" name="logoLabel">
-          <property name="maximumSize">
-           <size>
-            <width>200</width>
-            <height>200</height>
-           </size>
-          </property>
-          <property name="scaledContents">
-           <bool>true</bool>
-          </property>
-          <property name="margin">
-           <number>20</number>
-          </property>
-         </widget>
-        </item>
-        <item row="0" column="1" alignment="Qt::AlignVCenter">
-         <widget class="QGroupBox" name="aboutGroupBox">
-          <property name="title">
-           <string notr="true">Crow Translate</string>
-          </property>
-          <layout class="QGridLayout" name="aboutBoxLayout">
-           <item row="7" column="0">
-            <widget class="QLabel" name="mailTitleLabel">
-             <property name="text">
-              <string notr="true">E-mail:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="0">
-            <widget class="QLabel" name="autorTitleLabel">
-             <property name="text">
-              <string>Autor:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="0">
-            <widget class="QLabel" name="flagIconsTitleLabel">
-             <property name="text">
-              <string>Flag icons:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="1">
-            <widget class="QLabel" name="versionLabel"/>
-           </item>
-           <item row="3" column="0">
-            <widget class="QLabel" name="licenseTitleLabel">
-             <property name="text">
-              <string>License:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="0" column="0">
-            <widget class="QLabel" name="versionTitleLabel">
-             <property name="text">
-              <string>Version:</string>
-             </property>
-            </widget>
-           </item>
-           <item row="5" column="1">
-            <widget class="QLabel" name="autorLabel">
-             <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="9" column="1">
-            <widget class="QLabel" name="flagIconsLabel">
-             <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/HatScripts/circle-flags&quot;&gt;circle-flags&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-           <item row="3" column="1">
-            <widget class="QLabel" name="licenseLabel">
-             <property name="text">
-              <string notr="true">GPL v3 </string>
-             </property>
-            </widget>
-           </item>
-           <item row="7" column="1">
-            <widget class="QLabel" name="mailLabel">
-             <property name="text">
-              <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;mailto:genaloner@gmail.com&quot;&gt;genaloner@gmail.com&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-             </property>
-             <property name="openExternalLinks">
-              <bool>true</bool>
-             </property>
-             <property name="textInteractionFlags">
-              <set>Qt::LinksAccessibleByMouse|Qt::TextSelectableByMouse</set>
-             </property>
-            </widget>
-           </item>
-          </layout>
-         </widget>
-        </item>
-        <item row="1" column="1">
-         <spacer name="aboutPageVerticalSpacer">
-          <property name="orientation">
-           <enum>Qt::Vertical</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>20</width>
-            <height>40</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="2">
-         <spacer name="aboutPageHorizontalSpacer">
-          <property name="orientation">
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeHint" stdset="0">
-           <size>
-            <width>40</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
         </item>
        </layout>
       </widget>
@@ -1705,16 +1760,16 @@
   <connection>
    <sender>pagesListWidget</sender>
    <signal>currentRowChanged(int)</signal>
-   <receiver>pagesStackedWidget</receiver>
-   <slot>setCurrentIndex(int)</slot>
+   <receiver>SettingsDialog</receiver>
+   <slot>setCurrentPage(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>108</x>
      <y>250</y>
     </hint>
     <hint type="destinationlabel">
-     <x>500</x>
-     <y>250</y>
+     <x>349</x>
+     <y>319</y>
     </hint>
    </hints>
   </connection>
@@ -2268,5 +2323,6 @@
   <slot>addParameter()</slot>
   <slot>removeCurrent()</slot>
   <slot>onTesseractParametersCurrentItemChanged()</slot>
+  <slot>setCurrentPage(int)</slot>
  </slots>
 </ui>
