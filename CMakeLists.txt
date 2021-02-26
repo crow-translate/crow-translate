@@ -108,9 +108,9 @@ add_executable(${PROJECT_NAME}
     src/mainwindow.ui
     src/ocr/ocr.cpp
     src/ocr/screengrabber.cpp
-    src/orientationwatcher.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
+    src/screenwatcher.cpp
     src/selection.cpp
     src/settings/appsettings.cpp
     src/settings/ocrlanguageslistwidget.cpp

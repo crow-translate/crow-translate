@@ -24,7 +24,7 @@
 #include "popupwindow.h"
 #include "qhotkey.h"
 #include "qtaskbarcontrol.h"
-#include "orientationwatcher.h"
+#include "screenwatcher.h"
 #include "selection.h"
 #include "singleapplication.h"
 #include "trayicon.h"
@@ -72,13 +72,13 @@ MainWindow::MainWindow(QWidget *parent)
     , m_taskbar(new QTaskbarControl(this))
     , m_ocr(new Ocr(this))
     , m_screenCaptureTimer(new QTimer(this))
-    , m_orientationWatcher(new OrientationWatcher(this))
+    , m_orientationWatcher(new ScreenWatcher(this))
     , m_screenGrabber(new ScreenGrabber(this))
 {
     ui->setupUi(this);
 
     // Screen orientation
-    connect(m_orientationWatcher, &OrientationWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
+    connect(m_orientationWatcher, &ScreenWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
 
     // Show a message that the application is already running
     connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);

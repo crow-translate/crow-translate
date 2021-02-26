@@ -18,7 +18,7 @@
  *
  */
 
-#include "orientationwatcher.h"
+#include "screenwatcher.h"
 
 #include <QGuiApplication>
 #include <QScreen>
@@ -27,15 +27,15 @@
 #include <QWindow>
 #endif
 
-OrientationWatcher::OrientationWatcher(QWidget *parent)
+ScreenWatcher::ScreenWatcher(QWidget *parent)
     : QObject(parent)
 {
     for (QScreen *screen : QGuiApplication::screens())
         listenForOrientationChange(screen);
-    connect(qobject_cast<QGuiApplication *>(QCoreApplication::instance()), &QGuiApplication::screenAdded, this, &OrientationWatcher::listenForOrientationChange);
+    connect(qobject_cast<QGuiApplication *>(QCoreApplication::instance()), &QGuiApplication::screenAdded, this, &ScreenWatcher::listenForOrientationChange);
 }
 
-void OrientationWatcher::listenForOrientationChange(QScreen *screen)
+void ScreenWatcher::listenForOrientationChange(QScreen *screen)
 {
     connect(screen, &QScreen::orientationChanged, [this, screen] (Qt::ScreenOrientation orientation) {
         auto *widget = qobject_cast<QWidget *>(parent());

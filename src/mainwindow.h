@@ -29,7 +29,7 @@
 class LanguageButtonsWidget;
 class Ocr;
 class ScreenGrabber;
-class OrientationWatcher;
+class ScreenWatcher;
 class SpeakButtons;
 class TranslationEdit;
 class TrayIcon;
@@ -184,7 +184,7 @@ private:
     QTaskbarControl *m_taskbar;
     Ocr *m_ocr;
     QTimer *m_screenCaptureTimer;
-    OrientationWatcher *m_orientationWatcher;
+    ScreenWatcher *m_orientationWatcher;
     ScreenGrabber *m_screenGrabber;
 };
 

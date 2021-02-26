@@ -18,20 +18,20 @@
  *
  */
 
-#ifndef ORIENTATIONWATCHER_H
-#define ORIENTATIONWATCHER_H
+#ifndef SCREENWATCHER_H
+#define SCREENWATCHER_H
 
 #include <QObject>
 
 class QScreen;
 
-class OrientationWatcher : public QObject
+class ScreenWatcher : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(OrientationWatcher)
+    Q_DISABLE_COPY(ScreenWatcher)
 
 public:
-    explicit OrientationWatcher(QWidget *parent);
+    explicit ScreenWatcher(QWidget *parent);
 
 signals:
     void screenOrientationChanged(Qt::ScreenOrientation orientation);
@@ -40,4 +40,4 @@ private slots:
     void listenForOrientationChange(QScreen *screen);
 };
 
-#endif // ORIENTATIONWATCHER_H
+#endif // SCREENWATCHER_H
