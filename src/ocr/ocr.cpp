@@ -39,6 +39,11 @@ Ocr::Ocr(QObject *parent)
     };
 }
 
+void Ocr::setConvertLineBreaks(bool convert)
+{
+    m_convertLineBreaks = convert;
+}
+
 QStringList Ocr::availableLanguages() const
 {
     QStringList availableLanguages;
@@ -96,7 +101,7 @@ void Ocr::recognize(const QPixmap &pixmap, int dpi)
 
         QScopedPointer<char, QScopedPointerArrayDeleter<char>> resultText(m_tesseract.GetUTF8Text());
         QString recognizedText = resultText.data();
-        if (AppSettings().isConvertLineBreaks())
+        if (m_convertLineBreaks)
             recognizedText.replace(QRegularExpression(QStringLiteral("(?<!\n)\n(?!\n)")), QStringLiteral(" "));
         emit recognized(recognizedText);
     });

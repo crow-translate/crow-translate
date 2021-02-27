@@ -502,19 +502,6 @@ QOnlineTranslator::Language AppSettings::defaultSecondaryLanguage()
     return QOnlineTranslator::English;
 }
 
-// Selected primary or secondary language depends on sourceLang
-QOnlineTranslator::Language AppSettings::preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const
-{
-    QOnlineTranslator::Language translationLang = primaryLanguage();
-    if (translationLang == QOnlineTranslator::Auto)
-        translationLang = QOnlineTranslator::language(QLocale());
-
-    if (translationLang != sourceLang)
-        return translationLang;
-
-    return secondaryLanguage();
-}
-
 bool AppSettings::isForceSourceAutodetect() const
 {
     return m_settings->value(QStringLiteral("Translation/ForceSourceAutodetect"), defaultForceSourceAutodetect()).toBool();

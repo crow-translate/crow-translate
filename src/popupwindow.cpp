@@ -25,7 +25,6 @@
 #include "mainwindow.h"
 #include "speakbuttons.h"
 #include "translationedit.h"
-#include "settings/appsettings.h"
 
 #include <QCloseEvent>
 #include <QMediaPlaylist>

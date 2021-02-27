@@ -22,7 +22,6 @@
 #include "cmake.h"
 #include "mainwindow.h"
 #include "singleapplication.h"
-#include "settings/appsettings.h"
 
 #ifdef Q_OS_UNIX
 #include "ocr/ocr.h"

@@ -22,6 +22,7 @@
 #define MAINWINDOW_H
 
 #include "qonlinetranslator.h"
+#include "settings/appsettings.h"
 
 #include <QMainWindow>
 #include <QMediaPlayer>
@@ -162,6 +163,7 @@ private:
     void loadAppSettings();
     void checkLanguageButton(int checkedId);
 
+    QOnlineTranslator::Language preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const;
     QOnlineTranslator::Engine currentEngine() const;
 
     Ui::MainWindow *ui;
@@ -186,6 +188,11 @@ private:
     QTimer *m_screenCaptureTimer;
     ScreenWatcher *m_orientationWatcher;
     ScreenGrabber *m_screenGrabber;
+
+    QOnlineTranslator::Language m_primaryLanguage;
+    QOnlineTranslator::Language m_secondaryLanguage;
+
+    AppSettings::WindowMode m_windowMode;
 
     bool m_forceSourceAutodetect;
     bool m_forceTranslationAutodetect;

@@ -38,6 +38,8 @@ class Ocr : public QObject
 public:
     explicit Ocr(QObject *parent = nullptr);
 
+    void setConvertLineBreaks(bool convert);
+
     QStringList availableLanguages() const;
     QByteArray languagesString() const;
     bool init(const QByteArray &languages, const QByteArray &languagesPath, const QMap<QString, QVariant> &parameters);
@@ -59,12 +61,15 @@ private:
 
     QMap<QString, QVariant> m_parameters;
     QFuture<void> m_future;
+
     tesseract::TessBaseAPI m_tesseract;
 #if TESSERACT_MAJOR_VERSION < 5
     ETEXT_DESC m_monitor;
 #else
     tesseract::ETEXT_DESC m_monitor;
 #endif
+
+    bool m_convertLineBreaks = false;
 };
 
 #endif // OCR_H

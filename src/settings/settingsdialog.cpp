@@ -21,7 +21,6 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
-#include "appsettings.h"
 #include "languagebuttonswidget.h"
 #include "mainwindow.h"
 #include "qhotkey.h"
@@ -38,7 +37,6 @@
 #include <QDate>
 #include <QFileDialog>
 #include <QMessageBox>
-#include <QNetworkProxy>
 #include <QScreen>
 #include <QStandardItemModel>
 

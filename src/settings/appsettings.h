@@ -192,8 +192,6 @@ public:
     void setSecondaryLanguage(QOnlineTranslator::Language lang);
     static QOnlineTranslator::Language defaultSecondaryLanguage();
 
-    QOnlineTranslator::Language preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const;
-
     bool isForceSourceAutodetect() const;
     void setForceSourceAutodetect(bool force);
     static bool defaultForceSourceAutodetect();

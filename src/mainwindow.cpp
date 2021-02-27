@@ -339,7 +339,7 @@ void MainWindow::requestTranslation()
 {
     QOnlineTranslator::Language translationLang;
     if (ui->translationLanguagesWidget->isAutoButtonChecked())
-        translationLang = AppSettings().preferredTranslationLanguage(ui->sourceLanguagesWidget->checkedLanguage());
+        translationLang = preferredTranslationLanguage(ui->sourceLanguagesWidget->checkedLanguage());
     else
         translationLang = ui->translationLanguagesWidget->checkedLanguage();
 
@@ -349,7 +349,7 @@ void MainWindow::requestTranslation()
 // Re-translate to a secondary or a primary language if the autodetected source language and the translation language are the same
 void MainWindow::requestRetranslation()
 {
-    const QOnlineTranslator::Language translationLang = AppSettings().preferredTranslationLanguage(m_translator->sourceLanguage());
+    const QOnlineTranslator::Language translationLang = preferredTranslationLanguage(m_translator->sourceLanguage());
 
     m_translator->translate(ui->sourceEdit->toSourceText(), currentEngine(), translationLang, m_translator->sourceLanguage());
 }
@@ -372,8 +372,7 @@ void MainWindow::displayTranslation()
         ui->translationLanguagesWidget->setAutoLanguage(QOnlineTranslator::Auto);
 
     // If window mode is notification, send a notification including the translation result
-    const AppSettings settings;
-    if (this->isHidden() && settings.windowMode() == AppSettings::Notification)
+    if (this->isHidden() && m_windowMode == AppSettings::Notification)
         m_trayIcon->showTranslationMessage(ui->translationEdit->toPlainText());
 }
 
@@ -416,8 +415,7 @@ void MainWindow::showTranslationWindow()
         return;
     }
 
-    const AppSettings settings;
-    switch (settings.windowMode()) {
+    switch (m_windowMode) {
     case AppSettings::PopupWindow: {
         auto *popup = new PopupWindow(this);
         popup->show();
@@ -925,6 +923,7 @@ void MainWindow::loadAppSettings()
     AppSettings settings;
 
     // General
+    m_windowMode = settings.windowMode();
     setOrientation(settings.mainWindowOrientation());
     m_trayIcon->setTranslationNotificationTimeout(settings.translationNotificationTimeout());
     QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
@@ -956,6 +955,8 @@ void MainWindow::loadAppSettings()
     m_translator->setTranslationOptionsEnabled(settings.isTranslationOptionsEnabled());
     m_translator->setExamplesEnabled(settings.isExamplesEnabled());
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
+    m_primaryLanguage = settings.primaryLanguage();
+    m_secondaryLanguage = settings.secondaryLanguage();
     m_forceSourceAutodetect = settings.isForceSourceAutodetect();
     m_forceTranslationAutodetect = settings.isForceTranslationAutodetect();
 
@@ -971,6 +972,7 @@ void MainWindow::loadAppSettings()
         if (type == AppSettings::RememberAlways)
             m_screenGrabber->setCropRegion(settings.cropRegion());
     }
+    m_ocr->setConvertLineBreaks(settings.isConvertLineBreaks());
     m_screenCaptureTimer->setInterval(settings.captureDelay());
     m_screenGrabber->setCaptureOnRelese(settings.isCaptureOnRelease());
     m_screenGrabber->setShowMagnifier(settings.isShowMagnifier());
@@ -1064,6 +1066,19 @@ void MainWindow::checkLanguageButton(int checkedId)
     }
 
     ui->sourceEdit->markSourceAsChanged();
+}
+
+// Selected primary or secondary language depends on sourceLang
+QOnlineTranslator::Language MainWindow::preferredTranslationLanguage(QOnlineTranslator::Language sourceLang) const
+{
+    QOnlineTranslator::Language translationLang = m_primaryLanguage;
+    if (translationLang == QOnlineTranslator::Auto)
+        translationLang = QOnlineTranslator::language(QLocale());
+
+    if (translationLang != sourceLang)
+        return translationLang;
+
+    return m_secondaryLanguage;
 }
 
 QOnlineTranslator::Engine MainWindow::currentEngine() const
