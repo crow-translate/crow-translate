@@ -1477,26 +1477,6 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Yukarıda seçilen dilde ise metnin çevrileceği dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pencerenin dışında kaynak dil olarak her zaman &amp;quot;Otomatik&amp;quot; seçeneğini kullan.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
-      <source>Force source language detection outside the window</source>
-      <translation>Pencerenin dışında kaynak dil algılamaya zorla</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pencere dışında çeviri dili olarak her zaman &amp;quot;Otomatik&amp;quot;i kullanın.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
-      <source>Force translation language detection outside the window</source>
-      <translation>Pencerenin dışında çeviri dili algılamayı zorla</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="818"/>
       <source>Directory with trained models</source>
       <translation>Eğitimli modellerin bulunduğu dizin</translation>
@@ -1775,6 +1755,22 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="707"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Otomatik algılama sırasında metnin çevrileceği dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;OCR ve genel kısayolları kullanırken doğrudan &lt;span style=&quot; font-style:italic;&quot;&gt;Otomatik&lt;/span&gt; 'e geç&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
+      <source>Force source language detection</source>
+      <translation>Kaynak dili algılamayı zorla</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
+      <source>Force translation language detection</source>
+      <translation>Çeviri dilini algılamayı zorla</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="774"/>
