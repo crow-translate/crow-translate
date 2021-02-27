@@ -723,22 +723,22 @@
                 </widget>
                </item>
                <item row="2" column="0" colspan="2">
-                <widget class="QCheckBox" name="forceSourceAutoCheckBox">
+                <widget class="QCheckBox" name="forceSourceAutodetectCheckBox">
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
-                  <string>Force source language detection outside the window</string>
+                  <string>Force source language detection</string>
                  </property>
                 </widget>
                </item>
                <item row="3" column="0" colspan="2">
-                <widget class="QCheckBox" name="forceTranslationAutoCheckBox">
+                <widget class="QCheckBox" name="forceTranslationAutodetectCheckBox">
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
-                  <string>Force translation language detection outside the window</string>
+                  <string>Force translation language detection</string>
                  </property>
                 </widget>
                </item>

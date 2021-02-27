@@ -235,8 +235,8 @@ void SettingsDialog::accept()
     settings.setSimplifySource(ui->sourceSimplificationCheckBox->isChecked());
     settings.setPrimaryLanguage(ui->primaryLangComboBox->currentData().value<QOnlineTranslator::Language>());
     settings.setSecondaryLanguage(ui->secondaryLangComboBox->currentData().value<QOnlineTranslator::Language>());
-    settings.setForceSourceAutodetect(ui->forceSourceAutoCheckBox->isChecked());
-    settings.setForceTranslationAutodetect(ui->forceTranslationAutoCheckBox->isChecked());
+    settings.setForceSourceAutodetect(ui->forceSourceAutodetectCheckBox->isChecked());
+    settings.setForceTranslationAutodetect(ui->forceTranslationAutodetectCheckBox->isChecked());
 
     // OCR
     settings.setConvertLineBreaks(ui->convertLineBreaksCheckBox->isChecked());
@@ -555,8 +555,8 @@ void SettingsDialog::restoreDefaults()
     ui->sourceSimplificationCheckBox->setChecked(AppSettings::defaultSimplifySource());
     ui->primaryLangComboBox->setCurrentIndex(ui->primaryLangComboBox->findData(AppSettings::defaultPrimaryLanguage()));
     ui->secondaryLangComboBox->setCurrentIndex(ui->secondaryLangComboBox->findData(AppSettings::defaultSecondaryLanguage()));
-    ui->forceSourceAutoCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
-    ui->forceTranslationAutoCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
+    ui->forceSourceAutodetectCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
+    ui->forceTranslationAutodetectCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(AppSettings::defaultConvertLineBreaks());
@@ -657,8 +657,8 @@ void SettingsDialog::loadSettings()
     ui->sourceSimplificationCheckBox->setChecked(settings.isSimplifySource());
     ui->primaryLangComboBox->setCurrentIndex(ui->primaryLangComboBox->findData(settings.primaryLanguage()));
     ui->secondaryLangComboBox->setCurrentIndex(ui->secondaryLangComboBox->findData(settings.secondaryLanguage()));
-    ui->forceSourceAutoCheckBox->setChecked(settings.isForceSourceAutodetect());
-    ui->forceTranslationAutoCheckBox->setChecked(settings.isForceTranslationAutodetect());
+    ui->forceSourceAutodetectCheckBox->setChecked(settings.isForceSourceAutodetect());
+    ui->forceTranslationAutodetectCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
