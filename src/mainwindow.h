@@ -117,7 +117,7 @@ private slots:
     void copyTranslationToClipboard();
 
     void forceSourceAutodetect();
-    void forceAutodetect();
+    void forceTranslationAutodetect();
 
     void minimize();
 
@@ -186,6 +186,9 @@ private:
     QTimer *m_screenCaptureTimer;
     ScreenWatcher *m_orientationWatcher;
     ScreenGrabber *m_screenGrabber;
+
+    bool m_forceSourceAutodetect;
+    bool m_forceTranslationAutodetect;
 };
 
 #endif // MAINWINDOW_H

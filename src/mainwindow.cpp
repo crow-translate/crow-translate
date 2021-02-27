@@ -454,8 +454,7 @@ void MainWindow::copyTranslationToClipboard()
 
 void MainWindow::forceSourceAutodetect()
 {
-    const AppSettings settings;
-    if (settings.isForceSourceAutodetect()) {
+    if (m_forceSourceAutodetect) {
         ui->sourceEdit->setRequestTranlationOnEdit(false);
 
         ui->sourceLanguagesWidget->checkAutoButton();
@@ -465,19 +464,16 @@ void MainWindow::forceSourceAutodetect()
     }
 }
 
-void MainWindow::forceAutodetect()
+void MainWindow::forceTranslationAutodetect()
 {
-    const AppSettings settings;
-    ui->sourceEdit->setRequestTranlationOnEdit(false);
+    if (m_forceTranslationAutodetect) {
+        ui->sourceEdit->setRequestTranlationOnEdit(false);
 
-    if (settings.isForceTranslationAutodetect())
         ui->translationLanguagesWidget->checkAutoButton();
 
-    if (settings.isForceSourceAutodetect())
-        ui->sourceLanguagesWidget->checkAutoButton();
-
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setRequestTranlationOnEdit(true);
+        if (ui->autoTranslateCheckBox->isChecked())
+            ui->sourceEdit->setRequestTranlationOnEdit(true);
+    }
 }
 
 void MainWindow::minimize()
@@ -740,6 +736,7 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
+    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
@@ -779,9 +776,10 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
+    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
-    buildSpeakTranslationState(speakTranslationState);
     buildTranslationState(translationState);
+    buildSpeakTranslationState(speakTranslationState);
 
     setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, speakTranslationState);
@@ -795,6 +793,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     auto *copyTranslationState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
+    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
@@ -834,6 +833,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(recognizeState);
 
+    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     buildRecognizeScreenAreaState(recognizeState, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
@@ -956,6 +956,8 @@ void MainWindow::loadAppSettings()
     m_translator->setTranslationOptionsEnabled(settings.isTranslationOptionsEnabled());
     m_translator->setExamplesEnabled(settings.isExamplesEnabled());
     ui->sourceEdit->setSimplifySource(settings.isSimplifySource());
+    m_forceSourceAutodetect = settings.isForceSourceAutodetect();
+    m_forceTranslationAutodetect = settings.isForceTranslationAutodetect();
 
     // OCR settings
     if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->init(languages, path, settings.tesseractParameters())) {
