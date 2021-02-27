@@ -1,3 +1,5 @@
+commit_message: "Update %language% localization"
+append_commit_message: false
 files:
   - source: /data/translations/crow-translate.ts
     translation: /data/translations/crow-translate_%two_letters_code%.ts
