@@ -89,7 +89,7 @@ private slots:
     void restoreDefaults();
 
 private:
-    void activateProtableMode();
+    void activateCompactMode();
     void loadSettings();
     void setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices);
     void setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions);

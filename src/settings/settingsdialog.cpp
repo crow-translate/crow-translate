@@ -50,7 +50,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 {
     ui->setupUi(this);
     if (!ScreenWatcher::isWidthFitScreen(this))
-        activateProtableMode();
+        activateCompactMode();
 
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
@@ -580,7 +580,7 @@ void SettingsDialog::restoreDefaults()
     resetAllShortcuts();
 }
 
-void SettingsDialog::activateProtableMode()
+void SettingsDialog::activateCompactMode()
 {
     ui->pagesListWidget->setMaximumWidth(QWIDGETSIZE_MAX);
     ui->scrollArea->hide();
