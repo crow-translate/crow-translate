@@ -596,6 +596,9 @@ void SettingsDialog::activateCompactMode()
     connect(ui->pagesListWidget, &QListWidget::itemActivated, ui->pagesListWidget, &QListWidget::hide);
     connect(ui->pagesListWidget, &QListWidget::itemActivated, backButton, &QPushButton::show);
     connect(ui->pagesListWidget, &QListWidget::itemActivated, ui->scrollArea, &QScrollArea::show);
+    connect(ui->pagesListWidget, &QListWidget::itemClicked, ui->pagesListWidget, &QListWidget::hide);
+    connect(ui->pagesListWidget, &QListWidget::itemClicked, backButton, &QPushButton::show);
+    connect(ui->pagesListWidget, &QListWidget::itemClicked, ui->scrollArea, &QScrollArea::show);
 }
 
 void SettingsDialog::loadSettings()
