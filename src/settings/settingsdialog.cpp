@@ -49,13 +49,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 #endif
 {
     ui->setupUi(this);
-    if (!ScreenWatcher::isWidthFitScreen(this)) {
-        // Try resize first
-        window()->resize(window()->minimumWidth(), window()->height());
-
-        if (!ScreenWatcher::isWidthFitScreen(this))
-            activateProtableMode();
-    }
+    if (!ScreenWatcher::isWidthFitScreen(this))
+        activateProtableMode();
 
     connect(ui->dialogButtonBox->button(QDialogButtonBox::RestoreDefaults), &QPushButton::clicked, this, &SettingsDialog::restoreDefaults);
     connect(ui->globalShortcutsCheckBox, &QCheckBox::toggled, ui->shortcutsTreeView->model(), &ShortcutsModel::setGlobalShortuctsEnabled);
