@@ -124,10 +124,10 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->aboutGroupBox->layout()->addWidget(iconsLabel);
 
     // Add updater options
-    QGroupBox *updatesGroupBox = new QGroupBox(tr("Updates"));
+    auto *updatesGroupBox = new QGroupBox(tr("Updates"));
     qobject_cast<QVBoxLayout *>(ui->generalPage->layout())->insertWidget(1, updatesGroupBox);
 
-    QHBoxLayout *updatesLayout = new QHBoxLayout;
+    auto *updatesLayout = new QHBoxLayout;
     updatesGroupBox->setLayout(updatesLayout);
 
     auto *checkForUpdatesLabel = new QLabel;
