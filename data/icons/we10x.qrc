@@ -28,6 +28,8 @@
         <file>16/actions/edit-select-all.svg</file>
         <file>16/actions/edit-undo.svg</file>
         <file>16/actions/go-next.svg</file>
+        <file>16/actions/list-add.svg</file>
+        <file>16/actions/list-remove.svg</file>
         <file>16/actions/media-playback-pause.svg</file>
         <file>16/actions/media-playback-start.svg</file>
         <file>16/actions/media-playback-stop.svg</file>
