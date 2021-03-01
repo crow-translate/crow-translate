@@ -71,6 +71,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), QStringLiteral("Bahasa Melayu"), QLocale::Malay);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), QStringLiteral("English"), QLocale::English);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/it.svg")), QStringLiteral("Italiano"), QLocale::Italian);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), QStringLiteral("Nederlands"), QLocale::Dutch);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português"), QLocale::Portuguese);
