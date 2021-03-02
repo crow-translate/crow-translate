@@ -68,19 +68,20 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), QStringLiteral("Bahasa Melayu"), QLocale::Malay);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), QStringLiteral("English"), QLocale::English);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), QStringLiteral("Française"), QLocale::French);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/it.svg")), QStringLiteral("Italiano"), QLocale::Italian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), QStringLiteral("Nederlands"), QLocale::Dutch);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), QStringLiteral("Polski"), QLocale::Polish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), QStringLiteral("Português"), QLocale::Portuguese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), QStringLiteral("Türkçe"), QLocale::Turkish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), QStringLiteral("Русский"), QLocale::Russian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), QStringLiteral("Espanol"), QLocale::Spanish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("ئۇيغۇر"), QLocale::Uighur);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), QStringLiteral("Українська"), QLocale::Ukrainian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), QStringLiteral("简体中文"), QLocale::Chinese);
+    const QMetaEnum languagesEnum = QMetaEnum::fromType<QLocale::Language>();
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), languagesEnum.valueToKey(QLocale::Malay), QLocale::Malay);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), languagesEnum.valueToKey(QLocale::English), QLocale::English);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), languagesEnum.valueToKey(QLocale::French), QLocale::French);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/it.svg")), languagesEnum.valueToKey(QLocale::Italian), QLocale::Italian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), languagesEnum.valueToKey(QLocale::Dutch), QLocale::Dutch);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), languagesEnum.valueToKey(QLocale::Polish), QLocale::Polish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), languagesEnum.valueToKey(QLocale::Portuguese), QLocale::Portuguese);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), languagesEnum.valueToKey(QLocale::Turkish), QLocale::Turkish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), languagesEnum.valueToKey(QLocale::Russian), QLocale::Russian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), languagesEnum.valueToKey(QLocale::Spanish), QLocale::Spanish);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Uighur), QLocale::Uighur);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), languagesEnum.valueToKey(QLocale::Ukrainian), QLocale::Ukrainian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Chinese), QLocale::Chinese);
 
     ui->primaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
