@@ -146,6 +146,11 @@ void AppSettings::setShowTrayIcon(bool visible)
 
 bool AppSettings::defaultShowTrayIcon()
 {
+#ifdef Q_OS_LINUX
+    // Plasma Mobile currently says that system tray is available by mistake https://invent.kde.org/plasma/plasma-nano/-/issues/1
+    if (const QByteArray plasmaPlatform = qgetenv("PLASMA_PLATFORM"); plasmaPlatform.contains("phone"))
+        return false;
+#endif
     return QSystemTrayIcon::isSystemTrayAvailable();
 }
 
