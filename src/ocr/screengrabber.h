@@ -23,6 +23,7 @@
 #define SCREENGRABBER_H
 
 #include "settings/appsettings.h"
+#include "comparableqpoint.h"
 
 #include <QKeyEvent>
 #include <QPainter>
@@ -97,14 +98,20 @@ private:
     MouseState mouseLocation(QPointF pos) const;
 
     QRect scaledCropRegion() const;
+    QPixmap selectedPixmap() const;
+    void readScreenImages();
+    void createPixmapFromScreens();
     void setGeometryToScreenPixmap();
     void prepare(QStaticText &text) const;
     void setBottomHelpText();
     void layoutBottomHelpText();
 
+    void preparePaint();
+
     void acceptSelection();
     void cancelSelection();
 
+    static QMap<ComparableQPoint, ComparableQPoint> computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect);
     static bool isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point);
     static bool isInRange(qreal low, qreal high, qreal value);
     static bool isWithinThreshold(qreal offset, qreal threshold);
@@ -137,7 +144,8 @@ private:
     static constexpr int s_magPixels = 16;
     static constexpr int s_magOffset = 32;
 
-    const qreal m_dprI = 1.0 / devicePixelRatioF();
+    const qreal m_devicePixelRatioI = 1.0 / devicePixelRatioF();
+    const qreal m_devicePixelRatio = devicePixelRatioF();
     const QColor m_strokeColor = palette().highlight().color();
     const QColor m_crossColor = QColor::fromRgbF(m_strokeColor.redF(), m_strokeColor.greenF(), m_strokeColor.blueF(), 0.7);
     const QColor m_labelForegroundColor = palette().windowText().color();
@@ -147,9 +155,13 @@ private:
                                                      0.85);
 
     QColor m_maskColor;
-    QRectF m_selection;
+    QRect m_selection;
     QPointF m_startPos;
     QPointF m_initialTopLeft;
+    QRegion m_screenRegion;
+
+    QMap<ComparableQPoint, QImage> m_images;
+    QVector<QPair<QRect, qreal>> m_rectToDpr;
 
     QVector<QStaticText> m_bottomLeftHelpText;
     QVector<QVector<QStaticText>> m_bottomRightHelpText;

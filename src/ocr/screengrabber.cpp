@@ -73,10 +73,10 @@ void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type)
 
 void ScreenGrabber::setCropRegion(QRect region)
 {
-    m_selection = QRectF(region.x() * m_dprI,
-                         region.y() * m_dprI,
-                         region.width() * m_dprI,
-                         region.height() * m_dprI);
+    m_selection = QRect(region.x() * static_cast<int>(m_devicePixelRatioI),
+                        region.y() * static_cast<int>(m_devicePixelRatioI),
+                        region.width() * static_cast<int>(m_devicePixelRatioI),
+                        region.height() * static_cast<int>(m_devicePixelRatioI));
 }
 
 void ScreenGrabber::capture()
@@ -84,9 +84,8 @@ void ScreenGrabber::capture()
     if (isVisible())
         return;
 
-    const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
-    m_screenPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
-
+    readScreenImages();
+    createPixmapFromScreens();
     setGeometryToScreenPixmap();
 
     m_mouseDragState = MouseState::None;
@@ -111,6 +110,7 @@ void ScreenGrabber::capture()
     setBottomHelpText();
     layoutBottomHelpText();
 
+    preparePaint();
     update();
     show();
 }
@@ -147,12 +147,12 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
             break;
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsUp(qRound(m_selection.top() * devicePixelRatioF() - step), false);
+        const int newPos = boundsUp(qRound(m_selection.top() * m_devicePixelRatio - step), false);
         if (event->modifiers() & Qt::AltModifier) {
-            m_selection.setBottom(m_dprI * newPos + m_selection.height());
+            m_selection.setBottom(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.height());
             m_selection = m_selection.normalized();
         } else {
-            m_selection.moveTop(m_dprI * newPos);
+            m_selection.moveTop(static_cast<int>(m_devicePixelRatioI) * newPos);
         }
         update();
         break;
@@ -163,11 +163,11 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
             break;
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsRight(qRound(m_selection.left() * devicePixelRatioF() + step), false);
+        const int newPos = boundsRight(qRound(m_selection.left() * m_devicePixelRatio + step), false);
         if (event->modifiers() & Qt::AltModifier)
-            m_selection.setRight(m_dprI * newPos + m_selection.width());
+            m_selection.setRight(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.width());
         else
-            m_selection.moveLeft(m_dprI * newPos);
+            m_selection.moveLeft(static_cast<int>(m_devicePixelRatioI) * newPos);
         update();
         break;
     }
@@ -177,11 +177,11 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
             break;
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsDown(qRound(m_selection.top() * devicePixelRatioF() + step), false);
+        const int newPos = boundsDown(qRound(m_selection.top() * m_devicePixelRatio + step), false);
         if (event->modifiers() & Qt::AltModifier)
-            m_selection.setBottom(m_dprI * newPos + m_selection.height());
+            m_selection.setBottom(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.height());
         else
-            m_selection.moveTop(m_dprI * newPos);
+            m_selection.moveTop(static_cast<int>(m_devicePixelRatioI) * newPos);
         update();
         break;
     }
@@ -191,12 +191,12 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
             break;
         }
         const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsLeft(qRound(m_selection.left() * devicePixelRatioF() - step), false);
+        const int newPos = boundsLeft(qRound(m_selection.left() * m_devicePixelRatio - step), false);
         if (event->modifiers() & Qt::AltModifier) {
-            m_selection.setRight(m_dprI * newPos + m_selection.width());
+            m_selection.setRight(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.width());
             m_selection = m_selection.normalized();
         } else {
-            m_selection.moveLeft(m_dprI * newPos);
+            m_selection.moveLeft(static_cast<int>(m_devicePixelRatioI) * newPos);
         }
         update();
         break;
@@ -282,36 +282,36 @@ void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
     case MouseState::BottomLeft: {
         const bool afterX = m_mousePos.x() >= m_startPos.x();
         const bool afterY = m_mousePos.y() >= m_startPos.y();
-        m_selection.setRect(afterX ? m_startPos.x() : m_mousePos.x(),
-                           afterY ? m_startPos.y() : m_mousePos.y(),
-                           qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
-                           qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
+        m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
+                           static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
+                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
+                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
         update();
         break;
     }
     case MouseState::Outside:
-        m_selection.setRect(qMin(m_mousePos.x(), m_startPos.x()),
-                           qMin(m_mousePos.y(), m_startPos.y()),
-                           qAbs(m_mousePos.x() - m_startPos.x()) + m_dprI,
-                           qAbs(m_mousePos.y() - m_startPos.y()) + m_dprI);
+        m_selection.setRect(static_cast<int>(qMin(m_mousePos.x(), m_startPos.x())),
+                           static_cast<int>(qMin(m_mousePos.y(), m_startPos.y())),
+                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + m_devicePixelRatioI),
+                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + m_devicePixelRatioI));
         update();
         break;
     case MouseState::Top:
     case MouseState::Bottom: {
         const bool afterY = m_mousePos.y() >= m_startPos.y();
         m_selection.setRect(m_selection.x(),
-                           afterY ? m_startPos.y() : m_mousePos.y(),
+                           static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
                            m_selection.width(),
-                           qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_dprI : 0));
+                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
         update();
         break;
     }
     case MouseState::Right:
     case MouseState::Left: {
         const bool afterX = m_mousePos.x() >= m_startPos.x();
-        m_selection.setRect(afterX ? m_startPos.x() : m_mousePos.x(),
+        m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
                            m_selection.y(),
-                           qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_dprI : 0),
+                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
                            m_selection.height());
         update();
         break;
@@ -323,21 +323,20 @@ void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
          * move the rectangle with moves it out of bounds,
          * in which case we adjust the diff to not let that happen
          */
-        const qreal dpr = devicePixelRatioF();
         // New top left point of the rectangle
-        const QPoint newTopLeft = ((m_mousePos - m_startPos + m_initialTopLeft) * dpr).toPoint();
+        QPoint newTopLeft = ((m_mousePos - m_startPos + m_initialTopLeft) * m_devicePixelRatio).toPoint();
 
-        int newTopLeftX = boundsLeft(newTopLeft.x());
-        if (newTopLeftX != 0)
-            newTopLeftX = boundsRight(newTopLeftX);
+        QRect newRect(newTopLeft, m_selection.size() * m_devicePixelRatio);
 
-        int newTopLeftY = boundsUp(newTopLeft.y());
-        if (newTopLeftY != 0)
-            newTopLeftY = boundsDown(newTopLeftY);
+        QRect screenBoundingRect = m_screenRegion.boundingRect();
+        screenBoundingRect = QRect(screenBoundingRect.topLeft(), screenBoundingRect.size());
+        if (!screenBoundingRect.contains(newRect)) {
+            // Keep the item inside the scene screen region bounding rect.
+            newTopLeft.setX(qMin(screenBoundingRect.right() - newRect.width(), qMax(newTopLeft.x(), screenBoundingRect.left())));
+            newTopLeft.setY(qMin(screenBoundingRect.bottom() - newRect.height(), qMax(newTopLeft.y(), screenBoundingRect.top())));
+        }
 
-        const QPointF newTopLeftF(newTopLeftX * m_dprI, newTopLeftY * m_dprI);
-
-        m_selection.moveTo(newTopLeftF);
+        m_selection.moveTo(newTopLeft * m_devicePixelRatioI);
         update();
         break;
     }
@@ -380,20 +379,48 @@ void ScreenGrabber::mouseDoubleClickEvent(QMouseEvent *event)
 void ScreenGrabber::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
-    painter.setRenderHints(QPainter::Antialiasing);
-    QBrush brush(m_screenPixmap);
-    brush.setTransform(QTransform::fromScale(m_dprI, m_dprI));
-    painter.setBackground(brush);
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.eraseRect(rect());
+
+    QList<QScreen *> screens = QGuiApplication::screens();
+    for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
+        const QImage &screenImage = i.value();
+        const ComparableQPoint &pos = i.key();
+
+        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
+                                      [pos] (const QScreen* screen){
+            return screen->geometry().topLeft() == pos;
+        });
+        const QScreen* screen = *item;
+
+        const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
+        const qreal dprI = 1.0 / dpr;
+
+        QBrush brush(screenImage);
+
+        brush.setTransform(QTransform::fromScale(dprI, dprI));
+
+        painter.setBrushOrigin(screen->geometry().topLeft() / m_devicePixelRatio);
+
+        QRect rectToDraw = screen->geometry();
+        rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
+        rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
+        painter.fillRect(rectToDraw, brush);
+    }
+
     if (!m_selection.size().isEmpty() || m_mouseDragState != MouseState::None) {
-        painter.fillRect(m_selection, m_strokeColor);
         const QRectF innerRect = m_selection.adjusted(1, 1, -1, -1);
-        if (innerRect.width() > 0 && innerRect.height() > 0)
-            painter.eraseRect(m_selection.adjusted(1, 1, -1, -1));
+        if (innerRect.width() > 0 && innerRect.height() > 0) {
+            painter.setPen(m_strokeColor);
+            painter.drawLine(m_selection.topLeft(), m_selection.topRight());
+            painter.drawLine(m_selection.bottomRight(), m_selection.topRight());
+            painter.drawLine(m_selection.bottomRight(), m_selection.bottomLeft());
+            painter.drawLine(m_selection.bottomLeft(), m_selection.topLeft());
+        }
 
         QRectF top(0, 0, width(), m_selection.top());
         QRectF right(m_selection.right(), m_selection.top(), width() - m_selection.right(), m_selection.height());
-        QRectF bottom(0, m_selection.bottom(), width(), height() - m_selection.bottom());
+        QRectF bottom(0, m_selection.bottom() + 1, width(), height() - m_selection.bottom());
         QRectF left(0, m_selection.top(), m_selection.left(), m_selection.height());
         for (const QRectF &rect : {top, right, bottom, left})
             painter.fillRect(rect, m_maskColor);
@@ -416,7 +443,7 @@ int ScreenGrabber::boundsLeft(int newTopLeftX, bool mouse)
 {
     if (newTopLeftX < 0) {
         if (mouse)
-            m_startPos.setX(m_startPos.x() + newTopLeftX * m_dprI); // Tweak startPos to prevent rectangle from getting stuck
+            m_startPos.setX(m_startPos.x() + newTopLeftX * m_devicePixelRatioI); // Tweak startPos to prevent rectangle from getting stuck
         newTopLeftX = 0;
     }
 
@@ -430,7 +457,7 @@ int ScreenGrabber::boundsRight(int newTopLeftX, bool mouse)
     const int xOffset = newTopLeftX - realMaxX;
     if (xOffset > 0) {
         if (mouse)
-            m_startPos.setX(m_startPos.x() + xOffset * m_dprI);
+            m_startPos.setX(m_startPos.x() + xOffset * m_devicePixelRatioI);
         newTopLeftX = realMaxX;
     }
 
@@ -441,7 +468,7 @@ int ScreenGrabber::boundsUp(int newTopLeftY, bool mouse)
 {
     if (newTopLeftY < 0) {
         if (mouse)
-            m_startPos.setY(m_startPos.y() + newTopLeftY * m_dprI);
+            m_startPos.setY(m_startPos.y() + newTopLeftY * m_devicePixelRatioI);
         newTopLeftY = 0;
     }
 
@@ -451,11 +478,11 @@ int ScreenGrabber::boundsUp(int newTopLeftY, bool mouse)
 int ScreenGrabber::boundsDown(int newTopLeftY, bool mouse)
 {
     // The max Y coordinate of the top left point
-    const int realMaxY = qRound((height() - m_selection.height()) * devicePixelRatioF());
+    const int realMaxY = qRound((height() - m_selection.height()) * m_devicePixelRatio);
     const int yOffset = newTopLeftY - realMaxY;
     if (yOffset > 0) {
         if (mouse)
-            m_startPos.setY(m_startPos.y() + yOffset * m_dprI);
+            m_startPos.setY(m_startPos.y() + yOffset * m_devicePixelRatioI);
         newTopLeftY = realMaxY;
     }
 
@@ -549,7 +576,7 @@ void ScreenGrabber::drawDragHandles(QPainter &painter)
     QPainterPath path;
 
     // Add handles to the path
-    for (const QPointF &handlePosition : qAsConst(m_handlePositions))
+    for (QPointF handlePosition : qAsConst(m_handlePositions))
         path.addEllipse(handlePosition, m_handleRadius, m_handleRadius);
 
     // Draw the path
@@ -559,7 +586,7 @@ void ScreenGrabber::drawDragHandles(QPainter &painter)
 void ScreenGrabber::drawMagnifier(QPainter &painter) const
 {
     const int pixels = 2 * s_magPixels + 1;
-    auto magX = static_cast<int>(m_mousePos.x() * devicePixelRatioF() - s_magPixels);
+    auto magX = static_cast<int>(m_mousePos.x() * m_devicePixelRatio - s_magPixels);
     int offsetX = 0;
     if (magX < 0) {
         offsetX = magX;
@@ -571,7 +598,7 @@ void ScreenGrabber::drawMagnifier(QPainter &painter) const
             magX = maxX;
         }
     }
-    auto magY = static_cast<int>(m_mousePos.y() * devicePixelRatioF() - s_magPixels);
+    auto magY = static_cast<int>(m_mousePos.y() * m_devicePixelRatio - s_magPixels);
     int offsetY = 0;
     if (magY < 0) {
         offsetY = magY;
@@ -617,7 +644,8 @@ void ScreenGrabber::drawMidHelpText(QPainter &painter) const
     const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
     QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
-    QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x(), (height() - textSize.height()) / 2);
+    QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio),
+               (primaryGeometry.height() - textSize.height()) / 2 + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio));
 
     painter.setBrush(m_labelBackgroundColor);
     QPen pen(m_labelForegroundColor);
@@ -637,8 +665,7 @@ void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandles
      * - on top of the selection if the selection x position fits the box height plus some margin
      * - at the bottom otherwise
      */
-    const qreal dpr = devicePixelRatioF();
-    const QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * dpr)).arg(qRound(m_selection.height() * dpr));
+    const QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * m_devicePixelRatio)).arg(qRound(m_selection.height() * m_devicePixelRatio));
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
 
     const int selectionBoxWidth = selectionSizeTextRect.width() + s_selectionBoxPaddingX * 2;
@@ -729,23 +756,119 @@ ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
         }
     }
 
-    if (m_selection.contains(pos))
+    if (m_selection.contains(pos.toPoint()))
         return MouseState::Inside;
     return MouseState::Outside;
 }
 
 QRect ScreenGrabber::scaledCropRegion() const
 {
-    const qreal dpr = devicePixelRatioF();
-    return {qRound(m_selection.x() * dpr),
-            qRound(m_selection.y() * dpr),
-            qRound(m_selection.width() * dpr),
-            qRound(m_selection.height() * dpr)};
+    return {qRound(m_selection.x() * m_devicePixelRatio),
+            qRound(m_selection.y() * m_devicePixelRatio),
+            qRound(m_selection.width() * m_devicePixelRatio),
+            qRound(m_selection.height() * m_devicePixelRatio)};
+}
+
+QPixmap ScreenGrabber::selectedPixmap() const
+{
+#ifdef Q_OS_LINUX
+    if (!QX11Info::isPlatformX11()) {
+        // Wayland case
+        qreal maxDpr = 1.0;
+        for (const QScreen *screen: QGuiApplication::screens()) {
+            if (screen->devicePixelRatio() > maxDpr)
+                maxDpr = screen->devicePixelRatio();
+        }
+
+        QPixmap output(m_selection.size() * maxDpr);
+        QPainter painter(&output);
+        QRect intersected;
+        QPixmap screenOutput;
+
+        for (const auto *it = m_rectToDpr.constBegin(); it != m_rectToDpr.constEnd(); ++it) {
+            const QRect &screenRect = it->first;
+
+            if (m_selection.intersects(screenRect)) {
+                const QPoint pos = screenRect.topLeft();
+                qreal dpr = it->second;
+
+                intersected = screenRect.intersected(m_selection);
+
+                // Converts to screen size & position
+                QRect pixelOnScreenIntersected;
+                pixelOnScreenIntersected.moveTopLeft((intersected.topLeft() - pos) * dpr);
+                pixelOnScreenIntersected.setWidth(intersected.width() * static_cast<int>(dpr));
+                pixelOnScreenIntersected.setHeight(intersected.height() * static_cast<int>(dpr));
+
+                screenOutput = QPixmap::fromImage(m_images.value(pos).copy(pixelOnScreenIntersected));
+
+                /*
+                 * Short path when single screen
+                 * Keep native screen resolution
+                 */
+                if (intersected.size() == m_selection.size())
+                    return screenOutput;
+
+                // Upscale the image according to max screen dpr, to keep the image not distorted
+                const double dprI = maxDpr / dpr;
+                QBrush brush(screenOutput);
+                brush.setTransform(QTransform::fromScale(dprI, dprI));
+                intersected.moveTopLeft((intersected.topLeft() - m_selection.topLeft()) * maxDpr);
+                intersected.setSize(intersected.size() * maxDpr);
+                painter.setBrushOrigin(intersected.topLeft());
+                painter.fillRect(intersected, brush);
+            }
+        }
+        return output;
+    }
+#endif
+    return m_screenPixmap.copy(scaledCropRegion());
+}
+
+void ScreenGrabber::readScreenImages()
+{
+    m_images.clear();
+
+    const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
+    const QPixmap fullPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
+    for (const QScreen *screen : QGuiApplication::screens()) {
+        QRect geom = screen->geometry();
+        geom.setSize(screen->size() * screen->devicePixelRatio());
+        m_images.insert(screen->geometry().topLeft(), fullPixmap.copy(geom).toImage());
+    }
+}
+
+void ScreenGrabber::createPixmapFromScreens()
+{
+    int width = 0;
+    int height = 0;
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++) {
+        width = qMax(width, it.value().width() + it.key().x());
+        height = qMax(height, it.value().height() + it.key().y());
+    }
+
+    m_screenPixmap = QPixmap(width, height);
+
+    const QList<QScreen*> screens = QGuiApplication::screens();
+    QMap<ComparableQPoint, QPair<qreal, QSize>> input;
+    for (auto it = m_images.begin(); it != m_images.end(); ++it) {
+        const ComparableQPoint pos = it.key();
+        const QImage &screenImage = it.value();
+        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
+                                      [pos] (const QScreen* screen){
+            return screen->geometry().topLeft() == pos;
+        });
+        const QScreen* screen = *item;
+        input.insert(pos, QPair<qreal, QSize>(screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()));
+    }
+    const QMap<ComparableQPoint, ComparableQPoint> pointsTranslationMap = computeCoordinatesAfterScaling(input);
+    QPainter painter(&m_screenPixmap);
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++)
+        painter.drawImage(pointsTranslationMap.value(it.key()), it.value());
 }
 
 void ScreenGrabber::setGeometryToScreenPixmap()
 {
-    setGeometry(0, 0, static_cast<int>(m_screenPixmap.width() * m_dprI), static_cast<int>(m_screenPixmap.height() * m_dprI));
 #ifdef Q_OS_LINUX
     if (QX11Info::isPlatformX11()) {
         /*
@@ -761,8 +884,11 @@ void ScreenGrabber::setGeometryToScreenPixmap()
          */
         const uint32_t coordinates[] = {0, 0};
         xcb_configure_window(QX11Info::connection(), winId(), XCB_CONFIG_WINDOW_X | XCB_CONFIG_WINDOW_Y, coordinates);
+        resize(m_screenPixmap.width(), m_screenPixmap.height());
+        return;
     }
 #endif
+    setGeometry(0, 0, m_screenPixmap.width(), m_screenPixmap.height());
 }
 
 void ScreenGrabber::layoutBottomHelpText()
@@ -783,8 +909,8 @@ void ScreenGrabber::layoutBottomHelpText()
         contentHeight += (i != s_bottomHelpMaxLength ? s_bottomHelpBoxMarginBottom : 0);
     }
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
-    m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x());
-    m_bottomHelpContentPos.setY(height() - contentHeight - 8);
+    m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio));
+    m_bottomHelpContentPos.setY((primaryGeometry.height() + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio)) - contentHeight - 8);
     m_bottomHelpGridLeftWidth += m_bottomHelpContentPos.x();
     m_bottomHelpBorderBox.setRect(m_bottomHelpContentPos.x() - s_bottomHelpBoxPaddingX,
                                   m_bottomHelpContentPos.y() - s_bottomHelpBoxPaddingY,
@@ -837,6 +963,32 @@ void ScreenGrabber::setBottomHelpText()
     }
 }
 
+void ScreenGrabber::preparePaint()
+{
+    m_rectToDpr.clear();
+    QList<QScreen *> screens = QGuiApplication::screens();
+    for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
+        const QImage &screenImage = i.value();
+        const ComparableQPoint pos = i.key();
+
+        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
+                                      [pos] (const QScreen* screen){
+            return screen->geometry().topLeft() == pos;
+        });
+        const QScreen* screen = *item;
+
+        const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
+        m_rectToDpr.append(QPair<QRect, qreal>(screen->geometry(), dpr));
+
+#ifdef Q_OS_LINUX
+        const QRect virtualScreenRect(pos, QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
+#else
+        const QRect virtualScreenRect(pos, screenImage.size());
+#endif
+        m_screenRegion = m_screenRegion.united(virtualScreenRect);
+    }
+}
+
 void ScreenGrabber::acceptSelection()
 {
     if (!m_selection.isEmpty()) {
@@ -846,7 +998,7 @@ void ScreenGrabber::acceptSelection()
         // Until Qt 5.10 there was no way to get the screen with the current cursor
         const qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
 #endif
-        emit grabDone(m_screenPixmap.copy(scaledCropRegion()), static_cast<int>(dpi));
+        emit grabDone(selectedPixmap(), static_cast<int>(dpi));
     }
     hide();
     releaseKeyboard();
@@ -857,6 +1009,43 @@ void ScreenGrabber::cancelSelection()
     releaseKeyboard();
     hide();
     emit grabCancelled();
+}
+
+QMap<ComparableQPoint, ComparableQPoint> ScreenGrabber::computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect)
+{
+    QMap<ComparableQPoint, ComparableQPoint> translationMap;
+
+    for (auto it = outputsRect.keyBegin(); it != outputsRect.keyEnd(); ++it)
+        translationMap.insert(*it, *it);
+
+    for (auto i = outputsRect.constBegin(); i != outputsRect.constEnd(); ++i) {
+        const ComparableQPoint p = i.key();
+        const QSize &size = i.value().second;
+        const double dpr = i.value().first;
+        if (!qFuzzyCompare(dpr, 1.0)) {
+            // Must update all coordinates of next rects
+            int newWidth = size.width();
+            int newHeight = size.height();
+
+            int deltaX = newWidth - (size.width());
+            int deltaY = newHeight - (size.height());
+
+            // For the next size
+            for (auto i2 = outputsRect.constFind(p); i2 != outputsRect.constEnd(); ++i2) {
+                ComparableQPoint point = i2.key();
+                ComparableQPoint finalPoint = translationMap.value(point);
+
+                if (point.x() >= newWidth + p.x() - deltaX)
+                    finalPoint.setX(finalPoint.x() + deltaX);
+                if (point.y() >= newHeight + p.y() - deltaY)
+                    finalPoint.setY(finalPoint.y() + deltaY);
+                // Update final position point with the necessary deltas
+                translationMap.insert(point, finalPoint);
+            }
+        }
+    }
+
+    return translationMap;
 }
 
 bool ScreenGrabber::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
