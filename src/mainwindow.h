@@ -29,7 +29,7 @@
 
 class LanguageButtonsWidget;
 class Ocr;
-class ScreenGrabber;
+class SnippingArea;
 class ScreenWatcher;
 class SpeakButtons;
 class TranslationEdit;
@@ -187,7 +187,7 @@ private:
     Ocr *m_ocr;
     QTimer *m_screenCaptureTimer;
     ScreenWatcher *m_orientationWatcher;
-    ScreenGrabber *m_screenGrabber;
+    SnippingArea *m_snippingArea;
 
     QOnlineTranslator::Language m_primaryLanguage;
     QOnlineTranslator::Language m_secondaryLanguage;

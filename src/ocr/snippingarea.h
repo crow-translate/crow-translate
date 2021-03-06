@@ -19,8 +19,8 @@
  *
  */
 
-#ifndef SCREENGRABBER_H
-#define SCREENGRABBER_H
+#ifndef SNIPPINGAREA_H
+#define SNIPPINGAREA_H
 
 #include "settings/appsettings.h"
 #include "comparableqpoint.h"
@@ -33,13 +33,13 @@
 class QMouseEvent;
 
 // This class was heavy edited from Spectacle's QuickEditor
-class ScreenGrabber : public QWidget
+class SnippingArea : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ScreenGrabber(QWidget *parent = nullptr);
-    ~ScreenGrabber() override;
+    explicit SnippingArea(QWidget *parent = nullptr);
+    ~SnippingArea() override;
 
     AppSettings::RegionRememberType regionRememberType() const;
 
@@ -185,4 +185,4 @@ private:
     QVector<QPointF> m_handlePositions = QVector<QPointF>{8}; // Midpoints of handles
 };
 
-#endif // SCREENGRABBER_H
+#endif // SNIPPINGAREA_H

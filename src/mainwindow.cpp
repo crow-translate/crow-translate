@@ -29,7 +29,7 @@
 #include "singleapplication.h"
 #include "trayicon.h"
 #include "ocr/ocr.h"
-#include "ocr/screengrabber.h"
+#include "ocr/snippingarea.h"
 #include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
 #include "transitions/ocruninitializedtransition.h"
@@ -73,7 +73,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_ocr(new Ocr(this))
     , m_screenCaptureTimer(new QTimer(this))
     , m_orientationWatcher(new ScreenWatcher(this))
-    , m_screenGrabber(new ScreenGrabber(this))
+    , m_snippingArea(new SnippingArea(this))
 {
     ui->setupUi(this);
 
@@ -111,7 +111,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // OCR logic
-    connect(m_screenGrabber, &ScreenGrabber::grabDone, m_ocr, &Ocr::recognize);
+    connect(m_snippingArea, &SnippingArea::grabDone, m_ocr, &Ocr::recognize);
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     m_screenCaptureTimer->setSingleShot(true);
 
@@ -809,7 +809,7 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
     state->setInitialState(initialState);
 
     connect(grabState, &QState::entered, m_ocr, &Ocr::cancel);
-    connect(grabState, &QState::entered, m_screenGrabber, &ScreenGrabber::capture);
+    connect(grabState, &QState::entered, m_snippingArea, &SnippingArea::capture);
     connect(showWindowState, &QState::entered, this, showFunction);
     connect(showWindowState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
     setupRequestStateButtons(showWindowState);
@@ -818,8 +818,8 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
     ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
 
     initialState->addTransition(grabState);
-    grabState->addTransition(m_screenGrabber, &ScreenGrabber::grabCancelled, m_stateMachine->initialState());
-    grabState->addTransition(m_screenGrabber, &ScreenGrabber::grabDone, showWindowState);
+    grabState->addTransition(m_snippingArea, &SnippingArea::grabCancelled, m_stateMachine->initialState());
+    grabState->addTransition(m_snippingArea, &SnippingArea::grabDone, showWindowState);
     showWindowState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
     showWindowState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
@@ -966,17 +966,17 @@ void MainWindow::loadAppSettings()
         if (languages != AppSettings::defaultOcrLanguagesString() || path != AppSettings::defaultOcrLanguagesPath())
             m_trayIcon->showMessage(Ocr::tr("Unable to set OCR languages"), Ocr::tr("Unable to initialize Tesseract with %1").arg(QString(languages)));
     }
-    if (const AppSettings::RegionRememberType type = settings.regionRememberType(); m_screenGrabber->regionRememberType() != type) {
-        m_screenGrabber->setRegionRememberType(type);
+    if (const AppSettings::RegionRememberType type = settings.regionRememberType(); m_snippingArea->regionRememberType() != type) {
+        m_snippingArea->setRegionRememberType(type);
         // Apply last remembered selection only if remember type was changed
         if (type == AppSettings::RememberAlways)
-            m_screenGrabber->setCropRegion(settings.cropRegion());
+            m_snippingArea->setCropRegion(settings.cropRegion());
     }
     m_ocr->setConvertLineBreaks(settings.isConvertLineBreaks());
     m_screenCaptureTimer->setInterval(settings.captureDelay());
-    m_screenGrabber->setCaptureOnRelese(settings.isCaptureOnRelease());
-    m_screenGrabber->setShowMagnifier(settings.isShowMagnifier());
-    m_screenGrabber->setApplyLightMask(settings.isApplyLightMask());
+    m_snippingArea->setCaptureOnRelese(settings.isCaptureOnRelease());
+    m_snippingArea->setShowMagnifier(settings.isShowMagnifier());
+    m_snippingArea->setApplyLightMask(settings.isApplyLightMask());
 
     // TTS
     ui->sourceSpeakButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));

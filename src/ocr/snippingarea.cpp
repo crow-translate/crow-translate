@@ -19,7 +19,7 @@
  *
  */
 
-#include "screengrabber.h"
+#include "snippingarea.h"
 
 #include <QGuiApplication>
 #include <QPainterPath>
@@ -32,7 +32,7 @@
 #include <xcb/xproto.h>
 #endif
 
-ScreenGrabber::ScreenGrabber(QWidget *parent)
+SnippingArea::SnippingArea(QWidget *parent)
     : QWidget(parent)
 {
     setMouseTracking(true);
@@ -40,38 +40,38 @@ ScreenGrabber::ScreenGrabber(QWidget *parent)
     setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 }
 
-ScreenGrabber::~ScreenGrabber()
+SnippingArea::~SnippingArea()
 {
     if (m_regionRememberType == AppSettings::RememberAlways)
         AppSettings().setCropRegion(scaledCropRegion());
 }
 
-AppSettings::RegionRememberType ScreenGrabber::regionRememberType() const
+AppSettings::RegionRememberType SnippingArea::regionRememberType() const
 {
     return m_regionRememberType;
 }
 
-void ScreenGrabber::setCaptureOnRelese(bool onRelease)
+void SnippingArea::setCaptureOnRelese(bool onRelease)
 {
     m_captureOnRelease = onRelease;
 }
 
-void ScreenGrabber::setShowMagnifier(bool show)
+void SnippingArea::setShowMagnifier(bool show)
 {
     m_showMagnifier = show;
 }
 
-void ScreenGrabber::setApplyLightMask(bool apply)
+void SnippingArea::setApplyLightMask(bool apply)
 {
     m_maskColor = apply ? QColor(255, 255, 255, 100) : QColor();
 }
 
-void ScreenGrabber::setRegionRememberType(AppSettings::RegionRememberType type)
+void SnippingArea::setRegionRememberType(AppSettings::RegionRememberType type)
 {
     m_regionRememberType = type;
 }
 
-void ScreenGrabber::setCropRegion(QRect region)
+void SnippingArea::setCropRegion(QRect region)
 {
     m_selection = QRect(region.x() * static_cast<int>(m_devicePixelRatioI),
                         region.y() * static_cast<int>(m_devicePixelRatioI),
@@ -79,7 +79,7 @@ void ScreenGrabber::setCropRegion(QRect region)
                         region.height() * static_cast<int>(m_devicePixelRatioI));
 }
 
-void ScreenGrabber::capture()
+void SnippingArea::capture()
 {
     if (isVisible())
         return;
@@ -115,7 +115,7 @@ void ScreenGrabber::capture()
     show();
 }
 
-void ScreenGrabber::changeEvent(QEvent *event)
+void SnippingArea::changeEvent(QEvent *event)
 {
     switch (event->type()) {
     case QEvent::LanguageChange:
@@ -128,7 +128,7 @@ void ScreenGrabber::changeEvent(QEvent *event)
     }
 }
 
-void ScreenGrabber::keyPressEvent(QKeyEvent *event)
+void SnippingArea::keyPressEvent(QKeyEvent *event)
 {
     const bool shiftPressed = event->modifiers() & Qt::ShiftModifier;
     if (shiftPressed)
@@ -207,7 +207,7 @@ void ScreenGrabber::keyPressEvent(QKeyEvent *event)
     event->accept();
 }
 
-void ScreenGrabber::keyReleaseEvent(QKeyEvent *event)
+void SnippingArea::keyReleaseEvent(QKeyEvent *event)
 {
     if (m_toggleMagnifier && !(event->modifiers() & Qt::ShiftModifier)) {
         m_toggleMagnifier = false;
@@ -216,7 +216,7 @@ void ScreenGrabber::keyReleaseEvent(QKeyEvent *event)
     event->accept();
 }
 
-void ScreenGrabber::mousePressEvent(QMouseEvent *event)
+void SnippingArea::mousePressEvent(QMouseEvent *event)
 {
     m_handleRadius = event->source() == Qt::MouseEventNotSynthesized ? s_handleRadiusMouse : s_handleRadiusTouch;
 
@@ -267,7 +267,7 @@ void ScreenGrabber::mousePressEvent(QMouseEvent *event)
     event->accept();
 }
 
-void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
+void SnippingArea::mouseMoveEvent(QMouseEvent *event)
 {
     m_mousePos = event->pos();
     m_magnifierAllowed = true;
@@ -347,7 +347,7 @@ void ScreenGrabber::mouseMoveEvent(QMouseEvent *event)
     event->accept();
 }
 
-void ScreenGrabber::mouseReleaseEvent(QMouseEvent *event)
+void SnippingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     switch (event->button()) {
     case Qt::LeftButton:
@@ -369,14 +369,14 @@ void ScreenGrabber::mouseReleaseEvent(QMouseEvent *event)
     update();
 }
 
-void ScreenGrabber::mouseDoubleClickEvent(QMouseEvent *event)
+void SnippingArea::mouseDoubleClickEvent(QMouseEvent *event)
 {
     event->accept();
     if (event->button() == Qt::LeftButton && m_selection.contains(event->pos()))
         acceptSelection();
 }
 
-void ScreenGrabber::paintEvent(QPaintEvent *)
+void SnippingArea::paintEvent(QPaintEvent *)
 {
     QPainter painter(this);
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
@@ -439,7 +439,7 @@ void ScreenGrabber::paintEvent(QPaintEvent *)
     }
 }
 
-int ScreenGrabber::boundsLeft(int newTopLeftX, bool mouse)
+int SnippingArea::boundsLeft(int newTopLeftX, bool mouse)
 {
     if (newTopLeftX < 0) {
         if (mouse)
@@ -450,7 +450,7 @@ int ScreenGrabber::boundsLeft(int newTopLeftX, bool mouse)
     return newTopLeftX;
 }
 
-int ScreenGrabber::boundsRight(int newTopLeftX, bool mouse)
+int SnippingArea::boundsRight(int newTopLeftX, bool mouse)
 {
     // The max X coordinate of the top left point
     const int realMaxX = qRound((width() - m_selection.width()) * devicePixelRatioF());
@@ -464,7 +464,7 @@ int ScreenGrabber::boundsRight(int newTopLeftX, bool mouse)
     return newTopLeftX;
 }
 
-int ScreenGrabber::boundsUp(int newTopLeftY, bool mouse)
+int SnippingArea::boundsUp(int newTopLeftY, bool mouse)
 {
     if (newTopLeftY < 0) {
         if (mouse)
@@ -475,7 +475,7 @@ int ScreenGrabber::boundsUp(int newTopLeftY, bool mouse)
     return newTopLeftY;
 }
 
-int ScreenGrabber::boundsDown(int newTopLeftY, bool mouse)
+int SnippingArea::boundsDown(int newTopLeftY, bool mouse)
 {
     // The max Y coordinate of the top left point
     const int realMaxY = qRound((height() - m_selection.height()) * m_devicePixelRatio);
@@ -489,7 +489,7 @@ int ScreenGrabber::boundsDown(int newTopLeftY, bool mouse)
     return newTopLeftY;
 }
 
-void ScreenGrabber::drawBottomHelpText(QPainter &painter) const
+void SnippingArea::drawBottomHelpText(QPainter &painter) const
 {
     if (m_selection.intersects(m_bottomHelpBorderBox))
         return;
@@ -516,7 +516,7 @@ void ScreenGrabber::drawBottomHelpText(QPainter &painter) const
     }
 }
 
-void ScreenGrabber::drawDragHandles(QPainter &painter)
+void SnippingArea::drawDragHandles(QPainter &painter)
 {
     // Rectangular region
     const qreal left = m_selection.x();
@@ -583,7 +583,7 @@ void ScreenGrabber::drawDragHandles(QPainter &painter)
     painter.fillPath(path, m_strokeColor);
 }
 
-void ScreenGrabber::drawMagnifier(QPainter &painter) const
+void SnippingArea::drawMagnifier(QPainter &painter) const
 {
     const int pixels = 2 * s_magPixels + 1;
     auto magX = static_cast<int>(m_mousePos.x() * m_devicePixelRatio - s_magPixels);
@@ -633,7 +633,7 @@ void ScreenGrabber::drawMagnifier(QPainter &painter) const
         painter.fillRect(rect, m_crossColor);
 }
 
-void ScreenGrabber::drawMidHelpText(QPainter &painter) const
+void SnippingArea::drawMidHelpText(QPainter &painter) const
 {
     painter.fillRect(rect(), m_maskColor);
 
@@ -657,7 +657,7 @@ void ScreenGrabber::drawMidHelpText(QPainter &painter) const
     painter.drawText(QRect(pos, textSize.size()), Qt::AlignCenter, midHelpText);
 }
 
-void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const
+void SnippingArea::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesVisible) const
 {
     /*
      * Set the selection size and finds the most appropriate position:
@@ -704,7 +704,7 @@ void ScreenGrabber::drawSelectionSizeTooltip(QPainter &painter, bool dragHandles
     painter.drawText(selectionBoxRect, Qt::AlignCenter, selectionSizeText);
 }
 
-void ScreenGrabber::setMouseCursor(QPointF pos)
+void SnippingArea::setMouseCursor(QPointF pos)
 {
     const MouseState mouseState = mouseLocation(pos);
     if (mouseState == MouseState::Outside)
@@ -721,7 +721,7 @@ void ScreenGrabber::setMouseCursor(QPointF pos)
         setCursor(Qt::OpenHandCursor);
 }
 
-ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
+SnippingArea::MouseState SnippingArea::mouseLocation(QPointF pos) const
 {
     if (isPointInsideCircle(m_handlePositions[0], m_handleRadius * s_increaseDragAreaFactor, pos))
         return MouseState::TopLeft;
@@ -761,7 +761,7 @@ ScreenGrabber::MouseState ScreenGrabber::mouseLocation(QPointF pos) const
     return MouseState::Outside;
 }
 
-QRect ScreenGrabber::scaledCropRegion() const
+QRect SnippingArea::scaledCropRegion() const
 {
     return {qRound(m_selection.x() * m_devicePixelRatio),
             qRound(m_selection.y() * m_devicePixelRatio),
@@ -769,7 +769,7 @@ QRect ScreenGrabber::scaledCropRegion() const
             qRound(m_selection.height() * m_devicePixelRatio)};
 }
 
-QPixmap ScreenGrabber::selectedPixmap() const
+QPixmap SnippingArea::selectedPixmap() const
 {
 #ifdef Q_OS_LINUX
     if (!QX11Info::isPlatformX11()) {
@@ -825,7 +825,7 @@ QPixmap ScreenGrabber::selectedPixmap() const
     return m_screenPixmap.copy(scaledCropRegion());
 }
 
-void ScreenGrabber::readScreenImages()
+void SnippingArea::readScreenImages()
 {
     m_images.clear();
 
@@ -838,7 +838,7 @@ void ScreenGrabber::readScreenImages()
     }
 }
 
-void ScreenGrabber::createPixmapFromScreens()
+void SnippingArea::createPixmapFromScreens()
 {
     int width = 0;
     int height = 0;
@@ -867,7 +867,7 @@ void ScreenGrabber::createPixmapFromScreens()
         painter.drawImage(pointsTranslationMap.value(it.key()), it.value());
 }
 
-void ScreenGrabber::setGeometryToScreenPixmap()
+void SnippingArea::setGeometryToScreenPixmap()
 {
 #ifdef Q_OS_LINUX
     if (QX11Info::isPlatformX11()) {
@@ -891,7 +891,7 @@ void ScreenGrabber::setGeometryToScreenPixmap()
     setGeometry(0, 0, m_screenPixmap.width(), m_screenPixmap.height());
 }
 
-void ScreenGrabber::layoutBottomHelpText()
+void SnippingArea::layoutBottomHelpText()
 {
     int maxRightWidth = 0;
     int contentWidth = 0;
@@ -918,7 +918,7 @@ void ScreenGrabber::layoutBottomHelpText()
                                   contentHeight + s_bottomHelpBoxPaddingY * 2 - 1);
 }
 
-void ScreenGrabber::setBottomHelpText()
+void SnippingArea::setBottomHelpText()
 {
     Q_ASSERT_X(m_bottomLeftHelpText.size() == m_bottomRightHelpText.size(), "setButtomHelpText", "The left and right columns must be the same size");
 
@@ -963,7 +963,7 @@ void ScreenGrabber::setBottomHelpText()
     }
 }
 
-void ScreenGrabber::preparePaint()
+void SnippingArea::preparePaint()
 {
     m_rectToDpr.clear();
     QList<QScreen *> screens = QGuiApplication::screens();
@@ -989,7 +989,7 @@ void ScreenGrabber::preparePaint()
     }
 }
 
-void ScreenGrabber::acceptSelection()
+void SnippingArea::acceptSelection()
 {
     if (!m_selection.isEmpty()) {
 #if QT_VERSION >= QT_VERSION_CHECK(5, 10, 0)
@@ -1004,14 +1004,14 @@ void ScreenGrabber::acceptSelection()
     releaseKeyboard();
 }
 
-void ScreenGrabber::cancelSelection()
+void SnippingArea::cancelSelection()
 {
     releaseKeyboard();
     hide();
     emit grabCancelled();
 }
 
-QMap<ComparableQPoint, ComparableQPoint> ScreenGrabber::computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect)
+QMap<ComparableQPoint, ComparableQPoint> SnippingArea::computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect)
 {
     QMap<ComparableQPoint, ComparableQPoint> translationMap;
 
@@ -1048,22 +1048,22 @@ QMap<ComparableQPoint, ComparableQPoint> ScreenGrabber::computeCoordinatesAfterS
     return translationMap;
 }
 
-bool ScreenGrabber::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
+bool SnippingArea::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)
 {
     return qPow(point.x() - circleCenter.x(), 2) + qPow(point.y() - circleCenter.y(), 2) <= qPow(radius, 2);
 }
 
-bool ScreenGrabber::isInRange(qreal low, qreal high, qreal value)
+bool SnippingArea::isInRange(qreal low, qreal high, qreal value)
 {
     return value >= low && value <= high;
 }
 
-bool ScreenGrabber::isWithinThreshold(qreal offset, qreal threshold)
+bool SnippingArea::isWithinThreshold(qreal offset, qreal threshold)
 {
     return qFabs(offset) <= threshold;
 }
 
-void ScreenGrabber::prepare(QStaticText &text) const
+void SnippingArea::prepare(QStaticText &text) const
 {
     text.prepare(QTransform(), font());
     text.setPerformanceHint(QStaticText::AggressiveCaching);
