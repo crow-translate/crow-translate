@@ -22,9 +22,9 @@
 #include "snippingarea.h"
 
 #include <QGuiApplication>
+#include <QMessageBox>
 #include <QPainterPath>
 #include <QScreen>
-#include <QWindow>
 #include <QtMath>
 #ifdef Q_OS_LINUX
 #include <QX11Info>
@@ -32,8 +32,9 @@
 #include <xcb/xproto.h>
 #endif
 
-SnippingArea::SnippingArea(QWidget *parent)
+SnippingArea::SnippingArea(bool ignoreDevicePixelRatio, QWidget *parent)
     : QWidget(parent)
+    , m_devicePixelRatio(ignoreDevicePixelRatio ? 1.0 : devicePixelRatioF())
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_StaticContents);
@@ -79,12 +80,19 @@ void SnippingArea::setCropRegion(QRect region)
                         region.height() * static_cast<int>(m_devicePixelRatioI));
 }
 
-void SnippingArea::capture()
+void SnippingArea::snip(const QPixmap &pixmap)
 {
-    if (isVisible())
+    if (pixmap.isNull()) {
+        QMessageBox message(parentWidget());
+        message.setIcon(QMessageBox::Critical);
+        message.setText(tr("Unable to snip screen area"));
+        message.setInformativeText(tr("Invalid pixmap recivied"));
+        message.exec();
+        emit cancelled();
         return;
+    }
 
-    readScreenImages();
+    splitScreenImages(pixmap);
     createPixmapFromScreens();
     setGeometryToScreenPixmap();
 
@@ -825,16 +833,15 @@ QPixmap SnippingArea::selectedPixmap() const
     return m_screenPixmap.copy(scaledCropRegion());
 }
 
-void SnippingArea::readScreenImages()
+void SnippingArea::splitScreenImages(const QPixmap &pixmap)
 {
     m_images.clear();
 
-    const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
-    const QPixmap fullPixmap = QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height());
+    // Split to separate images per screen
     for (const QScreen *screen : QGuiApplication::screens()) {
         QRect geom = screen->geometry();
         geom.setSize(screen->size() * screen->devicePixelRatio());
-        m_images.insert(screen->geometry().topLeft(), fullPixmap.copy(geom).toImage());
+        m_images.insert(screen->geometry().topLeft(), pixmap.copy(geom).toImage());
     }
 }
 
@@ -998,7 +1005,7 @@ void SnippingArea::acceptSelection()
         // Until Qt 5.10 there was no way to get the screen with the current cursor
         const qreal dpi = QGuiApplication::primaryScreen()->logicalDotsPerInch();
 #endif
-        emit grabDone(selectedPixmap(), static_cast<int>(dpi));
+        emit snipped(selectedPixmap(), static_cast<int>(dpi));
     }
     hide();
     releaseKeyboard();
@@ -1008,7 +1015,7 @@ void SnippingArea::cancelSelection()
 {
     releaseKeyboard();
     hide();
-    emit grabCancelled();
+    emit cancelled();
 }
 
 QMap<ComparableQPoint, ComparableQPoint> SnippingArea::computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect)

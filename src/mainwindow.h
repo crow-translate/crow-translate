@@ -27,6 +27,7 @@
 #include <QMainWindow>
 #include <QMediaPlayer>
 
+class AbstractScreenGrabber;
 class LanguageButtonsWidget;
 class Ocr;
 class SnippingArea;
@@ -187,6 +188,7 @@ private:
     Ocr *m_ocr;
     QTimer *m_screenCaptureTimer;
     ScreenWatcher *m_orientationWatcher;
+    AbstractScreenGrabber *m_screenGrabber;
     SnippingArea *m_snippingArea;
 
     QOnlineTranslator::Language m_primaryLanguage;

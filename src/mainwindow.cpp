@@ -29,11 +29,13 @@
 #include "singleapplication.h"
 #include "trayicon.h"
 #include "ocr/ocr.h"
+#include "ocr/screengrabbers/abstractscreengrabber.h"
 #include "ocr/snippingarea.h"
 #include "settings/settingsdialog.h"
 #include "transitions/languagedetectedtransition.h"
 #include "transitions/ocruninitializedtransition.h"
 #include "transitions/retranslationtransition.h"
+#include "transitions/snippingvisibletransition.h"
 #include "transitions/textemptytransition.h"
 #include "transitions/translatorabortedtransition.h"
 #include "transitions/translatorerrortransition.h"
@@ -73,7 +75,8 @@ MainWindow::MainWindow(QWidget *parent)
     , m_ocr(new Ocr(this))
     , m_screenCaptureTimer(new QTimer(this))
     , m_orientationWatcher(new ScreenWatcher(this))
-    , m_snippingArea(new SnippingArea(this))
+    , m_screenGrabber(AbstractScreenGrabber::createScreenGrabber(this))
+    , m_snippingArea(new SnippingArea(m_screenGrabber->ignoreDevicePixelRatio(), this))
 {
     ui->setupUi(this);
 
@@ -111,7 +114,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
 
     // OCR logic
-    connect(m_snippingArea, &SnippingArea::grabDone, m_ocr, &Ocr::recognize);
+    connect(m_screenGrabber, &AbstractScreenGrabber::grabbed, m_snippingArea, &SnippingArea::snip);
+    connect(m_snippingArea, &SnippingArea::snipped, m_ocr, &Ocr::recognize);
     connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
     m_screenCaptureTimer->setSingleShot(true);
 
@@ -804,24 +808,31 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
 {
     auto *initialState = new QState(state);
     auto *grabState = new QState(state);
-    auto *showWindowState = new QState(state);
+    auto *snippingState = new QState(state);
+    auto *recognizeState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(initialState);
 
-    connect(grabState, &QState::entered, m_ocr, &Ocr::cancel);
-    connect(grabState, &QState::entered, m_snippingArea, &SnippingArea::capture);
-    connect(showWindowState, &QState::entered, this, showFunction);
-    connect(showWindowState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
-    setupRequestStateButtons(showWindowState);
+    connect(grabState, &QState::entered, m_screenGrabber, &AbstractScreenGrabber::grab);
+    connect(grabState, &QState::exited, m_screenGrabber, &AbstractScreenGrabber::cancel);
+    connect(recognizeState, &QState::entered, this, showFunction);
+    connect(recognizeState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
+    connect(recognizeState, &QState::exited, m_ocr, &Ocr::cancel);
+    setupRequestStateButtons(recognizeState);
 
     auto *ocrUninitializedTransition = new OcrUninitializedTransition(this, initialState);
     ocrUninitializedTransition->setTargetState(m_stateMachine->initialState());
 
+    auto *snippingVisibleTranstion = new SnippingVisibleTransition(m_snippingArea, initialState);
+    snippingVisibleTranstion->setTargetState(snippingState);
+
     initialState->addTransition(grabState);
-    grabState->addTransition(m_snippingArea, &SnippingArea::grabCancelled, m_stateMachine->initialState());
-    grabState->addTransition(m_snippingArea, &SnippingArea::grabDone, showWindowState);
-    showWindowState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
-    showWindowState->addTransition(m_ocr, &Ocr::recognized, finalState);
+    grabState->addTransition(m_screenGrabber, &AbstractScreenGrabber::grabbingFailed, m_stateMachine->initialState());
+    grabState->addTransition(m_screenGrabber, &AbstractScreenGrabber::grabbed, snippingState);
+    snippingState->addTransition(m_snippingArea, &SnippingArea::cancelled, m_stateMachine->initialState());
+    snippingState->addTransition(m_snippingArea, &SnippingArea::snipped, recognizeState);
+    recognizeState->addTransition(m_ocr, &Ocr::canceled, m_stateMachine->initialState());
+    recognizeState->addTransition(m_ocr, &Ocr::recognized, finalState);
 }
 
 void MainWindow::buildTranslateScreenAreaState(QState *state)

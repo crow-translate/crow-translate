@@ -108,6 +108,8 @@ add_executable(${PROJECT_NAME}
     src/mainwindow.cpp
     src/mainwindow.ui
     src/ocr/ocr.cpp
+    src/ocr/screengrabbers/abstractscreengrabber.cpp
+    src/ocr/screengrabbers/genericscreengrabber.cpp
     src/ocr/snippingarea.cpp
     src/popupwindow.cpp
     src/popupwindow.ui
@@ -128,6 +130,7 @@ add_executable(${PROJECT_NAME}
     src/transitions/ocruninitializedtransition.cpp
     src/transitions/playerstoppedtransition.cpp
     src/transitions/retranslationtransition.cpp
+    src/transitions/snippingvisibletransition.cpp
     src/transitions/textemptytransition.cpp
     src/transitions/translatorabortedtransition.cpp
     src/transitions/translatorerrortransition.cpp
@@ -135,7 +138,14 @@ add_executable(${PROJECT_NAME}
     src/trayicon.cpp
 )
 
-if(WIN32)
+if(UNIX)
+    target_sources(${PROJECT_NAME} PRIVATE
+        src/ocr/screengrabbers/dbusscreengrabber.cpp
+        src/ocr/screengrabbers/waylandgnomescreengrabber.cpp
+        src/ocr/screengrabbers/waylandplasmascreengrabber.cpp
+        src/ocr/screengrabbers/waylandportalscreengrabber.cpp
+    )
+elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
     configure_file(data/icons/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
 

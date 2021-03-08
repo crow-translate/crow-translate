@@ -13,6 +13,7 @@ Terminal=false
 StartupNotify=false
 Type=Application
 Categories=Office;Network;Qt;
+X-KDE-DBUS-Restricted-Interfaces=org.kde.kwin.Screenshot
 
 [Desktop Action TranslateSelectedText]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
