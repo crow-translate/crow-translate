@@ -268,10 +268,10 @@ Q_SCRIPTABLE void MainWindow::delayedTranslateScreenArea()
 void MainWindow::clearText()
 {
     // Clear source text without tracking for changes
-    ui->sourceEdit->setRequestTranlationOnEdit(false);
+    ui->sourceEdit->setListenForEdits(false);
     ui->sourceEdit->removeText();
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setRequestTranlationOnEdit(true);
+    if (m_listenForContentChanges)
+        ui->sourceEdit->setListenForEdits(true);
 
     clearTranslation();
 }
@@ -426,11 +426,13 @@ void MainWindow::showTranslationWindow()
         popup->activateWindow();
 
         // Force listening for changes in source field
-        if (!ui->autoTranslateCheckBox->isChecked()) {
-            ui->sourceEdit->setRequestTranlationOnEdit(true);
+        if (!m_listenForContentChanges) {
+            m_listenForContentChanges = true;
+            ui->sourceEdit->setListenForEdits(true);
             connect(popup, &PopupWindow::destroyed, [this] {
                 // Undo force listening for changes
-                ui->sourceEdit->setRequestTranlationOnEdit(false);
+                m_listenForContentChanges = false;
+                ui->sourceEdit->setListenForEdits(false);
             });
         }
 
@@ -457,24 +459,24 @@ void MainWindow::copyTranslationToClipboard()
 void MainWindow::forceSourceAutodetect()
 {
     if (m_forceSourceAutodetect) {
-        ui->sourceEdit->setRequestTranlationOnEdit(false);
+        bool before = m_listenForContentChanges;
+        m_listenForContentChanges = false;
 
         ui->sourceLanguagesWidget->checkAutoButton();
 
-        if (ui->autoTranslateCheckBox->isChecked())
-            ui->sourceEdit->setRequestTranlationOnEdit(true);
+        m_listenForContentChanges = before;
     }
 }
 
 void MainWindow::forceTranslationAutodetect()
 {
     if (m_forceTranslationAutodetect) {
-        ui->sourceEdit->setRequestTranlationOnEdit(false);
+        bool before = m_listenForContentChanges;
+        m_listenForContentChanges = false;
 
         ui->translationLanguagesWidget->checkAutoButton();
 
-        if (ui->autoTranslateCheckBox->isChecked())
-            ui->sourceEdit->setRequestTranlationOnEdit(true);
+        m_listenForContentChanges = before;
     }
 }
 
@@ -483,11 +485,20 @@ void MainWindow::minimize()
     setWindowState(windowState() | Qt::WindowMinimized);
 }
 
-void MainWindow::setTranslationOnEditEnabled(bool enabled)
+void MainWindow::markContentAsChanged()
 {
-    ui->sourceEdit->setRequestTranlationOnEdit(enabled);
-    if (enabled)
-        ui->sourceEdit->markSourceAsChanged();
+    if (m_listenForContentChanges) {
+        ui->sourceEdit->stopEditTimer();
+        emit contentChanged();
+    }
+}
+
+void MainWindow::setAutotranslateEnabled(bool enabled)
+{
+    m_listenForContentChanges = enabled;
+    ui->sourceEdit->setListenForEdits(m_listenForContentChanges);
+    if (m_listenForContentChanges)
+        markContentAsChanged();
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -531,10 +542,10 @@ void MainWindow::showAppRunningMessage()
 
 void MainWindow::setSourceText(const QString &text)
 {
-    ui->sourceEdit->setRequestTranlationOnEdit(false);
+    ui->sourceEdit->setListenForEdits(false);
     ui->sourceEdit->replaceText(text);
-    if (ui->autoTranslateCheckBox->isChecked())
-        ui->sourceEdit->setRequestTranlationOnEdit(true);
+    if (m_listenForContentChanges)
+        ui->sourceEdit->setListenForEdits(true);
 }
 
 void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
@@ -643,10 +654,10 @@ void MainWindow::buildStateMachine()
     // Add transitions between all states
     for (QState *state : m_stateMachine->findChildren<QState *>()) {
         state->addTransition(ui->translateButton, &QToolButton::clicked, translationState);
-        state->addTransition(ui->sourceEdit, &SourceTextEdit::translationRequested, translationState);
         state->addTransition(ui->sourceSpeakButtons, &SpeakButtons::playerMediaRequested, speakSourceState);
         state->addTransition(ui->translationSpeakButtons, &SpeakButtons::playerMediaRequested, speakTranslationState);
 
+        state->addTransition(this, &MainWindow::contentChanged, translationState);
         state->addTransition(this, &MainWindow::translateSelectionRequested, translateSelectionState);
         state->addTransition(this, &MainWindow::speakSelectionRequested, speakSelectionState);
         state->addTransition(this, &MainWindow::speakTranslatedSelectionRequested, speakTranslatedSelectionState);
@@ -1076,7 +1087,7 @@ void MainWindow::checkLanguageButton(int checkedId)
         return;
     }
 
-    ui->sourceEdit->markSourceAsChanged();
+    markContentAsChanged();
 }
 
 // Selected primary or secondary language depends on sourceLang

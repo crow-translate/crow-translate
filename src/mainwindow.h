@@ -93,6 +93,7 @@ public slots:
     Q_SCRIPTABLE static void quit();
 
 signals:
+    void contentChanged();
     void translateSelectionRequested();
     void speakSelectionRequested();
     void speakTranslatedSelectionRequested();
@@ -124,7 +125,8 @@ private slots:
     void minimize();
 
     // UI
-    void setTranslationOnEditEnabled(bool enabled);
+    void markContentAsChanged();
+    void setAutotranslateEnabled(bool enabled);
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 
@@ -198,6 +200,7 @@ private:
 
     bool m_forceSourceAutodetect;
     bool m_forceTranslationAutodetect;
+    bool m_listenForContentChanges = false;
 };
 
 #endif // MAINWINDOW_H

@@ -30,18 +30,18 @@ SourceTextEdit::SourceTextEdit(QWidget *parent)
 {
     m_textEditedTimer->setSingleShot(true);
 #if QT_VERSION >= QT_VERSION_CHECK(5, 12, 0)
-    m_textEditedTimer->callOnTimeout(this, &SourceTextEdit::translationRequested);
+    m_textEditedTimer->callOnTimeout(this, &SourceTextEdit::textEdited);
 #else
-    connect(m_textEditedTimer, &QTimer::timeout, this, &SourceTextEdit::translationRequested);
+    connect(m_textEditedTimer, &QTimer::timeout, this, &SourceTextEdit::textEdited);
 #endif
     connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::checkSourceEmptyChanged);
 }
 
-void SourceTextEdit::setRequestTranlationOnEdit(bool listen)
+void SourceTextEdit::setListenForEdits(bool listen)
 {
-    m_requestTranslationOnEdit = listen;
+    m_listenForEdits = listen;
 
-    if (m_requestTranslationOnEdit) {
+    if (m_listenForEdits) {
         connect(this, &SourceTextEdit::textChanged, this, &SourceTextEdit::startTimerDelay);
     } else {
         m_textEditedTimer->stop();
@@ -75,15 +75,7 @@ void SourceTextEdit::removeText()
     setTextCursor(cursor);
 }
 
-void SourceTextEdit::markSourceAsChanged()
-{
-    if (m_requestTranslationOnEdit) {
-        m_textEditedTimer->stop();
-        emit translationRequested();
-    }
-}
-
-void SourceTextEdit::stopChangedTimer()
+void SourceTextEdit::stopEditTimer()
 {
     m_textEditedTimer->stop();
 }

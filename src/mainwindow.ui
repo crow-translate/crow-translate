@@ -301,8 +301,8 @@
    <header>sourcetextedit.h</header>
    <slots>
     <signal>sourceEmpty(bool)</signal>
-    <slot>stopChangedTimer()</slot>
-    <slot>markSourceAsChanged()</slot>
+    <signal>textEdited()</signal>
+    <slot>stopEditTimer()</slot>
    </slots>
   </customwidget>
   <customwidget>
@@ -367,16 +367,16 @@
   <connection>
    <sender>engineComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
-   <receiver>sourceEdit</receiver>
-   <slot>markSourceAsChanged()</slot>
+   <receiver>MainWindow</receiver>
+   <slot>markContentAsChanged()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>403</x>
      <y>276</y>
     </hint>
     <hint type="destinationlabel">
-     <x>158</x>
-     <y>134</y>
+     <x>324</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -400,7 +400,7 @@
    <sender>autoTranslateCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>setTranslationOnEditEnabled(bool)</slot>
+   <slot>setAutotranslateEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>205</x>
@@ -464,7 +464,7 @@
    <sender>translateButton</sender>
    <signal>clicked()</signal>
    <receiver>sourceEdit</receiver>
-   <slot>stopChangedTimer()</slot>
+   <slot>stopEditTimer()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>324</x>
@@ -572,12 +572,28 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>sourceEdit</sender>
+   <signal>textEdited()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>markContentAsChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>144</x>
+     <y>85</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>swapLanguages()</slot>
   <slot>openSettings()</slot>
   <slot>markSourceAsUpdated()</slot>
-  <slot>setTranslationOnEditEnabled(bool)</slot>
+  <slot>setAutotranslateEnabled(bool)</slot>
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
   <slot>copyAllTranslationInfo()</slot>
@@ -585,5 +601,6 @@
   <slot>clearText()</slot>
   <slot>delayedRecognizeScreenArea()</slot>
   <slot>delayedTranslateScreenArea()</slot>
+  <slot>markContentAsChanged()</slot>
  </slots>
 </ui>
