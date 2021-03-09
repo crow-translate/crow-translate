@@ -99,7 +99,7 @@ void UpdaterDialog::download()
 
     connect(m_reply, &QNetworkReply::readyRead, this, &UpdaterDialog::saveDownloadedData);
     connect(m_reply, &QNetworkReply::finished, this, &UpdaterDialog::showDownloadStatus);
-    connect(m_reply, &QNetworkReply::downloadProgress, [&](qint64 bytesReceived, qint64 bytesTotal) {
+    connect(m_reply, &QNetworkReply::downloadProgress, [this](qint64 bytesReceived, qint64 bytesTotal) {
         if (bytesTotal != 0) // May be 0 on error
             ui->downloadBar->setValue(static_cast<int>(bytesReceived * 100 / bytesTotal));
     });
