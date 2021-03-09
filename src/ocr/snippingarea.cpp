@@ -21,6 +21,8 @@
 
 #include "snippingarea.h"
 
+#include "comparableqpoint.h"
+
 #include <QGuiApplication>
 #include <QMessageBox>
 #include <QPainterPath>
@@ -390,29 +392,21 @@ void SnippingArea::paintEvent(QPaintEvent *)
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.eraseRect(rect());
 
-    QList<QScreen *> screens = QGuiApplication::screens();
     for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
         const QImage &screenImage = i.value();
-        const ComparableQPoint &pos = i.key();
+        const QScreen* screen = i.key();
 
-        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
-                                      [pos] (const QScreen* screen){
-            return screen->geometry().topLeft() == pos;
-        });
-        const QScreen* screen = *item;
-
-        const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
+        QRect rectToDraw = screen->geometry();
+        const qreal dpr = screenImage.width() / static_cast<qreal>(rectToDraw.width());
         const qreal dprI = 1.0 / dpr;
 
         QBrush brush(screenImage);
-
         brush.setTransform(QTransform::fromScale(dprI, dprI));
 
-        painter.setBrushOrigin(screen->geometry().topLeft() / m_devicePixelRatio);
-
-        QRect rectToDraw = screen->geometry();
         rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
         rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
+
+        painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
     }
 
@@ -790,17 +784,16 @@ QPixmap SnippingArea::selectedPixmap() const
 
         QPixmap output(m_selection.size() * maxDpr);
         QPainter painter(&output);
-        QRect intersected;
-        QPixmap screenOutput;
 
-        for (const auto *it = m_rectToDpr.constBegin(); it != m_rectToDpr.constEnd(); ++it) {
-            const QRect &screenRect = it->first;
+        for (const auto *it = m_screenToDpr.constBegin(); it != m_screenToDpr.constEnd(); ++it) {
+            const QScreen *screen = it->first;
+            const QRect screenRect = screen->geometry();
 
             if (m_selection.intersects(screenRect)) {
                 const QPoint pos = screenRect.topLeft();
                 qreal dpr = it->second;
 
-                intersected = screenRect.intersected(m_selection);
+                QRect intersected = screenRect.intersected(m_selection);
 
                 // Converts to screen size & position
                 QRect pixelOnScreenIntersected;
@@ -808,7 +801,7 @@ QPixmap SnippingArea::selectedPixmap() const
                 pixelOnScreenIntersected.setWidth(intersected.width() * static_cast<int>(dpr));
                 pixelOnScreenIntersected.setHeight(intersected.height() * static_cast<int>(dpr));
 
-                screenOutput = QPixmap::fromImage(m_images.value(pos).copy(pixelOnScreenIntersected));
+                QPixmap screenOutput = QPixmap::fromImage(m_images.value(screen).copy(pixelOnScreenIntersected));
 
                 /*
                  * Short path when single screen
@@ -841,7 +834,7 @@ void SnippingArea::splitScreenImages(const QPixmap &pixmap)
     for (const QScreen *screen : QGuiApplication::screens()) {
         QRect geom = screen->geometry();
         geom.setSize(screen->size() * screen->devicePixelRatio());
-        m_images.insert(screen->geometry().topLeft(), pixmap.copy(geom).toImage());
+        m_images.insert(screen, pixmap.copy(geom).toImage());
     }
 }
 
@@ -850,28 +843,23 @@ void SnippingArea::createPixmapFromScreens()
     int width = 0;
     int height = 0;
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++) {
-        width = qMax(width, it.value().width() + it.key().x());
-        height = qMax(height, it.value().height() + it.key().y());
+        const QPoint pos = it.key()->geometry().topLeft();
+        width = qMax(width, it.value().width() + pos.x());
+        height = qMax(height, it.value().height() + pos.y());
     }
 
     m_screenPixmap = QPixmap(width, height);
 
-    const QList<QScreen*> screens = QGuiApplication::screens();
     QMap<ComparableQPoint, QPair<qreal, QSize>> input;
     for (auto it = m_images.begin(); it != m_images.end(); ++it) {
-        const ComparableQPoint pos = it.key();
+        const QScreen* screen = it.key();
         const QImage &screenImage = it.value();
-        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
-                                      [pos] (const QScreen* screen){
-            return screen->geometry().topLeft() == pos;
-        });
-        const QScreen* screen = *item;
-        input.insert(pos, QPair<qreal, QSize>(screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()));
+        input.insert(screen->geometry().topLeft(), {screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()});
     }
     const QMap<ComparableQPoint, ComparableQPoint> pointsTranslationMap = computeCoordinatesAfterScaling(input);
     QPainter painter(&m_screenPixmap);
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++)
-        painter.drawImage(pointsTranslationMap.value(it.key()), it.value());
+        painter.drawImage(pointsTranslationMap.value(it.key()->geometry().topLeft()), it.value());
 }
 
 void SnippingArea::setGeometryToScreenPixmap()
@@ -972,25 +960,18 @@ void SnippingArea::setBottomHelpText()
 
 void SnippingArea::preparePaint()
 {
-    m_rectToDpr.clear();
-    QList<QScreen *> screens = QGuiApplication::screens();
+    m_screenToDpr.clear();
     for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
         const QImage &screenImage = i.value();
-        const ComparableQPoint pos = i.key();
-
-        auto item = std::find_if(screens.constBegin(), screens.constEnd(),
-                                      [pos] (const QScreen* screen){
-            return screen->geometry().topLeft() == pos;
-        });
-        const QScreen* screen = *item;
+        const QScreen* screen = i.key();
 
         const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
-        m_rectToDpr.append(QPair<QRect, qreal>(screen->geometry(), dpr));
+        m_screenToDpr.append({screen, dpr});
 
 #ifdef Q_OS_LINUX
-        const QRect virtualScreenRect(pos, QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
+        const QRect virtualScreenRect(screen->geometry().topLeft(), QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
 #else
-        const QRect virtualScreenRect(pos, screenImage.size());
+        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size());
 #endif
         m_screenRegion = m_screenRegion.united(virtualScreenRect);
     }

@@ -23,7 +23,6 @@
 #define SNIPPINGAREA_H
 
 #include "settings/appsettings.h"
-#include "comparableqpoint.h"
 
 #include <QKeyEvent>
 #include <QPainter>
@@ -31,6 +30,7 @@
 #include <QWidget>
 
 class QMouseEvent;
+class ComparableQPoint;
 
 // This class was heavy edited from Spectacle's QuickEditor
 class SnippingArea : public QWidget
@@ -160,8 +160,8 @@ private:
     QPointF m_initialTopLeft;
     QRegion m_screenRegion;
 
-    QMap<ComparableQPoint, QImage> m_images;
-    QVector<QPair<QRect, qreal>> m_rectToDpr;
+    QMap<const QScreen *, QImage> m_images;
+    QVector<QPair<const QScreen *, qreal>> m_screenToDpr;
 
     QVector<QStaticText> m_bottomLeftHelpText;
     QVector<QVector<QStaticText>> m_bottomRightHelpText;
