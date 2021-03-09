@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="tr" sourcelanguage="en">
   <context>
+    <name>AbstractScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="64"/>
+      <source>Unable to grab screen</source>
+      <translation>Ekran yakalanamıyor</translation>
+    </message>
+  </context>
+  <context>
     <name>AddLanguageDialog</name>
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="14"/>
@@ -27,22 +35,22 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="189"/>
+      <location filename="../../src/settings/appsettings.cpp" line="194"/>
       <source>Unable to create %1</source>
       <translation>%1 oluşturulamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="196"/>
+      <location filename="../../src/settings/appsettings.cpp" line="201"/>
       <source>Unable to copy %1 to %2</source>
       <translation>%1'den %2'ye kopyalanamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="200"/>
+      <location filename="../../src/settings/appsettings.cpp" line="205"/>
       <source>Unable to remove %1 from %2</source>
       <translation>%1'den %2'ye kaldırılamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1137"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1129"/>
       <source>Unknown language code: %1</source>
       <translation>Bilinmeyen dil kodu: %1</translation>
     </message>
@@ -172,12 +180,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="99"/>
+      <location filename="../../src/main.cpp" line="98"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>%1 için D-Bus nesnesi kaydedilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="74"/>
+      <location filename="../../src/main.cpp" line="73"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>%1 D-Bus hizmeti başka bir uygulama tarafından zaten kayıtlı</translation>
     </message>
@@ -209,32 +217,32 @@
       <translation>Kaynak metni panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="108"/>
+      <location filename="../../src/mainwindow.ui" line="114"/>
       <source>Source</source>
       <translation>Kaynak</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="220"/>
+      <location filename="../../src/mainwindow.ui" line="232"/>
       <source>Copy translation to the clipboard</source>
       <translation>Çeviriyi panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="231"/>
+      <location filename="../../src/mainwindow.ui" line="243"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Tüm çeviri verilerini panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="242"/>
+      <location filename="../../src/mainwindow.ui" line="254"/>
       <source>Translate screen area with delay</source>
       <translation>Ekran alanını gecikmeli olarak çevir</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="253"/>
+      <location filename="../../src/mainwindow.ui" line="265"/>
       <source>Application settings</source>
       <translation>Uygulama ayarları</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="87"/>
+      <location filename="../../src/mainwindow.ui" line="93"/>
       <source>Swap languages</source>
       <translation>Dilleri değiştir</translation>
     </message>
@@ -244,43 +252,43 @@
       <translation>Ekran alanını gecikmeli olarak tanı</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="64"/>
+      <location filename="../../src/mainwindow.ui" line="70"/>
       <source>Auto-translation</source>
       <extracomment>The text should be short to fit in portrait orientation on phones.</extracomment>
       <translation>Otomatik çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="76"/>
+      <location filename="../../src/mainwindow.ui" line="82"/>
       <source>Cancel</source>
       <translation>İptal</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="115"/>
+      <location filename="../../src/mainwindow.ui" line="121"/>
       <source>Clear</source>
       <translation>Temizle</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="132"/>
+      <location filename="../../src/mainwindow.ui" line="138"/>
       <source>Translate</source>
       <translation>Çevir</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="160"/>
+      <location filename="../../src/mainwindow.ui" line="166"/>
       <source>Translation</source>
       <translation>Çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="394"/>
+      <location filename="../../src/mainwindow.cpp" line="397"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="448"/>
+      <location filename="../../src/mainwindow.cpp" line="452"/>
       <source>Unable to translate text</source>
       <translation>Metin çevrilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="527"/>
+      <location filename="../../src/mainwindow.cpp" line="536"/>
       <source>The application is already running</source>
       <translation>Uygulama zaten çalışıyor</translation>
     </message>
@@ -288,12 +296,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="964"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dili ayarlanamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="964"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Tesseract %1 ile başlatılamıyor</translation>
     </message>
@@ -308,7 +316,7 @@
       <translation>Uygulama ayarlarında en az bir OCR dili seçmelisiniz</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="144"/>
+      <location filename="../../src/ocr/ocr.cpp" line="149"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 geçerli bir tesseract parametre adı değil.</translation>
     </message>
@@ -1058,112 +1066,6 @@
     </message>
   </context>
   <context>
-    <name>ScreenGrabber</name>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="617"/>
-      <source>Click and drag to draw a selection rectangle,
-or press Esc to quit</source>
-      <translation>Seçim dikdörtgeni çizmek için tıklayın ve sürükleyin,
-veya çıkmak için Esc tuşuna basın</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="810"/>
-      <source>Confirm capture:</source>
-      <translation>Yakalamayı onaylayın:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="812"/>
-      <source>Release left-click</source>
-      <translation>Sol tıklamayı bırakın</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="812"/>
-      <location filename="../../src/ocr/screengrabber.cpp" line="814"/>
-      <source>Enter</source>
-      <translation>Onayla</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="816"/>
-      <source>Create new selection rectangle:</source>
-      <translation>Yeni seçim dikdörtgeni oluşturun:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="817"/>
-      <source>Drag outside selection rectangle</source>
-      <translation>Seçimi dikdörtgeninin dışına sürükleyin</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="817"/>
-      <source>+ Shift: Magnifier</source>
-      <translation>+ Shift: Büyüteç</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="830"/>
-      <source>Cancel:</source>
-      <translation>İptal Et:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="814"/>
-      <source>Double-click</source>
-      <translation>Çift Tıkla</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="820"/>
-      <source>Move selection rectangle:</source>
-      <translation>Seçim dikdörtgenini taşı:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>Drag inside selection rectangle</source>
-      <translation>Seçimi dikdörtgeninin içine sürükleyin</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>Arrow keys</source>
-      <translation>Ok tuşları</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>+ Shift: Move in 1 pixel steps</source>
-      <translation>+ Shift: 1 piksel adımda hareket et</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="823"/>
-      <source>Resize selection rectangle:</source>
-      <translation>Seçim dikdörtgenini yeniden boyutlandır:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>Drag handles</source>
-      <translation>Tutamaçları sürükle</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>Arrow keys + Alt</source>
-      <translation>Ok tuşları + Alt</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>+ Shift: Resize in 1 pixel steps</source>
-      <translation>+ Shift: 1 piksel adımda yeniden boyutlandır</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="826"/>
-      <source>Reset selection:</source>
-      <translation>Seçimi sıfırla:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="827"/>
-      <source>Right-click</source>
-      <translation>Sağ tık</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="831"/>
-      <source>Esc key</source>
-      <translation>Esc Tuşu</translation>
-    </message>
-  </context>
-  <context>
     <name>SettingsDialog</name>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="14"/>
@@ -1225,9 +1127,9 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Dil:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="77"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="91"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="92"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Sistem dili&gt;</translation>
     </message>
@@ -1351,8 +1253,8 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="704"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="722"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
       <source>Default</source>
       <translation>Varsayılan</translation>
     </message>
@@ -1377,32 +1279,32 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Özel:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="382"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
@@ -1412,17 +1314,17 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Duygusal çağrışım:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="384"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>Nötr</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="385"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>İyi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>Kötü</translation>
     </message>
@@ -1537,11 +1439,6 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Işık maskesi uygula</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;En son yakalanan bölge ne zaman hatırlansın&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="931"/>
       <source>Remember last</source>
       <translation>Sonuncuya hatırla</translation>
@@ -1555,11 +1452,6 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="977"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Fare düğmesi bırakıldığında parçayı yakalamayı bitir&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
-      <source>Capture on release</source>
-      <translation>Serbest bırakıldığında yakala</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1079"/>
@@ -1788,6 +1680,11 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Satır sonlarını dönüştür</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last selected region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Son seçilen bölge ne zaman hatırlanmalı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="944"/>
       <source>Capture delay:</source>
       <translation>Yakalama gecikmesi:</translation>
@@ -1801,6 +1698,11 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="954"/>
       <source> ms</source>
       <translation> ms</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
+      <source>Confirm on release</source>
+      <translation>Serbest bırakıldığında onayla</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1029"/>
@@ -1948,123 +1850,123 @@ veya çıkmak için Esc tuşuna basın</translation>
       <translation>Yazar:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="50"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="48"/>
       <source>Portable mode</source>
       <translation>Taşınabilir mod</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="68"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="61"/>
       <source>Use %1 from the application folder to store settings</source>
       <translation>Ayarları saklamak için uygulama klasöründen %1 kullan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="134"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
       <source>Updates</source>
       <translation>Güncellemeler</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
       <source>Check for updates:</source>
       <translation>Güncellemeleri kontrol et:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
       <source>Every day</source>
       <translation>Her gün</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every week</source>
       <translation>Her hafta</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every month</source>
       <translation>Her ay</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Never</source>
       <translation>Asla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
       <source>Icons:</source>
       <translation>Simgeler:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="152"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
       <source>Check now</source>
       <translation>Şimdi kontrol et</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check for updates now</source>
       <translation>Güncellemeleri şimdi kontrol et</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="166"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Happy New Year!</source>
       <translation>Yeni Yılınız Kutlu Olsun!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="180"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR parametre alanları boş olamaz.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Geçersiz parametreleri atmak istiyor musunuz?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>Simge seç</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Görüntüler (*.png *.ico *.svg *.jpg);;Tüm dosyalar()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="339"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>OCR dilleri yolunu seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>Oynatılacak bir şey yok</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>Oynatım metni boş</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="427"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="482"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>Güncellemeler kontrol ediliyor...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>Güncelleme mevcut!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="510"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>Güncelleme yok.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="595"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
       <source>Back</source>
       <translation>Geri</translation>
     </message>
@@ -2183,6 +2085,122 @@ veya çıkmak için Esc tuşuna basın</translation>
     </message>
   </context>
   <context>
+    <name>SnippingArea</name>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="90"/>
+      <source>Unable to snip screen area</source>
+      <translation>Ekran alanı kırpılamıyor</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="646"/>
+      <source>Click and drag to draw a selection rectangle,
+or press Esc to quit</source>
+      <translation>Seçim dikdörtgeni çizmek için tıklayın ve sürükleyin,
+veya çıkmak için Esc tuşuna basın</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="91"/>
+      <source>Invalid pixmap recivied.</source>
+      <translation>Geçersiz piksel haritası alındı.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <source>Confirm:</source>
+      <translation>Onay:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <source>Release left-click</source>
+      <translation>Sol tıklamayı bırakın</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <source>Enter</source>
+      <translation>Enter</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <source>Double-click</source>
+      <translation>Çift tık</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <source>Create new selection rectangle:</source>
+      <translation>Yeni seçim dikdörtgeni oluşturun:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <source>Drag outside selection rectangle</source>
+      <translation>Seçimi dikdörtgeninin dışına sürükleyin</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <source>+ Shift: Magnifier</source>
+      <translation>+ Shift: Büyüteç</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <source>Move selection rectangle:</source>
+      <translation>Seçim dikdörtgenini taşı:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>Drag inside selection rectangle</source>
+      <translation>Seçimi dikdörtgeninin içine sürükleyin</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>Arrow keys</source>
+      <translation>Yön tuşları</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>+ Shift: Move in 1 pixel steps</source>
+      <translation>+ Shift: 1 piksel adımda hareket et</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <source>Resize selection rectangle:</source>
+      <translation>Seçim dikdörtgenini yeniden boyutlandır:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>Drag handles</source>
+      <translation>Tutamaçları sürükle</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>Arrow keys + Alt</source>
+      <translation>Yön tuşları + Alt</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>+ Shift: Resize in 1 pixel steps</source>
+      <translation>+ Shift: 1 piksel adımda yeniden boyutlandır</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="947"/>
+      <source>Reset selection:</source>
+      <translation>Seçimi sıfırla:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <source>Right-click</source>
+      <translation>Sağ tık</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <source>Cancel:</source>
+      <translation>İptal Et:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <source>Esc key</source>
+      <translation>Esc tuşu</translation>
+    </message>
+  </context>
+  <context>
     <name>SpeakButtons</name>
     <message>
       <location filename="../../src/speakbuttons.ui" line="24"/>
@@ -2239,12 +2257,12 @@ veya çıkmak için Esc tuşuna basın</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="943"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>Invalid tray icon</source>
       <translation>Geçersiz tepsi simgesi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="943"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Belirtilen &apos;%1&apos; simgesi geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
@@ -2344,6 +2362,50 @@ veya çıkmak için Esc tuşuna basın</translation>
       <location filename="../../src/updaterdialog.cpp" line="87"/>
       <source>Unable to write file</source>
       <translation>Dosya yazılamıyor</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandGnomeScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandgnomescreengrabber.cpp" line="60"/>
+      <source>GNOME failed to take screenshot.</source>
+      <translation>GNOME ekran görüntüsü alamadı.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPlasmaScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <source>Unable to create pipe: %1.</source>
+      <translation>Kanal oluşturulamıyor: %1.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <source>Unable to wait for socket readiness: %1.</source>
+      <translation>Soket hazırlığı için beklenemiyor: %1.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <source>Timeout reading from pipe.</source>
+      <translation>Kanaldan okuma zaman aşımı.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <source>Unable to read data from socket: %1.</source>
+      <translation>Soketten veri okunamıyor: %1.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPortalScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <source>Unable to subscribe to response from xdg-desktop-portal.</source>
+      <translation>Xdg-desktop-portal'dan gelen yanıta abone olunamıyor.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <source>Recivied an empty path from xdg-desktop-portal.</source>
+      <translation>Xdg-desktop-portal'dan boş bir yol alındı.</translation>
     </message>
   </context>
 </TS>
