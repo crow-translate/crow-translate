@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ru" sourcelanguage="en">
   <context>
+    <name>AbstractScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="64"/>
+      <source>Unable to grab screen</source>
+      <translation>Не удалось захватить экран</translation>
+    </message>
+  </context>
+  <context>
     <name>AddLanguageDialog</name>
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="14"/>
@@ -27,22 +35,22 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="189"/>
+      <location filename="../../src/settings/appsettings.cpp" line="194"/>
       <source>Unable to create %1</source>
       <translation>Не удалось создать %1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="196"/>
+      <location filename="../../src/settings/appsettings.cpp" line="201"/>
       <source>Unable to copy %1 to %2</source>
       <translation>Не удалось скопировать %1 в %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="200"/>
+      <location filename="../../src/settings/appsettings.cpp" line="205"/>
       <source>Unable to remove %1 from %2</source>
       <translation>Не удалось удалить %1 из %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1137"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1129"/>
       <source>Unknown language code: %1</source>
       <translation>Неизвестный код языка:%1</translation>
     </message>
@@ -172,12 +180,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="99"/>
+      <location filename="../../src/main.cpp" line="98"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Не удалось зарегистрировать объект D-Bus для %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="74"/>
+      <location filename="../../src/main.cpp" line="73"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>Сервис D-Bus %1 уже зарегистрирован другим приложением</translation>
     </message>
@@ -209,32 +217,32 @@
       <translation>Скопировать исходный текст в буфер обмена</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="108"/>
+      <location filename="../../src/mainwindow.ui" line="114"/>
       <source>Source</source>
       <translation>Исходный текст</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="220"/>
+      <location filename="../../src/mainwindow.ui" line="232"/>
       <source>Copy translation to the clipboard</source>
       <translation>Скопировать перевод в буфер обмена</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="231"/>
+      <location filename="../../src/mainwindow.ui" line="243"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Скопировать все данные перевода в буфер обмена</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="242"/>
+      <location filename="../../src/mainwindow.ui" line="254"/>
       <source>Translate screen area with delay</source>
       <translation>Перевести область экрана с задержкой</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="253"/>
+      <location filename="../../src/mainwindow.ui" line="265"/>
       <source>Application settings</source>
       <translation>Настройки приложения</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="87"/>
+      <location filename="../../src/mainwindow.ui" line="93"/>
       <source>Swap languages</source>
       <translation>Поменять языки местами</translation>
     </message>
@@ -244,43 +252,43 @@
       <translation>Распознать область экрана с задержкой</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="64"/>
+      <location filename="../../src/mainwindow.ui" line="70"/>
       <source>Auto-translation</source>
       <extracomment>The text should be short to fit in portrait orientation on phones.</extracomment>
       <translation>Автоперевод</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="76"/>
+      <location filename="../../src/mainwindow.ui" line="82"/>
       <source>Cancel</source>
       <translation>Отмена</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="115"/>
+      <location filename="../../src/mainwindow.ui" line="121"/>
       <source>Clear</source>
       <translation>Очистить</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="132"/>
+      <location filename="../../src/mainwindow.ui" line="138"/>
       <source>Translate</source>
       <translation>Перевести</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="160"/>
+      <location filename="../../src/mainwindow.ui" line="166"/>
       <source>Translation</source>
       <translation>Перевод</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="394"/>
+      <location filename="../../src/mainwindow.cpp" line="397"/>
       <source>Unable to detect language</source>
       <translation>Не удается определить язык</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="448"/>
+      <location filename="../../src/mainwindow.cpp" line="452"/>
       <source>Unable to translate text</source>
       <translation>Не удалось перевести текст</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="527"/>
+      <location filename="../../src/mainwindow.cpp" line="536"/>
       <source>The application is already running</source>
       <translation>Приложение уже запущено</translation>
     </message>
@@ -288,12 +296,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="964"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to set OCR languages</source>
       <translation>Не удалось задать языки OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="964"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Не удалось инициализировать Tesseract с %1</translation>
     </message>
@@ -308,7 +316,7 @@
       <translation>Вы должны задать хотя бы один язык OCR в настройках приложения</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="144"/>
+      <location filename="../../src/ocr/ocr.cpp" line="149"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 не является допустимым именем параметра Tesseract.</translation>
     </message>
@@ -1058,112 +1066,6 @@
     </message>
   </context>
   <context>
-    <name>ScreenGrabber</name>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="617"/>
-      <source>Click and drag to draw a selection rectangle,
-or press Esc to quit</source>
-      <translation>Щелкните левой кнопкой мыши и, не отпуская ее, выделите прямоугольную область,
-либо нажмите клавишу Esc для отмены</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="810"/>
-      <source>Confirm capture:</source>
-      <translation>Подтвердить выделение:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="812"/>
-      <source>Release left-click</source>
-      <translation>Отпустить левую кнопку мыши</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="812"/>
-      <location filename="../../src/ocr/screengrabber.cpp" line="814"/>
-      <source>Enter</source>
-      <translation>Ввод</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="816"/>
-      <source>Create new selection rectangle:</source>
-      <translation>Создать новую прямоугольную область выделения:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="817"/>
-      <source>Drag outside selection rectangle</source>
-      <translation>Перетаскивание за пределами прямоугольника выделения</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="817"/>
-      <source>+ Shift: Magnifier</source>
-      <translation>+ Shift: Экранная лупа</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="830"/>
-      <source>Cancel:</source>
-      <translation>Отмена:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="814"/>
-      <source>Double-click</source>
-      <translation>Двойной щелчок</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="820"/>
-      <source>Move selection rectangle:</source>
-      <translation>Переместить прямоугольник выделения:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>Drag inside selection rectangle</source>
-      <translation>Перетаскивание внутри прямоугольника выделения</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>Arrow keys</source>
-      <translation>Клавиши со стрелками</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>+ Shift: Move in 1 pixel steps</source>
-      <translation>+ Shift: Перемещение с шагом 1 пиксель</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="823"/>
-      <source>Resize selection rectangle:</source>
-      <translation>Изменить размер прямоугольника выделения:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>Drag handles</source>
-      <translation>Перетаскивание точек</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>Arrow keys + Alt</source>
-      <translation>Клавиши со стрелками + Alt</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>+ Shift: Resize in 1 pixel steps</source>
-      <translation>+ Shift: Изменение размера с шагом в 1 пиксель</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="826"/>
-      <source>Reset selection:</source>
-      <translation>Сбросить выделение:</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="827"/>
-      <source>Right-click</source>
-      <translation>Щелчок правой кнопкой мыши</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="831"/>
-      <source>Esc key</source>
-      <translation>Клавиша Esc</translation>
-    </message>
-  </context>
-  <context>
     <name>SettingsDialog</name>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="14"/>
@@ -1225,9 +1127,9 @@ or press Esc to quit</source>
       <translation>Язык:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="77"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="91"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="92"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Язык системы&gt;</translation>
     </message>
@@ -1351,8 +1253,8 @@ or press Esc to quit</source>
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="704"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="722"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
       <source>Default</source>
       <translation>По умолчанию</translation>
     </message>
@@ -1377,32 +1279,32 @@ or press Esc to quit</source>
       <translation>Пользовательский:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>Захар</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>Эрмиль</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>Джейн</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>Оксана</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="382"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>Алиса</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>Омаж</translation>
     </message>
@@ -1412,17 +1314,17 @@ or press Esc to quit</source>
       <translation>Эмоциональный окрас:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="384"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>Нейтральный</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="385"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>Добрый</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>Злой</translation>
     </message>
@@ -1475,26 +1377,6 @@ or press Esc to quit</source>
       <location filename="../../src/settings/settingsdialog.ui" line="721"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Язык, на который будет переведен текст, если он на языке, выбранном выше&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Всегда использовать &amp;quot;Авто&amp;quot; в качестве исходного языка за пределами окна. &lt;/p&gt; &lt;/body&gt; &lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
-      <source>Force source language detection outside the window</source>
-      <translation>Принудительно определять язык исходного текста за пределами окна</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Всегда использовать &quot;Авто&quot; в качестве языка перевода за пределами окна.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
-      <source>Force translation language detection outside the window</source>
-      <translation>Принудительно определять язык перевода за пределами окна</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="818"/>
@@ -1557,11 +1439,6 @@ or press Esc to quit</source>
       <translation>Использовать светлый фон</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Когда следует помнить последний захваченный регион&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="931"/>
       <source>Remember last</source>
       <translation>До выхода из программы</translation>
@@ -1575,11 +1452,6 @@ or press Esc to quit</source>
       <location filename="../../src/settings/settingsdialog.ui" line="977"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Завершать захват фрагмента, когда кнопка мыши отпущена&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
-      <source>Capture on release</source>
-      <translation>Захват по нажатию</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1079"/>
@@ -1777,6 +1649,22 @@ or press Esc to quit</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Язык, на который будет переведен текст при автоопределении&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Автоматически переключаться на &lt;span style=&quot; font-style:italic;&quot;&gt;Авто&lt;/span&gt; при использовании OCR и глобальных горячих клавиш&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
+      <source>Force source language detection</source>
+      <translation>Принудительное определение исходного языка</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
+      <source>Force translation language detection</source>
+      <translation>Принудительное определение языка перевода</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="774"/>
       <source>Languages</source>
       <translation>Языки</translation>
@@ -1792,6 +1680,11 @@ or press Esc to quit</source>
       <translation>Преобразовывать переносы строк</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last selected region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Когда следует помнить последний выделенный регион&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="944"/>
       <source>Capture delay:</source>
       <translation>Задержка захвата:</translation>
@@ -1805,6 +1698,11 @@ or press Esc to quit</source>
       <location filename="../../src/settings/settingsdialog.ui" line="954"/>
       <source> ms</source>
       <translation> мс</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
+      <source>Confirm on release</source>
+      <translation>Подтверждать по нажатию</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1029"/>
@@ -1952,123 +1850,123 @@ or press Esc to quit</source>
       <translation>Автор:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="50"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="48"/>
       <source>Portable mode</source>
       <translation>Портативный режим</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="68"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="61"/>
       <source>Use %1 from the application folder to store settings</source>
       <translation>Использовать %1 из папки приложения для сохранения настроек</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="134"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
       <source>Updates</source>
       <translation>Обновления</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
       <source>Check for updates:</source>
       <translation>Проверять обновления:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
       <source>Every day</source>
       <translation>Каждый день</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every week</source>
       <translation>Каждую неделю</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every month</source>
       <translation>Каждый месяц</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Never</source>
       <translation>Никогда</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
       <source>Icons:</source>
       <translation>Значки:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="152"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
       <source>Check now</source>
       <translation>Проверить сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check for updates now</source>
       <translation>Проверить обновления сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="166"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Happy New Year!</source>
       <translation>С Новым Годом!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="180"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Поля настроек OCR не могут быть пустыми.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Вы хотите отменить неверные параметры?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>Выберите значок</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="339"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>Выберите путь к языкам OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="427"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>Невозможно определить язык</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="482"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>Проверка обновлений...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>Доступно обновление!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="510"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>Нет доступных обновлений.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="595"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
@@ -2187,6 +2085,122 @@ or press Esc to quit</source>
     </message>
   </context>
   <context>
+    <name>SnippingArea</name>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="90"/>
+      <source>Unable to snip screen area</source>
+      <translation>Не удалось обрезать область экрана</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="646"/>
+      <source>Click and drag to draw a selection rectangle,
+or press Esc to quit</source>
+      <translation>Щелкните левой кнопкой мыши и, не отпуская ее, выделите прямоугольную область,
+либо нажмите клавишу Esc для отмены</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="91"/>
+      <source>Invalid pixmap recivied.</source>
+      <translation>Получено недопустимое растровое изображение.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <source>Confirm:</source>
+      <translation>Подтвердить:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <source>Release left-click</source>
+      <translation>Отпустить левую кнопку мыши</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <source>Enter</source>
+      <translation>Ввод</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <source>Double-click</source>
+      <translation>Двойной щелчок</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <source>Create new selection rectangle:</source>
+      <translation>Создать новую прямоугольную область выделения:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <source>Drag outside selection rectangle</source>
+      <translation>Перетаскивание за пределами прямоугольника выделения</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <source>+ Shift: Magnifier</source>
+      <translation>+ Shift: Экранная лупа</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <source>Move selection rectangle:</source>
+      <translation>Переместить прямоугольник выделения:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>Drag inside selection rectangle</source>
+      <translation>Перетаскивание внутри прямоугольника выделения</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>Arrow keys</source>
+      <translation>Клавиши со стрелками</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>+ Shift: Move in 1 pixel steps</source>
+      <translation>+ Shift: Перемещение с шагом 1 пиксель</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <source>Resize selection rectangle:</source>
+      <translation>Изменить размер прямоугольника выделения:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>Drag handles</source>
+      <translation>Перетаскивание точек</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>Arrow keys + Alt</source>
+      <translation>Клавиши со стрелками + Alt</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>+ Shift: Resize in 1 pixel steps</source>
+      <translation>+ Shift: Изменение размера с шагом в 1 пиксель</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="947"/>
+      <source>Reset selection:</source>
+      <translation>Сбросить выделение:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <source>Right-click</source>
+      <translation>Щелчок правой кнопкой мыши</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <source>Cancel:</source>
+      <translation>Отмена:</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <source>Esc key</source>
+      <translation>Клавиша Esc</translation>
+    </message>
+  </context>
+  <context>
     <name>SpeakButtons</name>
     <message>
       <location filename="../../src/speakbuttons.ui" line="24"/>
@@ -2243,12 +2257,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="943"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>Invalid tray icon</source>
       <translation>Недействительный значок для трея</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="943"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Указанный значок &apos;%1&apos; недействителен. Будет использован значок по умолчанию.</translation>
     </message>
@@ -2348,6 +2362,50 @@ or press Esc to quit</source>
       <location filename="../../src/updaterdialog.cpp" line="87"/>
       <source>Unable to write file</source>
       <translation>Не удалось записать файл</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandGnomeScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandgnomescreengrabber.cpp" line="60"/>
+      <source>GNOME failed to take screenshot.</source>
+      <translation>GNOME не удалось сделать скриншот.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPlasmaScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <source>Unable to create pipe: %1.</source>
+      <translation>Не удалось создать pipe: %1.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <source>Unable to wait for socket readiness: %1.</source>
+      <translation>Не удалось дождаться готовности сокета: %1.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <source>Timeout reading from pipe.</source>
+      <translation>Превышено время ожидания чтения из pipe.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <source>Unable to read data from socket: %1.</source>
+      <translation>Не удается прочитать данные из сокета: %1.</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPortalScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <source>Unable to subscribe to response from xdg-desktop-portal.</source>
+      <translation>Не удалось подписаться на ответ из xdg-desktop-portal.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <source>Recivied an empty path from xdg-desktop-portal.</source>
+      <translation>Получен пустой путь от xdg-desktop-portal.</translation>
     </message>
   </context>
 </TS>
