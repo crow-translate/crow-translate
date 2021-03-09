@@ -426,14 +426,14 @@ void MainWindow::showTranslationWindow()
         popup->activateWindow();
 
         // Force listening for changes in source field
-        if (!ui->autoTranslateCheckBox->isChecked())
+        if (!ui->autoTranslateCheckBox->isChecked()) {
             ui->sourceEdit->setRequestTranlationOnEdit(true);
-
-        connect(popup, &PopupWindow::destroyed, [&] {
-            // Undo force listening for changes
-            if (!ui->autoTranslateCheckBox->isChecked())
+            connect(popup, &PopupWindow::destroyed, [this] {
+                // Undo force listening for changes
                 ui->sourceEdit->setRequestTranlationOnEdit(false);
-        });
+            });
+        }
+
         break;
     }
     case AppSettings::MainWindow:
