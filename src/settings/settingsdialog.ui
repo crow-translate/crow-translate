@@ -919,7 +919,7 @@
                <item row="0" column="1">
                 <widget class="QComboBox" name="rememberRegionComboBox">
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last selected region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <item>
                   <property name="text">
@@ -969,7 +969,7 @@
                 </widget>
                </item>
                <item row="3" column="0" colspan="2">
-                <widget class="QCheckBox" name="captureOnReleaseCheckBox">
+                <widget class="QCheckBox" name="confirmOnReleaseCheckBox">
                  <property name="enabled">
                   <bool>true</bool>
                  </property>
@@ -977,7 +977,7 @@
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
-                  <string>Capture on release</string>
+                  <string>Confirm on release</string>
                  </property>
                 </widget>
                </item>

@@ -56,7 +56,7 @@ AppSettings::RegionRememberType SnippingArea::regionRememberType() const
 
 void SnippingArea::setCaptureOnRelese(bool onRelease)
 {
-    m_captureOnRelease = onRelease;
+    m_confirmOnRelease = onRelease;
 }
 
 void SnippingArea::setShowMagnifier(bool show)
@@ -88,7 +88,7 @@ void SnippingArea::snip(const QPixmap &pixmap)
         QMessageBox message(parentWidget());
         message.setIcon(QMessageBox::Critical);
         message.setText(tr("Unable to snip screen area"));
-        message.setInformativeText(tr("Invalid pixmap recivied"));
+        message.setInformativeText(tr("Invalid pixmap recivied."));
         message.exec();
         emit cancelled();
         return;
@@ -364,7 +364,7 @@ void SnippingArea::mouseReleaseEvent(QMouseEvent *event)
         m_disableArrowKeys = false;
         if (m_mouseDragState == MouseState::Inside)
             setCursor(Qt::OpenHandCursor);
-        else if (m_mouseDragState == MouseState::Outside && m_captureOnRelease)
+        else if (m_mouseDragState == MouseState::Outside && m_confirmOnRelease)
             acceptSelection();
         break;
     case Qt::RightButton:
@@ -917,7 +917,7 @@ void SnippingArea::setBottomHelpText()
 {
     Q_ASSERT_X(m_bottomLeftHelpText.size() == m_bottomRightHelpText.size(), "setButtomHelpText", "The left and right columns must be the same size");
 
-    const int expectedLinesCount = m_captureOnRelease && m_selection.size().isEmpty() ? s_bottomHelpOnReleaseLength : s_bottomHelpNormalLength;
+    const int expectedLinesCount = m_confirmOnRelease && m_selection.size().isEmpty() ? s_bottomHelpOnReleaseLength : s_bottomHelpNormalLength;
 
     // The text is already set
     if (m_bottomLeftHelpText.size() == expectedLinesCount)
@@ -928,7 +928,7 @@ void SnippingArea::setBottomHelpText()
     m_bottomLeftHelpText.reserve(expectedLinesCount);
     m_bottomRightHelpText.reserve(expectedLinesCount);
 
-    m_bottomLeftHelpText.append(QStaticText(tr("Confirm capture:")));
+    m_bottomLeftHelpText.append(QStaticText(tr("Confirm:")));
     if (expectedLinesCount == s_bottomHelpOnReleaseLength)
         m_bottomRightHelpText.append({QStaticText(tr("Release left-click")), QStaticText(tr("Enter"))});
     else

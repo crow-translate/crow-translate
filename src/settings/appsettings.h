@@ -333,9 +333,9 @@ public:
     void setShowMagnifier(bool show);
     static bool defaultShowMagnifier();
 
-    bool isCaptureOnRelease() const;
-    void setCaptureOnRelease(bool capture);
-    static bool defaultCaptureOnRelease();
+    bool isConfirmOnRelease() const;
+    void setConfirmOnRelease(bool capture);
+    static bool defaultConfirmOnRelease();
 
     bool isApplyLightMask() const;
     void setApplyLightMask(bool use);

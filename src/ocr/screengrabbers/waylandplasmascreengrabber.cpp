@@ -52,7 +52,7 @@ void WaylandPlasmaScreenGrabber::grab()
 {
     QVarLengthArray<int, 2> pipe;
     if (pipe2(pipe.data(), O_CLOEXEC | O_NONBLOCK) != 0) {
-        emit showError(tr("Unable to create pipe: %1%").arg(strerror(errno)));
+        emit showError(tr("Unable to create pipe: %1.").arg(strerror(errno)));
         return;
     }
 
@@ -96,18 +96,18 @@ void WaylandPlasmaScreenGrabber::readPixmapFromSocket(int socketDescriptor)
 
         const int ready = select(FD_SETSIZE, &readset, nullptr, nullptr, &timeout);
         if (ready < 0) {
-            emit showError(tr("Unable to wait for socket readiness: %1").arg(strerror(errno)));
+            emit showError(tr("Unable to wait for socket readiness: %1.").arg(strerror(errno)));
             return;
         }
 
         if (ready == 0) {
-            emit showError(tr("Timeout reading from pipe"));
+            emit showError(tr("Timeout reading from pipe."));
             return;
         }
 
         const int bytesRead = read(socketDescriptor, buffer.data(), buffer.capacity());
         if (bytesRead < 0) {
-            emit showError(tr("Unable to read data from socket: ").arg(strerror(errno)));
+            emit showError(tr("Unable to read data from socket: %1.").arg(strerror(errno)));
             return;
         }
         if (bytesRead == 0) {

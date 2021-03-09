@@ -1074,17 +1074,17 @@ int AppSettings::defaultCaptureDelay()
     return 1000;
 }
 
-bool AppSettings::isCaptureOnRelease() const
+bool AppSettings::isConfirmOnRelease() const
 {
-    return m_settings->value(QStringLiteral("OCR/CaptureOnRelease"), defaultCaptureOnRelease()).toBool();
+    return m_settings->value(QStringLiteral("OCR/ConfirmOnRelease"), defaultConfirmOnRelease()).toBool();
 }
 
-void AppSettings::setCaptureOnRelease(bool capture)
+void AppSettings::setConfirmOnRelease(bool capture)
 {
-    m_settings->setValue(QStringLiteral("OCR/CaptureOnRelease"), capture);
+    m_settings->setValue(QStringLiteral("OCR/ConfirmOnRelease"), capture);
 }
 
-bool AppSettings::defaultCaptureOnRelease()
+bool AppSettings::defaultConfirmOnRelease()
 {
     return false;
 }

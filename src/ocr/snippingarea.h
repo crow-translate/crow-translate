@@ -170,7 +170,7 @@ private:
     int m_bottomHelpGridLeftWidth = 0;
 
     bool m_showMagnifier = AppSettings::defaultShowMagnifier();
-    bool m_captureOnRelease = AppSettings::defaultCaptureOnRelease();
+    bool m_confirmOnRelease = AppSettings::defaultConfirmOnRelease();
     AppSettings::RegionRememberType m_regionRememberType = AppSettings::defaultRegionRememberType();
 
     QPixmap m_screenPixmap;

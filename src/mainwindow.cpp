@@ -996,7 +996,7 @@ void MainWindow::loadAppSettings()
     }
     m_ocr->setConvertLineBreaks(settings.isConvertLineBreaks());
     m_screenCaptureTimer->setInterval(settings.captureDelay());
-    m_snippingArea->setCaptureOnRelese(settings.isCaptureOnRelease());
+    m_snippingArea->setCaptureOnRelese(settings.isConfirmOnRelease());
     m_snippingArea->setShowMagnifier(settings.isShowMagnifier());
     m_snippingArea->setApplyLightMask(settings.isApplyLightMask());
 

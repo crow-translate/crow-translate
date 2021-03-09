@@ -240,7 +240,7 @@ void SettingsDialog::accept()
     settings.setRegionRememberType(static_cast<AppSettings::RegionRememberType>(ui->rememberRegionComboBox->currentIndex()));
     settings.setCaptureDelay(ui->captureDelaySpinBox->value());
     settings.setShowMagnifier(ui->showMagnifierCheckBox->isChecked());
-    settings.setCaptureOnRelease(ui->captureOnReleaseCheckBox->isChecked());
+    settings.setConfirmOnRelease(ui->confirmOnReleaseCheckBox->isChecked());
     settings.setApplyLightMask(ui->applyLightMaskCheckBox->isChecked());
     settings.setTesseractParameters(ui->tesseractParametersTableWidget->parameters());
 
@@ -560,7 +560,7 @@ void SettingsDialog::restoreDefaults()
     ui->rememberRegionComboBox->setCurrentIndex(AppSettings::defaultRegionRememberType());
     ui->captureDelaySpinBox->setValue(AppSettings::defaultCaptureDelay());
     ui->showMagnifierCheckBox->setChecked(AppSettings::defaultShowMagnifier());
-    ui->captureOnReleaseCheckBox->setChecked(AppSettings::defaultCaptureOnRelease());
+    ui->confirmOnReleaseCheckBox->setChecked(AppSettings::defaultConfirmOnRelease());
     ui->applyLightMaskCheckBox->setChecked(AppSettings::defaultApplyLightMask());
     ui->tesseractParametersTableWidget->setParameters(AppSettings::defaultTesseractParameters());
 
@@ -665,7 +665,7 @@ void SettingsDialog::loadSettings()
     ui->rememberRegionComboBox->setCurrentIndex(settings.regionRememberType());
     ui->captureDelaySpinBox->setValue(settings.captureDelay());
     ui->showMagnifierCheckBox->setChecked(settings.isShowMagnifier());
-    ui->captureOnReleaseCheckBox->setChecked(settings.isCaptureOnRelease());
+    ui->confirmOnReleaseCheckBox->setChecked(settings.isConfirmOnRelease());
     ui->applyLightMaskCheckBox->setChecked(settings.isApplyLightMask());
     ui->tesseractParametersTableWidget->setParameters(settings.tesseractParameters());
 

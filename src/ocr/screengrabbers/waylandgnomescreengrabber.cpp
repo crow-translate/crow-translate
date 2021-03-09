@@ -57,7 +57,7 @@ void WaylandGnomeScreenGrabber::grab()
         }
 
         if (!reply.value()) {
-            emit showError(tr("GNOME failed to take screenshot"));
+            emit showError(tr("GNOME failed to take screenshot."));
             return;
         }
 
