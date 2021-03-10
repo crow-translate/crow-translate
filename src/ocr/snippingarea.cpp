@@ -361,11 +361,13 @@ void SnippingArea::mouseReleaseEvent(QMouseEvent *event)
 {
     switch (event->button()) {
     case Qt::LeftButton:
+        if (m_mouseDragState == MouseState::Outside && m_confirmOnRelease) {
+            acceptSelection();
+            return;
+        }
         m_disableArrowKeys = false;
         if (m_mouseDragState == MouseState::Inside)
             setCursor(Qt::OpenHandCursor);
-        else if (m_mouseDragState == MouseState::Outside && m_confirmOnRelease)
-            acceptSelection();
         break;
     case Qt::RightButton:
         m_selection.setWidth(0);
