@@ -851,7 +851,7 @@ void SnippingArea::createPixmapFromScreens()
     m_screenPixmap = QPixmap(width, height);
 
     QMap<ComparableQPoint, QPair<qreal, QSize>> input;
-    for (auto it = m_images.begin(); it != m_images.end(); ++it) {
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
         const QScreen* screen = it.key();
         const QImage &screenImage = it.value();
         input.insert(screen->geometry().topLeft(), {screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()});
