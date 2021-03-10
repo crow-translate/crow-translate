@@ -51,16 +51,16 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     m_copyTranslatedSelectionShortcut = new ShortcutItem(tr("Translate selected text and copy to clipboard"), QStringLiteral("edit-copy"), m_globalShortcuts);
     m_copyTranslatedSelectionShortcut->setDefaultShortcut(AppSettings::defaultCopyTranslatedSelectionShortcut());
 
-    m_recognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_recognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area"), QStringLiteral("transform-crop"), m_globalShortcuts);
     m_recognizeScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultRecognizeScreenAreaShortcut());
 
-    m_translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_translateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area"), QStringLiteral("transform-crop"), m_globalShortcuts);
     m_translateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultTranslateScreenAreaShortcut());
 
-    m_delayedRecognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area with delay"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_delayedRecognizeScreenAreaShortcut = new ShortcutItem(tr("Recognize text in screen area with delay"), QStringLiteral("transform-crop"), m_globalShortcuts);
     m_delayedRecognizeScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultDelayedRecognizeScreenAreaShortcut());
 
-    m_delayedTranslateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area with delay"), QStringLiteral("scanner"), m_globalShortcuts);
+    m_delayedTranslateScreenAreaShortcut = new ShortcutItem(tr("Translate text in screen area with delay"), QStringLiteral("transform-crop"), m_globalShortcuts);
     m_delayedTranslateScreenAreaShortcut->setDefaultShortcut(AppSettings::defaultDelayedTranslateScreenAreaShortcut());
 
     // Window shortcuts

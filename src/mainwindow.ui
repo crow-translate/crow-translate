@@ -47,7 +47,7 @@
            <string>Recognize screen area with delay</string>
           </property>
           <property name="icon">
-           <iconset theme="scanner">
+           <iconset theme="transform-crop">
             <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
@@ -254,7 +254,7 @@
            <string>Translate screen area with delay</string>
           </property>
           <property name="icon">
-           <iconset theme="scanner">
+           <iconset theme="transform-crop">
             <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
