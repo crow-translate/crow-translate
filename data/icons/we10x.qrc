@@ -6,7 +6,6 @@
         <file alias="16/actions/arrow-up.svg">16/actions/go-up.svg</file>
         <file alias="16/actions/edit-clear-all.svg">16/actions/edit-clear-history.svg</file>
         <file alias="16/apps/system-software-update.svg">scalable/apps/system-software-update.svg</file>
-        <file alias="32/apps/accessories-screenshot.svg">scalable/apps/accessories-screenshot.svg</file>
         <file alias="32/apps/dialog-information.svg">scalable/apps/userinfo.svg</file>
         <file alias="32/apps/preferences-desktop-keyboard.svg">scalable/apps/preferences-desktop-keyboard.svg</file>
         <file alias="32/apps/preferences-desktop-locale.svg">scalable/apps/preferences-desktop-locale.svg</file>
@@ -14,6 +13,7 @@
         <file alias="32/apps/preferences-desktop-theme.svg">scalable/apps/preferences-desktop-theme.svg</file>
         <file alias="32/apps/preferences-system-network.svg">scalable/apps/network-workgroup.svg</file>
         <file alias="32/apps/preferences-system.svg">scalable/apps/preferences-system.svg</file>
+        <file alias="32/apps/scanner.svg">scalable/apps/scanner.svg</file>
         <file>16/actions/application-exit.svg</file>
         <file>16/actions/configure.svg</file>
         <file>16/actions/dialog-cancel.svg</file>

@@ -76,7 +76,7 @@
         <string notr="true">OCR</string>
        </property>
        <property name="icon">
-        <iconset theme="accessories-screenshot">
+        <iconset theme="scanner">
          <normaloff>.</normaloff>.</iconset>
        </property>
       </item>
