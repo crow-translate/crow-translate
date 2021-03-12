@@ -50,7 +50,7 @@ find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
-    find_package(X11 COMPONENTS xcb)
+    find_package(XCB REQUIRED COMPONENTS XCB)
 endif()
 
 include(IgnoreExternalCodeChecks)
@@ -171,7 +171,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 
 if(UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus X11::xcb)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus XCB::XCB)
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()
