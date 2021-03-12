@@ -24,12 +24,12 @@
 
 #include "settings/appsettings.h"
 
-#include <QKeyEvent>
-#include <QPainter>
 #include <QStaticText>
 #include <QWidget>
 
 class QMouseEvent;
+class QPainter;
+class QKeyEvent;
 class ComparableQPoint;
 
 // This class was heavy edited from Spectacle's QuickEditor

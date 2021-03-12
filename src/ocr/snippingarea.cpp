@@ -25,6 +25,8 @@
 
 #include <QGuiApplication>
 #include <QMessageBox>
+#include <QMouseEvent>
+#include <QPainter>
 #include <QPainterPath>
 #include <QScreen>
 #include <QtMath>
