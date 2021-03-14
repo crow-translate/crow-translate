@@ -1514,6 +1514,11 @@
       <translation>Bilgi: vekil sunucu sadece metin çevirisi için çalışır</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulamayı etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1311"/>
       <source>Authentication</source>
       <translation>Doğrula</translation>
@@ -1522,6 +1527,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
       <source>Username:</source>
       <translation>Kullanıcı adı:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil kullanıcı adı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
@@ -1725,16 +1735,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Konuşmayı testi için metin&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil parolası&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil kullanıcı adı&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>Bilgi: parola şifrelenmemiş olarak kaydedilir</translation>
@@ -1743,11 +1743,6 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1279"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Vekil port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulamayı etkinleştir/devre dışı bırak&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
@@ -1783,6 +1778,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="577"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>Temadan simgeye veya simge adına giden yol</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulama için vekil parolası&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1438"/>
@@ -2087,115 +2087,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="90"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
       <source>Unable to snip screen area</source>
       <translation>Ekran alanı kırpılamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="646"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Seçim dikdörtgeni çizmek için tıklayın ve sürükleyin,
 veya çıkmak için Esc tuşuna basın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="91"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Invalid pixmap recivied.</source>
       <translation>Geçersiz piksel haritası alındı.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
       <source>Confirm:</source>
       <translation>Onay:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
       <source>Release left-click</source>
       <translation>Sol tıklamayı bırakın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Enter</source>
       <translation>Enter</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Double-click</source>
       <translation>Çift tık</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
       <source>Create new selection rectangle:</source>
       <translation>Yeni seçim dikdörtgeni oluşturun:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>Drag outside selection rectangle</source>
       <translation>Seçimi dikdörtgeninin dışına sürükleyin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: Büyüteç</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
       <source>Move selection rectangle:</source>
       <translation>Seçim dikdörtgenini taşı:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Drag inside selection rectangle</source>
       <translation>Seçimi dikdörtgeninin içine sürükleyin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Arrow keys</source>
       <translation>Yön tuşları</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: 1 piksel adımda hareket et</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
       <source>Resize selection rectangle:</source>
       <translation>Seçim dikdörtgenini yeniden boyutlandır:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Drag handles</source>
       <translation>Tutamaçları sürükle</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Arrow keys + Alt</source>
       <translation>Yön tuşları + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: 1 piksel adımda yeniden boyutlandır</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="947"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
       <source>Reset selection:</source>
       <translation>Seçimi sıfırla:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
       <source>Right-click</source>
       <translation>Sağ tık</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
       <source>Cancel:</source>
       <translation>İptal Et:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
       <source>Esc key</source>
       <translation>Esc tuşu</translation>
     </message>
