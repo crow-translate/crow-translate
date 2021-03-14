@@ -92,7 +92,7 @@ void SnippingArea::snip(QMap<const QScreen *, QImage> images)
             QMessageBox message(parentWidget());
             message.setIcon(QMessageBox::Critical);
             message.setText(tr("Unable to snip screen area"));
-            message.setInformativeText(tr("Recivied an invalid image for screen %1.").arg(it.key()->name()));
+            message.setInformativeText(tr("Received an invalid image of screen %1.").arg(it.key()->name()));
             message.exec();
             emit cancelled();
             return;

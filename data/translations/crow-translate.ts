@@ -2093,7 +2093,7 @@
     </message>
     <message>
         <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
-        <source>Recivied an invalid image for screen %1.</source>
+        <source>Received an invalid image of screen %1.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
