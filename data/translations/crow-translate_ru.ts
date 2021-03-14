@@ -2093,8 +2093,8 @@
     </message>
     <message>
       <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
-      <source>Recivied an invalid image for screen %1.</source>
-      <translation>Получено недопустимое изображение для экрана %1.</translation>
+      <source>Received an invalid image of screen %1.</source>
+      <translation>Получено недопустимое изображение экрана %1.</translation>
     </message>
     <message>
       <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
