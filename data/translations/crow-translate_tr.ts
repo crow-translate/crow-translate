@@ -2087,115 +2087,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
       <source>Unable to snip screen area</source>
       <translation>Ekran alanı kırpılamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <source>Received an invalid image of screen %1.</source>
+      <translation>%1 ekranının geçersiz bir görüntüsü alındı.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Seçim dikdörtgeni çizmek için tıklayın ve sürükleyin,
 veya çıkmak için Esc tuşuna basın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
-      <source>Invalid pixmap recivied.</source>
-      <translation>Geçersiz piksel haritası alındı.</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="925"/>
       <source>Confirm:</source>
       <translation>Onay:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
       <source>Release left-click</source>
       <translation>Sol tıklamayı bırakın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
       <source>Enter</source>
       <translation>Enter</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
       <source>Double-click</source>
       <translation>Çift tık</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
       <source>Create new selection rectangle:</source>
       <translation>Yeni seçim dikdörtgeni oluşturun:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
       <source>Drag outside selection rectangle</source>
       <translation>Seçimi dikdörtgeninin dışına sürükleyin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: Büyüteç</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
       <source>Move selection rectangle:</source>
       <translation>Seçim dikdörtgenini taşı:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>Drag inside selection rectangle</source>
       <translation>Seçimi dikdörtgeninin içine sürükleyin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>Arrow keys</source>
       <translation>Yön tuşları</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: 1 piksel adımda hareket et</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
       <source>Resize selection rectangle:</source>
       <translation>Seçim dikdörtgenini yeniden boyutlandır:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Drag handles</source>
       <translation>Tutamaçları sürükle</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Arrow keys + Alt</source>
       <translation>Yön tuşları + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: 1 piksel adımda yeniden boyutlandır</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
       <source>Reset selection:</source>
       <translation>Seçimi sıfırla:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>Right-click</source>
       <translation>Sağ tık</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
       <source>Cancel:</source>
       <translation>İptal Et:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Esc key</source>
       <translation>Esc tuşu</translation>
     </message>
