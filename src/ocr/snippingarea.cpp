@@ -84,19 +84,21 @@ void SnippingArea::setCropRegion(QRect region)
                         region.height() * static_cast<int>(m_devicePixelRatioI));
 }
 
-void SnippingArea::snip(const QPixmap &pixmap)
+void SnippingArea::snip(QMap<const QScreen *, QImage> images)
 {
-    if (pixmap.isNull()) {
-        QMessageBox message(parentWidget());
-        message.setIcon(QMessageBox::Critical);
-        message.setText(tr("Unable to snip screen area"));
-        message.setInformativeText(tr("Invalid pixmap recivied."));
-        message.exec();
-        emit cancelled();
-        return;
+    m_images = qMove(images);
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
+        if (it.value().isNull()) {
+            QMessageBox message(parentWidget());
+            message.setIcon(QMessageBox::Critical);
+            message.setText(tr("Unable to snip screen area"));
+            message.setInformativeText(tr("Recivied an invalid image for screen %1.").arg(it.key()->name()));
+            message.exec();
+            emit cancelled();
+            return;
+        }
     }
 
-    splitScreenImages(pixmap);
     createPixmapFromScreens();
     setGeometryToScreenPixmap();
 
@@ -828,18 +830,6 @@ QPixmap SnippingArea::selectedPixmap() const
     }
 #endif
     return m_screenPixmap.copy(scaledCropRegion());
-}
-
-void SnippingArea::splitScreenImages(const QPixmap &pixmap)
-{
-    m_images.clear();
-
-    // Split to separate images per screen
-    for (const QScreen *screen : QGuiApplication::screens()) {
-        QRect geom = screen->geometry();
-        geom.setSize(screen->size() * screen->devicePixelRatio());
-        m_images.insert(screen, pixmap.copy(geom).toImage());
-    }
 }
 
 void SnippingArea::createPixmapFromScreens()

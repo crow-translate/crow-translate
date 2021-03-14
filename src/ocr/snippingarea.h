@@ -49,7 +49,7 @@ public:
     void setRegionRememberType(AppSettings::RegionRememberType type);
     void setCropRegion(QRect region);
 
-    void snip(const QPixmap &pixmap);
+    void snip(QMap<const QScreen *, QImage> images);
 
 signals:
     void snipped(const QPixmap &pixmap, int dpi);
@@ -99,7 +99,6 @@ private:
 
     QRect scaledCropRegion() const;
     QPixmap selectedPixmap() const;
-    void splitScreenImages(const QPixmap &pixmap);
     void createPixmapFromScreens();
     void setGeometryToScreenPixmap();
     void prepare(QStaticText &text) const;

@@ -23,6 +23,8 @@
 
 #include <QObject>
 
+class QScreen;
+
 class AbstractScreenGrabber : public QObject
 {
     Q_OBJECT
@@ -34,7 +36,7 @@ public:
     static AbstractScreenGrabber *createScreenGrabber(QObject *parent = nullptr);
 
 signals:
-    void grabbed(const QPixmap &pixmap);
+    void grabbed(const QMap<const QScreen *, QImage> &screenImages);
     void grabbingFailed();
 
 public slots:

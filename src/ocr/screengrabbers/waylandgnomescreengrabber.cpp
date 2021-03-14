@@ -61,7 +61,7 @@ void WaylandGnomeScreenGrabber::grab()
             return;
         }
 
-        emit grabbed(s_fileName);
+        emit grabbed(splitScreenImages(s_fileName));
         QFile::remove(s_fileName);
     });
 }

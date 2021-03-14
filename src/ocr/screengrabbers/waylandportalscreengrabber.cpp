@@ -87,6 +87,6 @@ void WaylandPortalScreenGrabber::parsePortalResponse(uint, const QVariantMap &re
         return;
     }
 
-    emit grabbed(path);
+    emit grabbed(splitScreenImages(path));
     QFile::remove(path);
 }

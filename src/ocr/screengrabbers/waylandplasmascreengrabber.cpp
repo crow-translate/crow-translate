@@ -114,7 +114,7 @@ void WaylandPlasmaScreenGrabber::readPixmapFromSocket(int socketDescriptor)
             QDataStream lDataStream(data);
             QPixmap pixmap;
             lDataStream >> pixmap;
-            emit grabbed(pixmap);
+            emit grabbed(splitScreenImages(pixmap));
             return;
         }
 

@@ -21,10 +21,25 @@
 #include "dbusscreengrabber.h"
 
 #include <QDBusPendingCall>
+#include <QGuiApplication>
+#include <QPixmap>
+#include <QScreen>
 
 DBusScreenGrabber::DBusScreenGrabber(QObject *parent)
     : AbstractScreenGrabber(parent)
 {
+}
+
+// Split to separate images per screen
+QMap<const QScreen *, QImage> DBusScreenGrabber::splitScreenImages(const QPixmap &pixmap)
+{
+    QMap<const QScreen *, QImage> images;
+    for (QScreen *screen : QGuiApplication::screens()) {
+        QRect geom = screen->geometry();
+        geom.setSize(screen->size() * screen->devicePixelRatio());
+        images.insert(screen, pixmap.copy(geom).toImage());
+    }
+    return images;
 }
 
 void DBusScreenGrabber::cancel()

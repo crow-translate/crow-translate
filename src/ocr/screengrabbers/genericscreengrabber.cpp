@@ -31,8 +31,10 @@ GenericScreenGrabber::GenericScreenGrabber(QObject *parent)
 
 void GenericScreenGrabber::grab()
 {
-    const QRect virtualGeometry = QGuiApplication::primaryScreen()->virtualGeometry();
-    emit grabbed(QGuiApplication::primaryScreen()->grabWindow(0, -virtualGeometry.x(), -virtualGeometry.y(), virtualGeometry.width(), virtualGeometry.height()));
+    QMap<const QScreen *, QImage> images;
+    for (QScreen *screen : QGuiApplication::screens())
+        images.insert(screen, screen->grabWindow(0).toImage());
+    emit grabbed(images);
 }
 
 void GenericScreenGrabber::cancel()

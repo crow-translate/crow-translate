@@ -2087,114 +2087,114 @@
 <context>
     <name>SnippingArea</name>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
         <source>Unable to snip screen area</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+        <source>Recivied an invalid image for screen %1.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
         <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
-        <source>Invalid pixmap recivied.</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="925"/>
         <source>Confirm:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
         <source>Release left-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
-        <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
         <source>Enter</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
         <source>Double-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
         <source>Create new selection rectangle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
         <source>Drag outside selection rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
         <source>+ Shift: Magnifier</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
         <source>Move selection rectangle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
         <source>Drag inside selection rectangle</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
         <source>Arrow keys</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
         <source>+ Shift: Move in 1 pixel steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
         <source>Resize selection rectangle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
         <source>Drag handles</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
         <source>Arrow keys + Alt</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
         <source>+ Shift: Resize in 1 pixel steps</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
         <source>Reset selection:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
         <source>Right-click</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
         <source>Cancel:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
+        <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
         <source>Esc key</source>
         <translation type="unfinished"></translation>
     </message>

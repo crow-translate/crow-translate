@@ -47,6 +47,8 @@ protected:
         return reply;
     }
 
+    static QMap<const QScreen *, QImage> splitScreenImages(const QPixmap &pixmap);
+
     QDBusPendingCallWatcher *m_callWatcher;
 };
 
