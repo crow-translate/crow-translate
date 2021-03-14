@@ -2087,115 +2087,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
       <source>Unable to snip screen area</source>
       <translation>Näyttöaluetta ei voi rajata</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <source>Received an invalid image of screen %1.</source>
+      <translation>Saatiin virheellinen kuva näytöstä %1.</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Napsauta ja vedä piirtääksesi valintalaatikon,
 tai paina Esc lopettaaksesi</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
-      <source>Invalid pixmap recivied.</source>
-      <translation>Vastaanotettiin virheellinen pixmap.</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="925"/>
       <source>Confirm:</source>
       <translation>Vahvista:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
       <source>Release left-click</source>
       <translation>Vapauta vasen painike</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
       <source>Enter</source>
       <translation>Enter</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
       <source>Double-click</source>
       <translation>Kaksoisnapsautus</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
       <source>Create new selection rectangle:</source>
       <translation>Luo uusi valintalaatikko:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
       <source>Drag outside selection rectangle</source>
       <translation>Tartunta valintalaatikon ulkopuolella</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: Suurennuslasi</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
       <source>Move selection rectangle:</source>
       <translation>Siirrä valintalaatikkoa:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>Drag inside selection rectangle</source>
       <translation>Tartunta valintalaatikon sisäpuolella</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>Arrow keys</source>
       <translation>Nuolinäppäimet</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: Siirrä 1 pikselin askeleissa</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
       <source>Resize selection rectangle:</source>
       <translation>Muuta valintalaatikun kokoa:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Drag handles</source>
       <translation>Tartunta-alueet</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Arrow keys + Alt</source>
       <translation>Nuolinäppäimet + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: Muuta kokoa 1 pikselin askeleissa</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
       <source>Reset selection:</source>
       <translation>Tyhjennä valinta:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>Right-click</source>
       <translation>Oikea painallus</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
       <source>Cancel:</source>
       <translation>Peruuta:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Esc key</source>
       <translation>Esc-näppäin</translation>
     </message>
