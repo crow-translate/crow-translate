@@ -1518,6 +1518,11 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>Info: il proxy è usato solo per la traduzione testo</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1311"/>
       <source>Authentication</source>
       <translation>Autentificazione</translation>
@@ -1526,6 +1531,11 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
       <source>Username:</source>
       <translation>Utente:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Utente proxy per al&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
@@ -1729,16 +1739,6 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Testo per testare il parlato&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password proxy per l&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Utente proxy per al&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>Info: la password verrà salvata non criptata</translation>
@@ -1747,11 +1747,6 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="1279"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Porta proxy&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
@@ -1787,6 +1782,11 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="577"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>Percorso icona o nome icona dal tema</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password proxy per l&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1438"/>
@@ -2092,115 +2092,115 @@ Nessun aggiornamento disponibile.</translation>
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="90"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
       <source>Unable to snip screen area</source>
       <translation>Impossibile tagliare area schermo</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="646"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Fai clic e trascina per disegnare un rettangolo di selezione,
 o premi 'Esc' per uscire</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="91"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Invalid pixmap recivied.</source>
       <translation>Pixmap ricevuta non valida.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
       <source>Confirm:</source>
       <translation>Conferma:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
       <source>Release left-click</source>
       <translation>Rilascio clic sinistro</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Enter</source>
       <translation>Invio</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Double-click</source>
       <translation>Doppio clic</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
       <source>Create new selection rectangle:</source>
       <translation>Crea nuova selezione rettangolare:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>Drag outside selection rectangle</source>
       <translation>Trascina fuori dal rettangolo selezione</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Maiuscolo: Ingrandimento</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
       <source>Move selection rectangle:</source>
       <translation>Sposta rettangolo selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Drag inside selection rectangle</source>
       <translation>Trascina all'interno del rettangolo selezione</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Arrow keys</source>
       <translation>Tasti freccia</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Maiuscolo: Sposta a step di 1 pixel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
       <source>Resize selection rectangle:</source>
       <translation>Ridimensione rettangolo selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Drag handles</source>
       <translation>Trascina maniglie</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Arrow keys + Alt</source>
       <translation>Tasti freccia + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Maiuscolo: Ridimensiona a step di 1 pixel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="947"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
       <source>Reset selection:</source>
       <translation>Ripristina selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
       <source>Right-click</source>
       <translation>Clic destro</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
       <source>Cancel:</source>
       <translation>Annulla:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
       <source>Esc key</source>
       <translation>Tasto Esc</translation>
     </message>
