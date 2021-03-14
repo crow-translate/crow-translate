@@ -151,7 +151,7 @@ private:
     void buildSpeakSelectionState(QState *state) const;
     void buildSpeakTranslatedSelectionState(QState *state) const;
     void buildCopyTranslatedSelectionState(QState *state) const;
-    void buildRecognizeScreenAreaState(QState *state, void (MainWindow::*showFunction)() = &MainWindow::show);
+    void buildRecognizeScreenAreaState(QState *state, void (MainWindow::*showFunction)() = &MainWindow::open);
     void buildTranslateScreenAreaState(QState *state);
 
     template<typename Func, typename... Args>

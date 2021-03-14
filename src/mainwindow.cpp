@@ -648,7 +648,7 @@ void MainWindow::buildStateMachine()
     buildCopyTranslatedSelectionState(copyTranslatedSelectionState);
     buildRecognizeScreenAreaState(recognizeScreenAreaState);
     buildTranslateScreenAreaState(translateScreenAreaState);
-    buildDelayedOcrState(delayedRecognizeScreenAreaState, &MainWindow::buildRecognizeScreenAreaState, &MainWindow::show);
+    buildDelayedOcrState(delayedRecognizeScreenAreaState, &MainWindow::buildRecognizeScreenAreaState, &MainWindow::open);
     buildDelayedOcrState(delayedTranslateScreenAreaState, &MainWindow::buildTranslateScreenAreaState);
 
     // Add transitions between all states
