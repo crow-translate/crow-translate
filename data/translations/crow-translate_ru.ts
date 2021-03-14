@@ -1514,6 +1514,11 @@
       <translation>Информация: прокси работает только для перевода текста</translation>
     </message>
     <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Включить или отключить аутентификацию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1311"/>
       <source>Authentication</source>
       <translation>Аутентификация</translation>
@@ -1522,6 +1527,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
       <source>Username:</source>
       <translation>Имя пользователя:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Имя пользователя прокси для аутентификации&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
@@ -1725,16 +1735,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Текст для проверки речи&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Пароль прокси для аутентификации&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Имя пользователя прокси для аутентификации&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>Информация: пароль хранится в незашифрованном виде</translation>
@@ -1743,11 +1743,6 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1279"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Порт прокси&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Включить или отключить аутентификацию&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
@@ -1783,6 +1778,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="577"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>Путь к значку или имя значка из темы</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Пароль прокси для аутентификации&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1438"/>
@@ -2087,115 +2087,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="90"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
       <source>Unable to snip screen area</source>
       <translation>Не удалось обрезать область экрана</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="646"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="650"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Щелкните левой кнопкой мыши и, не отпуская ее, выделите прямоугольную область,
 либо нажмите клавишу Esc для отмены</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="91"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Invalid pixmap recivied.</source>
       <translation>Получено недопустимое растровое изображение.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
       <source>Confirm:</source>
       <translation>Подтвердить:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
       <source>Release left-click</source>
       <translation>Отпустить левую кнопку мыши</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="933"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Enter</source>
       <translation>Ввод</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
       <source>Double-click</source>
       <translation>Двойной щелчок</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
       <source>Create new selection rectangle:</source>
       <translation>Создать новую прямоугольную область выделения:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>Drag outside selection rectangle</source>
       <translation>Перетаскивание за пределами прямоугольника выделения</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: Экранная лупа</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
       <source>Move selection rectangle:</source>
       <translation>Переместить прямоугольник выделения:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Drag inside selection rectangle</source>
       <translation>Перетаскивание внутри прямоугольника выделения</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>Arrow keys</source>
       <translation>Клавиши со стрелками</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: Перемещение с шагом 1 пиксель</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
       <source>Resize selection rectangle:</source>
       <translation>Изменить размер прямоугольника выделения:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Drag handles</source>
       <translation>Перетаскивание точек</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>Arrow keys + Alt</source>
       <translation>Клавиши со стрелками + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="949"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: Изменение размера с шагом в 1 пиксель</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="947"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
       <source>Reset selection:</source>
       <translation>Сбросить выделение:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="948"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
       <source>Right-click</source>
       <translation>Щелчок правой кнопкой мыши</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="951"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="955"/>
       <source>Cancel:</source>
       <translation>Отмена:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="952"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="956"/>
       <source>Esc key</source>
       <translation>Клавиша Esc</translation>
     </message>
