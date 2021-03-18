@@ -59,7 +59,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
 #ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setToolTip(tr("Use %1 from the application folder to store settings").arg(AppSettings::portableConfigName()));
-    ui->generalGroupBox->layout()->addWidget(m_portableCheckbox);
+    qobject_cast<QFormLayout *>(ui->generalGroupBox->layout())->addRow(m_portableCheckbox);
 #endif
 
     // Test voice
