@@ -23,8 +23,6 @@ jobs:
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
-              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
-              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
     steps:
     - name: Clone repo
       uses: actions/checkout@v2.3.4
@@ -45,6 +43,7 @@ jobs:
         VCPKG_DISABLE_METRICS: 1
 
     - name: Build
-      run: |
-        cmake -B build -D WITH_PORTABLE_MODE=ON -D CMAKE_CXX_CLANG_TIDY="clang-tidy;--warnings-as-errors=*" ${{ matrix.extra-cmake-arguments }}
-        cmake --build build --parallel 2
+      uses: lukka/run-cmake@v3.3
+      with:
+        useVcpkgToolchainFile: true
+        cmakeAppendedArgs: -D WITH_PORTABLE_MODE=ON -D CMAKE_CXX_CLANG_TIDY="clang-tidy;--warnings-as-errors=*" ${{ matrix.extra-cmake-arguments }}
