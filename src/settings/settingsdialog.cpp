@@ -198,10 +198,8 @@ void SettingsDialog::accept()
     settings.setMainWindowOrientation(static_cast<Qt::ScreenOrientation>(ui->mainWindowOrientationComboBox->currentIndex()));
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
-    if (QSystemTrayIcon::isSystemTrayAvailable()) {
-        settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
-        settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
-    }
+    settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
+    settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
@@ -518,10 +516,8 @@ void SettingsDialog::restoreDefaults()
     ui->mainWindowOrientationComboBox->setCurrentIndex(AppSettings::defaultMainWindowOrientation());
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
-    if (QSystemTrayIcon::isSystemTrayAvailable()) {
-        ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
-        ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
-    }
+    ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
+    ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::defaultAutostartEnabled());
 #ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::defaultCheckForUpdatesInterval());
@@ -611,19 +607,9 @@ void SettingsDialog::loadSettings()
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
-    if (QSystemTrayIcon::isSystemTrayAvailable()) {
-        ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
-        ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
-        ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
-    } else {
-        auto *windowModeComboboxModel = qobject_cast<QStandardItemModel *>(ui->windowModeComboBox->model());
-        windowModeComboboxModel->item(AppSettings::PopupWindow, 0)->setEnabled(false);
-        windowModeComboboxModel->item(AppSettings::Notification, 0)->setEnabled(false);
-        ui->windowModeComboBox->setCurrentIndex(AppSettings::MainWindow);
-
-        ui->showTrayIconCheckBox->setChecked(false);
-        ui->showTrayIconCheckBox->setEnabled(false);
-    }
+    ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
+    ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
+    ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::isAutostartEnabled());
 #ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());

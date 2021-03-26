@@ -909,7 +909,7 @@ void MainWindow::loadMainWindowSettings()
     ui->sourceLanguagesWidget->checkButton(settings.checkedButton(AppSettings::Source));
 
     restoreGeometry(settings.mainWindowGeometry());
-    if (!QSystemTrayIcon::isSystemTrayAvailable() || !settings.isShowTrayIcon() || !settings.isStartMinimized()) {
+    if (!settings.isShowTrayIcon() || !settings.isStartMinimized()) {
         show();
         ui->sourceEdit->setFocus();
     }
@@ -968,7 +968,7 @@ void MainWindow::loadAppSettings()
         m_trayIcon->setIcon(QIcon::fromTheme(TrayIcon::trayIconName(iconType)));
     }
     m_trayIcon->setVisible(settings.isShowTrayIcon());
-    QGuiApplication::setQuitOnLastWindowClosed(!QSystemTrayIcon::isSystemTrayAvailable() || !m_trayIcon->isVisible());
+    QGuiApplication::setQuitOnLastWindowClosed(!m_trayIcon->isVisible());
 
     // Translation
     m_translator->setSourceTranslitEnabled(settings.isSourceTranslitEnabled());
