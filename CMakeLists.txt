@@ -80,6 +80,7 @@ set(APP_ICONS
 qt5_add_translation(QM_FILES
     data/translations/${PROJECT_NAME}_es.ts
     data/translations/${PROJECT_NAME}_fr.ts
+    data/translations/${PROJECT_NAME}_id.ts
     data/translations/${PROJECT_NAME}_it.ts
     data/translations/${PROJECT_NAME}_ms.ts
     data/translations/${PROJECT_NAME}_nl.ts
