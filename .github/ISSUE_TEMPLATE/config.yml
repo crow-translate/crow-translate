@@ -1,0 +1,4 @@
+contact_links:
+  - name: QOnlineTranslator repository
+    url: https://github.com/crow-translate/QOnlineTranslator
+    about: Please submit issues related to translation engines on the QOnlineTranslator repository, not here.
