@@ -176,6 +176,8 @@ Only Linux supports icon theming. For Windows [We10X](https://github.com/yeyushe
 
 Downloads are available on the [Releases](https://github.com/crow-translate/crow-translate/releases/latest) page. Also check out the [website](https://crow-translate.github.io/#installation) for other installation methods.
 
+**Note:** On Linux to make the application look native and without missing icons on a non-KDE desktop environment, you need to configure Qt applications styling. This can be done by using [qt5ct](https://github.com/RomanVolak/qt5ct) or [adwaita-qt5](https://github.com/FedoraQt/adwaita-qt) or [qtstyleplugins](https://github.com/qt/qtstyleplugins). Please check the appropriate installation guide for your distribution.
+
 **Note:** Windows requires [Microsoft Visual C++ Redistributable 2019](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0) to work.
 
 ## Building
