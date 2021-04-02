@@ -27,8 +27,14 @@ FetchContent_Declare(CircleFlags
     GIT_TAG v2.0.0
 )
 
-FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags)
+FetchContent_Declare(We10X
+    GIT_REPOSITORY https://github.com/yeyushengfan258/We10X-icon-theme
+    GIT_TAG bd2c68482a06d38b2641503af1ca127b9e6540db
+)
+
+FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags We10X)
 FetchContent_GetProperties(CircleFlags SOURCE_DIR CircleFlags_SOURCE_DIR)
+FetchContent_GetProperties(We10X SOURCE_DIR We10X_SOURCE_DIR)
 
 if(WIN32)
     FetchContent_Declare(QGitTag
@@ -36,11 +42,5 @@ if(WIN32)
         GIT_TAG 1.0.6
     )
 
-    FetchContent_Declare(We10X
-        GIT_REPOSITORY https://github.com/yeyushengfan258/We10X-icon-theme
-        GIT_TAG bd2c68482a06d38b2641503af1ca127b9e6540db
-    )
-
-    FetchContent_MakeAvailable(QGitTag We10X)
-    FetchContent_GetProperties(We10X SOURCE_DIR We10X_SOURCE_DIR)
+    FetchContent_MakeAvailable(QGitTag)
 endif()

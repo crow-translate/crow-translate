@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/icons/We10X">
+    <qresource prefix="/icons/hicolor">
         <file alias="16/actions/arrow-down.svg">16/actions/go-down.svg</file>
         <file alias="16/actions/arrow-left.svg">16/actions/go-previous.svg</file>
         <file alias="16/actions/arrow-right.svg">16/actions/go-next.svg</file>

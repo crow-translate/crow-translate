@@ -50,14 +50,13 @@ int main(int argc, char *argv[])
 
 int launchGui(int argc, char *argv[])
 {
-    SingleApplication app(argc, argv);
-
 #if defined(Q_OS_LINUX)
     QGuiApplication::setDesktopFileName(QStringLiteral(DESKTOP_FILE));
 #elif defined(Q_OS_WIN)
-    QIcon::setThemeName("We10X");
-    QIcon::setFallbackSearchPaths(QIcon::fallbackSearchPaths() << ":/icons");
+    QIcon::setThemeName("hicolor");
 #endif
+
+    SingleApplication app(argc, argv);
 
     AppSettings().setupLocalization();
 

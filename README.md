@@ -168,7 +168,7 @@ This project uses the following external libraries, which will be downloaded aut
 
 ## Icons
 
-Only Linux supports icon theming. For Windows [We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled.
+[We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled to provide icons on Windows and fallback icons on Linux.
 
 [circle-flags](https://github.com/HatScripts/circle-flags "A collection of 300+ minimal circular SVG country flags") icons are used for flags.
 
@@ -176,7 +176,7 @@ Only Linux supports icon theming. For Windows [We10X](https://github.com/yeyushe
 
 Downloads are available on the [Releases](https://github.com/crow-translate/crow-translate/releases/latest) page. Also check out the [website](https://crow-translate.github.io/#installation) for other installation methods.
 
-**Note:** On Linux to make the application look native and without missing icons on a non-KDE desktop environment, you need to configure Qt applications styling. This can be done by using [qt5ct](https://github.com/RomanVolak/qt5ct) or [adwaita-qt5](https://github.com/FedoraQt/adwaita-qt) or [qtstyleplugins](https://github.com/qt/qtstyleplugins). Please check the appropriate installation guide for your distribution.
+**Note:** On Linux to make the application look native on a non-KDE desktop environment, you need to configure Qt applications styling. This can be done by using [qt5ct](https://github.com/RomanVolak/qt5ct) or [adwaita-qt5](https://github.com/FedoraQt/adwaita-qt) or [qtstyleplugins](https://github.com/qt/qtstyleplugins). Please check the appropriate installation guide for your distribution.
 
 **Note:** Windows requires [Microsoft Visual C++ Redistributable 2019](https://support.microsoft.com/en-us/topic/the-latest-supported-visual-c-downloads-2647da03-1eea-4433-9aff-95f26a218cc0) to work.
 

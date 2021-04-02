@@ -95,11 +95,13 @@ qt5_add_translation(QM_FILES
 
 configure_file(src/cmake.h.in cmake.h)
 configure_file(data/icons/flags.qrc ${CircleFlags_SOURCE_DIR}/flags/flags.qrc COPYONLY)
+configure_file(data/icons/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
 
 add_executable(${PROJECT_NAME}
-    ${QM_FILES}
-    data/icons/engines/engines.qrc
     ${CircleFlags_SOURCE_DIR}/flags/flags.qrc
+    ${QM_FILES}
+    ${We10X_SOURCE_DIR}/src/we10x.qrc
+    data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
     src/cli.cpp
@@ -148,11 +150,9 @@ if(UNIX)
     )
 elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
-    configure_file(data/icons/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
 
     target_sources(${PROJECT_NAME} PRIVATE
         ${WINDOWS_ICON}
-        ${We10X_SOURCE_DIR}/src/we10x.qrc
         data/icons/freedesktop/freedesktop.qrc
         src/updaterdialog.cpp
         src/updaterdialog.ui
