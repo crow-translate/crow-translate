@@ -296,7 +296,6 @@ void MainWindow::swapLanguages()
 
     // Copy translation to source text
     ui->sourceEdit->replaceText(ui->translationEdit->translation());
-    ui->sourceEdit->moveCursor(QTextCursor::End);
 }
 
 void MainWindow::openSettings()
