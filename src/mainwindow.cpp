@@ -883,7 +883,6 @@ void MainWindow::buildSetSelectionAsSourceState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(setSelectionAsSourceState, &QState::entered, m_ocr, &Ocr::cancel);
     connect(setSelectionAsSourceState, &QState::entered, &Selection::instance(), &Selection::requestSelection);
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
 
