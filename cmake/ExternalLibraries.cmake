@@ -19,7 +19,7 @@ FetchContent_Declare(QHotkey
 
 FetchContent_Declare(QOnlineTranslator
     GIT_REPOSITORY https://github.com/crow-translate/QOnlineTranslator
-    GIT_TAG 1.4.1
+    GIT_TAG 1.4.2
 )
 
 FetchContent_Declare(CircleFlags
