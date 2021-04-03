@@ -4,7 +4,7 @@
 [![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 [![Crowdin](https://badges.crowdin.net/crow-translate/localized.svg)](https://crowdin.com/project/crow-translate)
 
-**Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows to translate and speak text using Google, Yandex and Bing translate API.
+**Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows you to translate and speak text using Google, Yandex and Bing translate API.
 You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project.
 
 ## Content
@@ -163,7 +163,7 @@ This project uses the following external libraries, which will be downloaded aut
 - [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
 - [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
 - [QHotkey](https://github.com/Skycoder42/QHotkey) - provides global shortcuts for desktop platforms.
-- [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - allows to create a taskbar/launcher progress for all desktop platforms.
+- [QTaskbarControl](https://github.com/Skycoder42/QTaskbarControl) - to create a taskbar/launcher progress for all desktop platforms.
 - [SingleApplication](https://github.com/itay-grudev/SingleApplication) - prevents launch of multiple application instances.
 
 ## Icons
@@ -197,7 +197,7 @@ You will then get a binary named `crow`.
 
 ### Building a package using CPack
 
-CMake allows to create [specified package types](https://cmake.org/cmake/help/latest/manual/cpack-generators.7.html) automatically.
+CMake can create [specified package types](https://cmake.org/cmake/help/latest/manual/cpack-generators.7.html) automatically.
 
 If you use Makefile, Ninja, or Xcode generator you can use [package](https://cmake.org/cmake/help/latest/module/CPack.html#targets-package-and-package-source) target:
 
