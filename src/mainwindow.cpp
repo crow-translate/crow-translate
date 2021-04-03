@@ -497,8 +497,7 @@ void MainWindow::setAutotranslateEnabled(bool enabled)
 {
     m_listenForContentChanges = enabled;
     ui->sourceEdit->setListenForEdits(m_listenForContentChanges);
-    if (m_listenForContentChanges)
-        markContentAsChanged();
+    markContentAsChanged();
 }
 
 void MainWindow::resetAutoSourceButtonText()
