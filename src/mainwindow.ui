@@ -592,7 +592,6 @@
  <slots>
   <slot>swapLanguages()</slot>
   <slot>openSettings()</slot>
-  <slot>markSourceAsUpdated()</slot>
   <slot>onAutotranslateEnabled(bool)</slot>
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
