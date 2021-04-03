@@ -124,15 +124,18 @@ private slots:
 
     void minimize();
 
+    // Source text operations that will not emit the textEdited signal
+    void replaceSourceText(const QString &text);
+    void removeSourceText();
+
     // UI
     void markContentAsChanged();
-    void onAutotranslateEnabled(bool enabled);
+    void setListenForContentChanges(bool listen);
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 
     // Other
     void showAppRunningMessage();
-    void setSourceText(const QString &text);
     void setOrientation(Qt::ScreenOrientation orientation);
 #ifdef Q_OS_WIN
     void checkForUpdates();

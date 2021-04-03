@@ -87,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Selection requests
-    connect(&Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::setSourceText);
+    connect(&Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::replaceSourceText);
 
     // Taskbar progress for text speaking
     connect(ui->sourceSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
     // OCR logic
     connect(m_screenGrabber, &AbstractScreenGrabber::grabbed, m_snippingArea, &SnippingArea::snip);
     connect(m_snippingArea, &SnippingArea::snipped, m_ocr, &Ocr::recognize);
-    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::replaceText);
+    connect(m_ocr, &Ocr::recognized, this, &MainWindow::replaceSourceText);
     m_screenCaptureTimer->setSingleShot(true);
 
 #if defined(Q_OS_WIN)
@@ -267,12 +267,7 @@ Q_SCRIPTABLE void MainWindow::delayedTranslateScreenArea()
 
 void MainWindow::clearText()
 {
-    // Clear source text without tracking for changes
-    ui->sourceEdit->setListenForEdits(false);
-    ui->sourceEdit->removeText();
-    if (m_listenForContentChanges)
-        ui->sourceEdit->setListenForEdits(true);
-
+    removeSourceText();
     clearTranslation();
 }
 
@@ -426,12 +421,9 @@ void MainWindow::showTranslationWindow()
 
         // Force listening for changes in source field
         if (!m_listenForContentChanges) {
-            m_listenForContentChanges = true;
-            ui->sourceEdit->setListenForEdits(true);
+            setListenForContentChanges(true);
             connect(popup, &PopupWindow::destroyed, [this] {
-                // Undo force listening for changes
-                m_listenForContentChanges = false;
-                ui->sourceEdit->setListenForEdits(false);
+                setListenForContentChanges(ui->autoTranslateCheckBox->isChecked());
             });
         }
 
@@ -484,6 +476,20 @@ void MainWindow::minimize()
     setWindowState(windowState() | Qt::WindowMinimized);
 }
 
+void MainWindow::replaceSourceText(const QString &text)
+{
+    ui->sourceEdit->blockSignals(true);
+    ui->sourceEdit->replaceText(text);
+    ui->sourceEdit->blockSignals(false);
+}
+
+void MainWindow::removeSourceText()
+{
+    ui->sourceEdit->blockSignals(true);
+    ui->sourceEdit->removeText();
+    ui->sourceEdit->blockSignals(false);
+}
+
 void MainWindow::markContentAsChanged()
 {
     if (m_listenForContentChanges) {
@@ -492,11 +498,10 @@ void MainWindow::markContentAsChanged()
     }
 }
 
-void MainWindow::onAutotranslateEnabled(bool enabled)
+void MainWindow::setListenForContentChanges(bool listen)
 {
-    m_listenForContentChanges = enabled;
+    m_listenForContentChanges = listen;
     ui->sourceEdit->setListenForEdits(m_listenForContentChanges);
-    markContentAsChanged();
 }
 
 void MainWindow::resetAutoSourceButtonText()
@@ -536,14 +541,6 @@ void MainWindow::showAppRunningMessage()
 
     open();
     message->open();
-}
-
-void MainWindow::setSourceText(const QString &text)
-{
-    ui->sourceEdit->setListenForEdits(false);
-    ui->sourceEdit->replaceText(text);
-    if (m_listenForContentChanges)
-        ui->sourceEdit->setListenForEdits(true);
 }
 
 void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
@@ -747,7 +744,7 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
@@ -787,7 +784,7 @@ void MainWindow::buildSpeakTranslatedSelectionState(QState *state) const
     auto *finalState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
     buildSpeakTranslationState(speakTranslationState);
@@ -804,7 +801,7 @@ void MainWindow::buildCopyTranslatedSelectionState(QState *state) const
     auto *copyTranslationState = new QFinalState(state);
     state->setInitialState(setSelectionAsSourceState);
 
-    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     connect(copyTranslationState, &QState::entered, this, &MainWindow::copyTranslationToClipboard);
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
@@ -824,8 +821,9 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
 
     connect(grabState, &QState::entered, m_screenGrabber, &AbstractScreenGrabber::grab);
     connect(grabState, &QState::exited, m_screenGrabber, &AbstractScreenGrabber::cancel);
+    connect(recognizeState, &QState::entered, this, &MainWindow::removeSourceText);
+    connect(recognizeState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
     connect(recognizeState, &QState::entered, this, showFunction);
-    connect(recognizeState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
     connect(recognizeState, &QState::exited, m_ocr, &Ocr::cancel);
     setupRequestStateButtons(recognizeState);
 
@@ -851,7 +849,7 @@ void MainWindow::buildTranslateScreenAreaState(QState *state)
     auto *finalState = new QFinalState(state);
     state->setInitialState(recognizeState);
 
-    connect(translationState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
+    connect(recognizeState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
     buildRecognizeScreenAreaState(recognizeState, &MainWindow::showTranslationWindow);
     buildTranslationState(translationState);
 
@@ -863,16 +861,16 @@ template<typename Func, typename... Args>
 void MainWindow::buildDelayedOcrState(QState *state, Func buildState, Args... additionalArgs)
 {
     auto *waitState = new QState(state);
-    auto *recognizeState = new QState(state);
+    auto *ocrState = new QState(state);
     auto *finalState = new QFinalState(state);
     state->setInitialState(waitState);
 
     connect(waitState, &QState::entered, this, &MainWindow::minimize);
     connect(waitState, &QState::entered, m_screenCaptureTimer, qOverload<>(&QTimer::start));
-    (this->*buildState)(recognizeState, additionalArgs...);
+    (this->*buildState)(ocrState, additionalArgs...);
 
-    waitState->addTransition(m_screenCaptureTimer, &QTimer::timeout, recognizeState);
-    recognizeState->addTransition(recognizeState, &QState::finished, finalState);
+    waitState->addTransition(m_screenCaptureTimer, &QTimer::timeout, ocrState);
+    ocrState->addTransition(ocrState, &QState::finished, finalState);
 }
 
 void MainWindow::buildSetSelectionAsSourceState(QState *state) const

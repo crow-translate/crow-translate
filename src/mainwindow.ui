@@ -400,7 +400,7 @@
    <sender>autoTranslateCheckBox</sender>
    <signal>toggled(bool)</signal>
    <receiver>MainWindow</receiver>
-   <slot>onAutotranslateEnabled(bool)</slot>
+   <slot>setListenForContentChanges(bool)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>205</x>
@@ -588,11 +588,27 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>autoTranslateCheckBox</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>markContentAsChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>185</x>
+     <y>181</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>swapLanguages()</slot>
   <slot>openSettings()</slot>
-  <slot>onAutotranslateEnabled(bool)</slot>
+  <slot>setListenForContentChanges(bool)</slot>
   <slot>copySourceText()</slot>
   <slot>copyTranslation()</slot>
   <slot>copyAllTranslationInfo()</slot>
