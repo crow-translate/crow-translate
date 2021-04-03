@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
     // OCR logic
     connect(m_screenGrabber, &AbstractScreenGrabber::grabbed, m_snippingArea, &SnippingArea::snip);
     connect(m_snippingArea, &SnippingArea::snipped, m_ocr, &Ocr::recognize);
-    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::setPlainText);
+    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::replaceText);
     m_screenCaptureTimer->setSingleShot(true);
 
 #if defined(Q_OS_WIN)
