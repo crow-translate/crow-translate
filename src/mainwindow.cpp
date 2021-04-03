@@ -493,7 +493,7 @@ void MainWindow::markContentAsChanged()
     }
 }
 
-void MainWindow::setAutotranslateEnabled(bool enabled)
+void MainWindow::onAutotranslateEnabled(bool enabled)
 {
     m_listenForContentChanges = enabled;
     ui->sourceEdit->setListenForEdits(m_listenForContentChanges);

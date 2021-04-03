@@ -126,7 +126,7 @@ private slots:
 
     // UI
     void markContentAsChanged();
-    void setAutotranslateEnabled(bool enabled);
+    void onAutotranslateEnabled(bool enabled);
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
 
