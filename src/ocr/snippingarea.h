@@ -160,7 +160,7 @@ private:
     QRegion m_screenRegion;
 
     QMap<const QScreen *, QImage> m_images;
-    QVector<QPair<const QScreen *, qreal>> m_screenToDpr;
+    QMap<const QScreen *, qreal> m_screenToDpr;
 
     QVector<QStaticText> m_bottomLeftHelpText;
     QVector<QVector<QStaticText>> m_bottomRightHelpText;

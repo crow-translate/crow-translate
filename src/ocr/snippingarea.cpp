@@ -791,13 +791,13 @@ QPixmap SnippingArea::selectedPixmap() const
         QPixmap output(m_selection.size() * maxDpr);
         QPainter painter(&output);
 
-        for (const auto *it = m_screenToDpr.constBegin(); it != m_screenToDpr.constEnd(); ++it) {
-            const QScreen *screen = it->first;
+        for (auto it = m_screenToDpr.constBegin(); it != m_screenToDpr.constEnd(); ++it) {
+            const QScreen *screen = it.key();
             const QRect screenRect = screen->geometry();
 
             if (m_selection.intersects(screenRect)) {
                 const QPoint pos = screenRect.topLeft();
-                qreal dpr = it->second;
+                qreal dpr = it.value();
 
                 QRect intersected = screenRect.intersected(m_selection);
 
@@ -960,7 +960,7 @@ void SnippingArea::preparePaint()
         const QScreen* screen = i.key();
 
         const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
-        m_screenToDpr.append({screen, dpr});
+        m_screenToDpr.insert(screen, dpr);
 
 #ifdef Q_OS_LINUX
         const QRect virtualScreenRect(screen->geometry().topLeft(), QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
