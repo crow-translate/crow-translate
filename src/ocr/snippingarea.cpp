@@ -872,6 +872,12 @@ void SnippingArea::setGeometryToScreenPixmap()
     setGeometry(m_screensRect);
 }
 
+void SnippingArea::prepare(QStaticText &text) const
+{
+    text.prepare(QTransform(), font());
+    text.setPerformanceHint(QStaticText::AggressiveCaching);
+}
+
 void SnippingArea::layoutBottomHelpText()
 {
     int maxRightWidth = 0;
@@ -1036,10 +1042,4 @@ bool SnippingArea::isInRange(qreal low, qreal high, qreal value)
 bool SnippingArea::isWithinThreshold(qreal offset, qreal threshold)
 {
     return qFabs(offset) <= threshold;
-}
-
-void SnippingArea::prepare(QStaticText &text) const
-{
-    text.prepare(QTransform(), font());
-    text.setPerformanceHint(QStaticText::AggressiveCaching);
 }
