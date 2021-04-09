@@ -340,12 +340,13 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
         // New top left point of the rectangle
         QPoint newTopLeft = ((m_mousePos - m_startPos + m_initialTopLeft) * m_devicePixelRatio).toPoint();
 
-        QRect newRect(newTopLeft, m_selection.size() * m_devicePixelRatio);
+        const QRect newRect(newTopLeft, m_selection.size() * m_devicePixelRatio);
 
-        if (!m_screensRect.contains(newRect)) {
+        const QRect translatedScreensRect = m_screensRect.translated(-m_screensRect.topLeft());
+        if (!translatedScreensRect.contains(newRect)) {
             // Keep the item inside the scene screen region bounding rect.
-            newTopLeft.setX(qMin(m_screensRect.right() - newRect.width(), qMax(newTopLeft.x(), m_screensRect.left())));
-            newTopLeft.setY(qMin(m_screensRect.bottom() - newRect.height(), qMax(newTopLeft.y(), m_screensRect.top())));
+            newTopLeft.setX(qMin(translatedScreensRect.right() - newRect.width(), qMax(newTopLeft.x(), translatedScreensRect.left())));
+            newTopLeft.setY(qMin(translatedScreensRect.bottom() - newRect.height(), qMax(newTopLeft.y(), translatedScreensRect.top())));
         }
 
         m_selection.moveTo(newTopLeft * m_devicePixelRatioI);
@@ -400,7 +401,7 @@ void SnippingArea::paintEvent(QPaintEvent *)
         const QImage &screenImage = i.value();
         const QScreen* screen = i.key();
 
-        QRect rectToDraw = screen->geometry();
+        QRect rectToDraw = screen->geometry().translated(-m_screensRect.topLeft());
         const qreal dpr = screenImage.width() / static_cast<qreal>(rectToDraw.width());
         const qreal dprI = 1.0 / dpr;
 
@@ -545,19 +546,19 @@ void SnippingArea::drawDragHandles(QPainter &painter)
     if (minEdgeLength < minDragHandleSpace) {
         offset = (minDragHandleSpace - minEdgeLength) / 2.0;
     } else {
-        QRect virtualScreenGeo = QGuiApplication::primaryScreen()->virtualGeometry();
+        const QRect translatedScreensRect = m_screensRect.translated(-m_screensRect.topLeft());
         const int penWidth = painter.pen().width();
 
-        offsetTop = top - virtualScreenGeo.top() - m_handleRadius;
+        offsetTop = top - translatedScreensRect.top() - m_handleRadius;
         offsetTop = (offsetTop >= 0) ? 0 : offsetTop;
 
-        offsetRight = virtualScreenGeo.right() - right - m_handleRadius + penWidth;
+        offsetRight = translatedScreensRect.right() - right - m_handleRadius + penWidth;
         offsetRight = (offsetRight >= 0) ? 0 : offsetRight;
 
-        offsetBottom = virtualScreenGeo.bottom() - bottom - m_handleRadius + penWidth;
+        offsetBottom = translatedScreensRect.bottom() - bottom - m_handleRadius + penWidth;
         offsetBottom = (offsetBottom >= 0) ? 0 : offsetBottom;
 
-        offsetLeft = left - virtualScreenGeo.left() - m_handleRadius;
+        offsetLeft = left - translatedScreensRect.left() - m_handleRadius;
         offsetLeft = (offsetLeft >= 0) ? 0 : offsetLeft;
     }
 
@@ -649,7 +650,7 @@ void SnippingArea::drawMidHelpText(QPainter &painter) const
 
     const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
     QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
-    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
+    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
     QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio),
                (primaryGeometry.height() - textSize.height()) / 2 + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio));
 
@@ -842,8 +843,9 @@ void SnippingArea::createPixmapFromScreens()
 
     m_screenPixmap = QPixmap(m_screensRect.width(), m_screensRect.height());
     QPainter painter(&m_screenPixmap);
-    for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++)
-        painter.drawImage(pointsTranslationMap.value(it.key()->geometry().topLeft()), it.value());
+    // Geometry can have negative coordinates, so it is necessary to subtract the upper left point, because coordinates on the widget are counted from 0
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it)
+        painter.drawImage(pointsTranslationMap.value(it.key()->geometry().topLeft()) - m_screensRect.topLeft(), it.value());
 }
 
 void SnippingArea::setGeometryToScreenPixmap()
@@ -867,7 +869,7 @@ void SnippingArea::setGeometryToScreenPixmap()
         return;
     }
 #endif
-    setGeometry(0, 0, m_screenPixmap.width(), m_screenPixmap.height());
+    setGeometry(m_screensRect);
 }
 
 void SnippingArea::layoutBottomHelpText()
@@ -887,7 +889,7 @@ void SnippingArea::layoutBottomHelpText()
         contentWidth = qMax(contentWidth, m_bottomHelpGridLeftWidth + maxRightWidth + s_bottomHelpBoxPairSpacing);
         contentHeight += (i != s_bottomHelpMaxLength ? s_bottomHelpBoxMarginBottom : 0);
     }
-    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry();
+    const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
     m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio));
     m_bottomHelpContentPos.setY((primaryGeometry.height() + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio)) - contentHeight - 8);
     m_bottomHelpGridLeftWidth += m_bottomHelpContentPos.x();
