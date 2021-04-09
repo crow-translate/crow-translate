@@ -157,7 +157,7 @@ private:
     QRect m_selection;
     QPointF m_startPos;
     QPointF m_initialTopLeft;
-    QRegion m_screenRegion;
+    QRect m_screensRect;
 
     QMap<const QScreen *, QImage> m_images;
     QMap<const QScreen *, qreal> m_screenToDpr;

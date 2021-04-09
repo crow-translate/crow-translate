@@ -99,6 +99,7 @@ void SnippingArea::snip(QMap<const QScreen *, QImage> images)
         }
     }
 
+    preparePaint();
     createPixmapFromScreens();
     setGeometryToScreenPixmap();
 
@@ -124,7 +125,6 @@ void SnippingArea::snip(QMap<const QScreen *, QImage> images)
     setBottomHelpText();
     layoutBottomHelpText();
 
-    preparePaint();
     update();
     show();
 }
@@ -342,12 +342,10 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
 
         QRect newRect(newTopLeft, m_selection.size() * m_devicePixelRatio);
 
-        QRect screenBoundingRect = m_screenRegion.boundingRect();
-        screenBoundingRect = QRect(screenBoundingRect.topLeft(), screenBoundingRect.size());
-        if (!screenBoundingRect.contains(newRect)) {
+        if (!m_screensRect.contains(newRect)) {
             // Keep the item inside the scene screen region bounding rect.
-            newTopLeft.setX(qMin(screenBoundingRect.right() - newRect.width(), qMax(newTopLeft.x(), screenBoundingRect.left())));
-            newTopLeft.setY(qMin(screenBoundingRect.bottom() - newRect.height(), qMax(newTopLeft.y(), screenBoundingRect.top())));
+            newTopLeft.setX(qMin(m_screensRect.right() - newRect.width(), qMax(newTopLeft.x(), m_screensRect.left())));
+            newTopLeft.setY(qMin(m_screensRect.bottom() - newRect.height(), qMax(newTopLeft.y(), m_screensRect.top())));
         }
 
         m_selection.moveTo(newTopLeft * m_devicePixelRatioI);
@@ -834,16 +832,6 @@ QPixmap SnippingArea::selectedPixmap() const
 
 void SnippingArea::createPixmapFromScreens()
 {
-    int width = 0;
-    int height = 0;
-    for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++) {
-        const QPoint pos = it.key()->geometry().topLeft();
-        width = qMax(width, it.value().width() + pos.x());
-        height = qMax(height, it.value().height() + pos.y());
-    }
-
-    m_screenPixmap = QPixmap(width, height);
-
     QMap<ComparableQPoint, QPair<qreal, QSize>> input;
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
         const QScreen* screen = it.key();
@@ -851,6 +839,8 @@ void SnippingArea::createPixmapFromScreens()
         input.insert(screen->geometry().topLeft(), {screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()});
     }
     const QMap<ComparableQPoint, ComparableQPoint> pointsTranslationMap = computeCoordinatesAfterScaling(input);
+
+    m_screenPixmap = QPixmap(m_screensRect.width(), m_screensRect.height());
     QPainter painter(&m_screenPixmap);
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); it ++)
         painter.drawImage(pointsTranslationMap.value(it.key()->geometry().topLeft()), it.value());
@@ -955,6 +945,7 @@ void SnippingArea::setBottomHelpText()
 void SnippingArea::preparePaint()
 {
     m_screenToDpr.clear();
+    m_screensRect = {};
     for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
         const QImage &screenImage = i.value();
         const QScreen* screen = i.key();
@@ -967,7 +958,7 @@ void SnippingArea::preparePaint()
 #else
         const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size());
 #endif
-        m_screenRegion = m_screenRegion.united(virtualScreenRect);
+        m_screensRect = m_screensRect.united(virtualScreenRect);
     }
 }
 
