@@ -56,7 +56,6 @@ if(UNIX)
     find_package(XCB REQUIRED COMPONENTS XCB)
 endif()
 
-include(IgnoreExternalCodeChecks)
 include(ExternalLibraries)
 include(GNUInstallDirs)
 include(CPack)

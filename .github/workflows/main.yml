@@ -14,15 +14,19 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, windows-latest]
+        os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
         include:
           - os: ubuntu-18.04
+            extra-cmake-arguments : >-
+              -D CMAKE_CXX_FLAGS='-Wall -Wextra -pedantic -Werror'
+          - os: ubuntu-20.04
             extra-cmake-arguments : >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
           - os: windows-latest
             # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
+              -D CMAKE_CXX_CLANG_TIDY='clang-tidy;--warnings-as-errors=*'
     steps:
     - name: Clone repo
       uses: actions/checkout@v2.3.4
@@ -31,7 +35,7 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev clang-tidy
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
     - name: Install vcpkg packages
       uses: lukka/run-vcpkg@v6.1
@@ -45,5 +49,6 @@ jobs:
     - name: Build
       uses: lukka/run-cmake@v3.3
       with:
+        cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
         useVcpkgToolchainFile: true
-        cmakeAppendedArgs: -D WITH_PORTABLE_MODE=ON -D CMAKE_CXX_CLANG_TIDY="clang-tidy;--warnings-as-errors=*" ${{ matrix.extra-cmake-arguments }}
+        cmakeAppendedArgs: -G Ninja -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}

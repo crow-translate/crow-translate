@@ -106,6 +106,7 @@ void Selection::getSelection()
     emit requestedSelectionAvailable(QGuiApplication::clipboard()->text(QClipboard::Selection));
 #elif defined(Q_OS_WIN)
     const QString selection = QGuiApplication::clipboard()->text();
+    // NOLINTNEXTLINE(clang-analyzer-cplusplus.NewDeleteLeaks)
     if (selection.isEmpty() && m_maxSelectionDelay->isActive())
         return;
 
