@@ -87,7 +87,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Selection requests
-    connect(&Selection::instance(), &Selection::requestedSelectionAvailable, this, &MainWindow::replaceSourceText);
+    connect(&Selection::instance(), &Selection::requestedSelectionAvailable, ui->sourceEdit, &SourceTextEdit::replaceText);
 
     // Taskbar progress for text speaking
     connect(ui->sourceSpeakButtons, &SpeakButtons::stateChanged, this, &MainWindow::setTaskbarState);
@@ -116,7 +116,7 @@ MainWindow::MainWindow(QWidget *parent)
     // OCR logic
     connect(m_screenGrabber, &AbstractScreenGrabber::grabbed, m_snippingArea, &SnippingArea::snip);
     connect(m_snippingArea, &SnippingArea::snipped, m_ocr, &Ocr::recognize);
-    connect(m_ocr, &Ocr::recognized, this, &MainWindow::replaceSourceText);
+    connect(m_ocr, &Ocr::recognized, ui->sourceEdit, &SourceTextEdit::replaceText);
     m_screenCaptureTimer->setSingleShot(true);
 
 #if defined(Q_OS_WIN)
@@ -267,7 +267,7 @@ Q_SCRIPTABLE void MainWindow::delayedTranslateScreenArea()
 
 void MainWindow::clearText()
 {
-    removeSourceText();
+    ui->sourceEdit->removeText();
     clearTranslation();
 }
 
@@ -291,6 +291,7 @@ void MainWindow::swapLanguages()
 
     // Copy translation to source text
     ui->sourceEdit->replaceText(ui->translationEdit->translation());
+    markContentAsChanged();
 }
 
 void MainWindow::openSettings()
@@ -474,20 +475,6 @@ void MainWindow::forceTranslationAutodetect()
 void MainWindow::minimize()
 {
     setWindowState(windowState() | Qt::WindowMinimized);
-}
-
-void MainWindow::replaceSourceText(const QString &text)
-{
-    ui->sourceEdit->blockSignals(true);
-    ui->sourceEdit->replaceText(text);
-    ui->sourceEdit->blockSignals(false);
-}
-
-void MainWindow::removeSourceText()
-{
-    ui->sourceEdit->blockSignals(true);
-    ui->sourceEdit->removeText();
-    ui->sourceEdit->blockSignals(false);
 }
 
 void MainWindow::markContentAsChanged()
@@ -821,7 +808,7 @@ void MainWindow::buildRecognizeScreenAreaState(QState *state, void (MainWindow::
 
     connect(grabState, &QState::entered, m_screenGrabber, &AbstractScreenGrabber::grab);
     connect(grabState, &QState::exited, m_screenGrabber, &AbstractScreenGrabber::cancel);
-    connect(recognizeState, &QState::entered, this, &MainWindow::removeSourceText);
+    connect(recognizeState, &QState::entered, ui->sourceEdit, &SourceTextEdit::removeText);
     connect(recognizeState, &QState::entered, this, &MainWindow::forceSourceAutodetect);
     connect(recognizeState, &QState::entered, this, showFunction);
     connect(recognizeState, &QState::exited, m_ocr, &Ocr::cancel);

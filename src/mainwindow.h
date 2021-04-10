@@ -124,10 +124,6 @@ private slots:
 
     void minimize();
 
-    // Source text operations that will not emit the textEdited signal
-    void replaceSourceText(const QString &text);
-    void removeSourceText();
-
     // UI
     void markContentAsChanged();
     void setListenForContentChanges(bool listen);

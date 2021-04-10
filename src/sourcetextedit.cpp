@@ -63,16 +63,19 @@ void SourceTextEdit::replaceText(const QString &text)
 {
     QTextCursor cursor = textCursor();
     cursor.select(QTextCursor::Document);
-    cursor.insertText(text);
+    if (text.isEmpty())
+        cursor.removeSelectedText();
+    else
+        cursor.insertText(text);
     setTextCursor(cursor);
+
+    // To avoid emitting textEdited signal
+    m_textEditedTimer->stop();
 }
 
 void SourceTextEdit::removeText()
 {
-    QTextCursor cursor = textCursor();
-    cursor.select(QTextCursor::Document);
-    cursor.removeSelectedText();
-    setTextCursor(cursor);
+    replaceText({});
 }
 
 void SourceTextEdit::stopEditTimer()
