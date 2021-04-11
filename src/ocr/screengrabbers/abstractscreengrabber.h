@@ -46,6 +46,7 @@ public slots:
 protected:
     explicit AbstractScreenGrabber(QObject *parent = nullptr);
 
+protected slots:
     void showError(const QString &errorString);
 };
 

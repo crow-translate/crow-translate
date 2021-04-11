@@ -25,9 +25,12 @@
 #include <QDBusUnixFileDescriptor>
 #include <QPixmap>
 #include <QtConcurrent>
+#include <QScreen>
 
 #include <fcntl.h>
 #include <unistd.h>
+
+using ScreenImagesMap = QMap<const QScreen *, QImage>;
 
 QDBusInterface WaylandPlasmaScreenGrabber::s_interface(QStringLiteral("org.kde.KWin"),
                                                        QStringLiteral("/Screenshot"),
@@ -36,6 +39,8 @@ QDBusInterface WaylandPlasmaScreenGrabber::s_interface(QStringLiteral("org.kde.K
 WaylandPlasmaScreenGrabber::WaylandPlasmaScreenGrabber(QObject *parent)
     : DBusScreenGrabber(parent)
 {
+    static int id = qRegisterMetaType<ScreenImagesMap>("ScreenImagesMap");
+    Q_UNUSED(id)
 }
 
 bool WaylandPlasmaScreenGrabber::ignoreDevicePixelRatio() const
@@ -66,7 +71,7 @@ void WaylandPlasmaScreenGrabber::grab()
             return;
         }
 
-        QtConcurrent::run([this, sockedDescriptor] {
+        m_readImageFuture = QtConcurrent::run([this, sockedDescriptor] {
             readPixmapFromSocket(sockedDescriptor);
             close(sockedDescriptor);
         });
@@ -96,25 +101,26 @@ void WaylandPlasmaScreenGrabber::readPixmapFromSocket(int socketDescriptor)
 
         const int ready = select(FD_SETSIZE, &readset, nullptr, nullptr, &timeout);
         if (ready < 0) {
-            emit showError(tr("Unable to wait for socket readiness: %1.").arg(strerror(errno)));
+            QMetaObject::invokeMethod(this, "showError", Q_ARG(QString, tr("Unable to wait for socket readiness: %1.").arg(strerror(errno))));
             return;
         }
 
         if (ready == 0) {
-            emit showError(tr("Timeout reading from pipe."));
+            QMetaObject::invokeMethod(this, "showError", Q_ARG(QString, tr("Timeout reading from pipe.")));
             return;
         }
 
         const int bytesRead = read(socketDescriptor, buffer.data(), buffer.capacity());
         if (bytesRead < 0) {
-            emit showError(tr("Unable to read data from socket: %1.").arg(strerror(errno)));
+            QMetaObject::invokeMethod(this, "showError", Q_ARG(QString, tr("Unable to read data from socket: %1.").arg(strerror(errno))));
             return;
         }
         if (bytesRead == 0) {
             QDataStream lDataStream(data);
             QPixmap pixmap;
             lDataStream >> pixmap;
-            emit grabbed(splitScreenImages(pixmap));
+            const QMetaMethod grabbed = QMetaMethod::fromSignal(&WaylandPlasmaScreenGrabber::grabbed);
+            grabbed.invoke(this, Q_ARG(ScreenImagesMap, splitScreenImages(pixmap)));
             return;
         }
 
