@@ -37,12 +37,11 @@
 #endif
 
 SnippingArea::SnippingArea(bool ignoreDevicePixelRatio, QWidget *parent)
-    : QWidget(parent)
+    : QWidget(parent, Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint)
     , m_devicePixelRatio(ignoreDevicePixelRatio ? 1.0 : devicePixelRatioF())
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_StaticContents);
-    setWindowFlags(Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint);
 }
 
 SnippingArea::~SnippingArea()
