@@ -581,6 +581,8 @@ void SettingsDialog::restoreDefaults()
 
 void SettingsDialog::activateCompactMode()
 {
+    setWindowState(windowState() | Qt::WindowMaximized);
+
     ui->pagesListWidget->setMaximumWidth(QWIDGETSIZE_MAX);
     ui->scrollArea->hide();
 
