@@ -53,6 +53,16 @@
          </widget>
         </item>
         <item>
+         <widget class="QToolButton" name="forvoButton">
+          <property name="toolTip">
+           <string>Search on forvo.com</string>
+          </property>
+          <property name="text">
+           <string>Forvo</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCheckBox" name="autoTranslateCheckBox">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Expanding" vsizetype="Fixed">

@@ -45,6 +45,7 @@
 #endif
 
 #include <QClipboard>
+#include <QDesktopServices>
 #include <QFinalState>
 #include <QMediaPlaylist>
 #include <QMessageBox>
@@ -127,6 +128,11 @@ MainWindow::MainWindow(QWidget *parent)
     // Setup players for speak buttons
     ui->sourceSpeakButtons->setMediaPlayer(new QMediaPlayer);
     ui->translationSpeakButtons->setMediaPlayer(new QMediaPlayer);
+
+    // Setup Forvo button
+    connect(ui->sourceEdit, &SourceTextEdit::sourceEmpty, ui->forvoButton, &QToolButton::setDisabled);
+    connect(ui->forvoButton, &QToolButton::clicked, this, &MainWindow::openForvo);
+    ui->forvoButton->setDisabled(true);
 
     // State machine to handle translator signals async
     buildStateMachine();
@@ -517,6 +523,15 @@ void MainWindow::setTaskbarState(QMediaPlayer::State state)
 #endif
         break;
     }
+}
+
+void MainWindow::openForvo()
+{
+    QString src = ui->sourceEdit->toSourceText();
+    if (src.isEmpty())
+        return;
+    QString forvoCmd = QString("https://forvo.com/search/%1/").arg(src);
+    QDesktopServices::openUrl(QUrl(forvoCmd));
 }
 
 void MainWindow::showAppRunningMessage()

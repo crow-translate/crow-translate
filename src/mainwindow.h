@@ -129,6 +129,7 @@ private slots:
     void setListenForContentChanges(bool listen);
     void resetAutoSourceButtonText();
     void setTaskbarState(QMediaPlayer::State state);
+    void openForvo();
 
     // Other
     void showAppRunningMessage();
