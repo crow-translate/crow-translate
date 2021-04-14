@@ -7,10 +7,14 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, windows-latest]
+        os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
         arch: [amd64, aarch64, armv7]
         include:
           - os: ubuntu-18.04
+            extra-cmake-arguments : >-
+              -D CPACK_GENERATOR="External"
+            upload-files: 'build/*.AppImage'
+          - os: ubuntu-20.04
             extra-cmake-arguments : >-
               -D CPACK_GENERATOR="DEB;RPM"
             upload-files: 'build/*.deb;build/*.rpm'
@@ -26,6 +30,10 @@ jobs:
             arch: aarch64
           - os: windows-latest
             arch: armv7
+          - os: ubuntu-18.04
+            arch: aarch64
+          - os: ubuntu-18.04
+            arch: armv7
     steps:
     - name: Clone repo
       uses: actions/checkout@v2.3.4
@@ -34,7 +42,14 @@ jobs:
       if: runner.os == 'Linux' && matrix.arch == 'amd64'
       run: |
         sudo apt-get update
-        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm
+        sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm qt5-default qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins qt5-style-plugins
+        sudo apt-get remove qt5-gtk-platformtheme # Do not use libqgtk3.so because of https://bugreports.qt.io/browse/QTBUG-72506
+
+    - name: Install linuxdeploy
+      if: matrix.os == 'ubuntu-18.04'
+      uses: miurahr/install-linuxdeploy-action@v1.5.0
+      with:
+        plugins: qt gstreamer
 
     # To set the application icon
     - name: Install icoutils
@@ -61,22 +76,20 @@ jobs:
         cmake -B build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
         cmake --build build --target package --parallel 2 --config Release
 
-    - name: Build in docker
+    - name: Build in Ubuntu 20.04 Docker image
       uses: uraimo/run-on-arch-action@v2.0.9
-      if: runner.os == 'Linux' && matrix.arch != 'amd64'
+      if: matrix.os == 'ubuntu-20.04' && matrix.arch != 'amd64'
       with:
         arch: ${{ matrix.arch }}
-        distro: ubuntu18.04
+        distro: ubuntu20.04
         githubToken: ${{ github.token }}
         dockerRunArgs: --volume "${PWD}:/repo"
         install: |
           apt-get update -y
-          apt-get install -y wget git g++ dpkg-dev libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm
-          wget https://github.com/Kitware/CMake/releases/download/v3.15.0/cmake-3.15.0.tar.gz
-          tar -zxvf cmake-3.15.0.tar.gz
-          cd cmake-3.15.0
-          ./bootstrap
-          make install
+          apt-get install -y apt-transport-https ca-certificates gnupg software-properties-common wget
+          wget --no-check-certificate -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
+          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
+          apt-get install -y libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev g++ git rpm cmake
         run: |
           cmake -S /repo -B /repo/build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
           cmake --build /repo/build --target package --parallel 2
