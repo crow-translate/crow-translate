@@ -38,7 +38,7 @@ jobs:
         sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev
 
     - name: Install vcpkg packages
-      uses: lukka/run-vcpkg@v6.1
+      uses: lukka/run-vcpkg@v7
       if: runner.os == 'Windows'
       with:
         vcpkgArguments: tesseract[cpu-independed] ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools --triplet x64-windows
