@@ -46,7 +46,7 @@ AbstractScreenGrabber *AbstractScreenGrabber::createScreenGrabber(QObject *paren
 {
 #ifdef Q_OS_LINUX
     if (!QX11Info::isPlatformX11()) {
-        if (WaylandPlasmaScreenGrabber::isAvailable())
+        if (WaylandPlasmaScreenGrabber::isAvailable() && qgetenv("APPIMAGE").isNull())
             return new WaylandPlasmaScreenGrabber(parent);
         if (WaylandGnomeScreenGrabber::isAvailable())
             return new WaylandGnomeScreenGrabber(parent);
