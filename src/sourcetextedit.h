@@ -52,6 +52,9 @@ private slots:
     void startTimerDelay();
     void checkSourceEmptyChanged();
 
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
+
 private:
     QTimer *m_textEditedTimer;
     bool m_listenForEdits = false;

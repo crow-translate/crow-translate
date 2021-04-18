@@ -22,6 +22,8 @@
 
 #include <QTimer>
 
+#include "contextmenu.h"
+
 using namespace std::chrono_literals;
 
 SourceTextEdit::SourceTextEdit(QWidget *parent)
@@ -94,4 +96,10 @@ void SourceTextEdit::checkSourceEmptyChanged()
         m_sourceEmpty = toPlainText().isEmpty();
         emit sourceEmpty(m_sourceEmpty);
     }
+}
+
+void SourceTextEdit::contextMenuEvent(QContextMenuEvent *event)
+{
+    auto *contextMenu = new ContextMenu(this, event);
+    contextMenu->popup();
 }
