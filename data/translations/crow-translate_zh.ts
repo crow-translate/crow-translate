@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="zh-CN" sourcelanguage="en">
   <context>
+    <name>AbstractScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="64"/>
+      <source>Unable to grab screen</source>
+      <translation>无法抓取屏幕</translation>
+    </message>
+  </context>
+  <context>
     <name>AddLanguageDialog</name>
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="14"/>
@@ -27,22 +35,22 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="164"/>
+      <location filename="../../src/settings/appsettings.cpp" line="194"/>
       <source>Unable to create %1</source>
       <translation>无法创建 %1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="171"/>
+      <location filename="../../src/settings/appsettings.cpp" line="201"/>
       <source>Unable to copy %1 to %2</source>
       <translation>无法复制 %1 到 %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="175"/>
+      <location filename="../../src/settings/appsettings.cpp" line="205"/>
       <source>Unable to remove %1 from %2</source>
       <translation>无法从 %2 中移除 %1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1082"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1129"/>
       <source>Unknown language code: %1</source>
       <translation>未知语言代码： %1</translation>
     </message>
@@ -172,12 +180,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="99"/>
+      <location filename="../../src/main.cpp" line="98"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>无法为 %1 注册 D-Bus 对象</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="74"/>
+      <location filename="../../src/main.cpp" line="73"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>D-Bus 服务 %1 已经被另一个应用程序注册</translation>
     </message>
@@ -185,18 +193,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="439"/>
-      <source>Window width is larger then screen due to the languages on the panel.</source>
-      <translation>由于面板上的语言过多，窗口宽度大于了屏幕宽度。</translation>
+      <location filename="../../src/languagebuttonswidget.cpp" line="457"/>
+      <source>Window width is larger than screen due to the languages on the panel.</source>
+      <translation>面板上的语言使得窗口宽度大于了屏幕宽度。</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="440"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="458"/>
       <source>Please reduce added languages.</source>
       <translation>请精简已添加的语言</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="516"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="518"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="534"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="536"/>
       <source>Auto</source>
       <translation>自动</translation>
     </message>
@@ -204,72 +212,83 @@
   <context>
     <name>MainWindow</name>
     <message>
-      <location filename="../../src/mainwindow.ui" line="58"/>
+      <location filename="../../src/mainwindow.ui" line="36"/>
       <source>Copy source text to the clipboard</source>
       <translation>复制原文到剪切板</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="69"/>
-      <source>Automatically translate</source>
-      <translation>自动翻译</translation>
-    </message>
-    <message>
-      <location filename="../../src/mainwindow.ui" line="220"/>
+      <location filename="../../src/mainwindow.ui" line="114"/>
       <source>Source</source>
       <translation>原文</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="96"/>
+      <location filename="../../src/mainwindow.ui" line="232"/>
       <source>Copy translation to the clipboard</source>
       <translation>复制译文到剪切板</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="151"/>
+      <location filename="../../src/mainwindow.ui" line="243"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>复制全部翻译到剪切板</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="25"/>
+      <location filename="../../src/mainwindow.ui" line="254"/>
+      <source>Translate screen area with delay</source>
+      <translation>Traduci area schermo con ritardo</translation>
+    </message>
+    <message>
+      <location filename="../../src/mainwindow.ui" line="265"/>
       <source>Application settings</source>
       <translation>应用设置</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="36"/>
+      <location filename="../../src/mainwindow.ui" line="93"/>
       <source>Swap languages</source>
       <translation>切换语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="110"/>
+      <location filename="../../src/mainwindow.ui" line="47"/>
+      <source>Recognize screen area with delay</source>
+      <translation>Rileva area schermo con ritardo</translation>
+    </message>
+    <message>
+      <location filename="../../src/mainwindow.ui" line="70"/>
+      <source>Auto-translation</source>
+      <extracomment>The text should be short to fit in portrait orientation on phones.</extracomment>
+      <translation>Traduzione automatica</translation>
+    </message>
+    <message>
+      <location filename="../../src/mainwindow.ui" line="82"/>
       <source>Cancel</source>
       <translation>取消</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="47"/>
+      <location filename="../../src/mainwindow.ui" line="121"/>
       <source>Clear</source>
       <translation>清除</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="140"/>
+      <location filename="../../src/mainwindow.ui" line="138"/>
       <source>Translate</source>
       <translation>翻译</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="127"/>
+      <location filename="../../src/mainwindow.ui" line="166"/>
       <source>Translation</source>
       <translation>译文</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="370"/>
+      <location filename="../../src/mainwindow.cpp" line="397"/>
       <source>Unable to detect language</source>
       <translation>无法检测语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="424"/>
+      <location filename="../../src/mainwindow.cpp" line="452"/>
       <source>Unable to translate text</source>
       <translation>无法翻译文字</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="498"/>
+      <location filename="../../src/mainwindow.cpp" line="536"/>
       <source>The application is already running</source>
       <translation>应用已正在运行</translation>
     </message>
@@ -277,12 +296,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="874"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to set OCR languages</source>
       <translation>无法设定 OCR 语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="874"/>
+      <location filename="../../src/mainwindow.cpp" line="989"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>无法使用 %1 初始化 Tesseract</translation>
     </message>
@@ -297,7 +316,7 @@
       <translation>您应该在应用程序设置中至少设定一种 OCR 语言</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="144"/>
+      <location filename="../../src/ocr/ocr.cpp" line="149"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 不是一个有效的 Tesseract 参数名称。</translation>
     </message>
@@ -1047,112 +1066,6 @@
     </message>
   </context>
   <context>
-    <name>ScreenGrabber</name>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="615"/>
-      <source>Click and drag to draw a selection rectangle,
-or press Esc to quit</source>
-      <translation>点击并拖拽以绘制一个矩形选区，
-或按 Esc 键退出</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="811"/>
-      <source>Confirm capture:</source>
-      <translation>确认捕获：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="813"/>
-      <source>Release left-click</source>
-      <translation>松开鼠标左键</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="813"/>
-      <location filename="../../src/ocr/screengrabber.cpp" line="815"/>
-      <source>Enter</source>
-      <translation>回车</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="817"/>
-      <source>Create new selection rectangle:</source>
-      <translation>新建矩形选区：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="818"/>
-      <source>Drag outside selection rectangle</source>
-      <translation>在矩形选区外部拖拽</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="818"/>
-      <source>+ Shift: Magnifier</source>
-      <translation>+ Shift：放大镜</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="831"/>
-      <source>Cancel:</source>
-      <translation>取消：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="815"/>
-      <source>Double-click</source>
-      <translation>双击</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="821"/>
-      <source>Move selection rectangle:</source>
-      <translation>移动矩形选区：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="822"/>
-      <source>Drag inside selection rectangle</source>
-      <translation>在矩形选区内部拖拽</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="822"/>
-      <source>Arrow keys</source>
-      <translation>方向键</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="822"/>
-      <source>+ Shift: Move in 1 pixel steps</source>
-      <translation>+ Shift：以 1 像素/每步移动选区</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="824"/>
-      <source>Resize selection rectangle:</source>
-      <translation>调整矩形选区大小：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="825"/>
-      <source>Drag handles</source>
-      <translation>拖拽处理</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="825"/>
-      <source>Arrow keys + Alt</source>
-      <translation>方向键 + Alt</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="825"/>
-      <source>+ Shift: Resize in 1 pixel steps</source>
-      <translation>+ Shift：以 1 像素/每步调整选区大小</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="827"/>
-      <source>Reset selection:</source>
-      <translation>重置选区：</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="828"/>
-      <source>Right-click</source>
-      <translation>右键点击</translation>
-    </message>
-    <message>
-      <location filename="../../src/ocr/screengrabber.cpp" line="832"/>
-      <source>Esc key</source>
-      <translation>Esc 键</translation>
-    </message>
-  </context>
-  <context>
     <name>SettingsDialog</name>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="14"/>
@@ -1160,741 +1073,779 @@ or press Esc to quit</source>
       <translation>设置</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="55"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="132"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="49"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="141"/>
       <source>General</source>
       <translation>通用</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="64"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="58"/>
       <source>Interface</source>
       <translation>界面</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="73"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="587"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="67"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="625"/>
       <source>Translation</source>
       <translation>翻译</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="91"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="943"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="85"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1023"/>
       <source>Speech synthesis</source>
       <translation>语音合成</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="100"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="94"/>
       <source>Connection</source>
       <translation>网络连接</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="109"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="103"/>
       <source>Shortcuts</source>
       <translation>快捷键</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="118"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="112"/>
       <source>About</source>
       <translation>关于</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="162"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="296"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="207"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="356"/>
       <source>Pop-up window</source>
       <translation>悬浮窗口</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="167"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="212"/>
       <source>Main window</source>
       <translation>主窗口</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="144"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="153"/>
       <source>Language:</source>
       <translation>语言：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="67"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="81"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="82"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <source>&lt;System language&gt;</source>
       <translation>系统语言</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="213"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="257"/>
       <source>Show tray icon</source>
       <translation>显示托盘图标</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="203"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="270"/>
       <source>Start minimized</source>
       <translation>启动时最小化</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="151"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="196"/>
       <source>Translation mode:</source>
       <translation>翻译模式：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="158"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="203"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在翻译选定文字时显示一个用来展示翻译结果的窗口。如果程序处于最小化状态，「主窗口」模式将始终被选用。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="187"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="277"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在系统启动时运行应用程序&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="190"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="280"/>
       <source>Launch at startup</source>
       <translation>开机启动</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="200"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="267"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启动应用程序时最小化到系统托盘&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="366"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="426"/>
       <source>Opacity:</source>
       <translation>透明度：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="319"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="379"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;弹出窗口不透明度&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="253"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="326"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;译文和源文字体&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="267"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="340"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;译文和源文的字体大小&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="302"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="362"/>
       <source>Height:</source>
       <translation>高度：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="309"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="369"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;弹出窗口高度(单位:像素)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="332"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="392"/>
       <source>Width:</source>
       <translation>宽度：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="356"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="416"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;弹出窗口宽度(单位:像素)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="389"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="225"/>
       <source>Translation notification timeout:</source>
       <translation>翻译通知延时：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="396"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="238"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;翻译通知显示时间&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="399"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="241"/>
       <source> sec</source>
       <translation> 秒</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="428"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="452"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="456"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="480"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;按钮上的语言标签&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="472"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="500"/>
       <source>Tray icon</source>
       <translation>托盘图标</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="478"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="506"/>
       <source>Icon:</source>
       <translation>图标：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="488"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="587"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择图标&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="514"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="519"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;系统托盘图标&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="518"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="985"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="1060"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="648"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="666"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="523"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
       <source>Default</source>
       <translation>默认</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="527"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="532"/>
       <source>Monochrome (dark theme)</source>
       <translation>单色 (暗色)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="536"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="541"/>
       <source>Monochrome (light theme)</source>
       <translation>单色 (亮色)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="545"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="550"/>
       <source>Custom</source>
       <translation>自定义</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="501"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="565"/>
       <source>Custom:</source>
       <translation>自定义：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>扎哈尔(Zahar)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="357"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>埃尔米尔(Ermil)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="358"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>简(Jane)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>奥克萨娜(Oksana)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="360"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>爱丽丝(Alyss)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="361"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>奥马兹(Omazh)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="952"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1110"/>
       <source>Emotional connotation:</source>
       <translation>情感色彩：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="362"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>中性</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="363"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>良好情绪</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="364"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>糟糕情绪</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="596"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="634"/>
       <source>Enable source transliteration</source>
       <translation>启用原文音译</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="606"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="644"/>
       <source>Enable translation transliteration</source>
       <translation>启用译文音译</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="616"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="654"/>
       <source>Enable source transcription</source>
       <translation>启用原文转录</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="626"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="664"/>
       <source>Enable translation options</source>
       <translation>启用翻译选项</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="633"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="671"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用使用示例&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="636"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="674"/>
       <source>Enable examples</source>
       <translation>启用示例</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="656"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="694"/>
       <source>Automatic language detection</source>
       <translation>自动语言检测</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="662"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="700"/>
       <source>Primary translation language:</source>
       <translation>首选翻译语言：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="669"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="714"/>
       <source>Secondary translation language:</source>
       <translation>次选翻译语言：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="683"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="721"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在上面选定目标语言时翻译文本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="690"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the source language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;主窗口模式外总是使用 &amp;quot;自动&amp;quot; 模式作为源语言。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="693"/>
-      <source>Force source language detection outside the window</source>
-      <translation>强制在主窗口模式外检测源语言</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="700"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Always use &amp;quot;Auto&amp;quot; as the translation language outside the window.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;窗口模式外总是使用 &amp;quot;自动&amp;quot; 模式作为译文语言。&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="703"/>
-      <source>Force translation language detection outside the window</source>
-      <translation>在主窗口模式外强制检测译文语言</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="775"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="818"/>
       <source>Directory with trained models</source>
       <translation>含有训练模型的目录</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="743"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="787"/>
       <source>Languages path:</source>
       <translation>语言文件路径：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="750"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="794"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择 OCR 语言路径&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="736"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="780"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;加载额外的语言会显著影响识别速度和准确性，因为程序要确定适当的语言需要花费更多资源，并且这也会增加错误词汇出现的概率&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="762"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="805"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;打开 GitHub 仓库&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="765"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="808"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;下载更多&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="849"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="903"/>
       <source>Screen capture</source>
       <translation>屏幕捕获</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="903"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="915"/>
       <source>Remember region:</source>
       <translation>记住区域设定：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="887"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="964"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在鼠标光标旁显示一个放大镜&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="890"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="967"/>
       <source>Show magnifier</source>
       <translation>显示放大镜</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="855"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="987"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;对未选中的部分应用一层浅虚化蒙版&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="858"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="990"/>
       <source>Apply light mask</source>
       <translation>使用亮色蒙版</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="865"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last captured region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;是否记住上次使用的的语言区域&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="874"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="931"/>
       <source>Remember last</source>
       <translation>记住上一个</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="879"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="936"/>
       <source>Remember always</source>
       <translation>总是记住</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="913"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="977"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;释放鼠标按钮时完成片段捕获&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="916"/>
-      <source>Capture on release</source>
-      <translation>释放时即捕获</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="965"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1079"/>
       <source>Voice:</source>
       <translation>语音：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="981"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;语音合成引擎的情感色彩&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1000"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1138"/>
       <source>Speech test:</source>
       <translation>朗读测试：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1071"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1150"/>
       <source>This is an example of speech synthesis.</source>
       <translation>这是一句语音合成示例。</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1074"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1153"/>
       <source>Test voice</source>
       <translation>测试语音</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1101"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1191"/>
       <source>Proxy server</source>
       <translation>代理服务器</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1107"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1197"/>
       <source>Type:</source>
       <translation>类型：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1242"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1214"/>
       <source>Use system settings</source>
       <translation>使用系统设置</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1252"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1224"/>
       <source>Don&apos;t use a proxy</source>
       <translation>不使用代理</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1192"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1240"/>
       <source>Host:</source>
       <translation>主机名：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1169"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1263"/>
       <source>Port:</source>
       <translation>端口：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1268"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1298"/>
       <source>Info: the proxy works only for text translation</source>
       <translation>注：代理设置只对文字翻译有效</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1182"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用认证&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1311"/>
       <source>Authentication</source>
       <translation>认证</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1212"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
       <source>Username:</source>
       <translation>用户名：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1202"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理认证用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
       <source>Password:</source>
       <translation>密码：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="172"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="383"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="217"/>
       <source>Notification</source>
       <translation>通知</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="180"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="160"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;图形界面语言&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="210"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="254"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在系统托盘中显示图标&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="240"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="167"/>
+      <source>Main window orientation:</source>
+      <translation>主窗口方向：</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="174"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Orientation of the main window layout&lt;br/&gt;When using &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt;, the window orientation will match the screen orientation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;主窗口内容布局的方向&lt;br/&gt;当使用 &lt;span style=&quot; font-style:italic;&quot;&gt;自动&lt;/span&gt;时，窗口方向将会匹配屏幕方向&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="178"/>
+      <source>Auto</source>
+      <extracomment>Orientation</extracomment>
+      <translation>Automatico</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="183"/>
+      <source>Portrait</source>
+      <extracomment>Orientation</extracomment>
+      <translation>Verticale</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="188"/>
+      <source>Landscape</source>
+      <extracomment>Orientation</extracomment>
+      <translation>Orizzontale</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="313"/>
       <source>Font</source>
       <translation>字体</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="246"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="319"/>
       <source>Name:</source>
       <translation>字体名：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="260"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="333"/>
       <source>Size:</source>
       <translation>大小：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="415"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="443"/>
       <source>Language format</source>
-      <translation>语言格式</translation>
+      <translation>语言名称格式</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="421"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="449"/>
       <source>Main window:</source>
       <translation>主窗口:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="432"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="456"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="460"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="484"/>
       <source>Full name</source>
       <translation>全称</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="437"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="461"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="465"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="489"/>
       <source>ISO 639-1 code</source>
       <translation>ISO 639-1 编码</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="445"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="473"/>
       <source>Pop-up:</source>
       <translation>悬浮窗口:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="593"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="631"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用原文音译或转写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="603"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="641"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用目标语言名的音译或转写&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="613"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="651"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用原文转录&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="623"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="661"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用翻译选项&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="643"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="681"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;在查询中用单个空格替换每个空格序列 (包括 ASCII 字符 &apos;\t&apos; &apos;\n&apos; &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, 和 &apos; &apos;)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="646"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="684"/>
       <source>Simplify source</source>
       <translation>简化原文格式</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="676"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="707"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;自动检测到为何种语言时翻译文本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="730"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;使用 OCR 和全局快捷键时，自动切换到&lt;span style=&quot; font-style:italic;&quot;&gt;自动&lt;/span&gt; 模式&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
+      <source>Force source language detection</source>
+      <translation>强制检测源语言</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
+      <source>Force translation language detection</source>
+      <translation>强制检测翻译语言</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="774"/>
       <source>Languages</source>
       <translation>语言</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="791"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="834"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;识别文本后用空格替换所有单个换行符&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="794"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="837"/>
       <source>Convert line breaks</source>
       <translation>转换换行符</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="993"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last selected region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选择何时记住上次选择的区域&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="944"/>
+      <source>Capture delay:</source>
+      <translation>Ritardo cattura:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="951"/>
+      <source>Delay before screen capture</source>
+      <translation>Ritardo prima della cattura schermo</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="954"/>
+      <source> ms</source>
+      <translation> ms</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
+      <source>Confirm on release</source>
+      <translation>松开时确认</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1029"/>
       <source>Engine:</source>
       <translation>合成引擎：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1013"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1042"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;语音合成引擎&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1056"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1095"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;语音合成引擎的声音风格&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1068"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1147"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;测试朗读的文本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1117"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用以认证代理的密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;用以认证代理的用户名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1140"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>注：密码将被加密保存</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1150"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1279"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理主机的端口号&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1179"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentification&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;启用或禁用认证&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1222"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理主机名&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1238"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1210"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理类型&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1298"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1400"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;注册全局快捷键&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1301"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1403"/>
       <source>Enable global shortcucts</source>
       <translation>启用全局快捷键</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1330"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1432"/>
       <source>Shortcut</source>
       <translation>快捷键</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1320"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1422"/>
       <source>Reset all</source>
       <translation>重置全部</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="560"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="577"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>图标访问路径或图标在主题中的名称</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1336"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;代理认证密码&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1438"/>
       <source>Key sequence:</source>
       <translation>按键：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1350"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1452"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;接受快捷键&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1353"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1455"/>
       <source>Accept</source>
       <translation>接受</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1466"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;清除快捷键&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1367"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1469"/>
       <source>Clear</source>
       <translation>清除</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1381"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1483"/>
       <source>Reset</source>
       <translation>重置</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1452"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1529"/>
       <source>Version:</source>
       <translation>版本：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1317"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1419"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;重置所有快捷键为默认&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1343"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1445"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;选定动作的关键次序&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1378"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1480"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;重置快捷键为默认&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1445"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1539"/>
       <source>License:</source>
       <translation>许可证：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1435"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1593"/>
       <source>Flag icons:</source>
       <translation>旗帜图标：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1428"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1553"/>
       <source>Autor:</source>
       <translation>作者：</translation>
     </message>
@@ -1904,126 +1855,131 @@ or press Esc to quit</source>
       <translation>便携模式</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="58"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="61"/>
       <source>Use %1 from the application folder to store settings</source>
       <translation>使用应用程序文件夹中的 %1 来存储设置</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="114"/>
-      <source>Interface icons:</source>
-      <translation>界面图标：</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="124"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
       <source>Updates</source>
       <translation>更新</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
       <source>Check for updates:</source>
       <translation>检查更新：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="135"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
       <source>Every day</source>
       <translation>每天</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every week</source>
       <translation>每周</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every month</source>
       <translation>每月</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="869"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="138"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="926"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Never</source>
       <translation>从不</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
+      <source>Icons:</source>
+      <translation>Icone:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
       <source>Check now</source>
       <translation>立即检查</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check for updates now</source>
       <translation>立即检查更新</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Happy New Year!</source>
       <translation>新年快乐！</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="170"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR 参数字段不能为空。</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="171"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>确定要舍弃无效的参数吗？</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>选择图标</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="304"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>图片 (*.png *.ico *.svg *.jpg);;所有文件()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="317"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>选择 OCR 语言路径</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="394"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>没有要播放的内容</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="394"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>发音文字为空</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>无法检测语言</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="460"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>正在检查更新...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="482"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>有可用更新！</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="488"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>无可用更新。</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
+      <source>Back</source>
+      <translation>返回</translation>
     </message>
   </context>
   <context>
     <name>ShortcutsModel</name>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="129"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="135"/>
       <source>Description</source>
       <translation>描述</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="131"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="137"/>
       <source>Shortcut</source>
       <translation>快捷键</translation>
     </message>
@@ -2073,49 +2029,175 @@ or press Esc to quit</source>
       <translation>翻译屏幕区域内的文本</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="61"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
+      <source>Recognize text in screen area with delay</source>
+      <translation>延时识别屏幕区域内的文字</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
+      <source>Translate text in screen area with delay</source>
+      <translation>延时翻译屏幕区域内的文字</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="67"/>
       <source>Main window</source>
       <translation>主窗口</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
       <source>Translate</source>
       <translation>翻译</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="66"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
       <source>Swap languages</source>
       <translation>切换语言</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
       <source>Close window</source>
       <translation>关闭窗口</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="73"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="79"/>
       <source>Source text</source>
       <translation>原文</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="81"/>
       <source>Speak / pause text speaking</source>
       <translation>朗读/暂停朗读文本</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="81"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="87"/>
       <source>Speak / pause speaking</source>
       <translation>朗读/暂停朗读</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="79"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="85"/>
       <source>Translation</source>
       <translation>译文</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="84"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
       <source>Copy to clipboard</source>
       <translation>复制到剪切板</translation>
+    </message>
+  </context>
+  <context>
+    <name>SnippingArea</name>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
+      <source>Unable to snip screen area</source>
+      <translation>无法截取屏幕区域</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <source>Received an invalid image of screen %1.</source>
+      <translation>接收到一个屏幕 %1 的无效图像。</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <source>Click and drag to draw a selection rectangle,
+or press Esc to quit</source>
+      <translation>点击并拖拽以绘制一个矩形选区，
+或按 Esc 键退出</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="925"/>
+      <source>Confirm:</source>
+      <translation>确认：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
+      <source>Release left-click</source>
+      <translation>松开鼠标左键</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="927"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
+      <source>Enter</source>
+      <translation>Enter</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="929"/>
+      <source>Double-click</source>
+      <translation>双击</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <source>Create new selection rectangle:</source>
+      <translation>新建矩形选区：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
+      <source>Drag outside selection rectangle</source>
+      <translation>在矩形选区外部拖拽</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="932"/>
+      <source>+ Shift: Magnifier</source>
+      <translation>+ Shift：放大镜</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <source>Move selection rectangle:</source>
+      <translation>移动矩形选区：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
+      <source>Drag inside selection rectangle</source>
+      <translation>在矩形选区内部拖拽</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
+      <source>Arrow keys</source>
+      <translation>方向键</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="936"/>
+      <source>+ Shift: Move in 1 pixel steps</source>
+      <translation>+ Shift：以 1 像素步长移动选区</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <source>Resize selection rectangle:</source>
+      <translation>调整矩形选区大小：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <source>Drag handles</source>
+      <translation>拖拽处理</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <source>Arrow keys + Alt</source>
+      <translation>方向键 + Alt</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="939"/>
+      <source>+ Shift: Resize in 1 pixel steps</source>
+      <translation>+ Shift：以 1 像素步长调整选区大小</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <source>Reset selection:</source>
+      <translation>重置选区：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="942"/>
+      <source>Right-click</source>
+      <translation>右键点击</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <source>Cancel:</source>
+      <translation>取消：</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/snippingarea.cpp" line="946"/>
+      <source>Esc key</source>
+      <translation>Esc 键</translation>
     </message>
   </context>
   <context>
@@ -2175,12 +2257,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="851"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>Invalid tray icon</source>
       <translation>无效的托盘图标</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="851"/>
+      <location filename="../../src/mainwindow.cpp" line="963"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>指定的图标 &apos;%1&apos; 无效。将使用默认图标。</translation>
     </message>
@@ -2194,7 +2276,7 @@ or press Esc to quit</source>
       <location filename="../../src/trayicon.cpp" line="33"/>
       <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
-      <translation>设置</translation>
+      <translation>Impostazioni</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="34"/>
@@ -2280,6 +2362,50 @@ or press Esc to quit</source>
       <location filename="../../src/updaterdialog.cpp" line="87"/>
       <source>Unable to write file</source>
       <translation>无法写入文件</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandGnomeScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandgnomescreengrabber.cpp" line="60"/>
+      <source>GNOME failed to take screenshot.</source>
+      <translation>GNOME 屏幕截图失败。</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPlasmaScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <source>Unable to create pipe: %1.</source>
+      <translation>无法创建管道： %1</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <source>Unable to wait for socket readiness: %1.</source>
+      <translation>无法等待套接字就绪： %1</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <source>Timeout reading from pipe.</source>
+      <translation>从管道读取超时。</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <source>Unable to read data from socket: %1.</source>
+      <translation>无法从套接字读取数据: %1</translation>
+    </message>
+  </context>
+  <context>
+    <name>WaylandPortalScreenGrabber</name>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <source>Unable to subscribe to response from xdg-desktop-portal.</source>
+      <translation>无法从 xdg-desktop-portal 订阅响应。</translation>
+    </message>
+    <message>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <source>Recivied an empty path from xdg-desktop-portal.</source>
+      <translation>从 xdg-desktop-portal 接收到了一个空路径。</translation>
     </message>
   </context>
 </TS>
