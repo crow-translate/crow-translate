@@ -20,8 +20,9 @@
 
 #include "sourcetextedit.h"
 
-#include <QMenu>
 #include <QTimer>
+
+#include "contextmenu.h"
 
 using namespace std::chrono_literals;
 
@@ -99,10 +100,6 @@ void SourceTextEdit::checkSourceEmptyChanged()
 
 void SourceTextEdit::contextMenuEvent(QContextMenuEvent *event)
 {
-    QMenu *menu = createStandardContextMenu(event->globalPos());
-    menu->addSeparator();
-    QAction *act = menu->addAction(QIcon::fromTheme("text-speak"), tr("Search on Forvo.com"));
-    connect(act, &QAction::triggered, this, &SourceTextEdit::searchOnForvo);
-    menu->exec(event->globalPos());
-    delete menu;
+    auto *contextMenu = new ContextMenu(this, event);
+    contextMenu->popup();
 }

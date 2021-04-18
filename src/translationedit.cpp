@@ -20,6 +20,8 @@
 
 #include "translationedit.h"
 
+#include "contextmenu.h"
+
 TranslationEdit::TranslationEdit(QWidget *parent)
     : QTextEdit(parent)
 {
@@ -134,4 +136,10 @@ void TranslationEdit::clearTranslation()
         emit translationEmpty(true);
     }
     clear();
+}
+
+void TranslationEdit::contextMenuEvent(QContextMenuEvent *event)
+{
+    auto *contextMenu = new ContextMenu(this, event);
+    contextMenu->popup();
 }

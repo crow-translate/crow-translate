@@ -47,20 +47,19 @@ public slots:
 signals:
     void textEdited();
     void sourceEmpty(bool empty);
-    void searchOnForvo();
 
 private slots:
     void startTimerDelay();
     void checkSourceEmptyChanged();
+
+protected:
+    void contextMenuEvent(QContextMenuEvent *event) override;
 
 private:
     QTimer *m_textEditedTimer;
     bool m_listenForEdits = false;
     bool m_sourceEmpty = true;
     bool m_simplifySource = false;
-
-protected:
-    void contextMenuEvent(QContextMenuEvent *event) override;
 };
 
 #endif // SOURCETEXTEDIT_H

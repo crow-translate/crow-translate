@@ -109,7 +109,6 @@ private slots:
     void requestRetranslation();
     void displayTranslation();
     void clearTranslation();
-    void searchOnForvo();
 
     void requestSourceLanguage();
     void parseSourceLanguage();

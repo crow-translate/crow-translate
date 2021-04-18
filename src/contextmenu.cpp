@@ -18,36 +18,17 @@
  *
  */
 
-#ifndef TRANSLATIONEDIT_H
-#define TRANSLATIONEDIT_H
+#include "contextmenu.h"
 
-#include "qonlinetranslator.h"
+#include <QDesktopServices>
 
-#include <QTextEdit>
-
-class TranslationEdit : public QTextEdit
+void ContextMenu::popup()
 {
-    Q_OBJECT
-    Q_DISABLE_COPY(TranslationEdit)
+    m_menu->popup(m_menu->pos());
+    connect(m_menu, &QMenu::aboutToHide, this, &ContextMenu::deleteLater);
+}
 
-public:
-    explicit TranslationEdit(QWidget *parent = nullptr);
-
-    bool parseTranslationData(QOnlineTranslator *translator);
-    QString translation() const;
-    QOnlineTranslator::Language translationLanguage();
-    void clearTranslation();
-
-signals:
-    void translationDataParsed(const QString &text);
-    void translationEmpty(bool empty);
-
-protected:
-    void contextMenuEvent(QContextMenuEvent *event) override;
-
-private:
-    QString m_translation;
-    QOnlineTranslator::Language m_lang = QOnlineTranslator::NoLanguage;
-};
-
-#endif // TRANSLATIONEDIT_H
+void ContextMenu::searchOnForvo()
+{
+    QDesktopServices::openUrl(QUrl(QStringLiteral("https://forvo.com/search/%1/").arg(m_text)));
+}

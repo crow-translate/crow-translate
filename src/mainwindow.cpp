@@ -45,7 +45,6 @@
 #endif
 
 #include <QClipboard>
-#include <QDesktopServices>
 #include <QFinalState>
 #include <QMediaPlaylist>
 #include <QMessageBox>
@@ -113,7 +112,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->sourceLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->translationLanguagesWidget, &LanguageButtonsWidget::buttonChecked, this, &MainWindow::checkLanguageButton);
     connect(ui->sourceEdit, &SourceTextEdit::textChanged, this, &MainWindow::resetAutoSourceButtonText);
-    connect(ui->sourceEdit, &SourceTextEdit::searchOnForvo, this, &MainWindow::searchOnForvo);
 
     // OCR logic
     connect(m_screenGrabber, &AbstractScreenGrabber::grabbed, m_snippingArea, &SnippingArea::snip);
@@ -381,16 +379,6 @@ void MainWindow::clearTranslation()
 {
     ui->translationEdit->clearTranslation();
     ui->translationLanguagesWidget->setAutoLanguage(QOnlineTranslator::Auto);
-}
-
-void MainWindow::searchOnForvo()
-{
-    QString txt = ui->sourceEdit->textCursor().selectedText();
-    if (txt.isEmpty())
-        txt = ui->sourceEdit->toPlainText();
-    if (txt.isEmpty())
-        return;
-    QDesktopServices::openUrl(QUrl(QStringLiteral("https://forvo.com/search/%1/").arg(txt)));
 }
 
 void MainWindow::requestSourceLanguage()
