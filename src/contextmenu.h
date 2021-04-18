@@ -47,12 +47,13 @@ public:
 
         m_menu = edit->createStandardContextMenu(event->globalPos());
         m_menu->move(event->globalPos());
-        m_menu->setParent(edit);
         m_menu->addSeparator();
         QAction *searchOnForvoAction = m_menu->addAction(QIcon::fromTheme("text-speak"), tr("Search on Forvo.com"), this, &ContextMenu::searchOnForvo);
         if (m_text.isEmpty())
             searchOnForvoAction->setEnabled(false);
     }
+
+    ~ContextMenu() override;
 
     void popup();
 

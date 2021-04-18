@@ -22,6 +22,11 @@
 
 #include <QDesktopServices>
 
+ContextMenu::~ContextMenu()
+{
+    delete m_menu;
+}
+
 void ContextMenu::popup()
 {
     m_menu->popup(m_menu->pos());
