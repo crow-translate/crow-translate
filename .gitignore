@@ -9,8 +9,8 @@ build
 *.autosave
 
 # VIM
-.clangd
-vim.json
+.cache
+neovim.json
 compile_commands.json
 
 # VSCode
