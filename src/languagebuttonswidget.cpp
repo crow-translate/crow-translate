@@ -403,7 +403,11 @@ void LanguageButtonsWidget::checkAutoButton()
 
 void LanguageButtonsWidget::checkButton(int id)
 {
-    m_buttonGroup->button(id)->setChecked(true);
+    QAbstractButton *button = m_buttonGroup->button(id);
+    if (button)
+        button->setChecked(true);
+    else
+        m_buttonGroup->button(s_autoButtonId)->setChecked(true);
 }
 
 void LanguageButtonsWidget::addLanguage(QOnlineTranslator::Language lang)
