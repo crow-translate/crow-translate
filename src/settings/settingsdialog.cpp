@@ -118,13 +118,13 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Add information about icons
     auto *iconsTitleLabel = new QLabel(this);
     iconsTitleLabel->setText(tr("Icons:"));
-    ui->aboutGroupBox->layout()->addWidget(iconsTitleLabel);
 
     auto *iconsLabel = new QLabel(this);
     iconsLabel->setText("<a href=\"https://github.com/yeyushengfan258/We10X-icon-theme\">We10X</a>");
     iconsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
     iconsLabel->setOpenExternalLinks(true);
-    ui->aboutGroupBox->layout()->addWidget(iconsLabel);
+
+    qobject_cast<QFormLayout *>(ui->aboutGroupBox->layout())->addRow(iconsTitleLabel, iconsLabel);
 
     // Add updater options
     auto *updatesGroupBox = new QGroupBox(tr("Updates"));
