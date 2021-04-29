@@ -1313,7 +1313,7 @@ or press Esc to quit</source>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="428"/>
       <location filename="../../src/settings/settingsdialog.ui" line="452"/>
-      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languges text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+      <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languages text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;كۇنۇپكىلاردىكى تىل تېكىستى&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
