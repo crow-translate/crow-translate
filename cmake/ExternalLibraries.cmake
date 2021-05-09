@@ -24,7 +24,7 @@ FetchContent_Declare(QOnlineTranslator
 
 FetchContent_Declare(CircleFlags
     GIT_REPOSITORY https://github.com/HatScripts/circle-flags
-    GIT_TAG v2.0.0
+    GIT_TAG v2.1.0
 )
 
 FetchContent_Declare(We10X
