@@ -46,12 +46,12 @@ AbstractScreenGrabber *AbstractScreenGrabber::createScreenGrabber(QObject *paren
 {
 #ifdef Q_OS_LINUX
     if (!QX11Info::isPlatformX11()) {
-        if (WaylandPlasmaScreenGrabber::isAvailable() && qgetenv("APPIMAGE").isNull())
-            return new WaylandPlasmaScreenGrabber(parent);
         if (WaylandGnomeScreenGrabber::isAvailable())
             return new WaylandGnomeScreenGrabber(parent);
         if (WaylandPortalScreenGrabber::isAvailable())
             return new WaylandPortalScreenGrabber(parent);
+        if (WaylandPlasmaScreenGrabber::isAvailable())
+            return new WaylandPlasmaScreenGrabber(parent);
     }
 #endif
     return new GenericScreenGrabber(parent);
