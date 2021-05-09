@@ -408,7 +408,10 @@ void SnippingArea::paintEvent(QPaintEvent *)
         brush.setTransform(QTransform::fromScale(dprI, dprI));
 
         rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
-        rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
+#ifdef Q_OS_LINUX
+        if (!QX11Info::isPlatformX11())
+#endif
+            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
 
         painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
@@ -864,7 +867,7 @@ void SnippingArea::setGeometryToScreenPixmap()
          */
         const uint32_t coordinates[] = {0, 0};
         xcb_configure_window(QX11Info::connection(), winId(), XCB_CONFIG_WINDOW_X | XCB_CONFIG_WINDOW_Y, coordinates);
-        resize(m_screenPixmap.width(), m_screenPixmap.height());
+        resize(qRound(m_screensRect.width() / m_devicePixelRatio), qRound(m_screensRect.height() / m_devicePixelRatio));
         return;
     }
 #endif
