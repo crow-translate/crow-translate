@@ -178,14 +178,22 @@
     </message>
   </context>
   <context>
+    <name>ContextMenu</name>
+    <message>
+      <location filename="../../src/contextmenu.h" line="52"/>
+      <source>Search on Forvo.com</source>
+      <translation>Pesquisar em Forvo.com</translation>
+    </message>
+  </context>
+  <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="98"/>
+      <location filename="../../src/main.cpp" line="97"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Não foi possível registrar objeto D-Bus para %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="73"/>
+      <location filename="../../src/main.cpp" line="72"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>O serviço D-Bus %1 já está registrado por outro aplicativo</translation>
     </message>
@@ -193,18 +201,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="457"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>A largura da janela é maior que a tela devido aos idiomas no painel.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="458"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="462"/>
       <source>Please reduce added languages.</source>
       <translation>Por favor, reduza os idiomas adicionados.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="534"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="536"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="538"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
       <source>Auto</source>
       <translation>Automático</translation>
     </message>
@@ -278,17 +286,17 @@
       <translation>Tradução</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="397"/>
+      <location filename="../../src/mainwindow.cpp" line="392"/>
       <source>Unable to detect language</source>
       <translation>Não foi possível detectar o idioma</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="452"/>
+      <location filename="../../src/mainwindow.cpp" line="444"/>
       <source>Unable to translate text</source>
       <translation>Não foi possível traduzir o texto</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="536"/>
+      <location filename="../../src/mainwindow.cpp" line="526"/>
       <source>The application is already running</source>
       <translation>A aplicação já está em execução</translation>
     </message>
@@ -296,12 +304,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to set OCR languages</source>
       <translation>Não foi possível definir idiomas OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Não foi possível inicializar Tesseract com %1</translation>
     </message>
@@ -1021,8 +1029,8 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1224"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1358"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Erro: Não foi possível interpretar o idioma detectado automaticamente</translation>
     </message>
@@ -1128,8 +1136,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Idioma do Sistema&gt;</translation>
     </message>
@@ -1253,8 +1261,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
       <source>Default</source>
       <translation>Padrão</translation>
     </message>
@@ -1279,32 +1287,32 @@
       <translation>Personalizado:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
@@ -1314,17 +1322,17 @@
       <translation>Conotação emocional:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Neutral</source>
       <translation>Neutro</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Good</source>
       <translation>Bom</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Evil</source>
       <translation>Mau</translation>
     </message>
@@ -1860,113 +1868,113 @@
       <translation>Use %1 da pasta do aplicativo para armazenar as configurações</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
       <source>Updates</source>
       <translation>Atualizações</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
       <source>Check for updates:</source>
       <translation>Verificar atualizações:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every day</source>
       <translation>Diariamente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every week</source>
       <translation>Semanalmente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every month</source>
       <translation>Mensalmente</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Never</source>
       <translation>Nunca</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
       <source>Icons:</source>
       <translation>Ícones:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check now</source>
       <translation>Verificar agora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check for updates now</source>
       <translation>Verificar atualizações agora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Happy New Year!</source>
       <translation>Feliz Ano Novo!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Os campos do parâmetro OCR não podem estar vazios.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Você quer descartar os parâmetros inválidos?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Select icon</source>
       <translation>Selecione o ícone</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Imagens (*.png *.ico *.svg *.jpg);;Todos os arquivos()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Select OCR languages path</source>
       <translation>Selecione o caminho dos idiomas OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Nothing to play</source>
       <translation>Nada para reproduzir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Playback text is empty</source>
       <translation>O texto para reprodução está vazio</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
       <source>Unable to detect language</source>
       <translation>Não foi possível detectar o idioma</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
       <source>Checking for updates...</source>
       <translation>Verificando atualizações...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
       <source>Update available!</source>
       <translation>Atualização disponível!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
       <source>No updates available.</source>
       <translation>Não há atualizações disponíveis.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
       <source>Back</source>
       <translation>Voltar</translation>
     </message>
@@ -2087,17 +2095,17 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Unable to snip screen area</source>
       <translation>Não é possível recortar área da tela</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>Foi recebida uma imagem inválida da tela %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="653"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Clique e arraste para desenhar um retângulo de seleção,
@@ -2244,12 +2252,12 @@ ou pressione Esc para sair</translation>
   <context>
     <name>TranslationEdit</name>
     <message>
-      <location filename="../../src/translationedit.cpp" line="60"/>
+      <location filename="../../src/translationedit.cpp" line="62"/>
       <source>translation options:</source>
       <translation>opções de tradução:</translation>
     </message>
     <message>
-      <location filename="../../src/translationedit.cpp" line="95"/>
+      <location filename="../../src/translationedit.cpp" line="97"/>
       <source>examples:</source>
       <translation>exemplos:</translation>
     </message>
@@ -2257,12 +2265,12 @@ ou pressione Esc para sair</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>Ícone da área de notificação inválido</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>O ícone especificado &apos;%1&apos; é inválido. O ícone padrão será usado.</translation>
     </message>
@@ -2375,22 +2383,22 @@ ou pressione Esc para sair</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Não foi possível criar o pipe: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Não foi possível esperar pela prontidão do soquete: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
       <source>Timeout reading from pipe.</source>
       <translation>Tempo limite de leitura do pipe.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Não foi possível ler dados do soquete: %1.</translation>
     </message>
@@ -2404,8 +2412,8 @@ ou pressione Esc para sair</translation>
     </message>
     <message>
       <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
-      <source>Recivied an empty path from xdg-desktop-portal.</source>
-      <translation>Recebido um caminho vazio de xdg-desktop-portal.</translation>
+      <source>Received an empty path from xdg-desktop-portal.</source>
+      <translation>Caminho vazio recebido de xdg-desktop-portal.</translation>
     </message>
   </context>
 </TS>
