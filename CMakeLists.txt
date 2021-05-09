@@ -89,6 +89,7 @@ qt5_add_translation(QM_FILES
     data/translations/${PROJECT_NAME}_pl.ts
     data/translations/${PROJECT_NAME}_pt.ts
     data/translations/${PROJECT_NAME}_ru.ts
+    data/translations/${PROJECT_NAME}_sq.ts
     data/translations/${PROJECT_NAME}_tr.ts
     data/translations/${PROJECT_NAME}_ug.ts
     data/translations/${PROJECT_NAME}_uk.ts
