@@ -33,6 +33,8 @@ class WaylandPortalScreenGrabber : public DBusScreenGrabber
 public:
     explicit WaylandPortalScreenGrabber(QObject *parent = nullptr);
 
+    bool ignoreDevicePixelRatio() const override;
+
     static bool isAvailable();
 
 public slots:

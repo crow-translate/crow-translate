@@ -37,6 +37,11 @@ WaylandPortalScreenGrabber::WaylandPortalScreenGrabber(QObject *parent)
 {
 }
 
+bool WaylandPortalScreenGrabber::ignoreDevicePixelRatio() const
+{
+    return qgetenv("XDG_CURRENT_DESKTOP") == "KDE";
+}
+
 bool WaylandPortalScreenGrabber::isAvailable()
 {
     return s_interface.isValid();
