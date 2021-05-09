@@ -83,7 +83,7 @@ void WaylandPortalScreenGrabber::parsePortalResponse(uint, const QVariantMap &re
 {
     QString path = response.value(QLatin1String("uri")).toUrl().toLocalFile();
     if (path.isEmpty()) {
-        emit showError(tr("Recivied an empty path from xdg-desktop-portal."));
+        emit showError(tr("Received an empty path from xdg-desktop-portal."));
         return;
     }
 
