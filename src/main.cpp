@@ -81,8 +81,7 @@ int launchCli(int argc, char *argv[])
 {
     QCoreApplication app(argc, argv);
 
-    const AppSettings settings;
-    settings.setupLocalization();
+    AppSettings().setupLocalization();
 
     Cli cli;
     cli.process(app);
