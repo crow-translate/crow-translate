@@ -66,7 +66,7 @@ jobs:
       if: runner.os == 'Windows'
       with:
         vcpkgArguments: tesseract[cpu-independed] ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools qt5-translations --triplet x64-windows
-        vcpkgGitCommitId: 066c6fd712a3b7015388de644e44faf9774f3641
+        vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
       env:
         VCPKG_DISABLE_METRICS: 1
 
