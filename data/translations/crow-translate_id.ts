@@ -178,14 +178,22 @@
     </message>
   </context>
   <context>
+    <name>ContextMenu</name>
+    <message>
+      <location filename="../../src/contextmenu.h" line="52"/>
+      <source>Search on Forvo.com</source>
+      <translation>Cari di Forvo.com</translation>
+    </message>
+  </context>
+  <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="98"/>
+      <location filename="../../src/main.cpp" line="97"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Tidak dapat meregistrasi obyek D-Bus untuk %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="73"/>
+      <location filename="../../src/main.cpp" line="72"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>Layanan D-Bus %1 sudah dahulu teregistrasi oleh aplikasi lain</translation>
     </message>
@@ -193,18 +201,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="457"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>Lebal kolom (windows) lebih besar dari layar monitor dikarenakan bahasa yang ada di panel.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="458"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="462"/>
       <source>Please reduce added languages.</source>
       <translation>Silahkan kurangi bahasa yang ditambahkan.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="534"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="536"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="538"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
       <source>Auto</source>
       <translation>Otomatis</translation>
     </message>
@@ -278,17 +286,17 @@
       <translation>Terjemahan</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="397"/>
+      <location filename="../../src/mainwindow.cpp" line="392"/>
       <source>Unable to detect language</source>
       <translation>Tidak dapat mendeteksi bahasa</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="452"/>
+      <location filename="../../src/mainwindow.cpp" line="444"/>
       <source>Unable to translate text</source>
       <translation>Tidak dapat menterjemahkan teks</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="536"/>
+      <location filename="../../src/mainwindow.cpp" line="526"/>
       <source>The application is already running</source>
       <translation>Aplikasi sudah berjalan</translation>
     </message>
@@ -296,12 +304,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to set OCR languages</source>
       <translation>Tidak dapat mengatur bahasa OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Tidak dapat untuk menginisialisasi Tesseract dengan %1</translation>
     </message>
@@ -1021,8 +1029,8 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1224"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1358"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Kesalahan: Tidak dapat menguraikan bahasa deteksi otomatis</translation>
     </message>
@@ -1128,8 +1136,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Bahasa sistem&gt;</translation>
     </message>
@@ -1227,7 +1235,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="456"/>
       <location filename="../../src/settings/settingsdialog.ui" line="480"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languages text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Teks bahasa pada tombol&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Teks bahasa pada
+tombol&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="500"/>
@@ -1253,8 +1262,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
       <source>Default</source>
       <translation>Bawaan</translation>
     </message>
@@ -1279,32 +1288,32 @@
       <translation>Kustom:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
@@ -1314,17 +1323,17 @@
       <translation>Konotasi Emosional:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Neutral</source>
       <translation>Netral</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Good</source>
       <translation>Baik</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Evil</source>
       <translation>Jahat</translation>
     </message>
@@ -1860,113 +1869,113 @@
       <translation>Gunakan %1 dari folder aplikasi untuk menyimpan pengaturan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
       <source>Updates</source>
       <translation>Pembaruan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
       <source>Check for updates:</source>
       <translation>Periksa pembaruan:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every day</source>
       <translation>Setiap hari</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every week</source>
       <translation>Setiap minggu</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every month</source>
       <translation>Setiap bulan</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Never</source>
       <translation>Tidak pernah</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
       <source>Icons:</source>
       <translation>Ikon:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check now</source>
       <translation>Cek sekarang</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check for updates now</source>
       <translation>Periksa pembaruan sekarang</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Happy New Year!</source>
       <translation>Selamat Tahun Baru!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Baris parameter OCR tidak bisa kosong.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Apakah kamu ingin membuang parameter yang tidak valid?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Select icon</source>
       <translation>Pilih ikon</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Gambar (*.png *.svg *.jpg);;semua berkas()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Select OCR languages path</source>
       <translation>Pilih jalur/path bahasa OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Nothing to play</source>
       <translation>Tidak ada yang bisa dijalankan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Playback text is empty</source>
       <translation>Teks pemutaran kosong</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
       <source>Unable to detect language</source>
       <translation>Tidak dapat mendeteksi bahasa</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
       <source>Checking for updates...</source>
       <translation>Memeriksa pembaruan...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
       <source>Update available!</source>
       <translation>Pembaruan tersedia!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
       <source>No updates available.</source>
       <translation>Tidak ada pembaruan yang tersedia.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
       <source>Back</source>
       <translation>Kembali</translation>
     </message>
@@ -2087,17 +2096,17 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Unable to snip screen area</source>
       <translation>Tidak dapat menangkap area layar</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>Menerima gambar yang tidak valid dari layar %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="653"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Klik dan seret untuk menggambar persegi panjang pilihan,
@@ -2244,12 +2253,12 @@ atau tekan ESC untuk berhenti</translation>
   <context>
     <name>TranslationEdit</name>
     <message>
-      <location filename="../../src/translationedit.cpp" line="60"/>
+      <location filename="../../src/translationedit.cpp" line="62"/>
       <source>translation options:</source>
       <translation>opsi terjemahan:</translation>
     </message>
     <message>
-      <location filename="../../src/translationedit.cpp" line="95"/>
+      <location filename="../../src/translationedit.cpp" line="97"/>
       <source>examples:</source>
       <translation>contoh:</translation>
     </message>
@@ -2257,12 +2266,12 @@ atau tekan ESC untuk berhenti</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>Ikon baki tidak valid</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Ikon yang ditentukan &apos;%1&apos; tidak valid. Ikon bawaan akan digunakan.</translation>
     </message>
@@ -2375,22 +2384,22 @@ atau tekan ESC untuk berhenti</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Tidak dapat membuat pipa: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Tidak dapat menunggu kesiapan soket: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
       <source>Timeout reading from pipe.</source>
       <translation>Membaca batas waktu dari pipa.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Tidak dapat membaca data dari soket: %1.</translation>
     </message>
@@ -2404,8 +2413,8 @@ atau tekan ESC untuk berhenti</translation>
     </message>
     <message>
       <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
-      <source>Recivied an empty path from xdg-desktop-portal.</source>
-      <translation>Punya jalan kosong dari XDG-desktop-portal.</translation>
+      <source>Received an empty path from xdg-desktop-portal.</source>
+      <translation>Menerima sebuah path kosong dari xdg-desktop-portal.</translation>
     </message>
   </context>
 </TS>
