@@ -178,14 +178,22 @@
     </message>
   </context>
   <context>
+    <name>ContextMenu</name>
+    <message>
+      <location filename="../../src/contextmenu.h" line="52"/>
+      <source>Search on Forvo.com</source>
+      <translation>在 Forvo.com 上搜索</translation>
+    </message>
+  </context>
+  <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="98"/>
+      <location filename="../../src/main.cpp" line="97"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>无法为 %1 注册 D-Bus 对象</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="73"/>
+      <location filename="../../src/main.cpp" line="72"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>D-Bus 服务 %1 已经被另一个应用程序注册</translation>
     </message>
@@ -193,18 +201,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="457"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>面板上的语言使得窗口宽度大于了屏幕宽度。</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="458"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="462"/>
       <source>Please reduce added languages.</source>
       <translation>请精简已添加的语言</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="534"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="536"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="538"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
       <source>Auto</source>
       <translation>自动</translation>
     </message>
@@ -278,17 +286,17 @@
       <translation>译文</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="397"/>
+      <location filename="../../src/mainwindow.cpp" line="392"/>
       <source>Unable to detect language</source>
       <translation>无法检测语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="452"/>
+      <location filename="../../src/mainwindow.cpp" line="444"/>
       <source>Unable to translate text</source>
       <translation>无法翻译文字</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="536"/>
+      <location filename="../../src/mainwindow.cpp" line="526"/>
       <source>The application is already running</source>
       <translation>应用已正在运行</translation>
     </message>
@@ -296,12 +304,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to set OCR languages</source>
       <translation>无法设定 OCR 语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="989"/>
+      <location filename="../../src/mainwindow.cpp" line="971"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>无法使用 %1 初始化 Tesseract</translation>
     </message>
@@ -1021,8 +1029,8 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1224"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1358"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>错误：无法解析自动检测到的语言</translation>
     </message>
@@ -1128,8 +1136,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="86"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
       <source>&lt;System language&gt;</source>
       <translation>系统语言</translation>
     </message>
@@ -1253,8 +1261,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="702"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="720"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
       <source>Default</source>
       <translation>默认</translation>
     </message>
@@ -1279,32 +1287,32 @@
       <translation>自定义：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
       <source>Zahar</source>
       <translation>扎哈尔(Zahar)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Ermil</source>
       <translation>埃尔米尔(Ermil)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Jane</source>
       <translation>简(Jane)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Oksana</source>
       <translation>奥克萨娜(Oksana)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Alyss</source>
       <translation>爱丽丝(Alyss)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Omazh</source>
       <translation>奥马兹(Omazh)</translation>
     </message>
@@ -1314,17 +1322,17 @@
       <translation>情感色彩：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Neutral</source>
       <translation>中性</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Good</source>
       <translation>良好情绪</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Evil</source>
       <translation>糟糕情绪</translation>
     </message>
@@ -1860,113 +1868,113 @@
       <translation>使用应用程序文件夹中的 %1 来存储设置</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="129"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
       <source>Updates</source>
       <translation>更新</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
       <source>Check for updates:</source>
       <translation>检查更新：</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
       <source>Every day</source>
       <translation>每天</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every week</source>
       <translation>每周</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every month</source>
       <translation>每月</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Never</source>
       <translation>从不</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="119"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
       <source>Icons:</source>
       <translation>Icone:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Check now</source>
       <translation>立即检查</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check for updates now</source>
       <translation>立即检查更新</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Happy New Year!</source>
       <translation>新年快乐！</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="175"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR 参数字段不能为空。</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>确定要舍弃无效的参数吗？</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Select icon</source>
       <translation>选择图标</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>图片 (*.png *.ico *.svg *.jpg);;所有文件()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Select OCR languages path</source>
       <translation>选择 OCR 语言路径</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Nothing to play</source>
       <translation>没有要播放的内容</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
       <source>Playback text is empty</source>
       <translation>发音文字为空</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
       <source>Unable to detect language</source>
       <translation>无法检测语言</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
       <source>Checking for updates...</source>
       <translation>正在检查更新...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
       <source>Update available!</source>
       <translation>有可用更新！</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
       <source>No updates available.</source>
       <translation>无可用更新。</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
       <source>Back</source>
       <translation>返回</translation>
     </message>
@@ -2087,17 +2095,17 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
       <source>Unable to snip screen area</source>
       <translation>无法截取屏幕区域</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="95"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="94"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>接收到一个屏幕 %1 的无效图像。</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="653"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>点击并拖拽以绘制一个矩形选区，
@@ -2244,12 +2252,12 @@ or press Esc to quit</source>
   <context>
     <name>TranslationEdit</name>
     <message>
-      <location filename="../../src/translationedit.cpp" line="60"/>
+      <location filename="../../src/translationedit.cpp" line="62"/>
       <source>translation options:</source>
       <translation>翻译选项：</translation>
     </message>
     <message>
-      <location filename="../../src/translationedit.cpp" line="95"/>
+      <location filename="../../src/translationedit.cpp" line="97"/>
       <source>examples:</source>
       <translation>示例：</translation>
     </message>
@@ -2257,12 +2265,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>无效的托盘图标</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="963"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>指定的图标 &apos;%1&apos; 无效。将使用默认图标。</translation>
     </message>
@@ -2375,22 +2383,22 @@ or press Esc to quit</source>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
       <source>Unable to create pipe: %1.</source>
       <translation>无法创建管道： %1</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>无法等待套接字就绪： %1</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
       <source>Timeout reading from pipe.</source>
       <translation>从管道读取超时。</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>无法从套接字读取数据: %1</translation>
     </message>
@@ -2404,7 +2412,7 @@ or press Esc to quit</source>
     </message>
     <message>
       <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
-      <source>Recivied an empty path from xdg-desktop-portal.</source>
+      <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>从 xdg-desktop-portal 接收到了一个空路径。</translation>
     </message>
   </context>
