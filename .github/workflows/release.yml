@@ -22,8 +22,9 @@ jobs:
             extra-cmake-arguments : >-
               -D WITH_PORTABLE_MODE=ON
               -D CPACK_GENERATOR="NSIS;7Z"
-              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
+              -D X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
             upload-files: 'build/*.exe;build/*.7z'
         exclude:
           - os: windows-latest

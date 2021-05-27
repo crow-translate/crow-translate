@@ -207,6 +207,9 @@ elseif(WIN32)
     install(TARGETS ${PROJECT_NAME} DESTINATION .)
     install(FILES ${QM_FILES} DESTINATION translations)
 
-    include(InstallRuntimeDependencies)
-    install_runtime_dependencies(${PROJECT_NAME})
+    if(X_VCPKG_APPLOCAL_DEPS_INSTALL)
+        # Install translations if dependency bundling is enabled
+        file(GLOB QT_TRANSLATIONS ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/share/qt5/translations/qtbase_*.qm)
+        install(FILES ${QT_TRANSLATIONS} DESTINATION translations)
+    endif()
 endif()
