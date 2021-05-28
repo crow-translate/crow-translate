@@ -188,7 +188,7 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="97"/>
+      <location filename="../../src/main.cpp" line="96"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Не удалось зарегистрировать объект D-Bus для %1</translation>
     </message>
@@ -1029,15 +1029,35 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1246"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1420"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Ошибка: Не удается разобрать автоопределенный язык</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1172"/>
-      <source>Error: Unable to parse Yandex SID.</source>
-      <translation>Ошибка: Не удалось разобрать Yandex SID.</translation>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1173"/>
+      <source>Error: Unable to find Yandex SID in web version.</source>
+      <translation>Ошибка: Не удалось найти Yandex SID в веб-версии.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1180"/>
+      <source>Error: Unable to extract Yandex SID from web version.</source>
+      <translation>Ошибка: Не удалось извлечь Yandex SID из веб-версии.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1360"/>
+      <source>Error: Unable to find Bing credentials in web version.</source>
+      <translation>Ошибка: Не удалось найти данные для авторизации Bing в веб-версии.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1367"/>
+      <source>Error: Unable to extract Bing key from web version.</source>
+      <translation>Ошибка: Не удалось извлечь ключ Bing из веб-версии.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1375"/>
+      <source>Error: Unable to extract Bing token from web version.</source>
+      <translation>Ошибка: Не удалось извлечь токен Bing из веб-версии.</translation>
     </message>
   </context>
   <context>
@@ -1136,8 +1156,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="89"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Язык системы&gt;</translation>
     </message>
@@ -1261,8 +1281,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="692"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="710"/>
       <source>Default</source>
       <translation>По умолчанию</translation>
     </message>
@@ -1287,32 +1307,32 @@
       <translation>Пользовательский:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>Захар</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>Эрмиль</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>Джейн</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>Оксана</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>Алиса</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>Омаж</translation>
     </message>
@@ -1322,17 +1342,17 @@
       <translation>Эмоциональный окрас:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>Нейтральный</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>Добрый</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>Злой</translation>
     </message>
@@ -1868,113 +1888,113 @@
       <translation>Использовать %1 из папки приложения для сохранения настроек</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
       <source>Updates</source>
       <translation>Обновления</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="138"/>
       <source>Check for updates:</source>
       <translation>Проверять обновления:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every day</source>
       <translation>Каждый день</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every week</source>
       <translation>Каждую неделю</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Every month</source>
       <translation>Каждый месяц</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
       <source>Never</source>
       <translation>Никогда</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="121"/>
       <source>Icons:</source>
       <translation>Значки:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check now</source>
       <translation>Проверить сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
       <source>Check for updates now</source>
       <translation>Проверить обновления сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Happy New Year!</source>
       <translation>С Новым Годом!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Поля настроек OCR не могут быть пустыми.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Вы хотите отменить неверные параметры?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>Выберите значок</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>Выберите путь к языкам OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>Невозможно определить язык</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>Проверка обновлений...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>Доступно обновление!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>Нет доступных обновлений.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
@@ -2406,12 +2426,12 @@ or press Esc to quit</source>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="71"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Не удалось подписаться на ответ из xdg-desktop-portal.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="91"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Получен пустой путь от xdg-desktop-portal.</translation>
     </message>
