@@ -14,7 +14,7 @@
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="14"/>
       <source>Add language</source>
-      <translation>Shto Gjuhe</translation>
+      <translation>Shto gjuhë</translation>
     </message>
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="88"/>
@@ -188,7 +188,7 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="97"/>
+      <location filename="../../src/main.cpp" line="96"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Nuk mund të regjistrohet objekti D-Bus për %1</translation>
     </message>
@@ -283,7 +283,7 @@
     <message>
       <location filename="../../src/mainwindow.ui" line="166"/>
       <source>Translation</source>
-      <translation>Përkthim</translation>
+      <translation>Përkthimi</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.cpp" line="392"/>
@@ -1029,15 +1029,35 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1246"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1420"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Gabim: Nuk mund të analizohet gjuha e autodetektuar</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1172"/>
-      <source>Error: Unable to parse Yandex SID.</source>
-      <translation>Gabim: Nuk mund të analizohet SID e Yandex.</translation>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1173"/>
+      <source>Error: Unable to find Yandex SID in web version.</source>
+      <translation>Gabim: Nuk mund të gjendet SID i Yandex në versionin në internet.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1180"/>
+      <source>Error: Unable to extract Yandex SID from web version.</source>
+      <translation>Gabim: Nuk mund të nxirret SID i Yandex nga versioni në internet.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1360"/>
+      <source>Error: Unable to find Bing credentials in web version.</source>
+      <translation>Gabim: Nuk mund të gjenden kredencialet e Bing në versionin në internet.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1367"/>
+      <source>Error: Unable to extract Bing key from web version.</source>
+      <translation>Gabim: Nuk mund të nxirret çelësi i Bing nga versioni në internet.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1375"/>
+      <source>Error: Unable to extract Bing token from web version.</source>
+      <translation>Gabim: Nuk mund të nxirret tokeni i Bing nga versioni në internet.</translation>
     </message>
   </context>
   <context>
@@ -1095,7 +1115,7 @@
       <location filename="../../src/settings/settingsdialog.ui" line="67"/>
       <location filename="../../src/settings/settingsdialog.ui" line="625"/>
       <source>Translation</source>
-      <translation>Përkthim</translation>
+      <translation>Përkthimi</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="85"/>
@@ -1136,8 +1156,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="89"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Gjuha e sistemit&gt;</translation>
     </message>
@@ -1261,8 +1281,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="692"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="710"/>
       <source>Default</source>
       <translation>Parazgjedhur</translation>
     </message>
@@ -1287,32 +1307,32 @@
       <translation>E personalizuar:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>Alisa</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
@@ -1322,17 +1342,17 @@
       <translation>Konotacion emocional:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>Neutral</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>Mirë</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>Lig</translation>
     </message>
@@ -1850,7 +1870,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1593"/>
       <source>Flag icons:</source>
-      <translation>Ikona të flamujve:</translation>
+      <translation>Ikonat e flamujve:</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1553"/>
@@ -1868,113 +1888,113 @@
       <translation>Përdor %1 nga dosja e aplikacionit për të ruajtur cilësimet</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
       <source>Updates</source>
       <translation>Përditësimet</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="138"/>
       <source>Check for updates:</source>
       <translation>Kontrollo për përditësime:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every day</source>
       <translation>Çdo ditë</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every week</source>
       <translation>Çdo javë</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Every month</source>
       <translation>Çdo muaj</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
       <source>Never</source>
       <translation>Asnjëherë</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="121"/>
       <source>Icons:</source>
       <translation>Ikona:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check now</source>
       <translation>Kontrollo tani</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
       <source>Check for updates now</source>
       <translation>Kontrollo tani për përditësime</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Happy New Year!</source>
       <translation>Gëzuar Vitin e Ri!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Fushat e parametrave të OCR nuk mund të jenë bosh.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Dëshironi të fshini parametrat e pavlefshëm?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>Zgjidh ikonën</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Imazhet (*.png *.ico *.svg *.jpg);;Të gjitha skedarët()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>Zgjidh shtegun e gjuhëve OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>Asgjë për të luajtur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>Teksti i riprodhimit është bosh</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>Nuk mund të zbulohet gjuha</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>Duke kontrolluar për përditësime...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>Disponohet përditësimi!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>Nuk ka përditësime.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
       <source>Back</source>
       <translation>Prapa</translation>
     </message>
@@ -2084,7 +2104,7 @@
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="85"/>
       <source>Translation</source>
-      <translation>Përkthim</translation>
+      <translation>Përkthimi</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
@@ -2405,12 +2425,12 @@ or press Esc to quit</source>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="71"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Nuk mund të abonohet për përgjigjen nga xdg-desktop-portal.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="91"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>U mor një shteg bosh nga xdg-desktop-portal.</translation>
     </message>
