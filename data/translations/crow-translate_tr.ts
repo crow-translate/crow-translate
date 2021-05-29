@@ -188,7 +188,7 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="97"/>
+      <location filename="../../src/main.cpp" line="96"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>%1 için D-Bus nesnesi kaydedilemiyor</translation>
     </message>
@@ -1029,15 +1029,35 @@
     </message>
     <message>
       <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1095"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1230"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1362"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1246"/>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1420"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Hata: Otomatik algılanan dil ayrıştırılamadı</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1172"/>
-      <source>Error: Unable to parse Yandex SID.</source>
-      <translation>Hata: Yandex SID ayrıştırılamıyor.</translation>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1173"/>
+      <source>Error: Unable to find Yandex SID in web version.</source>
+      <translation>Hata: Web sürümünde Yandex SID bulunamadı.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1180"/>
+      <source>Error: Unable to extract Yandex SID from web version.</source>
+      <translation>Hata: Web sürümünden Yandex SID çıkarılamıyor.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1360"/>
+      <source>Error: Unable to find Bing credentials in web version.</source>
+      <translation>Hata: Web sürümünde Bing kimlik bilgileri bulunamadı.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1367"/>
+      <source>Error: Unable to extract Bing key from web version.</source>
+      <translation>Hata: Web sürümünden Bing anahtarı çıkarılamıyor.</translation>
+    </message>
+    <message>
+      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1375"/>
+      <source>Error: Unable to extract Bing token from web version.</source>
+      <translation>Hata: Web sürümünden Bing belirteci çıkarılamıyor.</translation>
     </message>
   </context>
   <context>
@@ -1136,8 +1156,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="87"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="88"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="89"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Sistem dili&gt;</translation>
     </message>
@@ -1261,8 +1281,8 @@
       <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
       <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="691"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="709"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="692"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="710"/>
       <source>Default</source>
       <translation>Varsayılan</translation>
     </message>
@@ -1287,32 +1307,32 @@
       <translation>Özel:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="372"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="373"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="374"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
@@ -1322,17 +1342,17 @@
       <translation>Duygusal çağrışım:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Neutral</source>
       <translation>Nötr</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Good</source>
       <translation>İyi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Evil</source>
       <translation>Kötü</translation>
     </message>
@@ -1868,113 +1888,113 @@
       <translation>Ayarları saklamak için uygulama klasöründen %1 kullan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="130"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="131"/>
       <source>Updates</source>
       <translation>Güncellemeler</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="138"/>
       <source>Check for updates:</source>
       <translation>Güncellemeleri kontrol et:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="141"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Every day</source>
       <translation>Her gün</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
       <source>Every week</source>
       <translation>Her hafta</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Every month</source>
       <translation>Her ay</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
       <source>Never</source>
       <translation>Asla</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="120"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="121"/>
       <source>Icons:</source>
       <translation>Simgeler:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Check now</source>
       <translation>Şimdi kontrol et</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
       <source>Check for updates now</source>
       <translation>Güncellemeleri şimdi kontrol et</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Happy New Year!</source>
       <translation>Yeni Yılınız Kutlu Olsun!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="176"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR parametre alanları boş olamaz.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="177"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Geçersiz parametreleri atmak istiyor musunuz?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Select icon</source>
       <translation>Simge seç</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="320"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="321"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Görüntüler (*.png *.ico *.svg *.jpg);;Tüm dosyalar()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="334"/>
       <source>Select OCR languages path</source>
       <translation>OCR dilleri yolunu seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Nothing to play</source>
       <translation>Oynatılacak bir şey yok</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="410"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Playback text is empty</source>
       <translation>Oynatım metni boş</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="421"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="422"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="476"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="477"/>
       <source>Checking for updates...</source>
       <translation>Güncellemeler kontrol ediliyor...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="498"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="499"/>
       <source>Update available!</source>
       <translation>Güncelleme mevcut!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
       <source>No updates available.</source>
       <translation>Güncelleme yok.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="589"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="590"/>
       <source>Back</source>
       <translation>Geri</translation>
     </message>
@@ -2406,12 +2426,12 @@ veya çıkmak için Esc tuşuna basın</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="66"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="71"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Xdg-desktop-portal'dan gelen yanıta abone olunamıyor.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="86"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="91"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>xdg-desktop-portal'dan boş bir yol alındı.</translation>
     </message>
