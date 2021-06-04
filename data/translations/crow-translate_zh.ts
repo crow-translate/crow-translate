@@ -257,7 +257,7 @@
     <message>
       <location filename="../../src/mainwindow.ui" line="47"/>
       <source>Recognize screen area with delay</source>
-      <translation>Rileva area schermo con ritardo</translation>
+      <translation>延时识别屏幕区域内的文字</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="70"/>
@@ -1725,12 +1725,12 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="944"/>
       <source>Capture delay:</source>
-      <translation>Ritardo cattura:</translation>
+      <translation>捕获延迟：</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="951"/>
       <source>Delay before screen capture</source>
-      <translation>Ritardo prima della cattura schermo</translation>
+      <translation>捕获屏幕前延迟的时间</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="954"/>
