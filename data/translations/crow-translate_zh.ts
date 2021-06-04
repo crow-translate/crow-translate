@@ -242,7 +242,7 @@
     <message>
       <location filename="../../src/mainwindow.ui" line="254"/>
       <source>Translate screen area with delay</source>
-      <translation>Traduci area schermo con ritardo</translation>
+      <translation>延时翻译屏幕区域内的文字</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="265"/>
@@ -263,7 +263,7 @@
       <location filename="../../src/mainwindow.ui" line="70"/>
       <source>Auto-translation</source>
       <extracomment>The text should be short to fit in portrait orientation on phones.</extracomment>
-      <translation>Traduzione automatica</translation>
+      <translation>自动翻译</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="82"/>
