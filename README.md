@@ -150,7 +150,7 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 ### Required
 
-- [CMake](https://cmake.org) 3.15+
+- [CMake](https://cmake.org) 3.16+
 - [Extra CMake Modules](https://github.com/KDE/extra-cmake-modules)
 - [Qt](https://www.qt.io) 5.9+ with Widgets, Network, Multimedia, Concurrent, X11Extras (Linux), DBus (Linux) and WinExtras (Windows) modules
 - [Tesseract](https://tesseract-ocr.github.io) 4.0+

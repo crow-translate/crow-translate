@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.15.0)
+cmake_minimum_required(VERSION 3.16.0)
 
 project(crow-translate VERSION 2.8.4 LANGUAGES CXX)
 
@@ -209,9 +209,33 @@ elseif(WIN32)
     install(TARGETS ${PROJECT_NAME} DESTINATION .)
     install(FILES ${QM_FILES} DESTINATION translations)
 
-    if(X_VCPKG_APPLOCAL_DEPS_INSTALL)
-        # Install translations if dependency bundling is enabled
-        file(GLOB QT_TRANSLATIONS ${_VCPKG_INSTALLED_DIR}/${VCPKG_TARGET_TRIPLET}/share/qt5/translations/qtbase_*.qm)
-        install(FILES ${QT_TRANSLATIONS} DESTINATION translations)
-    endif()
+    # Bundle Qt dependencies
+    find_program(WINDEPLOYQT windeployqt PATH_SUFFIXES tools/qt5/bin)
+    install(CODE "execute_process(COMMAND ${WINDEPLOYQT} --no-compiler-runtime --no-angle \${CMAKE_INSTALL_PREFIX}/$<TARGET_FILE_NAME:${PROJECT_NAME}>)")
+
+    # Bundle OpenSLL libraries that required for Qt networking manually because it not handled by windeployqt
+    find_file(SLL_DLL NAMES libssl.dll libssl-1_1.dll libssl-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
+    find_file(CRYPTO_DLL NAMES libcrypto.dll libcrypto-1_1.dll libcrypto-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
+    install(FILES ${SLL_DLL} ${CRYPTO_DLL} DESTINATION .)
+
+    # Install other non-Qt runtime depenencies
+    install(CODE [[
+        file(GET_RUNTIME_DEPENDENCIES
+            EXECUTABLES $<TARGET_FILE:crow-translate>
+            PRE_EXCLUDE_REGEXES api-ms qt5
+            POST_EXCLUDE_REGEXES C:[/\\]Windows[/\\]
+            RESOLVED_DEPENDENCIES_VAR RESOLVED_DEPENDENCIES
+            UNRESOLVED_DEPENDENCIES_VAR UNRESOLVED_DEPENDENCIES
+        )
+        foreach(DEPENDENCY ${UNRESOLVED_DEPENDENCIES})
+            message(WARNING "Unable to resolve dependency ${DEPENDENCY}")
+        endforeach()
+        foreach(DEPENDENCY ${RESOLVED_DEPENDENCIES})
+            message("Copying ${DEPENDENCY}")
+            file(INSTALL
+                DESTINATION "${CMAKE_INSTALL_PREFIX}"
+                FILES "${DEPENDENCY}"
+            )
+        endforeach()
+    ]])
 endif()
