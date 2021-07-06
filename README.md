@@ -1,7 +1,7 @@
 # ![Crow Translate logo](data/icons/freedesktop/48-apps-crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/crow-translate/crow-translate/all.svg)](https://github.com/crow-translate/crow-translate/releases)
-[![Codacy grade](https://img.shields.io/codacy/grade/b28c6646bb324ffb98092f63a9b5896e.svg)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
+[![Codacy grade](https://img.shields.io/codacy/grade/ac4202368e084aa4b41188eb7383c72c)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 [![Crowdin](https://badges.crowdin.net/crow-translate/localized.svg)](https://crowdin.com/project/crow-translate)
 
 **Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows you to translate and speak text using Google, Yandex and Bing translate API.
