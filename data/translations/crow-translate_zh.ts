@@ -2019,7 +2019,7 @@
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="36"/>
       <source>Translate selected text</source>
-      <translation>翻译选中文字</translation>
+      <translation>翻译选中文本</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="39"/>
@@ -2029,7 +2029,7 @@
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="42"/>
       <source>Speak translation of selected text</source>
-      <translation>播放选择文字译文发音</translation>
+      <translation>朗读选中文本译文</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="45"/>
@@ -2044,7 +2044,7 @@
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
       <source>Translate selected text and copy to clipboard</source>
-      <translation>翻译所选文字并复制到剪切板</translation>
+      <translation>翻译选中文本并复制到剪切板</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
