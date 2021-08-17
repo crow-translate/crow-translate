@@ -28,7 +28,8 @@
 class QAbstractButton;
 class QButtonGroup;
 
-namespace Ui {
+namespace Ui
+{
 class LanguageButtonsWidget;
 }
 

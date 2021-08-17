@@ -41,7 +41,8 @@ class QComboBox;
 class QShortcut;
 class QToolButton;
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 

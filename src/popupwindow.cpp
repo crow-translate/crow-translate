@@ -83,7 +83,7 @@ PopupWindow::~PopupWindow()
     delete ui;
 }
 
-void PopupWindow::loadSettings() 
+void PopupWindow::loadSettings()
 {
     const AppSettings settings;
     setWindowOpacity(settings.popupOpacity());

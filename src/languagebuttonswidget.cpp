@@ -25,10 +25,10 @@
 #include "screenwatcher.h"
 
 #include <QButtonGroup>
+#include <QMessageBox>
+#include <QScreen>
 #include <QTimer>
 #include <QToolButton>
-#include <QScreen>
-#include <QMessageBox>
 
 using namespace std::chrono_literals;
 

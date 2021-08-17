@@ -110,12 +110,12 @@ void AddLanguageDialog::moveLanguageLeft()
 
 void AddLanguageDialog::moveLanguageUp()
 {
-    moveLanguageVertically(ui->currentLanguagesListWidget, - 1);
+    moveLanguageVertically(ui->currentLanguagesListWidget, -1);
 }
 
 void AddLanguageDialog::moveLanguageDown()
 {
-    moveLanguageVertically(ui->currentLanguagesListWidget, + 1);
+    moveLanguageVertically(ui->currentLanguagesListWidget, +1);
 }
 
 void AddLanguageDialog::checkVerticalMovement(int row)
@@ -129,7 +129,6 @@ void AddLanguageDialog::checkVerticalMovement(int row)
     // Disable "Up" button for first element and "Down" for last
     ui->moveUpButton->setEnabled(row != 0);
     ui->moveDownButton->setEnabled(row != ui->currentLanguagesListWidget->count() - 1);
-
 }
 
 void AddLanguageDialog::addLanguage(QListWidget *widget, QOnlineTranslator::Language lang)

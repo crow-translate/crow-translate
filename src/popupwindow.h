@@ -27,7 +27,8 @@ class QShortcut;
 class MainWindow;
 class LanguageButtonsWidget;
 
-namespace Ui {
+namespace Ui
+{
 class PopupWindow;
 }
 

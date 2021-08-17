@@ -41,9 +41,11 @@ Cli::Cli(QObject *parent)
     m_player->setPlaylist(new QMediaPlaylist);
 
     connect(m_stateMachine, &QStateMachine::finished, QCoreApplication::instance(), &QCoreApplication::quit, Qt::QueuedConnection);
+    // clang-format off
     connect(m_stateMachine, &QStateMachine::stopped, QCoreApplication::instance(), [] {
         QCoreApplication::exit(1);
     }, Qt::QueuedConnection);
+    // clang-format on
 }
 
 void Cli::process(const QCoreApplication &app)
@@ -204,7 +206,7 @@ void Cli::printTranslation()
 
     // Languages
     m_stdout << "[ " << m_translator->sourceLanguageName() << " -> ";
-    m_stdout << m_translator->translationLanguageName() << " ]" << "\n\n";
+    m_stdout << m_translator->translationLanguageName() << " ]\n\n";
 
     // Translation and its transliteration
     if (!m_translator->translation().isEmpty()) {

@@ -48,14 +48,17 @@ bool ScreenWatcher::isWidthFitScreen(QWidget *widget)
 
 void ScreenWatcher::listenForOrientationChange(QScreen *screen)
 {
-    connect(screen, &QScreen::orientationChanged, [this, screen] (Qt::ScreenOrientation orientation) {
+    connect(screen, &QScreen::orientationChanged, [this, screen](Qt::ScreenOrientation orientation) {
         auto *widget = qobject_cast<QWidget *>(parent());
+        // clang-format off
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        if (widget->screen() == screen)
+        if (widget->screen() == screen) {
 #else
-        if (widget->windowHandle() && widget->windowHandle()->screen() == screen)
+        if (widget->windowHandle() && widget->windowHandle()->screen() == screen) {
 #endif
             emit screenOrientationChanged(orientation);
+        }
+        // clang-format on
     });
     screen->setOrientationUpdateMask(Qt::LandscapeOrientation
                                      | Qt::PortraitOrientation

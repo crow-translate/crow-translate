@@ -532,7 +532,6 @@ void MainWindow::showAppRunningMessage()
 
 void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
 {
-
     if (orientation == Qt::PrimaryOrientation)
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         orientation = screen()->orientation();

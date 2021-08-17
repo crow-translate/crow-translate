@@ -29,7 +29,8 @@ class QNetworkAccessManager;
 class QNetworkReply;
 class QFile;
 
-namespace Ui {
+namespace Ui
+{
 class UpdaterDialog;
 }
 

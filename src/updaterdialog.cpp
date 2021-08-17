@@ -20,14 +20,15 @@
 
 #include "updaterdialog.h"
 #include "ui_updaterdialog.h"
+
 #include "qgittag.h"
 
+#include <QDir>
 #include <QFile>
-#include <QStandardPaths>
-#include <QProcess>
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
-#include <QDir>
+#include <QProcess>
+#include <QStandardPaths>
 
 UpdaterDialog::UpdaterDialog(QGitTag *release, int installer, QWidget *parent)
     : QDialog(parent)

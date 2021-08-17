@@ -51,7 +51,7 @@ void Selection::requestSelection()
         m_originalClipboardData->setData(format, clipboardData->data(format));
 
     // Wait until all modifiers will be unpressed (to avoid conflicts with the other shortcuts)
-    while (GetAsyncKeyState(VK_LWIN) || GetAsyncKeyState(VK_RWIN) || GetAsyncKeyState(VK_SHIFT) || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_CONTROL)) {};
+    while (GetAsyncKeyState(VK_LWIN) || GetAsyncKeyState(VK_RWIN) || GetAsyncKeyState(VK_SHIFT) || GetAsyncKeyState(VK_MENU) || GetAsyncKeyState(VK_CONTROL)) { };
 
     // Generate Ctrl + C input
     INPUT copyText[4];
@@ -114,9 +114,11 @@ void Selection::getSelection()
     disconnect(QGuiApplication::clipboard(), &QClipboard::dataChanged, this, &Selection::getSelection);
 
     // Restore the clipboard data after exit to event loop
+    // clang-format off
     QMetaObject::invokeMethod(this, [this] {
         QGuiApplication::clipboard()->setMimeData(m_originalClipboardData.take());
     },  Qt::QueuedConnection);
+    // clang-format on
 
     emit requestedSelectionAvailable(selection);
 #endif

@@ -29,7 +29,8 @@
 
 class AppSettings;
 
-namespace Ui {
+namespace Ui
+{
 class SpeakButtons;
 }
 

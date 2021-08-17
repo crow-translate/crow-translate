@@ -29,7 +29,8 @@ class QListWidget;
 class QAbstractButton;
 class QShortcut;
 
-namespace Ui {
+namespace Ui
+{
 class AddLanguageDialog;
 }
 

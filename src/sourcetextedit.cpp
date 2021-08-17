@@ -20,9 +20,9 @@
 
 #include "sourcetextedit.h"
 
-#include <QTimer>
-
 #include "contextmenu.h"
+
+#include <QTimer>
 
 using namespace std::chrono_literals;
 
