@@ -78,7 +78,7 @@ jobs:
         cmake --build build --target package --parallel 2 --config Release
 
     - name: Build in Ubuntu 20.04 Docker image
-      uses: uraimo/run-on-arch-action@v2.0.9
+      uses: uraimo/run-on-arch-action@v2.1.1
       if: matrix.os == 'ubuntu-20.04' && matrix.arch != 'amd64'
       with:
         arch: ${{ matrix.arch }}
@@ -87,10 +87,15 @@ jobs:
         dockerRunArgs: --volume "${PWD}:/repo"
         install: |
           apt-get update -y
-          apt-get install -y apt-transport-https ca-certificates gnupg software-properties-common wget
-          wget --no-check-certificate -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | tee /etc/apt/trusted.gpg.d/kitware.gpg >/dev/null
-          apt-add-repository 'deb https://apt.kitware.com/ubuntu/ focal main'
-          apt-get install -y libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev g++ git rpm cmake
+          apt-get install -y libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev g++ git rpm libssl-dev wget make
+          # Install fresh CMake due to problems with QEMU: https://gitlab.kitware.com/cmake/cmake/-/issues/20568
+          # https://apt.kitware.com currently have an issue with unresolved dependency on arm, build manually
+          CMAKE_VERSION=3.21.1
+          wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.tar.gz
+          tar -zxvf cmake-$CMAKE_VERSION.tar.gz
+          cd cmake-$CMAKE_VERSION
+          ./bootstrap
+          make install
         run: |
           cmake -S /repo -B /repo/build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
           cmake --build /repo/build --target package --parallel 2
