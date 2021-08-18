@@ -39,7 +39,7 @@ FetchContent_GetProperties(We10X SOURCE_DIR We10X_SOURCE_DIR)
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG 1.0.6
+        GIT_TAG 1.0.7
     )
 
     FetchContent_MakeAvailable(QGitTag)
