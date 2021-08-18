@@ -1,17 +1,16 @@
 # Binaries
 build
 
-# Directory settings for Plasma
-*.directory
-
 # Qt Creator files
 *.user*
 *.autosave
 
-# VIM
-.cache
+# Neovim
 neovim.json
-compile_commands.json
 
 # VSCode
 .vscode
+
+# Clangd
+.cache
+compile_commands.json
