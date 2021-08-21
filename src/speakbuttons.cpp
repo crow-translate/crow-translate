@@ -200,7 +200,7 @@ void SpeakButtons::onSpeakButtonPressed()
 void SpeakButtons::onPlayerPositionChanged(qint64 position)
 {
     if (m_mediaPlayer->duration() != 0)
-        emit positionChanged(static_cast<double>(position) / m_mediaPlayer->duration());
+        emit positionChanged(static_cast<double>(position) / static_cast<double>(m_mediaPlayer->duration()));
     else
         emit positionChanged(0);
 }
