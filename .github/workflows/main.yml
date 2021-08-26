@@ -6,6 +6,7 @@ on:
     paths-ignore:
       - "**.md"
       - ".github/workflows/release.yml"
+      - ".github/FUNDING.yml"
       - ".gitignore"
       - "crowdin.yml"
       - "data/translations/**"
@@ -13,6 +14,7 @@ on:
     paths-ignore:
       - "**.md"
       - ".github/workflows/release.yml"
+      - ".github/FUNDING.yml"
       - ".gitignore"
       - "crowdin.yml"
       - "data/translations/**"
