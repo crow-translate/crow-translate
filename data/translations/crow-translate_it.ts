@@ -2049,7 +2049,7 @@ Nessun aggiornamento disponibile.</translation>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
       <source>Translate selected text and copy to clipboard</source>
-      <translation>Tarduci testo selezionato e copia traduzione negli Appunti</translation>
+      <translation>Traduci testo selezionato e copia traduzione negli Appunti</translation>
     </message>
     <message>
       <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
