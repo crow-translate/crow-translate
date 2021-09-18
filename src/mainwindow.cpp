@@ -216,6 +216,12 @@ void MainWindow::open()
 
     setWindowState(windowState() & ~Qt::WindowMinimized);
     show();
+
+    // Required to show the application on some WMs like XFWM
+    // if window already opened on different workspace. Doesn't
+    // affect KWin.
+    raise();
+
     activateWindow();
 }
 
