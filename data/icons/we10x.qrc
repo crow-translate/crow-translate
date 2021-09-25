@@ -1,44 +1,44 @@
 <RCC>
     <qresource prefix="/icons/hicolor">
-        <file alias="16/actions/arrow-down.svg">16/actions/go-down.svg</file>
-        <file alias="16/actions/arrow-left.svg">16/actions/go-previous.svg</file>
-        <file alias="16/actions/arrow-right.svg">16/actions/go-next.svg</file>
-        <file alias="16/actions/arrow-up.svg">16/actions/go-up.svg</file>
-        <file alias="16/actions/edit-clear-all.svg">16/actions/edit-clear-history.svg</file>
-        <file alias="16/apps/system-software-update.svg">scalable/apps/system-software-update.svg</file>
-        <file alias="32/apps/dialog-information.svg">scalable/apps/userinfo.svg</file>
-        <file alias="32/apps/preferences-desktop-keyboard.svg">scalable/apps/preferences-desktop-keyboard.svg</file>
-        <file alias="32/apps/preferences-desktop-locale.svg">scalable/apps/preferences-desktop-locale.svg</file>
-        <file alias="32/apps/preferences-desktop-sound.svg">scalable/apps/multimedia-volume-control.svg</file>
-        <file alias="32/apps/preferences-desktop-theme.svg">scalable/apps/preferences-desktop-theme.svg</file>
-        <file alias="32/apps/preferences-system-network.svg">scalable/apps/network-workgroup.svg</file>
-        <file alias="32/apps/preferences-system.svg">scalable/apps/preferences-system.svg</file>
-        <file alias="32/apps/scanner.svg">scalable/apps/scanner.svg</file>
-        <file>16/actions/application-exit.svg</file>
-        <file>16/actions/configure.svg</file>
-        <file>16/actions/dialog-cancel.svg</file>
-        <file>16/actions/dialog-error.svg</file>
-        <file>16/actions/dialog-ok-apply.svg</file>
-        <file>16/actions/document-edit.svg</file>
-        <file>16/actions/edit-copy.svg</file>
-        <file>16/actions/edit-cut.svg</file>
-        <file>16/actions/edit-delete.svg</file>
-        <file>16/actions/edit-paste.svg</file>
-        <file>16/actions/edit-redo.svg</file>
-        <file>16/actions/edit-select-all.svg</file>
-        <file>16/actions/edit-undo.svg</file>
-        <file>16/actions/go-next.svg</file>
-        <file>16/actions/list-add.svg</file>
-        <file>16/actions/list-remove.svg</file>
-        <file>16/actions/media-playback-pause.svg</file>
-        <file>16/actions/media-playback-start.svg</file>
-        <file>16/actions/media-playback-stop.svg</file>
-        <file>16/actions/object-flip-horizontal.svg</file>
-        <file>16/actions/text-speak.svg</file>
-        <file>16/actions/transform-crop.svg</file>
-        <file>16/actions/view-refresh.svg</file>
-        <file>16/actions/window.svg</file>
-        <file>16/places/folder.svg</file>
+        <file alias="actions/16/arrow-down.svg">actions/16/go-down.svg</file>
+        <file alias="actions/16/arrow-left.svg">actions/16/go-previous.svg</file>
+        <file alias="actions/16/arrow-right.svg">actions/16/go-next.svg</file>
+        <file alias="actions/16/arrow-up.svg">actions/16/go-up.svg</file>
+        <file alias="actions/16/edit-clear-all.svg">actions/16/edit-clear-history.svg</file>
+        <file alias="apps/16/system-software-update.svg">apps/scalable/system-software-update.svg</file>
+        <file alias="apps/32/dialog-information.svg">apps/scalable/userinfo.svg</file>
+        <file alias="apps/32/preferences-desktop-keyboard.svg">apps/scalable/preferences-desktop-keyboard.svg</file>
+        <file alias="apps/32/preferences-desktop-locale.svg">apps/scalable/preferences-desktop-locale.svg</file>
+        <file alias="apps/32/preferences-desktop-sound.svg">apps/scalable/multimedia-volume-control.svg</file>
+        <file alias="apps/32/preferences-desktop-theme.svg">apps/scalable/preferences-desktop-theme.svg</file>
+        <file alias="apps/32/preferences-system-network.svg">apps/scalable/network-workgroup.svg</file>
+        <file alias="apps/32/preferences-system.svg">apps/scalable/preferences-system.svg</file>
+        <file alias="apps/32/scanner.svg">apps/scalable/scanner.svg</file>
+        <file>actions/16/application-exit.svg</file>
+        <file>actions/16/configure.svg</file>
+        <file>actions/16/dialog-cancel.svg</file>
+        <file>actions/16/dialog-error.svg</file>
+        <file>actions/16/dialog-ok-apply.svg</file>
+        <file>actions/16/document-edit.svg</file>
+        <file>actions/16/edit-copy.svg</file>
+        <file>actions/16/edit-cut.svg</file>
+        <file>actions/16/edit-delete.svg</file>
+        <file>actions/16/edit-paste.svg</file>
+        <file>actions/16/edit-redo.svg</file>
+        <file>actions/16/edit-select-all.svg</file>
+        <file>actions/16/edit-undo.svg</file>
+        <file>actions/16/go-next.svg</file>
+        <file>actions/16/list-add.svg</file>
+        <file>actions/16/list-remove.svg</file>
+        <file>actions/16/media-playback-pause.svg</file>
+        <file>actions/16/media-playback-start.svg</file>
+        <file>actions/16/media-playback-stop.svg</file>
+        <file>actions/16/object-flip-horizontal.svg</file>
+        <file>actions/16/text-speak.svg</file>
+        <file>actions/16/transform-crop.svg</file>
+        <file>actions/16/view-refresh.svg</file>
+        <file>actions/16/window.svg</file>
+        <file>places/16/folder.svg</file>
         <file>index.theme</file>
     </qresource>
 </RCC>

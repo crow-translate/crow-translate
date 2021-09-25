@@ -29,7 +29,7 @@ FetchContent_Declare(CircleFlags
 
 FetchContent_Declare(We10X
     GIT_REPOSITORY https://github.com/yeyushengfan258/We10X-icon-theme
-    GIT_TAG bd2c68482a06d38b2641503af1ca127b9e6540db
+    GIT_TAG 428f3ce07306f20848532c634d00a7ea5b1f822a
 )
 
 FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags We10X)
