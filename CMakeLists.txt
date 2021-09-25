@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(crow-translate VERSION 2.8.5 LANGUAGES CXX)
+project(crow-translate VERSION 2.8.6 LANGUAGES CXX)
 
 set(CMAKE_PROJECT_HOMEPAGE_URL crow-translate.github.io)
 set(CMAKE_PROJECT_DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing")
