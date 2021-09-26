@@ -57,8 +57,7 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           $version = "0.32.3"
-          $client = new-object System.Net.WebClient
-          $client.DownloadFile("https://sourceforge.net/projects/unix-utils/files/icoutils/icoutils-$version-x86_64.zip/download", "icoutils.zip")
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/unix-utils/files/icoutils/icoutils-$version-x86_64.zip" -OutFile icoutils.zip -UserAgent "NativeHost" -SkipCertificateCheck
           7z x icoutils.zip
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
