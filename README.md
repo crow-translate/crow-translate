@@ -168,7 +168,7 @@ This project uses the following external libraries, which will be downloaded aut
 
 ## Icons
 
-[We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled to provide icons on Windows and fallback icons on Linux.
+[Fluent](https://github.com/vinceliuice/Fluent-icon-theme) icon theme is bundled to provide icons on Windows and fallback icons on Linux.
 
 [circle-flags](https://github.com/HatScripts/circle-flags "A collection of 300+ minimal circular SVG country flags") icons are used for flags.
 

@@ -102,12 +102,12 @@ qt5_add_translation(QM_FILES
 
 configure_file(src/cmake.h.in cmake.h)
 configure_file(data/icons/flags.qrc ${CircleFlags_SOURCE_DIR}/flags/flags.qrc COPYONLY)
-configure_file(data/icons/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
+configure_file(data/icons/fluent-icon-theme.qrc ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc COPYONLY)
 
 add_executable(${PROJECT_NAME}
     ${CircleFlags_SOURCE_DIR}/flags/flags.qrc
     ${QM_FILES}
-    ${We10X_SOURCE_DIR}/src/we10x.qrc
+    ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc
     data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
