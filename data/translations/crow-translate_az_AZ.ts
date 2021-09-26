@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1">
+<TS version="2.1" language_az_AZ>
 <context>
     <name>AddLanguageDialog</name>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="14"/>
         <source>Add language</source>
-        <translation type="unfinished"></translation>
+        <translation type=Dil əlavə edin"></translation>
     </message>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="88"/>
