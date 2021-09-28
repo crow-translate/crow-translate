@@ -29,7 +29,7 @@
     <message>
         <location filename="../../src/settings/appsettings.cpp" line="159"/>
         <source>Unable to create autorun file from %1</source>
-        <translation type="%1 ilə avtomatik başlatma faylı yaradıla bilmədi"></translation>
+        <translation type="%1 ilə avtobaşlatma faylı yaradıla bilmədi"></translation>
     </message>
     <message>
         <location filename="../../src/settings/appsettings.cpp" line="885"/>
