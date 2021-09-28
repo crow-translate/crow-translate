@@ -6,7 +6,7 @@
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="14"/>
         <source>Add language</source>
-        <translation type=Dil əlavə edin"></translation>
+        <translation type="Dil əlavə edin"></translation>
     </message>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="88"/>
