@@ -70,6 +70,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
     const QMetaEnum languagesEnum = QMetaEnum::fromType<QLocale::Language>();
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/al.svg")), languagesEnum.valueToKey(QLocale::Albanian), QLocale::Albanian);
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/az.svg")), languagesEnum.valueToKey(QLocale::Azerbaijani), QLocale::Azerbaijani);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Chinese), QLocale::Chinese);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), languagesEnum.valueToKey(QLocale::Dutch), QLocale::Dutch);
     ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), languagesEnum.valueToKey(QLocale::English), QLocale::English);
