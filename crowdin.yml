@@ -2,4 +2,4 @@ commit_message: "Update %language% localization from Crowdin"
 append_commit_message: false
 files:
   - source: /data/translations/crow-translate.ts
-    translation: /data/translations/crow-translate_%two_letters_code%.ts
+    translation: /data/translations/crow-translate_%locale_with_underscore%.ts

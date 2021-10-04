@@ -57,36 +57,35 @@ AppSettings::AppSettings(QObject *parent)
 
 void AppSettings::setupLocalization() const
 {
-    applyLanguage(language());
+    applyLocale(locale());
     QCoreApplication::installTranslator(&s_appTranslator);
     QCoreApplication::installTranslator(&s_qtTranslator);
 }
 
-QLocale::Language AppSettings::language() const
+QLocale AppSettings::locale() const
 {
-    return m_settings->value(QStringLiteral("Locale"), defaultLanguage()).value<QLocale::Language>();
+    return m_settings->value(QStringLiteral("Locale"), defaultLocale()).value<QLocale>();
 }
 
-void AppSettings::setLanguage(QLocale::Language lang)
+void AppSettings::setLocale(const QLocale &locale)
 {
-    if (lang != language()) {
-        m_settings->setValue(QStringLiteral("Locale"), lang);
-        applyLanguage(lang);
+    if (locale != this->locale()) {
+        m_settings->setValue(QStringLiteral("Locale"), locale);
+        applyLocale(locale);
     }
 }
 
-void AppSettings::applyLanguage(QLocale::Language lang)
+void AppSettings::applyLocale(const QLocale &locale)
 {
-    const QLocale locale = lang == QLocale::AnyLanguage ? QLocale::system() : QLocale(lang);
-    QLocale::setDefault(locale);
-
-    s_appTranslator.load(locale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
-    s_qtTranslator.load(locale, QStringLiteral("qtbase"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    const QLocale newLocale = locale == defaultLocale() ? QLocale::system() : locale;
+    QLocale::setDefault(newLocale);
+    s_appTranslator.load(newLocale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
+    s_qtTranslator.load(newLocale, QStringLiteral("qtbase"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
-QLocale::Language AppSettings::defaultLanguage()
+QLocale AppSettings::defaultLocale()
 {
-    return QLocale::AnyLanguage;
+    return QLocale::c(); // C locale is used as the system language on apply
 }
 
 Qt::ScreenOrientation AppSettings::mainWindowOrientation() const

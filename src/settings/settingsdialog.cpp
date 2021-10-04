@@ -67,27 +67,26 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
 
     // Set item data in comboboxes
-    ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
-    const QMetaEnum languagesEnum = QMetaEnum::fromType<QLocale::Language>();
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/al.svg")), languagesEnum.valueToKey(QLocale::Albanian), QLocale::Albanian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/az.svg")), languagesEnum.valueToKey(QLocale::Azerbaijani), QLocale::Azerbaijani);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Chinese), QLocale::Chinese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), languagesEnum.valueToKey(QLocale::Dutch), QLocale::Dutch);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), languagesEnum.valueToKey(QLocale::English), QLocale::English);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), languagesEnum.valueToKey(QLocale::French), QLocale::French);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gr.svg")), languagesEnum.valueToKey(QLocale::Greek), QLocale::Greek);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/in.svg")), languagesEnum.valueToKey(QLocale::Hindi), QLocale::Hindi);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/hu.svg")), languagesEnum.valueToKey(QLocale::Hungarian), QLocale::Hungarian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/id.svg")), languagesEnum.valueToKey(QLocale::Indonesian), QLocale::Indonesian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/it.svg")), languagesEnum.valueToKey(QLocale::Italian), QLocale::Italian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), languagesEnum.valueToKey(QLocale::Malay), QLocale::Malay);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), languagesEnum.valueToKey(QLocale::Polish), QLocale::Polish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), languagesEnum.valueToKey(QLocale::Portuguese), QLocale::Portuguese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), languagesEnum.valueToKey(QLocale::Russian), QLocale::Russian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), languagesEnum.valueToKey(QLocale::Spanish), QLocale::Spanish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), languagesEnum.valueToKey(QLocale::Turkish), QLocale::Turkish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Uighur), QLocale::Uighur);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), languagesEnum.valueToKey(QLocale::Ukrainian), QLocale::Ukrainian);
+    ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
+    addLocale({QLocale::Albanian, QLocale::Albania});
+    addLocale({QLocale::Azerbaijani, QLocale::Azerbaijan});
+    addLocale({QLocale::Chinese, QLocale::China});
+    addLocale({QLocale::Dutch, QLocale::Netherlands});
+    addLocale({QLocale::English, QLocale::UnitedStates});
+    addLocale({QLocale::French, QLocale::France});
+    addLocale({QLocale::Greek, QLocale::Greece});
+    addLocale({QLocale::Hindi, QLocale::India});
+    addLocale({QLocale::Hungarian, QLocale::Hungary});
+    addLocale({QLocale::Indonesian, QLocale::Indonesia});
+    addLocale({QLocale::Italian, QLocale::Italy});
+    addLocale({QLocale::Malay, QLocale::Malaysia});
+    addLocale({QLocale::Polish, QLocale::Poland});
+    addLocale({QLocale::Portuguese, QLocale::Brazil});
+    addLocale({QLocale::Russian, QLocale::Russia});
+    addLocale({QLocale::Spanish, QLocale::Spain});
+    addLocale({QLocale::Turkish, QLocale::Turkey});
+    addLocale({QLocale::Uighur, QLocale::China});
+    addLocale({QLocale::Ukrainian, QLocale::Ukraine});
 
     ui->primaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
@@ -199,7 +198,7 @@ void SettingsDialog::accept()
 
     // General settings
     AppSettings settings;
-    settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
+    settings.setLocale(ui->localeComboBox->currentData().value<QLocale>());
     settings.setMainWindowOrientation(static_cast<Qt::ScreenOrientation>(ui->mainWindowOrientationComboBox->currentIndex()));
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
@@ -517,7 +516,7 @@ void SettingsDialog::checkForUpdates()
 void SettingsDialog::restoreDefaults()
 {
     // General settings
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLanguage()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLocale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(AppSettings::defaultMainWindowOrientation());
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
@@ -584,6 +583,13 @@ void SettingsDialog::restoreDefaults()
     resetAllShortcuts();
 }
 
+void SettingsDialog::addLocale(const QLocale &locale)
+{
+    const int separatorIndex = locale.name().indexOf('_');
+    const QString countryCode = locale.name().right(separatorIndex).toLower();
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/%1.svg").arg(countryCode)), locale.nativeLanguageName(), locale);
+}
+
 void SettingsDialog::activateCompactMode()
 {
     setWindowState(windowState() | Qt::WindowMaximized);
@@ -611,7 +617,7 @@ void SettingsDialog::loadSettings()
 {
     // General settings
     const AppSettings settings;
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());

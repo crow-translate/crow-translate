@@ -89,6 +89,7 @@ private slots:
     void restoreDefaults();
 
 private:
+    void addLocale(const QLocale &locale);
     void activateCompactMode();
     void loadSettings();
     void setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices);

@@ -592,10 +592,8 @@ void MainWindow::changeEvent(QEvent *event)
     switch (event->type()) {
     case QEvent::LocaleChange: {
         // System language chaged
-        AppSettings settings;
-        const QLocale::Language lang = settings.language();
-        if (lang == QLocale::AnyLanguage)
-            AppSettings::applyLanguage(lang); // Reload language if application use system language
+        if (const QLocale locale = AppSettings().locale(); locale == AppSettings::defaultLocale())
+            AppSettings::applyLocale(locale); // Reload language if application use system language
         break;
     }
     case QEvent::LanguageChange:
