@@ -99,6 +99,7 @@ qt5_add_translation(QM_FILES
     data/translations/${PROJECT_NAME}_ug_CN.ts
     data/translations/${PROJECT_NAME}_uk_UA.ts
     data/translations/${PROJECT_NAME}_zh_CN.ts
+    data/translations/${PROJECT_NAME}_zh_TW.ts
 )
 
 configure_file(src/cmake.h.in cmake.h)
