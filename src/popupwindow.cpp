@@ -93,8 +93,7 @@ void PopupWindow::loadSettings()
     ui->sourceLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
     ui->translationLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
 
-    if (settings.popupWindowTimeout() > 0)
-    {
+    if (settings.popupWindowTimeout() > 0) {
         m_closeWindowTimer = new QTimer(this);
 
 #if QT_VERSION <= QT_VERSION_CHECK(5, 12, 0)
@@ -102,7 +101,7 @@ void PopupWindow::loadSettings()
 #else
         m_closeWindowTimer->callOnTimeout(this, &PopupWindow::close);
 #endif
-        m_closeWindowTimer->setInterval(settings.popupWindowTimeout()*1000);
+        m_closeWindowTimer->setInterval(settings.popupWindowTimeout() * 1000);
         m_closeWindowTimer->start();
     }
 }
