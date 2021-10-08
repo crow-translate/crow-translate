@@ -96,7 +96,11 @@ void PopupWindow::loadSettings()
 
     if (settings.popupWindowTimeout() > 0)
     {
+#if QT_VERSION <= QT_VERSION_CHECK(5, 12, 0)
+        connect(m_closeWindowTimer, &QTimer::timeout, this, &PopupWindow::close);
+#else
         m_closeWindowTimer->callOnTimeout(this, &PopupWindow::close);
+#endif
         m_closeWindowTimer->setInterval(settings.popupWindowTimeout()*1000);
         m_closeWindowTimer->start();
     }
