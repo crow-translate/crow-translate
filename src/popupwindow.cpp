@@ -39,7 +39,6 @@ PopupWindow::PopupWindow(MainWindow *parent)
     : QWidget(parent, Qt::Tool | Qt::FramelessWindowHint)
     , ui(new Ui::PopupWindow)
     , m_closeWindowsShortcut(new QShortcut(this))
-    , m_closeWindowTimer(new QTimer(this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -96,6 +95,8 @@ void PopupWindow::loadSettings()
 
     if (settings.popupWindowTimeout() > 0)
     {
+        m_closeWindowTimer = new QTimer(this);
+
 #if QT_VERSION <= QT_VERSION_CHECK(5, 12, 0)
         connect(m_closeWindowTimer, &QTimer::timeout, this, &PopupWindow::close);
 #else
@@ -133,22 +134,26 @@ void PopupWindow::showEvent(QShowEvent *event)
 
 bool PopupWindow::event(QEvent *event)
 {
-    // Close window when focus is lost
-    if (event->type() == QEvent::WindowDeactivate) {
+    switch (event->type()) {
+    case QEvent::WindowDeactivate:
         // Do not close the window if the language selection menu is active
         if (QApplication::activeModalWidget() == nullptr)
             close();
-    }
-    else if (event->type() == QEvent::Leave) {
+        break;
+    case QEvent::Leave:
         // Start timer, if mouse left window
-        if (!m_closeWindowTimer->isActive() && m_closeWindowTimer->interval() > 1000)
+        if (m_closeWindowTimer && m_closeWindowTimer->interval() > 1000)
             m_closeWindowTimer->start();
-    }
-    else if (event->type() == QEvent::Enter) {
+        break;
+    case QEvent::Enter:
         // Stop timer, if mouse enter window
-        if (m_closeWindowTimer->isActive() && m_closeWindowTimer->interval() > 1000)
+        if (m_closeWindowTimer && m_closeWindowTimer->interval() > 1000)
             m_closeWindowTimer->stop();
+        break;
+    default:
+        break;
     }
+
     return QWidget::event(event);
 }
 

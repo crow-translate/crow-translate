@@ -51,7 +51,7 @@ private:
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;
-    QTimer *m_closeWindowTimer;
+    QTimer *m_closeWindowTimer = nullptr;
 };
 
 #endif // POPUPWINDOW_H
