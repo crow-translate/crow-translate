@@ -24,6 +24,9 @@
       <iconset theme="arrow-right">
        <normaloff>.</normaloff>.</iconset>
      </property>
+     <property name="shortcut">
+      <string>Return</string>
+     </property>
     </widget>
    </item>
    <item row="5" column="1" alignment="Qt::AlignTop">
