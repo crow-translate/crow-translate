@@ -30,6 +30,7 @@
 #include <QMediaPlaylist>
 #include <QScreen>
 #include <QShortcut>
+#include <QTimer>
 #if QT_VERSION < QT_VERSION_CHECK(5, 10, 0)
 #include <QDesktopWidget>
 #endif
@@ -38,6 +39,7 @@ PopupWindow::PopupWindow(MainWindow *parent)
     : QWidget(parent, Qt::Tool | Qt::FramelessWindowHint)
     , ui(new Ui::PopupWindow)
     , m_closeWindowsShortcut(new QShortcut(this))
+    , m_closeWindowTimer(new QTimer(this))
 {
     ui->setupUi(this);
     setAttribute(Qt::WA_DeleteOnClose);
@@ -91,6 +93,13 @@ void PopupWindow::loadSettings()
 
     ui->sourceLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
     ui->translationLanguagesWidget->setLanguageFormat(settings.popupLanguageFormat());
+
+    if (settings.popupWindowTimeout() > 0)
+    {
+        m_closeWindowTimer->callOnTimeout(this, &PopupWindow::close);
+        m_closeWindowTimer->setInterval(settings.popupWindowTimeout()*1000);
+        m_closeWindowTimer->start();
+    }
 }
 
 // Move popup to cursor and prevent appearing outside the screen
@@ -125,6 +134,16 @@ bool PopupWindow::event(QEvent *event)
         // Do not close the window if the language selection menu is active
         if (QApplication::activeModalWidget() == nullptr)
             close();
+    }
+    else if (event->type() == QEvent::Leave) {
+        // Start timer, if mouse left window
+        if (!m_closeWindowTimer->isActive() && m_closeWindowTimer->interval() > 1000)
+            m_closeWindowTimer->start();
+    }
+    else if (event->type() == QEvent::Enter) {
+        // Stop timer, if mouse enter window
+        if (m_closeWindowTimer->isActive() && m_closeWindowTimer->interval() > 1000)
+            m_closeWindowTimer->stop();
     }
     return QWidget::event(event);
 }

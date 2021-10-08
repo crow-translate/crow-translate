@@ -100,6 +100,10 @@ public:
     void setTranslationNotificationTimeout(int timeout);
     static int defaultTranslationNotificationTimeout();
 
+    int popupWindowTimeout() const;
+    void setPopupWindowTimeout(int timeout);
+    static int defaultPopupWindowTimeout();
+
     bool isShowTrayIcon() const;
     void setShowTrayIcon(bool visible);
     static bool defaultShowTrayIcon();
