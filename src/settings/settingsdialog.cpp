@@ -203,6 +203,7 @@ void SettingsDialog::accept()
     settings.setMainWindowOrientation(static_cast<Qt::ScreenOrientation>(ui->mainWindowOrientationComboBox->currentIndex()));
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
+    settings.setPopupWindowTimeout(ui->popupWindowTimeoutSpinBox->value());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
@@ -521,6 +522,7 @@ void SettingsDialog::restoreDefaults()
     ui->mainWindowOrientationComboBox->setCurrentIndex(AppSettings::defaultMainWindowOrientation());
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
+    ui->popupWindowTimeoutSpinBox->setValue(AppSettings::defaultPopupWindowTimeout());
     ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::defaultAutostartEnabled());
@@ -621,6 +623,7 @@ void SettingsDialog::loadSettings()
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
+    ui->popupWindowTimeoutSpinBox->setValue(settings.popupWindowTimeout());
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());

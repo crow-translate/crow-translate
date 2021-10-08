@@ -133,6 +133,21 @@ int AppSettings::defaultTranslationNotificationTimeout()
     return 3;
 }
 
+int AppSettings::popupWindowTimeout() const
+{
+    return m_settings->value(QStringLiteral("Interface/PopupWindowTimeout"), defaultPopupWindowTimeout()).toInt();
+}
+
+void AppSettings::setPopupWindowTimeout(int timeout)
+{
+    m_settings->setValue(QStringLiteral("Interface/PopupWindowTimeout"), timeout);
+}
+
+int AppSettings::defaultPopupWindowTimeout()
+{
+    return 0;
+}
+
 bool AppSettings::isShowTrayIcon() const
 {
     return m_settings->value(QStringLiteral("TrayIconVisible"), defaultShowTrayIcon()).toBool();
