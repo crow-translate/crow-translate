@@ -423,7 +423,7 @@
                <item row="3" column="0">
                 <widget class="QLabel" name="popupWindowTimeoutLabel">
                  <property name="text">
-                  <string>Popup window timeout:</string>
+                  <string>Show timeout:</string>
                  </property>
                 </widget>
                </item>
