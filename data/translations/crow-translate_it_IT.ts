@@ -17,12 +17,12 @@
       <translation>Aggiungi lingua</translation>
     </message>
     <message>
-      <location filename="../../src/addlanguagedialog.ui" line="88"/>
+      <location filename="../../src/addlanguagedialog.ui" line="91"/>
       <source>Available languages:</source>
       <translation>Lingue disponibili:</translation>
     </message>
     <message>
-      <location filename="../../src/addlanguagedialog.ui" line="101"/>
+      <location filename="../../src/addlanguagedialog.ui" line="104"/>
       <source>Current languages:</source>
       <translation>Lingue attuali:</translation>
     </message>
@@ -35,22 +35,22 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="194"/>
+      <location filename="../../src/settings/appsettings.cpp" line="208"/>
       <source>Unable to create %1</source>
       <translation>Impossibile creare %1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="201"/>
+      <location filename="../../src/settings/appsettings.cpp" line="215"/>
       <source>Unable to copy %1 to %2</source>
       <translation>Impossibile copiare %1 in %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="205"/>
+      <location filename="../../src/settings/appsettings.cpp" line="219"/>
       <source>Unable to remove %1 from %2</source>
       <translation>Impossibile rimuovere %1 da %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1129"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1143"/>
       <source>Unknown language code: %1</source>
       <translation>Codice lingua sconosciuto: %1</translation>
     </message>
@@ -289,17 +289,17 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
       <translation>Traduzione</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="392"/>
+      <location filename="../../src/mainwindow.cpp" line="398"/>
       <source>Unable to detect language</source>
       <translation>Impossibile riconoscere lingua</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="444"/>
+      <location filename="../../src/mainwindow.cpp" line="450"/>
       <source>Unable to translate text</source>
       <translation>Impossibile tradurre il testo</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="526"/>
+      <location filename="../../src/mainwindow.cpp" line="532"/>
       <source>The application is already running</source>
       <translation>L&apos;applicazione è già in esecuzione</translation>
     </message>
@@ -307,12 +307,12 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="970"/>
+      <location filename="../../src/mainwindow.cpp" line="974"/>
       <source>Unable to set OCR languages</source>
       <translation>Impossibile impostare lingue OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="970"/>
+      <location filename="../../src/mainwindow.cpp" line="974"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Impossibile inizializzare Tesseract con %1</translation>
     </message>
@@ -1106,7 +1106,7 @@ Riprova più tardi ad effettuare la richiesta.</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="49"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="141"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="144"/>
       <source>General</source>
       <translation>Generale</translation>
     </message>
@@ -1117,13 +1117,13 @@ Riprova più tardi ad effettuare la richiesta.</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="67"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="625"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="648"/>
       <source>Translation</source>
       <translation>Traduzione</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="85"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="1023"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1046"/>
       <source>Speech synthesis</source>
       <translation>Sintesi parlato</translation>
     </message>
@@ -1143,741 +1143,747 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>Info programma</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="207"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="356"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="210"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="359"/>
       <source>Pop-up window</source>
       <translation>Finestra popup</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="212"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="215"/>
       <source>Main window</source>
       <translation>Finestra principale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="153"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="156"/>
       <source>Language:</source>
       <translation>Lingua:</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="90"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="91"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="92"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="93"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Lingua sistema&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="257"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="260"/>
       <source>Show tray icon</source>
       <translation>Visualizza icona barra sistema</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="270"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="273"/>
       <source>Start minimized</source>
       <translation>Avvia minimizzato</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="196"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="199"/>
       <source>Translation mode:</source>
       <translation>Modo traduzione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="203"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="206"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A window for translating selected text. If the application is minimized, the main window will always be used.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Una finestra per tradurre il testo selezionato. Se l&apos;applicazione è ridotta a icona, verrà sempre usata la finestra principale.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="277"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="280"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Run the application at system startup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Esegui l&apos;applicazione all&apos;avvio del sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="280"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="283"/>
       <source>Launch at startup</source>
       <translation>Esegui programma all&apos;avvio del sistema</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="267"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="270"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Start application minimized to the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Avvia l&apos;applicazione ridotta a icona nella barra delle applicazioni&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="426"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="419"/>
       <source>Opacity:</source>
       <translation>Opacità:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="379"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Opacità finestra popup&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="326"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="329"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Translation and source text font&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nome font testo sorgente e traduzione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="340"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="343"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Font size of translation and source text&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dimensione font testo sorgente e traduzione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="362"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="433"/>
       <source>Height:</source>
       <translation>Altezza:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="369"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="365"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Altezzia finestra popup (pixel)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="392"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="375"/>
       <source>Width:</source>
       <translation>Larghezza:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="416"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="382"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Larghezza finestra popup (pixel)&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="225"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="228"/>
       <source>Translation notification timeout:</source>
       <translation>Timeout notifica traduzione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="238"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="241"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notification with translation display time&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Notifica con tempo visualizzazione traduzione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="241"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="244"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="446"/>
       <source> sec</source>
       <translation> sec</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="456"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="480"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="479"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="503"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Languages text on buttons&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Testo lingue sui pulsanti&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="500"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="523"/>
       <source>Tray icon</source>
       <translation>Icona barra sistema</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="506"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="529"/>
       <source>Icon:</source>
       <translation>Icona:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="587"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="610"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seleziona icona&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="519"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="542"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Icona barra sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="523"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="1099"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="1130"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="694"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="712"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="546"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1122"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="706"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="724"/>
       <source>Default</source>
       <translation>Predefinita</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="532"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="555"/>
       <source>Monochrome (dark theme)</source>
       <translation>Monocromatica (tema scuro)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="541"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="564"/>
       <source>Monochrome (light theme)</source>
       <translation>Monocromatica (tema chiaro)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="550"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="573"/>
       <source>Custom</source>
       <translation>Personalizzata</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="565"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="588"/>
       <source>Custom:</source>
       <translation>Icona:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="375"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
       <source>Zahar</source>
       <translation>Zahar</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="376"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
       <source>Ermil</source>
       <translation>Ermil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="377"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
       <source>Jane</source>
       <translation>Jane</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="378"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Oksana</source>
       <translation>Oksana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="382"/>
       <source>Alyss</source>
       <translation>Alyss</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
       <source>Omazh</source>
       <translation>Omazh</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1110"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1133"/>
       <source>Emotional connotation:</source>
       <translation>Connotazione emozionale:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="384"/>
       <source>Neutral</source>
       <translation>Neutrale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="382"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="385"/>
       <source>Good</source>
       <translation>Buona</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="383"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="386"/>
       <source>Evil</source>
       <translation>Evil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="634"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="657"/>
       <source>Enable source transliteration</source>
       <translation>Abilita traduzione sorgente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="644"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="667"/>
       <source>Enable translation transliteration</source>
       <translation>Abilita traslitterazione traduzione</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="654"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="677"/>
       <source>Enable source transcription</source>
       <translation>Abilita trascrizione sorgente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="664"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="687"/>
       <source>Enable translation options</source>
       <translation>Abilita opzioni traduzione</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="671"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="694"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable usage examples&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita esempi di uso&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="674"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="697"/>
       <source>Enable examples</source>
       <translation>Abilita esempi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="694"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="717"/>
       <source>Automatic language detection</source>
       <translation>Rilevamento automatico lingua</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="700"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="723"/>
       <source>Primary translation language:</source>
       <translation>Lingua primaria traduzione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="714"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="737"/>
       <source>Secondary translation language:</source>
       <translation>Lingua secodaria traduzione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="721"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="744"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which the text will be translated if it is in the language selected above&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingua in cui verrà tradotto il testo se è nella lingua selezionata sopra&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="818"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="841"/>
       <source>Directory with trained models</source>
       <translation>Cartelle con modelli esempio</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="787"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="810"/>
       <source>Languages path:</source>
       <translation>Percorso lingue:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="794"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="817"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Seleziona percorso lingue OCR&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="780"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="803"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Loading additional languages will impact both speed and accuracy, as there is more work to do to decide on the applicable language, and there is more chance of hallucinating incorrect words.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Il caricamento di altre lingue avrà un impatto sia sulla velocità che sulla precisione, poiché c&apos;è più lavoro da fare per decidere la lingua applicabile e c&apos;è più possibilità di avere parole sbagliate.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="805"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="828"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Open GitHub repository&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apri repository GitHub&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="808"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="831"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Download more&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tesseract-ocr/tessdata&quot;&gt;&lt;span style=&quot; text-decoration: underline; color:#2980b9;&quot;&gt;Scarica altri modelli&lt;/span&gt;&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="903"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="926"/>
       <source>Screen capture</source>
       <translation>Cattura schermo</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="915"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="938"/>
       <source>Remember region:</source>
       <translation>Ricorda regione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="964"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="987"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Show a magnifier next to the cursor&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visualizza lente d&apos;ingrandimento vicino al cursore&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="967"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="990"/>
       <source>Show magnifier</source>
       <translation>Visualizza lente ingrandimento</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="987"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1010"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Apply a slight fog to the unselected part&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Applica una leggera nebbia alla parte non selezionata&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="990"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1013"/>
       <source>Apply light mask</source>
       <translation>Applica maschera leggera</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="931"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="954"/>
       <source>Remember last</source>
       <translation>Ricorda ultima</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="936"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="426"/>
+      <source>Show timeout:</source>
+      <translation>Visualizza timeout:</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="959"/>
       <source>Remember always</source>
       <translation>Ricorda sempre</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="977"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1000"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Finish capturing the fragment when the mouse button is released&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Termina la cattura del frammento quando il pulsante del mouse viene rilasciato&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1079"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1102"/>
       <source>Voice:</source>
       <translation>Voce:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1126"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1149"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice mood of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Stato vocale del motore di sintesi vocale&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1138"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1161"/>
       <source>Speech test:</source>
       <translation>Test parlato:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1150"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1173"/>
       <source>This is an example of speech synthesis.</source>
       <translation>Questo è un esempio di sintesi vocale.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1153"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1176"/>
       <source>Test voice</source>
       <translation>Test voce</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1191"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1214"/>
       <source>Proxy server</source>
       <translation>Server proxy</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1197"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1220"/>
       <source>Type:</source>
       <translation>Tipo:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1214"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1237"/>
       <source>Use system settings</source>
       <translation>Usa impostazioni proxy sistema</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1224"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1247"/>
       <source>Don&apos;t use a proxy</source>
       <translation>Connessione diretta (non usare un proxy)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1240"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1263"/>
       <source>Host:</source>
       <translation>Host:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1263"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1286"/>
       <source>Port:</source>
       <translation>Porta:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1298"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
       <source>Info: the proxy works only for text translation</source>
       <translation>Info: il proxy è usato solo per la traduzione testo</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1308"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1311"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1334"/>
       <source>Authentication</source>
       <translation>Autentificazione</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1321"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1344"/>
       <source>Username:</source>
       <translation>Utente:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1331"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1354"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy username for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Utente proxy per al&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1341"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
       <source>Password:</source>
       <translation>Password:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="217"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="220"/>
       <source>Notification</source>
       <translation>Notifiche</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="160"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="163"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingua interfaccia&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="254"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="257"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Display icon in the system tray&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Visualizza icona nella barra di sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="167"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="170"/>
       <source>Main window orientation:</source>
       <translation>Orientamento finestra principale:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="174"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="177"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Orientation of the main window layout&lt;br/&gt;When using &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt;, the window orientation will match the screen orientation&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Orientamento layout finestra principale&lt;br/&gt;Quando usi &lt;span style=&quot; font-style:italic;&quot;&gt;Automatico&lt;/span&gt;, l&apos;orientamento della finestra corrisponderà all&apos;orientamento schermo&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="178"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="181"/>
       <source>Auto</source>
       <extracomment>Orientation</extracomment>
       <translation>Automatico</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="183"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="186"/>
       <source>Portrait</source>
       <extracomment>Orientation</extracomment>
       <translation>Verticale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="188"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="191"/>
       <source>Landscape</source>
       <extracomment>Orientation</extracomment>
       <translation>Orizzontale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="313"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="316"/>
       <source>Font</source>
       <translation>Font</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="319"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="322"/>
       <source>Name:</source>
       <translation>Nome:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="333"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="336"/>
       <source>Size:</source>
       <translation>Dimensione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="443"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="466"/>
       <source>Language format</source>
       <translation>Formato lingua</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="449"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="472"/>
       <source>Main window:</source>
       <translation>Finestra principale:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="460"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="484"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="483"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="507"/>
       <source>Full name</source>
       <translation>Nome completo</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="465"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="489"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="488"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="512"/>
       <source>ISO 639-1 code</source>
       <translation>Codice ISO 639-1</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="473"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="496"/>
       <source>Pop-up:</source>
       <translation>Popup:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="631"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="654"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/dsiabilita traslitterazione sorgente&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="641"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="664"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation transliteration&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita transliterazionione traduzione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="651"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="674"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable source transcription&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita trascrizione sorgente&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="661"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="684"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Enable or disable translation options&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Abilita/disabilita opzioni traduzione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="681"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="704"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace each sequence of whitespaces (this includes the ASCII characters &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, and &apos; &apos;) with a single space in queries&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Sostituisci nella richiesta ogni sequenza di spazi bianchi (inclusi i caratteri ASCII &apos;\t&apos;, &apos;\n&apos;, &apos;\v&apos;, &apos;\f&apos;, &apos;\r&apos;, e &apos; &apos;) con un singolo spazio&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="684"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="707"/>
       <source>Simplify source</source>
       <translation>Semplifica sorgente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="707"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="730"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Language to which text will be translated when autodetecting&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingua in cui il testo verrà tradotto durante il rilevamento automatico&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="728"/>
-      <location filename="../../src/settings/settingsdialog.ui" line="738"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="751"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="761"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Automatically switch to &lt;span style=&quot; font-style:italic;&quot;&gt;Auto&lt;/span&gt; when using OCR and global shortcuts&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Passa automaticamente a &lt;span style=&quot; font-style:italic;&quot;&gt;Automatico&lt;/span&gt; quando si usano l&apos;OCR e i tasti rapidi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="731"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="754"/>
       <source>Force source language detection</source>
       <translation>Forza rilevamento lingua sorgente</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="741"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="764"/>
       <source>Force translation language detection</source>
       <translation>Forza rilevamento lingua traduzione</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="774"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="797"/>
       <source>Languages</source>
       <translation>Lingue</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="834"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="857"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Replace all single line breaks with a space after text recognition&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Dopo il riconoscimento del testo sostituisci tutte le interruzioni di riga singola con uno spazio&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="837"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="860"/>
       <source>Convert line breaks</source>
       <translation>Converti ritorni a capo</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="922"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="945"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;When to remember the last selected region&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Quando ricordare l'ultima regione selezionata&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="944"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="967"/>
       <source>Capture delay:</source>
       <translation>Ritardo cattura:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="951"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="974"/>
       <source>Delay before screen capture</source>
       <translation>Ritardo prima della cattura schermo</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="954"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="977"/>
       <source> ms</source>
       <translation> ms</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="980"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1003"/>
       <source>Confirm on release</source>
       <translation>Conferma al rilascio</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1029"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1052"/>
       <source>Engine:</source>
       <translation>Engine parlato:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1042"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1065"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Engine sintesi vocale&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1095"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1118"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voice of the speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Voce del motore di sintesi vocale&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1147"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1170"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Testo per testare il parlato&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1364"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1387"/>
       <source>Info: the password is saved unencrypted</source>
       <translation>Info: la password verrà salvata non criptata</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1279"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1302"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy port&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Porta proxy&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1250"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1273"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy host name&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Nome host proxy&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1210"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1233"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy type&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Tipo proxy&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1400"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1423"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Registra nel sistema i tasti rapidi globali&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1403"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1426"/>
       <source>Enable global shortcucts</source>
       <translation>Abilita tasti rapidi globali</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1432"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1455"/>
       <source>Shortcut</source>
       <translation>Tasti rapidi</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1422"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1445"/>
       <source>Reset all</source>
       <translation>Ripristina tutto</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="577"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="600"/>
       <source>Path to the icon or icon name from theme</source>
       <translation>Percorso icona o nome icona dal tema</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1351"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1374"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password proxy per l&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1438"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1461"/>
       <source>Key sequence:</source>
       <translation>Sequenza tasti:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1452"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1475"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Accept collegamento&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1455"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1478"/>
       <source>Accept</source>
       <translation>Accetta</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1466"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1489"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Clear shortcut&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Azzera tasto rapido&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1469"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1492"/>
       <source>Clear</source>
       <translation>Azzera</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1483"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1506"/>
       <source>Reset</source>
       <translation>Ripristina</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1529"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1552"/>
       <source>Version:</source>
       <translation>Versione:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1419"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1442"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset all shortcuts to defaults&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ripristina tutte i tasti rapidi ai valori predefiniti&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1445"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1468"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The key sequence for the selected action&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;La sequenza di tasti per l&apos;azione selezionata&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1480"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1503"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Reset shortcut to default&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ripristina tasto rapido al valore predefinito&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1539"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1562"/>
       <source>License:</source>
       <translation>Licenza:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1553"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1576"/>
       <source>Source code:</source>
       <translation>Codice sorgente:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1593"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="1616"/>
       <source>Flag icons:</source>
       <translation>Icone bandiere:</translation>
     </message>
@@ -1892,114 +1898,114 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>Usa %1 dalla cartella applicazione per salvare le impostazioni</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="133"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="135"/>
       <source>Updates</source>
       <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="140"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
       <source>Check for updates:</source>
       <translation>Controlla aggiornamenti:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
       <source>Every day</source>
       <translation>Ogni giorno</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="145"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
       <source>Every week</source>
       <translation>Ogni settimana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Every month</source>
       <translation>Ogni mese</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="926"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.ui" line="949"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Never</source>
       <translation>Mai</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="123"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
       <source>Icons:</source>
       <translation>Icone:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="151"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
       <source>Check now</source>
       <translation>Controlla ora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="152"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="154"/>
       <source>Check for updates now</source>
       <translation>Controlla aggiornamenti ora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Happy New Year!</source>
       <translation>Buon anno!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="179"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Il campo parametri OCR non può essere vuoto.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="180"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="182"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Vuoi scartare i parametri non validi?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="323"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
       <source>Select icon</source>
       <translation>Seleziona icona</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="323"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="326"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Immagini (*.png *.ico *.svg *.jpg);;Tutti i file (*.*)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="336"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="339"/>
       <source>Select OCR languages path</source>
       <translation>Seleziona percorso lingue OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="413"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
       <source>Nothing to play</source>
       <translation>Nulla da riprodurre</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="413"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="416"/>
       <source>Playback text is empty</source>
       <translation>Testo da pronunciare vuoto</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="424"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="427"/>
       <source>Unable to detect language</source>
       <translation>Impossibile rilevare la lingua</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="479"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="482"/>
       <source>Checking for updates...</source>
       <translation>Controllo aggiornamenti...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="501"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="504"/>
       <source>Update available!</source>
       <translation>È disponibile un aggiornamento!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="507"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="510"/>
       <source>No updates available.</source>
       <translation>La versione installata è aggiornata.
 Nessun aggiornamento disponibile.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="592"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="603"/>
       <source>Back</source>
       <translation>Indietro</translation>
     </message>
@@ -2290,12 +2296,12 @@ o premi 'Esc' per uscire</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="948"/>
       <source>Invalid tray icon</source>
       <translation>Icona barra sistema non valida</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="948"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>L&apos;icona specificata &quot;%1&quot; non è valida.
 Verrà usata l&apos;icona predefinita.</translation>
