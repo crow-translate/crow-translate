@@ -78,8 +78,8 @@ PopupWindow::PopupWindow(MainWindow *parent)
 
 PopupWindow::~PopupWindow()
 {
-    ui->sourceSpeakButtons->pauseSpeaking(false);
-    ui->translationSpeakButtons->pauseSpeaking(false);
+    ui->sourceSpeakButtons->pauseSpeaking();
+    ui->translationSpeakButtons->pauseSpeaking();
     delete ui;
 }
 
