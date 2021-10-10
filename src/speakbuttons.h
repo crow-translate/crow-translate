@@ -58,6 +58,7 @@ public:
 
     void speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
     void pauseSpeaking();
+    void playPauseSpeaking();
 
 public slots:
     void stopSpeaking();

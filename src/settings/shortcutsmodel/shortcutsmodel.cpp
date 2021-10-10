@@ -45,6 +45,9 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     m_stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), QStringLiteral("media-playback-stop"), m_globalShortcuts);
     m_stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingShortcut());
 
+    m_playPauseSpeakingShortcut = new ShortcutItem(tr("Play / pause text speaking"), QStringLiteral("media-playback-pause"), m_globalShortcuts);
+    m_playPauseSpeakingShortcut->setDefaultShortcut(AppSettings::defaultPlayPauseSpeakingShortcut());
+
     m_showMainWindowShortcut = new ShortcutItem(tr("Show main window"), QStringLiteral("window"), m_globalShortcuts);
     m_showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowShortcut());
 
@@ -201,6 +204,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_speakSelectionShortcut->setShortcut(settings.speakSelectionShortcut());
     m_speakTranslatedSelectionShortcut->setShortcut(settings.speakTranslatedSelectionShortcut());
     m_stopSpeakingShortcut->setShortcut(settings.stopSpeakingShortcut());
+    m_playPauseSpeakingShortcut->setShortcut(settings.playPauseSpeakingShortcut());
     m_showMainWindowShortcut->setShortcut(settings.showMainWindowShortcut());
     m_copyTranslatedSelectionShortcut->setShortcut(settings.copyTranslatedSelectionShortcut());
     m_recognizeScreenAreaShortcut->setShortcut(settings.recognizeScreenAreaShortcut());
@@ -228,6 +232,7 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setSpeakSelectionShortcut(m_speakSelectionShortcut->shortcut());
     settings.setSpeakTranslatedSelectionShortcut(m_speakTranslatedSelectionShortcut->shortcut());
     settings.setStopSpeakingShortcut(m_stopSpeakingShortcut->shortcut());
+    settings.setPlayPauseSpeakingShortcut(m_playPauseSpeakingShortcut->shortcut());
     settings.setShowMainWindowShortcut(m_showMainWindowShortcut->shortcut());
     settings.setCopyTranslatedSelectionShortcut(m_copyTranslatedSelectionShortcut->shortcut());
     settings.setRecognizeScreenAreaShortcut(m_recognizeScreenAreaShortcut->shortcut());
