@@ -147,6 +147,11 @@ void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language lang, 
 
 void SpeakButtons::pauseSpeaking()
 {
+    m_mediaPlayer->pause();
+}
+
+void SpeakButtons::pauseUnpauseSpeaking()
+{
     if (m_mediaPlayer->state() == QMediaPlayer::PausedState)
         m_mediaPlayer->play();
     else

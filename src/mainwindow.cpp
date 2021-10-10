@@ -250,8 +250,8 @@ void MainWindow::stopSpeaking()
 
 void MainWindow::pauseSpeaking()
 {
-    ui->sourceSpeakButtons->pauseSpeaking();
-    ui->translationSpeakButtons->pauseSpeaking();
+    ui->sourceSpeakButtons->pauseUnpauseSpeaking();
+    ui->translationSpeakButtons->pauseUnpauseSpeaking();
 }
 
 void MainWindow::copyTranslatedSelection()
