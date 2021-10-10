@@ -150,6 +150,14 @@ void SpeakButtons::pauseSpeaking()
     m_mediaPlayer->pause();
 }
 
+void SpeakButtons::pauseUnpauseSpeaking()
+{
+    if (m_mediaPlayer->state() == QMediaPlayer::PausedState)
+        m_mediaPlayer->play();
+    else
+        m_mediaPlayer->pause();
+}
+
 void SpeakButtons::stopSpeaking()
 {
     m_mediaPlayer->stop();

@@ -255,6 +255,10 @@ public:
     void setStopSpeakingShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultStopSpeakingShortcut();
 
+    QKeySequence pauseSpeakingShortcut() const;
+    void setPauseSpeakingShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultPauseSpeakingShortcut();
+
     QKeySequence showMainWindowShortcut() const;
     void setShowMainWindowShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultShowMainWindowShortcut();
