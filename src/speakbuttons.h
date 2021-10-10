@@ -57,7 +57,7 @@ public:
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
 
     void speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
-    void pauseSpeaking();
+    void pauseSpeaking(bool allowUnpause = true);
 
 public slots:
     void stopSpeaking();
