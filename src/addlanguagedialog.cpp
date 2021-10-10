@@ -30,10 +30,12 @@ AddLanguageDialog::AddLanguageDialog(const QVector<QOnlineTranslator::Language> 
     : QDialog(parent)
     , ui(new Ui::AddLanguageDialog)
     , m_searchShortcut(new QShortcut(QStringLiteral("Ctrl+F"), this))
+    , m_saveAndCloseShortcut(new QShortcut(QStringLiteral("Ctrl+Enter"), this))
 {
     ui->setupUi(this);
     ui->searchEdit->setPlaceholderText(tr("Filter (%1)").arg(m_searchShortcut->key().toString()));
     connect(m_searchShortcut, &QShortcut::activated, ui->searchEdit, qOverload<>(&QLineEdit::setFocus));
+    connect(m_saveAndCloseShortcut, &QShortcut::activated, this, &AddLanguageDialog::accept);
 
     // Load languages
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i) {
