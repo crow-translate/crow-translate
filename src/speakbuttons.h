@@ -70,7 +70,7 @@ signals:
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);
-    void onSpeakButtonPressed();
+    void onPlayPauseButtonPressed();
     void onPlayerPositionChanged(qint64 position);
 
 private:
