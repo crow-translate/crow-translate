@@ -27,7 +27,7 @@
       <translation>Mevcut diller:</translation>
     </message>
     <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
+      <location filename="../../src/addlanguagedialog.cpp" line="36"/>
       <source>Filter (%1)</source>
       <translation>Filtre (%1)</translation>
     </message>
@@ -50,7 +50,7 @@
       <translation>%1'den %2'ye kaldırılamadı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1143"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1158"/>
       <source>Unknown language code: %1</source>
       <translation>Bilinmeyen dil kodu: %1</translation>
     </message>
@@ -286,17 +286,17 @@
       <translation>Çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="398"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="450"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>Metin çevrilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="532"/>
+      <location filename="../../src/mainwindow.cpp" line="540"/>
       <source>The application is already running</source>
       <translation>Uygulama zaten çalışıyor</translation>
     </message>
@@ -304,12 +304,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="974"/>
+      <location filename="../../src/mainwindow.cpp" line="982"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dili ayarlanamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="974"/>
+      <location filename="../../src/mainwindow.cpp" line="982"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Tesseract %1 ile başlatılamıyor</translation>
     </message>
@@ -2008,12 +2008,12 @@
   <context>
     <name>ShortcutsModel</name>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="135"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="138"/>
       <source>Description</source>
       <translation>Açıklama</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="137"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="140"/>
       <source>Shortcut</source>
       <translation>Kısayol</translation>
     </message>
@@ -2043,77 +2043,78 @@
       <translation>Metin konuşmasını durdur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="48"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
       <source>Show main window</source>
       <translation>Ana pencereyi göster</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
       <source>Translate selected text and copy to clipboard</source>
       <translation>Seçili metni çevir ve panoya kopyala</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="57"/>
       <source>Recognize text in screen area</source>
       <translation>Ekran alanındaki metni tanı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="57"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
       <source>Translate text in screen area</source>
       <translation>Ekran alanındaki metni çevir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
       <source>Recognize text in screen area with delay</source>
       <translation>Ekran alanındaki metni gecikmeli olarak tanı</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="66"/>
       <source>Translate text in screen area with delay</source>
       <translation>Ekran alanındaki metni gecikmeli olarak çevir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="67"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="70"/>
       <source>Main window</source>
       <translation>Ana pencere</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
       <source>Translate</source>
       <translation>Çevir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
       <source>Swap languages</source>
       <translation>Dilleri değiştir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="78"/>
       <source>Close window</source>
       <translation>Pencereyi kapat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="79"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="82"/>
       <source>Source text</source>
       <translation>Kaynak metin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="81"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="48"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="84"/>
       <source>Speak / pause text speaking</source>
       <translation>Konuşma / metin konuşmasını duraklat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="87"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
       <source>Speak / pause speaking</source>
       <translation>Konuşma / konuşmayı duraklat</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="85"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="88"/>
       <source>Translation</source>
       <translation>Çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="93"/>
       <source>Copy to clipboard</source>
       <translation>Panoya kopyala</translation>
     </message>
@@ -2291,12 +2292,12 @@ veya çıkmak için Esc tuşuna basın</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="948"/>
+      <location filename="../../src/mainwindow.cpp" line="956"/>
       <source>Invalid tray icon</source>
       <translation>Geçersiz tepsi simgesi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="948"/>
+      <location filename="../../src/mainwindow.cpp" line="956"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Belirtilen &apos;%1&apos; simgesi geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
