@@ -45,7 +45,7 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     m_stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), QStringLiteral("media-playback-stop"), m_globalShortcuts);
     m_stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingShortcut());
 
-    m_playPauseSpeakingShortcut = new ShortcutItem(tr("Play / pause text speaking"), QStringLiteral("media-playback-pause"), m_globalShortcuts);
+    m_playPauseSpeakingShortcut = new ShortcutItem(tr("Speak / pause text speaking"), QStringLiteral("media-playback-pause"), m_globalShortcuts);
     m_playPauseSpeakingShortcut->setDefaultShortcut(AppSettings::defaultPlayPauseSpeakingShortcut());
 
     m_showMainWindowShortcut = new ShortcutItem(tr("Show main window"), QStringLiteral("window"), m_globalShortcuts);
