@@ -176,7 +176,7 @@ private:
     QHotkey *m_speakSelectionHotkey;
     QHotkey *m_speakTranslatedSelectionHotkey;
     QHotkey *m_stopSpeakingHotkey;
-    QHotkey *m_pauseSpeakingHotkey;
+    QHotkey *m_playPauseSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
     QHotkey *m_recognizeScreenAreaHotkey;

@@ -779,12 +779,12 @@ QKeySequence AppSettings::defaultStopSpeakingShortcut()
 
 QKeySequence AppSettings::playPauseSpeakingShortcut() const
 {
-    return m_settings->value(QStringLiteral("Shortcuts/PauseSelection"), defaultStopSpeakingShortcut()).value<QKeySequence>();
+    return m_settings->value(QStringLiteral("Shortcuts/PlayPauseSpeakingSelection"), defaultStopSpeakingShortcut()).value<QKeySequence>();
 }
 
 void AppSettings::setPlayPauseSpeakingShortcut(const QKeySequence &shortcut)
 {
-    m_settings->setValue(QStringLiteral("Shortcuts/PauseSelection"), shortcut);
+    m_settings->setValue(QStringLiteral("Shortcuts/PlayPauseSpeakingSelection"), shortcut);
 }
 
 QKeySequence AppSettings::defaultPlayPauseSpeakingShortcut()

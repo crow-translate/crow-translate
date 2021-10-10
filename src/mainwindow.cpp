@@ -61,7 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_speakSelectionHotkey(new QHotkey(this))
     , m_speakTranslatedSelectionHotkey(new QHotkey(this))
     , m_stopSpeakingHotkey(new QHotkey(this))
-    , m_pauseSpeakingHotkey(new QHotkey(this))
+    , m_playPauseSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
     , m_recognizeScreenAreaHotkey(new QHotkey(this))
@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_speakSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakSelection);
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
-    connect(m_pauseSpeakingHotkey, &QHotkey::activated, this, &MainWindow::playPauseSpeaking);
+    connect(m_playPauseSpeakingHotkey, &QHotkey::activated, this, &MainWindow::playPauseSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_recognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::recognizeScreenArea);
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
@@ -1018,7 +1018,7 @@ void MainWindow::loadAppSettings()
         m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);
         m_speakSelectionHotkey->setShortcut(settings.speakSelectionShortcut(), true);
         m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingShortcut(), true);
-        m_pauseSpeakingHotkey->setShortcut(settings.playPauseSpeakingShortcut(), true);
+        m_playPauseSpeakingHotkey->setShortcut(settings.playPauseSpeakingShortcut(), true);
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
@@ -1030,7 +1030,7 @@ void MainWindow::loadAppSettings()
         m_translateSelectionHotkey->setRegistered(false);
         m_speakSelectionHotkey->setRegistered(false);
         m_stopSpeakingHotkey->setRegistered(false);
-        m_pauseSpeakingHotkey->setRegistered(false);
+        m_playPauseSpeakingHotkey->setRegistered(false);
         m_speakTranslatedSelectionHotkey->setRegistered(false);
         m_showMainWindowHotkey->setRegistered(false);
         m_copyTranslatedSelectionHotkey->setRegistered(false);
