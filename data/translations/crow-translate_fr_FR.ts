@@ -27,7 +27,7 @@
       <translation>Langue actuelle :</translation>
     </message>
     <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
+      <location filename="../../src/addlanguagedialog.cpp" line="36"/>
       <source>Filter (%1)</source>
       <translation>Filtre(%1)</translation>
     </message>
@@ -50,7 +50,7 @@
       <translation>Impossible de copier %1 vers %2</translation>
     </message>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1143"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1158"/>
       <source>Unknown language code: %1</source>
       <translation>Code de langue inconnu : %1</translation>
     </message>
@@ -286,17 +286,17 @@
       <translation>Traduction</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="398"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>Impossible de détecter la langue</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="450"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>Impossible de traduire le texte</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="532"/>
+      <location filename="../../src/mainwindow.cpp" line="540"/>
       <source>The application is already running</source>
       <translation>L&apos;application est déjà en cours d&apos;exécution</translation>
     </message>
@@ -304,12 +304,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="974"/>
+      <location filename="../../src/mainwindow.cpp" line="982"/>
       <source>Unable to set OCR languages</source>
       <translation>Impossible de définir les langues OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="974"/>
+      <location filename="../../src/mainwindow.cpp" line="982"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Impossible d'initialiser Tesseract avec %1</translation>
     </message>
@@ -2008,12 +2008,12 @@
   <context>
     <name>ShortcutsModel</name>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="135"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="138"/>
       <source>Description</source>
       <translation>Description</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="137"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="140"/>
       <source>Shortcut</source>
       <translation>Raccourci</translation>
     </message>
@@ -2043,77 +2043,78 @@
       <translation>Arrêter la lecture du texte</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="48"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
       <source>Show main window</source>
       <translation>Montrer la fenêtre principale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="51"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
       <source>Translate selected text and copy to clipboard</source>
       <translation>Traduire le texte sélectionné et copier dans le presse-papiers</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="54"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="57"/>
       <source>Recognize text in screen area</source>
       <translation>Reconnaître le texte dans la zone d'écran</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="57"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
       <source>Translate text in screen area</source>
       <translation>Traduire le texte dans la zone d'écran</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="60"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
       <source>Recognize text in screen area with delay</source>
       <translation>Reconnaître le texte dans la zone d'écran avec un délai</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="63"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="66"/>
       <source>Translate text in screen area with delay</source>
       <translation>Traduire le texte dans la zone de l'écran avec un délai</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="67"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="70"/>
       <source>Main window</source>
       <translation>Fenêtre principale</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="69"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
       <source>Translate</source>
       <translation>Traduire</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="72"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
       <source>Swap languages</source>
       <translation>Échanger des langues</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="75"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="78"/>
       <source>Close window</source>
       <translation>Fermer la fenêtre</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="79"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="82"/>
       <source>Source text</source>
       <translation>Texte source</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="81"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="48"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="84"/>
       <source>Speak / pause text speaking</source>
       <translation>Parler / en pause lecture texte</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="87"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
       <source>Speak / pause speaking</source>
       <translation>Parler / faire une pause</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="85"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="88"/>
       <source>Translation</source>
       <translation>Traduction</translation>
     </message>
     <message>
-      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="90"/>
+      <location filename="../../src/settings/shortcutsmodel/shortcutsmodel.cpp" line="93"/>
       <source>Copy to clipboard</source>
       <translation>Copier dans le presse-papier</translation>
     </message>
@@ -2291,12 +2292,12 @@ ou appuyez sur Échap pour quitter</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="948"/>
+      <location filename="../../src/mainwindow.cpp" line="956"/>
       <source>Invalid tray icon</source>
       <translation>Icône de la barre d&apos;état invalide</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="948"/>
+      <location filename="../../src/mainwindow.cpp" line="956"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>L&apos;icône spécifiée &apos;%1&apos; est invalide. L&apos;icône par défaut sera utilisé.</translation>
     </message>
