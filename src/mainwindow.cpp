@@ -103,7 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_speakSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakSelection);
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
-    connect(m_pauseSpeakingHotkey, &QHotkey::activated, this, &MainWindow::pauseSpeaking);
+    connect(m_pauseSpeakingHotkey, &QHotkey::activated, this, &MainWindow::playPauseSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_recognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::recognizeScreenArea);
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
@@ -248,10 +248,10 @@ void MainWindow::stopSpeaking()
     ui->translationSpeakButtons->stopSpeaking();
 }
 
-void MainWindow::pauseSpeaking()
+void MainWindow::playPauseSpeaking()
 {
-    ui->sourceSpeakButtons->pauseUnpauseSpeaking();
-    ui->translationSpeakButtons->pauseUnpauseSpeaking();
+    ui->sourceSpeakButtons->playPauseSpeaking();
+    ui->translationSpeakButtons->playPauseSpeaking();
 }
 
 void MainWindow::copyTranslatedSelection()
@@ -1018,7 +1018,7 @@ void MainWindow::loadAppSettings()
         m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);
         m_speakSelectionHotkey->setShortcut(settings.speakSelectionShortcut(), true);
         m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingShortcut(), true);
-        m_pauseSpeakingHotkey->setShortcut(settings.pauseSpeakingShortcut(), true);
+        m_pauseSpeakingHotkey->setShortcut(settings.playPauseSpeakingShortcut(), true);
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);

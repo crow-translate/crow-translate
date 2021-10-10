@@ -75,7 +75,7 @@ public slots:
     Q_SCRIPTABLE void speakSelection();
     Q_SCRIPTABLE void speakTranslatedSelection();
     Q_SCRIPTABLE void stopSpeaking();
-    Q_SCRIPTABLE void pauseSpeaking();
+    Q_SCRIPTABLE void playPauseSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
     Q_SCRIPTABLE void recognizeScreenArea();

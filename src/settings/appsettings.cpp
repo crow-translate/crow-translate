@@ -777,17 +777,17 @@ QKeySequence AppSettings::defaultStopSpeakingShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Alt+G"));
 }
 
-QKeySequence AppSettings::pauseSpeakingShortcut() const
+QKeySequence AppSettings::playPauseSpeakingShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/PauseSelection"), defaultStopSpeakingShortcut()).value<QKeySequence>();
 }
 
-void AppSettings::setPauseSpeakingShortcut(const QKeySequence &shortcut)
+void AppSettings::setPlayPauseSpeakingShortcut(const QKeySequence &shortcut)
 {
     m_settings->setValue(QStringLiteral("Shortcuts/PauseSelection"), shortcut);
 }
 
-QKeySequence AppSettings::defaultPauseSpeakingShortcut()
+QKeySequence AppSettings::defaultPlayPauseSpeakingShortcut()
 {
     return QKeySequence(QStringLiteral("Ctrl+Alt+D"));
 }
