@@ -65,6 +65,7 @@ private:
 
     Ui::AddLanguageDialog *ui;
     QShortcut *m_searchShortcut;
+    QShortcut *m_acceptShortcut;
     QVector<QOnlineTranslator::Language> m_languages;
 };
 
