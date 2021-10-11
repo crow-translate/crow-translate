@@ -31,7 +31,6 @@ jobs:
           clangFormatVersion: 12
 
   Build:
-    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
@@ -47,6 +46,8 @@ jobs:
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
               -D CMAKE_CXX_CLANG_TIDY='clang-tidy;--warnings-as-errors=*'
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
