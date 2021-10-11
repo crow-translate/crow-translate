@@ -39,7 +39,8 @@ class QPushButton;
 class QLabel;
 #endif
 
-namespace Ui {
+namespace Ui
+{
 class SettingsDialog;
 }
 

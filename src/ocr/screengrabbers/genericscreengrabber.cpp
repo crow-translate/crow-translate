@@ -21,8 +21,8 @@
 #include "genericscreengrabber.h"
 
 #include <QGuiApplication>
-#include <QScreen>
 #include <QPixmap>
+#include <QScreen>
 
 GenericScreenGrabber::GenericScreenGrabber(QObject *parent)
     : AbstractScreenGrabber(parent)

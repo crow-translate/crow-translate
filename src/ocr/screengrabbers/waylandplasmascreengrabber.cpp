@@ -24,8 +24,8 @@
 #include <QDBusReply>
 #include <QDBusUnixFileDescriptor>
 #include <QPixmap>
-#include <QtConcurrent>
 #include <QScreen>
+#include <QtConcurrent>
 
 #include <fcntl.h>
 #include <unistd.h>

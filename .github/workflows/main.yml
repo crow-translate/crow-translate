@@ -19,7 +19,18 @@ on:
       - "crowdin.yml"
       - "data/translations/**"
 jobs:
-  Main:
+  Formatting:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2.3.4
+
+      - name: Check formatting
+        uses: DoozyX/clang-format-lint-action@v0.12
+        with:
+          clangFormatVersion: 12
+
+  Build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:

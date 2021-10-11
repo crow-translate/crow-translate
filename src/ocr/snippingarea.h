@@ -149,9 +149,9 @@ private:
     const QColor m_crossColor = QColor::fromRgbF(m_strokeColor.redF(), m_strokeColor.greenF(), m_strokeColor.blueF(), 0.7);
     const QColor m_labelForegroundColor = palette().windowText().color();
     const QColor m_labelBackgroundColor = QColor::fromRgbF(palette().light().color().redF(),
-                                                     palette().light().color().greenF(),
-                                                     palette().light().color().blueF(),
-                                                     0.85);
+                                                           palette().light().color().greenF(),
+                                                           palette().light().color().blueF(),
+                                                           0.85);
 
     QColor m_maskColor;
     QRect m_selection;
