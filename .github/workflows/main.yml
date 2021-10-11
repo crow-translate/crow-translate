@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Check formatting
         uses: DoozyX/clang-format-lint-action@v0.12
@@ -49,7 +49,7 @@ jobs:
               -D CMAKE_CXX_CLANG_TIDY='clang-tidy;--warnings-as-errors=*'
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Install apt packages
         if: runner.os == 'Linux'
@@ -67,7 +67,7 @@ jobs:
           VCPKG_DISABLE_METRICS: 1
 
       - name: Build
-        uses: lukka/run-cmake@v3.3
+        uses: lukka/run-cmake@v3
         with:
           cmakeListsOrSettingsJson: CMakeListsTxtAdvanced
           useVcpkgToolchainFile: true
