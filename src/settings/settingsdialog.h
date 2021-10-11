@@ -70,11 +70,10 @@ private slots:
     void onOcrLanguagesPathChanged(const QString &path);
     void onTesseractParametersCurrentItemChanged();
 
-    void showAvailableTtsOptions(int engine);
-    void saveEngineVoice(int voice);
-    void saveEngineEmotion(int emotion);
-    void detectTextLanguage();
-    void speakTestText();
+    void saveYandexEngineVoice(int voice);
+    void saveYandexEngineEmotion(int emotion);
+    void detectYandexTextLanguage();
+    void speakYandexTestText();
 
     void loadShortcut(ShortcutItem *item);
     void updateAcceptButton();
@@ -93,9 +92,6 @@ private:
     void addLocale(const QLocale &locale);
     void activateCompactMode();
     void loadSettings();
-    void setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices);
-    void setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions);
-    void setSpeechTestEnabled(bool enabled);
 
     Ui::SettingsDialog *ui;
 

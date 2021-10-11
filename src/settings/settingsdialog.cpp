@@ -63,8 +63,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 #endif
 
     // Test voice
-    ui->playerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
+    ui->yandexPlayerButtons->setMediaPlayer(new QMediaPlayer);
+    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakYandexTestText);
 
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
@@ -164,7 +164,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Check current date
     const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31) || (date.month() == 1 && date.day() == 1))
-        ui->testSpeechEdit->setText(tr("Happy New Year!"));
+        ui->yandexTestSpeechEdit->setText(tr("Happy New Year!"));
 
     loadSettings();
 }
@@ -250,8 +250,8 @@ void SettingsDialog::accept()
     settings.setTesseractParameters(ui->tesseractParametersTableWidget->parameters());
 
     // Speech synthesis settings
-    settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
-    settings.setEmotion(QOnlineTranslator::Yandex, ui->playerButtons->emotion(QOnlineTranslator::Yandex));
+    settings.setVoice(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->voice(QOnlineTranslator::Yandex));
+    settings.setEmotion(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -355,81 +355,37 @@ void SettingsDialog::onTesseractParametersCurrentItemChanged()
         ui->tesseractParametersRemoveButton->setEnabled(true);
 }
 
-// Disable unsupported voice settings for engines.
-void SettingsDialog::showAvailableTtsOptions(int engine)
-{
-    // Avoid index changed signal
-    ui->voiceComboBox->blockSignals(true);
-    ui->emotionComboBox->blockSignals(true);
-
-    switch (engine) {
-    case QOnlineTranslator::Bing:
-        setSpeechTestEnabled(false);
-        setVoiceOptions({});
-        setEmotionOptions({});
-        break;
-    case QOnlineTranslator::Google:
-        setSpeechTestEnabled(true);
-        setVoiceOptions({});
-        setEmotionOptions({});
-        break;
-    case QOnlineTranslator::Yandex:
-        setSpeechTestEnabled(true);
-        setVoiceOptions({{tr("Zahar"), QOnlineTts::Zahar},
-                         {tr("Ermil"), QOnlineTts::Ermil},
-                         {tr("Jane"), QOnlineTts::Jane},
-                         {tr("Oksana"), QOnlineTts::Oksana},
-                         {tr("Alyss"), QOnlineTts::Alyss},
-                         {tr("Omazh"), QOnlineTts::Omazh}});
-        setEmotionOptions({{tr("Neutral"), QOnlineTts::Neutral},
-                           {tr("Good"), QOnlineTts::Good},
-                           {tr("Evil"), QOnlineTts::Evil}});
-
-        const QOnlineTts::Voice voice = ui->playerButtons->voice(QOnlineTranslator::Yandex);
-        const QOnlineTts::Emotion emotion = ui->playerButtons->emotion(QOnlineTranslator::Yandex);
-
-        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(voice));
-        ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(emotion));
-        break;
-    }
-
-    ui->voiceComboBox->blockSignals(false);
-    ui->emotionComboBox->blockSignals(false);
-}
-
 // Save current engine voice settings
-void SettingsDialog::saveEngineVoice(int voice)
+void SettingsDialog::saveYandexEngineVoice(int voice)
 {
-    ui->playerButtons->setVoice(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->voiceComboBox->itemData(voice).value<QOnlineTts::Voice>());
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, ui->yandexVoiceComboBox->itemData(voice).value<QOnlineTts::Voice>());
 }
 
 // Save current engine emotion settings
-void SettingsDialog::saveEngineEmotion(int emotion)
+void SettingsDialog::saveYandexEngineEmotion(int emotion)
 {
-    ui->playerButtons->setEmotion(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->emotionComboBox->itemData(emotion).value<QOnlineTts::Emotion>());
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, ui->yandexEmotionComboBox->itemData(emotion).value<QOnlineTts::Emotion>());
 }
 
 // To play test text
-void SettingsDialog::detectTextLanguage()
+void SettingsDialog::detectYandexTextLanguage()
 {
-    if (ui->testSpeechEdit->text().isEmpty()) {
+    if (ui->yandexTestSpeechEdit->text().isEmpty()) {
         QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
         return;
     }
 
-    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    m_translator->detectLanguage(ui->testSpeechEdit->text(), engine);
+    m_translator->detectLanguage(ui->yandexTestSpeechEdit->text(), QOnlineTranslator::Yandex);
 }
 
-void SettingsDialog::speakTestText()
+void SettingsDialog::speakYandexTestText()
 {
     if (m_translator->error() != QOnlineTranslator::NoError) {
         QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
         return;
     }
 
-    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    ui->playerButtons->speak(ui->testSpeechEdit->text(), m_translator->sourceLanguage(), engine);
+    ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_translator->sourceLanguage(), QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)
@@ -569,8 +525,8 @@ void SettingsDialog::restoreDefaults()
     ui->tesseractParametersTableWidget->setParameters(AppSettings::defaultTesseractParameters());
 
     // Speech synthesis settings
-    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
-    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(AppSettings::defaultProxyType());
@@ -674,8 +630,8 @@ void SettingsDialog::loadSettings()
     ui->tesseractParametersTableWidget->setParameters(settings.tesseractParameters());
 
     // Speech synthesis settings
-    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
-    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
@@ -693,47 +649,4 @@ void SettingsDialog::loadSettings()
         ui->globalShortcutsCheckBox->setEnabled(false);
     }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
-}
-
-void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)
-{
-    ui->voiceComboBox->clear();
-
-    if (voices.isEmpty()) {
-        // Disable voice settings
-        ui->voiceLabel->setEnabled(false);
-        ui->voiceComboBox->setEnabled(false);
-        ui->voiceComboBox->addItem(tr("Default"));
-        return;
-    }
-
-    ui->voiceLabel->setEnabled(true);
-    ui->voiceComboBox->setEnabled(true);
-    for (auto it = voices.cbegin(); it != voices.cend(); ++it)
-        ui->voiceComboBox->addItem(it.key(), it.value());
-}
-
-void SettingsDialog::setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions)
-{
-    ui->emotionComboBox->clear();
-
-    if (emotions.isEmpty()) {
-        // Disable emotion settings
-        ui->emotionLabel->setEnabled(false);
-        ui->emotionComboBox->setEnabled(false);
-        ui->emotionComboBox->addItem(tr("Default"));
-        return;
-    }
-
-    ui->emotionLabel->setEnabled(true);
-    ui->emotionComboBox->setEnabled(true);
-    for (auto it = emotions.cbegin(); it != emotions.cend(); ++it)
-        ui->emotionComboBox->addItem(it.key(), it.value());
-}
-
-void SettingsDialog::setSpeechTestEnabled(bool enabled)
-{
-    ui->testSpeechEdit->setEnabled(enabled);
-    ui->playerButtons->setEnabled(enabled);
-    ui->testSpeechLabel->setEnabled(enabled);
 }
