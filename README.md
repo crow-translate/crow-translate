@@ -113,6 +113,7 @@ The program also has a console interface.
         ├── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakSelection();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakTranslatedSelection();
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.playPauseSpeaking();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.open();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection();
