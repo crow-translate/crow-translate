@@ -43,7 +43,7 @@
 SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
-    , m_translator(new QOnlineTranslator(this))
+    , m_yandexTranslator(new QOnlineTranslator(this))
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
@@ -64,7 +64,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
     // Test voice
     ui->yandexPlayerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakYandexTestText);
+    connect(m_yandexTranslator, &QOnlineTranslator::finished, this, &SettingsDialog::speakYandexTestText);
 
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
@@ -375,17 +375,17 @@ void SettingsDialog::detectYandexTextLanguage()
         return;
     }
 
-    m_translator->detectLanguage(ui->yandexTestSpeechEdit->text(), QOnlineTranslator::Yandex);
+    m_yandexTranslator->detectLanguage(ui->yandexTestSpeechEdit->text(), QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::speakYandexTestText()
 {
-    if (m_translator->error() != QOnlineTranslator::NoError) {
-        QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
+    if (m_yandexTranslator->error() != QOnlineTranslator::NoError) {
+        QMessageBox::critical(this, tr("Unable to detect language"), m_yandexTranslator->errorString());
         return;
     }
 
-    ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_translator->sourceLanguage(), QOnlineTranslator::Yandex);
+    ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_yandexTranslator->sourceLanguage(), QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)

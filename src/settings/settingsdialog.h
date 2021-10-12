@@ -96,7 +96,7 @@ private:
     Ui::SettingsDialog *ui;
 
     // Test voice
-    QOnlineTranslator *m_translator;
+    QOnlineTranslator *m_yandexTranslator;
 
 #ifdef WITH_PORTABLE_MODE
     QCheckBox *m_portableCheckbox;
