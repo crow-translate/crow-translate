@@ -127,14 +127,14 @@
          <x>0</x>
          <y>0</y>
          <width>633</width>
-         <height>604</height>
+         <height>605</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QStackedWidget" name="pagesStackedWidget">
           <property name="currentIndex">
-           <number>4</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="generalPage">
            <layout class="QVBoxLayout" name="generalLayout">
@@ -763,6 +763,131 @@
                  <property name="text">
                   <string>Force translation language detection</string>
                  </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="libreTranslateGroupBox">
+              <property name="title">
+               <string>LibreTranslate</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout_10">
+               <item row="1" column="0">
+                <widget class="QLabel" name="libreTranslateUrlLabel">
+                 <property name="text">
+                  <string>URL:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="libreTranslateApiKeyTextEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate instance API key. Free instances listed here doesn't require key, so field can be empty.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string notr="true"/>
+                 </property>
+                 <property name="placeholderText">
+                  <string>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="libreTranslateApiKeyLabel">
+                 <property name="text">
+                  <string>API key:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="libreTranslateUrlComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate engine URL string. All instances can be found here: https://github.com/LibreTranslate/LibreTranslate#mirrors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentText">
+                  <string notr="true">https://translate.argosopentech.com</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>https://translate.argosopentech.com</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>https://translate.astian.org</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>https://translate.mentality.rip</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>https://libretranslate.de</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="lingvaGroupBox">
+              <property name="title">
+               <string>Lingva</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout_11">
+               <item row="0" column="0">
+                <widget class="QLabel" name="lingvaUrlLabel">
+                 <property name="text">
+                  <string>URL:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="lingvaUrlComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingva engine URL string. All instances can be found here: https://github.com/TheDavidDelta/lingva-translate#instances&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentText">
+                  <string notr="true">https://lingva.ml</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string>https://lingva.ml</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>https://translate.alefvanoon.xyz</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>https://translate.igna.rocks</string>
+                  </property>
+                 </item>
                 </widget>
                </item>
               </layout>
@@ -1673,9 +1798,7 @@
    <header>settings/tesseractparameterstablewidget.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../../data/icons/engines/engines.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>dialogButtonBox</sender>

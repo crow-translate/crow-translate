@@ -618,6 +618,11 @@ void SettingsDialog::loadSettings()
     ui->forceSourceAutodetectCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutodetectCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
+    // Engines settings
+    ui->libreTranslateUrlComboBox->setCurrentText(settings.engineUrl(QOnlineTranslator::LibreTranslate));
+    ui->libreTranslateApiKeyTextEdit->setText(settings.engineApiKey(QOnlineTranslator::LibreTranslate));
+    ui->lingvaUrlComboBox->setCurrentText(settings.engineUrl(QOnlineTranslator::Lingva));
+
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
