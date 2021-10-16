@@ -556,10 +556,8 @@ QString AppSettings::engineUrl(QOnlineTranslator::Engine engine) const
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
         return m_settings->value(QStringLiteral("Translation/LibreTranslateUrl"), defaultEngineUrl(engine)).toString();
-        break;
     case QOnlineTranslator::Lingva:
         return m_settings->value(QStringLiteral("Translation/LingvaUrl"), defaultEngineUrl(engine)).toString();
-        break;
     default:
         Q_UNREACHABLE();
     }
@@ -584,10 +582,8 @@ QString AppSettings::defaultEngineUrl(QOnlineTranslator::Engine engine)
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
         return QStringLiteral("https://translate.argosopentech.com");
-        break;
     case QOnlineTranslator::Lingva:
         return QStringLiteral("https://lingva.ml");
-        break;
     default:
         Q_UNREACHABLE();
     }
@@ -598,7 +594,6 @@ QByteArray AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
         return m_settings->value(QStringLiteral("Translation/LibreTranslateApiKey"), defaultEngineApiKey(engine)).toByteArray();
-        break;
     default:
         Q_UNREACHABLE();
     }
@@ -621,7 +616,6 @@ QByteArray AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
         return QByteArray();
-        break;
     default:
         Q_UNREACHABLE();
     }
