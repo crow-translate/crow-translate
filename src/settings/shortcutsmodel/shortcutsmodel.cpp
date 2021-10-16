@@ -153,7 +153,7 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
 
     ShortcutItem *childItem = parentItem->child(row);
     if (childItem == nullptr)
-        return QModelIndex();
+        return {};
 
     return createIndex(row, column, childItem);
 }
