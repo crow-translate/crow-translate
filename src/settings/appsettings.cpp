@@ -615,7 +615,7 @@ QByteArray AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
-        return QByteArray();
+        return {};
     default:
         Q_UNREACHABLE();
     }
@@ -912,7 +912,7 @@ void AppSettings::setCopyTranslatedSelectionShortcut(const QKeySequence &shortcu
 
 QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
-    return QKeySequence();
+    return {};
 }
 
 QKeySequence AppSettings::recognizeScreenAreaShortcut() const

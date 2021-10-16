@@ -91,11 +91,11 @@ Selection::Selection()
 {
     m_maxSelectionDelay->setSingleShot(true);
     m_maxSelectionDelay->setInterval(1000ms);
-#   if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
+#if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
     connect(m_maxSelectionWaitDelay, &QTimer::timeout, this, &Selection::saveSelection);
-#   else
+#else
     m_maxSelectionDelay->callOnTimeout(this, &Selection::getSelection);
-#   endif
+#endif
 }
 #else
 Selection::Selection() = default;
