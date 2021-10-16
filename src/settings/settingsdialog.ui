@@ -790,7 +790,7 @@
                   <string notr="true"/>
                  </property>
                  <property name="placeholderText">
-                  <string>xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
+                  <string notr="true">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
                  </property>
                 </widget>
                </item>
@@ -820,22 +820,22 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>https://translate.argosopentech.com</string>
+                   <string notr="true">https://translate.argosopentech.com</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>https://translate.astian.org</string>
+                   <string notr="true">https://translate.astian.org</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>https://translate.mentality.rip</string>
+                   <string notr="true">https://translate.mentality.rip</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>https://libretranslate.de</string>
+                   <string notr="true">https://libretranslate.de</string>
                   </property>
                  </item>
                 </widget>
@@ -875,17 +875,17 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>https://lingva.ml</string>
+                   <string notr="true">https://lingva.ml</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>https://translate.alefvanoon.xyz</string>
+                   <string notr="true">https://translate.alefvanoon.xyz</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string>https://translate.igna.rocks</string>
+                   <string notr="true">https://translate.igna.rocks</string>
                   </property>
                  </item>
                 </widget>
