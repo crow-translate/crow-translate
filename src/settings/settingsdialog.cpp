@@ -513,6 +513,11 @@ void SettingsDialog::restoreDefaults()
     ui->forceSourceAutodetectCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutodetectCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
+    // Engine settings
+    ui->libreTranslateUrlComboBox->setCurrentText(AppSettings::defaultEngineUrl(QOnlineTranslator::LibreTranslate));
+    ui->libreTranslateApiKeyTextEdit->setText(AppSettings::defaultEngineApiKey(QOnlineTranslator::LibreTranslate));
+    ui->lingvaUrlComboBox->setCurrentText(AppSettings::defaultEngineUrl(QOnlineTranslator::Lingva));
+
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(AppSettings::defaultConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
