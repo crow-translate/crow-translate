@@ -102,7 +102,7 @@ ShortcutsModel::~ShortcutsModel()
 QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+        return {};
 
     const auto *shortcut = static_cast<ShortcutItem *>(index.internalPointer());
 
@@ -127,7 +127,7 @@ QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant ShortcutsModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -141,13 +141,13 @@ QVariant ShortcutsModel::headerData(int section, Qt::Orientation orientation, in
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!hasIndex(row, column, parent))
-        return QModelIndex();
+        return {};
 
     ShortcutItem *parentItem = parent.isValid() ? static_cast<ShortcutItem *>(parent.internalPointer()) : m_rootItem;
 
@@ -161,13 +161,13 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
 QModelIndex ShortcutsModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
     auto *item = static_cast<ShortcutItem *>(index.internalPointer());
     ShortcutItem *parentItem = item->parentItem();
 
     if (parentItem == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return createIndex(parentItem->row(), 0, parentItem);
 }
@@ -279,7 +279,7 @@ void ShortcutsModel::updateItem(ShortcutItem *item)
 QModelIndex ShortcutsModel::index(ShortcutItem *item, int column) const
 {
     if (item == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return index(item->row(), column, index(item->parentItem(), column));
 }
