@@ -208,9 +208,9 @@ public:
     void setEngineUrl(QOnlineTranslator::Engine engine, QString url);
     static QString defaultEngineUrl(QOnlineTranslator::Engine engine);
 
-    QString engineApiKey(QOnlineTranslator::Engine engine) const;
-    void setEngineApiKey(QOnlineTranslator::Engine engine, QString apiKey);
-    static QString defaultEngineApiKey(QOnlineTranslator::Engine engine);
+    QByteArray engineApiKey(QOnlineTranslator::Engine engine) const;
+    void setEngineApiKey(QOnlineTranslator::Engine engine, QByteArray apiKey);
+    static QByteArray defaultEngineApiKey(QOnlineTranslator::Engine engine);
 
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;

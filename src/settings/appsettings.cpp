@@ -593,7 +593,7 @@ QString AppSettings::defaultEngineUrl(QOnlineTranslator::Engine engine)
     }
 }
 
-QString AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
+QByteArray AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
@@ -604,7 +604,7 @@ QString AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
     }
 }
 
-void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, QString apiKey)
+void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, QByteArray apiKey)
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
@@ -615,11 +615,11 @@ void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, QString apiK
     }
 }
 
-QString AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
+QByteArray AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
-        return QString();
+        return QByteArray();
         break;
     default:
         Q_UNREACHABLE();
