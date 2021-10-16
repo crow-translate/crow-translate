@@ -5,7 +5,7 @@
    viewBox="0 0 49.488472 49.957363"
    version="1.1"
    id="svg8"
-   sodipodi:docname="icon.svg"
+   sodipodi:docname="libretranslate.svg"
    inkscape:version="1.1.1 (3bf5ae0d25, 2021-09-20)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
@@ -22,10 +22,10 @@
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
-     showgrid="false"
-     inkscape:zoom="1.3463156"
-     inkscape:cx="74.648173"
-     inkscape:cy="162.29478"
+     showgrid="true"
+     inkscape:zoom="2.6926312"
+     inkscape:cx="91.546143"
+     inkscape:cy="120.88547"
      inkscape:window-width="1280"
      inkscape:window-height="965"
      inkscape:window-x="0"
@@ -48,6 +48,9 @@
        position="0,0"
        orientation="-188.81523,0"
        id="guide48" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid22" />
   </sodipodi:namedview>
   <defs
      id="defs2">
@@ -96,10 +99,10 @@
      x="0"
      y="-2.5052875e-08"
      rx="0"
-     ry="3.3917263" />
+     ry="5.2916665" />
   <g
      id="layer1"
-     transform="matrix(0.90378214,0,0,0.90378214,-18.557241,-21.825908)">
+     transform="matrix(0.89290527,0,0,0.89290527,-18.263966,-21.701959)">
     <g
        id="g861"
        transform="translate(-42.114518,-17.993737)"
