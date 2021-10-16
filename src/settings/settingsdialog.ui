@@ -127,14 +127,14 @@
          <x>0</x>
          <y>0</y>
          <width>633</width>
-         <height>605</height>
+         <height>604</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QStackedWidget" name="pagesStackedWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>2</number>
           </property>
           <widget class="QWidget" name="generalPage">
            <layout class="QVBoxLayout" name="generalLayout">
@@ -443,7 +443,7 @@
                   </sizepolicy>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;How many seconds popup will appear on screen&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The number of seconds after which the window will be hidden if it has no focus&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="suffix">
                   <string> sec</string>
@@ -813,7 +813,7 @@
                   </sizepolicy>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate engine URL string&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/LibreTranslate/LibreTranslate#mirrors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate engine URL&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/LibreTranslate/LibreTranslate#mirrors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="editable">
                   <bool>true</bool>
@@ -868,7 +868,7 @@
                   </sizepolicy>
                  </property>
                  <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingva engine URL string&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/TheDavidDelta/lingva-translate#instances&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingva engine URL&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/TheDavidDelta/lingva-translate#instances&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="editable">
                   <bool>true</bool>
