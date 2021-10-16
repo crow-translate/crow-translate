@@ -47,13 +47,11 @@ AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
 #ifndef WITH_PORTABLE_MODE
     , m_settings(new QSettings(this))
-{
-}
 #else
-{
-    m_settings = QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this);
-}
+    , m_settings(QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this))
 #endif
+{
+}
 
 void AppSettings::setupLocalization() const
 {
