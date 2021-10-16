@@ -238,6 +238,11 @@ void SettingsDialog::accept()
     settings.setForceSourceAutodetect(ui->forceSourceAutodetectCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutodetectCheckBox->isChecked());
 
+    // Engine settings
+    settings.setEngineUrl(QOnlineTranslator::LibreTranslate, ui->libreTranslateUrlComboBox->currentText());
+    settings.setEngineApiKey(QOnlineTranslator::LibreTranslate, ui->libreTranslateApiKeyTextEdit->text().toUtf8());
+    settings.setEngineUrl(QOnlineTranslator::LibreTranslate, ui->lingvaUrlComboBox->currentText());
+
     // OCR
     settings.setConvertLineBreaks(ui->convertLineBreaksCheckBox->isChecked());
     settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
