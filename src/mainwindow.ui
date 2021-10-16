@@ -221,10 +221,18 @@
            <property name="text">
             <string notr="true">LibreTranslate</string>
            </property>
+           <property name="icon">
+            <iconset resource="../data/icons/engines/engines.qrc">
+             <normaloff>:/icons/engines/libretranslate.svg</normaloff>:/icons/engines/libretranslate.svg</iconset>
+           </property>
           </item>
           <item>
            <property name="text">
             <string notr="true">Lingva</string>
+           </property>
+           <property name="icon">
+            <iconset resource="../data/icons/engines/engines.qrc">
+             <normaloff>:/icons/engines/lingva.svg</normaloff>:/icons/engines/lingva.svg</iconset>
            </property>
           </item>
          </widget>
