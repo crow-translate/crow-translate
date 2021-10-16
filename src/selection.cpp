@@ -85,20 +85,21 @@ void Selection::requestSelection()
 #endif
 }
 
-// NOLINTNEXTLINE(modernize-use-equals-default)
-Selection::Selection()
-{
 #ifdef Q_OS_WIN
-    m_maxSelectionDelay = new QTimer(this);
+Selection::Selection()
+    : m_maxSelectionDelay(new QTimer(this))
+{
     m_maxSelectionDelay->setSingleShot(true);
     m_maxSelectionDelay->setInterval(1000ms);
-#if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
+#   if QT_VERSION < QT_VERSION_CHECK(5, 12, 0)
     connect(m_maxSelectionWaitDelay, &QTimer::timeout, this, &Selection::saveSelection);
-#else
+#   else
     m_maxSelectionDelay->callOnTimeout(this, &Selection::getSelection);
-#endif
-#endif
+#   endif
 }
+#else
+Selection::Selection() = default;
+#endif
 
 void Selection::getSelection()
 {

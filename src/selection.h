@@ -53,7 +53,7 @@ private slots:
 #ifdef Q_OS_WIN
 private:
     QScopedPointer<QMimeData> m_originalClipboardData;
-    QTimer *m_maxSelectionDelay;
+    QTimer *m_maxSelectionDelay = nullptr;
 #endif
 };
 
