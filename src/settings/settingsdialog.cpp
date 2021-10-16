@@ -241,7 +241,7 @@ void SettingsDialog::accept()
     // Engine settings
     settings.setEngineUrl(QOnlineTranslator::LibreTranslate, ui->libreTranslateUrlComboBox->currentText());
     settings.setEngineApiKey(QOnlineTranslator::LibreTranslate, ui->libreTranslateApiKeyTextEdit->text().toUtf8());
-    settings.setEngineUrl(QOnlineTranslator::LibreTranslate, ui->lingvaUrlComboBox->currentText());
+    settings.setEngineUrl(QOnlineTranslator::Lingva, ui->lingvaUrlComboBox->currentText());
 
     // OCR
     settings.setConvertLineBreaks(ui->convertLineBreaksCheckBox->isChecked());
