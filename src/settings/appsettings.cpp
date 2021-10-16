@@ -605,7 +605,6 @@ void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, const QByteA
         break;
     default:
         Q_UNREACHABLE();
-        break;
     }
 }
 
