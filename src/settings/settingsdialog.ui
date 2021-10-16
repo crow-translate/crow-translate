@@ -771,13 +771,13 @@
             <item>
              <widget class="QGroupBox" name="libreTranslateGroupBox">
               <property name="title">
-               <string>LibreTranslate</string>
+               <string notr="true">LibreTranslate</string>
               </property>
               <layout class="QFormLayout" name="formLayout_10">
                <item row="1" column="0">
                 <widget class="QLabel" name="libreTranslateUrlLabel">
                  <property name="text">
-                  <string>URL:</string>
+                  <string notr="true">URL:</string>
                  </property>
                 </widget>
                </item>
@@ -846,13 +846,13 @@
             <item>
              <widget class="QGroupBox" name="lingvaGroupBox">
               <property name="title">
-               <string>Lingva</string>
+               <string notr="true">Lingva</string>
               </property>
               <layout class="QFormLayout" name="formLayout_11">
                <item row="0" column="0">
                 <widget class="QLabel" name="lingvaUrlLabel">
                  <property name="text">
-                  <string>URL:</string>
+                  <string notr="true">URL:</string>
                  </property>
                 </widget>
                </item>
