@@ -217,6 +217,16 @@
              <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
            </property>
           </item>
+          <item>
+           <property name="text">
+            <string notr="true">LibreTranslate</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string notr="true">Lingva</string>
+           </property>
+          </item>
          </widget>
         </item>
         <item>
