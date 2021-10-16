@@ -975,6 +975,11 @@ void MainWindow::loadAppSettings()
     m_forceSourceAutodetect = settings.isForceSourceAutodetect();
     m_forceTranslationAutodetect = settings.isForceTranslationAutodetect();
 
+    // Engine settings
+    m_translator->setEngineUrl(QOnlineTranslator::LibreTranslate, settings.engineUrl(QOnlineTranslator::LibreTranslate));
+    m_translator->setEngineApiKey(QOnlineTranslator::LibreTranslate, settings.engineApiKey(QOnlineTranslator::LibreTranslate));
+    m_translator->setEngineUrl(QOnlineTranslator::Lingva, settings.engineUrl(QOnlineTranslator::Lingva));
+
     // OCR settings
     if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->init(languages, path, settings.tesseractParameters())) {
         // Show error only if languages was specified by user

@@ -80,6 +80,6 @@ QString TrayIcon::trayIconName(AppSettings::IconType type)
     case AppSettings::LightIcon:
         return QStringLiteral("crow-translate-tray-light");
     default:
-        return QString();
+        return {};
     }
 }

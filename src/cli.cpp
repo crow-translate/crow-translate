@@ -132,6 +132,10 @@ void Cli::process(const QCoreApplication &app)
         m_engine = QOnlineTranslator::Yandex;
     } else if (parser.value(engine) == QLatin1String("bing")) {
         m_engine = QOnlineTranslator::Bing;
+    } else if (parser.value(engine) == QLatin1String("libretranslate")) {
+        m_engine = QOnlineTranslator::LibreTranslate;
+    } else if (parser.value(engine) == QLatin1String("lingva")) {
+        m_engine = QOnlineTranslator::Lingva;
     } else {
         qCritical() << tr("Error: Unknown engine") << '\n';
         parser.showHelp();

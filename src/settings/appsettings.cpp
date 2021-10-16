@@ -47,13 +47,11 @@ AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
 #ifndef WITH_PORTABLE_MODE
     , m_settings(new QSettings(this))
-{
-}
 #else
-{
-    m_settings = QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this);
-}
+    , m_settings(QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this))
 #endif
+{
+}
 
 void AppSettings::setupLocalization() const
 {
@@ -551,11 +549,83 @@ bool AppSettings::defaultForceTranslationAutodetect()
     return true;
 }
 
+QString AppSettings::engineUrl(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return m_settings->value(QStringLiteral("Translation/LibreTranslateUrl"), defaultEngineUrl(engine)).toString();
+    case QOnlineTranslator::Lingva:
+        return m_settings->value(QStringLiteral("Translation/LingvaUrl"), defaultEngineUrl(engine)).toString();
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+void AppSettings::setEngineUrl(QOnlineTranslator::Engine engine, const QString &url)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        m_settings->setValue(QStringLiteral("Translation/LibreTranslateUrl"), url);
+        break;
+    case QOnlineTranslator::Lingva:
+        m_settings->setValue(QStringLiteral("Translation/LingvaUrl"), url);
+        break;
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QString AppSettings::defaultEngineUrl(QOnlineTranslator::Engine engine)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return QStringLiteral("https://translate.argosopentech.com");
+    case QOnlineTranslator::Lingva:
+        return QStringLiteral("https://lingva.ml");
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QByteArray AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return m_settings->value(QStringLiteral("Translation/LibreTranslateApiKey"), defaultEngineApiKey(engine)).toByteArray();
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        m_settings->setValue(QStringLiteral("Translation/LibreTranslateApiKey"), apiKey);
+        break;
+    default:
+        Q_UNREACHABLE();
+        break;
+    }
+}
+
+QByteArray AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return {};
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
 QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::Google:
     case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexVoice"), defaultVoice(engine)).value<QOnlineTts::Voice>();
@@ -581,6 +651,8 @@ QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
     switch (engine) {
     case QOnlineTranslator::Google:
     case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Zahar;
@@ -592,8 +664,10 @@ QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
 QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
-    case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexEmotion"), defaultEmotion(engine)).value<QOnlineTts::Emotion>();
@@ -617,8 +691,10 @@ void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emoti
 QOnlineTts::Emotion AppSettings::defaultEmotion(QOnlineTranslator::Engine engine)
 {
     switch (engine) {
-    case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Neutral;
@@ -834,7 +910,7 @@ void AppSettings::setCopyTranslatedSelectionShortcut(const QKeySequence &shortcu
 
 QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
-    return QKeySequence();
+    return {};
 }
 
 QKeySequence AppSettings::recognizeScreenAreaShortcut() const

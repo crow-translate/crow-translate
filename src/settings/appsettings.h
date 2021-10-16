@@ -204,6 +204,14 @@ public:
     void setForceTranslationAutodetect(bool force);
     static bool defaultForceTranslationAutodetect();
 
+    QString engineUrl(QOnlineTranslator::Engine engine) const;
+    void setEngineUrl(QOnlineTranslator::Engine engine, const QString &url);
+    static QString defaultEngineUrl(QOnlineTranslator::Engine engine);
+
+    QByteArray engineApiKey(QOnlineTranslator::Engine engine) const;
+    void setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey);
+    static QByteArray defaultEngineApiKey(QOnlineTranslator::Engine engine);
+
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
     void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);

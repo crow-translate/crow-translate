@@ -19,7 +19,7 @@ FetchContent_Declare(QHotkey
 
 FetchContent_Declare(QOnlineTranslator
     GIT_REPOSITORY https://github.com/crow-translate/QOnlineTranslator
-    GIT_TAG 1.5.0
+    GIT_TAG 1.5.1
 )
 
 FetchContent_Declare(CircleFlags
@@ -39,7 +39,7 @@ FetchContent_GetProperties(FluentIconTheme SOURCE_DIR FluentIconTheme_SOURCE_DIR
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG 1.0.8
+        GIT_TAG 1.0.9
     )
 
     FetchContent_MakeAvailable(QGitTag)
