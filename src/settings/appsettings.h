@@ -205,11 +205,11 @@ public:
     static bool defaultForceTranslationAutodetect();
 
     QString engineUrl(QOnlineTranslator::Engine engine) const;
-    void setEngineUrl(QOnlineTranslator::Engine engine, QString url);
+    void setEngineUrl(QOnlineTranslator::Engine engine, const QString &url);
     static QString defaultEngineUrl(QOnlineTranslator::Engine engine);
 
     QByteArray engineApiKey(QOnlineTranslator::Engine engine) const;
-    void setEngineApiKey(QOnlineTranslator::Engine engine, QByteArray apiKey);
+    void setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey);
     static QByteArray defaultEngineApiKey(QOnlineTranslator::Engine engine);
 
     // Speech synthesis settings

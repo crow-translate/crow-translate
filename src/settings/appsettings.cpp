@@ -563,7 +563,7 @@ QString AppSettings::engineUrl(QOnlineTranslator::Engine engine) const
     }
 }
 
-void AppSettings::setEngineUrl(QOnlineTranslator::Engine engine, QString url)
+void AppSettings::setEngineUrl(QOnlineTranslator::Engine engine, const QString &url)
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:
@@ -599,7 +599,7 @@ QByteArray AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
     }
 }
 
-void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, QByteArray apiKey)
+void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey)
 {
     switch (engine) {
     case QOnlineTranslator::LibreTranslate:

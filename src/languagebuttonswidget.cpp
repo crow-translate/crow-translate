@@ -373,7 +373,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Welsh:
         return QIcon(":/icons/flags/gb-wls.svg");
     default:
-        return QIcon();
+        return {};
     }
 }
 
@@ -511,7 +511,7 @@ void LanguageButtonsWidget::addOrCheckLanguage(QOnlineTranslator::Language lang)
         return;
 
     addLanguage(lang);
-    m_buttonGroup->buttons().last()->setChecked(true);
+    m_buttonGroup->buttons().constLast()->setChecked(true);
 }
 
 void LanguageButtonsWidget::addButton(QOnlineTranslator::Language lang)
