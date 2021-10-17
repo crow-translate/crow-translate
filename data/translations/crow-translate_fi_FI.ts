@@ -135,7 +135,7 @@
     <message>
       <location filename="../../src/cli.cpp" line="57"/>
       <source>Specify the translator engine (&apos;google&apos;, &apos;yandex&apos;, &apos;bing&apos;, &apos;libretranslate&apos; or &apos;lingva&apos;), Google is used by default.</source>
-      <translation>Määritä kääntäjän käännösmoottori (&apos;google&apos;, &apos;yandex&apos;, &apos;bing&apos;, &apos;libretranslate&apos; tai &apos;lingva&apos;), Googlea käytetään oletusarvoisesti.</translation>
+      <translation>Määritä käännösmoottori (&apos;google&apos;, &apos;yandex&apos;, &apos;bing&apos;, &apos;libretranslate&apos; tai &apos;lingva&apos;), Googlea käytetään oletusarvoisesti.</translation>
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="67"/>
