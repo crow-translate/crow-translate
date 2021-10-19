@@ -252,5 +252,6 @@ elseif(WIN32)
                 FILES "${DEPENDENCY}"
             )
         endforeach()
+        file(WRITE ${CMAKE_INSTALL_PREFIX}/qt.conf "[Paths]") # Setup Qt libraries paths
     ]])
 endif()
