@@ -229,8 +229,8 @@ elseif(WIN32)
     install(CODE "execute_process(COMMAND ${WINDEPLOYQT} --no-compiler-runtime --no-angle \${CMAKE_INSTALL_PREFIX}/$<TARGET_FILE_NAME:${PROJECT_NAME}>)")
 
     # Bundle OpenSLL libraries that required for Qt networking manually because it not handled by windeployqt
-    find_file(SLL_DLL NAMES libssl.dll libssl-1_1.dll libssl-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
-    find_file(CRYPTO_DLL NAMES libcrypto.dll libcrypto-1_1.dll libcrypto-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
+    find_file(SLL_DLL NAMES libssl-1_1-x64.dll libssl-1_1.dll libssl.dll PATH_SUFFIXES tools/qt5/bin)
+    find_file(CRYPTO_DLL NAMES libcrypto-1_1-x64.dll libcrypto-1_1.dll libcrypto.dll PATH_SUFFIXES tools/qt5/bin)
     install(FILES ${SLL_DLL} ${CRYPTO_DLL} DESTINATION .)
 
     # Install other non-Qt runtime depenencies
