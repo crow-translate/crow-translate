@@ -1,0 +1,23 @@
+{
+  "name": "crow-translate",
+  "version-string": "2.8.7",
+  "dependencies": [
+    {
+      "name": "tesseract",
+      "features": ["cpu-independed"]
+    },
+    {
+      "name": "qt5-winextras",
+      "platform": "windows"
+    },
+    {
+      "name": "qt5-x11extras",
+      "platform": "linux"
+    },
+    "ecm",
+    "qt5-multimedia",
+    "qt5-svg",
+    "qt5-tools",
+    "qt5-translations"
+  ]
+}

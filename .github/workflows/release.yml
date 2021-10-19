@@ -19,10 +19,11 @@ jobs:
             upload-files: "build/*.deb;build/*.rpm"
           - os: windows-latest
             extra-cmake-arguments: >-
+              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+              -D VCPKG_TARGET_TRIPLET=x64-windows
+              -D VCPKG_INSTALL_OPTIONS=--clean-after-build
               -D WITH_PORTABLE_MODE=ON
               -D CPACK_GENERATOR="NSIS;7Z"
-              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
             upload-files: "build/*.exe;build/*.7z"
         exclude:
           - os: windows-latest
@@ -61,14 +62,11 @@ jobs:
           7z x icoutils.zip
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
-      - name: Install vcpkg packages
-        uses: lukka/run-vcpkg@v7
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@v10
         if: runner.os == 'Windows'
         with:
-          vcpkgArguments: tesseract[cpu-independed] ecm qt5-svg qt5-multimedia qt5-winextras qt5-tools qt5-translations --triplet x64-windows
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
-        env:
-          VCPKG_DISABLE_METRICS: 1
 
       - name: Setup MSVC
         if: runner.os == 'Windows'

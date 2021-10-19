@@ -42,10 +42,10 @@ jobs:
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
           - os: windows-latest
-            # Enable warnings and exclude third-party headers for them
             extra-cmake-arguments: >-
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
+              -D VCPKG_TARGET_TRIPLET=x64-windows
+              -D VCPKG_INSTALL_OPTIONS=--clean-after-build
               -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
               -D CMAKE_CXX_CLANG_TIDY='clang-tidy;--warnings-as-errors=*'
 
@@ -60,14 +60,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev ninja-build
 
-      - name: Install vcpkg packages
-        uses: lukka/run-vcpkg@v7
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@v10
         if: runner.os == 'Windows'
         with:
-          vcpkgArguments: tesseract[cpu-independed] ecm qt5-svg qt5-multimedia qt5-winextras qt5-tools --triplet x64-windows
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
-        env:
-          VCPKG_DISABLE_METRICS: 1
 
       - name: Setup MSVC
         if: runner.os == 'Windows'
