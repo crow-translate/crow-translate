@@ -39,9 +39,6 @@
 
 QTranslator AppSettings::s_appTranslator;
 QTranslator AppSettings::s_qtTranslator;
-#ifdef WITH_PORTABLE_MODE
-const QString AppSettings::s_portableConfigName = QStringLiteral("settings.ini");
-#endif
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
