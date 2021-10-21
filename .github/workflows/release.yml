@@ -38,7 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Install apt packages
         if: runner.os == 'Linux' && matrix.arch == 'amd64'
@@ -49,7 +49,7 @@ jobs:
 
       - name: Install linuxdeploy
         if: matrix.os == 'ubuntu-18.04'
-        uses: miurahr/install-linuxdeploy-action@v1.5.0
+        uses: miurahr/install-linuxdeploy-action@v1
         with:
           plugins: qt gstreamer
 
@@ -79,7 +79,7 @@ jobs:
           cmake --build build --target package --parallel 2 --config Release
 
       - name: Build in Ubuntu 20.04 Docker image
-        uses: uraimo/run-on-arch-action@v2.1.1
+        uses: uraimo/run-on-arch-action@v2
         if: matrix.os == 'ubuntu-20.04' && matrix.arch != 'amd64'
         with:
           arch: ${{ matrix.arch }}
@@ -102,7 +102,7 @@ jobs:
             cmake --build /repo/build --target package --parallel 2
 
       - name: Upload
-        uses: AButler/upload-release-assets@v2.0
+        uses: AButler/upload-release-assets@v2
         with:
           files: ${{ matrix.upload-files }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
