@@ -1,6 +1,6 @@
 {
   "name": "crow-translate",
-  "version-string": "2.8.7",
+  "version-string": "latest",
   "dependencies": [
     {
       "name": "tesseract",
