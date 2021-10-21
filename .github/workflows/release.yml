@@ -24,7 +24,7 @@ jobs:
               -D VCPKG_INSTALL_OPTIONS=--clean-after-build
               -D WITH_PORTABLE_MODE=ON
               -D CPACK_GENERATOR="NSIS;7Z"
-            upload-files: "build/*.exe;build/*.7z"
+            upload-files: "build/crow-translate*.exe;build/*.7z" # Skip app executable
         exclude:
           - os: windows-latest
             arch: aarch64
