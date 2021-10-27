@@ -2379,7 +2379,7 @@ vagy nyomjon Esc-et a kilépéshez</translation>
     <message>
       <location filename="../../src/updaterdialog.ui" line="44"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;A new version of Crow Translate is available! Updates add functionality and improve the stability of the application. Most often.&lt;br/&gt;You can also download the release manually from this &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elérhető a Crow Translate új verziója! A frissítések funkcionalitást biztosítanak és javítják az alkalmazás stabilitását. Leggyakrabban.&lt;br/&gt;Innen manuálisan is letöltheti a kiadást &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Elérhető a Crow Translate új verziója! A frissítések újabb funkciókat adnak hozzá és javítják az alkalmazás stabilitását.&lt;br/&gt;Innen manuálisan is letöltheti a kiadást, &lt;a href=&quot;https://github.com/crow-translate/crow-translate/releases&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/updaterdialog.ui" line="67"/>
@@ -2410,7 +2410,7 @@ vagy nyomjon Esc-et a kilépéshez</translation>
     <message>
       <location filename="../../src/updaterdialog.cpp" line="132"/>
       <source>Downloading is complete</source>
-      <translation>Aletöltés befejeződött</translation>
+      <translation>A letöltés befejeződött</translation>
     </message>
     <message>
       <location filename="../../src/updaterdialog.cpp" line="88"/>
