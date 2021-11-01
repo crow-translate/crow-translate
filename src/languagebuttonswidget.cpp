@@ -341,7 +341,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Slovak:
         return QIcon(":/icons/flags/sk.svg");
     case QOnlineTranslator::Slovenian:
-        return QIcon(":/icons/flags/sl.svg");
+        return QIcon(":/icons/flags/si.svg");
     case QOnlineTranslator::Somali:
         return QIcon(":/icons/flags/so.svg");
     case QOnlineTranslator::Spanish:
