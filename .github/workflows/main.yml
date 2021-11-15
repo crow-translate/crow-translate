@@ -19,7 +19,8 @@ on:
       - "crowdin.yml"
       - "data/translations/**"
 jobs:
-  Formatting:
+  format:
+    name: Format
     runs-on: ubuntu-20.04
     steps:
       - name: Clone repo
@@ -30,7 +31,8 @@ jobs:
         with:
           clangFormatVersion: 12
 
-  Build:
+  build:
+    name: Build
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
