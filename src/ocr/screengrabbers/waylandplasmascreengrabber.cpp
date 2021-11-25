@@ -24,8 +24,8 @@
 #include <QDBusReply>
 #include <QDBusUnixFileDescriptor>
 #include <QPixmap>
-#include <QtConcurrent>
 #include <QScreen>
+#include <QtConcurrent>
 
 #include <fcntl.h>
 #include <unistd.h>
@@ -110,7 +110,7 @@ void WaylandPlasmaScreenGrabber::readPixmapFromSocket(int socketDescriptor)
             return;
         }
 
-        const int bytesRead = read(socketDescriptor, buffer.data(), buffer.capacity());
+        const ssize_t bytesRead = read(socketDescriptor, buffer.data(), buffer.capacity());
         if (bytesRead < 0) {
             QMetaObject::invokeMethod(this, "showError", Q_ARG(QString, tr("Unable to read data from socket: %1.").arg(strerror(errno))));
             return;
@@ -124,6 +124,6 @@ void WaylandPlasmaScreenGrabber::readPixmapFromSocket(int socketDescriptor)
             return;
         }
 
-        data.append(buffer.data(), bytesRead);
+        data.append(buffer.data(), static_cast<int>(bytesRead));
     }
 }

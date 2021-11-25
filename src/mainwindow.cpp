@@ -61,6 +61,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_speakSelectionHotkey(new QHotkey(this))
     , m_speakTranslatedSelectionHotkey(new QHotkey(this))
     , m_stopSpeakingHotkey(new QHotkey(this))
+    , m_playPauseSpeakingHotkey(new QHotkey(this))
     , m_showMainWindowHotkey(new QHotkey(this))
     , m_copyTranslatedSelectionHotkey(new QHotkey(this))
     , m_recognizeScreenAreaHotkey(new QHotkey(this))
@@ -102,6 +103,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_speakSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakSelection);
     connect(m_speakTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::speakTranslatedSelection);
     connect(m_stopSpeakingHotkey, &QHotkey::activated, this, &MainWindow::stopSpeaking);
+    connect(m_playPauseSpeakingHotkey, &QHotkey::activated, this, &MainWindow::playPauseSpeaking);
     connect(m_copyTranslatedSelectionHotkey, &QHotkey::activated, this, &MainWindow::copyTranslatedSelection);
     connect(m_recognizeScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::recognizeScreenArea);
     connect(m_translateScreenAreaHotkey, &QHotkey::activated, this, &MainWindow::translateScreenArea);
@@ -216,6 +218,12 @@ void MainWindow::open()
 
     setWindowState(windowState() & ~Qt::WindowMinimized);
     show();
+
+    // Required to show the application on some WMs like XFWM
+    // if window already opened on different workspace. Doesn't
+    // affect KWin.
+    raise();
+
     activateWindow();
 }
 
@@ -238,6 +246,12 @@ void MainWindow::stopSpeaking()
 {
     ui->sourceSpeakButtons->stopSpeaking();
     ui->translationSpeakButtons->stopSpeaking();
+}
+
+void MainWindow::playPauseSpeaking()
+{
+    ui->sourceSpeakButtons->playPauseSpeaking();
+    ui->translationSpeakButtons->playPauseSpeaking();
 }
 
 void MainWindow::copyTranslatedSelection()
@@ -586,10 +600,8 @@ void MainWindow::changeEvent(QEvent *event)
     switch (event->type()) {
     case QEvent::LocaleChange: {
         // System language chaged
-        AppSettings settings;
-        const QLocale::Language lang = settings.language();
-        if (lang == QLocale::AnyLanguage)
-            AppSettings::applyLanguage(lang); // Reload language if application use system language
+        if (const QLocale locale = AppSettings().locale(); locale == AppSettings::defaultLocale())
+            AppSettings::applyLocale(locale); // Reload language if application use system language
         break;
     }
     case QEvent::LanguageChange:
@@ -963,6 +975,11 @@ void MainWindow::loadAppSettings()
     m_forceSourceAutodetect = settings.isForceSourceAutodetect();
     m_forceTranslationAutodetect = settings.isForceTranslationAutodetect();
 
+    // Engine settings
+    m_translator->setEngineUrl(QOnlineTranslator::LibreTranslate, settings.engineUrl(QOnlineTranslator::LibreTranslate));
+    m_translator->setEngineApiKey(QOnlineTranslator::LibreTranslate, settings.engineApiKey(QOnlineTranslator::LibreTranslate));
+    m_translator->setEngineUrl(QOnlineTranslator::Lingva, settings.engineUrl(QOnlineTranslator::Lingva));
+
     // OCR settings
     if (const QByteArray languages = settings.ocrLanguagesString(), path = settings.ocrLanguagesPath(); !m_ocr->init(languages, path, settings.tesseractParameters())) {
         // Show error only if languages was specified by user
@@ -1006,6 +1023,7 @@ void MainWindow::loadAppSettings()
         m_translateSelectionHotkey->setShortcut(settings.translateSelectionShortcut(), true);
         m_speakSelectionHotkey->setShortcut(settings.speakSelectionShortcut(), true);
         m_stopSpeakingHotkey->setShortcut(settings.stopSpeakingShortcut(), true);
+        m_playPauseSpeakingHotkey->setShortcut(settings.playPauseSpeakingShortcut(), true);
         m_speakTranslatedSelectionHotkey->setShortcut(settings.speakTranslatedSelectionShortcut(), true);
         m_showMainWindowHotkey->setShortcut(settings.showMainWindowShortcut(), true);
         m_copyTranslatedSelectionHotkey->setShortcut(settings.copyTranslatedSelectionShortcut(), true);
@@ -1017,6 +1035,7 @@ void MainWindow::loadAppSettings()
         m_translateSelectionHotkey->setRegistered(false);
         m_speakSelectionHotkey->setRegistered(false);
         m_stopSpeakingHotkey->setRegistered(false);
+        m_playPauseSpeakingHotkey->setRegistered(false);
         m_speakTranslatedSelectionHotkey->setRegistered(false);
         m_showMainWindowHotkey->setRegistered(false);
         m_copyTranslatedSelectionHotkey->setRegistered(false);

@@ -43,7 +43,7 @@
 SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
-    , m_translator(new QOnlineTranslator(this))
+    , m_yandexTranslator(new QOnlineTranslator(this))
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
@@ -63,29 +63,31 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 #endif
 
     // Test voice
-    ui->playerButtons->setMediaPlayer(new QMediaPlayer);
-    connect(m_translator, &QOnlineTranslator::finished, this, &SettingsDialog::speakTestText);
+    ui->yandexPlayerButtons->setMediaPlayer(new QMediaPlayer);
+    connect(m_yandexTranslator, &QOnlineTranslator::finished, this, &SettingsDialog::speakYandexTestText);
 
     // Set item data in comboboxes
-    ui->localeComboBox->addItem(tr("<System language>"), QLocale::AnyLanguage);
-    const QMetaEnum languagesEnum = QMetaEnum::fromType<QLocale::Language>();
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/al.svg")), languagesEnum.valueToKey(QLocale::Albanian), QLocale::Albanian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Chinese), QLocale::Chinese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/nl.svg")), languagesEnum.valueToKey(QLocale::Dutch), QLocale::Dutch);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gb.svg")), languagesEnum.valueToKey(QLocale::English), QLocale::English);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/fr.svg")), languagesEnum.valueToKey(QLocale::French), QLocale::French);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/gr.svg")), languagesEnum.valueToKey(QLocale::Greek), QLocale::Greek);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/in.svg")), languagesEnum.valueToKey(QLocale::Hindi), QLocale::Hindi);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/id.svg")), languagesEnum.valueToKey(QLocale::Indonesian), QLocale::Indonesian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/it.svg")), languagesEnum.valueToKey(QLocale::Italian), QLocale::Italian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/my.svg")), languagesEnum.valueToKey(QLocale::Malay), QLocale::Malay);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/pl.svg")), languagesEnum.valueToKey(QLocale::Polish), QLocale::Polish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/br.svg")), languagesEnum.valueToKey(QLocale::Portuguese), QLocale::Portuguese);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ru.svg")), languagesEnum.valueToKey(QLocale::Russian), QLocale::Russian);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/es.svg")), languagesEnum.valueToKey(QLocale::Spanish), QLocale::Spanish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/tr.svg")), languagesEnum.valueToKey(QLocale::Turkish), QLocale::Turkish);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/cn.svg")), languagesEnum.valueToKey(QLocale::Uighur), QLocale::Uighur);
-    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/ua.svg")), languagesEnum.valueToKey(QLocale::Ukrainian), QLocale::Ukrainian);
+    ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
+    addLocale({QLocale::Albanian, QLocale::Albania});
+    addLocale({QLocale::Azerbaijani, QLocale::Azerbaijan});
+    addLocale({QLocale::Chinese, QLocale::China});
+    addLocale({QLocale::Chinese, QLocale::Taiwan});
+    addLocale({QLocale::Dutch, QLocale::Netherlands});
+    addLocale({QLocale::English, QLocale::UnitedStates});
+    addLocale({QLocale::French, QLocale::France});
+    addLocale({QLocale::Greek, QLocale::Greece});
+    addLocale({QLocale::Hindi, QLocale::India});
+    addLocale({QLocale::Hungarian, QLocale::Hungary});
+    addLocale({QLocale::Indonesian, QLocale::Indonesia});
+    addLocale({QLocale::Italian, QLocale::Italy});
+    addLocale({QLocale::Malay, QLocale::Malaysia});
+    addLocale({QLocale::Polish, QLocale::Poland});
+    addLocale({QLocale::Portuguese, QLocale::Brazil});
+    addLocale({QLocale::Russian, QLocale::Russia});
+    addLocale({QLocale::Spanish, QLocale::Spain});
+    addLocale({QLocale::Turkish, QLocale::Turkey});
+    addLocale({QLocale::Uighur, QLocale::China});
+    addLocale({QLocale::Ukrainian, QLocale::Ukraine});
 
     ui->primaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
     ui->secondaryLangComboBox->addItem(tr("<System language>"), QOnlineTranslator::Auto);
@@ -123,7 +125,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     iconsTitleLabel->setText(tr("Icons:"));
 
     auto *iconsLabel = new QLabel(this);
-    iconsLabel->setText("<a href=\"https://github.com/yeyushengfan258/We10X-icon-theme\">We10X</a>");
+    iconsLabel->setText("<a href=\"https://github.com/vinceliuice/Fluent-icon-theme\">Fluent</a>");
     iconsLabel->setTextInteractionFlags(Qt::TextSelectableByMouse | Qt::LinksAccessibleByMouse);
     iconsLabel->setOpenExternalLinks(true);
 
@@ -162,7 +164,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Check current date
     const QDate date = QDate::currentDate();
     if ((date.month() == 12 && date.day() == 31) || (date.month() == 1 && date.day() == 1))
-        ui->testSpeechEdit->setText(tr("Happy New Year!"));
+        ui->yandexTestSpeechEdit->setText(tr("Happy New Year!"));
 
     loadSettings();
 }
@@ -197,10 +199,11 @@ void SettingsDialog::accept()
 
     // General settings
     AppSettings settings;
-    settings.setLanguage(ui->localeComboBox->currentData().value<QLocale::Language>());
+    settings.setLocale(ui->localeComboBox->currentData().value<QLocale>());
     settings.setMainWindowOrientation(static_cast<Qt::ScreenOrientation>(ui->mainWindowOrientationComboBox->currentIndex()));
     settings.setWindowMode(static_cast<AppSettings::WindowMode>(ui->windowModeComboBox->currentIndex()));
     settings.setTranslationNotificationTimeout(ui->translationNotificationTimeoutSpinBox->value());
+    settings.setPopupWindowTimeout(ui->popupWindowTimeoutSpinBox->value());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
@@ -235,6 +238,11 @@ void SettingsDialog::accept()
     settings.setForceSourceAutodetect(ui->forceSourceAutodetectCheckBox->isChecked());
     settings.setForceTranslationAutodetect(ui->forceTranslationAutodetectCheckBox->isChecked());
 
+    // Engine settings
+    settings.setEngineUrl(QOnlineTranslator::LibreTranslate, ui->libreTranslateUrlComboBox->currentText());
+    settings.setEngineApiKey(QOnlineTranslator::LibreTranslate, ui->libreTranslateApiKeyTextEdit->text().toUtf8());
+    settings.setEngineUrl(QOnlineTranslator::Lingva, ui->lingvaUrlComboBox->currentText());
+
     // OCR
     settings.setConvertLineBreaks(ui->convertLineBreaksCheckBox->isChecked());
     settings.setOcrLanguagesPath(ui->ocrLanguagesPathEdit->text().toLocal8Bit());
@@ -247,8 +255,8 @@ void SettingsDialog::accept()
     settings.setTesseractParameters(ui->tesseractParametersTableWidget->parameters());
 
     // Speech synthesis settings
-    settings.setVoice(QOnlineTranslator::Yandex, ui->playerButtons->voice(QOnlineTranslator::Yandex));
-    settings.setEmotion(QOnlineTranslator::Yandex, ui->playerButtons->emotion(QOnlineTranslator::Yandex));
+    settings.setVoice(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->voice(QOnlineTranslator::Yandex));
+    settings.setEmotion(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -352,81 +360,37 @@ void SettingsDialog::onTesseractParametersCurrentItemChanged()
         ui->tesseractParametersRemoveButton->setEnabled(true);
 }
 
-// Disable unsupported voice settings for engines.
-void SettingsDialog::showAvailableTtsOptions(int engine)
-{
-    // Avoid index changed signal
-    ui->voiceComboBox->blockSignals(true);
-    ui->emotionComboBox->blockSignals(true);
-
-    switch (engine) {
-    case QOnlineTranslator::Bing:
-        setSpeechTestEnabled(false);
-        setVoiceOptions({});
-        setEmotionOptions({});
-        break;
-    case QOnlineTranslator::Google:
-        setSpeechTestEnabled(true);
-        setVoiceOptions({});
-        setEmotionOptions({});
-        break;
-    case QOnlineTranslator::Yandex:
-        setSpeechTestEnabled(true);
-        setVoiceOptions({{tr("Zahar"), QOnlineTts::Zahar},
-                         {tr("Ermil"), QOnlineTts::Ermil},
-                         {tr("Jane"), QOnlineTts::Jane},
-                         {tr("Oksana"), QOnlineTts::Oksana},
-                         {tr("Alyss"), QOnlineTts::Alyss},
-                         {tr("Omazh"), QOnlineTts::Omazh}});
-        setEmotionOptions({{tr("Neutral"), QOnlineTts::Neutral},
-                           {tr("Good"), QOnlineTts::Good},
-                           {tr("Evil"), QOnlineTts::Evil}});
-
-        const QOnlineTts::Voice voice = ui->playerButtons->voice(QOnlineTranslator::Yandex);
-        const QOnlineTts::Emotion emotion = ui->playerButtons->emotion(QOnlineTranslator::Yandex);
-
-        ui->voiceComboBox->setCurrentIndex(ui->voiceComboBox->findData(voice));
-        ui->emotionComboBox->setCurrentIndex(ui->emotionComboBox->findData(emotion));
-        break;
-    }
-
-    ui->voiceComboBox->blockSignals(false);
-    ui->emotionComboBox->blockSignals(false);
-}
-
 // Save current engine voice settings
-void SettingsDialog::saveEngineVoice(int voice)
+void SettingsDialog::saveYandexEngineVoice(int voice)
 {
-    ui->playerButtons->setVoice(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->voiceComboBox->itemData(voice).value<QOnlineTts::Voice>());
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, ui->yandexVoiceComboBox->itemData(voice).value<QOnlineTts::Voice>());
 }
 
 // Save current engine emotion settings
-void SettingsDialog::saveEngineEmotion(int emotion)
+void SettingsDialog::saveYandexEngineEmotion(int emotion)
 {
-    ui->playerButtons->setEmotion(static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex()), ui->emotionComboBox->itemData(emotion).value<QOnlineTts::Emotion>());
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, ui->yandexEmotionComboBox->itemData(emotion).value<QOnlineTts::Emotion>());
 }
 
 // To play test text
-void SettingsDialog::detectTextLanguage()
+void SettingsDialog::detectYandexTextLanguage()
 {
-    if (ui->testSpeechEdit->text().isEmpty()) {
+    if (ui->yandexTestSpeechEdit->text().isEmpty()) {
         QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
         return;
     }
 
-    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    m_translator->detectLanguage(ui->testSpeechEdit->text(), engine);
+    m_yandexTranslator->detectLanguage(ui->yandexTestSpeechEdit->text(), QOnlineTranslator::Yandex);
 }
 
-void SettingsDialog::speakTestText()
+void SettingsDialog::speakYandexTestText()
 {
-    if (m_translator->error() != QOnlineTranslator::NoError) {
-        QMessageBox::critical(this, tr("Unable to detect language"), m_translator->errorString());
+    if (m_yandexTranslator->error() != QOnlineTranslator::NoError) {
+        QMessageBox::critical(this, tr("Unable to detect language"), m_yandexTranslator->errorString());
         return;
     }
 
-    const auto engine = static_cast<QOnlineTranslator::Engine>(ui->engineComboBox->currentIndex());
-    ui->playerButtons->speak(ui->testSpeechEdit->text(), m_translator->sourceLanguage(), engine);
+    ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_yandexTranslator->sourceLanguage(), QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)
@@ -515,10 +479,11 @@ void SettingsDialog::checkForUpdates()
 void SettingsDialog::restoreDefaults()
 {
     // General settings
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLanguage()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(AppSettings::defaultLocale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(AppSettings::defaultMainWindowOrientation());
     ui->windowModeComboBox->setCurrentIndex(AppSettings::defaultWindowMode());
     ui->translationNotificationTimeoutSpinBox->setValue(AppSettings::defaultTranslationNotificationTimeout());
+    ui->popupWindowTimeoutSpinBox->setValue(AppSettings::defaultPopupWindowTimeout());
     ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::defaultAutostartEnabled());
@@ -553,6 +518,11 @@ void SettingsDialog::restoreDefaults()
     ui->forceSourceAutodetectCheckBox->setChecked(AppSettings::defaultForceSourceAutodetect());
     ui->forceTranslationAutodetectCheckBox->setChecked(AppSettings::defaultForceTranslationAutodetect());
 
+    // Engine settings
+    ui->libreTranslateUrlComboBox->setCurrentText(AppSettings::defaultEngineUrl(QOnlineTranslator::LibreTranslate));
+    ui->libreTranslateApiKeyTextEdit->setText(AppSettings::defaultEngineApiKey(QOnlineTranslator::LibreTranslate));
+    ui->lingvaUrlComboBox->setCurrentText(AppSettings::defaultEngineUrl(QOnlineTranslator::Lingva));
+
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(AppSettings::defaultConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(AppSettings::defaultOcrLanguagesPath());
@@ -565,8 +535,8 @@ void SettingsDialog::restoreDefaults()
     ui->tesseractParametersTableWidget->setParameters(AppSettings::defaultTesseractParameters());
 
     // Speech synthesis settings
-    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
-    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(AppSettings::defaultProxyType());
@@ -580,6 +550,13 @@ void SettingsDialog::restoreDefaults()
     if (QHotkey::isPlatformSupported())
         ui->globalShortcutsCheckBox->setEnabled(AppSettings::defaultGlobalShortcutsEnabled());
     resetAllShortcuts();
+}
+
+void SettingsDialog::addLocale(const QLocale &locale)
+{
+    const int separatorIndex = locale.name().indexOf('_');
+    const QString countryCode = locale.name().right(separatorIndex).toLower();
+    ui->localeComboBox->addItem(QIcon(QStringLiteral(":/icons/flags/%1.svg").arg(countryCode)), locale.nativeLanguageName(), locale);
 }
 
 void SettingsDialog::activateCompactMode()
@@ -609,9 +586,10 @@ void SettingsDialog::loadSettings()
 {
     // General settings
     const AppSettings settings;
-    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.language()));
+    ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
+    ui->popupWindowTimeoutSpinBox->setValue(settings.popupWindowTimeout());
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
@@ -650,6 +628,11 @@ void SettingsDialog::loadSettings()
     ui->forceSourceAutodetectCheckBox->setChecked(settings.isForceSourceAutodetect());
     ui->forceTranslationAutodetectCheckBox->setChecked(settings.isForceTranslationAutodetect());
 
+    // Engines settings
+    ui->libreTranslateUrlComboBox->setCurrentText(settings.engineUrl(QOnlineTranslator::LibreTranslate));
+    ui->libreTranslateApiKeyTextEdit->setText(settings.engineApiKey(QOnlineTranslator::LibreTranslate));
+    ui->lingvaUrlComboBox->setCurrentText(settings.engineUrl(QOnlineTranslator::Lingva));
+
     // OCR
     ui->convertLineBreaksCheckBox->setChecked(settings.isConvertLineBreaks());
     ui->ocrLanguagesPathEdit->setText(settings.ocrLanguagesPath());
@@ -662,8 +645,8 @@ void SettingsDialog::loadSettings()
     ui->tesseractParametersTableWidget->setParameters(settings.tesseractParameters());
 
     // Speech synthesis settings
-    ui->playerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
-    ui->playerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
+    ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());
@@ -681,47 +664,4 @@ void SettingsDialog::loadSettings()
         ui->globalShortcutsCheckBox->setEnabled(false);
     }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
-}
-
-void SettingsDialog::setVoiceOptions(const QMap<QString, QOnlineTts::Voice> &voices)
-{
-    ui->voiceComboBox->clear();
-
-    if (voices.isEmpty()) {
-        // Disable voice settings
-        ui->voiceLabel->setEnabled(false);
-        ui->voiceComboBox->setEnabled(false);
-        ui->voiceComboBox->addItem(tr("Default"));
-        return;
-    }
-
-    ui->voiceLabel->setEnabled(true);
-    ui->voiceComboBox->setEnabled(true);
-    for (auto it = voices.cbegin(); it != voices.cend(); ++it)
-        ui->voiceComboBox->addItem(it.key(), it.value());
-}
-
-void SettingsDialog::setEmotionOptions(const QMap<QString, QOnlineTts::Emotion> &emotions)
-{
-    ui->emotionComboBox->clear();
-
-    if (emotions.isEmpty()) {
-        // Disable emotion settings
-        ui->emotionLabel->setEnabled(false);
-        ui->emotionComboBox->setEnabled(false);
-        ui->emotionComboBox->addItem(tr("Default"));
-        return;
-    }
-
-    ui->emotionLabel->setEnabled(true);
-    ui->emotionComboBox->setEnabled(true);
-    for (auto it = emotions.cbegin(); it != emotions.cend(); ++it)
-        ui->emotionComboBox->addItem(it.key(), it.value());
-}
-
-void SettingsDialog::setSpeechTestEnabled(bool enabled)
-{
-    ui->testSpeechEdit->setEnabled(enabled);
-    ui->playerButtons->setEnabled(enabled);
-    ui->testSpeechLabel->setEnabled(enabled);
 }

@@ -24,6 +24,7 @@
 #include <QWidget>
 
 class QShortcut;
+class QTimer;
 class MainWindow;
 class LanguageButtonsWidget;
 
@@ -50,6 +51,7 @@ private:
 
     Ui::PopupWindow *ui;
     QShortcut *m_closeWindowsShortcut;
+    QTimer *m_closeWindowTimer = nullptr;
 };
 
 #endif // POPUPWINDOW_H

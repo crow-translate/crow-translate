@@ -234,7 +234,7 @@ void SnippingArea::mousePressEvent(QMouseEvent *event)
     m_handleRadius = event->source() == Qt::MouseEventNotSynthesized ? s_handleRadiusMouse : s_handleRadiusTouch;
 
     if (event->button() & Qt::LeftButton) {
-       /*
+        /*
         * NOTE Workaround for https://bugs.kde.org/show_bug.cgi?id=407843
         * If we show the selection Widget when a right click menu is open we lose focus on X.
         * When the user clicks we get the mouse back. We can only grab the keyboard if we already
@@ -296,26 +296,26 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
         const bool afterX = m_mousePos.x() >= m_startPos.x();
         const bool afterY = m_mousePos.y() >= m_startPos.y();
         m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
-                           static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
-                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
-                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
+                            static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
         update();
         break;
     }
     case MouseState::Outside:
         m_selection.setRect(static_cast<int>(qMin(m_mousePos.x(), m_startPos.x())),
-                           static_cast<int>(qMin(m_mousePos.y(), m_startPos.y())),
-                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + m_devicePixelRatioI),
-                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + m_devicePixelRatioI));
+                            static_cast<int>(qMin(m_mousePos.y(), m_startPos.y())),
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + m_devicePixelRatioI),
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + m_devicePixelRatioI));
         update();
         break;
     case MouseState::Top:
     case MouseState::Bottom: {
         const bool afterY = m_mousePos.y() >= m_startPos.y();
         m_selection.setRect(m_selection.x(),
-                           static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
-                           m_selection.width(),
-                           static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
+                            static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
+                            m_selection.width(),
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
         update();
         break;
     }
@@ -323,9 +323,9 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
     case MouseState::Left: {
         const bool afterX = m_mousePos.x() >= m_startPos.x();
         m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
-                           m_selection.y(),
-                           static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
-                           m_selection.height());
+                            m_selection.y(),
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
+                            m_selection.height());
         update();
         break;
     }
@@ -398,7 +398,7 @@ void SnippingArea::paintEvent(QPaintEvent *)
 
     for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
         const QImage &screenImage = i.value();
-        const QScreen* screen = i.key();
+        const QScreen *screen = i.key();
 
         QRect rectToDraw = screen->geometry().translated(-m_screensRect.topLeft());
         const qreal dpr = screenImage.width() / static_cast<qreal>(rectToDraw.width());
@@ -784,7 +784,7 @@ QPixmap SnippingArea::selectedPixmap() const
     if (!QX11Info::isPlatformX11()) {
         // Wayland case
         qreal maxDpr = 1.0;
-        for (const QScreen *screen: QGuiApplication::screens()) {
+        for (const QScreen *screen : QGuiApplication::screens()) {
             if (screen->devicePixelRatio() > maxDpr)
                 maxDpr = screen->devicePixelRatio();
         }
@@ -837,7 +837,7 @@ void SnippingArea::createPixmapFromScreens()
 {
     QMap<ComparableQPoint, QPair<qreal, QSize>> input;
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
-        const QScreen* screen = it.key();
+        const QScreen *screen = it.key();
         const QImage &screenImage = it.value();
         input.insert(screen->geometry().topLeft(), {screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()});
     }
@@ -958,7 +958,7 @@ void SnippingArea::preparePaint()
     m_screensRect = {};
     for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
         const QImage &screenImage = i.value();
-        const QScreen* screen = i.key();
+        const QScreen *screen = i.key();
 
         const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
         m_screenToDpr.insert(screen, dpr);

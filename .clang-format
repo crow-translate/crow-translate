@@ -30,6 +30,7 @@ NamespaceIndentation: None
 PointerAlignment: Right
 SpaceAfterTemplateKeyword: false
 SpaceBeforeCpp11BracedList: false
+ForEachMacros: ['forever']
 TabWidth: 4
 
 # vim: filetype=yaml

@@ -34,7 +34,7 @@ SpeakButtons::SpeakButtons(QWidget *parent)
 {
     ui->setupUi(this);
 
-    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &SpeakButtons::onSpeakButtonPressed);
+    connect(ui->playPauseButton, &QAbstractButton::clicked, this, &SpeakButtons::onPlayPauseButtonPressed);
     connect(ui->stopButton, &QAbstractButton::clicked, this, &SpeakButtons::stopSpeaking);
 }
 
@@ -150,6 +150,14 @@ void SpeakButtons::pauseSpeaking()
     m_mediaPlayer->pause();
 }
 
+void SpeakButtons::playPauseSpeaking()
+{
+    if (m_mediaPlayer->state() == QMediaPlayer::PlayingState)
+        m_mediaPlayer->pause();
+    else
+        m_mediaPlayer->play();
+}
+
 void SpeakButtons::stopSpeaking()
 {
     m_mediaPlayer->stop();
@@ -182,19 +190,12 @@ void SpeakButtons::loadPlayerState(QMediaPlayer::State state)
     }
 }
 
-void SpeakButtons::onSpeakButtonPressed()
+void SpeakButtons::onPlayPauseButtonPressed()
 {
-    switch (m_mediaPlayer->state()) {
-    case QMediaPlayer::StoppedState:
+    if (m_mediaPlayer->state() == QMediaPlayer::StoppedState)
         emit playerMediaRequested();
-        break;
-    case QMediaPlayer::PlayingState:
-        m_mediaPlayer->pause();
-        break;
-    case QMediaPlayer::PausedState:
-        m_mediaPlayer->play();
-        break;
-    }
+    else
+        playPauseSpeaking();
 }
 
 void SpeakButtons::onPlayerPositionChanged(qint64 position)

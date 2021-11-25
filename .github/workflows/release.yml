@@ -3,8 +3,8 @@ on:
   release:
     types: [created]
 jobs:
-  Release:
-    runs-on: ${{ matrix.os }}
+  release:
+    name: Release
     strategy:
       matrix:
         os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
@@ -20,12 +20,13 @@ jobs:
             upload-files: "build/*.deb;build/*.rpm"
           - os: windows-latest
             extra-cmake-arguments: >-
+              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
+              -D VCPKG_TARGET_TRIPLET=x64-windows
+              -D VCPKG_INSTALL_OPTIONS=--clean-after-build
               -D WITH_PORTABLE_MODE=ON
               -D CPACK_GENERATOR="NSIS;7Z"
-              -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
-              -D VCPKG_TARGET_TRIPLET=$env:RUNVCPKG_VCPKG_TRIPLET
               -D X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
-            upload-files: "build/*.exe;build/*.7z"
+            upload-files: "build/crow-translate*.exe;build/*.7z" # Skip app executable
         exclude:
           - os: windows-latest
             arch: aarch64
@@ -35,20 +36,22 @@ jobs:
             arch: aarch64
           - os: ubuntu-18.04
             arch: armv7
+
+    runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2.3.4
+        uses: actions/checkout@v2
 
       - name: Install apt packages
         if: runner.os == 'Linux' && matrix.arch == 'amd64'
         run: |
           sudo apt-get update
-          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm qt5-default qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins qt5-style-plugins
+          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm qt5-default qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins qt5-style-plugins ninja-build
           sudo apt-get remove qt5-gtk-platformtheme # Do not use libqgtk3.so because of https://bugreports.qt.io/browse/QTBUG-72506
 
       - name: Install linuxdeploy
         if: matrix.os == 'ubuntu-18.04'
-        uses: miurahr/install-linuxdeploy-action@v1.5.0
+        uses: miurahr/install-linuxdeploy-action@v1
         with:
           plugins: qt gstreamer
 
@@ -57,24 +60,24 @@ jobs:
         if: runner.os == 'Windows'
         run: |
           $version = "0.32.3"
-          $client = new-object System.Net.WebClient
-          $client.DownloadFile("https://sourceforge.net/projects/unix-utils/files/icoutils/icoutils-$version-x86_64.zip/download", "icoutils.zip")
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/unix-utils/files/icoutils/icoutils-$version-x86_64.zip" -OutFile icoutils.zip -UserAgent "NativeHost" -SkipCertificateCheck
           7z x icoutils.zip
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
-      - name: Install vcpkg packages
-        uses: lukka/run-vcpkg@v7
+      - name: Install vcpkg
+        uses: lukka/run-vcpkg@v10
         if: runner.os == 'Windows'
         with:
-          vcpkgArguments: tesseract[cpu-independed] ecm qt5-base qt5-svg qt5-multimedia qt5-winextras qt5-tools qt5-translations --triplet x64-windows
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
-        env:
-          VCPKG_DISABLE_METRICS: 1
+
+      - name: Setup MSVC
+        if: runner.os == 'Windows'
+        uses: ilammy/msvc-dev-cmd@v1
 
       - name: Build
         if: matrix.arch == 'amd64'
         run: |
-          cmake -B build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
+          cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
           cmake --build build --target package --parallel 2 --config Release
 
       - name: Build in Ubuntu 20.04 Docker image
@@ -87,17 +90,17 @@ jobs:
           dockerRunArgs: --volume "${PWD}:/repo"
           install: |
             apt-get update -y
-            apt-get install -y libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev g++ git rpm libssl-dev wget make
+            apt-get install -y libxcb1-dev extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev g++ git rpm libssl-dev wget ninja-build
             # Install fresh CMake due to problems with QEMU: https://gitlab.kitware.com/cmake/cmake/-/issues/20568
             # https://apt.kitware.com currently have an issue with unresolved dependency on arm, build manually
             CMAKE_VERSION=3.21.1
             wget --no-check-certificate https://github.com/Kitware/CMake/releases/download/v$CMAKE_VERSION/cmake-$CMAKE_VERSION.tar.gz
             tar -zxvf cmake-$CMAKE_VERSION.tar.gz
             cd cmake-$CMAKE_VERSION
-            ./bootstrap
-            make install
+            ./bootstrap --generator=Ninja
+            ninja install -j 2
           run: |
-            cmake -S /repo -B /repo/build -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
+            cmake -S /repo -B /repo/build -G Ninja -D CMAKE_BUILD_TYPE=Release ${{ matrix.extra-cmake-arguments }}
             cmake --build /repo/build --target package --parallel 2
 
       - name: Upload

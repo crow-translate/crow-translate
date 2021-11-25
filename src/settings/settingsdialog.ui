@@ -133,6 +133,9 @@
        <layout class="QVBoxLayout" name="verticalLayout_2">
         <item>
          <widget class="QStackedWidget" name="pagesStackedWidget">
+          <property name="currentIndex">
+           <number>2</number>
+          </property>
           <widget class="QWidget" name="generalPage">
            <layout class="QVBoxLayout" name="generalLayout">
             <item>
@@ -356,17 +359,27 @@
                <string>Pop-up window</string>
               </property>
               <layout class="QGridLayout" name="popupBoxLayout">
-               <item row="1" column="0">
-                <widget class="QLabel" name="popupHeightLabel">
-                 <property name="text">
-                  <string>Height:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="1" column="2">
                 <widget class="QSpinBox" name="popupHeightSpinBox">
                  <property name="toolTip">
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window height in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string notr="true"> px</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="popupWidthLabel">
+                 <property name="text">
+                  <string>Width:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="2">
+                <widget class="QSpinBox" name="popupWidthSpinBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="suffix">
                   <string notr="true"> px</string>
@@ -386,13 +399,6 @@
                  </property>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="popupWidthLabel">
-                 <property name="text">
-                  <string>Width:</string>
-                 </property>
-                </widget>
-               </item>
                <item row="2" column="1">
                 <widget class="QSlider" name="popupWidthSlider">
                  <property name="orientation">
@@ -400,23 +406,10 @@
                  </property>
                 </widget>
                </item>
-               <item row="0" column="1">
-                <widget class="QSlider" name="popupOpacitySlider">
-                 <property name="maximum">
-                  <number>100</number>
-                 </property>
+               <item row="1" column="1">
+                <widget class="QSlider" name="popupHeightSlider">
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
-                 </property>
-                </widget>
-               </item>
-               <item row="2" column="2">
-                <widget class="QSpinBox" name="popupWidthSpinBox">
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window width in pixels&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <property name="suffix">
-                  <string notr="true"> px</string>
                  </property>
                 </widget>
                </item>
@@ -427,8 +420,41 @@
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QSlider" name="popupHeightSlider">
+               <item row="3" column="0">
+                <widget class="QLabel" name="popupWindowTimeoutLabel">
+                 <property name="text">
+                  <string>Show timeout:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="popupHeightLabel">
+                 <property name="text">
+                  <string>Height:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="3" column="1">
+                <widget class="QSpinBox" name="popupWindowTimeoutSpinBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The number of seconds after which the window will be hidden if it has no focus&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="suffix">
+                  <string> sec</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QSlider" name="popupOpacitySlider">
+                 <property name="maximum">
+                  <number>100</number>
+                 </property>
                  <property name="orientation">
                   <enum>Qt::Horizontal</enum>
                  </property>
@@ -746,6 +772,131 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="libreTranslateGroupBox">
+              <property name="title">
+               <string notr="true">LibreTranslate</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout_10">
+               <item row="1" column="0">
+                <widget class="QLabel" name="libreTranslateUrlLabel">
+                 <property name="text">
+                  <string notr="true">URL:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="1">
+                <widget class="QLineEdit" name="libreTranslateApiKeyTextEdit">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate instance API key&lt;/p&gt;&lt;p&gt;Free instances listed here doesn't require a key, so field can be empty&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="text">
+                  <string notr="true"/>
+                 </property>
+                 <property name="placeholderText">
+                  <string notr="true">xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="2" column="0">
+                <widget class="QLabel" name="libreTranslateApiKeyLabel">
+                 <property name="text">
+                  <string>API key:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="libreTranslateUrlComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;LibreTranslate engine URL&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/LibreTranslate/LibreTranslate#mirrors&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentText">
+                  <string notr="true">https://translate.argosopentech.com</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://translate.argosopentech.com</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://translate.astian.org</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://translate.mentality.rip</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://libretranslate.de</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
+             <widget class="QGroupBox" name="lingvaGroupBox">
+              <property name="title">
+               <string notr="true">Lingva</string>
+              </property>
+              <layout class="QFormLayout" name="formLayout_11">
+               <item row="0" column="0">
+                <widget class="QLabel" name="lingvaUrlLabel">
+                 <property name="text">
+                  <string notr="true">URL:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="lingvaUrlComboBox">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Lingva engine URL&lt;/p&gt;&lt;p&gt;All instances can be found here: https://github.com/TheDavidDelta/lingva-translate#instances&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
+                 <property name="editable">
+                  <bool>true</bool>
+                 </property>
+                 <property name="currentText">
+                  <string notr="true">https://lingva.ml</string>
+                 </property>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://lingva.ml</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://translate.alefvanoon.xyz</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string notr="true">https://translate.igna.rocks</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="translationPageSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1018,73 +1169,20 @@
            </property>
            <layout class="QVBoxLayout" name="speechLayout">
             <item>
-             <widget class="QGroupBox" name="speechGroupBox">
+             <widget class="QGroupBox" name="yandexSpeechGroupBox">
               <property name="title">
-               <string>Speech synthesis</string>
+               <string notr="true">Yandex</string>
               </property>
               <layout class="QFormLayout" name="formLayout_7">
                <item row="0" column="0">
-                <widget class="QLabel" name="engineLabel">
-                 <property name="text">
-                  <string>Engine:</string>
-                 </property>
-                </widget>
-               </item>
-               <item row="0" column="1">
-                <widget class="QComboBox" name="engineComboBox">
-                 <property name="sizePolicy">
-                  <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
-                   <horstretch>0</horstretch>
-                   <verstretch>0</verstretch>
-                  </sizepolicy>
-                 </property>
-                 <property name="toolTip">
-                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Speech synthesis engine&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-                 </property>
-                 <item>
-                  <property name="text">
-                   <string notr="true">Google</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../../data/icons/engines/engines.qrc">
-                    <normaloff>:/icons/engines/google.svg</normaloff>:/icons/engines/google.svg</iconset>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string notr="true">Yandex</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../../data/icons/engines/engines.qrc">
-                    <normaloff>:/icons/engines/yandex.svg</normaloff>:/icons/engines/yandex.svg</iconset>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string notr="true">Bing</string>
-                  </property>
-                  <property name="icon">
-                   <iconset resource="../../data/icons/engines/engines.qrc">
-                    <normaloff>:/icons/engines/bing.svg</normaloff>:/icons/engines/bing.svg</iconset>
-                  </property>
-                 </item>
-                </widget>
-               </item>
-               <item row="1" column="0">
-                <widget class="QLabel" name="voiceLabel">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
+                <widget class="QLabel" name="yandexVoiceLabel">
                  <property name="text">
                   <string>Voice:</string>
                  </property>
                 </widget>
                </item>
-               <item row="1" column="1">
-                <widget class="QComboBox" name="voiceComboBox">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="yandexVoiceComboBox">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1096,26 +1194,45 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>Default</string>
+                   <string>Zahar</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Ermil</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Jane</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Oksana</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Alyss</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Omazh</string>
                   </property>
                  </item>
                 </widget>
                </item>
-               <item row="2" column="0">
-                <widget class="QLabel" name="emotionLabel">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
+               <item row="1" column="0">
+                <widget class="QLabel" name="yandexEmotionLabel">
                  <property name="text">
                   <string>Emotional connotation:</string>
                  </property>
                 </widget>
                </item>
-               <item row="2" column="1">
-                <widget class="QComboBox" name="emotionComboBox">
-                 <property name="enabled">
-                  <bool>false</bool>
-                 </property>
+               <item row="1" column="1">
+                <widget class="QComboBox" name="yandexEmotionComboBox">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
                    <horstretch>0</horstretch>
@@ -1127,22 +1244,32 @@
                  </property>
                  <item>
                   <property name="text">
-                   <string>Default</string>
+                   <string>Neutral</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Good</string>
+                  </property>
+                 </item>
+                 <item>
+                  <property name="text">
+                   <string>Evil</string>
                   </property>
                  </item>
                 </widget>
                </item>
-               <item row="3" column="0">
-                <widget class="QLabel" name="testSpeechLabel">
+               <item row="2" column="0">
+                <widget class="QLabel" name="yandexTestSpeechLabel">
                  <property name="text">
                   <string>Speech test:</string>
                  </property>
                 </widget>
                </item>
-               <item row="3" column="1">
-                <layout class="QHBoxLayout" name="testSpeechLayout">
+               <item row="2" column="1">
+                <layout class="QHBoxLayout" name="yandexTestSpeechLayout">
                  <item>
-                  <widget class="QLineEdit" name="testSpeechEdit">
+                  <widget class="QLineEdit" name="yandexTestSpeechEdit">
                    <property name="toolTip">
                     <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                    </property>
@@ -1155,7 +1282,7 @@
                   </widget>
                  </item>
                  <item>
-                  <widget class="SpeakButtons" name="playerButtons" native="true"/>
+                  <widget class="SpeakButtons" name="yandexPlayerButtons" native="true"/>
                  </item>
                 </layout>
                </item>
@@ -1548,16 +1675,16 @@
                 </widget>
                </item>
                <item row="2" column="0">
-                <widget class="QLabel" name="autorTitleLabel">
+                <widget class="QLabel" name="sourceTitleLabel">
                  <property name="text">
-                  <string>Autor:</string>
+                  <string>Source code:</string>
                  </property>
                 </widget>
                </item>
                <item row="2" column="1">
-                <widget class="QLabel" name="autorLabel">
+                <widget class="QLabel" name="sourceLabel">
                  <property name="text">
-                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/Shatur95&quot;&gt;Shatur95&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                  <string notr="true">&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/crow-translate/crow-translate&quot;&gt;crow-translate&lt;/a&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="openExternalLinks">
                   <bool>true</bool>
@@ -1674,9 +1801,7 @@
    <header>settings/tesseractparameterstablewidget.h</header>
   </customwidget>
  </customwidgets>
- <resources>
-  <include location="../../data/icons/engines/engines.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
    <sender>dialogButtonBox</sender>
@@ -1999,26 +2124,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>engineComboBox</sender>
+   <sender>yandexVoiceComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>showAvailableTtsOptions(int)</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>256</x>
-     <y>45</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>275</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>voiceComboBox</sender>
-   <signal>currentIndexChanged(int)</signal>
-   <receiver>SettingsDialog</receiver>
-   <slot>saveEngineVoice(int)</slot>
+   <slot>saveYandexEngineVoice(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -2031,10 +2140,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>emotionComboBox</sender>
+   <sender>yandexEmotionComboBox</sender>
    <signal>currentIndexChanged(int)</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>saveEngineEmotion(int)</slot>
+   <slot>saveYandexEngineEmotion(int)</slot>
    <hints>
     <hint type="sourcelabel">
      <x>256</x>
@@ -2143,10 +2252,10 @@
    </hints>
   </connection>
   <connection>
-   <sender>playerButtons</sender>
+   <sender>yandexPlayerButtons</sender>
    <signal>playerMediaRequested()</signal>
    <receiver>SettingsDialog</receiver>
-   <slot>detectTextLanguage()</slot>
+   <slot>detectYandexTextLanguage()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>736</x>
@@ -2260,10 +2369,9 @@
   <slot>onTrayIconTypeChanged(int)</slot>
   <slot>selectCustomTrayIcon()</slot>
   <slot>setCustomTrayIconPreview(QString)</slot>
-  <slot>showAvailableTtsOptions(int)</slot>
-  <slot>saveEngineEmotion(int)</slot>
-  <slot>saveEngineVoice(int)</slot>
-  <slot>detectTextLanguage()</slot>
+  <slot>saveYandexEngineEmotion(int)</slot>
+  <slot>saveYandexEngineVoice(int)</slot>
+  <slot>detectYandexTextLanguage()</slot>
   <slot>resetAllShortcuts()</slot>
   <slot>resetCurrentShortcut()</slot>
   <slot>clearCurrentShortcut()</slot>

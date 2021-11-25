@@ -1,11 +1,10 @@
 # ![Crow Translate logo](data/icons/freedesktop/48-apps-crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/crow-translate/crow-translate/all.svg)](https://github.com/crow-translate/crow-translate/releases)
-[![Codacy grade](https://img.shields.io/codacy/grade/ac4202368e084aa4b41188eb7383c72c)](https://app.codacy.com/project/crow-translate/crow-translate/dashboard)
 [![Crowdin](https://badges.crowdin.net/crow-translate/localized.svg)](https://crowdin.com/project/crow-translate)
 
-**Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows you to translate and speak text using Google, Yandex and Bing translate API.
-You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex and Bing translate API.") used in this project.
+**Crow Translate** is a simple and lightweight translator written in **C++ / Qt** that allows you to translate and speak text using Google, Yandex, Bing, LibreTranslate and Lingva translate API.
+You may also be interested in my library [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator "A library for Qt5 that provides free usage of Google, Yandex, Bing, LibreTranslate and Lingva translate API.") used in this project.
 
 ## Content
 
@@ -85,22 +84,22 @@ The program also has a console interface.
 
 **Usage:** `crow [options] text`
 
-| Option                     | Description                                                                                    |
-| -------------------------- | ---------------------------------------------------------------------------------------------- |
-| `-h, --help`               | Display help                                                                                   |
-| `-v, --version`            | Display version information                                                                    |
-| `-c, --codes`              | Display language codes                                                                         |
-| `-s, --source <code>`      | Specify the source language (by default, engine will try to determine the language on its own) |
-| `-t, --translation <code>` | Specify the translation language(s), splitted by '+' (by default, the system language is used) |
-| `-l, --locale <code>`      | Specify the translator language (by default, the system language is used)                      |
-| `-e, --engine <engine>`    | Specify the translator engine ('google', 'yandex' or 'bing'), Google is used by default        |
-| `-p, --speak-translation`  | Speak the translation                                                                          |
-| `-u, --speak-source`       | Speak the source                                                                               |
-| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths                       |
-| `-i, --stdin`              | Add stdin data to source text                                                                  |
-| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`              |
-| `-b, --brief`              | Print only translations                                                                        |
-| `-j, --json`               | Print output formatted as JSON                                                                 |
+| Option                     | Description                                                                                                         |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `-h, --help`               | Display help                                                                                                        |
+| `-v, --version`            | Display version information                                                                                         |
+| `-c, --codes`              | Display language codes                                                                                              |
+| `-s, --source <code>`      | Specify the source language (by default, engine will try to determine the language on its own)                      |
+| `-t, --translation <code>` | Specify the translation language(s), splitted by '+' (by default, the system language is used)                      |
+| `-l, --locale <code>`      | Specify the translator language (by default, the system language is used)                                           |
+| `-e, --engine <engine>`    | Specify the translator engine ('google', 'yandex', 'bing', 'libretranslate' or 'lingva'), Google is used by default |
+| `-p, --speak-translation`  | Speak the translation                                                                                               |
+| `-u, --speak-source`       | Speak the source                                                                                                    |
+| `-f, --file`               | Read source text from files. Arguments will be interpreted as file paths                                            |
+| `-i, --stdin`              | Add stdin data to source text                                                                                       |
+| `-a, --audio-only`         | Print text only for speaking when using `--speak-translation` or `--speak-source`                                   |
+| `-b, --brief`              | Print only translations                                                                                             |
+| `-j, --json`               | Print output formatted as JSON                                                                                      |
 
 **Note:** If you do not pass startup arguments to the program, the GUI starts.
 
@@ -114,6 +113,7 @@ The program also has a console interface.
         ├── method void io.crow_translate.CrowTranslate.MainWindow.translateSelection();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakSelection();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.speakTranslatedSelection();
+        ├── method void io.crow_translate.CrowTranslate.MainWindow.playPauseSpeaking();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.stopSpeaking();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.open();
         ├── method void io.crow_translate.CrowTranslate.MainWindow.copyTranslatedSelection();
@@ -168,7 +168,7 @@ This project uses the following external libraries, which will be downloaded aut
 
 ## Icons
 
-[We10X](https://github.com/yeyushengfan258/We10X-icon-theme) icon theme is bundled to provide icons on Windows and fallback icons on Linux.
+[Fluent](https://github.com/vinceliuice/Fluent-icon-theme) icon theme is bundled to provide icons on Windows and fallback icons on Linux.
 
 [circle-flags](https://github.com/HatScripts/circle-flags "A collection of 300+ minimal circular SVG country flags") icons are used for flags.
 
@@ -227,4 +227,4 @@ Build parameters are passed at configuration stage: `cmake -D WITH_PORTABLE_MODE
 
 ## Localization
 
-To help with localization you can use [Crowdin](https://crowdin.com/project/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, write me on the Crowdin page or copy `data/translations/crow-translate.ts` to `data/translations/crow-translate_<ISO 639-1 language code>.ts`, translate it and send a pull request.
+To help with localization you can use [Crowdin](https://crowdin.com/project/crow-translate) or translate files in `data/translations` with [Qt Linguist](https://doc.qt.io/Qt-5/linguist-translators.html) directly. To add a new language, write me on the Crowdin page or copy `data/translations/crow-translate.ts` to `data/translations/crow-translate_<ISO 639-1 language code>_<ISO 3166-1 country code>.ts`, translate it and send a pull request.

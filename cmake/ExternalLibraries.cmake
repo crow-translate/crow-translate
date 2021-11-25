@@ -19,27 +19,27 @@ FetchContent_Declare(QHotkey
 
 FetchContent_Declare(QOnlineTranslator
     GIT_REPOSITORY https://github.com/crow-translate/QOnlineTranslator
-    GIT_TAG df89083d2f680a8f856b1df00b8846f995cf1fae
+    GIT_TAG 1.5.2
 )
 
 FetchContent_Declare(CircleFlags
     GIT_REPOSITORY https://github.com/HatScripts/circle-flags
-    GIT_TAG v2.1.0
+    GIT_TAG v2.3.0
 )
 
-FetchContent_Declare(We10X
-    GIT_REPOSITORY https://github.com/yeyushengfan258/We10X-icon-theme
-    GIT_TAG bd2c68482a06d38b2641503af1ca127b9e6540db
+FetchContent_Declare(FluentIconTheme
+    GIT_REPOSITORY https://github.com/vinceliuice/Fluent-icon-theme
+    GIT_TAG 2021-08-15
 )
 
-FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags We10X)
+FetchContent_MakeAvailable(SingleApplication QTaskbarControl QHotkey QOnlineTranslator CircleFlags FluentIconTheme)
 FetchContent_GetProperties(CircleFlags SOURCE_DIR CircleFlags_SOURCE_DIR)
-FetchContent_GetProperties(We10X SOURCE_DIR We10X_SOURCE_DIR)
+FetchContent_GetProperties(FluentIconTheme SOURCE_DIR FluentIconTheme_SOURCE_DIR)
 
 if(WIN32)
     FetchContent_Declare(QGitTag
         GIT_REPOSITORY https://github.com/crow-translate/QGitTag
-        GIT_TAG 1.0.7
+        GIT_TAG 1.0.9
     )
 
     FetchContent_MakeAvailable(QGitTag)

@@ -45,6 +45,9 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
     m_stopSpeakingShortcut = new ShortcutItem(tr("Stop text speaking"), QStringLiteral("media-playback-stop"), m_globalShortcuts);
     m_stopSpeakingShortcut->setDefaultShortcut(AppSettings::defaultStopSpeakingShortcut());
 
+    m_playPauseSpeakingShortcut = new ShortcutItem(tr("Speak / pause text speaking"), QStringLiteral("media-playback-pause"), m_globalShortcuts);
+    m_playPauseSpeakingShortcut->setDefaultShortcut(AppSettings::defaultPlayPauseSpeakingShortcut());
+
     m_showMainWindowShortcut = new ShortcutItem(tr("Show main window"), QStringLiteral("window"), m_globalShortcuts);
     m_showMainWindowShortcut->setDefaultShortcut(AppSettings::defaultShowMainWindowShortcut());
 
@@ -99,7 +102,7 @@ ShortcutsModel::~ShortcutsModel()
 QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
-        return QVariant();
+        return {};
 
     const auto *shortcut = static_cast<ShortcutItem *>(index.internalPointer());
 
@@ -124,7 +127,7 @@ QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QVariant ShortcutsModel::headerData(int section, Qt::Orientation orientation, int role) const
@@ -138,19 +141,19 @@ QVariant ShortcutsModel::headerData(int section, Qt::Orientation orientation, in
         }
     }
 
-    return QVariant();
+    return {};
 }
 
 QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent) const
 {
     if (!hasIndex(row, column, parent))
-        return QModelIndex();
+        return {};
 
     ShortcutItem *parentItem = parent.isValid() ? static_cast<ShortcutItem *>(parent.internalPointer()) : m_rootItem;
 
     ShortcutItem *childItem = parentItem->child(row);
     if (childItem == nullptr)
-        return QModelIndex();
+        return {};
 
     return createIndex(row, column, childItem);
 }
@@ -158,13 +161,13 @@ QModelIndex ShortcutsModel::index(int row, int column, const QModelIndex &parent
 QModelIndex ShortcutsModel::parent(const QModelIndex &index) const
 {
     if (!index.isValid())
-        return QModelIndex();
+        return {};
 
     auto *item = static_cast<ShortcutItem *>(index.internalPointer());
     ShortcutItem *parentItem = item->parentItem();
 
     if (parentItem == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return createIndex(parentItem->row(), 0, parentItem);
 }
@@ -201,6 +204,7 @@ void ShortcutsModel::loadShortcuts(const AppSettings &settings)
     m_speakSelectionShortcut->setShortcut(settings.speakSelectionShortcut());
     m_speakTranslatedSelectionShortcut->setShortcut(settings.speakTranslatedSelectionShortcut());
     m_stopSpeakingShortcut->setShortcut(settings.stopSpeakingShortcut());
+    m_playPauseSpeakingShortcut->setShortcut(settings.playPauseSpeakingShortcut());
     m_showMainWindowShortcut->setShortcut(settings.showMainWindowShortcut());
     m_copyTranslatedSelectionShortcut->setShortcut(settings.copyTranslatedSelectionShortcut());
     m_recognizeScreenAreaShortcut->setShortcut(settings.recognizeScreenAreaShortcut());
@@ -228,6 +232,7 @@ void ShortcutsModel::saveShortcuts(AppSettings &settings) const
     settings.setSpeakSelectionShortcut(m_speakSelectionShortcut->shortcut());
     settings.setSpeakTranslatedSelectionShortcut(m_speakTranslatedSelectionShortcut->shortcut());
     settings.setStopSpeakingShortcut(m_stopSpeakingShortcut->shortcut());
+    settings.setPlayPauseSpeakingShortcut(m_playPauseSpeakingShortcut->shortcut());
     settings.setShowMainWindowShortcut(m_showMainWindowShortcut->shortcut());
     settings.setCopyTranslatedSelectionShortcut(m_copyTranslatedSelectionShortcut->shortcut());
     settings.setRecognizeScreenAreaShortcut(m_recognizeScreenAreaShortcut->shortcut());
@@ -274,7 +279,7 @@ void ShortcutsModel::updateItem(ShortcutItem *item)
 QModelIndex ShortcutsModel::index(ShortcutItem *item, int column) const
 {
     if (item == m_rootItem)
-        return QModelIndex();
+        return {};
 
     return index(item->row(), column, index(item->parentItem(), column));
 }

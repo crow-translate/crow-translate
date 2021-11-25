@@ -1,101 +1,102 @@
 <RCC>
     <qresource prefix="/icons/flags">
-        <file>th.svg</file>
-        <file>tr.svg</file>
-        <file>es.svg</file>
-        <file>mn.svg</file>
-        <file>ne.svg</file>
-        <file>no.svg</file>
-        <file>pl.svg</file>
-        <file>pt.svg</file>
-        <file>ro.svg</file>
-        <file>sk.svg</file>
-        <file>sl.svg</file>
-        <file>so.svg</file>
-        <file>uz.svg</file>
-        <file>af.svg</file>
-        <file>am.svg</file>
-        <file>az.svg</file>
-        <file>bg.svg</file>
-        <file>de.svg</file>
-        <file>esperanto.svg</file>
-        <file>et.svg</file>
-        <file>es-pv.svg</file>
-        <file>fi.svg</file>
-        <file>fr.svg</file>
-        <file>hr.svg</file>
-        <file>ht.svg</file>
-        <file>hu.svg</file>
-        <file>id.svg</file>
-        <file>is.svg</file>
-        <file>it.svg</file>
-        <file>id.svg</file>
-        <file>sd.svg</file>
-        <file>la.svg</file>
-        <file>lv.svg</file>
-        <file>mg.svg</file>
-        <file>mk.svg</file>
-        <file>mt.svg</file>
-        <file>nl.svg</file>
-        <file>ba.svg</file>
-        <file>fj.svg</file>
-        <file>fiction/klingon.svg</file>
-        <file>to.svg</file>
         <file>ad.svg</file>
+        <file>af.svg</file>
         <file>al.svg</file>
+        <file>am.svg</file>
         <file>aw.svg</file>
+        <file>az.svg</file>
+        <file>ba.svg</file>
         <file>bd.svg</file>
+        <file>bg.svg</file>
+        <file>br.svg</file>
         <file>by.svg</file>
         <file>cn.svg</file>
         <file>cz.svg</file>
+        <file>de.svg</file>
         <file>dk.svg</file>
         <file>ee.svg</file>
         <file>eg.svg</file>
         <file>es-ga.svg</file>
+        <file>es-pv.svg</file>
+        <file>es.svg</file>
+        <file>esperanto.svg</file>
+        <file>et.svg</file>
+        <file>fi.svg</file>
+        <file>fiction/klingon.svg</file>
+        <file>fj.svg</file>
+        <file>fr.svg</file>
         <file>gb-sct.svg</file>
         <file>gb-wls.svg</file>
         <file>gb.svg</file>
         <file>ge.svg</file>
         <file>gr.svg</file>
+        <file>hr.svg</file>
+        <file>ht.svg</file>
+        <file>hu.svg</file>
+        <file>id.svg</file>
+        <file>id.svg</file>
         <file>ie.svg</file>
         <file>il.svg</file>
         <file>in.svg</file>
         <file>iq.svg</file>
         <file>ir.svg</file>
+        <file>is.svg</file>
+        <file>it.svg</file>
         <file>jp.svg</file>
         <file>ke.svg</file>
         <file>kg.svg</file>
         <file>kh.svg</file>
         <file>kr.svg</file>
         <file>kz.svg</file>
+        <file>la.svg</file>
         <file>lk.svg</file>
         <file>ls.svg</file>
+        <file>lt.svg</file>
         <file>lu.svg</file>
+        <file>lv.svg</file>
+        <file>mg.svg</file>
+        <file>mk.svg</file>
         <file>mm.svg</file>
+        <file>mn.svg</file>
+        <file>mt.svg</file>
         <file>mw.svg</file>
         <file>mx.svg</file>
+        <file>my.svg</file>
+        <file>ne.svg</file>
         <file>ng.svg</file>
+        <file>nl.svg</file>
+        <file>no.svg</file>
         <file>np.svg</file>
         <file>nz.svg</file>
         <file>pf.svg</file>
         <file>ph.svg</file>
         <file>pk.svg</file>
+        <file>pl.svg</file>
+        <file>pt.svg</file>
+        <file>ro.svg</file>
         <file>rs.svg</file>
+        <file>ru.svg</file>
+        <file>rw.svg</file>
+        <file>sd.svg</file>
         <file>se.svg</file>
+        <file>sk.svg</file>
+        <file>sl.svg</file>
+        <file>so.svg</file>
+        <file>th.svg</file>
         <file>tj.svg</file>
         <file>tk.svg</file>
+        <file>tm.svg</file>
+        <file>to.svg</file>
+        <file>tr.svg</file>
+        <file>tw.svg</file>
         <file>ua.svg</file>
         <file>us.svg</file>
+        <file>uz.svg</file>
         <file>va.svg</file>
         <file>vn.svg</file>
         <file>ws.svg</file>
         <file>za.svg</file>
         <file>zw.svg</file>
-        <file>ru.svg</file>
-        <file>lt.svg</file>
-        <file>br.svg</file>
-        <file>my.svg</file>
-        <file>rw.svg</file>
-        <file>tm.svg</file>
     </qresource>
 </RCC>

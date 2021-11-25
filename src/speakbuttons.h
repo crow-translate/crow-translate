@@ -58,6 +58,7 @@ public:
 
     void speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
     void pauseSpeaking();
+    void playPauseSpeaking();
 
 public slots:
     void stopSpeaking();
@@ -69,7 +70,7 @@ signals:
 
 private slots:
     void loadPlayerState(QMediaPlayer::State state);
-    void onSpeakButtonPressed();
+    void onPlayPauseButtonPressed();
     void onPlayerPositionChanged(qint64 position);
 
 private:

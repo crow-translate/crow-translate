@@ -83,10 +83,10 @@ public:
 
     // General settings
     void setupLocalization() const;
-    QLocale::Language language() const;
-    void setLanguage(QLocale::Language lang);
-    static void applyLanguage(QLocale::Language lang);
-    static QLocale::Language defaultLanguage();
+    QLocale locale() const;
+    void setLocale(const QLocale &locale);
+    static void applyLocale(const QLocale &locale);
+    static QLocale defaultLocale();
 
     Qt::ScreenOrientation mainWindowOrientation() const;
     void setMainWindowOrientation(Qt::ScreenOrientation mode);
@@ -99,6 +99,10 @@ public:
     int translationNotificationTimeout() const;
     void setTranslationNotificationTimeout(int timeout);
     static int defaultTranslationNotificationTimeout();
+
+    int popupWindowTimeout() const;
+    void setPopupWindowTimeout(int timeout);
+    static int defaultPopupWindowTimeout();
 
     bool isShowTrayIcon() const;
     void setShowTrayIcon(bool visible);
@@ -200,6 +204,14 @@ public:
     void setForceTranslationAutodetect(bool force);
     static bool defaultForceTranslationAutodetect();
 
+    QString engineUrl(QOnlineTranslator::Engine engine) const;
+    void setEngineUrl(QOnlineTranslator::Engine engine, const QString &url);
+    static QString defaultEngineUrl(QOnlineTranslator::Engine engine);
+
+    QByteArray engineApiKey(QOnlineTranslator::Engine engine) const;
+    void setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey);
+    static QByteArray defaultEngineApiKey(QOnlineTranslator::Engine engine);
+
     // Speech synthesis settings
     QOnlineTts::Voice voice(QOnlineTranslator::Engine engine) const;
     void setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice voice);
@@ -254,6 +266,10 @@ public:
     QKeySequence stopSpeakingShortcut() const;
     void setStopSpeakingShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultStopSpeakingShortcut();
+
+    QKeySequence playPauseSpeakingShortcut() const;
+    void setPlayPauseSpeakingShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultPlayPauseSpeakingShortcut();
 
     QKeySequence showMainWindowShortcut() const;
     void setShowMainWindowShortcut(const QKeySequence &shortcut);
@@ -365,7 +381,7 @@ private:
     static QTranslator s_appTranslator;
     static QTranslator s_qtTranslator; // Qt library translations
 #ifdef WITH_PORTABLE_MODE
-    static const QString s_portableConfigName;
+    static inline const QString s_portableConfigName = QStringLiteral("settings.ini");
 #endif
 
     QSettings *m_settings;

@@ -75,6 +75,7 @@ public slots:
     Q_SCRIPTABLE void speakSelection();
     Q_SCRIPTABLE void speakTranslatedSelection();
     Q_SCRIPTABLE void stopSpeaking();
+    Q_SCRIPTABLE void playPauseSpeaking();
     Q_SCRIPTABLE void open();
     Q_SCRIPTABLE void copyTranslatedSelection();
     Q_SCRIPTABLE void recognizeScreenArea();
@@ -175,6 +176,7 @@ private:
     QHotkey *m_speakSelectionHotkey;
     QHotkey *m_speakTranslatedSelectionHotkey;
     QHotkey *m_stopSpeakingHotkey;
+    QHotkey *m_playPauseSpeakingHotkey;
     QHotkey *m_showMainWindowHotkey;
     QHotkey *m_copyTranslatedSelectionHotkey;
     QHotkey *m_recognizeScreenAreaHotkey;

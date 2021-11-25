@@ -21,8 +21,8 @@
 #ifndef OCR_H
 #define OCR_H
 
-#include <QObject>
 #include <QFuture>
+#include <QObject>
 
 #include <tesseract/baseapi.h>
 #include <tesseract/ocrclass.h>

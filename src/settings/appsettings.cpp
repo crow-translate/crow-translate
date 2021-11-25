@@ -39,54 +39,48 @@
 
 QTranslator AppSettings::s_appTranslator;
 QTranslator AppSettings::s_qtTranslator;
-#ifdef WITH_PORTABLE_MODE
-const QString AppSettings::s_portableConfigName = QStringLiteral("settings.ini");
-#endif
 
 AppSettings::AppSettings(QObject *parent)
     : QObject(parent)
 #ifndef WITH_PORTABLE_MODE
     , m_settings(new QSettings(this))
-{
-}
 #else
-{
-    m_settings = QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this);
-}
+    , m_settings(QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this))
 #endif
+{
+}
 
 void AppSettings::setupLocalization() const
 {
-    applyLanguage(language());
+    applyLocale(locale());
     QCoreApplication::installTranslator(&s_appTranslator);
     QCoreApplication::installTranslator(&s_qtTranslator);
 }
 
-QLocale::Language AppSettings::language() const
+QLocale AppSettings::locale() const
 {
-    return m_settings->value(QStringLiteral("Locale"), defaultLanguage()).value<QLocale::Language>();
+    return m_settings->value(QStringLiteral("Locale"), defaultLocale()).value<QLocale>();
 }
 
-void AppSettings::setLanguage(QLocale::Language lang)
+void AppSettings::setLocale(const QLocale &locale)
 {
-    if (lang != language()) {
-        m_settings->setValue(QStringLiteral("Locale"), lang);
-        applyLanguage(lang);
+    if (locale != this->locale()) {
+        m_settings->setValue(QStringLiteral("Locale"), locale);
+        applyLocale(locale);
     }
 }
 
-void AppSettings::applyLanguage(QLocale::Language lang)
+void AppSettings::applyLocale(const QLocale &locale)
 {
-    const QLocale locale = lang == QLocale::AnyLanguage ? QLocale::system() : QLocale(lang);
-    QLocale::setDefault(locale);
-
-    s_appTranslator.load(locale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
-    s_qtTranslator.load(locale, QStringLiteral("qtbase"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
+    const QLocale newLocale = locale == defaultLocale() ? QLocale::system() : locale;
+    QLocale::setDefault(newLocale);
+    s_appTranslator.load(newLocale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
+    s_qtTranslator.load(newLocale, QStringLiteral("qt"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
-QLocale::Language AppSettings::defaultLanguage()
+QLocale AppSettings::defaultLocale()
 {
-    return QLocale::AnyLanguage;
+    return QLocale::c(); // C locale is used as the system language on apply
 }
 
 Qt::ScreenOrientation AppSettings::mainWindowOrientation() const
@@ -132,6 +126,21 @@ void AppSettings::setTranslationNotificationTimeout(int timeout)
 int AppSettings::defaultTranslationNotificationTimeout()
 {
     return 3;
+}
+
+int AppSettings::popupWindowTimeout() const
+{
+    return m_settings->value(QStringLiteral("Interface/PopupWindowTimeout"), defaultPopupWindowTimeout()).toInt();
+}
+
+void AppSettings::setPopupWindowTimeout(int timeout)
+{
+    m_settings->setValue(QStringLiteral("Interface/PopupWindowTimeout"), timeout);
+}
+
+int AppSettings::defaultPopupWindowTimeout()
+{
+    return 0;
 }
 
 bool AppSettings::isShowTrayIcon() const
@@ -537,11 +546,82 @@ bool AppSettings::defaultForceTranslationAutodetect()
     return true;
 }
 
+QString AppSettings::engineUrl(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return m_settings->value(QStringLiteral("Translation/LibreTranslateUrl"), defaultEngineUrl(engine)).toString();
+    case QOnlineTranslator::Lingva:
+        return m_settings->value(QStringLiteral("Translation/LingvaUrl"), defaultEngineUrl(engine)).toString();
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+void AppSettings::setEngineUrl(QOnlineTranslator::Engine engine, const QString &url)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        m_settings->setValue(QStringLiteral("Translation/LibreTranslateUrl"), url);
+        break;
+    case QOnlineTranslator::Lingva:
+        m_settings->setValue(QStringLiteral("Translation/LingvaUrl"), url);
+        break;
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QString AppSettings::defaultEngineUrl(QOnlineTranslator::Engine engine)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return QStringLiteral("https://translate.argosopentech.com");
+    case QOnlineTranslator::Lingva:
+        return QStringLiteral("https://lingva.ml");
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QByteArray AppSettings::engineApiKey(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return m_settings->value(QStringLiteral("Translation/LibreTranslateApiKey"), defaultEngineApiKey(engine)).toByteArray();
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+void AppSettings::setEngineApiKey(QOnlineTranslator::Engine engine, const QByteArray &apiKey)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        m_settings->setValue(QStringLiteral("Translation/LibreTranslateApiKey"), apiKey);
+        break;
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QByteArray AppSettings::defaultEngineApiKey(QOnlineTranslator::Engine engine)
+{
+    switch (engine) {
+    case QOnlineTranslator::LibreTranslate:
+        return {};
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
 QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
     case QOnlineTranslator::Google:
     case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexVoice"), defaultVoice(engine)).value<QOnlineTts::Voice>();
@@ -567,6 +647,8 @@ QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
     switch (engine) {
     case QOnlineTranslator::Google:
     case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Zahar;
@@ -578,8 +660,10 @@ QOnlineTts::Voice AppSettings::defaultVoice(QOnlineTranslator::Engine engine)
 QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
 {
     switch (engine) {
-    case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return m_settings->value(QStringLiteral("Translation/YandexEmotion"), defaultEmotion(engine)).value<QOnlineTts::Emotion>();
@@ -603,8 +687,10 @@ void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emoti
 QOnlineTts::Emotion AppSettings::defaultEmotion(QOnlineTranslator::Engine engine)
 {
     switch (engine) {
-    case QOnlineTranslator::Bing:
     case QOnlineTranslator::Google:
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
         return QOnlineTts::Neutral;
@@ -778,6 +864,21 @@ QKeySequence AppSettings::defaultStopSpeakingShortcut()
     return QKeySequence(QStringLiteral("Ctrl+Alt+G"));
 }
 
+QKeySequence AppSettings::playPauseSpeakingShortcut() const
+{
+    return m_settings->value(QStringLiteral("Shortcuts/PlayPauseSpeakingSelection"), defaultStopSpeakingShortcut()).value<QKeySequence>();
+}
+
+void AppSettings::setPlayPauseSpeakingShortcut(const QKeySequence &shortcut)
+{
+    m_settings->setValue(QStringLiteral("Shortcuts/PlayPauseSpeakingSelection"), shortcut);
+}
+
+QKeySequence AppSettings::defaultPlayPauseSpeakingShortcut()
+{
+    return QKeySequence(QStringLiteral("Ctrl+Alt+D"));
+}
+
 QKeySequence AppSettings::showMainWindowShortcut() const
 {
     return m_settings->value(QStringLiteral("Shortcuts/ShowMainWindow"), defaultShowMainWindowShortcut()).value<QKeySequence>();
@@ -805,7 +906,7 @@ void AppSettings::setCopyTranslatedSelectionShortcut(const QKeySequence &shortcu
 
 QKeySequence AppSettings::defaultCopyTranslatedSelectionShortcut()
 {
-    return QKeySequence();
+    return {};
 }
 
 QKeySequence AppSettings::recognizeScreenAreaShortcut() const

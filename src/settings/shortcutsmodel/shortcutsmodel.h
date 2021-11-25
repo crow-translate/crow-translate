@@ -70,6 +70,7 @@ private:
     ShortcutItem *m_speakSelectionShortcut;
     ShortcutItem *m_speakTranslatedSelectionShortcut;
     ShortcutItem *m_stopSpeakingShortcut;
+    ShortcutItem *m_playPauseSpeakingShortcut;
     ShortcutItem *m_showMainWindowShortcut;
     ShortcutItem *m_copyTranslatedSelectionShortcut;
     ShortcutItem *m_recognizeScreenAreaShortcut;

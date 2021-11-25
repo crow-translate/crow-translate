@@ -33,8 +33,8 @@ RetranslationTransition::RetranslationTransition(QOnlineTranslator *translator, 
 bool RetranslationTransition::eventTest(QEvent *)
 {
     return m_translator->error() == QOnlineTranslator::NoError
-            && m_langButtons->isAutoButtonChecked()
-            && m_translator->sourceLanguage() == m_translator->translationLanguage();
+        && m_langButtons->isAutoButtonChecked()
+        && m_translator->sourceLanguage() == m_translator->translationLanguage();
 }
 
 void RetranslationTransition::onTransition(QEvent *)

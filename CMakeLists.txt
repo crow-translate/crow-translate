@@ -1,9 +1,11 @@
 cmake_minimum_required(VERSION 3.16.0)
 
-project(crow-translate VERSION 2.8.5 LANGUAGES CXX)
-
-set(CMAKE_PROJECT_HOMEPAGE_URL crow-translate.github.io)
-set(CMAKE_PROJECT_DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex and Bing")
+project(crow-translate
+    VERSION 2.9.1
+    DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex, Bing, LibreTranslate and Lingva"
+    HOMEPAGE_URL crow-translate.github.io
+    LANGUAGES CXX
+)
 
 set(APPLICATION_NAME "Crow Translate")
 set(EXECUTABLE_NAME crow)
@@ -44,6 +46,15 @@ set(CMAKE_AUTOUIC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
+if(CMAKE_CXX_CLANG_TIDY)
+    # Exclude generated files and third party dependencies from FetchContent
+    # We generate a dummy .clang-tidy file in the binary directory that disables
+    # all clang-tidy checks except one that will never match. This one check is
+    # necessary; clang-tidy reports an error when no checks are enabled.
+    # https://gitlab.kitware.com/cmake/cmake/-/issues/19772
+    file(WRITE ${CMAKE_BINARY_DIR}/.clang-tidy "Checks: '-*,llvm-twine-local'")
+endif()
+
 option(WITH_PORTABLE_MODE "Enable portable functionality" OFF)
 
 find_package(ECM REQUIRED NO_MODULE)
@@ -80,33 +91,36 @@ set(APP_ICONS
 )
 
 qt5_add_translation(QM_FILES
-    data/translations/${PROJECT_NAME}_el.ts
-    data/translations/${PROJECT_NAME}_es.ts
-    data/translations/${PROJECT_NAME}_fi.ts
-    data/translations/${PROJECT_NAME}_fr.ts
-    data/translations/${PROJECT_NAME}_hi.ts
-    data/translations/${PROJECT_NAME}_id.ts
-    data/translations/${PROJECT_NAME}_it.ts
-    data/translations/${PROJECT_NAME}_ms.ts
-    data/translations/${PROJECT_NAME}_nl.ts
-    data/translations/${PROJECT_NAME}_pl.ts
-    data/translations/${PROJECT_NAME}_pt.ts
-    data/translations/${PROJECT_NAME}_ru.ts
-    data/translations/${PROJECT_NAME}_sq.ts
-    data/translations/${PROJECT_NAME}_tr.ts
-    data/translations/${PROJECT_NAME}_ug.ts
-    data/translations/${PROJECT_NAME}_uk.ts
-    data/translations/${PROJECT_NAME}_zh.ts
+    data/translations/${PROJECT_NAME}_az_AZ.ts
+    data/translations/${PROJECT_NAME}_el_GR.ts
+    data/translations/${PROJECT_NAME}_es_ES.ts
+    data/translations/${PROJECT_NAME}_fi_FI.ts
+    data/translations/${PROJECT_NAME}_fr_FR.ts
+    data/translations/${PROJECT_NAME}_hi_IN.ts
+    data/translations/${PROJECT_NAME}_hu_HU.ts
+    data/translations/${PROJECT_NAME}_id_ID.ts
+    data/translations/${PROJECT_NAME}_it_IT.ts
+    data/translations/${PROJECT_NAME}_ms_MY.ts
+    data/translations/${PROJECT_NAME}_nl_NL.ts
+    data/translations/${PROJECT_NAME}_pl_PL.ts
+    data/translations/${PROJECT_NAME}_pt_BR.ts
+    data/translations/${PROJECT_NAME}_ru_RU.ts
+    data/translations/${PROJECT_NAME}_sq_AL.ts
+    data/translations/${PROJECT_NAME}_tr_TR.ts
+    data/translations/${PROJECT_NAME}_ug_CN.ts
+    data/translations/${PROJECT_NAME}_uk_UA.ts
+    data/translations/${PROJECT_NAME}_zh_CN.ts
+    data/translations/${PROJECT_NAME}_zh_TW.ts
 )
 
 configure_file(src/cmake.h.in cmake.h)
 configure_file(data/icons/flags.qrc ${CircleFlags_SOURCE_DIR}/flags/flags.qrc COPYONLY)
-configure_file(data/icons/we10x.qrc ${We10X_SOURCE_DIR}/src/we10x.qrc COPYONLY)
+configure_file(data/icons/fluent-icon-theme.qrc ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc COPYONLY)
 
 add_executable(${PROJECT_NAME}
     ${CircleFlags_SOURCE_DIR}/flags/flags.qrc
     ${QM_FILES}
-    ${We10X_SOURCE_DIR}/src/we10x.qrc
+    ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc
     data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
@@ -215,8 +229,8 @@ elseif(WIN32)
     install(CODE "execute_process(COMMAND ${WINDEPLOYQT} --no-compiler-runtime --no-angle \${CMAKE_INSTALL_PREFIX}/$<TARGET_FILE_NAME:${PROJECT_NAME}>)")
 
     # Bundle OpenSLL libraries that required for Qt networking manually because it not handled by windeployqt
-    find_file(SLL_DLL NAMES libssl.dll libssl-1_1.dll libssl-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
-    find_file(CRYPTO_DLL NAMES libcrypto.dll libcrypto-1_1.dll libcrypto-1_1-x64.dll PATH_SUFFIXES tools/qt5/bin)
+    find_file(SLL_DLL NAMES libssl-1_1-x64.dll libssl-1_1.dll libssl.dll PATH_SUFFIXES tools/qt5/bin)
+    find_file(CRYPTO_DLL NAMES libcrypto-1_1-x64.dll libcrypto-1_1.dll libcrypto.dll PATH_SUFFIXES tools/qt5/bin)
     install(FILES ${SLL_DLL} ${CRYPTO_DLL} DESTINATION .)
 
     # Install other non-Qt runtime depenencies
@@ -238,5 +252,6 @@ elseif(WIN32)
                 FILES "${DEPENDENCY}"
             )
         endforeach()
+        file(WRITE ${CMAKE_INSTALL_PREFIX}/qt.conf "[Paths]") # Setup Qt libraries paths
     ]])
 endif()
