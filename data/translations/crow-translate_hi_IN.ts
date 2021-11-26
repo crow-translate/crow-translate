@@ -125,7 +125,7 @@
     <message>
         <location filename="../../src/cli.cpp" line="360"/>
         <source>Error: You can&apos;t use --%1 with --%2</source>
-        <translation>त्रुटि: आप उपयोग नहीं कर सकते --%1 साथ --%2</translation>
+        <translation>त्रुटि: उपयोग &apos;नहीं किया जा सकता --%1 साथ --%2</translation>
     </message>
     <message>
         <location filename="../../src/cli.cpp" line="134"/>
