@@ -2,22 +2,22 @@ name: Main
 on:
   push:
     branches-ignore:
-      - "releases/**"
+      - 'releases/**'
     paths-ignore:
-      - "**.md"
-      - ".github/workflows/release.yml"
-      - ".github/FUNDING.yml"
-      - ".gitignore"
-      - "crowdin.yml"
-      - "data/translations/**"
+      - '**.md'
+      - '.github/workflows/release.yml'
+      - '.github/FUNDING.yml'
+      - '.gitignore'
+      - 'crowdin.yml'
+      - 'data/translations/**'
   pull_request:
     paths-ignore:
-      - "**.md"
-      - ".github/workflows/release.yml"
-      - ".github/FUNDING.yml"
-      - ".gitignore"
-      - "crowdin.yml"
-      - "data/translations/**"
+      - '**.md'
+      - '.github/workflows/release.yml'
+      - '.github/FUNDING.yml'
+      - '.gitignore'
+      - 'crowdin.yml'
+      - 'data/translations/**'
 jobs:
   format:
     name: Format
