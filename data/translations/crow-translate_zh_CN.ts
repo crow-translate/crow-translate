@@ -1663,13 +1663,13 @@
       <location filename="../../src/settings/settingsdialog.ui" line="486"/>
       <location filename="../../src/settings/settingsdialog.ui" line="510"/>
       <source>Full name</source>
-      <translation>全称</translation>
+      <translation>全名</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="491"/>
       <location filename="../../src/settings/settingsdialog.ui" line="515"/>
       <source>ISO 639-1 code</source>
-      <translation>ISO 639-1 编码</translation>
+      <translation>ISO 639-1 语言代码</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="499"/>
