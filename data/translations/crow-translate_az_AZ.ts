@@ -247,7 +247,7 @@
     <message>
       <location filename="../../src/mainwindow.ui" line="283"/>
       <source>Application settings</source>
-      <translation>Tətbiqi ayarları</translation>
+      <translation>Tətbiqin ayarları</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="93"/>
