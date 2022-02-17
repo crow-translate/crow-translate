@@ -7,7 +7,7 @@ jobs:
     name: Release
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
+        os: [ubuntu-18.04, ubuntu-20.04, windows-2019]
         arch: [amd64, aarch64, armv7]
         include:
           - os: ubuntu-18.04
@@ -16,7 +16,7 @@ jobs:
           - os: ubuntu-20.04
             extra-cmake-arguments: >-
               -D CPACK_GENERATOR="DEB;RPM"
-          - os: windows-latest
+          - os: windows-2019
             extra-cmake-arguments: >-
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
               -D VCPKG_TARGET_TRIPLET=x64-windows
@@ -25,9 +25,9 @@ jobs:
               -D CPACK_GENERATOR="NSIS;7Z"
               -D X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
         exclude:
-          - os: windows-latest
+          - os: windows-2019
             arch: aarch64
-          - os: windows-latest
+          - os: windows-2019
             arch: armv7
           - os: ubuntu-18.04
             arch: aarch64
@@ -62,10 +62,11 @@ jobs:
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10
+        uses: lukka/run-vcpkg@v10.1
         if: runner.os == 'Windows'
         with:
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
+          runVcpkgInstall: true
 
       - name: Setup MSVC
         if: runner.os == 'Windows'

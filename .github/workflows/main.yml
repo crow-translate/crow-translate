@@ -33,7 +33,7 @@ jobs:
     name: Build
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, windows-latest]
+        os: [ubuntu-18.04, ubuntu-20.04, windows-2019]
         include:
           - os: ubuntu-18.04
             extra-cmake-arguments: >-
@@ -41,7 +41,7 @@ jobs:
           - os: ubuntu-20.04
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
-          - os: windows-latest
+          - os: windows-2019
             extra-cmake-arguments: >-
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
               -D VCPKG_TARGET_TRIPLET=x64-windows
@@ -61,10 +61,11 @@ jobs:
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev ninja-build
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10
+        uses: lukka/run-vcpkg@v10.1
         if: runner.os == 'Windows'
         with:
           vcpkgGitCommitId: 5568f110b509a9fd90711978a7cb76bae75bb092
+          runVcpkgInstall: true
 
       - name: Setup MSVC
         if: runner.os == 'Windows'
