@@ -50,6 +50,11 @@ int main(int argc, char *argv[])
 
 int launchGui(int argc, char *argv[])
 {
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseHighDpiPixmaps);
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0) && defined(Q_OS_WIN)
+    QGuiApplication::setHighDpiScaleFactorRoundingPolicy(Qt::HighDpiScaleFactorRoundingPolicy::PassThrough);
+#endif
 #if defined(Q_OS_LINUX)
     QGuiApplication::setDesktopFileName(QStringLiteral(DESKTOP_FILE));
 #elif defined(Q_OS_WIN)
