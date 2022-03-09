@@ -134,7 +134,7 @@
         <item>
          <widget class="QStackedWidget" name="pagesStackedWidget">
           <property name="currentIndex">
-           <number>2</number>
+           <number>0</number>
           </property>
           <widget class="QWidget" name="generalPage">
            <layout class="QVBoxLayout" name="generalLayout">
