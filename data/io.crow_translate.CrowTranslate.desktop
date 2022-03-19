@@ -16,6 +16,7 @@ Terminal=false
 StartupNotify=false
 Type=Application
 Categories=Office;Network;Qt;
+StartupWMClass=crow
 X-KDE-DBUS-Restricted-Interfaces=org.kde.kwin.Screenshot
 X-Purism-FormFactor=Workstation;Mobile;
 
