@@ -115,7 +115,7 @@
     <message>
       <location filename="../../src/cli.cpp" line="366"/>
       <source>Error: You can&apos;t use --%1 with --%2</source>
-      <translation>错误：您可以&apos;t 使用 --%1 与 --%2</translation>
+      <translation>错误：您不能同时使用 --%1 和 --%2</translation>
     </message>
     <message>
       <location filename="../../src/cli.cpp" line="140"/>
