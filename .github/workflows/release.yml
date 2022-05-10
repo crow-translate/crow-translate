@@ -16,7 +16,7 @@ jobs:
         run: |
           SOURCE_NAME=$(awk -F/ '{print $NF}' <<<"${{ github.repository }}")-$(awk -F/ '{print $NF}' <<<"${{ github.ref }}")
           git ls-files --recurse-submodules | \
-          tar --exclude-vcs --transform "s|^|$SOURCE_NAME/|S" -ca -T - -f ../$SOURCE_NAME.tar.gz
+          tar --exclude-vcs --transform "s|^|$SOURCE_NAME/|S" -ca -T - -f ../$SOURCE_NAME-source.tar.gz
 
       - name: Upload source tarball
         uses: AButler/upload-release-assets@v2.0
