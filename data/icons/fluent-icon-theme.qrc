@@ -1,44 +1,44 @@
 <RCC>
     <qresource prefix="/icons/hicolor">
-        <file alias="16/actions/arrow-down.svg">third-party/fluent-icon-theme/src/16/actions/go-down.svg</file>
-        <file alias="16/actions/arrow-left.svg">third-party/fluent-icon-theme/src/16/actions/go-previous.svg</file>
-        <file alias="16/actions/arrow-right.svg">third-party/fluent-icon-theme/src/16/actions/go-next.svg</file>
-        <file alias="16/actions/arrow-up.svg">third-party/fluent-icon-theme/src/16/actions/go-up.svg</file>
-        <file alias="16/actions/edit-clear-all.svg">third-party/fluent-icon-theme/src/16/actions/edit-clear-history.svg</file>
-        <file alias="16/status/system-software-update.svg">third-party/fluent-icon-theme/src/scalable/apps/system-software-update.svg</file>
-        <file alias="32/categories/dialog-information.svg">third-party/fluent-icon-theme/src/scalable/apps/userinfo.svg</file>
-        <file alias="32/categories/preferences-desktop-keyboard.svg">third-party/fluent-icon-theme/src/scalable/apps/preferences-desktop-keyboard.svg</file>
-        <file alias="32/categories/preferences-desktop-locale.svg">third-party/fluent-icon-theme/src/scalable/apps/preferences-desktop-locale.svg</file>
-        <file alias="32/categories/preferences-desktop-sound.svg">third-party/fluent-icon-theme/src/scalable/apps/rhythmbox.svg</file>
-        <file alias="32/categories/preferences-desktop-theme.svg">third-party/fluent-icon-theme/src/scalable/apps/preferences-desktop-theme-global.svg</file>
-        <file alias="32/categories/preferences-system-network.svg">third-party/fluent-icon-theme/src/scalable/apps/network-workgroup.svg</file>
-        <file alias="32/categories/preferences-system.svg">third-party/fluent-icon-theme/src/scalable/apps/preferences-system.svg</file>
-        <file alias="32/categories/scanner.svg">third-party/fluent-icon-theme/src/scalable/apps/scanner.svg</file>
-        <file alias="16/actions/application-exit.svg">third-party/fluent-icon-theme/src/16/actions/application-exit.svg</file>
-        <file alias="16/actions/configure.svg">third-party/fluent-icon-theme/src/16/actions/configure.svg</file>
-        <file alias="16/actions/dialog-cancel.svg">third-party/fluent-icon-theme/src/16/actions/dialog-cancel.svg</file>
-        <file alias="16/actions/dialog-error.svg">third-party/fluent-icon-theme/src/16/actions/dialog-error.svg</file>
-        <file alias="16/actions/dialog-ok-apply.svg">third-party/fluent-icon-theme/src/16/actions/dialog-ok-apply.svg</file>
-        <file alias="16/actions/document-edit.svg">third-party/fluent-icon-theme/src/16/actions/document-edit.svg</file>
-        <file alias="16/actions/edit-copy.svg">third-party/fluent-icon-theme/src/16/actions/edit-copy.svg</file>
-        <file alias="16/actions/edit-cut.svg">third-party/fluent-icon-theme/src/16/actions/edit-cut.svg</file>
-        <file alias="16/actions/edit-delete.svg">third-party/fluent-icon-theme/src/16/actions/edit-delete.svg</file>
-        <file alias="16/actions/edit-paste.svg">third-party/fluent-icon-theme/src/16/actions/edit-paste.svg</file>
-        <file alias="16/actions/edit-redo.svg">third-party/fluent-icon-theme/src/16/actions/edit-redo.svg</file>
-        <file alias="16/actions/edit-select-all.svg">third-party/fluent-icon-theme/src/16/actions/edit-select-all.svg</file>
-        <file alias="16/actions/edit-undo.svg">third-party/fluent-icon-theme/src/16/actions/edit-undo.svg</file>
-        <file alias="16/actions/go-next.svg">third-party/fluent-icon-theme/src/16/actions/go-next.svg</file>
-        <file alias="16/actions/list-add.svg">third-party/fluent-icon-theme/src/16/actions/list-add.svg</file>
-        <file alias="16/actions/list-remove.svg">third-party/fluent-icon-theme/src/16/actions/list-remove.svg</file>
-        <file alias="16/actions/media-playback-pause.svg">third-party/fluent-icon-theme/src/16/actions/media-playback-pause.svg</file>
-        <file alias="16/actions/media-playback-start.svg">third-party/fluent-icon-theme/src/16/actions/media-playback-start.svg</file>
-        <file alias="16/actions/media-playback-stop.svg">third-party/fluent-icon-theme/src/16/actions/media-playback-stop.svg</file>
-        <file alias="16/actions/object-flip-horizontal.svg">third-party/fluent-icon-theme/src/16/actions/object-flip-horizontal.svg</file>
-        <file alias="16/actions/text-speak.svg">third-party/fluent-icon-theme/src/16/actions/text-speak.svg</file>
-        <file alias="16/actions/transform-crop.svg">third-party/fluent-icon-theme/src/16/actions/transform-crop.svg</file>
-        <file alias="16/actions/view-refresh.svg">third-party/fluent-icon-theme/src/16/actions/view-refresh.svg</file>
-        <file alias="16/actions/window.svg">third-party/fluent-icon-theme/src/16/actions/window.svg</file>
-        <file alias="16/places/folder.svg">third-party/fluent-icon-theme/src/16/places/folder.svg</file>
-        <file alias="index.theme">third-party/fluent-icon-theme/src/index.theme</file>
+        <file alias="16/actions/arrow-down.svg">16/actions/go-down.svg</file>
+        <file alias="16/actions/arrow-left.svg">16/actions/go-previous.svg</file>
+        <file alias="16/actions/arrow-right.svg">16/actions/go-next.svg</file>
+        <file alias="16/actions/arrow-up.svg">16/actions/go-up.svg</file>
+        <file alias="16/actions/edit-clear-all.svg">16/actions/edit-clear-history.svg</file>
+        <file alias="16/status/system-software-update.svg">scalable/apps/system-software-update.svg</file>
+        <file alias="32/categories/dialog-information.svg">scalable/apps/userinfo.svg</file>
+        <file alias="32/categories/preferences-desktop-keyboard.svg">scalable/apps/preferences-desktop-keyboard.svg</file>
+        <file alias="32/categories/preferences-desktop-locale.svg">scalable/apps/preferences-desktop-locale.svg</file>
+        <file alias="32/categories/preferences-desktop-sound.svg">scalable/apps/rhythmbox.svg</file>
+        <file alias="32/categories/preferences-desktop-theme.svg">scalable/apps/preferences-desktop-theme-global.svg</file>
+        <file alias="32/categories/preferences-system-network.svg">scalable/apps/network-workgroup.svg</file>
+        <file alias="32/categories/preferences-system.svg">scalable/apps/preferences-system.svg</file>
+        <file alias="32/categories/scanner.svg">scalable/apps/scanner.svg</file>
+        <file>16/actions/application-exit.svg</file>
+        <file>16/actions/configure.svg</file>
+        <file>16/actions/dialog-cancel.svg</file>
+        <file>16/actions/dialog-error.svg</file>
+        <file>16/actions/dialog-ok-apply.svg</file>
+        <file>16/actions/document-edit.svg</file>
+        <file>16/actions/edit-copy.svg</file>
+        <file>16/actions/edit-cut.svg</file>
+        <file>16/actions/edit-delete.svg</file>
+        <file>16/actions/edit-paste.svg</file>
+        <file>16/actions/edit-redo.svg</file>
+        <file>16/actions/edit-select-all.svg</file>
+        <file>16/actions/edit-undo.svg</file>
+        <file>16/actions/go-next.svg</file>
+        <file>16/actions/list-add.svg</file>
+        <file>16/actions/list-remove.svg</file>
+        <file>16/actions/media-playback-pause.svg</file>
+        <file>16/actions/media-playback-start.svg</file>
+        <file>16/actions/media-playback-stop.svg</file>
+        <file>16/actions/object-flip-horizontal.svg</file>
+        <file>16/actions/text-speak.svg</file>
+        <file>16/actions/transform-crop.svg</file>
+        <file>16/actions/view-refresh.svg</file>
+        <file>16/actions/window.svg</file>
+        <file>16/places/folder.svg</file>
+        <file>index.theme</file>
     </qresource>
 </RCC>

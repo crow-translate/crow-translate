@@ -1,103 +1,103 @@
 <RCC>
     <qresource prefix="/icons/flags">
-        <file alias="ad.svg">third-party/circle-flags/flags/ad.svg</file>
-        <file alias="af.svg">third-party/circle-flags/flags/af.svg</file>
-        <file alias="al.svg">third-party/circle-flags/flags/al.svg</file>
-        <file alias="am.svg">third-party/circle-flags/flags/am.svg</file>
-        <file alias="aw.svg">third-party/circle-flags/flags/aw.svg</file>
-        <file alias="az.svg">third-party/circle-flags/flags/az.svg</file>
-        <file alias="ba.svg">third-party/circle-flags/flags/ba.svg</file>
-        <file alias="bd.svg">third-party/circle-flags/flags/bd.svg</file>
-        <file alias="bg.svg">third-party/circle-flags/flags/bg.svg</file>
-        <file alias="br.svg">third-party/circle-flags/flags/br.svg</file>
-        <file alias="by.svg">third-party/circle-flags/flags/by.svg</file>
-        <file alias="cn.svg">third-party/circle-flags/flags/cn.svg</file>
-        <file alias="cz.svg">third-party/circle-flags/flags/cz.svg</file>
-        <file alias="de.svg">third-party/circle-flags/flags/de.svg</file>
-        <file alias="dk.svg">third-party/circle-flags/flags/dk.svg</file>
-        <file alias="ee.svg">third-party/circle-flags/flags/ee.svg</file>
-        <file alias="eg.svg">third-party/circle-flags/flags/eg.svg</file>
-        <file alias="es-ga.svg">third-party/circle-flags/flags/es-ga.svg</file>
-        <file alias="es-pv.svg">third-party/circle-flags/flags/es-pv.svg</file>
-        <file alias="es.svg">third-party/circle-flags/flags/es.svg</file>
-        <file alias="esperanto.svg">third-party/circle-flags/flags/esperanto.svg</file>
-        <file alias="et.svg">third-party/circle-flags/flags/et.svg</file>
-        <file alias="fi.svg">third-party/circle-flags/flags/fi.svg</file>
-        <file alias="fiction/klingon.svg">third-party/circle-flags/flags/fiction/klingon.svg</file>
-        <file alias="fj.svg">third-party/circle-flags/flags/fj.svg</file>
-        <file alias="fr.svg">third-party/circle-flags/flags/fr.svg</file>
-        <file alias="gb-sct.svg">third-party/circle-flags/flags/gb-sct.svg</file>
-        <file alias="gb-wls.svg">third-party/circle-flags/flags/gb-wls.svg</file>
-        <file alias="gb.svg">third-party/circle-flags/flags/gb.svg</file>
-        <file alias="ge.svg">third-party/circle-flags/flags/ge.svg</file>
-        <file alias="gr.svg">third-party/circle-flags/flags/gr.svg</file>
-        <file alias="hr.svg">third-party/circle-flags/flags/hr.svg</file>
-        <file alias="ht.svg">third-party/circle-flags/flags/ht.svg</file>
-        <file alias="hu.svg">third-party/circle-flags/flags/hu.svg</file>
-        <file alias="id.svg">third-party/circle-flags/flags/id.svg</file>
-        <file alias="id.svg">third-party/circle-flags/flags/id.svg</file>
-        <file alias="ie.svg">third-party/circle-flags/flags/ie.svg</file>
-        <file alias="il.svg">third-party/circle-flags/flags/il.svg</file>
-        <file alias="in.svg">third-party/circle-flags/flags/in.svg</file>
-        <file alias="iq.svg">third-party/circle-flags/flags/iq.svg</file>
-        <file alias="ir.svg">third-party/circle-flags/flags/ir.svg</file>
-        <file alias="is.svg">third-party/circle-flags/flags/is.svg</file>
-        <file alias="it.svg">third-party/circle-flags/flags/it.svg</file>
-        <file alias="jp.svg">third-party/circle-flags/flags/jp.svg</file>
-        <file alias="ke.svg">third-party/circle-flags/flags/ke.svg</file>
-        <file alias="kg.svg">third-party/circle-flags/flags/kg.svg</file>
-        <file alias="kh.svg">third-party/circle-flags/flags/kh.svg</file>
-        <file alias="kr.svg">third-party/circle-flags/flags/kr.svg</file>
-        <file alias="kz.svg">third-party/circle-flags/flags/kz.svg</file>
-        <file alias="la.svg">third-party/circle-flags/flags/la.svg</file>
-        <file alias="lk.svg">third-party/circle-flags/flags/lk.svg</file>
-        <file alias="ls.svg">third-party/circle-flags/flags/ls.svg</file>
-        <file alias="lt.svg">third-party/circle-flags/flags/lt.svg</file>
-        <file alias="lu.svg">third-party/circle-flags/flags/lu.svg</file>
-        <file alias="lv.svg">third-party/circle-flags/flags/lv.svg</file>
-        <file alias="mg.svg">third-party/circle-flags/flags/mg.svg</file>
-        <file alias="mk.svg">third-party/circle-flags/flags/mk.svg</file>
-        <file alias="mm.svg">third-party/circle-flags/flags/mm.svg</file>
-        <file alias="mn.svg">third-party/circle-flags/flags/mn.svg</file>
-        <file alias="mt.svg">third-party/circle-flags/flags/mt.svg</file>
-        <file alias="mw.svg">third-party/circle-flags/flags/mw.svg</file>
-        <file alias="mx.svg">third-party/circle-flags/flags/mx.svg</file>
-        <file alias="my.svg">third-party/circle-flags/flags/my.svg</file>
-        <file alias="ne.svg">third-party/circle-flags/flags/ne.svg</file>
-        <file alias="ng.svg">third-party/circle-flags/flags/ng.svg</file>
-        <file alias="nl.svg">third-party/circle-flags/flags/nl.svg</file>
-        <file alias="no.svg">third-party/circle-flags/flags/no.svg</file>
-        <file alias="np.svg">third-party/circle-flags/flags/np.svg</file>
-        <file alias="nz.svg">third-party/circle-flags/flags/nz.svg</file>
-        <file alias="pf.svg">third-party/circle-flags/flags/pf.svg</file>
-        <file alias="ph.svg">third-party/circle-flags/flags/ph.svg</file>
-        <file alias="pk.svg">third-party/circle-flags/flags/pk.svg</file>
-        <file alias="pl.svg">third-party/circle-flags/flags/pl.svg</file>
-        <file alias="pt.svg">third-party/circle-flags/flags/pt.svg</file>
-        <file alias="ro.svg">third-party/circle-flags/flags/ro.svg</file>
-        <file alias="rs.svg">third-party/circle-flags/flags/rs.svg</file>
-        <file alias="ru.svg">third-party/circle-flags/flags/ru.svg</file>
-        <file alias="rw.svg">third-party/circle-flags/flags/rw.svg</file>
-        <file alias="sd.svg">third-party/circle-flags/flags/sd.svg</file>
-        <file alias="se.svg">third-party/circle-flags/flags/se.svg</file>
-        <file alias="si.svg">third-party/circle-flags/flags/si.svg</file>
-        <file alias="sk.svg">third-party/circle-flags/flags/sk.svg</file>
-        <file alias="sl.svg">third-party/circle-flags/flags/sl.svg</file>
-        <file alias="so.svg">third-party/circle-flags/flags/so.svg</file>
-        <file alias="th.svg">third-party/circle-flags/flags/th.svg</file>
-        <file alias="tj.svg">third-party/circle-flags/flags/tj.svg</file>
-        <file alias="tk.svg">third-party/circle-flags/flags/tk.svg</file>
-        <file alias="tm.svg">third-party/circle-flags/flags/tm.svg</file>
-        <file alias="to.svg">third-party/circle-flags/flags/to.svg</file>
-        <file alias="tr.svg">third-party/circle-flags/flags/tr.svg</file>
-        <file alias="tw.svg">third-party/circle-flags/flags/tw.svg</file>
-        <file alias="ua.svg">third-party/circle-flags/flags/ua.svg</file>
-        <file alias="us.svg">third-party/circle-flags/flags/us.svg</file>
-        <file alias="uz.svg">third-party/circle-flags/flags/uz.svg</file>
-        <file alias="va.svg">third-party/circle-flags/flags/va.svg</file>
-        <file alias="vn.svg">third-party/circle-flags/flags/vn.svg</file>
-        <file alias="ws.svg">third-party/circle-flags/flags/ws.svg</file>
-        <file alias="za.svg">third-party/circle-flags/flags/za.svg</file>
-        <file alias="zw.svg">third-party/circle-flags/flags/zw.svg</file>
+        <file>ad.svg</file>
+        <file>af.svg</file>
+        <file>al.svg</file>
+        <file>am.svg</file>
+        <file>aw.svg</file>
+        <file>az.svg</file>
+        <file>ba.svg</file>
+        <file>bd.svg</file>
+        <file>bg.svg</file>
+        <file>br.svg</file>
+        <file>by.svg</file>
+        <file>cn.svg</file>
+        <file>cz.svg</file>
+        <file>de.svg</file>
+        <file>dk.svg</file>
+        <file>ee.svg</file>
+        <file>eg.svg</file>
+        <file>es-ga.svg</file>
+        <file>es-pv.svg</file>
+        <file>es.svg</file>
+        <file>esperanto.svg</file>
+        <file>et.svg</file>
+        <file>fi.svg</file>
+        <file>fiction/klingon.svg</file>
+        <file>fj.svg</file>
+        <file>fr.svg</file>
+        <file>gb-sct.svg</file>
+        <file>gb-wls.svg</file>
+        <file>gb.svg</file>
+        <file>ge.svg</file>
+        <file>gr.svg</file>
+        <file>hr.svg</file>
+        <file>ht.svg</file>
+        <file>hu.svg</file>
+        <file>id.svg</file>
+        <file>id.svg</file>
+        <file>ie.svg</file>
+        <file>il.svg</file>
+        <file>in.svg</file>
+        <file>iq.svg</file>
+        <file>ir.svg</file>
+        <file>is.svg</file>
+        <file>it.svg</file>
+        <file>jp.svg</file>
+        <file>ke.svg</file>
+        <file>kg.svg</file>
+        <file>kh.svg</file>
+        <file>kr.svg</file>
+        <file>kz.svg</file>
+        <file>la.svg</file>
+        <file>lk.svg</file>
+        <file>ls.svg</file>
+        <file>lt.svg</file>
+        <file>lu.svg</file>
+        <file>lv.svg</file>
+        <file>mg.svg</file>
+        <file>mk.svg</file>
+        <file>mm.svg</file>
+        <file>mn.svg</file>
+        <file>mt.svg</file>
+        <file>mw.svg</file>
+        <file>mx.svg</file>
+        <file>my.svg</file>
+        <file>ne.svg</file>
+        <file>ng.svg</file>
+        <file>nl.svg</file>
+        <file>no.svg</file>
+        <file>np.svg</file>
+        <file>nz.svg</file>
+        <file>pf.svg</file>
+        <file>ph.svg</file>
+        <file>pk.svg</file>
+        <file>pl.svg</file>
+        <file>pt.svg</file>
+        <file>ro.svg</file>
+        <file>rs.svg</file>
+        <file>ru.svg</file>
+        <file>rw.svg</file>
+        <file>sd.svg</file>
+        <file>se.svg</file>
+        <file>si.svg</file>
+        <file>sk.svg</file>
+        <file>sl.svg</file>
+        <file>so.svg</file>
+        <file>th.svg</file>
+        <file>tj.svg</file>
+        <file>tk.svg</file>
+        <file>tm.svg</file>
+        <file>to.svg</file>
+        <file>tr.svg</file>
+        <file>tw.svg</file>
+        <file>ua.svg</file>
+        <file>us.svg</file>
+        <file>uz.svg</file>
+        <file>va.svg</file>
+        <file>vn.svg</file>
+        <file>ws.svg</file>
+        <file>za.svg</file>
+        <file>zw.svg</file>
     </qresource>
 </RCC>

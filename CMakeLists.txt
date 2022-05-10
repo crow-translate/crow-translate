@@ -47,7 +47,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
 if(CMAKE_CXX_CLANG_TIDY)
-    # Exclude generated files
+    # Exclude generated files and third party dependencies from FetchContent
     # We generate a dummy .clang-tidy file in the binary directory that disables
     # all clang-tidy checks except one that will never match. This one check is
     # necessary; clang-tidy reports an error when no checks are enabled.
@@ -60,17 +60,6 @@ option(WITH_PORTABLE_MODE "Enable portable functionality" OFF)
 find_package(ECM REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-set(QAPPLICATION_CLASS QApplication)
-option(QHOTKEY_INSTALL OFF)
-
-add_subdirectory(src/third-party/singleapplication)
-add_subdirectory(src/third-party/qhotkey)
-add_subdirectory(src/third-party/qtaskbarcontrol)
-add_subdirectory(src/qonlinetranslator)
-if(WIN32)
-    add_subdirectory(src/qgittag)
-endif()
-
 find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
@@ -78,6 +67,7 @@ if(UNIX)
     find_package(XCB REQUIRED COMPONENTS XCB)
 endif()
 
+include(ExternalLibraries)
 include(GNUInstallDirs)
 include(CPack)
 if(UNIX)
@@ -124,11 +114,13 @@ qt5_add_translation(QM_FILES
 )
 
 configure_file(src/cmake.h.in cmake.h)
+configure_file(data/icons/flags.qrc ${CircleFlags_SOURCE_DIR}/flags/flags.qrc COPYONLY)
+configure_file(data/icons/fluent-icon-theme.qrc ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc COPYONLY)
 
 add_executable(${PROJECT_NAME}
-    data/icons/flags.qrc
+    ${CircleFlags_SOURCE_DIR}/flags/flags.qrc
     ${QM_FILES}
-    data/icons/fluent-icon-theme.qrc
+    ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc
     data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
