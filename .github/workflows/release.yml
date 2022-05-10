@@ -3,6 +3,27 @@ on:
   release:
     types: [created]
 jobs:
+  pack:
+    name: Pack source tarball
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - name: Create source tarball
+        run: |
+          SOURCE_NAME=$(awk -F/ '{print $NF}' <<<"${{ github.repository }}")-$(awk -F/ '{print $NF}' <<<"${{ github.ref }}")
+          git ls-files --recurse-submodules | \
+          tar --exclude-vcs --transform "s|^|$SOURCE_NAME/|" -ca -T - -f ../$SOURCE_NAME.tar.gz
+
+      - name: Upload source tarball
+        uses: AButler/upload-release-assets@v2.0
+        with:
+          files: '../*.tar.gz'
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+
   release:
     name: Release
     strategy:
@@ -38,6 +59,8 @@ jobs:
     steps:
       - name: Clone repo
         uses: actions/checkout@v2
+        with:
+          submodules: recursive
 
       - name: Install apt packages
         if: runner.os == 'Linux' && matrix.arch == 'amd64'
