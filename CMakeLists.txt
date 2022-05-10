@@ -71,9 +71,6 @@ if(WIN32)
     add_subdirectory(src/qgittag)
 endif()
 
-set(CircleFlags_SOURCE_DIR ${CMAKE_SOURCE_DIR}/data/third-party/circle-flags)
-set(FluentIconTheme_SOURCE_DIR ${CMAKE_SOURCE_DIR}/data/third-party/fluent-icon-theme)
-
 find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
@@ -127,13 +124,11 @@ qt5_add_translation(QM_FILES
 )
 
 configure_file(src/cmake.h.in cmake.h)
-configure_file(data/icons/flags.qrc ${CircleFlags_SOURCE_DIR}/flags/flags.qrc COPYONLY)
-configure_file(data/icons/fluent-icon-theme.qrc ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc COPYONLY)
 
 add_executable(${PROJECT_NAME}
-    ${CircleFlags_SOURCE_DIR}/flags/flags.qrc
+    data/icons/flags.qrc
     ${QM_FILES}
-    ${FluentIconTheme_SOURCE_DIR}/src/fluent-icon-theme.qrc
+    data/icons/fluent-icon-theme.qrc
     data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
