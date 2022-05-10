@@ -47,7 +47,7 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
 
 if(CMAKE_CXX_CLANG_TIDY)
-    # Exclude generated files and third party dependencies from FetchContent
+    # Exclude generated files
     # We generate a dummy .clang-tidy file in the binary directory that disables
     # all clang-tidy checks except one that will never match. This one check is
     # necessary; clang-tidy reports an error when no checks are enabled.
