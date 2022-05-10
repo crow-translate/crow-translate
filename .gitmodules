@@ -1,0 +1,21 @@
+[submodule "src/third-party/singleapplication"]
+	path = src/third-party/singleapplication
+	url = https://github.com/itay-grudev/SingleApplication.git
+[submodule "src/third-party/qtaskbarcontrol"]
+	path = src/third-party/qtaskbarcontrol
+	url = https://github.com/Skycoder42/QTaskbarControl.git
+[submodule "src/qonlinetranslator"]
+	path = src/qonlinetranslator
+	url = https://github.com/crow-translate/QOnlineTranslator.git
+[submodule "src/qgittag"]
+	path = src/qgittag
+	url = https://github.com/crow-translate/QGitTag.git
+[submodule "src/third-party/qhotkey"]
+	path = src/third-party/qhotkey
+	url = https://github.com/Skycoder42/QHotkey.git
+[submodule "data/third-party/circle-flags"]
+	path = data/third-party/circle-flags
+	url = https://github.com/HatScripts/circle-flags.git
+[submodule "data/third-party/fluent-icon-theme"]
+	path = data/third-party/fluent-icon-theme
+	url = https://github.com/vinceliuice/Fluent-icon-theme.git
