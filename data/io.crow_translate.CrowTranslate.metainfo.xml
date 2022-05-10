@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="desktop-application">
+  <id>io.crow_translate.CrowTranslate</id>
+
+  <name>Crow Translate</name>
+  <summary>A simple and lightweight translator</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-only</project_license>
+
+  <description>
+    <p>
+      Crow Translate is a simple and lightweight translator written in C++ / Qt
+      that allows you to translate and speak text using Google, Yandex, Bing,
+      LibreTranslate and Lingva translate API.
+    </p>
+    <p>Features:</p>
+    <ul>
+      <li>Translate and speak text from screen or selection</li>
+      <li>Support 125 different languages</li>
+      <li>Low memory consumption (~20MB)</li>
+      <li>Highly customizable shortcuts</li>
+      <li>Command-line interface with rich options</li>
+      <li>D-Bus API</li>
+      <li>Available for Linux and Windows</li>
+    </ul>
+  </description>
+
+  <url type="homepage">https://crow-translate.github.io</url>
+  <url type="bugtracker">https://github.com/crow-translate/crow-translate/issues</url>
+  <url type="translate">https://crowdin.com/project/crow-translate</url>
+  <url type="donation">https://opencollective.com/crow-translate</url>
+
+  <launchable type="desktop-id">io.crow_translate.CrowTranslate.desktop</launchable>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/assets/media/albums/plasma/main.png</image>
+    </screenshot>
+  </screenshots>
+
+  <content_rating type="oars-1.1"/>
+
+  <releases>
+    <release version="2.9.3" date="2022-05-11"/>
+  </releases>
+</component>
