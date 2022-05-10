@@ -11,6 +11,7 @@ set(APPLICATION_NAME "Crow Translate")
 set(EXECUTABLE_NAME crow)
 if(UNIX)
     set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
+    set(METAINFO_FILE io.crow_translate.CrowTranslate.metainfo.xml)
 endif()
 
 set(CPACK_PACKAGE_VENDOR ${APPLICATION_NAME})
@@ -214,6 +215,7 @@ if(UNIX)
     install(TARGETS ${PROJECT_NAME})
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${APPLICATION_NAME}/${APPLICATION_NAME}/translations)
     install(FILES data/${DESKTOP_FILE} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
+    install(FILES data/${METAINFO_FILE} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/metainfo)
 
     ecm_install_icons(ICONS
         ${APP_ICONS}
