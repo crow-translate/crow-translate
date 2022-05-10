@@ -60,6 +60,20 @@ option(WITH_PORTABLE_MODE "Enable portable functionality" OFF)
 find_package(ECM REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
+set(QAPPLICATION_CLASS QApplication)
+option(QHOTKEY_INSTALL OFF)
+
+add_subdirectory(src/third-party/singleapplication)
+add_subdirectory(src/third-party/qhotkey)
+add_subdirectory(src/third-party/qtaskbarcontrol)
+add_subdirectory(src/qonlinetranslator)
+if(WIN32)
+    add_subdirectory(src/qgittag)
+endif()
+
+set(CircleFlags_SOURCE_DIR ${CMAKE_SOURCE_DIR}/data/third-party/circle-flags)
+set(FluentIconTheme_SOURCE_DIR ${CMAKE_SOURCE_DIR}/data/third-party/fluent-icon-theme)
+
 find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
@@ -67,7 +81,6 @@ if(UNIX)
     find_package(XCB REQUIRED COMPONENTS XCB)
 endif()
 
-include(ExternalLibraries)
 include(GNUInstallDirs)
 include(CPack)
 if(UNIX)
