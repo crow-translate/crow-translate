@@ -133,7 +133,6 @@ private slots:
     void setTaskbarState(QMediaPlayer::State state);
 
     // Other
-    void showAppRunningMessage();
     void setOrientation(Qt::ScreenOrientation orientation);
 #ifdef Q_OS_WIN
     void checkForUpdates();

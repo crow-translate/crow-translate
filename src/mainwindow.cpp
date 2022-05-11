@@ -26,7 +26,6 @@
 #include "qtaskbarcontrol.h"
 #include "screenwatcher.h"
 #include "selection.h"
-#include "singleapplication.h"
 #include "trayicon.h"
 #include "ocr/ocr.h"
 #include "ocr/screengrabbers/abstractscreengrabber.h"
@@ -83,9 +82,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Screen orientation
     connect(m_orientationWatcher, &ScreenWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
-
-    // Show a message that the application is already running
-    connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::showAppRunningMessage);
 
     // Selection requests
     connect(&Selection::instance(), &Selection::requestedSelectionAvailable, ui->sourceEdit, &SourceTextEdit::replaceText);
@@ -531,17 +527,6 @@ void MainWindow::setTaskbarState(QMediaPlayer::State state)
 #endif
         break;
     }
-}
-
-void MainWindow::showAppRunningMessage()
-{
-    auto *message = new QMessageBox(this);
-    message->setIcon(QMessageBox::Information);
-    message->setText(tr("The application is already running"));
-    message->setAttribute(Qt::WA_DeleteOnClose);
-
-    open();
-    message->open();
 }
 
 void MainWindow::setOrientation(Qt::ScreenOrientation orientation)
