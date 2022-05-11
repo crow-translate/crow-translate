@@ -26,6 +26,7 @@
 #include "qtaskbarcontrol.h"
 #include "screenwatcher.h"
 #include "selection.h"
+#include "singleapplication.h"
 #include "trayicon.h"
 #include "ocr/ocr.h"
 #include "ocr/screengrabbers/abstractscreengrabber.h"
@@ -82,6 +83,9 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Screen orientation
     connect(m_orientationWatcher, &ScreenWatcher::screenOrientationChanged, this, &MainWindow::setOrientation);
+
+    // Show the main window if a secondary instance has been started
+    connect(qobject_cast<SingleApplication *>(QCoreApplication::instance()), &SingleApplication::instanceStarted, this, &MainWindow::open);
 
     // Selection requests
     connect(&Selection::instance(), &Selection::requestedSelectionAvailable, ui->sourceEdit, &SourceTextEdit::replaceText);
