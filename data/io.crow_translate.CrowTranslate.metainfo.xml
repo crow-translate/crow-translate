@@ -32,6 +32,8 @@
 
   <launchable type="desktop-id">io.crow_translate.CrowTranslate.desktop</launchable>
 
+  <translation type="qt">Crow Translate/Crow Translate/translations/crow-translate</translation>
+
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/assets/media/albums/plasma/main.png</image>
