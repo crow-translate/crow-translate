@@ -17,6 +17,21 @@ on:
       - 'crowdin.yml'
       - 'data/translations/**'
 jobs:
+  validate-metainfo:
+    name: Validate metainfo
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Clone repo
+        uses: actions/checkout@v2
+
+      - name: Install AppStream metadata utility
+        run: |
+          sudo apt-get update
+          sudo apt-get install appstream-util
+
+      - name: Validate metainfo
+        run: appstream-util validate-relax data/io.crow_translate.CrowTranslate.metainfo.xml
+
   format:
     name: Format
     runs-on: ubuntu-20.04
