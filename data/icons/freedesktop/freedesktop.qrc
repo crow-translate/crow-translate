@@ -1,8 +1,0 @@
-<RCC>
-    <qresource prefix="/icons/hicolor">
-        <file alias="scalable/apps/crow-translate-tray-dark.svg">sc-status-crow-translate-tray-dark.svg</file>
-        <file alias="scalable/apps/crow-translate-tray-light.svg">sc-status-crow-translate-tray-light.svg</file>
-        <file alias="scalable/apps/crow-translate-tray.svg">sc-apps-crow-translate.svg</file>
-        <file alias="scalable/apps/crow-translate.svg">sc-apps-crow-translate.svg</file>
-    </qresource>
-</RCC>

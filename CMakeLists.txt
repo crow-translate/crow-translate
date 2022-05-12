@@ -129,7 +129,7 @@ configure_file(src/cmake.h.in cmake.h)
 add_executable(${PROJECT_NAME}
     data/icons/flags.qrc
     ${QM_FILES}
-    data/icons/fluent-icon-theme.qrc
+    data/icons/icon-theme.qrc
     data/icons/engines/engines.qrc
     src/addlanguagedialog.cpp
     src/addlanguagedialog.ui
@@ -183,7 +183,6 @@ elseif(WIN32)
 
     target_sources(${PROJECT_NAME} PRIVATE
         ${WINDOWS_ICON}
-        data/icons/freedesktop/freedesktop.qrc
         src/updaterdialog.cpp
         src/updaterdialog.ui
     )

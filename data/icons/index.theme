@@ -1,0 +1,22 @@
+[Icon Theme]
+Name=Fluent
+Comment=Embedded in qrc to get size dirs matching hicolor theme
+Inherits=hicolor
+Directories=16x16/actions,16x16/places,16x16/status,32x32/categories,scalable/apps
+
+[16x16/actions]
+Size=16
+
+[16x16/places]
+Size=16
+
+[16x16/status]
+Size=16
+
+[32x32/categories]
+Size=32
+
+[scalable/apps]
+Size=64
+MinSize=16
+MaxSize=512
