@@ -43,11 +43,19 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.9.6" date="2022-05-12">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Fix icons fallback on GNOME.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.9.5" date="2022-05-11">
       <description>
         <p>Changelog:</p>
         <ul>
-          <li>Remove "The application is already running" dialog</li>
+          <li>Remove "The application is already running" dialog.</li>
         </ul>
       </description>
     </release>
