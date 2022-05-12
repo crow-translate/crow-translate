@@ -1,4 +1,4 @@
-# ![Crow Translate logo](data/icons/freedesktop/48-apps-crow-translate.png) Crow Translate
+# ![Crow Translate logo](data/icons/app/48-apps-crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/crow-translate/crow-translate/all.svg)](https://github.com/crow-translate/crow-translate/releases)
 [![Crowdin](https://badges.crowdin.net/crow-translate/localized.svg)](https://crowdin.com/project/crow-translate)

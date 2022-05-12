@@ -88,17 +88,17 @@ elseif(WIN32)
 endif()
 
 set(APP_ICONS
-    data/icons/freedesktop/128-apps-crow-translate.png
-    data/icons/freedesktop/150-apps-crow-translate.png
-    data/icons/freedesktop/16-apps-crow-translate.png
-    data/icons/freedesktop/22-apps-crow-translate.png
-    data/icons/freedesktop/256-apps-crow-translate.png
-    data/icons/freedesktop/310-apps-crow-translate.png
-    data/icons/freedesktop/32-apps-crow-translate.png
-    data/icons/freedesktop/44-apps-crow-translate.png
-    data/icons/freedesktop/48-apps-crow-translate.png
-    data/icons/freedesktop/512-apps-crow-translate.png
-    data/icons/freedesktop/64-apps-crow-translate.png
+    data/icons/app/128-apps-crow-translate.png
+    data/icons/app/150-apps-crow-translate.png
+    data/icons/app/16-apps-crow-translate.png
+    data/icons/app/22-apps-crow-translate.png
+    data/icons/app/256-apps-crow-translate.png
+    data/icons/app/310-apps-crow-translate.png
+    data/icons/app/32-apps-crow-translate.png
+    data/icons/app/44-apps-crow-translate.png
+    data/icons/app/48-apps-crow-translate.png
+    data/icons/app/512-apps-crow-translate.png
+    data/icons/app/64-apps-crow-translate.png
 )
 
 qt5_add_translation(QM_FILES
@@ -218,15 +218,15 @@ if(UNIX)
 
     ecm_install_icons(ICONS
         ${APP_ICONS}
-        data/icons/freedesktop/sc-apps-crow-translate.svg
-        data/icons/freedesktop/16-status-crow-translate-tray-dark.png
-        data/icons/freedesktop/16-status-crow-translate-tray-light.png
-        data/icons/freedesktop/22-status-crow-translate-tray-dark.png
-        data/icons/freedesktop/22-status-crow-translate-tray-light.png
-        data/icons/freedesktop/24-status-crow-translate-tray-dark.png
-        data/icons/freedesktop/24-status-crow-translate-tray-light.png
-        data/icons/freedesktop/sc-status-crow-translate-tray-dark.svg
-        data/icons/freedesktop/sc-status-crow-translate-tray-light.svg
+        data/icons/app/sc-apps-crow-translate.svg
+        data/icons/app/16-status-crow-translate-tray-dark.png
+        data/icons/app/16-status-crow-translate-tray-light.png
+        data/icons/app/22-status-crow-translate-tray-dark.png
+        data/icons/app/22-status-crow-translate-tray-light.png
+        data/icons/app/24-status-crow-translate-tray-dark.png
+        data/icons/app/24-status-crow-translate-tray-light.png
+        data/icons/app/sc-status-crow-translate-tray-dark.svg
+        data/icons/app/sc-status-crow-translate-tray-light.svg
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
     )
 elseif(WIN32)
