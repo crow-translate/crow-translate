@@ -20,6 +20,7 @@
 
 #include "abstractautostartmgr.h"
 #ifdef Q_OS_LINUX
+#include "portalautostartmgr.h"
 #include "unixconfigautostartmgr.h"
 #endif
 #ifdef Q_OS_WIN
@@ -47,6 +48,8 @@ void AbstractAutostartMgr::setAutostartEnabled(bool enabled)
 AbstractAutostartMgr *AbstractAutostartMgr::createAutostartMgr(QObject *parent)
 {
 #ifdef Q_OS_LINUX
+    if (PortalAutostartMgr::isAvailable())
+        return new PortalAutostartMgr(parent);
     return new UnixConfigAutostartMgr(parent);
 #endif
 #ifdef Q_OS_WIN

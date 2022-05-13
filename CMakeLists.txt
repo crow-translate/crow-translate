@@ -179,6 +179,7 @@ if(UNIX)
         src/ocr/screengrabbers/waylandplasmascreengrabber.cpp
         src/ocr/screengrabbers/waylandportalscreengrabber.cpp
         src/settings/autostartmgr/unixconfigautostartmgr.cpp
+        src/settings/autostartmgr/portalautostartmgr.cpp
     )
 elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
