@@ -24,19 +24,19 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 **Plasma**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/assets/media/albums/plasma/main.png" alt="Main"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/static/screenshots/plasma/main.png" alt="Main"/>
 </p>
 
 **Plasma Mobile**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/assets/media/albums/plasma-mobile/main-landscape.png"alt="Main"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/static/screenshots/plasma-mobile/main-landscape.png"alt="Main"/>
 </p>
 
 **Windows 10**
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/assets/media/albums/windows/main.png" alt="Main"/>
+  <img src="https://raw.githubusercontent.com/crow-translate/crow-translate.github.io/master/static/screenshots/windows/main.png" alt="Main"/>
 </p>
 
 ## Features
