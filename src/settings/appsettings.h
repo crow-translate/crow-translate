@@ -112,8 +112,8 @@ public:
     void setStartMinimized(bool minimized);
     static bool defaultStartMinimized();
 
-    static bool isAutostartEnabled();
-    static void setAutostartEnabled(bool enabled);
+    bool isAutostartEnabled();
+    void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
 #ifdef WITH_PORTABLE_MODE
@@ -372,10 +372,12 @@ public:
     void setMainWindowGeometry(const QByteArray &geometry);
 
     bool isAutoTranslateEnabled() const;
-    void setAutoTranslateEnabled(bool enable);
 
     QOnlineTranslator::Engine currentEngine() const;
     void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
+
+public slots:
+    void setAutoTranslateEnabled(bool enable);
 
 private:
     static QTranslator s_appTranslator;

@@ -43,6 +43,7 @@
 SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
+    , m_autostartmgr(AbstractAutostartMgr::createAutostartMgr(this))
     , m_yandexTranslator(new QOnlineTranslator(this))
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
@@ -206,10 +207,13 @@ void SettingsDialog::accept()
     settings.setPopupWindowTimeout(ui->popupWindowTimeoutSpinBox->value());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
-    AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
+
+    // Autostart settings
+    connect(m_autostartmgr, &AbstractAutostartMgr::autostartEnabled, &settings, &AppSettings::setAutostartEnabled);
+    m_autostartmgr->setAutostartEnabled(ui->autostartCheckBox->isChecked());
 
     // Interface settings
     QFont font = ui->fontNameComboBox->currentFont();
@@ -585,7 +589,7 @@ void SettingsDialog::activateCompactMode()
 void SettingsDialog::loadSettings()
 {
     // General settings
-    const AppSettings settings;
+    AppSettings settings;
     ui->localeComboBox->setCurrentIndex(ui->localeComboBox->findData(settings.locale()));
     ui->mainWindowOrientationComboBox->setCurrentIndex(settings.mainWindowOrientation());
     ui->translationNotificationTimeoutSpinBox->setValue(settings.translationNotificationTimeout());
@@ -593,13 +597,18 @@ void SettingsDialog::loadSettings()
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
-    ui->autostartCheckBox->setChecked(AppSettings::isAutostartEnabled());
 #ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
 #endif
 #ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(settings.checkForUpdatesInterval());
 #endif
+
+    // Autostart settings
+    if (m_autostartmgr->canCheckEnabled())
+        ui->autostartCheckBox->setChecked(m_autostartmgr->isAutostartEnabled());
+    else
+        ui->autostartCheckBox->setChecked(settings.isAutostartEnabled());
 
     // Interface settings
     const QFont font = settings.font();

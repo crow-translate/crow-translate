@@ -180,46 +180,12 @@ bool AppSettings::defaultStartMinimized()
 
 bool AppSettings::isAutostartEnabled()
 {
-#if defined(Q_OS_LINUX)
-    return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), QGuiApplication::desktopFileName()));
-#elif defined(Q_OS_WIN)
-    QSettings autostartSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
-    return autostartSettings.contains(QStringLiteral("Crow Translate"));
-#endif
+    return m_settings->value(QStringLiteral("AutostartEnabled"), defaultAutostartEnabled()).toBool();
 }
 
 void AppSettings::setAutostartEnabled(bool enabled)
 {
-#if defined(Q_OS_LINUX)
-    QDir autostartDir(QStringLiteral("%1/autostart").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)));
-
-    if (enabled) {
-        // Create autorun file
-        if (autostartDir.exists(QGuiApplication::desktopFileName()))
-            return;
-
-        if (!autostartDir.exists()) {
-            if (!autostartDir.mkpath(QStringLiteral("."))) {
-                qCritical() << tr("Unable to create %1").arg(autostartDir.path());
-                return;
-            }
-        }
-
-        const QString desktopFileName = QStringLiteral("/usr/share/applications/%1").arg(QGuiApplication::desktopFileName());
-        if (!QFile::copy(desktopFileName, autostartDir.filePath(QGuiApplication::desktopFileName())))
-            qCritical() << tr("Unable to copy %1 to %2").arg(desktopFileName, autostartDir.path());
-    } else if (autostartDir.exists(QGuiApplication::desktopFileName())) {
-        // Remove autorun file
-        if (!autostartDir.remove(QGuiApplication::desktopFileName()))
-            qCritical() << tr("Unable to remove %1 from %2").arg(QGuiApplication::desktopFileName(), autostartDir.path());
-    }
-#elif defined(Q_OS_WIN)
-    QSettings autostartSettings(R"(HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run)", QSettings::NativeFormat);
-    if (enabled)
-        autostartSettings.setValue("Crow Translate", QDir::toNativeSeparators(QCoreApplication::applicationFilePath()));
-    else
-        autostartSettings.remove("Crow Translate");
-#endif
+    m_settings->setValue(QStringLiteral("AutostartEnabled"), enabled);
 }
 
 bool AppSettings::defaultAutostartEnabled()
