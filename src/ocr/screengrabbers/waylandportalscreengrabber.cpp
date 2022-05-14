@@ -20,8 +20,6 @@
 
 #include "waylandportalscreengrabber.h"
 
-#include "xdgdesktopportal.h"
-
 #include <QDBusInterface>
 #include <QDBusPendingCallWatcher>
 #include <QDBusReply>
@@ -51,7 +49,9 @@ bool WaylandPortalScreenGrabber::isAvailable()
 
 void WaylandPortalScreenGrabber::grab()
 {
-    const QDBusPendingReply<QDBusObjectPath> reply = s_interface.asyncCall(QStringLiteral("Screenshot"), XdgDesktopPortal::parentWindow(), QVariantMap());
+    // TODO: Retrieve parent window in string form
+    // as a second argument according to https://flatpak.github.io/xdg-desktop-portal/#parent_window
+    const QDBusPendingReply<QDBusObjectPath> reply = s_interface.asyncCall(QStringLiteral("Screenshot"), QString(), QVariantMap());
     m_callWatcher = new QDBusPendingCallWatcher(reply, this);
     connect(m_callWatcher, &QDBusPendingCallWatcher::finished, [this] {
         const QDBusPendingReply<QDBusObjectPath> reply = readReply<QDBusObjectPath>();

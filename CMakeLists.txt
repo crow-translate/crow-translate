@@ -174,7 +174,6 @@ add_executable(${PROJECT_NAME}
 
 if(UNIX)
     target_sources(${PROJECT_NAME} PRIVATE
-        src/xdgdesktopportal.cpp
         src/ocr/screengrabbers/dbusscreengrabber.cpp
         src/ocr/screengrabbers/waylandgnomescreengrabber.cpp
         src/ocr/screengrabbers/waylandplasmascreengrabber.cpp
