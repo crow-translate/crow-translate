@@ -97,7 +97,7 @@ private:
     Ui::SettingsDialog *ui;
 
     // Manage platform-dependant autostart
-    AbstractAutostartManager *m_autostartmanager;
+    AbstractAutostartManager *m_autostartManager;
 
     // Test voice
     QOnlineTranslator *m_yandexTranslator;
