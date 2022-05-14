@@ -20,6 +20,7 @@
 
 #include "portalautostartmanager.h"
 
+#include "xdgdesktopportal.h"
 #include "settings/appsettings.h"
 
 #include <QDBusReply>
@@ -47,9 +48,7 @@ void PortalAutostartManager::setAutostartEnabled(bool enabled)
         {QStringLiteral("commandline"), QStringList{QCoreApplication::applicationFilePath()}},
         {QStringLiteral("dbus-activatable"), false},
     };
-    // TODO: Retrieve parent window in string form
-    // as a second argument according to https://flatpak.github.io/xdg-desktop-portal/#parent_window
-    const QDBusReply<QDBusObjectPath> reply = s_interface.call(QStringLiteral("RequestBackground"), QString(), options);
+    const QDBusReply<QDBusObjectPath> reply = s_interface.call(QStringLiteral("RequestBackground"), XdgDesktopPortal::parentWindow(), options);
 
     if (!reply.isValid()) {
         showError(reply.error().message());
