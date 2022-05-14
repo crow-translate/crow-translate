@@ -22,11 +22,11 @@
 #define SETTINGSDIALOG_H
 
 #include "qonlinetts.h"
-#include "autostartmanager/abstractautostartmanager.h"
 
 #include <QDialog>
 
 class MainWindow;
+class AbstractAutostartManager;
 class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;

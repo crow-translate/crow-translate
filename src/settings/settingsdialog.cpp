@@ -26,6 +26,7 @@
 #include "qhotkey.h"
 #include "screenwatcher.h"
 #include "trayicon.h"
+#include "autostartmanager/abstractautostartmanager.h"
 #include "ocr/ocr.h"
 #include "shortcutsmodel/shortcutitem.h"
 #include "shortcutsmodel/shortcutsmodel.h"
