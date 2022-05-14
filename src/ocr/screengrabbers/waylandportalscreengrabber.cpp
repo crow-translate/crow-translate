@@ -49,6 +49,8 @@ bool WaylandPortalScreenGrabber::isAvailable()
 
 void WaylandPortalScreenGrabber::grab()
 {
+    // TODO: Retrieve parent window in string form
+    // as a second argument according to https://flatpak.github.io/xdg-desktop-portal/#parent_window
     const QDBusPendingReply<QDBusObjectPath> reply = s_interface.asyncCall(QStringLiteral("Screenshot"), QString(), QVariantMap());
     m_callWatcher = new QDBusPendingCallWatcher(reply, this);
     connect(m_callWatcher, &QDBusPendingCallWatcher::finished, [this] {

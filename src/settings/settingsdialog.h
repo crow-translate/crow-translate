@@ -22,6 +22,7 @@
 #define SETTINGSDIALOG_H
 
 #include "qonlinetts.h"
+#include "autostartmanager/abstractautostartmanager.h"
 
 #include <QDialog>
 
@@ -94,6 +95,9 @@ private:
     void loadSettings();
 
     Ui::SettingsDialog *ui;
+
+    // Manage platform-dependant autostart
+    AbstractAutostartManager *m_autostartManager;
 
     // Test voice
     QOnlineTranslator *m_yandexTranslator;

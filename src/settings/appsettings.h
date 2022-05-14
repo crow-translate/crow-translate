@@ -112,8 +112,9 @@ public:
     void setStartMinimized(bool minimized);
     static bool defaultStartMinimized();
 
-    static bool isAutostartEnabled();
-    static void setAutostartEnabled(bool enabled);
+    // Used by only by Flatpak to store information about if autostart was enabled
+    bool isAutostartEnabled() const;
+    void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
 #ifdef WITH_PORTABLE_MODE

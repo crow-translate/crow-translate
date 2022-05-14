@@ -43,6 +43,7 @@
 SettingsDialog::SettingsDialog(MainWindow *parent)
     : QDialog(parent)
     , ui(new Ui::SettingsDialog)
+    , m_autostartManager(AbstractAutostartManager::createAutostartManager(this))
     , m_yandexTranslator(new QOnlineTranslator(this))
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
@@ -206,7 +207,7 @@ void SettingsDialog::accept()
     settings.setPopupWindowTimeout(ui->popupWindowTimeoutSpinBox->value());
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
-    AppSettings::setAutostartEnabled(ui->autostartCheckBox->isChecked());
+    m_autostartManager->setAutostartEnabled(ui->autostartCheckBox->isChecked());
 #ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
@@ -593,7 +594,7 @@ void SettingsDialog::loadSettings()
     ui->windowModeComboBox->setCurrentIndex(settings.windowMode());
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
-    ui->autostartCheckBox->setChecked(AppSettings::isAutostartEnabled());
+    ui->autostartCheckBox->setChecked(m_autostartManager->isAutostartEnabled());
 #ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
 #endif
