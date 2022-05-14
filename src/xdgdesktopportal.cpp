@@ -24,18 +24,13 @@
 #include <QDebug>
 #include <QX11Info>
 
-QString XdgDesktopPortal::parentWindow(QWindow *activeWindow)
+QString XdgDesktopPortal::parentWindow(WId activeWindow)
 {
-    QString platformName;
-    QString windowID;
-    if (QX11Info::isPlatformX11()) {
-        platformName = QStringLiteral("x11");
-        windowID = QStringLiteral("%1").arg(activeWindow->winId(), 0, 16);
-    } else {
-        platformName = QStringLiteral("wayland");
+    if (!QX11Info::isPlatformX11()) {
         // TODO Implement Wayland window ID using https://wayland.app/protocols/xdg-foreign-unstable-v2
         qWarning() << "Retrieving XDP window ID on Wayland not implemented";
-        return "";
+        return {};
     }
-    return QStringLiteral("%1:%2").arg(platformName).arg(windowID);
+
+    return QStringLiteral("x11:%1").arg(activeWindow, 0, 16);
 }
