@@ -49,9 +49,8 @@ void PortalAutostartManager::setAutostartEnabled(bool enabled)
     };
     const QDBusReply<QDBusObjectPath> reply = s_interface.call(QStringLiteral("RequestBackground"), QString(), options);
 
-    if (reply.isValid()) {
+    if (!reply.isValid()) {
         showError(reply.error().message());
-        AppSettings().setAutostartEnabled(false);
         return;
     }
 
@@ -63,7 +62,6 @@ void PortalAutostartManager::setAutostartEnabled(bool enabled)
                                                             SLOT(parsePortalResponse(quint32, QVariantMap)));
     if (!connected) {
         showError(tr("Unable to subscribe to response from xdg-desktop-portal."));
-        AppSettings().setAutostartEnabled(false);
         return;
     }
 
