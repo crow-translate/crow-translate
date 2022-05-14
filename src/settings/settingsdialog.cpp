@@ -192,8 +192,6 @@ void SettingsDialog::accept()
         }
     }
 
-    QDialog::accept();
-
     // Set settings location first
 #ifdef WITH_PORTABLE_MODE
     AppSettings::setPortableModeEnabled(m_portableCheckbox->isChecked());
@@ -272,6 +270,8 @@ void SettingsDialog::accept()
     if (QHotkey::isPlatformSupported())
         settings.setGlobalShortcutsEnabled(ui->globalShortcutsCheckBox->isChecked());
     ui->shortcutsTreeView->model()->saveShortcuts(settings);
+
+    QDialog::accept();
 }
 
 void SettingsDialog::setCurrentPage(int index)
