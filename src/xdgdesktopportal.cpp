@@ -21,17 +21,10 @@
 
 #include "xdgdesktopportal.h"
 
-#include <QApplication>
-#include <QWidget>
 #include <QX11Info>
 
-QString XdgDesktopPortal::parentWindow()
+QString XdgDesktopPortal::parentWindow(QWindow *activeWindow)
 {
-    const QWidget *activeWindow = QApplication::activeWindow();
-    if (activeWindow == nullptr)
-        return {};
-
     const QString platformName = QX11Info::isPlatformX11() ? QStringLiteral("x11") : QStringLiteral("wayland");
     return QStringLiteral("%1:%2").arg(platformName).arg(activeWindow->winId());
-
 }

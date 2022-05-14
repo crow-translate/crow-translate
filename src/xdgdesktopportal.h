@@ -23,12 +23,13 @@
 #define XDGDESKTOPPORTAL_H
 
 #include <QString>
+#include <QWindow>
 
 namespace XdgDesktopPortal
 {
 // Retrieve parent window in string form according to
 // https://flatpak.github.io/xdg-desktop-portal/#parent_window
-QString parentWindow();
+QString parentWindow(QWindow *activeWindow);
 }
 
 #endif // XDGDESKTOPPORTAL_H
