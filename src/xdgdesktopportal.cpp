@@ -27,7 +27,11 @@
 
 QString XdgDesktopPortal::parentWindow()
 {
-    const WId winId = QApplication::activeWindow()->winId();
+    const QWidget *activeWindow = QApplication::activeWindow();
+    if (activeWindow == nullptr)
+        return {};
+
     const QString platformName = QX11Info::isPlatformX11() ? QStringLiteral("x11") : QStringLiteral("wayland");
-    return QStringLiteral("%1:%2").arg(platformName).arg(winId);
+    return QStringLiteral("%1:%2").arg(platformName).arg(activeWindow->winId());
+
 }
