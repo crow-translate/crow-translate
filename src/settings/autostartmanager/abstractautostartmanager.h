@@ -18,26 +18,26 @@
  *
  */
 
-#ifndef ABSTRACTAUTOSTARTMGR_H
-#define ABSTRACTAUTOSTARTMGR_H
+#ifndef ABSTRACTAUTOSTARTMANAGER_H
+#define ABSTRACTAUTOSTARTMANAGER_H
 
 #include <QObject>
 
-class AbstractAutostartMgr : public QObject
+class AbstractAutostartManager : public QObject
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AbstractAutostartMgr)
+    Q_DISABLE_COPY(AbstractAutostartManager)
 
 public:
-    static AbstractAutostartMgr *createAutostartMgr(QObject *parent = nullptr);
+    static AbstractAutostartManager *createAutostartManager(QObject *parent = nullptr);
 
     virtual bool isAutostartEnabled() const = 0;
     virtual void setAutostartEnabled(bool enabled) = 0;
 
 protected:
-    explicit AbstractAutostartMgr(QObject *parent = nullptr);
+    explicit AbstractAutostartManager(QObject *parent = nullptr);
 
     static void showError(const QString &informativeText);
 };
 
-#endif // ABSTRACTAUTOSTARTMGR_H
+#endif // ABSTRACTAUTOSTARTMANAGER_H

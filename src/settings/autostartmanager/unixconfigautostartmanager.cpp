@@ -18,23 +18,23 @@
  *
  */
 
-#include "unixconfigautostartmgr.h"
+#include "unixconfigautostartmanager.h"
 
 #include <QDir>
 #include <QGuiApplication>
 #include <QStandardPaths>
 
-UnixConfigAutostartMgr::UnixConfigAutostartMgr(QObject *parent)
-    : AbstractAutostartMgr(parent)
+UnixConfigAutostartManager::UnixConfigAutostartManager(QObject *parent)
+    : AbstractAutostartManager(parent)
 {
 }
 
-bool UnixConfigAutostartMgr::isAutostartEnabled() const
+bool UnixConfigAutostartManager::isAutostartEnabled() const
 {
     return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), QGuiApplication::desktopFileName()));
 }
 
-void UnixConfigAutostartMgr::setAutostartEnabled(bool enabled)
+void UnixConfigAutostartManager::setAutostartEnabled(bool enabled)
 {
     QDir autostartDir(QStringLiteral("%1/autostart").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation)));
 

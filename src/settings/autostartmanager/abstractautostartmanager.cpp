@@ -18,35 +18,35 @@
  *
  */
 
-#include "abstractautostartmgr.h"
+#include "abstractautostartmanager.h"
 #if defined(Q_OS_LINUX)
-#include "portalautostartmgr.h"
-#include "unixconfigautostartmgr.h"
+#include "portalautostartmanager.h"
+#include "unixconfigautostartmanager.h"
 #elif defined(Q_OS_WIN)
-#include "windowsautostartmgr.h"
+#include "windowsautostartmanager.h"
 #endif
 
 #include <QMessageBox>
 
-AbstractAutostartMgr::AbstractAutostartMgr(QObject *parent)
+AbstractAutostartManager::AbstractAutostartManager(QObject *parent)
     : QObject(parent)
 {
 }
 
-AbstractAutostartMgr *AbstractAutostartMgr::createAutostartMgr(QObject *parent)
+AbstractAutostartManager *AbstractAutostartManager::createAutostartManager(QObject *parent)
 {
 #if defined(Q_OS_LINUX)
-    if (PortalAutostartMgr::isAvailable())
-        return new PortalAutostartMgr(parent);
-    return new UnixConfigAutostartMgr(parent);
+    if (PortalAutostartManager::isAvailable())
+        return new PortalAutostartManager(parent);
+    return new UnixConfigAutostartManager(parent);
 #elif defined(Q_OS_WIN)
-    return new WindowsAutostartMgr(parent);
+    return new WindowsAutostartManager(parent);
 #else
     qFatal("No autostart provider implemented");
 #endif
 }
 
-void AbstractAutostartMgr::showError(const QString &informativeText)
+void AbstractAutostartManager::showError(const QString &informativeText)
 {
     QMessageBox message;
     message.setIcon(QMessageBox::Critical);

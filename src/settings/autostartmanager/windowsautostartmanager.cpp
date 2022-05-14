@@ -18,24 +18,24 @@
  *
  */
 
-#include "windowsautostartmgr.h"
+#include "windowsautostartmanager.h"
 
 #include <QCoreApplication>
 #include <QDir>
 #include <QSettings>
 
-WindowsAutostartMgr::WindowsAutostartMgr(QObject *parent)
-    : AbstractAutostartMgr(parent)
+WindowsAutostartManager::WindowsAutostartManager(QObject *parent)
+    : AbstractAutostartManager(parent)
 {
 }
 
-bool WindowsAutostartMgr::isAutostartEnabled() const
+bool WindowsAutostartManager::isAutostartEnabled() const
 {
     QSettings autostartSettings(QStringLiteral("HKEY_CURRENT_USER\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run"), QSettings::NativeFormat);
     return autostartSettings.contains(QStringLiteral("Crow Translate"));
 }
 
-void WindowsAutostartMgr::setAutostartEnabled(bool enabled)
+void WindowsAutostartManager::setAutostartEnabled(bool enabled)
 {
     QSettings autostartSettings(R"(HKEY_CURRENT_USER\SOFTWARE\Microsoft\Windows\CurrentVersion\Run)", QSettings::NativeFormat);
     if (enabled)

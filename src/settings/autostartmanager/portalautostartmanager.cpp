@@ -18,28 +18,28 @@
  *
  */
 
-#include "portalautostartmgr.h"
+#include "portalautostartmanager.h"
 
 #include "settings/appsettings.h"
 
 #include <QDBusReply>
 #include <QtCore>
 
-QDBusInterface PortalAutostartMgr::s_interface(QStringLiteral("org.freedesktop.portal.Desktop"),
-                                               QStringLiteral("/org/freedesktop/portal/desktop"),
-                                               QStringLiteral("org.freedesktop.portal.Background"));
+QDBusInterface PortalAutostartManager::s_interface(QStringLiteral("org.freedesktop.portal.Desktop"),
+                                                   QStringLiteral("/org/freedesktop/portal/desktop"),
+                                                   QStringLiteral("org.freedesktop.portal.Background"));
 
-PortalAutostartMgr::PortalAutostartMgr(QObject *parent)
-    : AbstractAutostartMgr(parent)
+PortalAutostartManager::PortalAutostartManager(QObject *parent)
+    : AbstractAutostartManager(parent)
 {
 }
 
-bool PortalAutostartMgr::isAutostartEnabled() const
+bool PortalAutostartManager::isAutostartEnabled() const
 {
     return AppSettings().isAutostartEnabled();
 }
 
-void PortalAutostartMgr::setAutostartEnabled(bool enabled)
+void PortalAutostartManager::setAutostartEnabled(bool enabled)
 {
     const QVariantMap options{
         {QStringLiteral("reason"), QStringLiteral("Allow Crow Translate to manage autostart setting for itself.")},
@@ -68,16 +68,16 @@ void PortalAutostartMgr::setAutostartEnabled(bool enabled)
     }
 
     QEventLoop loop;
-    connect(this, &PortalAutostartMgr::responseParsed, &loop, &QEventLoop::exit);
+    connect(this, &PortalAutostartManager::responseParsed, &loop, &QEventLoop::quit);
     loop.exec();
 }
 
-bool PortalAutostartMgr::isAvailable()
+bool PortalAutostartManager::isAvailable()
 {
     return QFile::exists(QStringLiteral("/.flatpak-info")) && s_interface.isValid();
 }
 
-void PortalAutostartMgr::parsePortalResponse(quint32, const QVariantMap &results)
+void PortalAutostartManager::parsePortalResponse(quint32, const QVariantMap &results)
 {
     AppSettings().setAutostartEnabled(results.value(QStringLiteral("autostart")).toBool());
     emit responseParsed();

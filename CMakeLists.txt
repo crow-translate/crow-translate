@@ -156,7 +156,7 @@ add_executable(${PROJECT_NAME}
     src/settings/shortcutsmodel/shortcutsmodel.cpp
     src/settings/shortcutsmodel/shortcutsview.cpp
     src/settings/tesseractparameterstablewidget.cpp
-    src/settings/autostartmgr/abstractautostartmgr.cpp
+    src/settings/autostartmanager/abstractautostartmanager.cpp
     src/sourcetextedit.cpp
     src/speakbuttons.cpp
     src/speakbuttons.ui
@@ -178,8 +178,8 @@ if(UNIX)
         src/ocr/screengrabbers/waylandgnomescreengrabber.cpp
         src/ocr/screengrabbers/waylandplasmascreengrabber.cpp
         src/ocr/screengrabbers/waylandportalscreengrabber.cpp
-        src/settings/autostartmgr/unixconfigautostartmgr.cpp
-        src/settings/autostartmgr/portalautostartmgr.cpp
+        src/settings/autostartmanager/unixconfigautostartmanager.cpp
+        src/settings/autostartmanager/portalautostartmanager.cpp
     )
 elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
@@ -188,7 +188,7 @@ elseif(WIN32)
         ${WINDOWS_ICON}
         src/updaterdialog.cpp
         src/updaterdialog.ui
-        src/settings/autostartmgr/windowsautostartmgr.cpp
+        src/settings/autostartmanager/windowsautostartmanager.cpp
     )
 endif()
 

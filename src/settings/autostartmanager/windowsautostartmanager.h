@@ -18,36 +18,21 @@
  *
  */
 
-#ifndef PORTALAUTOSTARTMGR_H
-#define PORTALAUTOSTARTMGR_H
+#ifndef WINDOWSAUTOSTARTMANAGER_H
+#define WINDOWSAUTOSTARTMANAGER_H
 
-#include "abstractautostartmgr.h"
+#include "abstractautostartmanager.h"
 
-#include <QDBusInterface>
-
-class QDBusPendingCallWatcher;
-
-class PortalAutostartMgr : public AbstractAutostartMgr
+class WindowsAutostartManager : public AbstractAutostartManager
 {
     Q_OBJECT
-    Q_DISABLE_COPY(PortalAutostartMgr)
+    Q_DISABLE_COPY(WindowsAutostartManager)
 
 public:
-    explicit PortalAutostartMgr(QObject *parent = nullptr);
+    explicit WindowsAutostartManager(QObject *parent = nullptr);
 
     bool isAutostartEnabled() const override;
     void setAutostartEnabled(bool enabled) override;
-
-    static bool isAvailable();
-
-signals:
-    void responseParsed();
-
-private slots:
-    void parsePortalResponse(quint32, const QVariantMap &results);
-
-private:
-    static QDBusInterface s_interface;
 };
 
-#endif // PORTALAUTOSTARTMGR_H
+#endif // WINDOWSAUTOSTARTMANAGER_H

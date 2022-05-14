@@ -18,21 +18,21 @@
  *
  */
 
-#ifndef WINDOWSAUTOSTARTMGR_H
-#define WINDOWSAUTOSTARTMGR_H
+#ifndef UNIXCONFIGAUTOSTARTMANAGER_H
+#define UNIXCONFIGAUTOSTARTMANAGER_H
 
-#include "abstractautostartmgr.h"
+#include "abstractautostartmanager.h"
 
-class WindowsAutostartMgr : public AbstractAutostartMgr
+class UnixConfigAutostartManager : public AbstractAutostartManager
 {
     Q_OBJECT
-    Q_DISABLE_COPY(WindowsAutostartMgr)
+    Q_DISABLE_COPY(UnixConfigAutostartManager)
 
 public:
-    explicit WindowsAutostartMgr(QObject *parent = nullptr);
+    explicit UnixConfigAutostartManager(QObject *parent = nullptr);
 
     bool isAutostartEnabled() const override;
     void setAutostartEnabled(bool enabled) override;
 };
 
-#endif // WINDOWSAUTOSTARTMGR_H
+#endif // UNIXCONFIGAUTOSTARTMANAGER_H
