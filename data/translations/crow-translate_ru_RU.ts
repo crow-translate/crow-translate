@@ -343,6 +343,11 @@
   <context>
     <name>PortalAutostartManager</name>
     <message>
+      <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="45"/>
+      <source>Allow Crow Translate to manage autostart setting for itself.</source>
+      <translation>Разрешить Crow Translate самостоятельно управлять настройками автозапуска.</translation>
+    </message>
+    <message>
       <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="66"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Не удалось подписаться на ответ из xdg-desktop-portal.</translation>
@@ -1165,9 +1170,9 @@
       <translation>Язык:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="71"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="93"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
       <location filename="../../src/settings/settingsdialog.cpp" line="94"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="95"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Язык системы&gt;</translation>
     </message>
@@ -1905,123 +1910,123 @@
       <translation>Значки флагов:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="49"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="50"/>
       <source>Portable mode</source>
       <translation>Портативный режим</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="62"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
       <source>Use %1 from the application folder to store settings</source>
       <translation>Использовать %1 из папки приложения для сохранения настроек</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
       <source>Updates</source>
       <translation>Обновления</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="143"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Check for updates:</source>
       <translation>Проверять обновления:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Every day</source>
       <translation>Каждый день</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Every week</source>
       <translation>Каждую неделю</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
       <source>Every month</source>
       <translation>Каждый месяц</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="151"/>
       <source>Never</source>
       <translation>Никогда</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="126"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
       <source>Icons:</source>
       <translation>Значки:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="154"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="155"/>
       <source>Check now</source>
       <translation>Проверить сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="155"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates now</source>
       <translation>Проверить обновления сейчас</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="169"/>
       <source>Happy New Year!</source>
       <translation>С Новым Годом!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="182"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="183"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Поля настроек OCR не могут быть пустыми.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="183"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="184"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Вы хотите отменить неверные параметры?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="332"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Select icon</source>
       <translation>Выберите значок</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="332"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Изображения (*.png *.ico *.svg *.jpg);;Все файлы()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="345"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select OCR languages path</source>
       <translation>Выберите путь к языкам OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Nothing to play</source>
       <translation>Нечего воспроизводить</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="380"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Playback text is empty</source>
       <translation>Текст для воспроизведения пуст</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="390"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="391"/>
       <source>Unable to detect language</source>
       <translation>Невозможно определить язык</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="444"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="445"/>
       <source>Checking for updates...</source>
       <translation>Проверка обновлений...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="466"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="467"/>
       <source>Update available!</source>
       <translation>Доступно обновление!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="472"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="473"/>
       <source>No updates available.</source>
       <translation>Нет доступных обновлений.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="570"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="571"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
