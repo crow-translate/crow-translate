@@ -52,7 +52,7 @@ bool WaylandPortalScreenGrabber::isAvailable()
 
 void WaylandPortalScreenGrabber::grab()
 {
-    const WId window = qobject_cast<QWidget *>(parent())->winId();
+    auto *window = qobject_cast<QWidget *>(parent())->windowHandle();
     const QDBusPendingReply<QDBusObjectPath> reply = s_interface.asyncCall(QStringLiteral("Screenshot"), XdgDesktopPortal::parentWindow(window), QVariantMap());
     m_callWatcher = new QDBusPendingCallWatcher(reply, this);
     connect(m_callWatcher, &QDBusPendingCallWatcher::finished, [this] {

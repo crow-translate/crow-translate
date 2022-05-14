@@ -43,7 +43,7 @@ bool PortalAutostartManager::isAutostartEnabled() const
 
 void PortalAutostartManager::setAutostartEnabled(bool enabled)
 {
-    const WId window = qobject_cast<QWidget *>(parent())->winId();
+    auto *window = qobject_cast<QWidget *>(parent())->windowHandle();
     const QVariantMap options{
         {QStringLiteral("reason"), QStringLiteral("Allow Crow Translate to manage autostart setting for itself.")},
         {QStringLiteral("autostart"), enabled},

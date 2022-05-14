@@ -22,9 +22,10 @@
 #include "xdgdesktopportal.h"
 
 #include <QDebug>
+#include <QWindow>
 #include <QX11Info>
 
-QString XdgDesktopPortal::parentWindow(WId activeWindow)
+QString XdgDesktopPortal::parentWindow(const QWindow *activeWindow)
 {
     if (!QX11Info::isPlatformX11()) {
         // TODO Implement Wayland window ID using https://wayland.app/protocols/xdg-foreign-unstable-v2
@@ -32,5 +33,5 @@ QString XdgDesktopPortal::parentWindow(WId activeWindow)
         return {};
     }
 
-    return QStringLiteral("x11:%1").arg(activeWindow, 0, 16);
+    return QStringLiteral("x11:%1").arg(activeWindow->winId(), 0, 16);
 }
