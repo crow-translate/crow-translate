@@ -178,7 +178,7 @@ if(UNIX)
         src/ocr/screengrabbers/waylandgnomescreengrabber.cpp
         src/ocr/screengrabbers/waylandplasmascreengrabber.cpp
         src/ocr/screengrabbers/waylandportalscreengrabber.cpp
-        src/settings/autostartmanager/unixconfigautostartmanager.cpp
+        src/settings/autostartmanager/unixautostartmanager.cpp
         src/settings/autostartmanager/portalautostartmanager.cpp
     )
 elseif(WIN32)

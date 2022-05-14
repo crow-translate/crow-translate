@@ -21,7 +21,7 @@
 #include "abstractautostartmanager.h"
 #if defined(Q_OS_LINUX)
 #include "portalautostartmanager.h"
-#include "unixconfigautostartmanager.h"
+#include "unixautostartmanager.h"
 #elif defined(Q_OS_WIN)
 #include "windowsautostartmanager.h"
 #endif
@@ -38,7 +38,7 @@ AbstractAutostartManager *AbstractAutostartManager::createAutostartManager(QObje
 #if defined(Q_OS_LINUX)
     if (PortalAutostartManager::isAvailable())
         return new PortalAutostartManager(parent);
-    return new UnixConfigAutostartManager(parent);
+    return new UnixAutostartManager(parent);
 #elif defined(Q_OS_WIN)
     return new WindowsAutostartManager(parent);
 #else
