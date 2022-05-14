@@ -42,7 +42,7 @@ bool PortalAutostartManager::isAutostartEnabled() const
 void PortalAutostartManager::setAutostartEnabled(bool enabled)
 {
     const QVariantMap options{
-        {QStringLiteral("reason"), QStringLiteral("Allow Crow Translate to manage autostart setting for itself.")},
+        {QStringLiteral("reason"), tr("Allow %1 to manage autostart setting for itself.").arg(QCoreApplication::applicationName())},
         {QStringLiteral("autostart"), enabled},
         {QStringLiteral("commandline"), QStringList{QCoreApplication::applicationFilePath()}},
         {QStringLiteral("dbus-activatable"), false},
