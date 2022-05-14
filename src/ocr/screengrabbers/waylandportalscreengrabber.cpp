@@ -57,7 +57,7 @@ void WaylandPortalScreenGrabber::grab()
         const QDBusPendingReply<QDBusObjectPath> reply = readReply<QDBusObjectPath>();
 
         if (reply.isError()) {
-            emit showError(reply.error().message());
+            showError(reply.error().message());
             return;
         }
 
@@ -69,7 +69,7 @@ void WaylandPortalScreenGrabber::grab()
                                                              this,
                                                              SLOT(parsePortalResponse(uint, QVariantMap)));
         if (!success)
-            emit showError(tr("Unable to subscribe to response from xdg-desktop-portal."));
+            showError(tr("Unable to subscribe to response from xdg-desktop-portal."));
     });
 }
 
@@ -89,7 +89,7 @@ void WaylandPortalScreenGrabber::parsePortalResponse(uint, const QVariantMap &re
 {
     QString path = response.value(QLatin1String("uri")).toUrl().toLocalFile();
     if (path.isEmpty()) {
-        emit showError(tr("Received an empty path from xdg-desktop-portal."));
+        showError(tr("Received an empty path from xdg-desktop-portal."));
         return;
     }
 

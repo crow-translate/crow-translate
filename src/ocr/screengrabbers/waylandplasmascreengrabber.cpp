@@ -58,7 +58,7 @@ void WaylandPlasmaScreenGrabber::grab()
 {
     QVarLengthArray<int, 2> pipe;
     if (pipe2(pipe.data(), O_CLOEXEC | O_NONBLOCK) != 0) {
-        emit showError(tr("Unable to create pipe: %1.").arg(strerror(errno)));
+        showError(tr("Unable to create pipe: %1.").arg(strerror(errno)));
         return;
     }
 
@@ -68,7 +68,7 @@ void WaylandPlasmaScreenGrabber::grab()
         const QDBusPendingReply<void> reply = readReply<void>();
 
         if (!reply.isValid()) {
-            emit showError(reply.error().message());
+            showError(reply.error().message());
             return;
         }
 

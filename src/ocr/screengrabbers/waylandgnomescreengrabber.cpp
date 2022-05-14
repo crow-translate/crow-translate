@@ -52,12 +52,12 @@ void WaylandGnomeScreenGrabber::grab()
         const QDBusPendingReply<bool> reply = readReply<bool>();
 
         if (!reply.isValid()) {
-            emit showError(reply.error().message());
+            showError(reply.error().message());
             return;
         }
 
         if (!reply.value()) {
-            emit showError(tr("GNOME failed to take screenshot."));
+            showError(tr("GNOME failed to take screenshot."));
             return;
         }
 
