@@ -23,8 +23,6 @@
 
 #include <QObject>
 
-class QScreen;
-
 class AbstractAutostartMgr : public QObject
 {
     Q_OBJECT
@@ -33,22 +31,13 @@ class AbstractAutostartMgr : public QObject
 public:
     static AbstractAutostartMgr *createAutostartMgr(QObject *parent = nullptr);
 
-    virtual bool canCheckEnabled();
-
-    virtual bool isAutostartEnabled() = 0;
-
-public slots:
+    virtual bool isAutostartEnabled() const = 0;
     virtual void setAutostartEnabled(bool enabled) = 0;
-
-signals:
-    void autostartEnabled(bool enabled);
-    void autostartToggleFailed();
 
 protected:
     explicit AbstractAutostartMgr(QObject *parent = nullptr);
 
-protected slots:
-    void showError(const QString &errorString);
+    static void showError(const QString &informativeText);
 };
 
 #endif // ABSTRACTAUTOSTARTMGR_H

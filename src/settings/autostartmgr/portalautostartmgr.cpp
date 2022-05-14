@@ -20,11 +20,10 @@
 
 #include "portalautostartmgr.h"
 
-#include <QDBusInterface>
-#include <QDBusPendingCallWatcher>
+#include "settings/appsettings.h"
+
 #include <QDBusReply>
 #include <QtCore>
-#include <qdbusinterface.h>
 
 QDBusInterface PortalAutostartMgr::s_interface(QStringLiteral("org.freedesktop.portal.Desktop"),
                                                QStringLiteral("/org/freedesktop/portal/desktop"),
@@ -35,53 +34,51 @@ PortalAutostartMgr::PortalAutostartMgr(QObject *parent)
 {
 }
 
-bool PortalAutostartMgr::isAvailable()
+bool PortalAutostartMgr::isAutostartEnabled() const
 {
-    return QFile::exists("/.flatpak-info");
-}
-
-bool PortalAutostartMgr::canCheckEnabled()
-{
-    return false;
-}
-
-bool PortalAutostartMgr::isAutostartEnabled()
-{
-    qFatal("XDP autostart manager cannot determine current autostart state");
-}
-
-void PortalAutostartMgr::onHandleResponse(uint, const QVariantMap &results)
-{
-    qInfo() << QString("Portal response: background %1, autostart %2").arg(results.value("background").toString(), results.value("autostart").toString());
-    emit autostartEnabled(results.value("autostart").toBool());
+    return AppSettings().isAutostartEnabled();
 }
 
 void PortalAutostartMgr::setAutostartEnabled(bool enabled)
 {
-    QString parent_window = ""; // TODO: get the actual window id
-    QVariantMap options{
-        {"reason", tr("Allow Crow Translate to manage autostart setting for itself.")},
-        {"autostart", enabled},
-        {"commandline", QStringList{QCoreApplication::applicationFilePath()}},
-        {"dbus-activatable", false},
+    const QVariantMap options{
+        {QStringLiteral("reason"), QStringLiteral("Allow Crow Translate to manage autostart setting for itself.")},
+        {QStringLiteral("autostart"), enabled},
+        {QStringLiteral("commandline"), QStringList{QCoreApplication::applicationFilePath()}},
+        {QStringLiteral("dbus-activatable"), false},
     };
-    const QDBusPendingReply<QDBusObjectPath> reply = s_interface.call(QDBus::Block, QStringLiteral("RequestBackground"), parent_window, options);
+    const QDBusReply<QDBusObjectPath> reply = s_interface.call(QStringLiteral("RequestBackground"), QString(), options);
 
-    if (reply.isError()) {
-        emit showError(reply.error().message());
+    if (reply.isValid()) {
+        showError(reply.error().message());
+        AppSettings().setAutostartEnabled(false);
         return;
     }
 
-    bool connected = s_interface.connection().connect(QStringLiteral("org.freedesktop.portal.Desktop"),
-                                                      reply.value().path(),
-                                                      QStringLiteral("org.freedesktop.portal.Request"),
-                                                      QStringLiteral("Response"),
-                                                      this,
-                                                      SLOT(onHandleResponse(uint, QVariantMap)));
-    if (!connected)
-        emit showError(tr("Unable to subscribe to response from xdg-desktop-portal."));
+    const bool connected = s_interface.connection().connect(QStringLiteral("org.freedesktop.portal.Desktop"),
+                                                            reply.value().path(),
+                                                            QStringLiteral("org.freedesktop.portal.Request"),
+                                                            QStringLiteral("Response"),
+                                                            this,
+                                                            SLOT(parsePortalResponse(quint32, QVariantMap)));
+    if (!connected) {
+        showError(tr("Unable to subscribe to response from xdg-desktop-portal."));
+        AppSettings().setAutostartEnabled(false);
+        return;
+    }
 
-    auto *loop = new QEventLoop(this);
-    connect(this, &PortalAutostartMgr::autostartEnabled, loop, &QEventLoop::quit);
-    loop->exec();
+    QEventLoop loop;
+    connect(this, &PortalAutostartMgr::responseParsed, &loop, &QEventLoop::exit);
+    loop.exec();
+}
+
+bool PortalAutostartMgr::isAvailable()
+{
+    return QFile::exists(QStringLiteral("/.flatpak-info")) && s_interface.isValid();
+}
+
+void PortalAutostartMgr::parsePortalResponse(quint32, const QVariantMap &results)
+{
+    AppSettings().setAutostartEnabled(results.value(QStringLiteral("autostart")).toBool());
+    emit responseParsed();
 }

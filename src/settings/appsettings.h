@@ -112,7 +112,8 @@ public:
     void setStartMinimized(bool minimized);
     static bool defaultStartMinimized();
 
-    bool isAutostartEnabled();
+    // Used by only by Flatpak to store information about if autostart was enabled
+    bool isAutostartEnabled() const;
     void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
@@ -372,12 +373,10 @@ public:
     void setMainWindowGeometry(const QByteArray &geometry);
 
     bool isAutoTranslateEnabled() const;
+    void setAutoTranslateEnabled(bool enable);
 
     QOnlineTranslator::Engine currentEngine() const;
     void setCurrentEngine(QOnlineTranslator::Engine currentEngine);
-
-public slots:
-    void setAutoTranslateEnabled(bool enable);
 
 private:
     static QTranslator s_appTranslator;

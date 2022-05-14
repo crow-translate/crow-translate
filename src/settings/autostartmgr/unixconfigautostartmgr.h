@@ -31,9 +31,7 @@ class UnixConfigAutostartMgr : public AbstractAutostartMgr
 public:
     explicit UnixConfigAutostartMgr(QObject *parent = nullptr);
 
-    bool isAutostartEnabled() override;
-
-public slots:
+    bool isAutostartEnabled() const override;
     void setAutostartEnabled(bool enabled) override;
 };
 

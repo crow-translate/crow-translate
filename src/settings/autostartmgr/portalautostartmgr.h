@@ -24,8 +24,6 @@
 #include "abstractautostartmgr.h"
 
 #include <QDBusInterface>
-#include <QDBusPendingReply>
-#include <qvariant.h>
 
 class QDBusPendingCallWatcher;
 
@@ -37,15 +35,16 @@ class PortalAutostartMgr : public AbstractAutostartMgr
 public:
     explicit PortalAutostartMgr(QObject *parent = nullptr);
 
+    bool isAutostartEnabled() const override;
+    void setAutostartEnabled(bool enabled) override;
+
     static bool isAvailable();
 
-    bool canCheckEnabled() override;
+signals:
+    void responseParsed();
 
-    bool isAutostartEnabled() override;
-
-public slots:
-    void setAutostartEnabled(bool enabled) override;
-    void onHandleResponse(uint, const QVariantMap &results);
+private slots:
+    void parsePortalResponse(quint32, const QVariantMap &results);
 
 private:
     static QDBusInterface s_interface;

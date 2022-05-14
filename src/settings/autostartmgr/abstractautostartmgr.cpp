@@ -19,52 +19,38 @@
  */
 
 #include "abstractautostartmgr.h"
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX)
 #include "portalautostartmgr.h"
 #include "unixconfigautostartmgr.h"
-#endif
-#ifdef Q_OS_WIN
+#elif defined(Q_OS_WIN)
 #include "windowsautostartmgr.h"
 #endif
 
 #include <QMessageBox>
-#include <QtCore>
 
 AbstractAutostartMgr::AbstractAutostartMgr(QObject *parent)
     : QObject(parent)
 {
 }
 
-bool AbstractAutostartMgr::canCheckEnabled()
-{
-    return true;
-}
-
-void AbstractAutostartMgr::setAutostartEnabled(bool enabled)
-{
-    qDebug() << QString("Set autostart to %1").arg(enabled);
-}
-
 AbstractAutostartMgr *AbstractAutostartMgr::createAutostartMgr(QObject *parent)
 {
-#ifdef Q_OS_LINUX
+#if defined(Q_OS_LINUX)
     if (PortalAutostartMgr::isAvailable())
         return new PortalAutostartMgr(parent);
     return new UnixConfigAutostartMgr(parent);
-#endif
-#ifdef Q_OS_WIN
+#elif defined(Q_OS_WIN)
     return new WindowsAutostartMgr(parent);
-#endif
+#else
     qFatal("No autostart provider implemented");
+#endif
 }
 
-void AbstractAutostartMgr::showError(const QString &errorString)
+void AbstractAutostartMgr::showError(const QString &informativeText)
 {
     QMessageBox message;
     message.setIcon(QMessageBox::Critical);
     message.setText(tr("Unable to apply autostart settings"));
-    message.setInformativeText(errorString);
+    message.setInformativeText(informativeText);
     message.exec();
-
-    emit autostartToggleFailed();
 }

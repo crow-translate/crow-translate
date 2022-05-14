@@ -178,7 +178,7 @@ bool AppSettings::defaultStartMinimized()
     return true;
 }
 
-bool AppSettings::isAutostartEnabled()
+bool AppSettings::isAutostartEnabled() const
 {
     return m_settings->value(QStringLiteral("AutostartEnabled"), defaultAutostartEnabled()).toBool();
 }

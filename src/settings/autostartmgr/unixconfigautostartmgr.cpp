@@ -23,14 +23,13 @@
 #include <QDir>
 #include <QGuiApplication>
 #include <QStandardPaths>
-#include <QtCore>
 
 UnixConfigAutostartMgr::UnixConfigAutostartMgr(QObject *parent)
     : AbstractAutostartMgr(parent)
 {
 }
 
-bool UnixConfigAutostartMgr::isAutostartEnabled()
+bool UnixConfigAutostartMgr::isAutostartEnabled() const
 {
     return QFileInfo::exists(QStringLiteral("%1/autostart/%2").arg(QStandardPaths::writableLocation(QStandardPaths::ConfigLocation), QGuiApplication::desktopFileName()));
 }
@@ -46,20 +45,18 @@ void UnixConfigAutostartMgr::setAutostartEnabled(bool enabled)
 
         if (!autostartDir.exists()) {
             if (!autostartDir.mkpath(QStringLiteral("."))) {
-                emit showError(tr("Unable to create %1").arg(autostartDir.path()));
+                showError(tr("Unable to create %1").arg(autostartDir.path()));
                 return;
             }
         }
 
         const QString desktopFileName = QStringLiteral("/usr/share/applications/%1").arg(QGuiApplication::desktopFileName());
         if (!QFile::copy(desktopFileName, autostartDir.filePath(QGuiApplication::desktopFileName())))
-            emit showError(tr("Unable to copy %1 to %2").arg(desktopFileName, autostartDir.path()));
+            showError(tr("Unable to copy %1 to %2").arg(desktopFileName, autostartDir.path()));
 
     } else if (autostartDir.exists(QGuiApplication::desktopFileName())) {
         // Remove autorun file
         if (!autostartDir.remove(QGuiApplication::desktopFileName()))
-            emit showError(tr("Unable to remove %1 from %2").arg(QGuiApplication::desktopFileName(), autostartDir.path()));
+            showError(tr("Unable to remove %1 from %2").arg(QGuiApplication::desktopFileName(), autostartDir.path()));
     }
-
-    emit autostartEnabled(this->isAutostartEnabled());
 }
