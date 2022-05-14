@@ -344,8 +344,8 @@
     <name>PortalAutostartManager</name>
     <message>
       <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="45"/>
-      <source>Allow Crow Translate to manage autostart setting for itself.</source>
-      <translation>Разрешить Crow Translate самостоятельно управлять настройками автозапуска.</translation>
+      <source>Allow %1 to manage autostart setting for itself.</source>
+      <translation>Разрешить %1 самостоятельно управлять настройками автозапуска.</translation>
     </message>
     <message>
       <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="66"/>
