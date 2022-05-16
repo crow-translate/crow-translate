@@ -34,6 +34,7 @@ jobs:
           - os: ubuntu-18.04
             extra-cmake-arguments: >-
               -D CPACK_GENERATOR="External"
+              -D WITH_KWAYLAND:BOOL=OFF
           - os: ubuntu-20.04
             extra-cmake-arguments: >-
               -D CPACK_GENERATOR="DEB;RPM"
@@ -66,7 +67,7 @@ jobs:
         if: runner.os == 'Linux' && matrix.arch == 'amd64'
         run: |
           sudo apt-get update
-          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev rpm qt5-default qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins qt5-style-plugins ninja-build
+          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev libkf5wayland-dev rpm qt5-default qtgstreamer-plugins-qt5 gstreamer1.0-plugins-good gstreamer1.0-alsa gstreamer1.0-pulseaudio libqt5multimedia5-plugins qt5-style-plugins ninja-build
           sudo apt-get remove qt5-gtk-platformtheme # Do not use libqgtk3.so because of https://bugreports.qt.io/browse/QTBUG-72506
 
       - name: Install linuxdeploy

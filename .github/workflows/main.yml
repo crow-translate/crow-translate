@@ -53,6 +53,7 @@ jobs:
           - os: ubuntu-18.04
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS='-Wall -Wextra -pedantic -Werror'
+              -D WITH_KWAYLAND:BOOL=OFF
           - os: ubuntu-20.04
             extra-cmake-arguments: >-
               -D CMAKE_CXX_FLAGS="-Wall -Wextra -pedantic -Werror"
@@ -75,7 +76,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev ninja-build
+          sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libtesseract-dev libkf5wayland-dev ninja-build
 
       - name: Install vcpkg
         uses: lukka/run-vcpkg@v10.1

@@ -1,4 +1,3 @@
-
 /*
  *  Copyright © 2018-2022 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
@@ -19,18 +18,44 @@
  *
  */
 
-#ifndef XDGDESKTOPPORTAL_H
-#define XDGDESKTOPPORTAL_H
+#ifndef WAYLANDHELPER_H
+#define WAYLANDHELPER_H
 
-#include <QString>
+#include <QtCore>
 
+#include <KWayland/Client/registry.h>
+
+namespace KWayland::Client
+{
+class Surface;
+class ConnectionThread;
+class XdgExporter;
+class XdgExported;
+}
 class QWindow;
 
-namespace XdgDesktopPortal
+class WaylandHelper : public QObject
 {
-// Retrieve parent window in string form according to
-// https://flatpak.github.io/xdg-desktop-portal/#parent_window
-QString parentWindow(QWindow *activeWindow);
-}
+    Q_OBJECT
+    Q_DISABLE_COPY(WaylandHelper)
 
-#endif // XDGDESKTOPPORTAL_H
+public:
+    explicit WaylandHelper(QWindow *parent);
+
+    QString exportedHandle() const;
+
+signals:
+    void xdgExportDone();
+
+private:
+    KWayland::Client::Surface *surface;
+    KWayland::Client::Registry registry;
+    KWayland::Client::ConnectionThread *connection;
+    KWayland::Client::XdgExported *xdgExportedTopLevel = nullptr;
+
+private slots:
+    void onXdgExporterAnnounced(quint32 name, quint32 version);
+    void onInterfacesAnnounced();
+};
+
+#endif // WAYLANDHELPER_H

@@ -57,6 +57,7 @@ if(CMAKE_CXX_CLANG_TIDY)
 endif()
 
 option(WITH_PORTABLE_MODE "Enable portable functionality" OFF)
+option(WITH_KWAYLAND "Use KWayland for better Wayland integration" ON)
 
 find_package(ECM REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
@@ -77,6 +78,9 @@ find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
     find_package(XCB REQUIRED COMPONENTS XCB)
+    if(WITH_KWAYLAND)
+        find_package(KF5Wayland REQUIRED COMPONENTS Client)
+    endif()
 endif()
 
 include(GNUInstallDirs)
@@ -182,6 +186,11 @@ if(UNIX)
         src/settings/autostartmanager/unixautostartmanager.cpp
         src/settings/autostartmanager/portalautostartmanager.cpp
     )
+    if(WITH_KWAYLAND)
+        target_sources(${PROJECT_NAME} PRIVATE
+            src/waylandhelper.cpp
+        )
+    endif(WITH_KWAYLAND)
 elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
 
@@ -208,6 +217,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus XCB::XCB)
+    if(WITH_KWAYLAND)
+        target_link_libraries(${PROJECT_NAME} PRIVATE KF5::WaylandClient)
+        target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_KWAYLAND)
+    endif()
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
 endif()

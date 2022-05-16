@@ -156,6 +156,10 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 - [Tesseract](https://tesseract-ocr.github.io) 4.0+
 - [Png2Ico](https://www.winterdrache.de/freeware/png2ico) or [IcoTool](https://www.nongnu.org/icoutils) for generating executable icon (Windows)
 
+### Optional
+
+- [KWayland](https://invent.kde.org/frameworks/kwayland)
+
 ### External libraries
 
 This project uses the following external libraries, which included as git submodules:
@@ -222,6 +226,7 @@ On Windows you need [VCPKG](https://github.com/microsoft/vcpkg) to bundle all ne
 ### Build parameters
 
 - `WITH_PORTABLE_MODE` - Enable portable functionality. If you create file named `settings.ini` in the app folder and Crow will store the configuration in it. It also adds the “Portable Mode” option to the application settings, which does the same.
+- `WITH_KWAYLAND` - Find and use KWayland library for better Wayland integration.
 
 Build parameters are passed at configuration stage: `cmake -D WITH_PORTABLE_MODE ..`.
 
