@@ -43,11 +43,21 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.9.8" date="2022-05-16">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Bundle application icons only for Windows.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.9.7" date="2022-05-14">
       <description>
         <p>Changelog:</p>
         <ul>
           <li>Autostart support via xdg-desktop-portal.</li>
+          <li>Close settings window after all settings applied.</li>
+          <li>Retrieve parent window ID for XDG desktop portal dialogs.</li>
         </ul>
       </description>
     </release>
