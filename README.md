@@ -158,7 +158,7 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 
 ### External libraries
 
-This project uses the following external libraries, which will be downloaded automatically at configure time using the built-in CMake [FetchContent](https://cmake.org/cmake/help/latest/module/FetchContent.html) module:
+This project uses the following external libraries, which included as git submodules:
 
 - [QOnlineTranslator](https://github.com/crow-translate/QOnlineTranslator) - provides free usage of Google, Yandex and Bing translate API.
 - [QGitTag](https://github.com/crow-translate/QGitTag) - uses the GitHub API to provide information about releases.
