@@ -1,9 +1,5 @@
 <RCC>
     <qresource prefix="/icons/hicolor">
-        <file alias="scalable/apps/crow-translate-tray-dark.svg">app/sc-status-crow-translate-tray-dark.svg</file>
-        <file alias="scalable/apps/crow-translate-tray-light.svg">app/sc-status-crow-translate-tray-light.svg</file>
-        <file alias="scalable/apps/crow-translate-tray.svg">app/sc-apps-crow-translate.svg</file>
-        <file alias="scalable/apps/crow-translate.svg">app/sc-apps-crow-translate.svg</file>
         <file alias="16x16/actions/arrow-down.svg">third-party/fluent-icon-theme/src/16/actions/go-down.svg</file>
         <file alias="16x16/actions/arrow-left.svg">third-party/fluent-icon-theme/src/16/actions/go-previous.svg</file>
         <file alias="16x16/actions/arrow-right.svg">third-party/fluent-icon-theme/src/16/actions/go-next.svg</file>
@@ -43,6 +39,6 @@
         <file alias="16x16/actions/view-refresh.svg">third-party/fluent-icon-theme/src/16/actions/view-refresh.svg</file>
         <file alias="16x16/actions/window.svg">third-party/fluent-icon-theme/src/16/actions/window.svg</file>
         <file alias="16x16/places/folder.svg">third-party/fluent-icon-theme/src/16/places/folder.svg</file>
-        <file alias="index.theme">index.theme</file>
+        <file>index.theme</file>
     </qresource>
 </RCC>
