@@ -48,6 +48,7 @@
         <p>Changelog:</p>
         <ul>
           <li>Bundle application icons only for Windows.</li>
+          <li>Make XDG dialogs modal on Wayland.</li>
         </ul>
       </description>
     </release>
