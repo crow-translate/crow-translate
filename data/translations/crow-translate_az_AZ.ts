@@ -2,6 +2,14 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="az" sourcelanguage="en">
   <context>
+    <name>AbstractAutostartManager</name>
+    <message>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="53"/>
+      <source>Unable to apply autostart settings</source>
+      <translation>Avtomatik başlatma ayarları tətbiq edilə bilmədi</translation>
+    </message>
+  </context>
+  <context>
     <name>AbstractScreenGrabber</name>
     <message>
       <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="64"/>
@@ -35,22 +43,7 @@
   <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="206"/>
-      <source>Unable to create %1</source>
-      <translation>%1 yaradıla bilmədi</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/appsettings.cpp" line="213"/>
-      <source>Unable to copy %1 to %2</source>
-      <translation>%1, %2 üzərinə kopyalana bilmədi</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/appsettings.cpp" line="217"/>
-      <source>Unable to remove %1 from %2</source>
-      <translation>%1, %2 daxilindən silinə bilmədi</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1233"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1196"/>
       <source>Unknown language code: %1</source>
       <translation>Bilinməyən dil kodu: %1</translation>
     </message>
@@ -188,12 +181,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="96"/>
+      <location filename="../../src/main.cpp" line="101"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>%1 üçün D-Bus obyekti qeydiyyatdan keçirilə bilmədi</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="72"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>D-Bus xidməti %1 artıq başqa tətbiq tərəfindən qeydə alınıb</translation>
     </message>
@@ -295,21 +288,16 @@
       <source>Unable to translate text</source>
       <translation>Mətni tərcümə etmək mümkün deyil</translation>
     </message>
-    <message>
-      <location filename="../../src/mainwindow.cpp" line="540"/>
-      <source>The application is already running</source>
-      <translation>Tətbiq artıq başladılıb</translation>
-    </message>
   </context>
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="987"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dillər təyin edilə bilmədi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="987"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>%1 ilə Tesseract başladıla bimədi</translation>
     </message>
@@ -342,20 +330,33 @@
       <translation>Orijinal mətni mübadilə yaddaşına kopyalayın</translation>
     </message>
     <message>
-      <location filename="../../src/popupwindow.ui" line="122"/>
+      <location filename="../../src/popupwindow.ui" line="140"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Bütün tərcümə məlumatlarını mübadilə yaddaşına kopyalayın</translation>
     </message>
     <message>
-      <location filename="../../src/popupwindow.ui" line="133"/>
+      <location filename="../../src/popupwindow.ui" line="151"/>
       <source>Copy translation to the clipboard</source>
       <translation>Tərcüməni mübadilə yaddaşına kopyalayın</translation>
     </message>
   </context>
   <context>
+    <name>PortalAutostartManager</name>
+    <message>
+      <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="45"/>
+      <source>Allow %1 to manage autostart setting for itself.</source>
+      <translation>%1-a vtomatik başlatma ayarlarını müstəqil idarə etməyə icazə verilsin.</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/autostartmanager/portalautostartmanager.cpp" line="66"/>
+      <source>Unable to subscribe to response from xdg-desktop-portal.</source>
+      <translation>Xdg-desktop-portal'dan cavaba abunə mümkün olmadı.</translation>
+    </message>
+  </context>
+  <context>
     <name>QGitTag</name>
     <message>
-      <location filename="../../build/_deps/QGitTag/src/qgittag.cpp" line="144"/>
+      <location filename="../../src/qgittag/src/qgittag.cpp" line="144"/>
       <source>Release number %1 is missing</source>
       <translation>Buraxılış nömrəsi %1 çatışmlr</translation>
     </message>
@@ -363,12 +364,12 @@
   <context>
     <name>QHotkey</name>
     <message>
-      <location filename="../../build/_deps/qhotkey-src/QHotkey/qhotkey.cpp" line="277"/>
+      <location filename="../../src/third-party/qhotkey/QHotkey/qhotkey.cpp" line="277"/>
       <source>Failed to register %1. Error: %2</source>
       <translation>%1 qeyd edilə bilmədi. Xəta: %2</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qhotkey-src/QHotkey/qhotkey.cpp" line="297"/>
+      <location filename="../../src/third-party/qhotkey/QHotkey/qhotkey.cpp" line="297"/>
       <source>Failed to unregister %1. Error: %2</source>
       <translation>%1 qeydiyatdan çıxarılan bilmədi. Xəta: %2</translation>
     </message>
@@ -376,728 +377,734 @@
   <context>
     <name>QOnlineTranslator</name>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="199"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="203"/>
       <source>Selected source language %1 is not supported for %2</source>
       <translation>Seçilmiş tərcümə ediləcək %1 dili, %2 tərfindən dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="204"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="208"/>
       <source>Selected translation language %1 is not supported for %2</source>
       <translation>Seçilmiş %1 tərcümə dili %2 tərəfindən dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="209"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="213"/>
       <source>Selected ui language %1 is not supported for %2</source>
       <translation>Seçilmiş %1 İstifadəçi interfeysi dili %2 tərəfindən dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="226"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="235"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="270"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="279"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="230"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="239"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="274"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="283"/>
       <source>%1 URL can&apos;t be empty.</source>
       <translation>%1 URL&apos;u boş ola bilməz.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="477"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="481"/>
       <source>Automatically detect</source>
       <translation>Avtomatik aşkarlama</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="479"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="483"/>
       <source>Afrikaans</source>
       <translation>Afrikanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="481"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="485"/>
       <source>Albanian</source>
       <translation>Albanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="483"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="487"/>
       <source>Amharic</source>
       <translation>Amhar</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="485"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="489"/>
       <source>Arabic</source>
       <translation>Ərəb</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="487"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="491"/>
       <source>Armenian</source>
       <translation>Ermənicə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="489"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="493"/>
       <source>Azeerbaijani</source>
       <translation>Azərbaycanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="491"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="495"/>
       <source>Basque</source>
       <translation>Basqca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="493"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="497"/>
       <source>Bashkir</source>
       <translation>Başqurdca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="495"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="499"/>
       <source>Belarusian</source>
       <translation>Belarusca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="497"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="501"/>
       <source>Bengali</source>
       <translation>Benqalca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="499"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="503"/>
       <source>Bosnian</source>
       <translation>Bosniya</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="501"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="505"/>
       <source>Bulgarian</source>
       <translation>Bolqarca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="503"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="507"/>
       <source>Catalan</source>
       <translation>Katalanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="505"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="509"/>
       <source>Cantonese</source>
       <translation>Kanton</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="507"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="511"/>
       <source>Cebuano</source>
       <translation>Sebuano</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="509"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="513"/>
       <source>Chinese (Simplified)</source>
       <translation>Çin (Sadələşdirilmiş)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="511"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="515"/>
       <source>Chinese (Traditional)</source>
       <translation>Çin (Ənənəvi)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="513"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="517"/>
       <source>Corsican</source>
       <translation>Korsika</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="515"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="519"/>
       <source>Croatian</source>
       <translation>Xorvatca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="517"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="521"/>
       <source>Czech</source>
       <translation>Çexcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="519"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="523"/>
       <source>Danish</source>
       <translation>Danimarka</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="521"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="525"/>
       <source>Dutch</source>
       <translation>Hollandca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="523"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="527"/>
       <source>English</source>
       <translation>İngiliscə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="525"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="529"/>
       <source>Esperanto</source>
       <translation>Esperanto</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="527"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="531"/>
       <source>Estonian</source>
       <translation>Estonca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="529"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="533"/>
       <source>Fijian</source>
       <translation>Fici</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="531"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="535"/>
       <source>Filipino</source>
       <translation>Filippin</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="533"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="537"/>
       <source>Finnish</source>
       <translation>Fincə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="539"/>
       <source>French</source>
       <translation>Fransızca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="537"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="541"/>
       <source>Frisian</source>
       <translation>Frizcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="539"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="543"/>
       <source>Galician</source>
       <translation>Qalisiya</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="541"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="545"/>
       <source>Georgian</source>
       <translation>Gürcücə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="543"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="547"/>
       <source>German</source>
       <translation>Almanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="545"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="549"/>
       <source>Greek</source>
       <translation>Yunanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="547"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="551"/>
       <source>Gujarati</source>
       <translation>Qucarat</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="549"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="553"/>
       <source>Haitian Creole</source>
       <translation>Haiti Kreole</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="551"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="555"/>
       <source>Hausa</source>
       <translation>Hausa</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="553"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="557"/>
       <source>Hawaiian</source>
       <translation>Havay</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="555"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="559"/>
       <source>Hebrew</source>
       <translation>İvrit</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="557"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="561"/>
       <source>Hill Mari</source>
       <translation>Dağlıq Mari</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="559"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="563"/>
       <source>Hindi</source>
       <translation>Hindcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="561"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="565"/>
       <source>Hmong</source>
       <translation>Hmong</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="563"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="567"/>
       <source>Hungarian</source>
       <translation>Macarca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="565"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="569"/>
       <source>Icelandic</source>
       <translation>İslandca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="567"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="571"/>
       <source>Igbo</source>
       <translation>İqbo</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="569"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="573"/>
       <source>Indonesian</source>
       <translation>İndoneziyaca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="571"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="575"/>
       <source>Irish</source>
       <translation>İrlandca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="573"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="577"/>
       <source>Italian</source>
       <translation>İtalyanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="575"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="579"/>
       <source>Japanese</source>
       <translation>Yaponca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="577"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="581"/>
       <source>Javanese</source>
       <translation>Yava dili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="579"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="583"/>
       <source>Kannada</source>
       <translation>Kannada</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="585"/>
       <source>Kazakh</source>
       <translation>Qazaxca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="583"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="587"/>
       <source>Khmer</source>
       <translation>Khmer</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="585"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="589"/>
       <source>Kinyarwanda</source>
       <translation>Kinyarvanda</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="587"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="591"/>
       <source>Klingon</source>
       <translation>Klinqonca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="589"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="593"/>
       <source>Klingon (PlqaD)</source>
       <translation>Klinqonca (PlqaD)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="591"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="595"/>
       <source>Korean</source>
       <translation>Koreya</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="593"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="597"/>
       <source>Kurdish</source>
       <translation>Kürdcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="595"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="599"/>
       <source>Kyrgyz</source>
       <translation>Qırğızca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="597"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="601"/>
       <source>Lao</source>
       <translation>Lao</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="599"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="603"/>
       <source>Latin</source>
       <translation>Latınca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="601"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="605"/>
       <source>Latvian</source>
       <translation>Latışca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="603"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="607"/>
       <source>Levantine Arabic</source>
       <translation>Levantin ərəbcəsi</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="605"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="609"/>
       <source>Lithuanian</source>
       <translation>Litvanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="607"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="611"/>
       <source>Luxembourgish</source>
       <translation>Lüksemburqca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="609"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="613"/>
       <source>Macedonian</source>
       <translation>Makedonca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="611"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="615"/>
       <source>Malagasy</source>
       <translation>Malaqasi</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="613"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="617"/>
       <source>Malay</source>
       <translation>Malay dili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="615"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="619"/>
       <source>Malayalam</source>
       <translation>Malayalam dili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="617"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="621"/>
       <source>Maltese</source>
       <translation>Maltaca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="619"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="623"/>
       <source>Maori</source>
       <translation>Maori</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="621"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="625"/>
       <source>Marathi</source>
       <translation>Marathicə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="623"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="627"/>
       <source>Mari</source>
       <translation>Maricə (Çirmiş dili)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="625"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="629"/>
       <source>Mongolian</source>
       <translation>Monqolca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="627"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="631"/>
       <source>Myanmar</source>
       <translation>Myanmar</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="629"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="633"/>
       <source>Nepali</source>
       <translation>Nepalca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="631"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="635"/>
       <source>Norwegian</source>
       <translation>Norveç</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="633"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="637"/>
       <source>Oriya</source>
       <translation>Oriya</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="635"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="639"/>
       <source>Chichewa</source>
       <translation>Çiçeva</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="637"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="641"/>
       <source>Papiamento</source>
       <translation>Papyamento</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="639"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="643"/>
       <source>Pashto</source>
       <translation>Puştu</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="641"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="645"/>
       <source>Persian</source>
       <translation>Farsca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="643"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="647"/>
       <source>Polish</source>
       <translation>Polyakca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="645"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="649"/>
       <source>Portuguese</source>
       <translation>Portuqalca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="647"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="651"/>
       <source>Punjabi</source>
       <translation>Pəncəb</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="649"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="653"/>
       <source>Queretaro Otomi</source>
       <translation>Queretaro Otomi</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="651"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="655"/>
       <source>Romanian</source>
       <translation>Rumınca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="653"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="657"/>
       <source>Russian</source>
       <translation>Rusca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="655"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="659"/>
       <source>Samoan</source>
       <translation>Samoa</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="657"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="661"/>
       <source>Scots Gaelic</source>
       <translation>Şotland Qalcası</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="659"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="663"/>
       <source>Serbian (Cyrillic)</source>
       <translation>Serbcə (Kiril)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="661"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="665"/>
       <source>Serbian (Latin)</source>
       <translation>Serbcə (Latın)</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="663"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="667"/>
       <source>Sesotho</source>
       <translation>Sesoto</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="665"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="669"/>
       <source>Shona</source>
       <translation>Şona</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="667"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="671"/>
       <source>Sindhi</source>
       <translation>Sindhi</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="669"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="673"/>
       <source>Sinhala</source>
       <translation>Sinhala</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="671"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="675"/>
       <source>Slovak</source>
       <translation>Slovakca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="673"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="677"/>
       <source>Slovenian</source>
       <translation>Slovencə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="675"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="679"/>
       <source>Somali</source>
       <translation>Somalicə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="677"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="681"/>
       <source>Spanish</source>
       <translation>İspanca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="679"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="683"/>
       <source>Sundanese</source>
       <translation>Sudanc</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="681"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="685"/>
       <source>Swahili</source>
       <translation>Svahili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="683"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="687"/>
       <source>Swedish</source>
       <translation>İsveçcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="685"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="689"/>
       <source>Tagalog</source>
       <translation>Taqaloqca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="687"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="691"/>
       <source>Tahitian</source>
       <translation>Tahiti</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="689"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="693"/>
       <source>Tajik</source>
       <translation>Tacikcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="691"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="695"/>
       <source>Tamil</source>
       <translation>Tamil dili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="693"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="697"/>
       <source>Tatar</source>
       <translation>Tatarca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="695"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="699"/>
       <source>Telugu</source>
       <translation>Teluqu</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="697"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="701"/>
       <source>Thai</source>
       <translation>Tayca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="699"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="703"/>
       <source>Tongan</source>
       <translation>Tonqan</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="701"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="705"/>
       <source>Turkish</source>
       <translation>Türkcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="703"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="707"/>
       <source>Turkmen</source>
       <translation>Türkməncə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="705"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="709"/>
       <source>Udmurt</source>
       <translation>Udmurtca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="707"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="711"/>
       <source>Uighur</source>
       <translation>Uyğurca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="709"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="713"/>
       <source>Ukrainian</source>
       <translation>Ukrayna dili</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="711"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="715"/>
       <source>Urdu</source>
       <translation>Urduca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="713"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="717"/>
       <source>Uzbek</source>
       <translation>Özbəkcə</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="715"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="719"/>
       <source>Vietnamese</source>
       <translation>Vyetnamca</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="717"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="721"/>
       <source>Welsh</source>
       <translation>Uels</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="719"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="723"/>
       <source>Xhosa</source>
       <translation>Kosa</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="721"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="725"/>
       <source>Yiddish</source>
       <translation>Yidiş</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="723"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="727"/>
       <source>Yoruba</source>
       <translation>Yoruba</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="725"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="729"/>
       <source>Yucatec Maya</source>
       <translation>Yukatek Maya</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="727"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="731"/>
       <source>Zulu</source>
       <translation>Zulu</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1246"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1255"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1338"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1250"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1259"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1342"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Xəta: Mühərrik sistemi sizin kompyuterinizdən şübhəli trafik axını aşkarladı. Sorğunuzu daha sonra təkrarlamanız xahiş olunur.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1267"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1418"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1592"/>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1686"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1271"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1422"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1615"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1709"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Xəta: Dilin avtomatik aşkarlanmasınə təhlil etmək mümükün olmadı</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1345"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1349"/>
       <source>Error: Unable to find Yandex SID in web version.</source>
       <translation>Xəta: Yandex SİD veb versiyada tapıla bilmədi.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1352"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1356"/>
       <source>Error: Unable to extract Yandex SID from web version.</source>
       <translation>Xəta: Yandex SİD veb-versiyadan çıxarıla bilmədi.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1532"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1536"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Xəta: Binq kimlik məlumatları veb versiyadan tapılmadı.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1539"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1543"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Xəta: Bing açar veb versiydan çıxarıla bilmədi.</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetranslator.cpp" line="1547"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1551"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Xəta: Bing token veb versiydan çıxarıla bilmədi.</translation>
+    </message>
+    <message>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1559"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1567"/>
+      <source>Error: Unable to extract additional Bing information from web version.</source>
+      <translation>Xəta: Əlavə Bing məlumatları veb versiyadan çıxarıla bilmədi.</translation>
     </message>
   </context>
   <context>
     <name>QOnlineTts</name>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="51"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="51"/>
       <source>Selected engine %1 does not support voice settings</source>
       <translation>Seçilmiş %1 mühərriki səs ayarlarını dəstəkləmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="56"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="56"/>
       <source>Selected engine %1 does not support emotion settings</source>
       <translation>Seçilmiş %1 mühərriki emosiya ayarlarını dəstəkləmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="125"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="125"/>
       <source>%1 engine does not support TTS</source>
       <translation>%1 mühərriki TTS dəstəkləmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="196"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="196"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>Seçilmiş %1 dili %2 üçün dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="208"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="208"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>Seçilmiş %1 səslənməsi %2 üçün dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../build/_deps/qonlinetranslator-src/src/qonlinetts.cpp" line="220"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="220"/>
       <source>Selected emotion %1 is not supported for %2</source>
       <translation>Seçilmiş %1 emosiyası %2 üçün dəstəklənmir</translation>
     </message>
@@ -1163,9 +1170,9 @@
       <translation>Dil:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="70"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="92"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="93"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="72"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="94"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="95"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;System language&gt;</translation>
     </message>
@@ -1905,123 +1912,123 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
       <translation>Bayraq nişanları:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="48"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="50"/>
       <source>Portable mode</source>
       <translation>Daşınabilən rejim</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="61"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
       <source>Use %1 from the application folder to store settings</source>
       <translation>Ayarları saxlamaq üçün tətbiq qovluğundan %1 istifadə edin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="135"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="137"/>
       <source>Updates</source>
       <translation>Yeniləmələr</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="142"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="144"/>
       <source>Check for updates:</source>
       <translation>Yenilənmələr yoxlanılsın:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
       <source>Every day</source>
       <translation>Hər gün</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="147"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Every week</source>
       <translation>Hər həftə</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="148"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="150"/>
       <source>Every month</source>
       <translation>Hər ay</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="151"/>
       <source>Never</source>
       <translation>Heç vaxt</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="125"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="127"/>
       <source>Icons:</source>
       <translation>Nişanlar:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="155"/>
       <source>Check now</source>
       <translation>İndi yoxlayın</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="154"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates now</source>
       <translation>Yenilənmələr indi yoxlanılsın</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="169"/>
       <source>Happy New Year!</source>
       <translation>Yeni İliniz Mübarək!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="183"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR parametrləri sahəs boş ola bilməz.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="182"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="184"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Yararsız pararmetrləri ləğv etmək istəyirsiniz?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Select icon</source>
       <translation>Nişan seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="331"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="333"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Şəkillər (*.png *.ico *.svg *.jpg);;Bütün fayllar()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="344"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select OCR languages path</source>
       <translation>OCR dilləri yolunu seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Nothing to play</source>
       <translation>Səsləndiriləcək heç nə yoxdur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="379"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="381"/>
       <source>Playback text is empty</source>
       <translation>Səsləndirmə mətni boşdur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="389"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="391"/>
       <source>Unable to detect language</source>
       <translation>Dili aşkar etmək mümkün deyil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="443"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="445"/>
       <source>Checking for updates...</source>
       <translation>Yenilənmələr yoxlanılr...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="465"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="467"/>
       <source>Update available!</source>
       <translation>Yeniləınmə var!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="471"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="473"/>
       <source>No updates available.</source>
       <translation>Yenilənmə yoxdur.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="569"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="571"/>
       <source>Back</source>
       <translation>Geriyə</translation>
     </message>
@@ -2313,12 +2320,12 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="956"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>Yararsız trey nişanı</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="956"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Seçilmiş &apos;%1&apos; işanı yararsızdır. ilkin nişan istifadə olunacaq.</translation>
     </message>
@@ -2344,6 +2351,24 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
       <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Tərcümə nəticəsi</translation>
+    </message>
+  </context>
+  <context>
+    <name>UnixAutostartManager</name>
+    <message>
+      <location filename="../../src/settings/autostartmanager/unixautostartmanager.cpp" line="48"/>
+      <source>Unable to create %1</source>
+      <translation>%1 yaradıla bilmədi</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/autostartmanager/unixautostartmanager.cpp" line="55"/>
+      <source>Unable to copy %1 to %2</source>
+      <translation>%1 %2-a kopyalana bilmədi</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/autostartmanager/unixautostartmanager.cpp" line="60"/>
+      <source>Unable to remove %1 from %2</source>
+      <translation>%1, %2-dan silinə bilmədi</translation>
     </message>
   </context>
   <context>
@@ -2431,22 +2456,22 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="61"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Kanal yaradıla bilmədi: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="105"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Soketin hazırlanmasını gözləmək mümkün olmadı: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Timeout reading from pipe.</source>
       <translation>Kanldan oxuma vaxtı bitdi.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="116"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Verilınlərin soketdən oxunması mümkün deyil: %1.</translation>
     </message>
@@ -2454,12 +2479,12 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="70"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="72"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Xdg-desktop-portal'dan cavaba abunə mümkün olmadı.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="90"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="92"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Xdg-desktop-portal'dan boş yol alındı.</translation>
     </message>
