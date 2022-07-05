@@ -71,10 +71,12 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
     addLocale({QLocale::Albanian, QLocale::Albania});
     addLocale({QLocale::Azerbaijani, QLocale::Azerbaijan});
+    addLocale({QLocale::Basque, QLocale::Spain});
     addLocale({QLocale::Chinese, QLocale::China});
     addLocale({QLocale::Chinese, QLocale::Taiwan});
     addLocale({QLocale::Dutch, QLocale::Netherlands});
     addLocale({QLocale::English, QLocale::UnitedStates});
+    addLocale({QLocale::Finnish, QLocale::Finland});
     addLocale({QLocale::French, QLocale::France});
     addLocale({QLocale::Greek, QLocale::Greece});
     addLocale({QLocale::Hindi, QLocale::India});
