@@ -6,7 +6,7 @@
     <message>
       <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="53"/>
       <source>Unable to apply autostart settings</source>
-      <translation>Unable to apply autostart settings</translation>
+      <translation>无法应用自动启动设置</translation>
     </message>
   </context>
   <context>
