@@ -111,7 +111,6 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     }
 
     setHtml(formattedTranslation);
-
     moveCursor(QTextCursor::Start);
     emit translationDataParsed(formattedTranslation);
     if (translationWasEmpty)
