@@ -20,8 +20,8 @@
 #include "cli.h"
 
 #include "qonlinetts.h"
-#include "transitions/playerstoppedtransition.h"
 #include "settings/appsettings.h"
+#include "transitions/playerstoppedtransition.h"
 
 #include <QCommandLineParser>
 #include <QFile>
