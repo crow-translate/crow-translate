@@ -20,6 +20,7 @@
 #include "cli.h"
 
 #include "qonlinetts.h"
+#include "settings/appsettings.h"
 #include "transitions/playerstoppedtransition.h"
 
 #include <QCommandLineParser>
@@ -133,8 +134,10 @@ void Cli::process(const QCoreApplication &app)
         m_engine = QOnlineTranslator::Bing;
     } else if (parser.value(engine) == QLatin1String("libretranslate")) {
         m_engine = QOnlineTranslator::LibreTranslate;
+        m_translator->setEngineUrl(QOnlineTranslator::Engine::LibreTranslate, AppSettings().engineUrl(QOnlineTranslator::Engine::LibreTranslate));
     } else if (parser.value(engine) == QLatin1String("lingva")) {
         m_engine = QOnlineTranslator::Lingva;
+        m_translator->setEngineUrl(QOnlineTranslator::Engine::Lingva, AppSettings().engineUrl(QOnlineTranslator::Engine::Lingva));
     } else {
         qCritical() << tr("Error: Unknown engine") << '\n';
         parser.showHelp();
