@@ -134,12 +134,10 @@ void Cli::process(const QCoreApplication &app)
         m_engine = QOnlineTranslator::Bing;
     } else if (parser.value(engine) == QLatin1String("libretranslate")) {
         m_engine = QOnlineTranslator::LibreTranslate;
-        const AppSettings settings;
-        m_translator->setEngineUrl(QOnlineTranslator::Engine::LibreTranslate, settings.engineUrl(QOnlineTranslator::Engine::LibreTranslate));
+        m_translator->setEngineUrl(QOnlineTranslator::Engine::LibreTranslate, AppSettings().engineUrl(QOnlineTranslator::Engine::LibreTranslate));
     } else if (parser.value(engine) == QLatin1String("lingva")) {
         m_engine = QOnlineTranslator::Lingva;
-        const AppSettings settings;
-        m_translator->setEngineUrl(QOnlineTranslator::Engine::Lingva, settings.engineUrl(QOnlineTranslator::Engine::Lingva));
+        m_translator->setEngineUrl(QOnlineTranslator::Engine::Lingva, AppSettings().engineUrl(QOnlineTranslator::Engine::Lingva));
     } else {
         qCritical() << tr("Error: Unknown engine") << '\n';
         parser.showHelp();
