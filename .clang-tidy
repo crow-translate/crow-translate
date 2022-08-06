@@ -35,5 +35,6 @@ Checks: >
   -readability-named-parameter,
   -readability-redundant-access-specifiers,
   -readability-uppercase-literal-suffix,
+  -readability-identifier-length,
 
 # vim: filetype=yaml
