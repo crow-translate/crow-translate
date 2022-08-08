@@ -86,6 +86,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     addLocale({QLocale::Malay, QLocale::Malaysia});
     addLocale({QLocale::Polish, QLocale::Poland});
     addLocale({QLocale::Portuguese, QLocale::Brazil});
+    addLocale({QLocale::Portuguese, QLocale::Portugal});
     addLocale({QLocale::Russian, QLocale::Russia});
     addLocale({QLocale::Spanish, QLocale::Spain});
     addLocale({QLocale::Turkish, QLocale::Turkey});
