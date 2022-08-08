@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16.0)
 
 project(crow-translate
-    VERSION 2.9.9
+    VERSION 2.9.10
     DESCRIPTION "A simple and lightweight translator that allows to translate and speak text using Google, Yandex, Bing, LibreTranslate and Lingva"
     HOMEPAGE_URL crow-translate.github.io
     LANGUAGES CXX
@@ -119,6 +119,7 @@ qt5_add_translation(QM_FILES
     data/translations/${PROJECT_NAME}_nl_NL.ts
     data/translations/${PROJECT_NAME}_pl_PL.ts
     data/translations/${PROJECT_NAME}_pt_BR.ts
+    data/translations/${PROJECT_NAME}_pt_PT.ts
     data/translations/${PROJECT_NAME}_ru_RU.ts
     data/translations/${PROJECT_NAME}_sq_AL.ts
     data/translations/${PROJECT_NAME}_tr_TR.ts
