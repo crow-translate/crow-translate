@@ -8,6 +8,10 @@ project(crow-translate
 )
 
 set(APPLICATION_NAME "Crow Translate")
+set(COMPANY_NAME "Crow Translate")
+set(LEGAL_COPYRIGHT "Shatur 2022")
+set(FILE_DESCRIPTION "Simple and lightweight translator")
+
 set(EXECUTABLE_NAME crow)
 if(UNIX)
     set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
@@ -33,6 +37,19 @@ set(CPACK_NSIS_DISPLAY_NAME ${APPLICATION_NAME})
 set(CPACK_NSIS_INSTALLED_ICON_NAME ${EXECUTABLE_NAME}.exe)
 set(CPACK_NSIS_EXECUTABLES_DIRECTORY .)
 set(CPACK_NSIS_MUI_FINISHPAGE_RUN ${EXECUTABLE_NAME}.exe)
+
+# Setup installer exe properties
+set (CPACK_NSIS_EXTRA_DEFINES 
+   VIProductVersion \"${VERSION}\"
+   VIFileVersion    \"${VERSION}.0\"
+   VIAddVersionKey  \"ProductName\" \"${APPLICATION_NAME}\"
+   VIAddVersionKey  \"ProductVersion\" \"${VERSION}\"
+   VIAddVersionKey  \"CompanyName\" \"${COMPANY_NAME}\"
+   VIAddVersionKey  \"LegalCopyright\" \"${LEGAL_COPYRIGHT}\"
+   VIAddVersionKey  \"FileDescription\" \"${APPLICATION_NAME} Installer\"
+   VIAddVersionKey  \"FileVersion\" \"${VERSION}\"
+   VIAddVersionKey \"InternalName\" \"${APPLICATION_NAME}\"
+)
 set(CPACK_EXTERNAL_PACKAGE_SCRIPT ${CMAKE_SOURCE_DIR}/cmake/AppImage.cmake)
 set(CPACK_EXTERNAL_ENABLE_STAGING YES)
 
