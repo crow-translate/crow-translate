@@ -1,8 +1,8 @@
 name: Main
 on:
   push:
-    branches-ignore:
-      - 'releases/**'
+    branches:
+      - master
     paths-ignore:
       - '**.md'
       - '.github/workflows/release.yml'
