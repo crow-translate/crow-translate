@@ -43,7 +43,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     // Remove bad chars
     for (int i = 0; i < m_translation.size(); ++i) {
-        if (!m_translation[i].isPrint() && m_translation[i] != "\n") {
+        if (!m_translation[i].isPrint() && m_translation[i] != '\n') {
             m_translation.remove(i, 1);
             --i;
         }
