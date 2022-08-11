@@ -42,7 +42,7 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     m_lang = translator->translationLanguage();
 
     // Translation
-    setHtml(m_translation.replace(QStringLiteral("\n"), QStringLiteral("<br>")));
+    setHtml(m_translation.toHtmlEscaped().replace(QStringLiteral("\n"), QStringLiteral("<br>")));
 
     // Translit
     if (!translator->translationTranslit().isEmpty())
