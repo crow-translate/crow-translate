@@ -41,6 +41,14 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     m_translation = translator->translation();
     m_lang = translator->translationLanguage();
 
+    // Remove bad chars
+    for (int i = 0; i < m_translation.size(); ++i) {
+        if (!m_translation[i].isPrint() && m_translation[i] != "\n") {
+            m_translation.remove(i, 1);
+            --i;
+        }
+    }
+
     // Translation
     setHtml(m_translation.toHtmlEscaped().replace(QStringLiteral("\n"), QStringLiteral("<br>")));
 
