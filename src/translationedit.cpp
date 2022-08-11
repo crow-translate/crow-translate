@@ -46,24 +46,24 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     // Translit
     if (!translator->translationTranslit().isEmpty())
-        formattedTranslation += QStringLiteral("<font color=\"grey\"><i>/%1/</i></font>").arg(translator->translationTranslit().replace(QStringLiteral("\n"), QStringLiteral("/<br>/")));
+        formattedTranslation += QStringLiteral("<br><font color=\"grey\"><i>/%1/</i></font><br>").arg(translator->translationTranslit().replace(QStringLiteral("\n"), QStringLiteral("/<br>/")));
     if (!translator->sourceTranslit().isEmpty())
-        formattedTranslation += QStringLiteral("<font color=\"grey\"><i><b>(%1)</b></i></font>").arg(translator->sourceTranslit().replace(QStringLiteral("\n"), QStringLiteral("/<br>/")));
+        formattedTranslation += QStringLiteral("<br><font color=\"grey\"><i><b>(%1)</b></i></font><br>").arg(translator->sourceTranslit().replace(QStringLiteral("\n"), QStringLiteral("/<br>/")));
 
     // Transcription
     if (!translator->sourceTranscription().isEmpty())
-        formattedTranslation += QStringLiteral("<font color=\"grey\">[%1]</font>").arg(translator->sourceTranscription());
+        formattedTranslation += QStringLiteral("<br><font color=\"grey\">[%1]</font><br>").arg(translator->sourceTranscription());
 
-    formattedTranslation += "<br>"; // Add new line before translation options
+    formattedTranslation += "<br><br>"; // Add new line before translation options
 
     // Translation options
     if (!translator->translationOptions().isEmpty()) {
-        formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("translation options:"));
+        formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font><br>").arg(translator->source(), tr("translation options:"));
 
         // Print words for each type of speech
         const QMap<QString, QVector<QOption>> translationOptions = translator->translationOptions();
         for (auto it = translationOptions.cbegin(); it != translationOptions.cend(); ++it) {
-            formattedTranslation += QStringLiteral("<b>%1</b>").arg(it.key());
+            formattedTranslation += QStringLiteral("<b>%1</b><br>").arg(it.key());
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
@@ -72,14 +72,14 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
                 // Show word gender
                 QString wordLine;
                 if (!gender.isEmpty())
-                    wordLine.append(QStringLiteral("<i>%1</i> ").arg(gender));
+                    wordLine.append(QStringLiteral("<i>%1</i> <br>").arg(gender));
 
                 // Show Word
                 wordLine.append(word);
 
                 // Show word meaning
                 if (!translations.isEmpty())
-                    wordLine.append(QStringLiteral(": <font color=\"grey\"><i>%1</i></font>").arg(translations.join(QStringLiteral(", "))));
+                    wordLine.append(QStringLiteral(": <font color=\"grey\"><i>%1</i></font><br>").arg(translations.join(QStringLiteral(", "))));
 
                 // Add generated line to edit
                 formattedTranslation += wordLine;
@@ -93,16 +93,16 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
 
     // Examples
     if (!translator->examples().isEmpty()) {
-        formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font>").arg(translator->source(), tr("examples:"));
+        formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i> - %2</font><br>").arg(translator->source(), tr("examples:"));
         const QMap<QString, QVector<QExample>> examples = translator->examples();
         for (auto it = examples.cbegin(); it != examples.cend(); ++it) {
-            formattedTranslation += QStringLiteral("<b>%1</b>").arg(it.key());
+            formattedTranslation += QStringLiteral("<b>%1</b><br>").arg(it.key());
             QTextBlockFormat indent;
             indent.setTextIndent(20);
             textCursor().setBlockFormat(indent);
             for (const auto &[example, description] : it.value()) {
                 formattedTranslation += description;
-                formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i></font>").arg(example);
+                formattedTranslation += QStringLiteral("<font color=\"grey\"><i>%1</i></font><br>").arg(example);
                 formattedTranslation += "<br>";
             }
             indent.setTextIndent(0);
