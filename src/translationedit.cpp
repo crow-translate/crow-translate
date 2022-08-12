@@ -42,8 +42,9 @@ bool TranslationEdit::parseTranslationData(QOnlineTranslator *translator)
     m_lang = translator->translationLanguage();
 
     // Remove bad chars
+    // Note: this hack is here, because toHtml() can't render anything with utf-8 characters
     for (int i = 0; i < m_translation.size(); ++i) {
-        if (!m_translation[i].isPrint() && m_translation[i] != '\n') {
+        if (m_translation[i].category() == QChar::Symbol_Other) {
             m_translation.remove(i, 1);
             --i;
         }
