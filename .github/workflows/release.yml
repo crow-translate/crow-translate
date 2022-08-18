@@ -127,5 +127,5 @@ jobs:
       - name: Upload
         uses: AButler/upload-release-assets@v2.0
         with:
-          files: build/{crow-translate*.exe,*.AppImage,*.deb,*.rpm,*.7z}
+          files: build/{crow-translate*.exe,*.AppImage,*.AppImage.zsync,*.deb,*.rpm,*.7z}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
