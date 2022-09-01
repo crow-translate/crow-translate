@@ -75,6 +75,11 @@ private slots:
     void detectYandexTextLanguage();
     void speakYandexTestText();
 
+    void onGoogleLanguageSelectionChanged(int languageIndex);
+    void saveGoogleEngineRegion(int region);
+    void detectGoogleTextLanguage();
+    void speakGoogleTestText();
+
     void loadShortcut(ShortcutItem *item);
     void updateAcceptButton();
     void acceptCurrentShortcut();
@@ -100,6 +105,7 @@ private:
 
     // Test voice
     QOnlineTranslator *m_yandexTranslator;
+    QOnlineTranslator *m_googleTranslator;
 
 #ifdef WITH_PORTABLE_MODE
     QCheckBox *m_portableCheckbox;

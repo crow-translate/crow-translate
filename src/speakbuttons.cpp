@@ -123,6 +123,27 @@ void SpeakButtons::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emot
     }
 }
 
+QMap<QOnlineTranslator::Language, QLocale::Country> SpeakButtons::regions(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        return m_googleRegions;
+    default:
+        return {};
+    }
+}
+
+void SpeakButtons::setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlineTranslator::Language, QLocale::Country> &regions)
+{
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        m_googleRegions = std::move(regions);
+        break;
+    default:
+        break;
+    }
+}
+
 void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine)
 {
     if (text.isEmpty()) {
@@ -131,6 +152,8 @@ void SpeakButtons::speak(const QString &text, QOnlineTranslator::Language lang, 
     }
 
     QOnlineTts onlineTts;
+    onlineTts.setRegions(m_googleRegions);
+
     onlineTts.generateUrls(text, engine, lang, voice(engine), emotion(engine));
     if (onlineTts.error() != QOnlineTts::NoError) {
         QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());

@@ -664,6 +664,51 @@ QOnlineTts::Emotion AppSettings::defaultEmotion(QOnlineTranslator::Engine engine
     }
 }
 
+QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::regions(QOnlineTranslator::Engine engine) const
+{
+    switch (engine) {
+    case QOnlineTranslator::Google: {
+        QMap<QOnlineTranslator::Language, QLocale::Country> regions;
+        for (int i = 1; i <= QOnlineTranslator::Zulu; ++i)
+            regions[static_cast<QOnlineTranslator::Language>(i)] = m_settings->value("Translation/GoogleRegion/" + QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), QLocale::AnyCountry).value<QLocale::Country>();
+        return regions;
+    }
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::Yandex:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
+        return {};
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+void AppSettings::setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlineTranslator::Language, QLocale::Country> &regions)
+{
+    switch (engine) {
+    case QOnlineTranslator::Google:
+        for (auto it = regions.cbegin(); it != regions.cend(); ++it)
+            m_settings->setValue("Translation/GoogleRegion/" + QOnlineTranslator::languageName(it.key()), it.value());
+        return;
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
+QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::defaultRegions(QOnlineTranslator::Engine engine)
+{
+    switch (engine) {
+    case QOnlineTranslator::Google:
+    case QOnlineTranslator::Bing:
+    case QOnlineTranslator::Yandex:
+    case QOnlineTranslator::LibreTranslate:
+    case QOnlineTranslator::Lingva:
+        return {};
+    default:
+        Q_UNREACHABLE();
+    }
+}
+
 QNetworkProxy::ProxyType AppSettings::proxyType() const
 {
     return static_cast<QNetworkProxy::ProxyType>(m_settings->value(QStringLiteral("Connection/ProxyType"), defaultProxyType()).toInt());

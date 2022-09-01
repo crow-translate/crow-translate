@@ -45,6 +45,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     , ui(new Ui::SettingsDialog)
     , m_autostartManager(AbstractAutostartManager::createAutostartManager(this))
     , m_yandexTranslator(new QOnlineTranslator(this))
+    , m_googleTranslator(new QOnlineTranslator(this))
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
@@ -66,6 +67,9 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Test voice
     ui->yandexPlayerButtons->setMediaPlayer(new QMediaPlayer);
     connect(m_yandexTranslator, &QOnlineTranslator::finished, this, &SettingsDialog::speakYandexTestText);
+
+    ui->googlePlayerButtons->setMediaPlayer(new QMediaPlayer);
+    connect(m_googleTranslator, &QOnlineTranslator::finished, this, &SettingsDialog::speakGoogleTestText);
 
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
@@ -104,6 +108,9 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     }
 
     ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
+
+    for (int i = 1; i <= QOnlineTranslator::Zulu; ++i)
+        ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), i);
 
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
@@ -259,6 +266,7 @@ void SettingsDialog::accept()
     // Speech synthesis settings
     settings.setVoice(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->voice(QOnlineTranslator::Yandex));
     settings.setEmotion(QOnlineTranslator::Yandex, ui->yandexPlayerButtons->emotion(QOnlineTranslator::Yandex));
+    settings.setRegions(QOnlineTranslator::Google, ui->googlePlayerButtons->regions(QOnlineTranslator::Google));
 
     // Connection settings
     settings.setProxyType(static_cast<QNetworkProxy::ProxyType>(ui->proxyTypeComboBox->currentIndex()));
@@ -395,6 +403,57 @@ void SettingsDialog::speakYandexTestText()
     }
 
     ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_yandexTranslator->sourceLanguage(), QOnlineTranslator::Yandex);
+}
+
+void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
+{
+    auto const configuredLang = ui->googleLanguageComboBox->itemData(languageIndex).value<QOnlineTranslator::Language>();
+    auto const originalRegion = ui->googlePlayerButtons->regions(QOnlineTranslator::Google)[configuredLang]; // It will be lost after googleRegionComboBox is changed if not stored here
+
+    ui->googleRegionComboBox->clear();
+
+    ui->googleRegionComboBox->addItem(tr("Default region"), QLocale::AnyCountry);
+    for (auto validRegion : QOnlineTts::validRegions(configuredLang)) {
+        if (validRegion == QLocale::China)
+            ui->googleRegionComboBox->addItem(tr("Mandarin (China)"), QLocale::China); // for now there's only one Chinese dialect supported
+        else
+            ui->googleRegionComboBox->addItem(QLocale::countryToString(validRegion), validRegion);
+    }
+
+    if (originalRegion == QLocale::China)
+        ui->googleRegionComboBox->setCurrentText(tr("Mandarin (China)"));
+    else
+        ui->googleRegionComboBox->setCurrentText(QLocale::countryToString(originalRegion));
+}
+
+void SettingsDialog::saveGoogleEngineRegion(int region)
+{
+    auto lang = ui->googleLanguageComboBox->currentData().value<QOnlineTranslator::Language>();
+
+    auto regionSettings = ui->googlePlayerButtons->regions(QOnlineTranslator::Google);
+    regionSettings[lang] = ui->googleRegionComboBox->itemData(region).value<QLocale::Country>();
+
+    ui->googlePlayerButtons->setRegions(QOnlineTranslator::Google, regionSettings);
+}
+
+void SettingsDialog::detectGoogleTextLanguage()
+{
+    if (ui->googleTestSpeechEdit->text().isEmpty()) {
+        QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
+        return;
+    }
+
+    m_googleTranslator->detectLanguage(ui->googleTestSpeechEdit->text(), QOnlineTranslator::Google);
+}
+
+void SettingsDialog::speakGoogleTestText()
+{
+    if (m_googleTranslator->error() != QOnlineTranslator::NoError) {
+        QMessageBox::critical(this, tr("Unable to detect language"), m_googleTranslator->errorString());
+        return;
+    }
+
+    ui->googlePlayerButtons->speak(ui->googleTestSpeechEdit->text(), m_googleTranslator->sourceLanguage(), QOnlineTranslator::Google);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)
@@ -541,6 +600,7 @@ void SettingsDialog::restoreDefaults()
     // Speech synthesis settings
     ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, AppSettings::defaultVoice(QOnlineTranslator::Yandex));
     ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, AppSettings::defaultEmotion(QOnlineTranslator::Yandex));
+    ui->googlePlayerButtons->setRegions(QOnlineTranslator::Google, AppSettings::defaultRegions(QOnlineTranslator::Google));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(AppSettings::defaultProxyType());
@@ -651,6 +711,7 @@ void SettingsDialog::loadSettings()
     // Speech synthesis settings
     ui->yandexPlayerButtons->setVoice(QOnlineTranslator::Yandex, settings.voice(QOnlineTranslator::Yandex));
     ui->yandexPlayerButtons->setEmotion(QOnlineTranslator::Yandex, settings.emotion(QOnlineTranslator::Yandex));
+    ui->googlePlayerButtons->setRegions(QOnlineTranslator::Google, settings.regions(QOnlineTranslator::Google));
 
     // Connection settings
     ui->proxyTypeComboBox->setCurrentIndex(settings.proxyType());

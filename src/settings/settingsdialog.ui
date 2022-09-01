@@ -126,8 +126,8 @@
         <rect>
          <x>0</x>
          <y>0</y>
-         <width>633</width>
-         <height>604</height>
+         <width>626</width>
+         <height>609</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -1290,6 +1290,62 @@
              </widget>
             </item>
             <item>
+             <widget class="QGroupBox" name="googleSpeechGroupBox">
+              <property name="title">
+               <string>Google</string>
+              </property>
+              <layout class="QGridLayout" name="gridLayout_2">
+               <item row="1" column="1" colspan="2">
+                <layout class="QHBoxLayout" name="googleTestSpeechLayout">
+                 <item>
+                  <widget class="QLineEdit" name="googleTestSpeechEdit">
+                   <property name="toolTip">
+                    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Text to test speech&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                   </property>
+                   <property name="text">
+                    <string>This is an example of speech synthesis.</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="SpeakButtons" name="googlePlayerButtons" native="true"/>
+                 </item>
+                </layout>
+               </item>
+               <item row="0" column="1">
+                <widget class="QComboBox" name="googleLanguageComboBox">
+                 <property name="currentText">
+                  <string/>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="0">
+                <widget class="QLabel" name="googleRegionLabel">
+                 <property name="text">
+                  <string>Region:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="0" column="2">
+                <widget class="QComboBox" name="googleRegionComboBox">
+                 <item>
+                  <property name="text">
+                   <string>Default region</string>
+                  </property>
+                 </item>
+                </widget>
+               </item>
+               <item row="1" column="0">
+                <widget class="QLabel" name="googleTestSpeechLabel">
+                 <property name="text">
+                  <string>Speech test:</string>
+                 </property>
+                </widget>
+               </item>
+              </layout>
+             </widget>
+            </item>
+            <item>
              <spacer name="speechPageSpacer">
               <property name="orientation">
                <enum>Qt::Vertical</enum>
@@ -1810,8 +1866,8 @@
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>464</x>
-     <y>409</y>
+     <x>473</x>
+     <y>650</y>
     </hint>
     <hint type="destinationlabel">
      <x>157</x>
@@ -1826,8 +1882,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>464</x>
-     <y>409</y>
+     <x>473</x>
+     <y>650</y>
     </hint>
     <hint type="destinationlabel">
      <x>286</x>
@@ -1858,11 +1914,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>476</x>
+     <x>280</x>
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>723</x>
+     <x>301</x>
      <y>63</y>
     </hint>
    </hints>
@@ -1874,11 +1930,11 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>723</x>
+     <x>301</x>
      <y>63</y>
     </hint>
     <hint type="destinationlabel">
-     <x>476</x>
+     <x>280</x>
      <y>63</y>
     </hint>
    </hints>
@@ -1890,12 +1946,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>483</x>
-     <y>137</y>
+     <x>280</x>
+     <y>51</y>
     </hint>
     <hint type="destinationlabel">
-     <x>732</x>
-     <y>137</y>
+     <x>301</x>
+     <y>51</y>
     </hint>
    </hints>
   </connection>
@@ -1906,12 +1962,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>732</x>
-     <y>137</y>
+     <x>301</x>
+     <y>51</y>
     </hint>
     <hint type="destinationlabel">
-     <x>483</x>
-     <y>137</y>
+     <x>280</x>
+     <y>51</y>
     </hint>
    </hints>
   </connection>
@@ -1922,12 +1978,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>483</x>
-     <y>101</y>
+     <x>280</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>732</x>
-     <y>101</y>
+     <x>301</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>
@@ -1938,12 +1994,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>732</x>
-     <y>101</y>
+     <x>301</x>
+     <y>57</y>
     </hint>
     <hint type="destinationlabel">
-     <x>483</x>
-     <y>101</y>
+     <x>280</x>
+     <y>57</y>
     </hint>
    </hints>
   </connection>
@@ -1954,12 +2010,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>259</x>
-     <y>38</y>
+     <x>280</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>276</x>
-     <y>36</y>
+     <x>301</x>
+     <y>46</y>
     </hint>
    </hints>
   </connection>
@@ -1970,12 +2026,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>162</y>
+     <x>301</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>262</x>
-     <y>199</y>
+     <x>243</x>
+     <y>46</y>
     </hint>
    </hints>
   </connection>
@@ -1986,12 +2042,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>162</y>
+     <x>301</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>262</x>
-     <y>235</y>
+     <x>243</x>
+     <y>45</y>
     </hint>
    </hints>
   </connection>
@@ -2002,12 +2058,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>162</y>
+     <x>301</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>536</x>
-     <y>235</y>
+     <x>301</x>
+     <y>45</y>
     </hint>
    </hints>
   </connection>
@@ -2018,12 +2074,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>162</y>
+     <x>301</x>
+     <y>47</y>
     </hint>
     <hint type="destinationlabel">
-     <x>500</x>
-     <y>266</y>
+     <x>301</x>
+     <y>43</y>
     </hint>
    </hints>
   </connection>
@@ -2034,12 +2090,12 @@
    <slot>setEnabled(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>146</y>
+     <x>301</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>500</x>
-     <y>182</y>
+     <x>301</x>
+     <y>214</y>
     </hint>
    </hints>
   </connection>
@@ -2050,12 +2106,12 @@
    <slot>setChecked(bool)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>146</y>
+     <x>301</x>
+     <y>185</y>
     </hint>
     <hint type="destinationlabel">
-     <x>500</x>
-     <y>182</y>
+     <x>301</x>
+     <y>214</y>
     </hint>
    </hints>
   </connection>
@@ -2066,8 +2122,8 @@
    <slot>onProxyTypeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>20</y>
+     <x>283</x>
+     <y>52</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2082,8 +2138,8 @@
    <slot>onTrayIconTypeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>57</y>
+     <x>301</x>
+     <y>61</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2098,8 +2154,8 @@
    <slot>selectCustomTrayIcon()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>282</x>
-     <y>47</y>
+     <x>300</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2114,8 +2170,8 @@
    <slot>setCustomTrayIconPreview(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>47</y>
+     <x>272</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2130,8 +2186,8 @@
    <slot>saveYandexEngineVoice(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>42</y>
+     <x>480</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2146,8 +2202,8 @@
    <slot>saveYandexEngineEmotion(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>38</y>
+     <x>481</x>
+     <y>110</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2162,8 +2218,8 @@
    <slot>resetAllShortcuts()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>254</x>
-     <y>20</y>
+     <x>263</x>
+     <y>37</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2178,8 +2234,8 @@
    <slot>resetCurrentShortcut()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>288</x>
-     <y>61</y>
+     <x>301</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2194,8 +2250,8 @@
    <slot>acceptCurrentShortcut()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>257</x>
-     <y>61</y>
+     <x>276</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2210,8 +2266,8 @@
    <slot>clearCurrentShortcut()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>272</x>
-     <y>61</y>
+     <x>289</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2226,8 +2282,8 @@
    <slot>updateAcceptButton()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>241</x>
-     <y>61</y>
+     <x>263</x>
+     <y>74</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2242,8 +2298,8 @@
    <slot>loadShortcut(ShortcutItem*)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>500</x>
-     <y>195</y>
+     <x>313</x>
+     <y>27</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2258,8 +2314,8 @@
    <slot>detectYandexTextLanguage()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>736</x>
-     <y>175</y>
+     <x>808</x>
+     <y>147</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2274,8 +2330,8 @@
    <slot>selectOcrLanguagesPath()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>20</y>
+     <x>301</x>
+     <y>59</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2290,8 +2346,8 @@
    <slot>onOcrLanguagesPathChanged(QString)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>256</x>
-     <y>20</y>
+     <x>280</x>
+     <y>59</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2306,8 +2362,8 @@
    <slot>onWindowModeChanged(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>402</x>
-     <y>99</y>
+     <x>515</x>
+     <y>122</y>
     </hint>
     <hint type="destinationlabel">
      <x>399</x>
@@ -2322,12 +2378,12 @@
    <slot>addParameter()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>701</x>
-     <y>344</y>
+     <x>268</x>
+     <y>58</y>
     </hint>
     <hint type="destinationlabel">
-     <x>667</x>
-     <y>-19</y>
+     <x>300</x>
+     <y>55</y>
     </hint>
    </hints>
   </connection>
@@ -2338,12 +2394,12 @@
    <slot>removeCurrent()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>701</x>
-     <y>344</y>
+     <x>268</x>
+     <y>60</y>
     </hint>
     <hint type="destinationlabel">
-     <x>667</x>
-     <y>-19</y>
+     <x>300</x>
+     <y>55</y>
     </hint>
    </hints>
   </connection>
@@ -2354,12 +2410,60 @@
    <slot>onTesseractParametersCurrentItemChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>701</x>
-     <y>344</y>
+     <x>300</x>
+     <y>55</y>
     </hint>
     <hint type="destinationlabel">
      <x>667</x>
      <y>-19</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>googleLanguageComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onGoogleLanguageSelectionChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>473</x>
+     <y>222</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>236</x>
+     <y>655</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>googleRegionComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>saveGoogleEngineRegion(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>639</x>
+     <y>220</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>576</x>
+     <y>657</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>googlePlayerButtons</sender>
+   <signal>playerMediaRequested()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>detectGoogleTextLanguage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>808</x>
+     <y>243</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
     </hint>
    </hints>
   </connection>
@@ -2385,5 +2489,8 @@
   <slot>removeCurrent()</slot>
   <slot>onTesseractParametersCurrentItemChanged()</slot>
   <slot>setCurrentPage(int)</slot>
+  <slot>onGoogleLanguageSelectionChanged(int)</slot>
+  <slot>saveGoogleEngineRegion(int)</slot>
+  <slot>detectGoogleTextLanguage()</slot>
  </slots>
 </ui>
