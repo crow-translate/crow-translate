@@ -109,9 +109,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
     ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
 
-    for (int i = 1; i <= QOnlineTranslator::Zulu; ++i)
-        if (!QOnlineTts::validRegions(static_cast<QOnlineTranslator::Language>(i)).isEmpty())
-            ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), i);
+    for (const QOnlineTranslator::Language configurableLang : QOnlineTts::validRegions().keys())
+        ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(configurableLang), configurableLang);
 
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
@@ -398,30 +397,27 @@ void SettingsDialog::speakYandexTestText()
 
 void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
 {
-    auto const configuredLang = ui->googleLanguageComboBox->itemData(languageIndex).value<QOnlineTranslator::Language>();
-    auto const originalRegion = ui->googlePlayerButtons->regions(QOnlineTranslator::Google)[configuredLang]; // It will be lost after googleRegionComboBox is changed if not stored here
+    const QOnlineTranslator::Language configuredLang = ui->googleLanguageComboBox->itemData(languageIndex).value<QOnlineTranslator::Language>();
+    const QLocale::Country langRegion = ui->googlePlayerButtons->regions(QOnlineTranslator::Google)[configuredLang]; // It will be lost after googleRegionComboBox is changed if not stored here
 
     ui->googleRegionComboBox->clear();
 
     ui->googleRegionComboBox->addItem(tr("Default region"), QLocale::AnyCountry);
-    for (auto validRegion : QOnlineTts::validRegions(configuredLang)) {
+    for (const QLocale::Country validRegion : QOnlineTts::validRegions().value(configuredLang)) {
         if (validRegion == QLocale::China)
             ui->googleRegionComboBox->addItem(tr("Mandarin (China)"), QLocale::China); // for now there's only one Chinese dialect supported
         else
             ui->googleRegionComboBox->addItem(QLocale::countryToString(validRegion), validRegion);
     }
 
-    if (originalRegion == QLocale::China)
-        ui->googleRegionComboBox->setCurrentText(tr("Mandarin (China)"));
-    else
-        ui->googleRegionComboBox->setCurrentText(QLocale::countryToString(originalRegion));
+    ui->googleRegionComboBox->setCurrentIndex(ui->googleRegionComboBox->findData(langRegion));
 }
 
 void SettingsDialog::saveGoogleEngineRegion(int region)
 {
-    auto lang = ui->googleLanguageComboBox->currentData().value<QOnlineTranslator::Language>();
+    const QOnlineTranslator::Language lang = ui->googleLanguageComboBox->currentData().value<QOnlineTranslator::Language>();
 
-    auto regionSettings = ui->googlePlayerButtons->regions(QOnlineTranslator::Google);
+    QMap<QOnlineTranslator::Language, QLocale::Country> regionSettings = ui->googlePlayerButtons->regions(QOnlineTranslator::Google);
     regionSettings[lang] = ui->googleRegionComboBox->itemData(region).value<QLocale::Country>();
 
     ui->googlePlayerButtons->setRegions(QOnlineTranslator::Google, regionSettings);
@@ -730,9 +726,6 @@ void SettingsDialog::speakTestText(QOnlineTranslator *translator, QOnlineTransla
         QMessageBox::critical(this, tr("Unable to detect language"), translator->errorString());
         return;
     }
-
-    // ui->yandexPlayerButtons->speak(m_translator->source(), m_translator->sourceLanguage(), engine);
-    // Unable to stop speaking if written this way
 
     if (engine == QOnlineTranslator::Yandex)
         ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), translator->sourceLanguage(), QOnlineTranslator::Yandex);
