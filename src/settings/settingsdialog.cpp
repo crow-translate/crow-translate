@@ -397,7 +397,7 @@ void SettingsDialog::speakYandexTestText()
 
 void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
 {
-    const QOnlineTranslator::Language configuredLang = ui->googleLanguageComboBox->itemData(languageIndex).value<QOnlineTranslator::Language>();
+    const auto configuredLang = ui->googleLanguageComboBox->itemData(languageIndex).value<QOnlineTranslator::Language>();
     const QLocale::Country langRegion = ui->googlePlayerButtons->regions(QOnlineTranslator::Google)[configuredLang]; // It will be lost after googleRegionComboBox is changed if not stored here
 
     ui->googleRegionComboBox->clear();
@@ -415,7 +415,7 @@ void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
 
 void SettingsDialog::saveGoogleEngineRegion(int region)
 {
-    const QOnlineTranslator::Language lang = ui->googleLanguageComboBox->currentData().value<QOnlineTranslator::Language>();
+    const auto lang = ui->googleLanguageComboBox->currentData().value<QOnlineTranslator::Language>();
 
     QMap<QOnlineTranslator::Language, QLocale::Country> regionSettings = ui->googlePlayerButtons->regions(QOnlineTranslator::Google);
     regionSettings[lang] = ui->googleRegionComboBox->itemData(region).value<QLocale::Country>();

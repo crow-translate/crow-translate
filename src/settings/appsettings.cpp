@@ -668,7 +668,7 @@ QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::regions(QOnline
 {
     switch (engine) {
     case QOnlineTranslator::Google: {
-        const QMap<QString, QVariant> regionSettings(m_settings->value(QStringLiteral("TTS/GoogleRegions")).value<QMap<QString, QVariant>>());
+        const auto regionSettings(m_settings->value(QStringLiteral("TTS/GoogleRegions")).value<QMap<QString, QVariant>>());
         QMap<QOnlineTranslator::Language, QLocale::Country> regions;
         for (const QOnlineTranslator::Language lang : QOnlineTts::validRegions().keys())
             regions[lang] = regionSettings.value(QOnlineTranslator::languageName(lang)).value<QLocale::Country>();
