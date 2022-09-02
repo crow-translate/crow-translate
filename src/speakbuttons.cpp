@@ -133,7 +133,7 @@ QMap<QOnlineTranslator::Language, QLocale::Country> SpeakButtons::regions(QOnlin
     }
 }
 
-void SpeakButtons::setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlineTranslator::Language, QLocale::Country> &regions)
+void SpeakButtons::setRegions(QOnlineTranslator::Engine engine, QMap<QOnlineTranslator::Language, QLocale::Country> regions)
 {
     switch (engine) {
     case QOnlineTranslator::Google:
