@@ -109,7 +109,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
 
     ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
 
-    for (const QOnlineTranslator::Language configurableLang : QOnlineTts::validRegions().keys())
+    for (QOnlineTranslator::Language configurableLang : QOnlineTts::validRegions().keys())
         ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(configurableLang), configurableLang);
 
     // Sort languages in comboboxes alphabetically
