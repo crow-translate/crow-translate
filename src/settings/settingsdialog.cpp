@@ -710,7 +710,7 @@ void SettingsDialog::loadSettings()
 
 void SettingsDialog::detectTestTextLanguage(QOnlineTranslator *translator, QOnlineTranslator::Engine engine)
 {
-    auto const &testText = ((engine == QOnlineTranslator::Yandex) ? ui->yandexTestSpeechEdit->text() : ui->googleTestSpeechEdit->text()); // There are now only two engines
+    const QString &testText = ((engine == QOnlineTranslator::Yandex) ? ui->yandexTestSpeechEdit->text() : ui->googleTestSpeechEdit->text()); // There are now only two engines
 
     if (testText.isEmpty()) {
         QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
