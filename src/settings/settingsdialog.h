@@ -98,8 +98,8 @@ private:
     void activateCompactMode();
     void loadSettings();
 
-    void detectTestTextLanguage(QOnlineTranslator *translator, QOnlineTranslator::Engine engine);
-    void speakTestText(QOnlineTranslator *translator, QOnlineTranslator::Engine engine);
+    void detectTestTextLanguage(QOnlineTranslator &translator, QOnlineTranslator::Engine engine);
+    void speakTestText(QOnlineTranslator &translator, QOnlineTranslator::Engine engine);
 
     Ui::SettingsDialog *ui;
 

@@ -668,9 +668,10 @@ QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::regions(QOnline
 {
     switch (engine) {
     case QOnlineTranslator::Google: {
+        const QMap<QString, QVariant> regionSettings(m_settings->value(QStringLiteral("TTS/GoogleRegions")).value<QMap<QString, QVariant>>());
         QMap<QOnlineTranslator::Language, QLocale::Country> regions;
         for (const QOnlineTranslator::Language lang : QOnlineTts::validRegions().keys())
-            regions[lang] = m_settings->value(QString("TTS/GoogleRegion/%1").arg(QOnlineTranslator::languageName(lang)), QLocale::AnyCountry).value<QLocale::Country>();
+            regions[lang] = regionSettings.value(QOnlineTranslator::languageName(lang)).value<QLocale::Country>();
         return regions;
     }
     case QOnlineTranslator::Bing:
@@ -686,10 +687,14 @@ QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::regions(QOnline
 void AppSettings::setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlineTranslator::Language, QLocale::Country> &regions)
 {
     switch (engine) {
-    case QOnlineTranslator::Google:
+    case QOnlineTranslator::Google: {
+        QMap<QString, QVariant> regionSettings;
         for (auto it = regions.cbegin(); it != regions.cend(); ++it)
-            m_settings->setValue(QString("TTS/GoogleRegion/%1").arg(QOnlineTranslator::languageName(it.key())), it.value());
+            regionSettings[QOnlineTranslator::languageName(it.key())] = it.value();
+
+        m_settings->setValue(QStringLiteral("TTS/GoogleRegions"), regionSettings);
         return;
+    }
     default:
         Q_UNREACHABLE();
     }

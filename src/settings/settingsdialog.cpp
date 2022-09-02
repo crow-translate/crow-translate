@@ -387,12 +387,12 @@ void SettingsDialog::saveYandexEngineEmotion(int emotion)
 // To play test text
 void SettingsDialog::detectYandexTextLanguage()
 {
-    detectTestTextLanguage(m_yandexTranslator, QOnlineTranslator::Yandex);
+    detectTestTextLanguage(*m_yandexTranslator, QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::speakYandexTestText()
 {
-    speakTestText(m_yandexTranslator, QOnlineTranslator::Yandex);
+    speakTestText(*m_yandexTranslator, QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
@@ -425,12 +425,12 @@ void SettingsDialog::saveGoogleEngineRegion(int region)
 
 void SettingsDialog::detectGoogleTextLanguage()
 {
-    detectTestTextLanguage(m_googleTranslator, QOnlineTranslator::Google);
+    detectTestTextLanguage(*m_googleTranslator, QOnlineTranslator::Google);
 }
 
 void SettingsDialog::speakGoogleTestText()
 {
-    speakTestText(m_googleTranslator, QOnlineTranslator::Google);
+    speakTestText(*m_googleTranslator, QOnlineTranslator::Google);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)
@@ -708,7 +708,7 @@ void SettingsDialog::loadSettings()
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
 }
 
-void SettingsDialog::detectTestTextLanguage(QOnlineTranslator *translator, QOnlineTranslator::Engine engine)
+void SettingsDialog::detectTestTextLanguage(QOnlineTranslator &translator, QOnlineTranslator::Engine engine)
 {
     const QString &testText = ((engine == QOnlineTranslator::Yandex) ? ui->yandexTestSpeechEdit->text() : ui->googleTestSpeechEdit->text()); // There are now only two engines
 
@@ -717,20 +717,20 @@ void SettingsDialog::detectTestTextLanguage(QOnlineTranslator *translator, QOnli
         return;
     }
 
-    translator->detectLanguage(testText, engine);
+    translator.detectLanguage(testText, engine);
 }
 
-void SettingsDialog::speakTestText(QOnlineTranslator *translator, QOnlineTranslator::Engine engine)
+void SettingsDialog::speakTestText(QOnlineTranslator &translator, QOnlineTranslator::Engine engine)
 {
-    if (translator->error() != QOnlineTranslator::NoError) {
-        QMessageBox::critical(this, tr("Unable to detect language"), translator->errorString());
+    if (translator.error() != QOnlineTranslator::NoError) {
+        QMessageBox::critical(this, tr("Unable to detect language"), translator.errorString());
         return;
     }
 
     if (engine == QOnlineTranslator::Yandex)
-        ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), translator->sourceLanguage(), QOnlineTranslator::Yandex);
+        ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), translator.sourceLanguage(), QOnlineTranslator::Yandex);
     else if (engine == QOnlineTranslator::Google)
-        ui->googlePlayerButtons->speak(ui->googleTestSpeechEdit->text(), translator->sourceLanguage(), QOnlineTranslator::Google);
+        ui->googlePlayerButtons->speak(ui->googleTestSpeechEdit->text(), translator.sourceLanguage(), QOnlineTranslator::Google);
     else
         Q_UNREACHABLE();
 }
