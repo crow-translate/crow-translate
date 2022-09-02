@@ -221,6 +221,10 @@ public:
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
     static QOnlineTts::Emotion defaultEmotion(QOnlineTranslator::Engine engine);
 
+    QMap<QOnlineTranslator::Language, QLocale::Country> regions(QOnlineTranslator::Engine engine) const;
+    void setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlineTranslator::Language, QLocale::Country> &regions);
+    static QMap<QOnlineTranslator::Language, QLocale::Country> defaultRegions(QOnlineTranslator::Engine engine);
+
     // Connection settings
     QNetworkProxy::ProxyType proxyType() const;
     void setProxyType(QNetworkProxy::ProxyType type);

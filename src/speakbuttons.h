@@ -55,6 +55,9 @@ public:
     QOnlineTts::Emotion emotion(QOnlineTranslator::Engine engine) const;
     void setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emotion emotion);
 
+    QMap<QOnlineTranslator::Language, QLocale::Country> regions(QOnlineTranslator::Engine engine) const;
+    void setRegions(QOnlineTranslator::Engine engine, QMap<QOnlineTranslator::Language, QLocale::Country> regions);
+
     void speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
     void pauseSpeaking();
     void playPauseSpeaking();
@@ -79,6 +82,7 @@ private:
     QMediaPlayer *m_mediaPlayer = nullptr;
     QOnlineTts::Voice m_yandexVoice = QOnlineTts::NoVoice;
     QOnlineTts::Emotion m_yandexEmotion = QOnlineTts::NoEmotion;
+    QMap<QOnlineTranslator::Language, QLocale::Country> m_googleRegions;
 };
 
 #endif // PLAYERBUTTONS_H
