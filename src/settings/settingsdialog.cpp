@@ -110,7 +110,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->ocrLanguagesListWidget->addLanguages(parent->ocr()->availableLanguages());
 
     for (int i = 1; i <= QOnlineTranslator::Zulu; ++i)
-        ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), i);
+        if (!QOnlineTts::validRegions(static_cast<QOnlineTranslator::Language>(i)).isEmpty())
+            ui->googleLanguageComboBox->addItem(QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), i);
 
     // Sort languages in comboboxes alphabetically
     ui->primaryLangComboBox->model()->sort(0);
@@ -387,22 +388,12 @@ void SettingsDialog::saveYandexEngineEmotion(int emotion)
 // To play test text
 void SettingsDialog::detectYandexTextLanguage()
 {
-    if (ui->yandexTestSpeechEdit->text().isEmpty()) {
-        QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
-        return;
-    }
-
-    m_yandexTranslator->detectLanguage(ui->yandexTestSpeechEdit->text(), QOnlineTranslator::Yandex);
+    detectTestTextLanguage(m_yandexTranslator, QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::speakYandexTestText()
 {
-    if (m_yandexTranslator->error() != QOnlineTranslator::NoError) {
-        QMessageBox::critical(this, tr("Unable to detect language"), m_yandexTranslator->errorString());
-        return;
-    }
-
-    ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), m_yandexTranslator->sourceLanguage(), QOnlineTranslator::Yandex);
+    speakTestText(m_yandexTranslator, QOnlineTranslator::Yandex);
 }
 
 void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
@@ -438,22 +429,12 @@ void SettingsDialog::saveGoogleEngineRegion(int region)
 
 void SettingsDialog::detectGoogleTextLanguage()
 {
-    if (ui->googleTestSpeechEdit->text().isEmpty()) {
-        QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
-        return;
-    }
-
-    m_googleTranslator->detectLanguage(ui->googleTestSpeechEdit->text(), QOnlineTranslator::Google);
+    detectTestTextLanguage(m_googleTranslator, QOnlineTranslator::Google);
 }
 
 void SettingsDialog::speakGoogleTestText()
 {
-    if (m_googleTranslator->error() != QOnlineTranslator::NoError) {
-        QMessageBox::critical(this, tr("Unable to detect language"), m_googleTranslator->errorString());
-        return;
-    }
-
-    ui->googlePlayerButtons->speak(ui->googleTestSpeechEdit->text(), m_googleTranslator->sourceLanguage(), QOnlineTranslator::Google);
+    speakTestText(m_googleTranslator, QOnlineTranslator::Google);
 }
 
 void SettingsDialog::loadShortcut(ShortcutItem *item)
@@ -729,4 +710,34 @@ void SettingsDialog::loadSettings()
         ui->globalShortcutsCheckBox->setEnabled(false);
     }
     ui->shortcutsTreeView->model()->loadShortcuts(settings);
+}
+
+void SettingsDialog::detectTestTextLanguage(QOnlineTranslator *translator, QOnlineTranslator::Engine engine)
+{
+    auto const &testText = ((engine == QOnlineTranslator::Yandex) ? ui->yandexTestSpeechEdit->text() : ui->googleTestSpeechEdit->text()); // There are now only two engines
+
+    if (testText.isEmpty()) {
+        QMessageBox::information(this, tr("Nothing to play"), tr("Playback text is empty"));
+        return;
+    }
+
+    translator->detectLanguage(testText, engine);
+}
+
+void SettingsDialog::speakTestText(QOnlineTranslator *translator, QOnlineTranslator::Engine engine)
+{
+    if (translator->error() != QOnlineTranslator::NoError) {
+        QMessageBox::critical(this, tr("Unable to detect language"), translator->errorString());
+        return;
+    }
+
+    // ui->yandexPlayerButtons->speak(m_translator->source(), m_translator->sourceLanguage(), engine);
+    // Unable to stop speaking if written this way
+
+    if (engine == QOnlineTranslator::Yandex)
+        ui->yandexPlayerButtons->speak(ui->yandexTestSpeechEdit->text(), translator->sourceLanguage(), QOnlineTranslator::Yandex);
+    else if (engine == QOnlineTranslator::Google)
+        ui->googlePlayerButtons->speak(ui->googleTestSpeechEdit->text(), translator->sourceLanguage(), QOnlineTranslator::Google);
+    else
+        Q_UNREACHABLE();
 }

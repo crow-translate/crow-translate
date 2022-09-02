@@ -589,7 +589,7 @@ QOnlineTts::Voice AppSettings::voice(QOnlineTranslator::Engine engine) const
     case QOnlineTranslator::Lingva:
         return QOnlineTts::NoVoice;
     case QOnlineTranslator::Yandex:
-        return m_settings->value(QStringLiteral("Translation/YandexVoice"), defaultVoice(engine)).value<QOnlineTts::Voice>();
+        return m_settings->value(QStringLiteral("TTS/YandexVoice"), defaultVoice(engine)).value<QOnlineTts::Voice>();
     default:
         Q_UNREACHABLE();
     }
@@ -599,7 +599,7 @@ void AppSettings::setVoice(QOnlineTranslator::Engine engine, QOnlineTts::Voice v
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
-        m_settings->setValue(QStringLiteral("Translation/YandexVoice"), voice);
+        m_settings->setValue(QStringLiteral("TTS/YandexVoice"), voice);
         return;
     default:
         // Currently only Yandex have voice settings
@@ -631,7 +631,7 @@ QOnlineTts::Emotion AppSettings::emotion(QOnlineTranslator::Engine engine) const
     case QOnlineTranslator::Lingva:
         return QOnlineTts::NoEmotion;
     case QOnlineTranslator::Yandex:
-        return m_settings->value(QStringLiteral("Translation/YandexEmotion"), defaultEmotion(engine)).value<QOnlineTts::Emotion>();
+        return m_settings->value(QStringLiteral("TTS/YandexEmotion"), defaultEmotion(engine)).value<QOnlineTts::Emotion>();
     default:
         Q_UNREACHABLE();
     }
@@ -641,7 +641,7 @@ void AppSettings::setEmotion(QOnlineTranslator::Engine engine, QOnlineTts::Emoti
 {
     switch (engine) {
     case QOnlineTranslator::Yandex:
-        m_settings->setValue(QStringLiteral("Translation/YandexEmotion"), emotion);
+        m_settings->setValue(QStringLiteral("TTS/YandexEmotion"), emotion);
         return;
     default:
         // Currently only Yandex have emotion settings
@@ -670,7 +670,8 @@ QMap<QOnlineTranslator::Language, QLocale::Country> AppSettings::regions(QOnline
     case QOnlineTranslator::Google: {
         QMap<QOnlineTranslator::Language, QLocale::Country> regions;
         for (int i = 1; i <= QOnlineTranslator::Zulu; ++i)
-            regions[static_cast<QOnlineTranslator::Language>(i)] = m_settings->value("Translation/GoogleRegion/" + QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i)), QLocale::AnyCountry).value<QLocale::Country>();
+            if (!QOnlineTts::validRegions(static_cast<QOnlineTranslator::Language>(i)).isEmpty())
+                regions[static_cast<QOnlineTranslator::Language>(i)] = m_settings->value(QString("TTS/GoogleRegion/%1").arg(QOnlineTranslator::languageName(static_cast<QOnlineTranslator::Language>(i))), QLocale::AnyCountry).value<QLocale::Country>();
         return regions;
     }
     case QOnlineTranslator::Bing:
@@ -688,7 +689,8 @@ void AppSettings::setRegions(QOnlineTranslator::Engine engine, const QMap<QOnlin
     switch (engine) {
     case QOnlineTranslator::Google:
         for (auto it = regions.cbegin(); it != regions.cend(); ++it)
-            m_settings->setValue("Translation/GoogleRegion/" + QOnlineTranslator::languageName(it.key()), it.value());
+            if (!QOnlineTts::validRegions(it.key()).isEmpty())
+                m_settings->setValue(QString("TTS/GoogleRegion/%1").arg(QOnlineTranslator::languageName(it.key())), it.value());
         return;
     default:
         Q_UNREACHABLE();

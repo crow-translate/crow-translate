@@ -134,7 +134,7 @@
         <item>
          <widget class="QStackedWidget" name="pagesStackedWidget">
           <property name="currentIndex">
-           <number>0</number>
+           <number>4</number>
           </property>
           <widget class="QWidget" name="generalPage">
            <layout class="QVBoxLayout" name="generalLayout">
@@ -1294,7 +1294,7 @@
               <property name="title">
                <string>Google</string>
               </property>
-              <layout class="QGridLayout" name="gridLayout_2">
+              <layout class="QGridLayout" name="googleSpeechSettingsLayout">
                <item row="1" column="1" colspan="2">
                 <layout class="QHBoxLayout" name="googleTestSpeechLayout">
                  <item>
