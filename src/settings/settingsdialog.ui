@@ -1292,7 +1292,7 @@
             <item>
              <widget class="QGroupBox" name="googleSpeechGroupBox">
               <property name="title">
-               <string>Google</string>
+               <string notr="true">Google</string>
               </property>
               <layout class="QGridLayout" name="googleSpeechSettingsLayout">
                <item row="1" column="1" colspan="2">
