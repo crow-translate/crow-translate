@@ -403,7 +403,7 @@ void SettingsDialog::onGoogleLanguageSelectionChanged(int languageIndex)
     ui->googleRegionComboBox->clear();
 
     ui->googleRegionComboBox->addItem(tr("Default region"), QLocale::AnyCountry);
-    for (const QLocale::Country validRegion : QOnlineTts::validRegions().value(configuredLang)) {
+    for (QLocale::Country validRegion : QOnlineTts::validRegions().value(configuredLang)) {
         if (validRegion == QLocale::China)
             ui->googleRegionComboBox->addItem(tr("Mandarin (China)"), QLocale::China); // for now there's only one Chinese dialect supported
         else
