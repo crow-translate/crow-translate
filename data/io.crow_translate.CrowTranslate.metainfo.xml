@@ -43,11 +43,19 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.10.1" date="2022-10-24">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Remove Network category from desktop file.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.10.0" date="2022-09-05">
       <description>
         <p>Changelog:</p>
         <ul>
-          <li>Add Added an option to select regional voice for Google.</li>
+          <li>Add an option to select regional voice for Google.</li>
         </ul>
       </description>
     </release>
