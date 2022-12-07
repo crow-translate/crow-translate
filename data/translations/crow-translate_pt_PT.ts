@@ -245,7 +245,7 @@
     <message>
       <location filename="../../src/mainwindow.ui" line="93"/>
       <source>Swap languages</source>
-      <translation>Alternar idiomas</translation>
+      <translation>Trocar idiomas</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="47"/>
@@ -256,7 +256,7 @@
       <location filename="../../src/mainwindow.ui" line="70"/>
       <source>Auto-translation</source>
       <extracomment>The text should be short to fit in portrait orientation on phones.</extracomment>
-      <translation>Auto-tradução</translation>
+      <translation>Tradução automática</translation>
     </message>
     <message>
       <location filename="../../src/mainwindow.ui" line="82"/>
@@ -1141,7 +1141,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="94"/>
       <source>Connection</source>
-      <translation>Conexão</translation>
+      <translation>Ligação</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="103"/>
@@ -1204,7 +1204,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="283"/>
       <source>Launch at startup</source>
-      <translation>Executar na inicialização</translation>
+      <translation>Executar no arranque</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="270"/>
@@ -1291,7 +1291,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="545"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;System tray icon&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ícone da bandeja do sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Ícone da área de notificação do sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="549"/>
@@ -1608,7 +1608,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="163"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Interface language&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Idioma do interface&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Idioma da interface&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="257"/>
