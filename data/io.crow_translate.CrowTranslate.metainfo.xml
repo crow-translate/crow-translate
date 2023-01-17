@@ -43,6 +43,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.10.2" date="2023-01-18">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Add transliterations and type of speeches for Lingva.</li>
+          <li>Fix Bing translation.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.10.1" date="2022-10-24">
       <description>
         <p>Changelog:</p>
