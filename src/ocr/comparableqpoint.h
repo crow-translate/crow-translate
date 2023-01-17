@@ -1,6 +1,6 @@
 /*
  *  Copyright © 2020 Méven Car <meven.car@enioka.com>
- *  Copyright © 2018-2022 Hennadii Chernyshchyk <genaloner@gmail.com>
+ *  Copyright © 2018-2023 Hennadii Chernyshchyk <genaloner@gmail.com>
  *
  *  This file is part of Crow Translate.
  *
