@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install AppStream metadata utility
         run: |
@@ -37,10 +37,10 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Check formatting
-        uses: DoozyX/clang-format-lint-action@v0.12
+        uses: DoozyX/clang-format-lint-action@v0.15
         with:
           clangFormatVersion: 12
 
@@ -68,7 +68,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -79,7 +79,7 @@ jobs:
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libkf5wayland-dev libtesseract-dev ninja-build
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10.1
+        uses: lukka/run-vcpkg@v10.7
         if: runner.os == 'Windows'
         with:
           vcpkgGitCommitId: fd766eba2b4cf59c7123d46189be373e2cee959d

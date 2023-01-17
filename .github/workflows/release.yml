@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -59,7 +59,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Clone repo
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           submodules: recursive
 
@@ -86,7 +86,7 @@ jobs:
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10.1
+        uses: lukka/run-vcpkg@v10.7
         if: runner.os == 'Windows'
         with:
           vcpkgGitCommitId: 5962cf5a3bfc2124e8de991a4e45a8edcb3b4c69
@@ -102,7 +102,7 @@ jobs:
           cmake --build build --target package --parallel 2 --config Release
 
       - name: Build in Ubuntu 20.04 Docker image
-        uses: uraimo/run-on-arch-action@v2.1.1
+        uses: uraimo/run-on-arch-action@v2.5.0
         if: matrix.os == 'ubuntu-20.04' && matrix.arch != 'amd64'
         with:
           arch: ${{ matrix.arch }}
