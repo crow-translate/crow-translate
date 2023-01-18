@@ -53,10 +53,11 @@ QStringList Ocr::availableLanguages() const
 #endif
     m_tesseract.GetAvailableLanguagesAsVector(&languages);
     availableLanguages.reserve(static_cast<int>(languages.size()));
-    for (const auto &language : languages) {
 #if TESSERACT_MAJOR_VERSION < 5
-        availableLanguages.append(language.string());
+    for (int i = 0; i < languages.size(); ++i) {
+        availableLanguages.append(languages[i].string());
 #else
+    for (const auto &language : languages) {
         availableLanguages.append(QString::fromStdString(language));
 #endif
     }
