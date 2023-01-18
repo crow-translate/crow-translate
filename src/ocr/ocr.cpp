@@ -55,7 +55,7 @@ QStringList Ocr::availableLanguages() const
     availableLanguages.reserve(static_cast<int>(languages.size()));
     for (const auto &language : languages) {
 #if TESSERACT_MAJOR_VERSION < 5
-        availableLanguages.append(language);
+        availableLanguages.append(language.string());
 #else
         availableLanguages.append(QString::fromStdString(language));
 #endif
