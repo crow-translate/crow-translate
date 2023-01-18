@@ -52,12 +52,12 @@ QStringList Ocr::availableLanguages() const
     std::vector<std::string> languages;
 #endif
     m_tesseract.GetAvailableLanguagesAsVector(&languages);
-    availableLanguages.reserve(languages.size());
-    for (int i = 0; i < languages.size(); ++i) {
+    availableLanguages.reserve(static_cast<int>(languages.size()));
+    for (const auto &language : languages) {
 #if TESSERACT_MAJOR_VERSION < 5
-        availableLanguages.append(languages[i].string());
+        availableLanguages.append(language);
 #else
-        availableLanguages.append(QString::fromStdString(languages[i]));
+        availableLanguages.append(QString::fromStdString(language));
 #endif
     }
 
