@@ -43,6 +43,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.10.3" date="2023-01-25">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Add examples support for Lingva.</li>
+          <li>Parse all examples for Google.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.10.2" date="2023-01-18">
       <description>
         <p>Changelog:</p>
