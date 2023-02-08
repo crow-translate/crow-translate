@@ -14,7 +14,7 @@ jobs:
 
       - name: Create source tarball
         run: |
-          SOURCE_NAME=$(awk -F/ '{print $NF}' <<<"${{ github.repository }}")-$(awk -F/ '{print $NF}' <<<"${{ github.ref }}")
+          SOURCE_NAME=${GITHUB_REPOSITORY##*/}-${GITHUB_REF##*/}
           git ls-files --recurse-submodules | \
           tar --exclude-vcs --transform "s|^|$SOURCE_NAME/|S" -ca -T - -f ../$SOURCE_NAME-source.tar.gz
 
