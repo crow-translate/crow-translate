@@ -1583,7 +1583,7 @@
                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Register global shortcuts in system&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
               </property>
               <property name="text">
-               <string>Enable global shortcucts</string>
+               <string>Enable global shortcuts</string>
               </property>
               <property name="checked">
                <bool>true</bool>
