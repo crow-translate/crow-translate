@@ -73,7 +73,7 @@ Name[ru_RU]=Перевести выделенный текст и скопиро
 [Desktop Action RecognizeScreenArea]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow recognizeScreenArea
 Name=Recognize text in screen area
-Name[fi_Fi]=Tunnista teksti näytön alueelta
+Name[fi_FI]=Tunnista teksti näytön alueelta
 Name[pt_PT]=Reconhecer texto na área do ecrã
 Name[ru_RU]=Распознать текст в области экрана
 X-KDE-Shortcuts=Ctrl+Alt+I
@@ -81,7 +81,7 @@ X-KDE-Shortcuts=Ctrl+Alt+I
 [Desktop Action TranslateScreenArea]
 Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateScreenArea
 Name=Translate text in screen area
-Name[fi_Fi]=Käännä teksti näytön alueelta
+Name[fi_FI]=Käännä teksti näytön alueelta
 Name[pt_PT]=Traduzir texto na área do ecrã
 Name[ru_RU]=Перевести текст в области экрана
 X-KDE-Shortcuts=Ctrl+Alt+O
