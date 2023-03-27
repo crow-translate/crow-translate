@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;CopyTranslatedSelection;
+Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;CopyTranslatedSelection;TranslateScreenArea;RecognizeScreenArea;
 Name=Crow Translate
 GenericName=Translator
 GenericName[fi]=Kääntäjä
