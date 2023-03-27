@@ -1,5 +1,5 @@
 [Desktop Entry]
-Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;CopyTranslatedSelection;
+Actions=TranslateSelectedText;SpeakSelection;SpeakTranslatedSelection;StopSpeaking;Open;CopyTranslatedSelection;TranslateScreenArea;RecognizeScreenArea;
 Name=Crow Translate
 GenericName=Translator
 GenericName[fi]=Kääntäjä
@@ -69,3 +69,19 @@ Name=Translate selected text and copy to clipboard
 Name[fi_FI]=Käännä valittu teksti ja kopioi leikepöydälle
 Name[pt_PT]=Traduzir texto selecionado e copiar para a área de transferência
 Name[ru_RU]=Перевести выделенный текст и скопировать в буфер обмена
+
+[Desktop Action RecognizeScreenArea]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow recognizeScreenArea
+Name=Recognize text in screen area
+Name[fi_Fi]=Tunnista teksti näytön alueelta
+Name[pt_PT]=Reconhecer texto na área do ecrã
+Name[ru_RU]=Распознать текст в области экрана
+X-KDE-Shortcuts=Ctrl+Alt+I
+
+[Desktop Action TranslateScreenArea]
+Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateScreenArea
+Name=Translate text in screen area
+Name[fi_Fi]=Käännä teksti näytön alueelta
+Name[pt_PT]=Traduzir texto na área do ecrã
+Name[ru_RU]=Перевести текст в области экрана
+X-KDE-Shortcuts=Ctrl+Alt+O
