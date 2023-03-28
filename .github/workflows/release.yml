@@ -28,16 +28,12 @@ jobs:
     name: Release
     strategy:
       matrix:
-        os: [ubuntu-18.04, ubuntu-20.04, windows-2019]
+        os: [ubuntu-20.04, windows-2019]
         arch: [amd64, aarch64, armv7]
         include:
-          - os: ubuntu-18.04
-            extra-cmake-arguments: >-
-              -D CPACK_GENERATOR="External"
-              -D WITH_KWAYLAND:BOOL=OFF
           - os: ubuntu-20.04
             extra-cmake-arguments: >-
-              -D CPACK_GENERATOR="DEB;RPM"
+              -D CPACK_GENERATOR="DEB;RPM;External"
           - os: windows-2019
             extra-cmake-arguments: >-
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
@@ -50,10 +46,6 @@ jobs:
           - os: windows-2019
             arch: aarch64
           - os: windows-2019
-            arch: armv7
-          - os: ubuntu-18.04
-            arch: aarch64
-          - os: ubuntu-18.04
             arch: armv7
 
     runs-on: ${{ matrix.os }}
@@ -71,7 +63,7 @@ jobs:
           sudo apt-get remove qt5-gtk-platformtheme # Do not use libqgtk3.so because of https://bugreports.qt.io/browse/QTBUG-72506
 
       - name: Install linuxdeploy
-        if: matrix.os == 'ubuntu-18.04'
+        if: matrix.os == 'ubuntu-20.04'
         uses: miurahr/install-linuxdeploy-action@v1
         with:
           plugins: qt gstreamer
