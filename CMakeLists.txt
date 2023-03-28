@@ -106,6 +106,7 @@ set(APP_ICONS
 )
 
 qt5_add_translation(QM_FILES
+    data/translations/${PROJECT_NAME}_ar_SA.ts
     data/translations/${PROJECT_NAME}_az_AZ.ts
     data/translations/${PROJECT_NAME}_de_DE.ts
     data/translations/${PROJECT_NAME}_el_GR.ts

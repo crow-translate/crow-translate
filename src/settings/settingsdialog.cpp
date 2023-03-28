@@ -74,6 +74,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     // Set item data in comboboxes
     ui->localeComboBox->addItem(tr("<System language>"), AppSettings::defaultLocale());
     addLocale({QLocale::Albanian, QLocale::Albania});
+    addLocale({QLocale::Arabic, QLocale::SaudiArabia});
     addLocale({QLocale::Azerbaijani, QLocale::Azerbaijan});
     addLocale({QLocale::Basque, QLocale::Spain});
     addLocale({QLocale::Chinese, QLocale::China});
