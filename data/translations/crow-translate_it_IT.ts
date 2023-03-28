@@ -314,7 +314,7 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
       <translation>Nelle impostazioni applicazione devi impostare almeno una lingua OCR</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 non è un nome parametro Tesseract valido.</translation>
     </message>
@@ -1034,47 +1034,47 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Errore: i sistemi del motore di traduzione hanno rilevato traffico sospetto dalla rete di questo computer. 
 Riprova più tardi ad effettuare la richiesta.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Errore: impossibile analizzare la lingua rilevata automaticamente</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
       <source>Error: Unable to find Yandex SID in web version.</source>
       <translation>Errore: impossibile trovare SID Yandex nella versione web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
       <source>Error: Unable to extract Yandex SID from web version.</source>
       <translation>Errore: impossibile estrarre SID Yandex dalla versione web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Errore: impossibile trovare credenziali Bing nella versione web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Errore: impossibile estrarre chiave Bing dalla versione web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Errore: impossibile token Bing dalla versione web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Errore: impossibile estrarre ulteriori informazioni su Bing dalla versione web.</translation>
     </message>
@@ -1174,8 +1174,8 @@ Riprova più tardi ad effettuare la richiesta.</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Lingua sistema&gt;</translation>
     </message>
@@ -1807,7 +1807,7 @@ Riprova più tardi ad effettuare la richiesta.</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>Regione predefinita</translation>
     </message>
@@ -1837,11 +1837,6 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Registra nel sistema i tasti rapidi globali&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>Abilita tasti rapidi globali</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>Tasti rapidi</translation>
@@ -1860,6 +1855,11 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Password proxy per l&apos;autentificazione&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>Abilita scorciatoie globali</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1937,119 +1937,119 @@ Riprova più tardi ad effettuare la richiesta.</translation>
       <translation>Usa %1 dalla cartella applicazione per salvare le impostazioni</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Controllo aggiornamenti</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>Controlla aggiornamenti:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>Ogni giorno</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>Ogni settimana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>Ogni mese</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>Mai</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>Icone:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>Controlla ora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>Controlla aggiornamenti ora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>Buon anno!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Il campo parametri OCR non può essere vuoto.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Vuoi scartare i parametri non validi?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>Seleziona icona</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Immagini (*.png *.ico *.svg *.jpg);;Tutti i file (*.*)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>Seleziona percorso lingue OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>Mandarino (Cina)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>Nulla da riprodurre</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>Testo da pronunciare vuoto</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>Impossibile rilevare la lingua</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Controllo aggiornamenti...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>È disponibile un aggiornamento!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>La versione installata è aggiornata.
 Nessun aggiornamento disponibile.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>Indietro</translation>
     </message>
