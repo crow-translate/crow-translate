@@ -312,7 +312,7 @@
       <translation>U dient minimaal één ocr-taal toe te voegen in de programma-instellingen</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>‘%1’ is geen geldige Tesseract-optienaam.</translation>
     </message>
@@ -1032,46 +1032,46 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Fout: de vertaalmachines hebben verdacht netwerkverkeer vanaf uw computer geconstateerd. Probeer het later opnieuw.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Fout: de automatisch vastgestelde taal kan niet worden verwerkt.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
       <source>Error: Unable to find Yandex SID in web version.</source>
       <translation>Foutmelding: Yandex SID is niet aangetroffen in de webversie.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
       <source>Error: Unable to extract Yandex SID from web version.</source>
       <translation>Foutmelding: de Yandex SID kan niet worden geëxtraheerd uit de webversie.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Foutmelding: de Bing-inloggegevens zijn niet aangetroffen in de webversie.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Foutmelding: de Bing-sleutel kan niet worden geëxtraheerd uit de webversie.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Foutmelding: de Bing-toegangssleutel kan niet worden geëxtraheerd uit de webversie.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Foutmelding: er kan geen aanvullende Bing-informatie uit de webversie worden opgehaald.</translation>
     </message>
@@ -1171,8 +1171,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;Systeemtaal&gt;</translation>
     </message>
@@ -1804,7 +1804,7 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>Standaardregio</translation>
     </message>
@@ -1834,11 +1834,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Global sneltoetsen vastleggen op systeem&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>Globale sneltoetsen gebruiken</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>Sneltoets</translation>
@@ -1857,6 +1852,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy-wachtwoord voor authenticatie&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>Globale sneltoetsen gebruiken</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1934,118 +1934,118 @@
       <translation>Gebruik %1 van de programmamap om de instellingen op te slaan</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Updates</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>Controleren op updates:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>Elke dag</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>Elke week</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>Elke maand</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>Nooit</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>Pictogrammen:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>Nu controleren</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>Controleer nu op updates</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>Gelukkig nieuwjaar!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>De ocr-optievelden mogen niet blanco zijn.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Wilt u de ongeldige opties verwijderen?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>Kies een pictogram</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Afbeeldingen (*.png *.ico *.svg *.jpg);;Alle bestanden()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>Kies het ocr-taalpad</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>Mandarijn (China)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>Geen tekst om voor te lezen</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>Blanco voorleestekst</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>De taal kan niet worden vastgesteld</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Bezig met controleren op updates...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>Update beschikbaar!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>Geen updates beschikbaar.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>Terug</translation>
     </message>
