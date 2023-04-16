@@ -47,6 +47,8 @@
       <description>
         <p>Changelog:</p>
         <ul>
+          <li>Added OCR actions to desktop file.</li>
+          <li>Autoselect source text when showing main window.</li>
           <li>Fixed an issue where the TTS engine would sometimes pronounce the space as "percent twenty".</li>
         </ul>
       </description>
