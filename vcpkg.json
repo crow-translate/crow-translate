@@ -3,8 +3,7 @@
   "version-string": "latest",
   "dependencies": [
     {
-      "name": "tesseract",
-      "features": ["cpu-independed"]
+      "name": "tesseract"
     },
     {
       "name": "qt5-winextras",
