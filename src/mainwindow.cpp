@@ -214,6 +214,7 @@ Ocr *MainWindow::ocr() const
 void MainWindow::open()
 {
     ui->sourceEdit->setFocus();
+    ui->sourceEdit->selectAll();
 
     setWindowState(windowState() & ~Qt::WindowMinimized);
     show();

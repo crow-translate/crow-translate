@@ -81,7 +81,7 @@ jobs:
         uses: lukka/run-vcpkg@v10.7
         if: runner.os == 'Windows'
         with:
-          vcpkgGitCommitId: fd766eba2b4cf59c7123d46189be373e2cee959d
+          vcpkgGitCommitId: d4acc3c3f2db0b9fa7fc47b4751ec5778331f996
 
       - name: Setup MSVC
         if: runner.os == 'Windows'
