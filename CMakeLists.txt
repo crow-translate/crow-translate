@@ -9,6 +9,10 @@ project(crow-translate
 
 set(APPLICATION_NAME "Crow Translate")
 set(EXECUTABLE_NAME crow)
+set(COMPANY_NAME "Crow Translate")
+set(LEGAL_COPYRIGHT "Shatur 2022")
+set(FILE_DESCRIPTION "Simple and lightweight translator")
+
 if(UNIX)
     set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
     set(METAINFO_FILE io.crow_translate.CrowTranslate.metainfo.xml)
@@ -46,6 +50,18 @@ set(CMAKE_AUTOUIC ON)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_WIN32_EXECUTABLE ON)
+
+set(CPACK_NSIS_EXTRA_DEFINES
+VIProductVersion "${VERSION}"
+VIFileVersion "${VERSION}.0"
+VIAddVersionKey /LANG=0 "ProductName" "${APPLICATION_NAME}"
+VIAddVersionKey /LANG=0 "ProductVersion" "${VERSION}"
+VIAddVersionKey /LANG=0 "CompanyName" "${COMPANY_NAME}"
+VIAddVersionKey /LANG=0 "LegalCopyright" "${LEGAL_COPYRIGHT}"
+VIAddVersionKey /LANG=0 "FileDescription" "${APPLICATION_NAME} Installer"
+VIAddVersionKey /LANG=0 "FileVersion" "${VERSION}"
+VIAddVersionKey /LANG=0 "InternalName" "${APPLICATION_NAME}"
+)
 
 if(CMAKE_CXX_CLANG_TIDY)
     # Exclude generated files
