@@ -43,7 +43,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
-    <release version="2.10.4" date="2023-06-16">
+    <release version="2.10.5" date="2023-05-18">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Fix Yandex translation due to API changes.</li>
+        </ul>
+      </description>
+    </release>
+    <release version="2.10.4" date="2023-04-16">
       <description>
         <p>Changelog:</p>
         <ul>
