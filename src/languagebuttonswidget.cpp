@@ -185,9 +185,9 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::SimplifiedChinese:
         return QIcon(":/icons/flags/cn.svg");
     case QOnlineTranslator::TraditionalChinese:
-        return QIcon(":/icon/flags/tw.svg");
+        return QIcon(":/icons/flags/tw.svg");
     case QOnlineTranslator::Uighur:
-        return QIcon(":/icon/flags/cn-xj.svg");
+        return QIcon(":/icons/flags/cn-xj.svg");
     case QOnlineTranslator::Croatian:
         return QIcon(":/icons/flags/hr.svg");
     case QOnlineTranslator::Czech:
