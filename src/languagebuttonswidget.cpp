@@ -180,11 +180,14 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::Catalan:
         return QIcon(":/icons/flags/ad.svg");
     case QOnlineTranslator::Cantonese:
+        return QIcon(":/icons/flags/hk.svg");
     case QOnlineTranslator::Hmong:
     case QOnlineTranslator::SimplifiedChinese:
-    case QOnlineTranslator::TraditionalChinese:
-    case QOnlineTranslator::Uighur:
         return QIcon(":/icons/flags/cn.svg");
+    case QOnlineTranslator::TraditionalChinese:
+        return QIcon(":/icons/flags/tw.svg");
+    case QOnlineTranslator::Uighur:
+        return QIcon(":/icons/flags/cn-xj.svg");
     case QOnlineTranslator::Croatian:
         return QIcon(":/icons/flags/hr.svg");
     case QOnlineTranslator::Czech:
@@ -197,7 +200,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
     case QOnlineTranslator::English:
         return QIcon(":/icons/flags/gb.svg");
     case QOnlineTranslator::Esperanto:
-        return QIcon(":/icons/flags/esperanto.svg");
+        return QIcon(":/icons/flags/eo.svg");
     case QOnlineTranslator::Estonian:
         return QIcon(":/icons/flags/ee.svg");
     case QOnlineTranslator::Fijian:
@@ -262,7 +265,7 @@ QIcon LanguageButtonsWidget::countryIcon(QOnlineTranslator::Language lang)
         return QIcon(":/icons/flags/rw.svg");
     case QOnlineTranslator::Klingon:
     case QOnlineTranslator::KlingonPlqaD:
-        return QIcon(":/icons/flags/fiction/klingon.svg");
+        return QIcon(":/icons/flags/fictional/klingon.svg");
     case QOnlineTranslator::Korean:
         return QIcon(":/icons/flags/kr.svg");
     case QOnlineTranslator::Kurdish:

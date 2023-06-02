@@ -12,6 +12,7 @@
         <file alias="br.svg">third-party/circle-flags/flags/br.svg</file>
         <file alias="by.svg">third-party/circle-flags/flags/by.svg</file>
         <file alias="cn.svg">third-party/circle-flags/flags/cn.svg</file>
+        <file alias="cn-xj.svg">third-party/circle-flags/flags/cn-xj.svg</file>
         <file alias="cz.svg">third-party/circle-flags/flags/cz.svg</file>
         <file alias="de.svg">third-party/circle-flags/flags/de.svg</file>
         <file alias="dk.svg">third-party/circle-flags/flags/dk.svg</file>
@@ -20,10 +21,10 @@
         <file alias="es-ga.svg">third-party/circle-flags/flags/es-ga.svg</file>
         <file alias="es-pv.svg">third-party/circle-flags/flags/es-pv.svg</file>
         <file alias="es.svg">third-party/circle-flags/flags/es.svg</file>
-        <file alias="esperanto.svg">third-party/circle-flags/flags/esperanto.svg</file>
+        <file alias="eo.svg">third-party/circle-flags/flags/language/eo.svg</file>
         <file alias="et.svg">third-party/circle-flags/flags/et.svg</file>
         <file alias="fi.svg">third-party/circle-flags/flags/fi.svg</file>
-        <file alias="fiction/klingon.svg">third-party/circle-flags/flags/fiction/klingon.svg</file>
+        <file alias="fictional/klingon.svg">third-party/circle-flags/flags/fictional/klingon.svg</file>
         <file alias="fj.svg">third-party/circle-flags/flags/fj.svg</file>
         <file alias="fr.svg">third-party/circle-flags/flags/fr.svg</file>
         <file alias="gb-sct.svg">third-party/circle-flags/flags/gb-sct.svg</file>
@@ -31,6 +32,7 @@
         <file alias="gb.svg">third-party/circle-flags/flags/gb.svg</file>
         <file alias="ge.svg">third-party/circle-flags/flags/ge.svg</file>
         <file alias="gr.svg">third-party/circle-flags/flags/gr.svg</file>
+        <file alias="hk.svg">third-party/circle-flags/flags/hk.svg</file>
         <file alias="hr.svg">third-party/circle-flags/flags/hr.svg</file>
         <file alias="ht.svg">third-party/circle-flags/flags/ht.svg</file>
         <file alias="hu.svg">third-party/circle-flags/flags/hu.svg</file>
