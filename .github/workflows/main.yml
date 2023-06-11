@@ -58,6 +58,7 @@ jobs:
               -D CMAKE_TOOLCHAIN_FILE=$env:VCPKG_ROOT/scripts/buildsystems/vcpkg.cmake
               -D VCPKG_TARGET_TRIPLET=x64-windows
               -D VCPKG_INSTALL_OPTIONS=--clean-after-build
+              -D X_VCPKG_APPLOCAL_DEPS_INSTALL=ON
               -D CMAKE_CXX_FLAGS="/experimental:external /external:anglebrackets /external:W0 /W4 /wd4530 /WX"
               -D CMAKE_CXX_CLANG_TIDY='clang-tidy;--warnings-as-errors=*'
 
@@ -91,5 +92,11 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -G Ninja -D WITH_PORTABLE_MODE=ON ${{ matrix.extra-cmake-arguments }}
-          cmake --build build --parallel 2
+          cmake -B build -G Ninja -D WITH_PORTABLE_MODE=ON -DCMAKE_INSTALL_PREFIX=install ${{ matrix.extra-cmake-arguments }}
+          cmake --build build --parallel 2 --target install
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: crow-translate-${{ matrix.os }}
+          path: install/**
