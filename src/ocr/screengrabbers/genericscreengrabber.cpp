@@ -30,7 +30,7 @@ GenericScreenGrabber::GenericScreenGrabber(QObject *parent)
 
 bool GenericScreenGrabber::ignoreDevicePixelRatio() const
 {
-    return true;
+    return false;
 }
 
 void GenericScreenGrabber::grab()
