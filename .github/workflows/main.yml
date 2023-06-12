@@ -92,7 +92,7 @@ jobs:
 
       - name: Build
         run: |
-          cmake -B build -G Ninja -D WITH_PORTABLE_MODE=ON -DCMAKE_INSTALL_PREFIX=install ${{ matrix.extra-cmake-arguments }}
+          cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D WITH_PORTABLE_MODE=ON -DCMAKE_INSTALL_PREFIX=install ${{ matrix.extra-cmake-arguments }}
           cmake --build build --parallel 2 --target install
 
       - name: Upload artifact
