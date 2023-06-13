@@ -60,7 +60,7 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     ui->versionLabel->setText(QCoreApplication::applicationVersion());
 
 #ifdef WITH_PORTABLE_MODE
-    m_portableCheckbox->setToolTip(tr("Use %1 from the application folder to store settings").arg(AppSettings::portableConfigName()));
+    m_portableCheckbox->setToolTip(tr("Use %1 to store settings").arg(AppSettings::portableConfigName()));
     qobject_cast<QFormLayout *>(ui->generalGroupBox->layout())->addRow(m_portableCheckbox);
 #endif
 
