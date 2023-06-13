@@ -194,18 +194,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>창 너비는 패널의 언어로 인해 화면보다 큽니다.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>추가된 언어를 줄이십시오.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>자동</translation>
     </message>
@@ -279,12 +279,12 @@
       <translation>번역</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>언어를 검색할 수 없습니다</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>텍스트를 번역할 수 없습니다</translation>
     </message>
@@ -292,12 +292,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR 언어를 설정할 수 없습니다</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>%1로 Tesseract를 초기화할 수 없습니다</translation>
     </message>
@@ -1032,46 +1032,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>오류: 엔진 시스템이 컴퓨터 네트워크에서 의심스러운 트래픽을 탐지했습니다. 나중에 다시 요청하십시오.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>오류: 자동 검색된 언어를 구문 분석할 수 없습니다</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>오류: 웹 버전에서 Yandex SID를 찾을 수 없습니다.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>오류: 웹 버전에서 Yandex SID를 추출할 수 없습니다.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>오류: 웹 버전에서 Bing 자격 증명을 찾을 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>오류: 웹 버전에서 Bing 키를 추출할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>오류: 웹 버전에서 Bing 토큰을 추출할 수 없습니다.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>오류: 웹 버전에서 추가 Bing 정보를 추출할 수 없습니다.</translation>
     </message>
@@ -1089,22 +1078,22 @@
       <translation>선택한 엔진 %1이(가) 감정 설정을 지원하지 않습니다</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>%1 엔진이 TTS를 지원하지 않습니다</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>선택한 언어 %1은 %2에서 지원되지 않습니다</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>선택한 음성 %1은 %2에 대해 지원되지 않습니다</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>선택한 감정 %1은(는) %2에서 지원되지 않습니다</translation>
     </message>
@@ -1929,11 +1918,6 @@
       <translation>휴대용 모드</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>응용 프로그램 폴더에서 %1을 사용하여 설정 저장</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>업데이트</translation>
@@ -2033,6 +2017,11 @@
       <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>업데이트 확인 중...</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>%1을 사용하여 설정 저장</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
@@ -2337,12 +2326,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>잘못된 트레이 아이콘</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>지정한 아이콘 &apos;%1&apos; 이(가) 잘못되었습니다. 기본 아이콘이 사용됩니다.</translation>
     </message>
