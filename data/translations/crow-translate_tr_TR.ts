@@ -194,18 +194,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>Paneldeki diller nedeniyle pencere genişliği ekrandan daha büyüktür.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>Lütfen eklenen dilleri azaltın.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>Otomatik</translation>
     </message>
@@ -279,12 +279,12 @@
       <translation>Çeviri</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>Dil tespit edilemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>Metin çevrilemiyor</translation>
     </message>
@@ -292,12 +292,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dili ayarlanamıyor</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Tesseract %1 ile başlatılamıyor</translation>
     </message>
@@ -1032,46 +1032,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Hata: Çekirdek sistemleri, bilgisayar ağınızdan şüpheli trafik algıladı. Lütfen isteği daha sonra tekrar deneyin.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Hata: Otomatik algılanan dil ayrıştırılamadı</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>Hata: Web sürümünde Yandex SID bulunamadı.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>Hata: Web sürümünden Yandex SID çıkarılamıyor.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Hata: Web sürümünde Bing kimlik bilgileri bulunamadı.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Hata: Web sürümünden Bing anahtarı çıkarılamıyor.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Hata: Web sürümünden Bing belirteci çıkarılamıyor.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Hata: Web sürümünden ek Bing bilgileri alınamıyor.</translation>
     </message>
@@ -1089,22 +1078,22 @@
       <translation>Seçilen %1 motoru duygu ayarlarını desteklemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>%1 motoru TTS'yi desteklemiyor</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>%1 seçili dil %2 için desteklenmiyor</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>%1 seçili ses %2 için desteklenmiyor</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>Seçili %1 duygusu %2 tarafından desteklenmiyor</translation>
     </message>
@@ -1929,11 +1918,6 @@
       <translation>Taşınabilir mod</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>Ayarları saklamak için uygulama klasöründen %1 kullan</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Güncellemeler</translation>
@@ -2033,6 +2017,11 @@
       <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Güncellemeler kontrol ediliyor...</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>Ayarları saklamak için %1 kullanın</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
@@ -2337,12 +2326,12 @@ veya çıkmak için Esc tuşuna basın</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>Geçersiz tepsi simgesi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Belirtilen &apos;%1&apos; simgesi geçersiz. Varsayılan simge kullanılacaktır.</translation>
     </message>
