@@ -22,9 +22,9 @@
 
 #include "qonlinetts.h"
 
+#include <QCoreApplication>
 #include <QLocale>
 #include <QNetworkProxy>
-#include <QCoreApplication>
 
 class QTranslator;
 class QSettings;
