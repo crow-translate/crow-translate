@@ -965,7 +965,7 @@ void SnippingArea::preparePaint()
 #ifdef Q_OS_LINUX
         const QRect virtualScreenRect(screen->geometry().topLeft(), QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
 #else
-        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size());
+        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size() / dpr);
 #endif
         m_screensRect = m_screensRect.united(virtualScreenRect);
     }
