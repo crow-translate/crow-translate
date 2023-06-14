@@ -409,8 +409,8 @@ void SnippingArea::paintEvent(QPaintEvent *)
         rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
 #ifdef Q_OS_LINUX
         if (!QX11Info::isPlatformX11())
-#endif
             rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
+#endif
 
         painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
