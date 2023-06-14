@@ -194,18 +194,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>Gjerësia e dritares është më e madhe se ekrani për shkak të gjuhëve në panel.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>Ju lutemi hiqni disa nga gjuhët e shtuara.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>Automatike</translation>
     </message>
@@ -279,12 +279,12 @@
       <translation>Përkthimi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>Nuk mund të zbulohet gjuha</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>Nuk mund të përkthehet teksti</translation>
     </message>
@@ -292,12 +292,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>Nuk mund të vendosen gjuhët e OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Nuk mund të iniciohet Tesseract me %1</translation>
     </message>
@@ -1032,46 +1032,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Gabim: Sistemet motorike kanë zbuluar trafik të dyshimtë nga rrjeti i kompjuterit tuaj. Ju lutemi provoni përsëri kërkesën tuaj më vonë.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Gabim: Nuk mund të analizohet gjuha e autodetektuar</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>Gabim: Nuk mund të gjendet SID i Yandex në versionin në internet.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>Gabim: Nuk mund të nxirret SID i Yandex nga versioni në internet.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Gabim: Nuk mund të gjenden kredencialet e Bing në versionin në internet.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Gabim: Nuk mund të nxirret çelësi i Bing nga versioni në internet.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Gabim: Nuk mund të nxirret tokeni i Bing nga versioni në internet.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Gabim: Nuk mund të nxirren informacione shtesë të Bing nga versioni ueb.</translation>
     </message>
@@ -1089,22 +1078,22 @@
       <translation>Motori i zgjedhur %1 nuk mbështet cilësimet e emocioneve</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>Motori %1 nuk mbështet TTS</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>Gjuha e zgjedhur %1 nuk mbështetet për %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>Zëri i zgjedhur %1 nuk mbështetet për %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>Emocioni i zgjedhur %1 nuk mbështetet nga %2</translation>
     </message>
@@ -1929,11 +1918,6 @@
       <translation>Modaliteti i portativ</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>Përdor %1 nga dosja e aplikacionit për të ruajtur cilësimet</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Përditësimet</translation>
@@ -2033,6 +2017,11 @@
       <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Duke kontrolluar për përditësime...</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>Përdor %1 për të ruajtur cilësimet</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
@@ -2336,12 +2325,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>Ikona e shiritit e pavlefshme</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Ikona e specifikuar &apos;%1&apos; është e pavlefshme. Do të përdoret ikona e parazgjedhur.</translation>
     </message>
