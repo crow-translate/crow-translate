@@ -409,8 +409,8 @@ void SnippingArea::paintEvent(QPaintEvent *)
         rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
 #ifdef Q_OS_LINUX
         if (!QX11Info::isPlatformX11())
-            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
 #endif
+            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
 
         painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
@@ -965,7 +965,7 @@ void SnippingArea::preparePaint()
 #ifdef Q_OS_LINUX
         const QRect virtualScreenRect(screen->geometry().topLeft(), QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
 #else
-        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size() / dpr);
+        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size());
 #endif
         m_screensRect = m_screensRect.united(virtualScreenRect);
     }
