@@ -410,10 +410,10 @@ void SnippingArea::paintEvent(QPaintEvent *)
 #ifdef Q_OS_LINUX
         if (!QX11Info::isPlatformX11())
 #endif
-            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
+            rectToDraw.setSize(rectToDraw.size() * 0.5);
 
         painter.setBrushOrigin(rectToDraw.topLeft());
-        // painter.fillRect(rectToDraw, brush);
+        painter.fillRect(rectToDraw, brush);
     }
 
     if (!m_selection.size().isEmpty() || m_mouseDragState != MouseState::None) {
@@ -649,7 +649,7 @@ void SnippingArea::drawMidHelpText(QPainter &painter) const
     midHelpTextFont.setPointSize(s_midHelpTextFontSize);
     painter.setFont(midHelpTextFont);
 
-    const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit, dpr is %1, %2").arg(m_devicePixelRatio).arg(devicePixelRatioF());
+    const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
     QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
     QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio),
