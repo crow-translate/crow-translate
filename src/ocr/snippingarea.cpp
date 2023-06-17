@@ -410,7 +410,7 @@ void SnippingArea::paintEvent(QPaintEvent *)
 #ifdef Q_OS_LINUX
         if (!QX11Info::isPlatformX11())
 #endif
-            rectToDraw.setSize(rectToDraw.size() * 0.5);
+            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
 
         painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
@@ -649,7 +649,8 @@ void SnippingArea::drawMidHelpText(QPainter &painter) const
     midHelpTextFont.setPointSize(s_midHelpTextFontSize);
     painter.setFont(midHelpTextFont);
 
-    const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
+    const auto *app = qobject_cast<QGuiApplication *>(QCoreApplication::instance());
+    const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit, drp is %1").arg(app->devicePixelRatio());
     QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
     QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio),

@@ -35,9 +35,13 @@ bool GenericScreenGrabber::ignoreDevicePixelRatio() const
 
 void GenericScreenGrabber::grab()
 {
+    const auto *app = qobject_cast<QGuiApplication *>(QCoreApplication::instance());
     QMap<const QScreen *, QImage> images;
-    for (QScreen *screen : QGuiApplication::screens())
-        images.insert(screen, screen->grabWindow(0).toImage());
+    for (QScreen *screen : QGuiApplication::screens()) {
+        QPixmap pixmap = screen->grabWindow(0);
+        pixmap.setDevicePixelRatio(app->devicePixelRatio());
+        images.insert(screen, pixmap.toImage());
+    }
     emit grabbed(images);
 }
 
