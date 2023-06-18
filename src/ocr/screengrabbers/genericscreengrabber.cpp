@@ -22,6 +22,7 @@
 #include <QGuiApplication>
 #include <QPixmap>
 #include <QScreen>
+#include <QFile>
 
 GenericScreenGrabber::GenericScreenGrabber(QObject *parent)
     : AbstractScreenGrabber(parent)
@@ -39,7 +40,17 @@ void GenericScreenGrabber::grab()
     QMap<const QScreen *, QImage> images;
     for (QScreen *screen : QGuiApplication::screens()) {
         const QPixmap pixmap = screen->grabWindow(0);
-        images.insert(screen, pixmap.scaled(pixmap.size() * app->devicePixelRatio()).toImage());
+
+        QFile normalFile("normal.png");
+        normalFile.open(QIODevice::WriteOnly);
+        pixmap.save(&normalFile, "PNG");
+
+        const QPixmap scaled = pixmap.scaled(pixmap.size() * app->devicePixelRatio());
+        QFile scaledFile("scaled.png");
+        scaledFile.open(QIODevice::WriteOnly);
+        pixmap.save(&scaledFile, "PNG");
+
+        images.insert(screen, scaled.toImage());
     }
     emit grabbed(images);
 }
