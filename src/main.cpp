@@ -56,7 +56,7 @@ int launchGui(int argc, char *argv[])
 #endif
 #if defined(Q_OS_LINUX)
     QGuiApplication::setDesktopFileName(QStringLiteral(DESKTOP_FILE));
-#elif defined(Q_OS_WIN)
+#elif defined(Q_OS_WIN) || defined(Q_OS_DARWIN)
     QIcon::setThemeName("hicolor");
 #endif
 

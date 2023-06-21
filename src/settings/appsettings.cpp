@@ -71,9 +71,14 @@ void AppSettings::setLocale(const QLocale &locale)
 
 void AppSettings::applyLocale(const QLocale &locale)
 {
+#ifdef Q_OS_DARWIN
+    const QString i18nDir = QStringLiteral(".");
+#else
+    const QString i18nDir = QStringLiteral("translations");
+#endif
     const QLocale newLocale = locale == defaultLocale() ? QLocale::system() : locale;
     QLocale::setDefault(newLocale);
-    s_appTranslator.load(newLocale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, QStringLiteral("translations"), QStandardPaths::LocateDirectory));
+    s_appTranslator.load(newLocale, QStringLiteral(PROJECT_NAME), QStringLiteral("_"), QStandardPaths::locate(QStandardPaths::AppDataLocation, i18nDir, QStandardPaths::LocateDirectory));
     s_qtTranslator.load(newLocale, QStringLiteral("qt"), QStringLiteral("_"), QLibraryInfo::location(QLibraryInfo::TranslationsPath));
 }
 
