@@ -8,6 +8,7 @@ project(crow-translate
 )
 
 set(APPLICATION_NAME "Crow Translate")
+set(APPLICATION_ID "io.crow_translate.CrowTranslate")
 set(EXECUTABLE_NAME crow)
 if(UNIX)
     set(DESKTOP_FILE io.crow_translate.CrowTranslate.desktop)
@@ -77,9 +78,11 @@ find_package(Qt5 REQUIRED COMPONENTS Widgets LinguistTools Concurrent)
 find_package(Tesseract REQUIRED)
 if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
-    find_package(XCB REQUIRED COMPONENTS XCB)
-    if(WITH_KWAYLAND)
-        find_package(KF5Wayland REQUIRED COMPONENTS Client)
+    if(NOT APPLE)
+        find_package(XCB REQUIRED COMPONENTS XCB)
+        if(WITH_KWAYLAND)
+            find_package(KF5Wayland REQUIRED COMPONENTS Client)
+        endif()
     endif()
 endif()
 
@@ -87,7 +90,8 @@ include(GNUInstallDirs)
 include(CPack)
 if(UNIX)
     include(ECMInstallIcons)
-elseif(WIN32)
+endif()
+if(WIN32 OR APPLE)
     include(ECMAddAppIcon)
 endif()
 
@@ -181,7 +185,7 @@ add_executable(${PROJECT_NAME}
     src/trayicon.cpp
 )
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
     target_sources(${PROJECT_NAME} PRIVATE
         src/xdgdesktopportal.cpp
         src/ocr/screengrabbers/dbusscreengrabber.cpp
@@ -196,6 +200,14 @@ if(UNIX)
             src/waylandhelper.cpp
         )
     endif(WITH_KWAYLAND)
+elseif(APPLE)
+    ecm_add_app_icon(MACOS_ICON ICONS ${APP_ICONS})
+
+    target_sources(${PROJECT_NAME} PRIVATE
+        ${MACOS_ICON}
+        data/icons/app/app.qrc
+        src/settings/autostartmanager/macosautostartmanager.cpp
+    )
 elseif(WIN32)
     ecm_add_app_icon(WINDOWS_ICON ICONS ${APP_ICONS})
 
@@ -221,10 +233,13 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 )
 
 if(UNIX)
-    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus XCB::XCB)
-    if(WITH_KWAYLAND)
-        target_link_libraries(${PROJECT_NAME} PRIVATE KF5::WaylandClient)
-        target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_KWAYLAND)
+    target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
+    if(NOT APPLE)
+        target_link_libraries(${PROJECT_NAME} PRIVATE XCB::XCB)
+        if(WITH_KWAYLAND)
+            target_link_libraries(${PROJECT_NAME} PRIVATE KF5::WaylandClient)
+            target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_KWAYLAND)
+        endif()
     endif()
 elseif(WIN32)
     target_link_libraries(${PROJECT_NAME} PRIVATE QGitTag::QGitTag)
@@ -234,7 +249,7 @@ if(WITH_PORTABLE_MODE)
     target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_PORTABLE_MODE)
 endif()
 
-if(UNIX)
+if(UNIX AND NOT APPLE)
     install(TARGETS ${PROJECT_NAME})
     install(FILES ${QM_FILES} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/${APPLICATION_NAME}/${APPLICATION_NAME}/translations)
     install(FILES data/${DESKTOP_FILE} DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/applications)
@@ -252,6 +267,15 @@ if(UNIX)
         data/icons/app/sc-status-crow-translate-tray-dark.svg
         data/icons/app/sc-status-crow-translate-tray-light.svg
         DESTINATION ${CMAKE_INSTALL_DATAROOTDIR}/icons
+    )
+elseif(APPLE)
+    set_target_properties(${PROJECT_NAME} PROPERTIES
+        MACOSX_BUNDLE ON
+        MACOSX_BUNDLE_BUNDLE_NAME ${APPLICATION_NAME}
+        MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
+        MACOSX_BUNDLE_GUI_IDENTIFIER ${APPLICATION_ID}
+        MACOSX_BUNDLE_INFO_STRING ${PROJECT_DESCRIPTION}
+        RESOURCE "${QM_FILES}"
     )
 elseif(WIN32)
     install(TARGETS ${PROJECT_NAME} DESTINATION .)
