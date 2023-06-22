@@ -27,6 +27,7 @@
 
 #include <QDBusConnection>
 #include <QDBusError>
+#include <QtCore>
 #endif
 
 int launchGui(int argc, char *argv[]);
@@ -68,7 +69,7 @@ int launchGui(int argc, char *argv[])
 
 #ifdef Q_OS_UNIX
     if (QDBusConnection::sessionBus().isConnected()) {
-        const QString service = QStringLiteral("io.crow_translate.CrowTranslate");
+        const QString service = QStringLiteral(APPLICATION_ID);
         if (QDBusConnection::sessionBus().registerService(service)) {
             registerDBusObject(&window);
             registerDBusObject(window.ocr());
@@ -96,7 +97,8 @@ int launchCli(int argc, char *argv[])
 #ifdef Q_OS_UNIX
 void registerDBusObject(QObject *object)
 {
-    if (!QDBusConnection::sessionBus().registerObject(QStringLiteral("/io/crow_translate/CrowTranslate/") + object->metaObject()->className(), object, QDBusConnection::ExportScriptableSlots))
+    const QString objectPath = QStringLiteral("/%1/").arg(QStringLiteral(APPLICATION_ID).replace('.', '/'));
+    if (!QDBusConnection::sessionBus().registerObject(objectPath + object->metaObject()->className(), object, QDBusConnection::ExportScriptableSlots))
         qWarning() << QCoreApplication::translate("D-Bus", "Unable to register D-Bus object for %1").arg(object->metaObject()->className());
 }
 #endif
