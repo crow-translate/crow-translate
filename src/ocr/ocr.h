@@ -20,6 +20,8 @@
 #ifndef OCR_H
 #define OCR_H
 
+#include "cmake.h"
+
 #include <QFuture>
 #include <QObject>
 
@@ -31,7 +33,7 @@ class QDir;
 class Ocr : public QObject
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "io.crow_translate.CrowTranslate.Ocr")
+    Q_CLASSINFO("D-Bus Interface", APPLICATION_ID ".Ocr")
     Q_DISABLE_COPY(Ocr)
 
 public:

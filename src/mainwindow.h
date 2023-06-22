@@ -20,6 +20,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "cmake.h"
 #include "qonlinetranslator.h"
 #include "settings/appsettings.h"
 
@@ -48,7 +49,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "io.crow_translate.CrowTranslate.MainWindow")
+    Q_CLASSINFO("D-Bus Interface", APPLICATION_ID ".MainWindow")
     Q_DISABLE_COPY(MainWindow)
 
 public:
