@@ -194,18 +194,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>面板上的语言使得窗口宽度大于了屏幕宽度。</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>请精简已添加的语言</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>自动</translation>
     </message>
@@ -279,12 +279,12 @@
       <translation>译文</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>无法检测语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>无法翻译文字</translation>
     </message>
@@ -292,12 +292,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>无法设定 OCR 语言</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>无法使用 %1 初始化 Tesseract</translation>
     </message>
@@ -1032,46 +1032,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1346"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>错误：引擎从你的机器网络检测到可疑的流量，请稍后重试。</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1426"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1626"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1720"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>错误：无法解析自动检测到的语言</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1353"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>错误：无法在 web 版本中找到 Yandex SID 。</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1360"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>错误：无法从 web 版本提取Yandex SID</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>错误：无法在 web 版本中找到 Bing 凭据。</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1549"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>错误：无法从 web 版本提取Bing 密钥。</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1557"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>错误：无法从 web 版本提取Bing 令牌。</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1569"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1578"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>错误：无法从 web 版本提取额外的 Bing 信息。</translation>
     </message>
@@ -1089,22 +1078,22 @@
       <translation>选定的引擎 %1 不支持情感色彩设置</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>%1 引擎不支持 TTS</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>选定的语言 %1 不支持 %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>选定的语音 %1 不支持 %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>所选表情符号 %1 不被 %2 支持</translation>
     </message>
@@ -1929,11 +1918,6 @@
       <translation>便携模式</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>使用应用程序文件夹中的 %1 来存储设置</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>更新</translation>
@@ -2033,6 +2017,11 @@
       <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>正在检查更新...</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>使用 %1 来存储设置</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
@@ -2337,12 +2326,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>无效的托盘图标</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>指定的图标 &apos;%1&apos; 无效。将使用默认图标。</translation>
     </message>
