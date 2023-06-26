@@ -37,7 +37,7 @@ class SnippingArea : public QWidget
     Q_OBJECT
 
 public:
-    explicit SnippingArea(bool ignoreDevicePixelRatio, QWidget *parent = nullptr);
+    explicit SnippingArea(QWidget *parent = nullptr);
     ~SnippingArea() override;
 
     AppSettings::RegionRememberType regionRememberType() const;
@@ -96,7 +96,6 @@ private:
     void setMouseCursor(QPointF pos);
     MouseState mouseLocation(QPointF pos) const;
 
-    QRect scaledCropRegion() const;
     QPixmap selectedPixmap() const;
     void createPixmapFromScreens();
     void setGeometryToScreenPixmap();
@@ -109,7 +108,6 @@ private:
     void acceptSelection();
     void cancelSelection();
 
-    static QMap<ComparableQPoint, ComparableQPoint> computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect);
     static bool isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point);
     static bool isInRange(qreal low, qreal high, qreal value);
     static bool isWithinThreshold(qreal offset, qreal threshold);
@@ -142,8 +140,6 @@ private:
     static constexpr int s_magPixels = 16;
     static constexpr int s_magOffset = 32;
 
-    const qreal m_devicePixelRatio;
-    const qreal m_devicePixelRatioI = 1.0 / m_devicePixelRatio;
     const QColor m_strokeColor = palette().highlight().color();
     const QColor m_crossColor = QColor::fromRgbF(m_strokeColor.redF(), m_strokeColor.greenF(), m_strokeColor.blueF(), 0.7);
     const QColor m_labelForegroundColor = palette().windowText().color();
@@ -159,7 +155,6 @@ private:
     QRect m_screensRect;
 
     QMap<const QScreen *, QImage> m_images;
-    QMap<const QScreen *, qreal> m_screenToDpr;
 
     QVector<QStaticText> m_bottomLeftHelpText;
     QVector<QVector<QStaticText>> m_bottomRightHelpText;

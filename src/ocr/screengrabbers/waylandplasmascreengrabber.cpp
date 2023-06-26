@@ -43,11 +43,6 @@ WaylandPlasmaScreenGrabber::WaylandPlasmaScreenGrabber(QObject *parent)
     Q_UNUSED(id)
 }
 
-bool WaylandPlasmaScreenGrabber::ignoreDevicePixelRatio() const
-{
-    return true;
-}
-
 bool WaylandPlasmaScreenGrabber::isAvailable()
 {
     return s_interface.isValid();

@@ -28,11 +28,6 @@ GenericScreenGrabber::GenericScreenGrabber(QObject *parent)
 {
 }
 
-bool GenericScreenGrabber::ignoreDevicePixelRatio() const
-{
-    return true;
-}
-
 void GenericScreenGrabber::grab()
 {
     QMap<const QScreen *, QImage> images;

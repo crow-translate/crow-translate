@@ -76,7 +76,7 @@ MainWindow::MainWindow(QWidget *parent)
     , m_screenCaptureTimer(new QTimer(this))
     , m_orientationWatcher(new ScreenWatcher(this))
     , m_screenGrabber(AbstractScreenGrabber::createScreenGrabber(this))
-    , m_snippingArea(new SnippingArea(m_screenGrabber->ignoreDevicePixelRatio(), this))
+    , m_snippingArea(new SnippingArea(this))
 {
     ui->setupUi(this);
 

@@ -20,8 +20,6 @@
 
 #include "snippingarea.h"
 
-#include "comparableqpoint.h"
-
 #include <QGuiApplication>
 #include <QMessageBox>
 #include <QMouseEvent>
@@ -35,9 +33,8 @@
 #include <xcb/xproto.h>
 #endif
 
-SnippingArea::SnippingArea(bool ignoreDevicePixelRatio, QWidget *parent)
+SnippingArea::SnippingArea(QWidget *parent)
     : QWidget(parent, Qt::FramelessWindowHint | Qt::NoDropShadowWindowHint | Qt::Popup | Qt::WindowStaysOnTopHint)
-    , m_devicePixelRatio(ignoreDevicePixelRatio ? 1.0 : devicePixelRatioF())
 {
     setMouseTracking(true);
     setAttribute(Qt::WA_StaticContents);
@@ -46,7 +43,7 @@ SnippingArea::SnippingArea(bool ignoreDevicePixelRatio, QWidget *parent)
 SnippingArea::~SnippingArea()
 {
     if (m_regionRememberType == AppSettings::RememberAlways)
-        AppSettings().setCropRegion(scaledCropRegion());
+        AppSettings().setCropRegion(m_selection);
 }
 
 AppSettings::RegionRememberType SnippingArea::regionRememberType() const
@@ -76,10 +73,7 @@ void SnippingArea::setRegionRememberType(AppSettings::RegionRememberType type)
 
 void SnippingArea::setCropRegion(QRect region)
 {
-    m_selection = QRect(region.x() * static_cast<int>(m_devicePixelRatioI),
-                        region.y() * static_cast<int>(m_devicePixelRatioI),
-                        region.width() * static_cast<int>(m_devicePixelRatioI),
-                        region.height() * static_cast<int>(m_devicePixelRatioI));
+    m_selection = region;
 }
 
 void SnippingArea::snip(QMap<const QScreen *, QImage> images)
@@ -158,13 +152,13 @@ void SnippingArea::keyPressEvent(QKeyEvent *event)
             update();
             break;
         }
-        const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsUp(qRound(m_selection.top() * m_devicePixelRatio - step), false);
+        const int step = (shiftPressed ? 1 : s_magnifierLargeStep);
+        const int newPos = boundsUp(m_selection.top() - step, false);
         if (event->modifiers() & Qt::AltModifier) {
-            m_selection.setBottom(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.height());
+            m_selection.setBottom(newPos + m_selection.height());
             m_selection = m_selection.normalized();
         } else {
-            m_selection.moveTop(static_cast<int>(m_devicePixelRatioI) * newPos);
+            m_selection.moveTop(newPos);
         }
         update();
         break;
@@ -174,12 +168,12 @@ void SnippingArea::keyPressEvent(QKeyEvent *event)
             update();
             break;
         }
-        const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsRight(qRound(m_selection.left() * m_devicePixelRatio + step), false);
+        const int step = (shiftPressed ? 1 : s_magnifierLargeStep);
+        const int newPos = boundsRight(m_selection.left() * step, false);
         if (event->modifiers() & Qt::AltModifier)
-            m_selection.setRight(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.width());
+            m_selection.setRight(newPos + m_selection.width());
         else
-            m_selection.moveLeft(static_cast<int>(m_devicePixelRatioI) * newPos);
+            m_selection.moveLeft(newPos);
         update();
         break;
     }
@@ -188,12 +182,12 @@ void SnippingArea::keyPressEvent(QKeyEvent *event)
             update();
             break;
         }
-        const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsDown(qRound(m_selection.top() * m_devicePixelRatio + step), false);
+        const int step = (shiftPressed ? 1 : s_magnifierLargeStep);
+        const int newPos = boundsDown(m_selection.top() + step, false);
         if (event->modifiers() & Qt::AltModifier)
-            m_selection.setBottom(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.height());
+            m_selection.setBottom(newPos + m_selection.height());
         else
-            m_selection.moveTop(static_cast<int>(m_devicePixelRatioI) * newPos);
+            m_selection.moveTop(newPos);
         update();
         break;
     }
@@ -202,13 +196,13 @@ void SnippingArea::keyPressEvent(QKeyEvent *event)
             update();
             break;
         }
-        const qreal step = (shiftPressed ? 1 : s_magnifierLargeStep);
-        const int newPos = boundsLeft(qRound(m_selection.left() * m_devicePixelRatio - step), false);
+        const int step = (shiftPressed ? 1 : s_magnifierLargeStep);
+        const int newPos = boundsLeft(m_selection.left() - step, false);
         if (event->modifiers() & Qt::AltModifier) {
-            m_selection.setRight(static_cast<int>(m_devicePixelRatioI) * newPos + m_selection.width());
+            m_selection.setRight(newPos + m_selection.width());
             m_selection = m_selection.normalized();
         } else {
-            m_selection.moveLeft(static_cast<int>(m_devicePixelRatioI) * newPos);
+            m_selection.moveLeft(newPos);
         }
         update();
         break;
@@ -296,16 +290,16 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
         const bool afterY = m_mousePos.y() >= m_startPos.y();
         m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
                             static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
-                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
-                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x())),
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y())));
         update();
         break;
     }
     case MouseState::Outside:
         m_selection.setRect(static_cast<int>(qMin(m_mousePos.x(), m_startPos.x())),
                             static_cast<int>(qMin(m_mousePos.y(), m_startPos.y())),
-                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + m_devicePixelRatioI),
-                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + m_devicePixelRatioI));
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x())),
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y())));
         update();
         break;
     case MouseState::Top:
@@ -314,7 +308,7 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
         m_selection.setRect(m_selection.x(),
                             static_cast<int>(afterY ? m_startPos.y() : m_mousePos.y()),
                             m_selection.width(),
-                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y()) + (afterY ? m_devicePixelRatioI : 0)));
+                            static_cast<int>(qAbs(m_mousePos.y() - m_startPos.y())));
         update();
         break;
     }
@@ -323,7 +317,7 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
         const bool afterX = m_mousePos.x() >= m_startPos.x();
         m_selection.setRect(static_cast<int>(afterX ? m_startPos.x() : m_mousePos.x()),
                             m_selection.y(),
-                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x()) + (afterX ? m_devicePixelRatioI : 0)),
+                            static_cast<int>(qAbs(m_mousePos.x() - m_startPos.x())),
                             m_selection.height());
         update();
         break;
@@ -336,9 +330,9 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
          * in which case we adjust the diff to not let that happen
          */
         // New top left point of the rectangle
-        QPoint newTopLeft = ((m_mousePos - m_startPos + m_initialTopLeft) * m_devicePixelRatio).toPoint();
+        QPoint newTopLeft = (m_mousePos - m_startPos + m_initialTopLeft).toPoint();
 
-        const QRect newRect(newTopLeft, m_selection.size() * m_devicePixelRatio);
+        const QRect newRect(newTopLeft, m_selection.size());
 
         const QRect translatedScreensRect = m_screensRect.translated(-m_screensRect.topLeft());
         if (!translatedScreensRect.contains(newRect)) {
@@ -347,7 +341,7 @@ void SnippingArea::mouseMoveEvent(QMouseEvent *event)
             newTopLeft.setY(qMin(translatedScreensRect.bottom() - newRect.height(), qMax(newTopLeft.y(), translatedScreensRect.top())));
         }
 
-        m_selection.moveTo(newTopLeft * m_devicePixelRatioI);
+        m_selection.moveTo(newTopLeft);
         update();
         break;
     }
@@ -395,23 +389,12 @@ void SnippingArea::paintEvent(QPaintEvent *)
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
     painter.eraseRect(rect());
 
-    for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
-        const QImage &screenImage = i.value();
-        const QScreen *screen = i.key();
-
-        QRect rectToDraw = screen->geometry().translated(-m_screensRect.topLeft());
-        const qreal dpr = screenImage.width() / static_cast<qreal>(rectToDraw.width());
-        const qreal dprI = 1.0 / dpr;
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
+        const QImage &screenImage = it.value();
+        const QScreen *screen = it.key();
 
         QBrush brush(screenImage);
-        brush.setTransform(QTransform::fromScale(dprI, dprI));
-
-        rectToDraw.moveTopLeft(rectToDraw.topLeft() / m_devicePixelRatio);
-#ifdef Q_OS_LINUX
-        if (!QX11Info::isPlatformX11())
-#endif
-            rectToDraw.setSize(rectToDraw.size() * m_devicePixelRatio);
-
+        QRect rectToDraw = screen->geometry().translated(-m_screensRect.topLeft());
         painter.setBrushOrigin(rectToDraw.topLeft());
         painter.fillRect(rectToDraw, brush);
     }
@@ -451,7 +434,7 @@ int SnippingArea::boundsLeft(int newTopLeftX, bool mouse)
 {
     if (newTopLeftX < 0) {
         if (mouse)
-            m_startPos.setX(m_startPos.x() + newTopLeftX * m_devicePixelRatioI); // Tweak startPos to prevent rectangle from getting stuck
+            m_startPos.setX(m_startPos.x() + newTopLeftX); // Tweak startPos to prevent rectangle from getting stuck
         newTopLeftX = 0;
     }
 
@@ -465,7 +448,7 @@ int SnippingArea::boundsRight(int newTopLeftX, bool mouse)
     const int xOffset = newTopLeftX - realMaxX;
     if (xOffset > 0) {
         if (mouse)
-            m_startPos.setX(m_startPos.x() + xOffset * m_devicePixelRatioI);
+            m_startPos.setX(m_startPos.x() + xOffset);
         newTopLeftX = realMaxX;
     }
 
@@ -476,7 +459,7 @@ int SnippingArea::boundsUp(int newTopLeftY, bool mouse)
 {
     if (newTopLeftY < 0) {
         if (mouse)
-            m_startPos.setY(m_startPos.y() + newTopLeftY * m_devicePixelRatioI);
+            m_startPos.setY(m_startPos.y() + newTopLeftY);
         newTopLeftY = 0;
     }
 
@@ -486,11 +469,11 @@ int SnippingArea::boundsUp(int newTopLeftY, bool mouse)
 int SnippingArea::boundsDown(int newTopLeftY, bool mouse)
 {
     // The max Y coordinate of the top left point
-    const int realMaxY = qRound((height() - m_selection.height()) * m_devicePixelRatio);
+    const int realMaxY = height() - m_selection.height();
     const int yOffset = newTopLeftY - realMaxY;
     if (yOffset > 0) {
         if (mouse)
-            m_startPos.setY(m_startPos.y() + yOffset * m_devicePixelRatioI);
+            m_startPos.setY(m_startPos.y() + yOffset);
         newTopLeftY = realMaxY;
     }
 
@@ -596,7 +579,7 @@ void SnippingArea::drawMagnifier(QPainter &painter) const
     painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform, false);
 
     const int pixels = 2 * s_magPixels + 1;
-    auto magX = static_cast<int>(m_mousePos.x() * m_devicePixelRatio - s_magPixels);
+    auto magX = static_cast<int>(m_mousePos.x() - s_magPixels);
     int offsetX = 0;
     if (magX < 0) {
         offsetX = magX;
@@ -608,7 +591,7 @@ void SnippingArea::drawMagnifier(QPainter &painter) const
             magX = maxX;
         }
     }
-    auto magY = static_cast<int>(m_mousePos.y() * m_devicePixelRatio - s_magPixels);
+    auto magY = static_cast<int>(m_mousePos.y() - s_magPixels);
     int offsetY = 0;
     if (magY < 0) {
         offsetY = magY;
@@ -656,8 +639,8 @@ void SnippingArea::drawMidHelpText(QPainter &painter) const
     const QString midHelpText = tr("Click and drag to draw a selection rectangle,\nor press Esc to quit");
     QRect textSize = painter.boundingRect(QRect(), Qt::AlignCenter, midHelpText);
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
-    QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio),
-               (primaryGeometry.height() - textSize.height()) / 2 + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio));
+    QPoint pos((primaryGeometry.width() - textSize.width()) / 2 + primaryGeometry.x(),
+               (primaryGeometry.height() - textSize.height()) / 2 + primaryGeometry.y());
 
     painter.setBrush(m_labelBackgroundColor);
     QPen pen(m_labelForegroundColor);
@@ -677,7 +660,7 @@ void SnippingArea::drawSelectionSizeTooltip(QPainter &painter, bool dragHandlesV
      * - on top of the selection if the selection x position fits the box height plus some margin
      * - at the bottom otherwise
      */
-    const QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(qRound(m_selection.width() * m_devicePixelRatio)).arg(qRound(m_selection.height() * m_devicePixelRatio));
+    const QString selectionSizeText = QString::fromUtf8(u8"%1\u00D7%2").arg(m_selection.width()).arg(m_selection.height());
     const QRect selectionSizeTextRect = painter.boundingRect(QRect(), 0, selectionSizeText);
 
     const int selectionBoxWidth = selectionSizeTextRect.width() + s_selectionBoxPaddingX * 2;
@@ -773,84 +756,18 @@ SnippingArea::MouseState SnippingArea::mouseLocation(QPointF pos) const
     return MouseState::Outside;
 }
 
-QRect SnippingArea::scaledCropRegion() const
-{
-    return {qRound(m_selection.x() * m_devicePixelRatio),
-            qRound(m_selection.y() * m_devicePixelRatio),
-            qRound(m_selection.width() * m_devicePixelRatio),
-            qRound(m_selection.height() * m_devicePixelRatio)};
-}
-
 QPixmap SnippingArea::selectedPixmap() const
 {
-#ifdef Q_OS_LINUX
-    if (!QX11Info::isPlatformX11()) {
-        // Wayland case
-        qreal maxDpr = 1.0;
-        for (const QScreen *screen : QGuiApplication::screens()) {
-            if (screen->devicePixelRatio() > maxDpr)
-                maxDpr = screen->devicePixelRatio();
-        }
-
-        QPixmap output(m_selection.size() * maxDpr);
-        QPainter painter(&output);
-
-        for (auto it = m_screenToDpr.constBegin(); it != m_screenToDpr.constEnd(); ++it) {
-            const QScreen *screen = it.key();
-            const QRect screenRect = screen->geometry();
-
-            if (m_selection.intersects(screenRect)) {
-                const QPoint pos = screenRect.topLeft();
-                qreal dpr = it.value();
-
-                QRect intersected = screenRect.intersected(m_selection);
-
-                // Converts to screen size & position
-                QRect pixelOnScreenIntersected;
-                pixelOnScreenIntersected.moveTopLeft((intersected.topLeft() - pos) * dpr);
-                pixelOnScreenIntersected.setWidth(intersected.width() * static_cast<int>(dpr));
-                pixelOnScreenIntersected.setHeight(intersected.height() * static_cast<int>(dpr));
-
-                QPixmap screenOutput = QPixmap::fromImage(m_images.value(screen).copy(pixelOnScreenIntersected));
-
-                /*
-                 * Short path when single screen
-                 * Keep native screen resolution
-                 */
-                if (intersected.size() == m_selection.size())
-                    return screenOutput;
-
-                // Upscale the image according to max screen dpr, to keep the image not distorted
-                const double dprI = maxDpr / dpr;
-                QBrush brush(screenOutput);
-                brush.setTransform(QTransform::fromScale(dprI, dprI));
-                intersected.moveTopLeft((intersected.topLeft() - m_selection.topLeft()) * maxDpr);
-                intersected.setSize(intersected.size() * maxDpr);
-                painter.setBrushOrigin(intersected.topLeft());
-                painter.fillRect(intersected, brush);
-            }
-        }
-        return output;
-    }
-#endif
-    return m_screenPixmap.copy(scaledCropRegion());
+    return m_screenPixmap.copy(m_selection);
 }
 
 void SnippingArea::createPixmapFromScreens()
 {
-    QMap<ComparableQPoint, QPair<qreal, QSize>> input;
-    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
-        const QScreen *screen = it.key();
-        const QImage &screenImage = it.value();
-        input.insert(screen->geometry().topLeft(), {screenImage.width() / static_cast<qreal>(screen->size().width()), screenImage.size()});
-    }
-    const QMap<ComparableQPoint, ComparableQPoint> pointsTranslationMap = computeCoordinatesAfterScaling(input);
-
     m_screenPixmap = QPixmap(m_screensRect.width(), m_screensRect.height());
     QPainter painter(&m_screenPixmap);
     // Geometry can have negative coordinates, so it is necessary to subtract the upper left point, because coordinates on the widget are counted from 0
     for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it)
-        painter.drawImage(pointsTranslationMap.value(it.key()->geometry().topLeft()) - m_screensRect.topLeft(), it.value());
+        painter.drawImage(it.key()->geometry().topLeft() - m_screensRect.topLeft(), it.value());
 }
 
 void SnippingArea::setGeometryToScreenPixmap()
@@ -870,7 +787,7 @@ void SnippingArea::setGeometryToScreenPixmap()
          */
         const uint32_t coordinates[] = {0, 0};
         xcb_configure_window(QX11Info::connection(), winId(), XCB_CONFIG_WINDOW_X | XCB_CONFIG_WINDOW_Y, coordinates);
-        resize(qRound(m_screensRect.width() / m_devicePixelRatio), qRound(m_screensRect.height() / m_devicePixelRatio));
+        resize(m_screensRect.width() / devicePixelRatio(), m_screensRect.height() / devicePixelRatio());
         return;
     }
 #endif
@@ -901,8 +818,8 @@ void SnippingArea::layoutBottomHelpText()
         contentHeight += (i != s_bottomHelpMaxLength ? s_bottomHelpBoxMarginBottom : 0);
     }
     const QRect primaryGeometry = QGuiApplication::primaryScreen()->geometry().translated(-m_screensRect.topLeft());
-    m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x() / static_cast<int>(m_devicePixelRatio));
-    m_bottomHelpContentPos.setY((primaryGeometry.height() + primaryGeometry.y() / static_cast<int>(m_devicePixelRatio)) - contentHeight - 8);
+    m_bottomHelpContentPos.setX((primaryGeometry.width() - contentWidth) / 2 + primaryGeometry.x());
+    m_bottomHelpContentPos.setY((primaryGeometry.height() + primaryGeometry.y()) - contentHeight - 8);
     m_bottomHelpGridLeftWidth += m_bottomHelpContentPos.x();
     m_bottomHelpBorderBox.setRect(m_bottomHelpContentPos.x() - s_bottomHelpBoxPaddingX,
                                   m_bottomHelpContentPos.y() - s_bottomHelpBoxPaddingY,
@@ -957,21 +874,9 @@ void SnippingArea::setBottomHelpText()
 
 void SnippingArea::preparePaint()
 {
-    m_screenToDpr.clear();
     m_screensRect = {};
-    for (auto i = m_images.constBegin(); i != m_images.constEnd(); ++i) {
-        const QImage &screenImage = i.value();
-        const QScreen *screen = i.key();
-
-        const qreal dpr = screenImage.width() / static_cast<qreal>(screen->geometry().width());
-        m_screenToDpr.insert(screen, dpr);
-
-#ifdef Q_OS_LINUX
-        const QRect virtualScreenRect(screen->geometry().topLeft(), QX11Info::isPlatformX11() ? screenImage.size() : screenImage.size() / dpr);
-#else
-        const QRect virtualScreenRect(screen->geometry().topLeft(), screenImage.size());
-#endif
-        m_screensRect = m_screensRect.united(virtualScreenRect);
+    for (auto it = m_images.constBegin(); it != m_images.constEnd(); ++it) {
+        m_screensRect = m_screensRect.united(it.key()->geometry());
     }
 }
 
@@ -995,43 +900,6 @@ void SnippingArea::cancelSelection()
     releaseKeyboard();
     hide();
     emit cancelled();
-}
-
-QMap<ComparableQPoint, ComparableQPoint> SnippingArea::computeCoordinatesAfterScaling(const QMap<ComparableQPoint, QPair<qreal, QSize>> &outputsRect)
-{
-    QMap<ComparableQPoint, ComparableQPoint> translationMap;
-
-    for (auto it = outputsRect.keyBegin(); it != outputsRect.keyEnd(); ++it)
-        translationMap.insert(*it, *it);
-
-    for (auto i = outputsRect.constBegin(); i != outputsRect.constEnd(); ++i) {
-        const ComparableQPoint p = i.key();
-        const QSize &size = i.value().second;
-        const double dpr = i.value().first;
-        if (!qFuzzyCompare(dpr, 1.0)) {
-            // Must update all coordinates of next rects
-            int newWidth = size.width();
-            int newHeight = size.height();
-
-            int deltaX = newWidth - (size.width());
-            int deltaY = newHeight - (size.height());
-
-            // For the next size
-            for (auto i2 = outputsRect.constFind(p); i2 != outputsRect.constEnd(); ++i2) {
-                ComparableQPoint point = i2.key();
-                ComparableQPoint finalPoint = translationMap.value(point);
-
-                if (point.x() >= newWidth + p.x() - deltaX)
-                    finalPoint.setX(finalPoint.x() + deltaX);
-                if (point.y() >= newHeight + p.y() - deltaY)
-                    finalPoint.setY(finalPoint.y() + deltaY);
-                // Update final position point with the necessary deltas
-                translationMap.insert(point, finalPoint);
-            }
-        }
-    }
-
-    return translationMap;
 }
 
 bool SnippingArea::isPointInsideCircle(QPointF circleCenter, qreal radius, QPointF point)

@@ -34,9 +34,11 @@ QMap<const QScreen *, QImage> DBusScreenGrabber::splitScreenImages(const QPixmap
 {
     QMap<const QScreen *, QImage> images;
     for (QScreen *screen : QGuiApplication::screens()) {
-        QRect geom = screen->geometry();
-        geom.setSize(screen->size() * screen->devicePixelRatio());
-        images.insert(screen, pixmap.copy(geom).toImage());
+        QRect geometry = screen->geometry();
+        geometry.setSize(screen->size() * screen->devicePixelRatio());
+        QPixmap screenPixmap = pixmap.copy(geometry);
+        screenPixmap.setDevicePixelRatio(screen->devicePixelRatio());
+        images.insert(screen, screenPixmap.toImage());
     }
     return images;
 }

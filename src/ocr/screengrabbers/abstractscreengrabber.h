@@ -30,8 +30,6 @@ class AbstractScreenGrabber : public QObject
     Q_DISABLE_COPY(AbstractScreenGrabber)
 
 public:
-    virtual bool ignoreDevicePixelRatio() const;
-
     static AbstractScreenGrabber *createScreenGrabber(QObject *parent = nullptr);
 
 signals:

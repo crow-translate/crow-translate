@@ -36,11 +36,6 @@ AbstractScreenGrabber::AbstractScreenGrabber(QObject *parent)
 {
 }
 
-bool AbstractScreenGrabber::ignoreDevicePixelRatio() const
-{
-    return false;
-}
-
 AbstractScreenGrabber *AbstractScreenGrabber::createScreenGrabber(QObject *parent)
 {
 #ifdef Q_OS_LINUX

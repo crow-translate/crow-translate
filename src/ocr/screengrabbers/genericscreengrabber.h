@@ -30,8 +30,6 @@ class GenericScreenGrabber : public AbstractScreenGrabber
 public:
     explicit GenericScreenGrabber(QObject *parent = nullptr);
 
-    bool ignoreDevicePixelRatio() const override;
-
 public slots:
     void grab() override;
     void cancel() override;
