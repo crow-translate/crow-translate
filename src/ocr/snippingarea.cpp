@@ -593,6 +593,8 @@ void SnippingArea::drawDragHandles(QPainter &painter)
 
 void SnippingArea::drawMagnifier(QPainter &painter) const
 {
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform, false);
+
     const int pixels = 2 * s_magPixels + 1;
     auto magX = static_cast<int>(m_mousePos.x() * m_devicePixelRatio - s_magPixels);
     int offsetX = 0;
@@ -639,6 +641,8 @@ void SnippingArea::drawMagnifier(QPainter &painter) const
     painter.setCompositionMode(QPainter::CompositionMode_SourceOver);
     for (const QRectF &rect : {crossHairTop, crossHairRight, crossHairBottom, crossHairLeft})
         painter.fillRect(rect, m_crossColor);
+
+    painter.setRenderHints(QPainter::Antialiasing | QPainter::SmoothPixmapTransform);
 }
 
 void SnippingArea::drawMidHelpText(QPainter &painter) const
