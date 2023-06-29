@@ -43,6 +43,18 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.10.6" date="2023-06-29">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Fix screen capture DPI.</li>
+          <li>Do not apply smoothing to the magnifier's image.</li>
+          <li>Read settings from application directory when building in portable mode.</li>
+          <li>Add missing Basque localization.</li>
+          <li>Use correct flags for Cantonese, Chinese (Traditional), and Uighur.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.10.5" date="2023-05-18">
       <description>
         <p>Changelog:</p>
