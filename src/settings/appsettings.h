@@ -385,9 +385,6 @@ public:
 private:
     static QTranslator s_appTranslator;
     static QTranslator s_qtTranslator; // Qt library translations
-#ifdef WITH_PORTABLE_MODE
-    static inline const QString s_portableConfigName = QCoreApplication::applicationDirPath() + "/" + QStringLiteral("settings.ini");
-#endif
 
     QSettings *m_settings;
 };
