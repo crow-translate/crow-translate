@@ -44,7 +44,7 @@ AppSettings::AppSettings(QObject *parent)
 #ifndef WITH_PORTABLE_MODE
     , m_settings(new QSettings(this))
 #else
-    , m_settings(QFile::exists(s_portableConfigName) ? new QSettings(s_portableConfigName, QSettings::IniFormat, this) : new QSettings(this))
+    , m_settings(QFile::exists(AppSettings::portableConfigName()) ? new QSettings(AppSettings::portableConfigName(), QSettings::IniFormat, this) : new QSettings(this))
 #endif
 {
 }
@@ -206,7 +206,7 @@ bool AppSettings::isPortableModeEnabled() const
 void AppSettings::setPortableModeEnabled(bool enabled)
 {
     if (enabled) {
-        QFile configFile(s_portableConfigName);
+        QFile configFile(AppSettings::portableConfigName());
 #if QT_VERSION >= QT_VERSION_CHECK(5, 11, 0)
         configFile.open(QIODevice::NewOnly);
 #else
@@ -214,13 +214,15 @@ void AppSettings::setPortableModeEnabled(bool enabled)
             configFile.open(QIODevice::WriteOnly);
 #endif
     } else {
-        QFile::remove(s_portableConfigName);
+        QFile::remove(AppSettings::portableConfigName());
     }
 }
 
 QString AppSettings::portableConfigName()
 {
-    return s_portableConfigName;
+    // Initialize lazily because `QCoreApplication::applicationDirPath()` should be called after app creation
+    static const QString portableConfigName = QCoreApplication::applicationDirPath() + "/" + QStringLiteral("settings.ini");
+    return portableConfigName;
 }
 #endif
 
