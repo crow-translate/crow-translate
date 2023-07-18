@@ -71,6 +71,34 @@
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QToolButton" name="writeTTSAudioTBsr">
+          <property name="toolTip">
+           <string>Write TTS Audio to File...</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset theme="audio-x-generic">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="writeTextFileTBsr">
+          <property name="toolTip">
+           <string>Write text to File...</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset theme="document-save">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
        </layout>
       </item>
       <item row="4" column="1">
@@ -273,6 +301,34 @@
           </property>
           <property name="icon">
            <iconset theme="transform-crop">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="writeTTSAudioTBtr">
+          <property name="toolTip">
+           <string>Write TTS Audio to File...</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset theme="audio-x-generic">
+            <normaloff>.</normaloff>.</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QToolButton" name="writeTextFileTBtr">
+          <property name="toolTip">
+           <string>Write Text to File...</string>
+          </property>
+          <property name="text">
+           <string>...</string>
+          </property>
+          <property name="icon">
+           <iconset theme="document-save">
             <normaloff>.</normaloff>.</iconset>
           </property>
          </widget>
@@ -622,6 +678,70 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>writeTextFileTBsr</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runWriteToTextFileInSr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>235</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>writeTextFileTBtr</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runWriteToTextFileInTr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>596</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>writeTTSAudioTBsr</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runTTsAudioFileInSr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>205</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>writeTTSAudioTBtr</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runTTsAudioFileInTr()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>566</x>
+     <y>183</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>324</x>
+     <y>102</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>swapLanguages()</slot>
@@ -635,5 +755,9 @@
   <slot>delayedRecognizeScreenArea()</slot>
   <slot>delayedTranslateScreenArea()</slot>
   <slot>markContentAsChanged()</slot>
+  <slot>runWriteToTextFileInSr()</slot>
+  <slot>runWriteToTextFileInTr()</slot>
+  <slot>runTTsAudioFileInSr()</slot>
+  <slot>runTTsAudioFileInTr()</slot>
  </slots>
 </ui>

@@ -197,6 +197,102 @@ bool AppSettings::defaultAutostartEnabled()
     return false;
 }
 
+void AppSettings::setEnableCustWorkSpace(bool enable)
+{
+    m_settings->setValue(QStringLiteral("EnableCustWorkSpace"), enable);
+}
+
+bool AppSettings::isEnableCustWorkSpace() const
+{
+    return m_settings->value(QStringLiteral("EnableCustWorkSpace"), defaultEnableCustWorkSpace()).toBool();
+}
+
+bool AppSettings::defaultEnableCustWorkSpace()
+{
+    return false;
+}
+
+//My updates
+QString AppSettings::getCustWorkSpace() const
+{
+    return m_settings->value("WorkSpace", defaultCustWorkSpace()).toString();
+}
+
+void AppSettings::setCustWorkSpace(QString path)
+{
+    m_settings->setValue("WorkSpace",path);//or path
+}
+
+QString AppSettings::defaultCustWorkSpace()
+{
+#ifdef Q_OS_LINUX
+    return ".crow-translate";
+#endif
+    return "C:/.Crow";
+}
+
+void AppSettings::setEnableCustFileName(bool enable)
+{
+    m_settings->setValue(QStringLiteral("EnableCustFileName"), enable);
+}
+
+bool AppSettings::isEnableCustFileName() const
+{
+    return m_settings->value(QStringLiteral("EnableCustFileName"), defaultEnableCustFileName()).toBool();
+}
+
+bool AppSettings::defaultEnableCustFileName()
+{
+    return false;
+}
+
+QString AppSettings::getCustFileName() const
+{
+    return m_settings->value("FileName", defaultCustFileName()).toString();
+}
+
+void AppSettings::setCustFileName(QString filename)
+{
+    m_settings->setValue("FileName", filename);
+}
+
+QString AppSettings::defaultCustFileName()
+{
+    return "Crow-translate.txt";
+}
+
+void AppSettings::setEnableCustAudioFileName(bool enable)
+{
+    m_settings->setValue(QStringLiteral("EnableCustAudioFileName"), enable);
+}
+
+bool AppSettings::isEnableCustAudioFileName() const
+{
+    return m_settings->value(QStringLiteral("EnableCustAudioFileName"), defaultEnableCustAudioFile()).toBool();
+}
+
+bool AppSettings::defaultEnableCustAudioFile()
+{
+    return false;
+}
+
+QString AppSettings::getCustAudioFileName() const
+{
+    return m_settings->value("AudioName", defaultCustAudioFileName()).toString();
+}
+
+void AppSettings::setCustAudioFileName(QString audio_file)
+{
+    m_settings->setValue("AudioName", audio_file);
+}
+
+QString AppSettings::defaultCustAudioFileName()
+{
+    return "Crow-translate.mp3";
+}
+
+//End my updates
+
 #ifdef WITH_PORTABLE_MODE
 bool AppSettings::isPortableModeEnabled() const
 {

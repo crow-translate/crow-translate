@@ -170,6 +170,10 @@ add_executable(${PROJECT_NAME}
     src/settings/shortcutsmodel/shortcutsview.cpp
     src/settings/tesseractparameterstablewidget.cpp
     src/settings/autostartmanager/abstractautostartmanager.cpp
+    src/fileutil/fileutil.h
+    src/fileutil/fileutil.cpp
+    src/fileutil/showmsg.h
+    src/fileutil/showmsg.cpp    
     src/sourcetextedit.cpp
     src/speakbuttons.cpp
     src/speakbuttons.ui

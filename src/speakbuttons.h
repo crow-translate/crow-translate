@@ -61,6 +61,8 @@ public:
     void speak(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
     void pauseSpeaking();
     void playPauseSpeaking();
+    QList<QString>  getUrlToFileMp3(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine);
+
 
 public slots:
     void stopSpeaking();

@@ -21,7 +21,7 @@
 #define SETTINGSDIALOG_H
 
 #include "qonlinetts.h"
-
+#include "fileutil/fileutil.h"
 #include <QDialog>
 
 class MainWindow;
@@ -30,6 +30,9 @@ class QOnlineTranslator;
 class QMediaPlayer;
 class QMediaPlaylist;
 class ShortcutItem;
+class FileUtil;
+class ShowMsg;
+
 #ifdef WITH_PORTABLE_MODE
 class QCheckBox;
 #endif
@@ -56,6 +59,7 @@ public:
 public slots:
     void accept() override;
 
+
 private slots:
     void setCurrentPage(int index);
 
@@ -65,6 +69,14 @@ private slots:
     void onTrayIconTypeChanged(int type);
     void selectCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
+
+    //Mines for Workspace and files .txt or .md and mp3
+    void onCustFileNameChanged(int mode);//To trate field Cust File Name
+    void onCustAudioTTSChanged(int mode);//To trate field Cust Audio File name
+    //
+    void onSelectWorkSpaceData(); //To Select new WorkSpace
+    void onValidFileNameData();   //To Validate data entry to File Name
+    void onValidAudioFileData();  //To Validate data entry to Audio Name
 
     void selectOcrLanguagesPath();
     void onOcrLanguagesPathChanged(const QString &path);
@@ -109,6 +121,10 @@ private:
     // Test voice
     QOnlineTranslator *m_yandexTranslator;
     QOnlineTranslator *m_googleTranslator;
+
+    //Work on Files
+    FileUtil * m_fileUtil;
+    ShowMsg * m_msg;
 
 #ifdef WITH_PORTABLE_MODE
     QCheckBox *m_portableCheckbox;

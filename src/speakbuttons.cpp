@@ -180,6 +180,32 @@ void SpeakButtons::playPauseSpeaking()
         m_mediaPlayer->play();
 }
 
+QList<QString> SpeakButtons::getUrlToFileMp3(const QString &text, QOnlineTranslator::Language lang, QOnlineTranslator::Engine engine)
+{
+    QList<QString> m_strurl;
+
+    if (text.isEmpty()) {
+        QMessageBox::information(this, tr("No text specified"), tr("Playback text is empty"));
+        return m_strurl;
+    }
+
+    QOnlineTts onlineTts;
+    onlineTts.setRegions(m_googleRegions);
+
+    onlineTts.generateUrls(text, engine, lang, voice(engine), emotion(engine));
+    if (onlineTts.error() != QOnlineTts::NoError) {
+        QMessageBox::critical(this, tr("Unable to generate URLs for TTS"), onlineTts.errorString());
+        return m_strurl;
+    }
+
+// Use playlist to split long queries due engines limit
+//    const QList<QMediaContent> media = onlineTts.media();
+//    playlist()->clear();
+//    playlist()->addMedia(media);
+//    m_mediaPlayer->play();
+    return onlineTts.strurl();
+}
+
 void SpeakButtons::stopSpeaking()
 {
     m_mediaPlayer->stop();

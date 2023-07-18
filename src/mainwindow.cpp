@@ -77,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent)
     , m_orientationWatcher(new ScreenWatcher(this))
     , m_screenGrabber(AbstractScreenGrabber::createScreenGrabber(this))
     , m_snippingArea(new SnippingArea(this))
+    , m_fileutil(new FileUtil())
+    , m_msg(new ShowMsg())
 {
     ui->setupUi(this);
 
@@ -485,6 +487,114 @@ void MainWindow::forceTranslationAutodetect()
         m_listenForContentChanges = before;
     }
 }
+
+//Mine's events start here
+/**
+ * To write Text File from the sourcer
+ * Text to tranlate...
+ * @brief MainWindow::runWriteToTextFileInSr
+ */
+void MainWindow::runWriteToTextFileInSr()
+{
+    QString source_text = ui->sourceEdit->toSourceText();
+    m_fileutil->writeTxtFile(source_text);
+
+    if(m_fileutil->getMsg()->getMsgType() == INFO){
+        m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+    }else{
+        m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+    }
+}
+
+/**
+ * To write Text File from the translate
+ * Text tranlated...
+ * @brief MainWindow::runWriteToTextFileInTr
+ */
+void MainWindow::runWriteToTextFileInTr()
+{
+    QString source_text = ui->translationEdit->toPlainText();
+
+    m_fileutil->writeTxtFile(source_text);
+
+    if(m_fileutil->getMsg()->getMsgType() == INFO){
+        m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+    }else{
+        m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+    }
+}
+
+/**
+ * Write audio to translate
+ * @brief MainWindow::runTTsAudioFileInSr
+ */
+void MainWindow::runTTsAudioFileInSr()
+{
+    QList<QString> m_url_audio;
+    QString lang = QOnlineTranslator::languageCode(ui->sourceLanguagesWidget->checkedLanguage());
+
+    m_url_audio = ui->sourceSpeakButtons->getUrlToFileMp3(ui->sourceEdit->toSourceText(), ui->sourceLanguagesWidget->checkedLanguage(), currentEngine());
+    //
+    if(!m_url_audio.empty()){
+        int seq=0;
+        if(m_url_audio.size() > 1){
+            foreach (QString m_url, m_url_audio) {
+                seq++;
+                m_fileutil->writeMp3File(m_url,lang ,seq);
+                if(m_fileutil->getMsg()->getMsgType() == INFO){
+                    m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+                }else{
+                    m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+                }
+            }
+        }else{
+            m_fileutil->writeMp3File(m_url_audio.at(seq),lang ,seq);
+            if(m_fileutil->getMsg()->getMsgType() == INFO){
+                m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+            }else{
+                m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+            }
+        }
+    }
+
+}
+
+/**
+ * Write audio translated...
+ * @brief MainWindow::runTTsAudioFileInTr
+ */
+void MainWindow::runTTsAudioFileInTr()
+{
+    QList<QString> m_url_audio;
+    QString lang = QOnlineTranslator::languageCode(ui->translationLanguagesWidget->checkedLanguage());
+
+    m_url_audio = ui->sourceSpeakButtons->getUrlToFileMp3(ui->translationEdit->translation(), ui->translationEdit->translationLanguage(), currentEngine());
+    //
+    if(!m_url_audio.empty()){
+        int seq=0;
+        if(m_url_audio.size() > 1){
+            foreach (QString m_url, m_url_audio) {
+                seq++;
+                m_fileutil->writeMp3File(m_url,lang ,seq);
+                if(m_fileutil->getMsg()->getMsgType() == INFO){
+                    m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+                }else{
+                    m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+                }
+            }
+        }else{
+            m_fileutil->writeMp3File(m_url_audio.at(seq),lang ,seq);
+            if(m_fileutil->getMsg()->getMsgType() == INFO){
+                m_msg->ShowGuiMessage(INFO,tr("Information"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+            }else{
+                m_msg->ShowGuiMessage(ERROR,tr("Error"), tr(m_fileutil->getMsg()->getMsg().toStdString().c_str()));
+            }
+        }
+    }
+}
+
+//Mine's events end here
+
 
 void MainWindow::minimize()
 {
@@ -1045,6 +1155,12 @@ void MainWindow::loadAppSettings()
     ui->swapButton->setShortcut(settings.swapShortcut());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
+
+    //Added batista
+    //Set data to work with Files and WorkSpace
+    m_fileutil->setWorkSpace(settings.getCustWorkSpace());
+    m_fileutil->setTextFile(settings.getCustFileName());
+    m_fileutil->setAudioFile(settings.getCustAudioFileName());
 }
 
 // Toggle language logic

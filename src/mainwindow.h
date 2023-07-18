@@ -40,6 +40,8 @@ class QTaskbarControl;
 class QComboBox;
 class QShortcut;
 class QToolButton;
+class FileUtil;
+class ShowMsg;
 
 namespace Ui
 {
@@ -121,6 +123,13 @@ private slots:
     void showTranslationWindow();
     void copyTranslationToClipboard();
 
+    //Added batista
+    void runWriteToTextFileInSr();
+    void runWriteToTextFileInTr();
+    void runTTsAudioFileInSr();
+    void runTTsAudioFileInTr();
+    //End Added
+
     void forceSourceAutodetect();
     void forceTranslationAutodetect();
 
@@ -198,6 +207,10 @@ private:
     QOnlineTranslator::Language m_secondaryLanguage;
 
     AppSettings::WindowMode m_windowMode;
+
+    //Added batista
+    FileUtil * m_fileutil;
+    ShowMsg * m_msg;
 
     bool m_forceSourceAutodetect;
     bool m_forceTranslationAutodetect;

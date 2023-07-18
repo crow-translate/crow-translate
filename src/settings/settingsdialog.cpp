@@ -46,6 +46,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     , m_autostartManager(AbstractAutostartManager::createAutostartManager(this))
     , m_yandexTranslator(new QOnlineTranslator(this))
     , m_googleTranslator(new QOnlineTranslator(this))
+    , m_fileUtil(new FileUtil())
+    , m_msg(new ShowMsg())
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif
@@ -219,6 +221,11 @@ void SettingsDialog::accept()
     settings.setShowTrayIcon(ui->showTrayIconCheckBox->isChecked());
     settings.setStartMinimized(ui->startMinimizedCheckBox->isChecked());
     m_autostartManager->setAutostartEnabled(ui->autostartCheckBox->isChecked());
+    //Batista added for workspace...
+    settings.setCustWorkSpace(ui->workSpPathLineEdit->text());
+    settings.setCustFileName(ui->fileNameLineEdit->text());
+    settings.setCustAudioFileName(ui->audioFileNameLineEdit->text());
+    //end added
 #ifdef Q_OS_WIN
     settings.setCheckForUpdatesInterval(static_cast<AppSettings::Interval>(m_checkForUpdatesComboBox->currentIndex()));
 #endif
@@ -347,6 +354,98 @@ void SettingsDialog::selectCustomTrayIcon()
     if (!file.isEmpty())
         ui->customTrayIconEdit->setText(file);
 }
+//Start batista updates
+/**
+ * Enable LineEdit file name to edit..
+ * @brief SettingsDialog::onCustFileNameChanged
+ * @param mode
+ */
+void SettingsDialog::onCustFileNameChanged(int mode)
+{
+    if (mode == Qt::Checked) {
+        m_fileUtil->setTmp_textfn(ui->fileNameLineEdit->text());
+        ui->fileNameLineEdit->clear();
+        ui->fileNameLineEdit->setEnabled(true);//Enable LineEdit
+        ui->custFileNameCkBox->setDisabled(true);//Disable CheckBox
+    }
+}
+
+/**
+ * Enable Audio file name to edit.
+ * @brief SettingsDialog::onCustAudioTTSChanged
+ * @param mode
+ */
+void SettingsDialog::onCustAudioTTSChanged(int mode)
+{
+    if (mode == Qt::Checked) {
+        m_fileUtil->setTmp_audiofn(ui->audioFileNameLineEdit->text());
+        ui->audioFileNameLineEdit->clear();
+        ui->audioFileNameLineEdit->setEnabled(true);//Enable LineEdit
+        ui->custAudioToTTSCkBox->setDisabled(true);//Disable CheckBox
+    }
+}
+
+/**
+ * Allow select new Workspace...
+ * @brief SettingsDialog::onSelectWorkSpaceData
+ */
+void SettingsDialog::onSelectWorkSpaceData()
+{
+    const QString path = ui->workSpPathLineEdit->text().left(ui->workSpPathLineEdit->text().lastIndexOf(QDir::separator()));
+    //
+    QString dir =
+        QFileDialog::getExistingDirectory(
+            this,
+            tr("Open Directory"),
+            path,
+            QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
+    if (!dir.isEmpty()) m_fileUtil->setWorkSpace(dir);
+    if(m_fileUtil->validDir()){
+        ui->workSpPathLineEdit->setText(dir);
+        ui->custWorkSpPathCkBox->setDisabled(false);//Enable CheckBox
+        ui->custWorkSpPathCkBox->setChecked(false);//UnCheck CheckBox
+    }
+}
+
+/**
+ * Check data entered for file name..
+ * @brief SettingsDialog::onValidFileNameData
+ */
+void SettingsDialog::onValidFileNameData()
+{
+    QString str_file = ui->fileNameLineEdit->text();
+    //
+    if(m_fileUtil->validStrFile(str_file)){
+        ui->custFileNameCkBox->setEnabled(true);
+        ui->custFileNameCkBox->setChecked(false);
+        ui->fileNameLineEdit->setDisabled(true);
+    }else{
+        ui->custFileNameCkBox->setChecked(false);
+        ui->fileNameLineEdit->setText(m_fileUtil->getTmp_textfn());
+        m_msg->ShowGuiMessage(WARN,tr("Warning"),tr("The file name has illegal characters or extension..."));
+    }
+}
+
+/**
+ * Check data entered for audio file name..
+ * @brief SettingsDialog::onValidAudioFileData
+ */
+void SettingsDialog::onValidAudioFileData()
+{
+    QString str_file = ui->audioFileNameLineEdit->text();
+    //
+    if(m_fileUtil->validStrAudioFileName(str_file)){
+        ui->custAudioToTTSCkBox->setEnabled(true);
+        ui->custAudioToTTSCkBox->setChecked(false);
+        ui->audioFileNameLineEdit->setDisabled(true);
+    }else{
+        ui->custAudioToTTSCkBox->setChecked(false);
+        ui->audioFileNameLineEdit->setText(m_fileUtil->getTmp_audiofn());
+        m_msg->ShowGuiMessage(WARN,tr("Warning"),tr("The file name has illegal characters or extension..."));
+    }
+}
+//End batista updates
 
 void SettingsDialog::setCustomTrayIconPreview(const QString &iconPath)
 {
@@ -530,6 +629,12 @@ void SettingsDialog::restoreDefaults()
     ui->showTrayIconCheckBox->setChecked(AppSettings::defaultShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(AppSettings::defaultStartMinimized());
     ui->autostartCheckBox->setChecked(AppSettings::defaultAutostartEnabled());
+    //added batista
+    ui->workSpPathLineEdit->setText(AppSettings::defaultCustWorkSpace());
+    ui->fileNameLineEdit->setText(AppSettings::defaultCustFileName());
+    ui->audioFileNameLineEdit->setText(AppSettings::defaultCustAudioFileName());
+    //end added batista
+
 #ifdef Q_OS_WIN
     m_checkForUpdatesComboBox->setCurrentIndex(AppSettings::defaultCheckForUpdatesInterval());
 #endif
@@ -638,6 +743,12 @@ void SettingsDialog::loadSettings()
     ui->showTrayIconCheckBox->setChecked(settings.isShowTrayIcon());
     ui->startMinimizedCheckBox->setChecked(settings.isStartMinimized());
     ui->autostartCheckBox->setChecked(m_autostartManager->isAutostartEnabled());
+    //Added batista
+    ui->workSpPathLineEdit->setText(settings.getCustWorkSpace());
+    ui->fileNameLineEdit->setText(settings.getCustFileName());
+    ui->audioFileNameLineEdit->setText(settings.getCustAudioFileName());
+    //end added batista
+
 #ifdef WITH_PORTABLE_MODE
     m_portableCheckbox->setChecked(settings.isPortableModeEnabled());
 #endif

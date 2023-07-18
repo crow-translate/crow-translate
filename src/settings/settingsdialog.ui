@@ -127,7 +127,7 @@
          <x>0</x>
          <y>0</y>
          <width>626</width>
-         <height>609</height>
+         <height>608</height>
         </rect>
        </property>
        <layout class="QVBoxLayout" name="verticalLayout_2">
@@ -281,6 +281,81 @@
                  </property>
                  <property name="text">
                   <string>Launch at startup</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="0">
+                <widget class="QLabel" name="workSpPathLabel">
+                 <property name="toolTip">
+                  <string>Path to write your content file...</string>
+                 </property>
+                 <property name="text">
+                  <string>Workspace:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="11" column="1">
+                <widget class="QLineEdit" name="workSpPathLineEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="15" column="0">
+                <widget class="QLabel" name="fileNameLabel">
+                 <property name="toolTip">
+                  <string>Current file name to save..</string>
+                 </property>
+                 <property name="text">
+                  <string>File to Save:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="15" column="1">
+                <widget class="QLineEdit" name="fileNameLineEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                </widget>
+               </item>
+               <item row="18" column="0">
+                <widget class="QLabel" name="audioFileNameLabel">
+                 <property name="text">
+                  <string>Audio File to TTS:</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="18" column="1">
+                <widget class="QLineEdit" name="audioFileNameLineEdit">
+                 <property name="enabled">
+                  <bool>false</bool>
+                 </property>
+                 <property name="toolTip">
+                  <string>Name to audio from TTS..</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="10" column="1">
+                <widget class="QCheckBox" name="custWorkSpPathCkBox">
+                 <property name="toolTip">
+                  <string>Check to edit default workspace...</string>
+                 </property>
+                 <property name="text">
+                  <string>Edit default Workspace..</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="14" column="1">
+                <widget class="QCheckBox" name="custFileNameCkBox">
+                 <property name="text">
+                  <string>Edit Current File to Save.</string>
+                 </property>
+                </widget>
+               </item>
+               <item row="17" column="1">
+                <widget class="QCheckBox" name="custAudioToTTSCkBox">
+                 <property name="text">
+                  <string>Edit Default File to Save.</string>
                  </property>
                 </widget>
                </item>
@@ -2467,6 +2542,86 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>custWorkSpPathCkBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onSelectWorkSpaceData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>291</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>custFileNameCkBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onCustFileNameChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>359</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>custAudioToTTSCkBox</sender>
+   <signal>stateChanged(int)</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onCustAudioTTSChanged(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>427</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileNameLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onValidFileNameData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>414</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>audioFileNameLineEdit</sender>
+   <signal>editingFinished()</signal>
+   <receiver>SettingsDialog</receiver>
+   <slot>onValidAudioFileData()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>627</x>
+     <y>482</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>424</x>
+     <y>329</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>onProxyTypeChanged(int)</slot>
@@ -2492,5 +2647,10 @@
   <slot>onGoogleLanguageSelectionChanged(int)</slot>
   <slot>saveGoogleEngineRegion(int)</slot>
   <slot>detectGoogleTextLanguage()</slot>
+  <slot>onCustFileNameChanged(int)</slot>
+  <slot>onCustAudioTTSChanged(int)</slot>
+  <slot>onSelectWorkSpaceData()</slot>
+  <slot>onValidFileNameData()</slot>
+  <slot>onValidAudioFileData()</slot>
  </slots>
 </ui>
