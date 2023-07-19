@@ -70,14 +70,14 @@ private slots:
     void selectCustomTrayIcon();
     void setCustomTrayIconPreview(const QString &iconPath);
 
-    //Mines for Workspace and files .txt or .md and mp3
+    //Batista: for Workspace and files .txt or .md and mp3
     void onCustFileNameChanged(int mode);//To trate field Cust File Name
     void onCustAudioTTSChanged(int mode);//To trate field Cust Audio File name
     //
     void onSelectWorkSpaceData(); //To Select new WorkSpace
     void onValidFileNameData();   //To Validate data entry to File Name
     void onValidAudioFileData();  //To Validate data entry to Audio Name
-
+    //end
     void selectOcrLanguagesPath();
     void onOcrLanguagesPathChanged(const QString &path);
     void onTesseractParametersCurrentItemChanged();
@@ -122,7 +122,7 @@ private:
     QOnlineTranslator *m_yandexTranslator;
     QOnlineTranslator *m_googleTranslator;
 
-    //Work on Files
+    //Batista: Work on Files and validation
     FileUtil * m_fileUtil;
     ShowMsg * m_msg;
 
