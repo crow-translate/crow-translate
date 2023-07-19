@@ -161,6 +161,10 @@ add_executable(${PROJECT_NAME}
     src/popupwindow.ui
     src/screenwatcher.cpp
     src/selection.cpp
+    src/fileutil/fileutil.h
+    src/fileutil/fileutil.cpp
+    src/fileutil/showmsg.h
+    src/fileutil/showmsg.cpp
     src/settings/appsettings.cpp
     src/settings/ocrlanguageslistwidget.cpp
     src/settings/settingsdialog.cpp
