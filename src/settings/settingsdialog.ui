@@ -287,10 +287,10 @@
                <item row="11" column="0">
                 <widget class="QLabel" name="workSpPathLabel">
                  <property name="toolTip">
-                  <string>Path to write your content file...</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Path to write your content file.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
-                  <string>Workspace:</string>
+                  <string>WorkSpace:</string>
                  </property>
                 </widget>
                </item>
@@ -299,15 +299,18 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Default WorkSpace...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                 </widget>
                </item>
                <item row="15" column="0">
                 <widget class="QLabel" name="fileNameLabel">
                  <property name="toolTip">
-                  <string>Current file name to save..</string>
+                  <string>Your default text file name.</string>
                  </property>
                  <property name="text">
-                  <string>File to Save:</string>
+                  <string>Text File:</string>
                  </property>
                 </widget>
                </item>
@@ -316,12 +319,18 @@
                  <property name="enabled">
                   <bool>false</bool>
                  </property>
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Default text file name...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                 </widget>
                </item>
                <item row="18" column="0">
                 <widget class="QLabel" name="audioFileNameLabel">
+                 <property name="toolTip">
+                  <string>Your default audio file name.</string>
+                 </property>
                  <property name="text">
-                  <string>Audio File to TTS:</string>
+                  <string>Audio File:</string>
                  </property>
                 </widget>
                </item>
@@ -331,31 +340,37 @@
                   <bool>false</bool>
                  </property>
                  <property name="toolTip">
-                  <string>Name to audio from TTS..</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Default audio file name...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                 </widget>
                </item>
                <item row="10" column="1">
                 <widget class="QCheckBox" name="custWorkSpPathCkBox">
                  <property name="toolTip">
-                  <string>Check to edit default workspace...</string>
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check to edit default WorkSpace...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="text">
-                  <string>Edit default Workspace..</string>
+                  <string>Edit default WorkSpace..</string>
                  </property>
                 </widget>
                </item>
                <item row="14" column="1">
                 <widget class="QCheckBox" name="custFileNameCkBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check to edit default text file name...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <property name="text">
-                  <string>Edit Current File to Save.</string>
+                  <string>Edit the current working file.</string>
                  </property>
                 </widget>
                </item>
                <item row="17" column="1">
                 <widget class="QCheckBox" name="custAudioToTTSCkBox">
+                 <property name="toolTip">
+                  <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Check to edit default audio file name...&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+                 </property>
                  <property name="text">
-                  <string>Edit Default File to Save.</string>
+                  <string>Edit the current working file.</string>
                  </property>
                 </widget>
                </item>

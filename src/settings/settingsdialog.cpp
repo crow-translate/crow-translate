@@ -370,7 +370,6 @@ void SettingsDialog::onCustFileNameChanged(int mode)
 {
     if (mode == Qt::Checked) {
         m_fileUtil->setTmp_textfn(ui->fileNameLineEdit->text());
-        ui->fileNameLineEdit->clear();
         ui->fileNameLineEdit->setEnabled(true);//Enable LineEdit
         ui->custFileNameCkBox->setDisabled(true);//Disable CheckBox
     }
@@ -385,7 +384,6 @@ void SettingsDialog::onCustAudioTTSChanged(int mode)
 {
     if (mode == Qt::Checked) {
         m_fileUtil->setTmp_audiofn(ui->audioFileNameLineEdit->text());
-        ui->audioFileNameLineEdit->clear();
         ui->audioFileNameLineEdit->setEnabled(true);//Enable LineEdit
         ui->custAudioToTTSCkBox->setDisabled(true);//Disable CheckBox
     }
