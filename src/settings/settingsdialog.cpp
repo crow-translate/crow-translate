@@ -46,6 +46,8 @@ SettingsDialog::SettingsDialog(MainWindow *parent)
     , m_autostartManager(AbstractAutostartManager::createAutostartManager(this))
     , m_yandexTranslator(new QOnlineTranslator(this))
     , m_googleTranslator(new QOnlineTranslator(this))
+    , m_fileUtil(new FileUtil())
+    , m_msg(new ShowMsg())
 #ifdef WITH_PORTABLE_MODE
     , m_portableCheckbox(new QCheckBox(tr("Portable mode"), this))
 #endif

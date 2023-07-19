@@ -117,6 +117,31 @@ public:
     void setAutostartEnabled(bool enabled);
     static bool defaultAutostartEnabled();
 
+           //For Workspace
+    void setEnableCustWorkSpace(bool enable);
+    bool isEnableCustWorkSpace() const;
+    static bool defaultEnableCustWorkSpace();
+    QString  getCustWorkSpace() const;
+    void setCustWorkSpace(QString path);
+    static QString defaultCustWorkSpace();
+
+           //For Custom File
+    void setEnableCustFileName(bool enable);
+    bool isEnableCustFileName() const;
+    static bool defaultEnableCustFileName();
+    QString  getCustFileName() const;
+    void setCustFileName(QString filename);
+    static QString defaultCustFileName();
+
+           //For Cust Audio File
+    void setEnableCustAudioFileName(bool enable);
+    bool isEnableCustAudioFileName() const;
+    static bool defaultEnableCustAudioFile();
+    QString  getCustAudioFileName() const;
+    void setCustAudioFileName(QString audio_file);
+    static QString defaultCustAudioFileName();
+    //End new updates
+
 #ifdef WITH_PORTABLE_MODE
     bool isPortableModeEnabled() const;
     static void setPortableModeEnabled(bool enabled);
