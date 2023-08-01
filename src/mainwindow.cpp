@@ -52,6 +52,9 @@
 #include <QShortcut>
 #include <QStateMachine>
 #include <QTimer>
+#ifdef Q_OS_LINUX
+#include <QX11Info>
+#endif
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -729,9 +732,6 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *showWindowState = new QState(state);
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
-
-    // On Wayland, the clipboard/selection content can only be obtained if the window is active
-    // so we need to show the window first
     state->setInitialState(showWindowState);
 
     connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
@@ -739,8 +739,18 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     buildSetSelectionAsSourceState(setSelectionAsSourceState);
     buildTranslationState(translationState);
 
-    showWindowState->addTransition(QGuiApplication::clipboard(), &QClipboard::selectionChanged, setSelectionAsSourceState);
-    setSelectionAsSourceState->addTransition(translationState);
+    // On Wayland, the clipboard/selection content can only be obtained only after the window becomes active
+#ifdef Q_OS_LINUX
+    const bool waitForClipboard = !QX11Info::isPlatformX11();
+#else
+    const bool waitForClipboard = false;
+#endif
+
+    if (waitForClipboard)
+        showWindowState->addTransition(QGuiApplication::clipboard(), &QClipboard::selectionChanged, setSelectionAsSourceState);
+    else
+        showWindowState->addTransition(setSelectionAsSourceState);
+    setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
 
