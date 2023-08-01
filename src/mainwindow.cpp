@@ -729,7 +729,7 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *showWindowState = new QState(state);
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
-    
+
     // On Wayland, the clipboard/selection content can only be obtained if the window is active
     // so we need to show the window first
     state->setInitialState(showWindowState);
