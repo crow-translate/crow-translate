@@ -732,12 +732,6 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
     auto *showWindowState = new QState(state);
     auto *translationState = new QState(state);
     auto *finalState = new QFinalState(state);
-    state->setInitialState(showWindowState);
-
-    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
-    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
-    buildSetSelectionAsSourceState(setSelectionAsSourceState);
-    buildTranslationState(translationState);
 
     // On Wayland, the clipboard/selection content can only be obtained only after the window becomes active
 #ifdef Q_OS_LINUX
@@ -745,11 +739,23 @@ void MainWindow::buildTranslateSelectionState(QState *state) const
 #else
     const bool waitForClipboard = false;
 #endif
-
     if (waitForClipboard)
-        showWindowState->addTransition(QGuiApplication::clipboard(), &QClipboard::selectionChanged, setSelectionAsSourceState);
+        state->setInitialState(showWindowState);
     else
-        showWindowState->addTransition(setSelectionAsSourceState);
+        state->setInitialState(setSelectionAsSourceState);
+
+    connect(setSelectionAsSourceState, &QState::entered, this, &MainWindow::forceTranslationAutodetect);
+    connect(showWindowState, &QState::entered, this, &MainWindow::showTranslationWindow);
+    buildSetSelectionAsSourceState(setSelectionAsSourceState);
+    buildTranslationState(translationState);
+
+    if (waitForClipboard) {
+        showWindowState->addTransition(QGuiApplication::clipboard(), &QClipboard::selectionChanged, setSelectionAsSourceState);
+        setSelectionAsSourceState->addTransition(translationState);
+    } else {
+        setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, showWindowState);
+        showWindowState->addTransition(translationState);
+    }
     setSelectionAsSourceState->addTransition(setSelectionAsSourceState, &QState::finished, translationState);
     translationState->addTransition(translationState, &QState::finished, finalState);
 }
