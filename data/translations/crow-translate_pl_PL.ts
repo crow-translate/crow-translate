@@ -32,7 +32,7 @@
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="104"/>
       <source>Current languages:</source>
-      <translation>Aktualne języki:</translation>
+      <translation>Obecne języki:</translation>
     </message>
     <message>
       <location filename="../../src/addlanguagedialog.cpp" line="35"/>
@@ -1618,7 +1618,7 @@
       <location filename="../../src/settings/settingsdialog.ui" line="181"/>
       <source>Auto</source>
       <extracomment>Orientation</extracomment>
-      <translation>Auto</translation>
+      <translation>Automatycznie</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="186"/>
