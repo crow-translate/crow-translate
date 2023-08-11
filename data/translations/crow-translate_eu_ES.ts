@@ -1370,7 +1370,7 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="680"/>
       <source>Enable source transcription</source>
-      <translation>Gaitu iturburuaren transliterazioa</translation>
+      <translation>Gaitu iturburuaren transkripzioa</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="690"/>
