@@ -194,18 +194,18 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>عرض النافذة أكبر من الشاشة بسبب اللغات الموجودة على اللوحة.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>الرجاء تقليل اللغات المضافة.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>تلقائي</translation>
     </message>
@@ -279,12 +279,12 @@
       <translation>ترجمة</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="406"/>
       <source>Unable to detect language</source>
       <translation>غير قادر على اكتشاف اللغة</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="458"/>
       <source>Unable to translate text</source>
       <translation>غير قادر على ترجمة النص</translation>
     </message>
@@ -292,12 +292,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to set OCR languages</source>
       <translation>غير قادر على تعيين لغات OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="976"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>غير قادر على تهيئة Tesseract مع %1</translation>
     </message>
@@ -312,7 +312,7 @@
       <translation>يجب عليك تعيين لغة OCR واحدة على الأقل في إعدادات التطبيق</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 ليس اسم معلمة Tesseract صالح.</translation>
     </message>
@@ -1032,46 +1032,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>خطأ: اكتشفت أنظمة المحركات حركة مرور مشبوهة من شبكة الكمبيوتر الخاصة بك. الرجاء محاولة طلبك مرة أخرى لاحقاً.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>خطأ: غير قادر على تحليل اللغة المكتشفة تلقائياً</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>خطأ: غير قادر على العثور على Yandex SID في إصدار الويب.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>خطأ: غير قادر على استخراج Yandex SID من إصدار الويب.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>خطأ: غير قادر على العثور على بيانات اعتماد بينغ في إصدار الويب.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>خطأ: غير قادر على استخراج مفتاح بينغ من إصدار الويب.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>خطأ: غير قادر على استخراج رمز بينغ من إصدار الويب.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>خطأ: غير قادر على استخراج معلومات بينغ الإضافية من إصدار الويب.</translation>
     </message>
@@ -1089,22 +1078,22 @@
       <translation>المحرك المحدد %1 لا يدعم إعدادات العاطفة</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>المحرك %1 لا يدعم TTS</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>اللغة المحددة %1 غير مدعومة لـ %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>الصوت المحدد %1 غير مدعوم لـ %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>المشاعر المحددة %1 غير مدعومة من قبل %2</translation>
     </message>
@@ -1171,8 +1160,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;System language&gt;</translation>
     </message>
@@ -1804,7 +1793,7 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>المنطقة الافتراضية</translation>
     </message>
@@ -1834,11 +1823,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;سجل الاختصارات العالمية في النظام&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>تمكين الاختصارات العالمية</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>الاختصار</translation>
@@ -1857,6 +1841,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;كلمة مرور الوكيل للمصادقة&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>تمكين الاختصارات العالمية</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1929,123 +1918,123 @@
       <translation>وضع المحمول</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>استخدم %1 من مجلد التطبيق لتخزين الإعدادات</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>التحديثات</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>التحقق من وجود تحديثات:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>كل يوم</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>كل أسبوع</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>كل شهر</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>ابداً</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>الأيقونات:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>تحقق الآن</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>التحقق من وجود تحديثات الآن</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>سنة جديدة سعيدة!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>لا يمكن أن تكون حقول معلمة OCR فارغة.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>هل تريد تجاهل المعلمات غير صالحة؟</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>اختر أيقونة</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>الصور (*.png *.ico *.svg *.jpg);جميع الملفات()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>حدد مسار اللغات OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>ماندارين (الصين)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>لا شيء للعب</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>نص التشغيل فارغ</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>غير قادر على اكتشاف اللغة</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>البحث عن تحديثات...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>استخدم %1 لتخزين الإعدادات</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>تحديث متوفر!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>لا توجد تحديثات متاحة.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>الرجوع</translation>
     </message>
@@ -2337,12 +2326,12 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>Invalid tray icon</source>
       <translation>أيقونة اللوحة غير صالحة</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="945"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>الرمز المحدد &apos;%1&apos; غير صالح. سيتم استخدام الرمز الافتراضي.</translation>
     </message>
