@@ -39,8 +39,8 @@ void registerDBusObject(QObject *object);
 int main(int argc, char *argv[])
 {
     QCoreApplication::setApplicationVersion(QStringLiteral("%1.%2.%3").arg(VERSION_MAJOR).arg(VERSION_MINOR).arg(VERSION_PATCH));
-    QCoreApplication::setApplicationName(QStringLiteral(APPLICATION_NAME));
-    QCoreApplication::setOrganizationName(QStringLiteral(APPLICATION_NAME));
+    QCoreApplication::setApplicationName(QStringLiteral(PROJECT_NAME));
+    QCoreApplication::setOrganizationName(QStringLiteral(PROJECT_NAME));
 
     if (argc == 1)
         return launchGui(argc, argv); // Launch GUI if there are no arguments
