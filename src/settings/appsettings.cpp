@@ -550,7 +550,7 @@ QString AppSettings::defaultEngineUrl(QOnlineTranslator::Engine engine)
     case QOnlineTranslator::LibreTranslate:
         return QStringLiteral("https://translate.argosopentech.com");
     case QOnlineTranslator::Lingva:
-        return QStringLiteral("https://lingva.ml");
+        return QStringLiteral("https://lingva.garudalinux.org");
     default:
         Q_UNREACHABLE();
     }
