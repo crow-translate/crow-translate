@@ -43,6 +43,15 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.11.0" date="2023-10-14">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Remove spaces in settings paths. Everywhere instead of "Crow Translate" now "crow-translate".</li>
+          <li>Use lingva.garudalinux.org by default for Lingva engine.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.10.10" date="2023-08-02">
       <description>
         <p>Changelog:</p>
