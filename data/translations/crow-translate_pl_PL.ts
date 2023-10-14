@@ -1661,7 +1661,7 @@
       <location filename="../../src/settings/settingsdialog.ui" line="486"/>
       <location filename="../../src/settings/settingsdialog.ui" line="510"/>
       <source>Full name</source>
-      <translation>Imię i nazwisko</translation>
+      <translation>Pełna nazwa</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="491"/>
