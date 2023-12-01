@@ -106,6 +106,7 @@ QVariant ShortcutsModel::data(const QModelIndex &index, int role) const
     const auto *shortcut = static_cast<ShortcutItem *>(index.internalPointer());
 
     switch (role) {
+    case Qt::ToolTipRole:
     case Qt::DisplayRole:
         switch (index.column()) {
         case DescriptionColumn:
