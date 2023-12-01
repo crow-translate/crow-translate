@@ -18,29 +18,6 @@
     </message>
 </context>
 <context>
-    <name>AddLanguageDialog</name>
-    <message>
-        <location filename="../../src/addlanguagedialog.ui" line="14"/>
-        <source>Add language</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/addlanguagedialog.ui" line="91"/>
-        <source>Available languages:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/addlanguagedialog.ui" line="104"/>
-        <source>Current languages:</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-        <source>Filter (%1)</source>
-        <translation type="unfinished"></translation>
-    </message>
-</context>
-<context>
     <name>AppSettings</name>
     <message>
         <location filename="../../src/settings/appsettings.cpp" line="1252"/>
@@ -212,6 +189,29 @@
     <message>
         <location filename="../../src/languagebuttonswidget.ui" line="32"/>
         <source>Edit languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>LanguagesDialog</name>
+    <message>
+        <location filename="../../src/languagesdialog.ui" line="14"/>
+        <source>Edit languages</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/languagesdialog.ui" line="91"/>
+        <source>Available languages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/languagesdialog.ui" line="104"/>
+        <source>Current languages:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/languagesdialog.cpp" line="35"/>
+        <source>Filter (%1)</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

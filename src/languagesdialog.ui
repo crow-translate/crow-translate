@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>AddLanguageDialog</class>
- <widget class="QDialog" name="AddLanguageDialog">
+ <class>LanguagesDialog</class>
+ <widget class="QDialog" name="LanguagesDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Add language</string>
+   <string>Edit languages</string>
   </property>
   <property name="windowIcon">
    <iconset theme="preferences-desktop-locale">
@@ -128,7 +128,7 @@
   <connection>
    <sender>dialogButtonBox</sender>
    <signal>accepted()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -144,7 +144,7 @@
   <connection>
    <sender>dialogButtonBox</sender>
    <signal>rejected()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -160,7 +160,7 @@
   <connection>
    <sender>availableLanguagesListWidget</sender>
    <signal>itemDoubleClicked(QListWidgetItem*)</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>moveLanguageRight()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -176,7 +176,7 @@
   <connection>
    <sender>searchEdit</sender>
    <signal>textChanged(QString)</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>filterLanguages(QString)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -192,7 +192,7 @@
   <connection>
    <sender>moveDownButton</sender>
    <signal>clicked()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>moveLanguageDown()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -208,7 +208,7 @@
   <connection>
    <sender>moveLeftButton</sender>
    <signal>clicked()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>moveLanguageLeft()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -224,7 +224,7 @@
   <connection>
    <sender>moveRightButton</sender>
    <signal>clicked()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>moveLanguageRight()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -240,7 +240,7 @@
   <connection>
    <sender>moveUpButton</sender>
    <signal>clicked()</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>moveLanguageUp()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -256,7 +256,7 @@
   <connection>
    <sender>currentLanguagesListWidget</sender>
    <signal>currentRowChanged(int)</signal>
-   <receiver>AddLanguageDialog</receiver>
+   <receiver>LanguagesDialog</receiver>
    <slot>checkVerticalMovement(int)</slot>
    <hints>
     <hint type="sourcelabel">

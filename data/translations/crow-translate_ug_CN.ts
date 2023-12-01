@@ -2,7 +2,7 @@
 <!DOCTYPE TS>
 <TS version="2.1" language="ug" sourcelanguage="en">
   <context>
-    <name>AddLanguageDialog</name>
+    <name>LanguagesDialog</name>
     <message>
       <location filename="../../src/addlanguagedialog.ui" line="14"/>
       <source>Add language</source>

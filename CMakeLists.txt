@@ -144,8 +144,8 @@ add_executable(${PROJECT_NAME}
     ${QM_FILES}
     data/icons/icon-theme.qrc
     data/icons/engines/engines.qrc
-    src/addlanguagedialog.cpp
-    src/addlanguagedialog.ui
+    src/languagesdialog.cpp
+    src/languagesdialog.ui
     src/cli.cpp
     src/contextmenu.cpp
     src/languagebuttonswidget.cpp
