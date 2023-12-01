@@ -32,6 +32,7 @@ TrayIcon::TrayIcon(MainWindow *parent)
     , m_openSettingsAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("configure")), tr("Settings"), parent, &MainWindow::openSettings))
     , m_quitAction(m_trayMenu->addAction(QIcon::fromTheme(QStringLiteral("application-exit")), tr("Quit"), parent, &MainWindow::quit))
 {
+    setToolTip(APPLICATION_NAME);
     setContextMenu(m_trayMenu);
 
     connect(this, &TrayIcon::activated, [parent](QSystemTrayIcon::ActivationReason reason) {
