@@ -10,7 +10,7 @@
     </message>
 </context>
 <context>
-    <name>AddLanguageDialog</name>
+    <name>LanguagesDialog</name>
     <message>
         <location filename="../../src/addlanguagedialog.ui" line="14"/>
         <source>Add language</source>

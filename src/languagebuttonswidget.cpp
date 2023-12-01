@@ -20,7 +20,7 @@
 #include "languagebuttonswidget.h"
 #include "ui_languagebuttonswidget.h"
 
-#include "addlanguagedialog.h"
+#include "languagesdialog.h"
 #include "screenwatcher.h"
 
 #include <QButtonGroup>
@@ -433,7 +433,7 @@ void LanguageButtonsWidget::setAutoLanguage(QOnlineTranslator::Language lang)
 
 void LanguageButtonsWidget::editLanguages()
 {
-    AddLanguageDialog langDialog(languages());
+    LanguagesDialog langDialog(languages());
     if (langDialog.exec() == QDialog::Accepted)
         setLanguages(langDialog.languages());
 }

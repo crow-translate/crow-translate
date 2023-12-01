@@ -30,17 +30,17 @@ class QShortcut;
 
 namespace Ui
 {
-class AddLanguageDialog;
+class LanguagesDialog;
 }
 
-class AddLanguageDialog : public QDialog
+class LanguagesDialog : public QDialog
 {
     Q_OBJECT
-    Q_DISABLE_COPY(AddLanguageDialog)
+    Q_DISABLE_COPY(LanguagesDialog)
 
 public:
-    explicit AddLanguageDialog(const QVector<QOnlineTranslator::Language> &currentLang, QWidget *parent = nullptr);
-    ~AddLanguageDialog() override;
+    explicit LanguagesDialog(const QVector<QOnlineTranslator::Language> &currentLang, QWidget *parent = nullptr);
+    ~LanguagesDialog() override;
 
     QVector<QOnlineTranslator::Language> languages() const;
 
@@ -62,7 +62,7 @@ private:
     static void moveLanguageVertically(QListWidget *widget, int offset);
     static void moveLanguageHorizontally(QListWidget *from, QListWidget *to, QAbstractButton *addButton, QAbstractButton *removeButton);
 
-    Ui::AddLanguageDialog *ui;
+    Ui::LanguagesDialog *ui;
     QShortcut *m_searchShortcut;
     QShortcut *m_acceptShortcut;
     QVector<QOnlineTranslator::Language> m_languages;
