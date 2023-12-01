@@ -2,6 +2,14 @@
 <ui version="4.0">
  <class>LanguageButtonsWidget</class>
  <widget class="QWidget" name="LanguageButtonsWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>84</width>
+    <height>32</height>
+   </rect>
+  </property>
   <layout class="QHBoxLayout" name="languagesLayout">
    <property name="spacing">
     <number>0</number>
@@ -20,6 +28,9 @@
    </property>
    <item>
     <widget class="QToolButton" name="editButton">
+     <property name="toolTip">
+      <string>Edit languages</string>
+     </property>
      <property name="icon">
       <iconset theme="document-edit">
        <normaloff>.</normaloff>.</iconset>
