@@ -4,7 +4,7 @@
   <context>
     <name>AbstractAutostartManager</name>
     <message>
-      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="52"/>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="56"/>
       <source>Unable to apply autostart settings</source>
       <translation>Impossibile applicare impostazioni avvio automatico</translation>
     </message>
@@ -12,38 +12,15 @@
   <context>
     <name>AbstractScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="63"/>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="58"/>
       <source>Unable to grab screen</source>
       <translation>Impossibile catturare lo schermo</translation>
     </message>
   </context>
   <context>
-    <name>LanguagesDialog</name>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="14"/>
-      <source>Add language</source>
-      <translation>Aggiungi lingua</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="91"/>
-      <source>Available languages:</source>
-      <translation>Lingue disponibili:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="104"/>
-      <source>Current languages:</source>
-      <translation>Lingue attuali:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-      <source>Filter (%1)</source>
-      <translation>Filtro (%1)</translation>
-    </message>
-  </context>
-  <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1245"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1252"/>
       <source>Unknown language code: %1</source>
       <translation>Codice lingua sconosciuto: %1</translation>
     </message>
@@ -183,12 +160,12 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="100"/>
+      <location filename="../../src/main.cpp" line="102"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Impossibile registrare oggetto D-Bus per %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="76"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>Il servizio D-Bus %1 è già registrato da un&apos;altra applicazione</translation>
     </message>
@@ -211,6 +188,34 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
       <source>Auto</source>
       <translation>Rileva lingua</translation>
     </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.ui" line="32"/>
+      <source>Edit languages</source>
+      <translation>Modifica lingua</translation>
+    </message>
+  </context>
+  <context>
+    <name>LanguagesDialog</name>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="14"/>
+      <source>Edit languages</source>
+      <translation>Modifica lingua</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="91"/>
+      <source>Available languages:</source>
+      <translation>Lingue disponibili:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="104"/>
+      <source>Current languages:</source>
+      <translation>Lingua attuale:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation>Filtro (%1)</translation>
+    </message>
   </context>
   <context>
     <name>MainWindow</name>
@@ -220,27 +225,27 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
       <translation>Copia testo sorgente negli Appunti</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="114"/>
+      <location filename="../../src/mainwindow.ui" line="117"/>
       <source>Source</source>
       <translation>Sorgente</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="250"/>
+      <location filename="../../src/mainwindow.ui" line="253"/>
       <source>Copy translation to the clipboard</source>
       <translation>Copia traduzone negli Appunti</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="261"/>
+      <location filename="../../src/mainwindow.ui" line="264"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Copia tutti i dati traduzione negli Appunti</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="272"/>
+      <location filename="../../src/mainwindow.ui" line="275"/>
       <source>Translate screen area with delay</source>
       <translation>Traduci area schermo con ritardo</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="283"/>
+      <location filename="../../src/mainwindow.ui" line="286"/>
       <source>Application settings</source>
       <translation>Impostazioni applicazione</translation>
     </message>
@@ -266,27 +271,27 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
       <translation>Annulla</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="121"/>
+      <location filename="../../src/mainwindow.ui" line="124"/>
       <source>Clear</source>
       <translation>Azzera</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="138"/>
+      <location filename="../../src/mainwindow.ui" line="141"/>
       <source>Translate</source>
       <translation>Traduci</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="166"/>
+      <location filename="../../src/mainwindow.ui" line="169"/>
       <source>Translation</source>
       <translation>Traduzione</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="406"/>
+      <location filename="../../src/mainwindow.cpp" line="409"/>
       <source>Unable to detect language</source>
       <translation>Impossibile riconoscere lingua</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="458"/>
+      <location filename="../../src/mainwindow.cpp" line="461"/>
       <source>Unable to translate text</source>
       <translation>Impossibile tradurre il testo</translation>
     </message>
@@ -294,12 +299,12 @@ Per impostazione predefinita, la traduzione verrà effettuata nella lingua del s
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="976"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to set OCR languages</source>
       <translation>Impossibile impostare lingue OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="976"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Impossibile inizializzare Tesseract con %1</translation>
     </message>
@@ -2160,115 +2165,115 @@ Nessun aggiornamento disponibile.</translation>
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="86"/>
       <source>Unable to snip screen area</source>
       <translation>Impossibile tagliare area schermo</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="87"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>Ricevuta un'immagine non valida dello schermo %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="639"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Fai clic e trascina per disegnare un rettangolo di selezione,
 o premi 'Esc' per uscire</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="924"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="845"/>
       <source>Confirm:</source>
       <translation>Conferma:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
       <source>Release left-click</source>
       <translation>Rilascio clic sinistro</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Enter</source>
       <translation>Invio</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Double-click</source>
       <translation>Doppio clic</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="930"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="851"/>
       <source>Create new selection rectangle:</source>
       <translation>Crea nuova selezione rettangolare:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>Drag outside selection rectangle</source>
       <translation>Trascina fuori dal rettangolo selezione</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Maiuscolo: Ingrandimento</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="934"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="855"/>
       <source>Move selection rectangle:</source>
       <translation>Sposta rettangolo selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Drag inside selection rectangle</source>
       <translation>Trascina all'interno del rettangolo selezione</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Arrow keys</source>
       <translation>Tasti freccia</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Maiuscolo: Sposta a step di 1 pixel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="858"/>
       <source>Resize selection rectangle:</source>
       <translation>Ridimensione rettangolo selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Drag handles</source>
       <translation>Trascina maniglie</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Arrow keys + Alt</source>
       <translation>Tasti freccia + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Maiuscolo: Ridimensiona a step di 1 pixel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="940"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="861"/>
       <source>Reset selection:</source>
       <translation>Ripristina selezione:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="862"/>
       <source>Right-click</source>
       <translation>Clic destro</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="865"/>
       <source>Cancel:</source>
       <translation>Annulla:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="866"/>
       <source>Esc key</source>
       <translation>Tasto Esc</translation>
     </message>
@@ -2330,36 +2335,36 @@ o premi 'Esc' per uscire</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="945"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>Invalid tray icon</source>
       <translation>Icona barra sistema non valida</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="945"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>L&apos;icona specificata &quot;%1&quot; non è valida.
 Verrà usata l&apos;icona predefinita.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="31"/>
-      <location filename="../../src/trayicon.cpp" line="55"/>
+      <location filename="../../src/trayicon.cpp" line="56"/>
       <source>Show window</source>
       <translation>Visualizza finestra principale</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
-      <location filename="../../src/trayicon.cpp" line="56"/>
+      <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
       <translation>Impostazioni</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="33"/>
-      <location filename="../../src/trayicon.cpp" line="57"/>
+      <location filename="../../src/trayicon.cpp" line="58"/>
       <source>Quit</source>
       <translation>Esci</translation>
     </message>
     <message>
-      <location filename="../../src/trayicon.cpp" line="62"/>
+      <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Risultato traduzione</translation>
     </message>
@@ -2467,22 +2472,22 @@ Verrà usata l&apos;icona predefinita.</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Impossibile creare pipe: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Impossibile attendere la disponibilità del socket: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Timeout reading from pipe.</source>
       <translation>Timeout in lettura dal pipe.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Impossibile leggere dati dal socket: %1.</translation>
     </message>
@@ -2490,12 +2495,12 @@ Verrà usata l&apos;icona predefinita.</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="73"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="68"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Impossibile iscriversi alla risposta da xdg-desktop-portal.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="93"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="88"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Ricevuto un percorso vuoto da xdg-desktop-portal.</translation>
     </message>
