@@ -4,7 +4,7 @@
   <context>
     <name>AbstractAutostartManager</name>
     <message>
-      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="52"/>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="56"/>
       <source>Unable to apply autostart settings</source>
       <translation>Не вдалося застосувати параметри автозапуску</translation>
     </message>
@@ -12,38 +12,15 @@
   <context>
     <name>AbstractScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="63"/>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="58"/>
       <source>Unable to grab screen</source>
       <translation>Не вдалося захопити екран</translation>
     </message>
   </context>
   <context>
-    <name>LanguagesDialog</name>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="14"/>
-      <source>Add language</source>
-      <translation>Додати мову</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="91"/>
-      <source>Available languages:</source>
-      <translation>Доступні мови:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="104"/>
-      <source>Current languages:</source>
-      <translation>Поточні мови:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-      <source>Filter (%1)</source>
-      <translation>Фільтр (%1)</translation>
-    </message>
-  </context>
-  <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1245"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1252"/>
       <source>Unknown language code: %1</source>
       <translation>Невідомий код мови: %1</translation>
     </message>
@@ -181,12 +158,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="100"/>
+      <location filename="../../src/main.cpp" line="102"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Не вдалося зареєструвати об&apos;єкт D-Bus для %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="76"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>Сервіс D-Bus %1 вже зареєстрований иншим застосунком</translation>
     </message>
@@ -194,20 +171,48 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>Ширина вікна більша, ніж в екрану з-за мов на панелі.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>Будь ласка, зменшіть кількість доданих мов.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>Автоматично</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.ui" line="32"/>
+      <source>Edit languages</source>
+      <translation>Редагувати мови</translation>
+    </message>
+  </context>
+  <context>
+    <name>LanguagesDialog</name>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="14"/>
+      <source>Edit languages</source>
+      <translation>Редагувати мови</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="91"/>
+      <source>Available languages:</source>
+      <translation>Доступні мови:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="104"/>
+      <source>Current languages:</source>
+      <translation>Поточні мови:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation>Фільтр (%1)</translation>
     </message>
   </context>
   <context>
@@ -218,27 +223,27 @@
       <translation>Скопіювати вихідний текст до буфера обміну</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="114"/>
+      <location filename="../../src/mainwindow.ui" line="117"/>
       <source>Source</source>
       <translation>Оригінал</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="250"/>
+      <location filename="../../src/mainwindow.ui" line="253"/>
       <source>Copy translation to the clipboard</source>
       <translation>Скопіювати переклад до буфера обміну</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="261"/>
+      <location filename="../../src/mainwindow.ui" line="264"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Скопіювати всі дані перекладу до буфера обміну</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="272"/>
+      <location filename="../../src/mainwindow.ui" line="275"/>
       <source>Translate screen area with delay</source>
       <translation>Перекласти область екрану з затримкою</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="283"/>
+      <location filename="../../src/mainwindow.ui" line="286"/>
       <source>Application settings</source>
       <translation>Налаштування застосунку</translation>
     </message>
@@ -264,27 +269,27 @@
       <translation>Скасувати</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="121"/>
+      <location filename="../../src/mainwindow.ui" line="124"/>
       <source>Clear</source>
       <translation>Очистити</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="138"/>
+      <location filename="../../src/mainwindow.ui" line="141"/>
       <source>Translate</source>
       <translation>Перекласти</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="166"/>
+      <location filename="../../src/mainwindow.ui" line="169"/>
       <source>Translation</source>
       <translation>Переклад</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="409"/>
       <source>Unable to detect language</source>
       <translation>Не вдається визначити мову</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="461"/>
       <source>Unable to translate text</source>
       <translation>Не вдалося перекласти текст</translation>
     </message>
@@ -292,12 +297,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to set OCR languages</source>
       <translation>Не вдалося вказати мови OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Не вдалося ініціалізувати Tesseract з %1</translation>
     </message>
@@ -312,7 +317,7 @@
       <translation>Ви повинні вказати хоч одну мову OCR у налаштуваннях застосунку</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 не є допустимим ім'ям параметру Tesseract.</translation>
     </message>
@@ -1032,46 +1037,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Помилка: Системами рушія перекладу помічено підозрілий трафік із вашої комп&apos;ютерної мережі. Спробуйте пізніше.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Помилка: Не вдалося розібрати автоматично визначену мову</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>Помилка: Не вдалося знайти Яндекс SID у вебверсії.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>Помилка: Не вдалося знайти Яндекс SID у вебверсії.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Помилка: Не вдається знайти облікові дані Bing у вебверсії.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Помилка: неможливо видобути ключ Bing з вебверсії.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Помилка: неможливо видобути маркер Bing з вебверсії.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Помилка: Не вдалося витягти додаткові відомості Bing з веб-версії.</translation>
     </message>
@@ -1089,22 +1083,22 @@
       <translation> Обраний рушій %1 не підтримує налаштування емоцій</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>Рушій %1 не підтримує TTS</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>Обрана мова %1 не підтримується для %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>Обраний голос %1 не підтримується для %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>Вибрана емоція %1 не підтримується %2</translation>
     </message>
@@ -1171,8 +1165,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>Системна мова</translation>
     </message>
@@ -1804,7 +1798,7 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>Регіон за замовчуванням</translation>
     </message>
@@ -1834,11 +1828,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Реєструвати глобальні сполучення клавіш у системі&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>Увімкнути глобальні сполучення клавіш</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>Гарячий клавіш</translation>
@@ -1857,6 +1846,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Проксі пароль для автентифікації&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>Увімкнути глобальні сполучення клавіш</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1929,123 +1923,123 @@
       <translation>Портативний режим</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>Використовувати %1 з теки додатку для збереження налаштувань</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Оновлення</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>Перевіряти наявність оновлень:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>Щодня</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>Щотижня</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>Щомісяця</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>НІколи</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>Піктограми:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>Перевірити зараз</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>Перевірити наявність оновлень зараз</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>З Новим Роком!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Поля налаштувань OCR не можуть бути порожніми.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Ви бажаєте скасувати неправильні параметри?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>Обрати піктограму</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Зображення (*.png *.ico *.svg *.jpg);;Усі файли()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>Оберіть шлях до мов OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>Мандарин (Китай)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>Нема що промовляти</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>Текст для промовляння</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>Не вдалося визначити мову</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Перевірка наявності оновлень…</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>Використовуйте %1 для зберігання налаштувань</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>Є оновлення!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>Нема доступних оновлень.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>Назад</translation>
     </message>
@@ -2167,115 +2161,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="86"/>
       <source>Unable to snip screen area</source>
       <translation>Не вдається фрагментувати область екрана</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="87"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>Отримано неприпустиме зображення екрана %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="639"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Клацніть і перетягніть, щоб намалювати прямокутник виділення,
 або натисніть клавішу Esc, щоб вийти</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="924"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="845"/>
       <source>Confirm:</source>
       <translation>Підтвердити:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
       <source>Release left-click</source>
       <translation>Відпустіть лівою кнопкою миші</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Enter</source>
       <translation>Ввести</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Double-click</source>
       <translation>Двічі клацніть</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="930"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="851"/>
       <source>Create new selection rectangle:</source>
       <translation>Створити новий прямокутний виділення:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>Drag outside selection rectangle</source>
       <translation>Перетягніть за межі прямокутника виділення</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: Екранна лупа</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="934"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="855"/>
       <source>Move selection rectangle:</source>
       <translation>Перемістити прямокутник виділення:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Drag inside selection rectangle</source>
       <translation>Перетягніть всередині прямокутника виділення</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Arrow keys</source>
       <translation>Клавіші зі стрілками</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: Переміщення в 1 піксель кроків</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="858"/>
       <source>Resize selection rectangle:</source>
       <translation>Змінити розмір прямокутника виділення:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Drag handles</source>
       <translation>Перетягування маркерів</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Arrow keys + Alt</source>
       <translation>Клавіші зі стрілками + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: Зміна розміру в 1 піксель кроків</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="940"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="861"/>
       <source>Reset selection:</source>
       <translation>Скинути виділення:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="862"/>
       <source>Right-click</source>
       <translation>Клацніть правою кнопкою миші</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="865"/>
       <source>Cancel:</source>
       <translation>Скасувати:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="866"/>
       <source>Esc key</source>
       <translation>Клавіша Esc</translation>
     </message>
@@ -2337,35 +2331,35 @@ or press Esc to quit</source>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>Invalid tray icon</source>
       <translation>Недійсна піктограма для таці</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation> Вказана піктограма &apos;%1&apos; недійсна. Буде використано типову піктограму.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="31"/>
-      <location filename="../../src/trayicon.cpp" line="55"/>
+      <location filename="../../src/trayicon.cpp" line="56"/>
       <source>Show window</source>
       <translation>Показати вікно</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
-      <location filename="../../src/trayicon.cpp" line="56"/>
+      <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
       <translation>Налаштування</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="33"/>
-      <location filename="../../src/trayicon.cpp" line="57"/>
+      <location filename="../../src/trayicon.cpp" line="58"/>
       <source>Quit</source>
       <translation>Вийти</translation>
     </message>
     <message>
-      <location filename="../../src/trayicon.cpp" line="62"/>
+      <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Результат перекладу</translation>
     </message>
@@ -2473,22 +2467,22 @@ or press Esc to quit</source>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Не вдалося створити трубу: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Не вдалося дочекатися готовності сокета: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Timeout reading from pipe.</source>
       <translation>Час вийшов читання з труби.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Не вдалося прочитати дані з сокета: %1.</translation>
     </message>
@@ -2496,12 +2490,12 @@ or press Esc to quit</source>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="73"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="68"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Не вдалося підписатися на відповідь з xdg-desktop-portal.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="93"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="88"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Отримав порожній шлях від xdg-desktop-portal.</translation>
     </message>
