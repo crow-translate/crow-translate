@@ -4,7 +4,7 @@
   <context>
     <name>AbstractAutostartManager</name>
     <message>
-      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="52"/>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="56"/>
       <source>Unable to apply autostart settings</source>
       <translation>No se puede aplicar la configuración de arranque automático</translation>
     </message>
@@ -12,38 +12,15 @@
   <context>
     <name>AbstractScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="63"/>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="58"/>
       <source>Unable to grab screen</source>
       <translation>No se puede capturar la pantalla</translation>
     </message>
   </context>
   <context>
-    <name>LanguagesDialog</name>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="14"/>
-      <source>Add language</source>
-      <translation>Añadir idioma</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="91"/>
-      <source>Available languages:</source>
-      <translation>Idiomas disponibles:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="104"/>
-      <source>Current languages:</source>
-      <translation>Idiomas actuales:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-      <source>Filter (%1)</source>
-      <translation>Filtro (%1)</translation>
-    </message>
-  </context>
-  <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1245"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1252"/>
       <source>Unknown language code: %1</source>
       <translation>Código de idioma desconocido: %1</translation>
     </message>
@@ -181,12 +158,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="100"/>
+      <location filename="../../src/main.cpp" line="102"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>No se puede registrar el objeto D-Bus para %1</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="76"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>El servicio %1 de D-Bus ya está registrado por otra aplicación</translation>
     </message>
@@ -194,20 +171,48 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>La anchura de la ventana supera la pantalla a causa de los idiomas en el panel.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>Reduzca los idiomas añadidos.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>Automático</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.ui" line="32"/>
+      <source>Edit languages</source>
+      <translation>Editar idiomas</translation>
+    </message>
+  </context>
+  <context>
+    <name>LanguagesDialog</name>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="14"/>
+      <source>Edit languages</source>
+      <translation>Editar idiomas</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="91"/>
+      <source>Available languages:</source>
+      <translation>Idiomas disponibles:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="104"/>
+      <source>Current languages:</source>
+      <translation>Idiomas actuales:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation>Filtro (%1)</translation>
     </message>
   </context>
   <context>
@@ -218,27 +223,27 @@
       <translation>Copiar el texto original al portapapeles</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="114"/>
+      <location filename="../../src/mainwindow.ui" line="117"/>
       <source>Source</source>
       <translation>Fuente</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="250"/>
+      <location filename="../../src/mainwindow.ui" line="253"/>
       <source>Copy translation to the clipboard</source>
       <translation>Copiar la traducción al portapapeles</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="261"/>
+      <location filename="../../src/mainwindow.ui" line="264"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Copiar todas las traducciones al portapapeles</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="272"/>
+      <location filename="../../src/mainwindow.ui" line="275"/>
       <source>Translate screen area with delay</source>
       <translation>Traducir zona en pantalla con demora</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="283"/>
+      <location filename="../../src/mainwindow.ui" line="286"/>
       <source>Application settings</source>
       <translation>Configuración de la aplicación</translation>
     </message>
@@ -264,27 +269,27 @@
       <translation>Cancelar</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="121"/>
+      <location filename="../../src/mainwindow.ui" line="124"/>
       <source>Clear</source>
       <translation>Limpiar</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="138"/>
+      <location filename="../../src/mainwindow.ui" line="141"/>
       <source>Translate</source>
       <translation>Traducir</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="166"/>
+      <location filename="../../src/mainwindow.ui" line="169"/>
       <source>Translation</source>
       <translation>Traducción</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="409"/>
       <source>Unable to detect language</source>
       <translation>No se puede detectar el idioma</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="461"/>
       <source>Unable to translate text</source>
       <translation>No se puede traducir el texto</translation>
     </message>
@@ -292,12 +297,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to set OCR languages</source>
       <translation>No se pueden establecer los idiomas de OCR</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>No se puede inicializar Tesseract con %1</translation>
     </message>
@@ -312,7 +317,7 @@
       <translation>Debe configurar al menos un idioma de OCR en la configuración de la aplicación</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1 no es un nombre de parámetro de Tesseract válido.</translation>
     </message>
@@ -1032,46 +1037,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Error: los sistemas del motor de traducción han detectado tráfico sospechoso desde la red de su equipo. Intente su petición de nuevo más tarde.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Error: no se puede analizar el idioma detectado automáticamente</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>Error: no se puede encontrar el SID de Yandex en la versión web.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>Error: no se puede extraer el SID de Yandex de la versión web.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Error: no se pueden encontrar las credenciales de Bing en la versión web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Error: no se puede extraer la clave de Bing de la versión web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Error: no se puede extraer el token de Bing de la versión web.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Error: no se puede extraer la información adicional de Bing desde la versión web.</translation>
     </message>
@@ -1089,22 +1083,22 @@
       <translation>El motor de traducción seleccionado %1 no admite la configuración de emociones</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>El motor de traducción %1 no admite TTS</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>El idioma seleccionado %1 no se admite para %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>La voz seleccionada %1 no se admite para %2</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>La emoción seleccionada %1 no se admite para %2</translation>
     </message>
@@ -1171,8 +1165,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;System language&gt;</translation>
     </message>
@@ -1804,7 +1798,7 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>Región predeterminada</translation>
     </message>
@@ -1834,11 +1828,6 @@
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Registrar los atajos de teclado globales en el sistema&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>Habilitar atajos de teclado globales</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>Atajo de teclado</translation>
@@ -1857,6 +1846,11 @@
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Contraseña de Proxy para autentificación&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>Activar atajos globales</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1929,123 +1923,123 @@
       <translation>Modo portable</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>Utilizar %1 de la carpeta de aplicación para almacenar los ajustes</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Actualizaciones</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>Comprobar actualizaciones:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>Cada día</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>Cada semana</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>Cada mes</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>Nunca</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>Iconos:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>Comprobar ahora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>Comprobar actualizaciones ahora</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>¡Feliz año nuevo!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>Los campos de parámetro OCR no pueden estar vacíos.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>¿Desea descartar los parámetros inválidos?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>Seleccionar icono</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Imágenes (*.png *.ico *.svg *.jpg);;Todos los archivos()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>Seleccionar ruta de idiomas OCR</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>Mandarín (China)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>Nada a reproducir</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>El texto de reproducción está vacío</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>No se pudo detectar el idioma</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Comprobando actualizaciones...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>Usar %1 para almacenar la configuración</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>¡Actualización disponible!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>No hay actualizaciones disponibles.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>Volver</translation>
     </message>
@@ -2167,115 +2161,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="86"/>
       <source>Unable to snip screen area</source>
       <translation>No se puede recortar el área de la pantalla</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="87"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>Recibió una imagen no válida de la pantalla %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="639"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Haga clic y arrastre para dibujar un rectángulo de selección,
 o presione Esc para salir</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="924"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="845"/>
       <source>Confirm:</source>
       <translation>Confirmar:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
       <source>Release left-click</source>
       <translation>Suelte el clic izquierdo</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Enter</source>
       <translation>Enter</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Double-click</source>
       <translation>Doble clic</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="930"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="851"/>
       <source>Create new selection rectangle:</source>
       <translation>Crear nuevo rectángulo de selección:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>Drag outside selection rectangle</source>
       <translation>Arrastrar fuera del rectángulo de selección</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Mayúsculas: Lupa</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="934"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="855"/>
       <source>Move selection rectangle:</source>
       <translation>Mover rectángulo de selección:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Drag inside selection rectangle</source>
       <translation>Arrastrar dentro del rectángulo de selección</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Arrow keys</source>
       <translation>Teclas de dirección</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: Mover en pasos de 1 píxel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="858"/>
       <source>Resize selection rectangle:</source>
       <translation>Rectángulo para redimensionar selección:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Drag handles</source>
       <translation>Tiradores de arrastre</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Arrow keys + Alt</source>
       <translation>Teclas de dirección + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: Cambiar el tamaño en pasos de 1 píxel</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="940"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="861"/>
       <source>Reset selection:</source>
       <translation>Restablecer selección:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="862"/>
       <source>Right-click</source>
       <translation>Botón derecho del ratón</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="865"/>
       <source>Cancel:</source>
       <translation>Cancelar:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="866"/>
       <source>Esc key</source>
       <translation>Tecla Esc</translation>
     </message>
@@ -2337,35 +2331,35 @@ o presione Esc para salir</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>Invalid tray icon</source>
       <translation>Icono de bandeja de sistema inválido</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>El icono especificado &apos;%1&apos; es inválido. Se utilizará el icono predeterminado.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="31"/>
-      <location filename="../../src/trayicon.cpp" line="55"/>
+      <location filename="../../src/trayicon.cpp" line="56"/>
       <source>Show window</source>
       <translation>Mostrar ventana</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
-      <location filename="../../src/trayicon.cpp" line="56"/>
+      <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
       <translation>Configuración</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="33"/>
-      <location filename="../../src/trayicon.cpp" line="57"/>
+      <location filename="../../src/trayicon.cpp" line="58"/>
       <source>Quit</source>
       <translation>Salir</translation>
     </message>
     <message>
-      <location filename="../../src/trayicon.cpp" line="62"/>
+      <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Resultado de la traducción</translation>
     </message>
@@ -2473,22 +2467,22 @@ o presione Esc para salir</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
       <source>Unable to create pipe: %1.</source>
       <translation>No se puede crear la tubería: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>No se puede esperar a que el socket esté listo: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Timeout reading from pipe.</source>
       <translation>Tiempo de espera de lectura desde la tubería.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>No se pueden leer los datos del socket: %1.</translation>
     </message>
@@ -2496,12 +2490,12 @@ o presione Esc para salir</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="73"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="68"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>No se puede suscribir a la respuesta de xdg-desktop-portal.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="93"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="88"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Se recibió una ruta vacía de xdg-desktop-portal.</translation>
     </message>
