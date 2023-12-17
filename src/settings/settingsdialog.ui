@@ -49,8 +49,7 @@
         <string>General</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-system">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-system"/>
        </property>
       </item>
       <item>
@@ -58,8 +57,7 @@
         <string>Interface</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-desktop-theme">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-desktop-theme"/>
        </property>
       </item>
       <item>
@@ -67,8 +65,7 @@
         <string>Translation</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-desktop-locale">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-desktop-locale"/>
        </property>
       </item>
       <item>
@@ -76,8 +73,7 @@
         <string notr="true">OCR</string>
        </property>
        <property name="icon">
-        <iconset theme="scanner">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="scanner"/>
        </property>
       </item>
       <item>
@@ -85,8 +81,7 @@
         <string>Speech synthesis</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-desktop-sound">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-desktop-sound"/>
        </property>
       </item>
       <item>
@@ -94,8 +89,7 @@
         <string>Connection</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-system-network">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-system-network"/>
        </property>
       </item>
       <item>
@@ -103,8 +97,7 @@
         <string>Shortcuts</string>
        </property>
        <property name="icon">
-        <iconset theme="preferences-desktop-keyboard">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="preferences-desktop-keyboard"/>
        </property>
       </item>
       <item>
@@ -112,8 +105,7 @@
         <string>About</string>
        </property>
        <property name="icon">
-        <iconset theme="dialog-information">
-         <normaloff>.</normaloff>.</iconset>
+        <iconset theme="dialog-information"/>
        </property>
       </item>
      </widget>
@@ -549,8 +541,7 @@
                    <string>Default</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="crow-translate-tray">
-                    <normaloff>.</normaloff>.</iconset>
+                   <iconset theme="crow-translate-tray"/>
                   </property>
                  </item>
                  <item>
@@ -558,8 +549,7 @@
                    <string>Monochrome (dark theme)</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="crow-translate-tray-light">
-                    <normaloff>.</normaloff>.</iconset>
+                   <iconset theme="crow-translate-tray-light"/>
                   </property>
                  </item>
                  <item>
@@ -567,8 +557,7 @@
                    <string>Monochrome (light theme)</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="crow-translate-tray-dark">
-                    <normaloff>.</normaloff>.</iconset>
+                   <iconset theme="crow-translate-tray-dark"/>
                   </property>
                  </item>
                  <item>
@@ -576,8 +565,7 @@
                    <string>Custom</string>
                   </property>
                   <property name="icon">
-                   <iconset theme="folder">
-                    <normaloff>.</normaloff>.</iconset>
+                   <iconset theme="folder"/>
                   </property>
                  </item>
                 </widget>
@@ -819,23 +807,8 @@
                   <bool>true</bool>
                  </property>
                  <property name="currentText">
-                  <string notr="true">https://translate.argosopentech.com</string>
+                  <string notr="true">https://libretranslate.de</string>
                  </property>
-                 <item>
-                  <property name="text">
-                   <string notr="true">https://translate.argosopentech.com</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string notr="true">https://translate.astian.org</string>
-                  </property>
-                 </item>
-                 <item>
-                  <property name="text">
-                   <string notr="true">https://translate.mentality.rip</string>
-                  </property>
-                 </item>
                  <item>
                   <property name="text">
                    <string notr="true">https://libretranslate.de</string>
@@ -874,21 +847,21 @@
                   <bool>true</bool>
                  </property>
                  <property name="currentText">
-                  <string notr="true">https://lingva.garudalinux.org</string>
+                  <string notr="true">https://lingva.ml</string>
                  </property>
                  <item>
                   <property name="text">
-                   <string notr="true">https://lingva.garudalinux.org</string>
+                   <string notr="true">https://lingva.ml</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string notr="true">https://translate.alefvanoon.xyz</string>
+                   <string notr="true">https://translate.plausibility.cloud</string>
                   </property>
                  </item>
                  <item>
                   <property name="text">
-                   <string notr="true">https://translate.igna.rocks</string>
+                   <string notr="true">https://lingva.lunar.icu</string>
                   </property>
                  </item>
                 </widget>
@@ -945,8 +918,7 @@
                   <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Select OCR languages path&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
                  </property>
                  <property name="icon">
-                  <iconset theme="folder">
-                   <normaloff>.</normaloff>.</iconset>
+                  <iconset theme="folder"/>
                  </property>
                 </widget>
                </item>
@@ -1009,8 +981,7 @@
                    <item>
                     <widget class="QToolButton" name="tesseractParametersAddButton">
                      <property name="icon">
-                      <iconset theme="list-add">
-                       <normaloff>.</normaloff>.</iconset>
+                      <iconset theme="list-add"/>
                      </property>
                     </widget>
                    </item>
@@ -1020,8 +991,7 @@
                       <bool>false</bool>
                      </property>
                      <property name="icon">
-                      <iconset theme="list-remove">
-                       <normaloff>.</normaloff>.</iconset>
+                      <iconset theme="list-remove"/>
                      </property>
                     </widget>
                    </item>
@@ -1638,8 +1608,7 @@
                   <string>Accept</string>
                  </property>
                  <property name="icon">
-                  <iconset theme="dialog-ok-apply">
-                   <normaloff>.</normaloff>.</iconset>
+                  <iconset theme="dialog-ok-apply"/>
                  </property>
                 </widget>
                </item>
@@ -1652,8 +1621,7 @@
                   <string>Clear</string>
                  </property>
                  <property name="icon">
-                  <iconset theme="edit-clear-all">
-                   <normaloff>.</normaloff>.</iconset>
+                  <iconset theme="edit-clear-all"/>
                  </property>
                 </widget>
                </item>
@@ -1666,8 +1634,7 @@
                   <string>Reset</string>
                  </property>
                  <property name="icon">
-                  <iconset theme="view-refresh">
-                   <normaloff>.</normaloff>.</iconset>
+                  <iconset theme="view-refresh"/>
                  </property>
                 </widget>
                </item>
