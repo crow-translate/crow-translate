@@ -325,6 +325,22 @@ public:
     void setCopyTranslationShortcut(const QKeySequence &shortcut);
     static QKeySequence defaultCopyTranslationShortcut();
 
+    QKeySequence clearShortcut() const;
+    void setClearShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultClearShortcut();
+
+    QKeySequence switchSourceShortcut() const;
+    void setSwitchSourceShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSwitchSourceShortcut();
+
+    QKeySequence switchTranslationShortcut() const;
+    void setSwitchTranslationShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSwitchTranslationShortcut();
+
+    QKeySequence switchEngineShortcut() const;
+    void setSwitchEngineShortcut(const QKeySequence &shortcut);
+    static QKeySequence defaultSwitchEngineShortcut();
+
     // OCR settings
     bool isConvertLineBreaks() const;
     void setConvertLineBreaks(bool convert);
