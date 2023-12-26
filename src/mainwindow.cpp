@@ -53,7 +53,7 @@
 #include <QStateMachine>
 #include <QTimer>
 #ifdef Q_OS_LINUX
-#include <QX11Info>
+#include <QtX11Extras/QX11Info>
 #endif
 
 MainWindow::MainWindow(QWidget *parent)

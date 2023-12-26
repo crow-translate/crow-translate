@@ -80,6 +80,7 @@ if(UNIX)
     find_package(Qt5 REQUIRED COMPONENTS DBus)
     if(NOT APPLE)
         find_package(XCB REQUIRED COMPONENTS XCB)
+        find_package(Qt5 REQUIRED COMPONENTS X11Extras)
         if(WITH_KWAYLAND)
             find_package(KF5Wayland REQUIRED COMPONENTS Client)
         endif()
@@ -235,7 +236,10 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 if(UNIX)
     target_link_libraries(${PROJECT_NAME} PRIVATE Qt5::DBus)
     if(NOT APPLE)
-        target_link_libraries(${PROJECT_NAME} PRIVATE XCB::XCB)
+        target_link_libraries(${PROJECT_NAME} PRIVATE
+            XCB::XCB
+            Qt5::X11Extras
+        )
         if(WITH_KWAYLAND)
             target_link_libraries(${PROJECT_NAME} PRIVATE KF5::WaylandClient)
             target_compile_definitions(${PROJECT_NAME} PRIVATE WITH_KWAYLAND)

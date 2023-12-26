@@ -28,7 +28,7 @@
 #include <QScreen>
 #include <QtMath>
 #ifdef Q_OS_LINUX
-#include <QX11Info>
+#include <QtX11Extras/QX11Info>
 
 #include <xcb/xproto.h>
 #endif

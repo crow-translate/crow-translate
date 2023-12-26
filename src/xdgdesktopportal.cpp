@@ -25,7 +25,7 @@
 
 #include <QDebug>
 #include <QWindow>
-#include <QX11Info>
+#include <QtX11Extras/QX11Info>
 
 QString XdgDesktopPortal::parentWindow(QWindow *activeWindow)
 {
