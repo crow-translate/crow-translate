@@ -28,7 +28,7 @@
 #include "waylandplasmascreengrabber.h"
 #include "waylandportalscreengrabber.h"
 
-#include <QtX11Extras/QX11Info>
+#include <QX11Info>
 #endif
 
 AbstractScreenGrabber::AbstractScreenGrabber(QObject *parent)
