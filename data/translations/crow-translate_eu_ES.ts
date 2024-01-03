@@ -4,7 +4,7 @@
   <context>
     <name>AbstractAutostartManager</name>
     <message>
-      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="52"/>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="56"/>
       <source>Unable to apply autostart settings</source>
       <translation>Ezin dira abiarazteko ezarpenak aplikatu</translation>
     </message>
@@ -12,38 +12,15 @@
   <context>
     <name>AbstractScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="63"/>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="58"/>
       <source>Unable to grab screen</source>
       <translation>Ezin da pantaila-argazkia egin</translation>
     </message>
   </context>
   <context>
-    <name>LanguagesDialog</name>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="14"/>
-      <source>Add language</source>
-      <translation>Gehitu hizkuntza</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="91"/>
-      <source>Available languages:</source>
-      <translation>Hizkuntza erabilgarriak:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="104"/>
-      <source>Current languages:</source>
-      <translation>Uneko hizkuntzak:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-      <source>Filter (%1)</source>
-      <translation>Iragazkia (%1)</translation>
-    </message>
-  </context>
-  <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1245"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1252"/>
       <source>Unknown language code: %1</source>
       <translation>Hizkuntza-kode ezezaguna: %1</translation>
     </message>
@@ -181,12 +158,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="100"/>
+      <location filename="../../src/main.cpp" line="102"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>Ezin da erregistratu D-Bus objektua %1-en</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="76"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>D-Bus %1 zerbitzua beste aplikazio batek erregistratu du jada</translation>
     </message>
@@ -209,6 +186,34 @@
       <source>Auto</source>
       <translation>Automatikoa</translation>
     </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.ui" line="32"/>
+      <source>Edit languages</source>
+      <translation>Editatu hizkuntzak</translation>
+    </message>
+  </context>
+  <context>
+    <name>LanguagesDialog</name>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="14"/>
+      <source>Edit languages</source>
+      <translation>Editatu hizkuntzak</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="91"/>
+      <source>Available languages:</source>
+      <translation>Hizkuntza erabilgarriak:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="104"/>
+      <source>Current languages:</source>
+      <translation>Uneko hizkuntzak:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation>Iragazi (%1)</translation>
+    </message>
   </context>
   <context>
     <name>MainWindow</name>
@@ -218,27 +223,27 @@
       <translation>Kopiatu iturburuko testua arbelean</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="114"/>
+      <location filename="../../src/mainwindow.ui" line="117"/>
       <source>Source</source>
       <translation>Iturburua</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="250"/>
+      <location filename="../../src/mainwindow.ui" line="253"/>
       <source>Copy translation to the clipboard</source>
       <translation>Kopiatu itzulpena arbelean</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="261"/>
+      <location filename="../../src/mainwindow.ui" line="264"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Kopiatu itzulpen-datu guztiak arbelean</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="272"/>
+      <location filename="../../src/mainwindow.ui" line="275"/>
       <source>Translate screen area with delay</source>
       <translation>Itzuli pantailaren eremua atzerapenarekin</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="283"/>
+      <location filename="../../src/mainwindow.ui" line="286"/>
       <source>Application settings</source>
       <translation>Aplikazioaren ezarpenak</translation>
     </message>
@@ -264,27 +269,27 @@
       <translation>Utzi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="121"/>
+      <location filename="../../src/mainwindow.ui" line="124"/>
       <source>Clear</source>
       <translation>Garbitu</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="138"/>
+      <location filename="../../src/mainwindow.ui" line="141"/>
       <source>Translate</source>
       <translation>Itzuli</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="166"/>
+      <location filename="../../src/mainwindow.ui" line="169"/>
       <source>Translation</source>
       <translation>Itzulpena</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="406"/>
+      <location filename="../../src/mainwindow.cpp" line="409"/>
       <source>Unable to detect language</source>
       <translation>Ezin da hizkuntza detektatu</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="458"/>
+      <location filename="../../src/mainwindow.cpp" line="461"/>
       <source>Unable to translate text</source>
       <translation>Ezin da testua itzuli</translation>
     </message>
@@ -292,12 +297,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="976"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to set OCR languages</source>
       <translation>Ezin dira ezarri OCR hizkuntzak</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="976"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>Ezin da Tesseract hasieratu %1-rekin</translation>
     </message>
@@ -2156,115 +2161,115 @@
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="86"/>
       <source>Unable to snip screen area</source>
       <translation>Ezin da pantaila-eremuaren argazkia egin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="87"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>%1 pantailaren irudi baliogabea jaso da.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="639"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Egin klik eta arrastatu hautapen laukizuzen bat marrazteko,
 edo sakatu Esc irteteko</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="924"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="845"/>
       <source>Confirm:</source>
       <translation>Berretsi:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
       <source>Release left-click</source>
       <translation>Askatu ezkerreko klik</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Enter</source>
       <translation>Sartu</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Double-click</source>
       <translation>Klik bikoitza</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="930"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="851"/>
       <source>Create new selection rectangle:</source>
       <translation>Sortu hautapen laukizuzen berria:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>Drag outside selection rectangle</source>
       <translation>Arrastatu hautapen laukizuzenetik kanpo</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>+ Shift: Magnifier</source>
       <translation>+ Shift: lupa</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="934"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="855"/>
       <source>Move selection rectangle:</source>
       <translation>Mugitu hautapen laukizuzena:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Drag inside selection rectangle</source>
       <translation>Arrastatu hautapena laukizuzenaren barrura</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Arrow keys</source>
       <translation>Gezi-teklak</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+ Shift: Mugitu 1 pixeleko urratsetan</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="858"/>
       <source>Resize selection rectangle:</source>
       <translation>Aldatu hautaketaren laukizuzenaren tamaina:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Drag handles</source>
       <translation>Arrastatze heldulekuak</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Arrow keys + Alt</source>
       <translation>Gezi-teklak + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: tamaina aldatu 1 pixeleko urratsetan</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="940"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="861"/>
       <source>Reset selection:</source>
       <translation>Berrezarri hautapena:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="862"/>
       <source>Right-click</source>
       <translation>Eskuin-klik</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="865"/>
       <source>Cancel:</source>
       <translation>Utzi:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="866"/>
       <source>Esc key</source>
       <translation>Esc tekla</translation>
     </message>
@@ -2326,35 +2331,35 @@ edo sakatu Esc irteteko</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="945"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>Invalid tray icon</source>
       <translation>Baliogabeko erretiluko ikonoa</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="945"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Zehaztutako &apos;%1&apos; ikonoa baliogabea da. Lehenetsitako ikonoa erabiliko da.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="31"/>
-      <location filename="../../src/trayicon.cpp" line="55"/>
+      <location filename="../../src/trayicon.cpp" line="56"/>
       <source>Show window</source>
       <translation>Erakutsi leihoa</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
-      <location filename="../../src/trayicon.cpp" line="56"/>
+      <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
       <translation>Ezarpenak</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="33"/>
-      <location filename="../../src/trayicon.cpp" line="57"/>
+      <location filename="../../src/trayicon.cpp" line="58"/>
       <source>Quit</source>
       <translation>Irten</translation>
     </message>
     <message>
-      <location filename="../../src/trayicon.cpp" line="62"/>
+      <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Itzulpenaren emaitza</translation>
     </message>
@@ -2462,22 +2467,22 @@ edo sakatu Esc irteteko</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Ezin da kanalizazioa sortu: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Ezin izan da socket-a prest egon arte itxaron: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Timeout reading from pipe.</source>
       <translation>Kanalizaziotik irakurtzeko denbora-muga.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Ezin dira socketeko datuak irakurri: %1.</translation>
     </message>
@@ -2485,12 +2490,12 @@ edo sakatu Esc irteteko</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="73"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="68"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Ezin da harpidetu xdg-desktop-portal-eko erantzunera.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="93"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="88"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Bide huts bat jaso du xdg-desktop-portal-etik.</translation>
     </message>
