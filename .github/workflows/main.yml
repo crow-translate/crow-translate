@@ -76,10 +76,8 @@ jobs:
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libkf5wayland-dev libtesseract-dev ninja-build
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10.7
+        uses: lukka/run-vcpkg@v11.4
         if: runner.os == 'Windows'
-        with:
-          vcpkgGitCommitId: a42af01b72c28a8e1d7b48107b33e4f286a55ef6
 
       - name: Setup MSVC
         if: runner.os == 'Windows'
