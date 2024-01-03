@@ -78,10 +78,10 @@ jobs:
           echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v10.7
+        uses: lukka/run-vcpkg@v11.4
         if: runner.os == 'Windows'
         with:
-          vcpkgGitCommitId: a42af01b72c28a8e1d7b48107b33e4f286a55ef6
+          vcpkgJsonGlob: vcpkg.json
 
       - name: Setup MSVC
         if: runner.os == 'Windows'
