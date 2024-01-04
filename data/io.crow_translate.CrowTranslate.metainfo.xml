@@ -43,6 +43,17 @@
   <content_rating type="oars-1.1"/>
 
   <releases>
+    <release version="2.11.1" date="2024-01-04">
+      <description>
+        <p>Changelog:</p>
+        <ul>
+          <li>Enable new LibreTranslate langs.</li>
+          <li>Require Qt5X11Extras on Linux.</li>
+          <li>Add and remove old, non-existed, broken Libre and Lingva instances.</li>
+          <li>Improve accessibility for screen readers.</li>
+        </ul>
+      </description>
+    </release>
     <release version="2.11.0" date="2023-10-14">
       <description>
         <p>Changelog:</p>
