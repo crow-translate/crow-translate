@@ -76,6 +76,18 @@ ShortcutsModel::ShortcutsModel(QObject *parent)
 
     m_closeWindowShortcut = new ShortcutItem(tr("Close window"), QStringLiteral("application-exit"), windowShortcuts);
     m_closeWindowShortcut->setDefaultShortcut(AppSettings::defaultCloseWindowShortcut());
+    
+    m_clearShortcut = new ShortcutItem(tr("Clear text"), QStringLiteral("edit-clear"), windowShortcuts);
+    m_clearShortcut->setDefaultShortcut(AppSettings::defaultClearShortcut());
+
+    m_switchSourceShortcut = new ShortcutItem(tr("Switch language of the text to be translated"), QStringLiteral("switch-source"), windowShortcuts);
+    m_switchSourceShortcut->setDefaultShortcut(AppSettings::defaultSwitchSourceShortcut());
+
+    m_switchTranslationShortcut = new ShortcutItem(tr("Switch language to translate to"), QStringLiteral("switch-translation"), windowShortcuts);
+    m_switchTranslationShortcut->setDefaultShortcut(AppSettings::defaultSwitchTranslationShortcut());
+
+    m_switchEngineShortcut = new ShortcutItem(tr("Switch translation engine"), QStringLiteral("switch-engine"), windowShortcuts);
+    m_switchEngineShortcut->setDefaultShortcut(AppSettings::defaultSwitchEngineShortcut());
 
     // Source text shortcuts
     auto *sourceText = new ShortcutItem(tr("Source text"), windowShortcuts);
