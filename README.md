@@ -13,6 +13,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 - [Default keyboard shortcuts](#default-keyboard-shortcuts)
 - [CLI commands](#cli-commands)
 - [D-Bus API](#d-bus-api)
+- [Global shortcuts in Wayland](#global-shortcuts-in-wayland)
 - [Dependencies](#dependencies)
 - [Icons](#icons)
 - [Installation](#installation)
@@ -145,6 +146,24 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 # or shorter
 qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow open
 ```
+
+## Global shortcuts in wayland
+
+Wayland doesn't provide API for global shortcuts and you need to register them by yourself. 
+
+### KDE
+
+KDE have a convenient feature to define shortcuts in .desktop file and import them in settings. These shortcuts are already enabled and should work by default.
+
+### GNOME
+
+For GNOME you need to manually set D-Bus commands as global shortcuts. For example, to translate selected text use the following:
+
+```bash
+qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
+```
+
+You can set a hotkey for this command in GNOME system settings.
 
 ## Dependencies
 
