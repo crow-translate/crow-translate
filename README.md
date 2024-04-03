@@ -156,10 +156,10 @@ Wayland doesn't provide API for global shortcuts and you need to register them b
 KDE have a convenient feature to define shortcuts in .desktop file and import them in settings. These shortcuts are already enabled and should work by default.
 
 ### GNOME
-For GNOME you need to use the following D-BUS command and set a hotkey:
+For GNOME you need to manually set D-Bus commands as global shortcuts. For example, to translate selected text use the following:
+
 ```bash
 qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
-```
 You can set a hotkey for this command in GNOME system settings.
 
 ## Dependencies
