@@ -13,7 +13,7 @@ You may also be interested in my library [QOnlineTranslator](https://github.com/
 - [Default keyboard shortcuts](#default-keyboard-shortcuts)
 - [CLI commands](#cli-commands)
 - [D-Bus API](#d-bus-api)
-- [Translate selected text in Wayland](#how-to-translate-selected-text-in-wayland)
+- [Global shortcuts in Wayland](#global-shortcuts-in-wayland)
 - [Dependencies](#dependencies)
 - [Icons](#icons)
 - [Installation](#installation)
