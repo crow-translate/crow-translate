@@ -152,6 +152,7 @@ qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindo
 Wayland doesn't provide API for global shortcuts and you need to register them by yourself. 
 
 ### KDE
+
 KDE have a convenient feature to define shortcuts in .desktop file and import them in settings. These shortcuts are already enabled and should work by default.
 
 ### GNOME
