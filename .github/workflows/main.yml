@@ -76,7 +76,7 @@ jobs:
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libkf5wayland-dev libtesseract-dev ninja-build
 
       - name: Install vcpkg
-        uses: lukka/run-vcpkg@v11.4
+        uses: lukka/run-vcpkg@v11.5
         if: runner.os == 'Windows'
         with:
           vcpkgJsonGlob: vcpkg.json
