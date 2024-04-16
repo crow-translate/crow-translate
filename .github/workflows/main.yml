@@ -85,11 +85,6 @@ jobs:
         if: runner.os == 'Windows'
         uses: ilammy/msvc-dev-cmd@v1
 
-      # See https://gitlab.kitware.com/cmake/cmake/-/merge_requests/4766#note_1091927
-      - name: Downgrade CMake
-        if: runner.os == 'Windows'
-        uses: lukka/get-cmake@v3.21.2
-
       - name: Build
         run: |
           cmake -B build -G Ninja -D CMAKE_BUILD_TYPE=Release -D WITH_PORTABLE_MODE=ON -DCMAKE_INSTALL_PREFIX=install ${{ matrix.extra-cmake-arguments }}
