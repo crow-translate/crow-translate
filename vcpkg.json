@@ -1,7 +1,7 @@
 {
   "name": "crow-translate",
   "version-string": "latest",
-  "builtin-baseline": "b4a3d89125e45bc8f80fb94bef9761d4f4e14fb9",
+  "builtin-baseline": "66a252f70eebdd744c02d7ab8c1cc6fe123c70ee",
   "dependencies": [
     {
       "name": "tesseract"
