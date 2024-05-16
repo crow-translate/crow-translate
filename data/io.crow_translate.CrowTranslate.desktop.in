@@ -24,7 +24,7 @@ X-KDE-DBUS-Restricted-Interfaces=org.kde.kwin.Screenshot
 X-Purism-FormFactor=Workstation;Mobile;
 
 [Desktop Action TranslateSelectedText]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateSelection
 Name=Translate selected text
 Name[fi_FI]=Käännä valittu teksti
 Name[pt_PT]=Traduzir o texto selecionado
@@ -32,7 +32,7 @@ Name[ru_RU]=Перевести выделенный текст
 X-KDE-Shortcuts=Ctrl+Alt+E
 
 [Desktop Action SpeakSelection]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakSelection
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakSelection
 Name=Speak selected text
 Name[fi_FI]=Puhu valittu teksti
 Name[pt_PT]=Falar o texto selecionado
@@ -40,7 +40,7 @@ Name[ru_RU]=Озвучить выделенный текст
 X-KDE-Shortcuts=Ctrl+Alt+S
 
 [Desktop Action SpeakTranslatedSelection]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakTranslatedSelection
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow speakTranslatedSelection
 Name=Speak translation of selected text
 Name[fi_FI]=Puhu valitun tekstin käännös
 Name[pt_PT]=Falar a tradução do texto selecionado
@@ -48,7 +48,7 @@ Name[ru_RU]=Озвучить перевод выделенного текста
 X-KDE-Shortcuts=Ctrl+Alt+F
 
 [Desktop Action StopSpeaking]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow stopSpeaking
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow stopSpeaking
 Name=Stop text speaking
 Name[fi_FI]=Lopeta tekstin puhuminen
 Name[pt_PT]=Parar de falar o texto
@@ -56,7 +56,7 @@ Name[ru_RU]=Остановить озвучивание текста
 X-KDE-Shortcuts=Ctrl+Alt+G
 
 [Desktop Action Open]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow open
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow open
 Name=Show main window
 Name[fi_FI]=Näytä pääikkuna
 Name[pt_PT]=Mostrar janela principal
@@ -64,14 +64,14 @@ Name[ru_RU]=Показать главное окно
 X-KDE-Shortcuts=Ctrl+Alt+C
 
 [Desktop Action CopyTranslatedSelection]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow copyTranslatedSelection
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow copyTranslatedSelection
 Name=Translate selected text and copy to clipboard
 Name[fi_FI]=Käännä valittu teksti ja kopioi leikepöydälle
 Name[pt_PT]=Traduzir texto selecionado e copiar para a área de transferência
 Name[ru_RU]=Перевести выделенный текст и скопировать в буфер обмена
 
 [Desktop Action RecognizeScreenArea]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow recognizeScreenArea
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow recognizeScreenArea
 Name=Recognize text in screen area
 Name[fi_FI]=Tunnista teksti näytön alueelta
 Name[pt_PT]=Reconhecer texto na área do ecrã
@@ -79,7 +79,7 @@ Name[ru_RU]=Распознать текст в области экрана
 X-KDE-Shortcuts=Ctrl+Alt+I
 
 [Desktop Action TranslateScreenArea]
-Exec=qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateScreenArea
+Exec=@QT_BIN_DIR@/qdbus io.crow_translate.CrowTranslate /io/crow_translate/CrowTranslate/MainWindow translateScreenArea
 Name=Translate text in screen area
 Name[fi_FI]=Käännä teksti näytön alueelta
 Name[pt_PT]=Traduzir texto na área do ecrã
