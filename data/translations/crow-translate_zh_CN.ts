@@ -1629,7 +1629,7 @@
       <location filename="../../src/settings/settingsdialog.ui" line="186"/>
       <source>Portrait</source>
       <extracomment>Orientation</extracomment>
-      <translation>Verticale</translation>
+      <translation>纵向</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="191"/>
