@@ -1635,7 +1635,7 @@
       <location filename="../../src/settings/settingsdialog.ui" line="191"/>
       <source>Landscape</source>
       <extracomment>Orientation</extracomment>
-      <translation>Orizzontale</translation>
+      <translation>横向</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="316"/>
