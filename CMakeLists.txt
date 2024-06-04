@@ -108,6 +108,8 @@ set(APP_ICONS
 )
 
 if(WIN32)
+    # Those sizes needed only for Windows, for details see:
+    # https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/icon-theme-color
     list(APPEND APP_ICONS
         data/icons/app/44-apps-crow-translate.png
         data/icons/app/150-apps-crow-translate.png
