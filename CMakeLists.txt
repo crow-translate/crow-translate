@@ -98,17 +98,22 @@ endif()
 
 set(APP_ICONS
     data/icons/app/128-apps-crow-translate.png
-    data/icons/app/150-apps-crow-translate.png
     data/icons/app/16-apps-crow-translate.png
     data/icons/app/22-apps-crow-translate.png
     data/icons/app/256-apps-crow-translate.png
-    data/icons/app/310-apps-crow-translate.png
     data/icons/app/32-apps-crow-translate.png
-    data/icons/app/44-apps-crow-translate.png
     data/icons/app/48-apps-crow-translate.png
     data/icons/app/512-apps-crow-translate.png
     data/icons/app/64-apps-crow-translate.png
 )
+
+if(WIN32)
+    list(APPEND APP_ICONS
+        data/icons/app/44-apps-crow-translate.png
+        data/icons/app/150-apps-crow-translate.png
+        data/icons/app/310-apps-crow-translate.png
+    )
+endif()
 
 qt5_add_translation(QM_FILES
     data/translations/${PROJECT_NAME}_ar_SA.ts
