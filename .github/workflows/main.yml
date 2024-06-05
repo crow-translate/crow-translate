@@ -75,6 +75,15 @@ jobs:
           sudo apt-get update
           sudo apt-get install extra-cmake-modules libqt5x11extras5-dev qttools5-dev qtmultimedia5-dev libkf5wayland-dev libtesseract-dev ninja-build
 
+      # To set the application icon
+      - name: Install icoutils
+        if: runner.os == 'Windows'
+        run: |
+          $version = "0.32.3"
+          Invoke-WebRequest -Uri "https://sourceforge.net/projects/unix-utils/files/icoutils/icoutils-$version-x86_64.zip" -OutFile icoutils.zip -UserAgent "NativeHost" -SkipCertificateCheck
+          7z x icoutils.zip
+          echo "${{ github.workspace }}/icoutils-$version-x86_64/bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
       - name: Install vcpkg
         uses: lukka/run-vcpkg@v11.5
         if: runner.os == 'Windows'
