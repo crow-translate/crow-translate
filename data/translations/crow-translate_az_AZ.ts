@@ -4,7 +4,7 @@
   <context>
     <name>AbstractAutostartManager</name>
     <message>
-      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="52"/>
+      <location filename="../../src/settings/autostartmanager/abstractautostartmanager.cpp" line="56"/>
       <source>Unable to apply autostart settings</source>
       <translation>Avtomatik başlatma ayarları tətbiq edilə bilmədi</translation>
     </message>
@@ -12,38 +12,15 @@
   <context>
     <name>AbstractScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="63"/>
+      <location filename="../../src/ocr/screengrabbers/abstractscreengrabber.cpp" line="58"/>
       <source>Unable to grab screen</source>
       <translation>Ekranı çəkmək mümkün olmadı</translation>
     </message>
   </context>
   <context>
-    <name>LanguagesDialog</name>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="14"/>
-      <source>Add language</source>
-      <translation>Dil əlavə edin</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="91"/>
-      <source>Available languages:</source>
-      <translation>Mövcud dilər:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.ui" line="104"/>
-      <source>Current languages:</source>
-      <translation>Cari dillər:</translation>
-    </message>
-    <message>
-      <location filename="../../src/addlanguagedialog.cpp" line="35"/>
-      <source>Filter (%1)</source>
-      <translation>Süzgəc (%1)</translation>
-    </message>
-  </context>
-  <context>
     <name>AppSettings</name>
     <message>
-      <location filename="../../src/settings/appsettings.cpp" line="1245"/>
+      <location filename="../../src/settings/appsettings.cpp" line="1252"/>
       <source>Unknown language code: %1</source>
       <translation>Bilinməyən dil kodu: %1</translation>
     </message>
@@ -181,12 +158,12 @@
   <context>
     <name>D-Bus</name>
     <message>
-      <location filename="../../src/main.cpp" line="100"/>
+      <location filename="../../src/main.cpp" line="102"/>
       <source>Unable to register D-Bus object for %1</source>
       <translation>%1 üçün D-Bus obyekti qeydiyyatdan keçirilə bilmədi</translation>
     </message>
     <message>
-      <location filename="../../src/main.cpp" line="76"/>
+      <location filename="../../src/main.cpp" line="77"/>
       <source>D-Bus service %1 is already registered by another application</source>
       <translation>D-Bus xidməti %1 artıq başqa tətbiq tərəfindən qeydə alınıb</translation>
     </message>
@@ -194,20 +171,48 @@
   <context>
     <name>LanguageButtonsWidget</name>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="460"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="463"/>
       <source>Window width is larger than screen due to the languages on the panel.</source>
       <translation>Panelə əlavə olunan dillərin çoxluğundan pəncərənin eni ekrandan genişdir.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="461"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="464"/>
       <source>Please reduce added languages.</source>
       <translation>Əlavə olunan dilləri azaldın.</translation>
     </message>
     <message>
-      <location filename="../../src/languagebuttonswidget.cpp" line="537"/>
-      <location filename="../../src/languagebuttonswidget.cpp" line="539"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="540"/>
+      <location filename="../../src/languagebuttonswidget.cpp" line="542"/>
       <source>Auto</source>
       <translation>Avtomatik</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagebuttonswidget.ui" line="32"/>
+      <source>Edit languages</source>
+      <translation>Dilərə düzəliş edin</translation>
+    </message>
+  </context>
+  <context>
+    <name>LanguagesDialog</name>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="14"/>
+      <source>Edit languages</source>
+      <translation>Dilərə düzəliş edin</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="91"/>
+      <source>Available languages:</source>
+      <translation>Mövcud dillər:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.ui" line="104"/>
+      <source>Current languages:</source>
+      <translation>Cari dillər:</translation>
+    </message>
+    <message>
+      <location filename="../../src/languagesdialog.cpp" line="35"/>
+      <source>Filter (%1)</source>
+      <translation>Süzgəc (%1)</translation>
     </message>
   </context>
   <context>
@@ -218,27 +223,27 @@
       <translation>Orijinal mətni mübadilə yaddaşına kopyalayın</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="114"/>
+      <location filename="../../src/mainwindow.ui" line="117"/>
       <source>Source</source>
       <translation>Orijinal mətn</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="250"/>
+      <location filename="../../src/mainwindow.ui" line="253"/>
       <source>Copy translation to the clipboard</source>
       <translation>Tərcüməni mübadilə yaddaşına kopyalayın</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="261"/>
+      <location filename="../../src/mainwindow.ui" line="264"/>
       <source>Copy all translation data to the clipboard</source>
       <translation>Bütün tərcümə məlumatlarını mübadilə yaddaşına kopyalayın</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="272"/>
+      <location filename="../../src/mainwindow.ui" line="275"/>
       <source>Translate screen area with delay</source>
       <translation>Gecikmə ilə ekran sahəsini tərcümə edin</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="283"/>
+      <location filename="../../src/mainwindow.ui" line="286"/>
       <source>Application settings</source>
       <translation>Tətbiqin ayarları</translation>
     </message>
@@ -264,27 +269,27 @@
       <translation>Imtina</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="121"/>
+      <location filename="../../src/mainwindow.ui" line="124"/>
       <source>Clear</source>
       <translation>Təmizləyin</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="138"/>
+      <location filename="../../src/mainwindow.ui" line="141"/>
       <source>Translate</source>
       <translation>Tərcümə</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.ui" line="166"/>
+      <location filename="../../src/mainwindow.ui" line="169"/>
       <source>Translation</source>
       <translation>Tərcümə</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="405"/>
+      <location filename="../../src/mainwindow.cpp" line="409"/>
       <source>Unable to detect language</source>
       <translation>Dili aşkar etmək mümkün deyil</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="457"/>
+      <location filename="../../src/mainwindow.cpp" line="461"/>
       <source>Unable to translate text</source>
       <translation>Mətni tərcümə etmək mümkün deyil</translation>
     </message>
@@ -292,12 +297,12 @@
   <context>
     <name>Ocr</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to set OCR languages</source>
       <translation>OCR dillər təyin edilə bilmədi</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="975"/>
+      <location filename="../../src/mainwindow.cpp" line="995"/>
       <source>Unable to initialize Tesseract with %1</source>
       <translation>%1 ilə Tesseract başladıla bimədi</translation>
     </message>
@@ -312,7 +317,7 @@
       <translation>Siz, tətbiq ayarlarında ən az bir OCR dil təyin etməlisiniz</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/ocr.cpp" line="147"/>
+      <location filename="../../src/ocr/ocr.cpp" line="148"/>
       <source>%1 is not a valid Tesseract parameter name.</source>
       <translation>%1, düzgün Tesseract parametri adı deyil.</translation>
     </message>
@@ -1032,46 +1037,35 @@
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1249"/>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1258"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1341"/>
       <source>Error: Engine systems have detected suspicious traffic from your computer network. Please try your request again later.</source>
       <translation>Xəta: Mühərrik sistemi sizin kompyuterinizdən şübhəli trafik axını aşkarladı. Sorğunuzu daha sonra təkrarlamanız xahiş olunur.</translation>
     </message>
     <message>
       <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1270"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1421"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1614"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1708"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1381"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1581"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1675"/>
       <source>Error: Unable to parse autodetected language</source>
       <translation>Xəta: Dilin avtomatik aşkarlanmasınə təhlil etmək mümükün olmadı</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1348"/>
-      <source>Error: Unable to find Yandex SID in web version.</source>
-      <translation>Xəta: Yandex SİD veb versiyada tapıla bilmədi.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1355"/>
-      <source>Error: Unable to extract Yandex SID from web version.</source>
-      <translation>Xəta: Yandex SİD veb-versiyadan çıxarıla bilmədi.</translation>
-    </message>
-    <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1535"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1497"/>
       <source>Error: Unable to find Bing credentials in web version.</source>
       <translation>Xəta: Binq kimlik məlumatları veb versiyadan tapılmadı.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1542"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1504"/>
       <source>Error: Unable to extract Bing key from web version.</source>
       <translation>Xəta: Bing açar veb versiydan çıxarıla bilmədi.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1550"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1512"/>
       <source>Error: Unable to extract Bing token from web version.</source>
       <translation>Xəta: Bing token veb versiydan çıxarıla bilmədi.</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1558"/>
-      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1566"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1524"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetranslator.cpp" line="1533"/>
       <source>Error: Unable to extract additional Bing information from web version.</source>
       <translation>Xəta: Əlavə Bing məlumatları veb versiyadan çıxarıla bilmədi.</translation>
     </message>
@@ -1089,22 +1083,22 @@
       <translation>Seçilmiş %1 mühərriki emosiya ayarlarını dəstəkləmir</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="150"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="142"/>
       <source>%1 engine does not support TTS</source>
       <translation>%1 mühərriki TTS dəstəkləmir</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="236"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="228"/>
       <source>Selected language %1 is not supported for %2</source>
       <translation>Seçilmiş %1 dili %2 üçün dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="248"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="240"/>
       <source>Selected voice %1 is not supported for %2</source>
       <translation>Seçilmiş %1 səslənməsi %2 üçün dəstəklənmir</translation>
     </message>
     <message>
-      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="260"/>
+      <location filename="../../src/qonlinetranslator/src/qonlinetts.cpp" line="252"/>
       <source>Selected emotion %1 is not supported by %2</source>
       <translation>Seçilmiş %1 emosiyası %2 üçün dəstəklənmir</translation>
     </message>
@@ -1171,8 +1165,8 @@
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.cpp" line="75"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="100"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="101"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="103"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="104"/>
       <source>&lt;System language&gt;</source>
       <translation>&lt;System language&gt;</translation>
     </message>
@@ -1806,7 +1800,7 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1333"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="405"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
       <source>Default region</source>
       <translation>Standart bölgə</translation>
     </message>
@@ -1836,11 +1830,6 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Qlobal qısayolları sistemdə qeydiyyata almaq&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
-      <source>Enable global shortcucts</source>
-      <translation>Qlobal qısayolları aktiv edin</translation>
-    </message>
-    <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1615"/>
       <source>Shortcut</source>
       <translation>Qısayol</translation>
@@ -1859,6 +1848,11 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
       <location filename="../../src/settings/settingsdialog.ui" line="1534"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Proxy password for authentication&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
       <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Kimlik doğrulaması üçün Proksi şifrəsi&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.ui" line="1586"/>
+      <source>Enable global shortcuts</source>
+      <translation>Ümumi qısayolları aktiv edin</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1621"/>
@@ -1931,123 +1925,123 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
       <translation>Daşınabilən rejim</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
-      <source>Use %1 from the application folder to store settings</source>
-      <translation>Ayarları saxlamaq üçün tətbiq qovluğundan %1 istifadə edin</translation>
-    </message>
-    <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="146"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="149"/>
       <source>Updates</source>
       <translation>Yeniləmələr</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="153"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="156"/>
       <source>Check for updates:</source>
       <translation>Yenilənmələr yoxlanılsın:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="157"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
       <source>Every day</source>
       <translation>Hər gün</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="158"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="161"/>
       <source>Every week</source>
       <translation>Hər həftə</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="159"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="162"/>
       <source>Every month</source>
       <translation>Hər ay</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="1077"/>
-      <location filename="../../src/settings/settingsdialog.cpp" line="160"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="163"/>
       <source>Never</source>
       <translation>Heç vaxt</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="136"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="139"/>
       <source>Icons:</source>
       <translation>Nişanlar:</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="164"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="167"/>
       <source>Check now</source>
       <translation>İndi yoxlayın</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="165"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="168"/>
       <source>Check for updates now</source>
       <translation>Yenilənmələr indi yoxlanılsın</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="178"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="181"/>
       <source>Happy New Year!</source>
       <translation>Yeni İliniz Mübarək!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="192"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="195"/>
       <source>The OCR parameter fields can not be empty.</source>
       <translation>OCR parametrləri sahəs boş ola bilməz.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="193"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="196"/>
       <source>Do you want to discard the invalid parameters?</source>
       <translation>Yararsız pararmetrləri ləğv etmək istəyirsiniz?</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Select icon</source>
       <translation>Nişan seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="343"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="346"/>
       <source>Images (*.png *.ico *.svg *.jpg);;All files()</source>
       <translation>Şəkillər (*.png *.ico *.svg *.jpg);;Bütün fayllar()</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="356"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="359"/>
       <source>Select OCR languages path</source>
       <translation>OCR dilləri yolunu seçin</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="408"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="411"/>
       <source>Mandarin (China)</source>
       <translation>Mandarin (Çin)</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Nothing to play</source>
       <translation>Səsləndiriləcək heç nə yoxdur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="716"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="719"/>
       <source>Playback text is empty</source>
       <translation>Səsləndirmə mətni boşdur</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="726"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="729"/>
       <source>Unable to detect language</source>
       <translation>Dili aşkar etmək mümkün deyil</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="483"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="486"/>
       <source>Checking for updates...</source>
       <translation>Yenilənmələr yoxlanılr...</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="505"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="63"/>
+      <source>Use %1 to store settings</source>
+      <translation>Ayarları saxlamaq üçün %1 istifadə edin</translation>
+    </message>
+    <message>
+      <location filename="../../src/settings/settingsdialog.cpp" line="508"/>
       <source>Update available!</source>
       <translation>Yeniləınmə var!</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="511"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="514"/>
       <source>No updates available.</source>
       <translation>Yenilənmə yoxdur.</translation>
     </message>
     <message>
-      <location filename="../../src/settings/settingsdialog.cpp" line="610"/>
+      <location filename="../../src/settings/settingsdialog.cpp" line="613"/>
       <source>Back</source>
       <translation>Geriyə</translation>
     </message>
@@ -2169,115 +2163,115 @@ dil&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
   <context>
     <name>SnippingArea</name>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="92"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="86"/>
       <source>Unable to snip screen area</source>
       <translation>Ekran sahəsi kəsilə bilmədi</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="93"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="87"/>
       <source>Received an invalid image of screen %1.</source>
       <translation>%1 ekranın keçərsiz görüntüsü alındı.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="652"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="639"/>
       <source>Click and drag to draw a selection rectangle,
 or press Esc to quit</source>
       <translation>Siçanın düyməsini basın və onu buraxmadan bir düzbucaqlı çəkin,
 və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="924"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="845"/>
       <source>Confirm:</source>
       <translation>Təsdiqləyin:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
       <source>Release left-click</source>
       <translation>Sol düyməni buraxın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="926"/>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="847"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Enter</source>
       <translation>Enter</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="928"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="849"/>
       <source>Double-click</source>
       <translation>İkili vuruş</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="930"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="851"/>
       <source>Create new selection rectangle:</source>
       <translation>Yeni seçilmiş düzbucaqlı yaradın:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>Drag outside selection rectangle</source>
       <translation>Seçilmiş düzbucaqlıdan kənara çıxarın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="931"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="852"/>
       <source>+ Shift: Magnifier</source>
       <translation>+Shift: Böyüdücü</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="934"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="855"/>
       <source>Move selection rectangle:</source>
       <translation>Seçilmiş düzbucaqlını köçürün:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Drag inside selection rectangle</source>
       <translation>Seçilmiş düzbucaqlıya atın</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>Arrow keys</source>
       <translation>Ox düymələri</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="935"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="856"/>
       <source>+ Shift: Move in 1 pixel steps</source>
       <translation>+Shift: 1 piksel hərəkət etdirin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="937"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="858"/>
       <source>Resize selection rectangle:</source>
       <translation>Seçilmiş düzbucaqlının ölçüsünü dəyişin:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Drag handles</source>
       <translation>Tutacağı sürükləyin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>Arrow keys + Alt</source>
       <translation>Ox düymələri + Alt</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="938"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="859"/>
       <source>+ Shift: Resize in 1 pixel steps</source>
       <translation>+ Shift: Ölçüsünü 1 piksel dəyişin</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="940"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="861"/>
       <source>Reset selection:</source>
       <translation>Seçimi sıfırlayın:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="941"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="862"/>
       <source>Right-click</source>
       <translation>Sağ vuruş</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="944"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="865"/>
       <source>Cancel:</source>
       <translation>İmtina:</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/snippingarea.cpp" line="945"/>
+      <location filename="../../src/ocr/snippingarea.cpp" line="866"/>
       <source>Esc key</source>
       <translation>Esc düyməsi</translation>
     </message>
@@ -2339,35 +2333,35 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>TrayIcon</name>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>Invalid tray icon</source>
       <translation>Yararsız trey nişanı</translation>
     </message>
     <message>
-      <location filename="../../src/mainwindow.cpp" line="944"/>
+      <location filename="../../src/mainwindow.cpp" line="964"/>
       <source>The specified icon &apos;%1&apos; is invalid. The default icon will be used.</source>
       <translation>Seçilmiş &apos;%1&apos; işanı yararsızdır. ilkin nişan istifadə olunacaq.</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="31"/>
-      <location filename="../../src/trayicon.cpp" line="55"/>
+      <location filename="../../src/trayicon.cpp" line="56"/>
       <source>Show window</source>
       <translation>Pəncərəni göstərin</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="32"/>
-      <location filename="../../src/trayicon.cpp" line="56"/>
+      <location filename="../../src/trayicon.cpp" line="57"/>
       <source>Settings</source>
       <translation>Ayarlar</translation>
     </message>
     <message>
       <location filename="../../src/trayicon.cpp" line="33"/>
-      <location filename="../../src/trayicon.cpp" line="57"/>
+      <location filename="../../src/trayicon.cpp" line="58"/>
       <source>Quit</source>
       <translation>Çıxış</translation>
     </message>
     <message>
-      <location filename="../../src/trayicon.cpp" line="62"/>
+      <location filename="../../src/trayicon.cpp" line="63"/>
       <source>Translation result</source>
       <translation>Tərcümə nəticəsi</translation>
     </message>
@@ -2475,22 +2469,22 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>WaylandPlasmaScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="60"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="55"/>
       <source>Unable to create pipe: %1.</source>
       <translation>Kanal yaradıla bilmədi: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="99"/>
       <source>Unable to wait for socket readiness: %1.</source>
       <translation>Soketin hazırlanmasını gözləmək mümkün olmadı: %1.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="109"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="104"/>
       <source>Timeout reading from pipe.</source>
       <translation>Kanldan oxuma vaxtı bitdi.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="115"/>
+      <location filename="../../src/ocr/screengrabbers/waylandplasmascreengrabber.cpp" line="110"/>
       <source>Unable to read data from socket: %1.</source>
       <translation>Verilınlərin soketdən oxunması mümkün deyil: %1.</translation>
     </message>
@@ -2498,12 +2492,12 @@ və ya ləğv etmək üçün Esc düyməsinə vurun</translation>
   <context>
     <name>WaylandPortalScreenGrabber</name>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="73"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="68"/>
       <source>Unable to subscribe to response from xdg-desktop-portal.</source>
       <translation>Xdg-desktop-portal'dan cavaba abunə mümkün olmadı.</translation>
     </message>
     <message>
-      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="93"/>
+      <location filename="../../src/ocr/screengrabbers/waylandportalscreengrabber.cpp" line="88"/>
       <source>Received an empty path from xdg-desktop-portal.</source>
       <translation>Xdg-desktop-portal'dan boş yol alındı.</translation>
     </message>
