@@ -1,3 +1,6 @@
+> [!IMPORTANT]  
+> The project has migrated under the KDE umbrella, and development will continue at https://invent.kde.org/office/crow-translate.
+
 # ![Crow Translate logo](data/icons/app/48-apps-crow-translate.png) Crow Translate
 
 [![GitHub (pre-)release](https://img.shields.io/github/release/crow-translate/crow-translate/all.svg)](https://github.com/crow-translate/crow-translate/releases)
