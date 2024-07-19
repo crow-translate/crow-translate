@@ -1208,12 +1208,12 @@
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="419"/>
       <source>Opacity:</source>
-      <translation>Прозрачность:</translation>
+      <translation>Непрозрачность:</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="392"/>
       <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Pop-up window opacity&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
-      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Прозрачность всплывающего окна&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
+      <translation>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Непрозрачность всплывающего окна&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</translation>
     </message>
     <message>
       <location filename="../../src/settings/settingsdialog.ui" line="329"/>
