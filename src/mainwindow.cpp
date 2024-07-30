@@ -1063,6 +1063,7 @@ void MainWindow::loadAppSettings()
     ui->translateButton->setShortcut(settings.translateShortcut());
     ui->swapButton->setShortcut(settings.swapShortcut());
     ui->copyTranslationButton->setShortcut(settings.copyTranslationShortcut());
+    ui->clearButton->setShortcut(settings.clearShortcut());
     m_closeWindowsShortcut->setKey(settings.closeWindowShortcut());
 }
 
